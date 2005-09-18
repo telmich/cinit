@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+optimising cinit,
+Nico Schottelius, 2005-06-09 (Last Modified: -)
+--------------------------------------------------------------------------------
+
+0. Warning
+1. gcc options
+2. striping
+
+
+0. Warning
+
+Any optimisation may cause cinit (not just cinit, but any program) to fail
+and to do mysterious things instead of expected actions.
+
+
+1. gcc options
+
+gcc knows of several optimisation flags. Mostly interesting is -Os for small
+size (this is btw broken on gcc-3.4.3 on x86!).
+
+One can also pass -Werror so that any warning makes the compile to fail.
+
+The current standard for cinit is: (see CFLAGS in the Makefile).
+
+
+2. striping
+
+With strip(1) you can remove specific sections of object files.
+You have to find out, which ones you can remove safely
+(for instance with objdump(1)).
+
+The current standard for cinit is: (see STRIP in the Makefile)

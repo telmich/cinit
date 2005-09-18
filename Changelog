@@ -1,0 +1,8 @@
+Sun May  8 12:20:35 CEST 2005
+   *Changelog can now be found in monotone database (monotone log)
+Sat Apr 30 15:53:53 CEST 2005
+   * add socket code
+Tue Apr 26 15:29:53 CEST 2005
+   * removed is_cinit support, initial messaging framework
+Mon Apr 18 14:07:50 CEST 2005
+   * added is_cinit -> recognize if you are cinit or a fork

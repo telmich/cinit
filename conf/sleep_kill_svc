@@ -1,0 +1,5 @@
+1
+
+Seconds to sleep after sending SIGTERM, before sending SIGKILL to
+the service we are shutting down. This is only used for
+bringing down respawning processes. Default: 1.

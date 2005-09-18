@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+How to use the rescue mode,
+Nico Schottelius 2005-06-13 (Last Modified: 2005-06-13)
+--------------------------------------------------------------------------------
+
+cinit knows of a so called "rescue mode" (other init systems also
+name it "Single user").
+
+In this rescue mode you have a shell. Exactly one shell.
+
+No getty, no daemon, nothing will be alive, not even cinit.
+
+You start the rescue mode either by
+   a) sending SIGUSR2 to cinit (kill -USR2 1)
+   b) using cservice (cservice -s thilo)
+
+You can do maintaining then. When you finished, you can either
+   a) hard-reboot/poweroff/halt
+   b) restart cinit and restart the system without needing to reboot
+
+In the later case, you simply have to replace your shell with
+cinit. In most shells you can do that by entering the following:
+
+shell # exec /sbin/cinit
+
+This assumes that you left the system in a clean state: Exactly as
+the kernel would start (Well, cinit may ignore if some things are there,
+but do not wonder if some services will fail, if their job is already done.).
+
+Oh, and yes, you could even update cinit this way ;-)

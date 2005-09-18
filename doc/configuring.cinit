@@ -1,0 +1,189 @@
+--------------------------------------------------------------------------------
+configuring cinit,
+Nico Schottelius 2005-05-28 (Last Modified: 2005-06-05)
+--------------------------------------------------------------------------------
+
+0. Pre-compile configuration
+1. General configuration layout
+2. Hints
+2.0 Service executing / parameters
+2.1 Daemons
+2.2 Logging
+2.3 Using prepared scripts
+3. Profiles
+
+
+0. Pre-compile configuration
+
+Have a look at conf/*. Those variable will mostly be used when
+compiling cinit. Some will be read later (like destdir).
+
+
+1. General configuration layout
+
+/etc/cinit (configurable via conf/cinit_dir) stores the complete
+cinit configuration.
+
+cinit is service based.
+A service consists of
+   - a base directory (like /etc/cinit/getty/1)
+   - dependency configuration:
+
+      ./wants  - services it wants to be started before (but it
+                 will work anyway)
+
+      ./needs/ - services it needs. If those services fail, this service
+                 won't be started.
+ 
+   - a flag indicating whether to respawn the service:
+
+      ./respawn (simply touch it)
+
+   - a delay: how long to wait for the service (in seconds) before
+     sending SIGKILL after the SIGTERM (only for respawning processes):
+      
+      ./delay (one line with only the digits)
+
+      If delay is non-existing or not readable, the delay from
+      conf/sleep_kill_svc is taken. The maximum length of this
+      number ("9999" uses length 4, "42" needs 2 bytes) can be adjusted
+      at compile time in conf/max_delay. Internally this is a signed
+      integer, so the maximum size depends on your system. Though
+      I don't think anybody will want to wait for a service as long as
+      an integer would allow.
+
+   - the program to run when switching the service on and off:
+
+      ./on        (a link to a program or a shell script)
+      ./on.params (see conf/c_params, the parameters to pass to the program)
+      ./on.env    (see conf/c_env, the environment to pass to the program)
+
+      ./off          (call that when shutting down the service)
+      ./off.params   (the parameters to pass to the program)
+      ./on.env       (the environment to pass to the program)
+
+You should have a look at the samples/ directory for examples.
+
+If things are missing, cinit will continue with what's available.
+This way you only need the files you use. Some examples:
+
+   /etc/cinit/init:
+      ./wants -> services it wants
+      ./needs -> services it needs
+      That's everything
+
+   /etc/cinit/testsvc:
+      on       -> link to program
+      on.param -> parameters to program
+      respawn  -> restart it
+      That's everything, as it has no dependencies
+ 
+   /etc/cinit/fullsvc:
+      on          -> program to start when switching on
+      on.params   -> parameters to pass to start program
+      on.env      -> environment to pass to start program
+
+      respawn     -> respawn on service
+      delay       -> wait this time before sending SIGKILL after SIGTERM
+
+      off         -> program to start when switching off
+      off.params  -> parameters to pass to stop program
+      off.env     -> environment to pass to stop program
+
+      wants/*     -> services it wants before starting (non-critical ones)
+      needs/*     -> links to needed services (critical!) before starting
+
+
+2. Hints
+
+2.0 Service executing / parameters
+
+The on and off files can and should be links to the programs you want
+to execute. This way you save yourself loading the big shell (which is
+on many Linux systems bash, why so ever, dash does the job as good, still
+beeing small).
+
+The on.params and off.params files could also be links to system configuration:
+
+Assume the service is called local-tuning/keyboard. The on script
+could look like:
+
+   on -> /bin/loadkeys
+   on.params -> /etc/sys/keyboard.mapping
+
+   And /etc/sys/keyboard.mapping would contain only the string
+   "dvorak" (or "de-latin1" or "sg-latin1" or ...).
+
+
+2.1 Daemons
+
+Respawning daemons is a bit more difficult, as daemons do often fork()
+(go to background, the calling process exits).
+
+This way cinit cannot watch it directly.
+
+The first solution is to check the documentation of your daemon program,
+if it has a switch to disable forking (Please have a look at
+daemons.backgrounding for a list of known daemons and their switches
+to avoid backgrounding).
+
+The other possibility is to use a program, which will
+   a) start the daemon
+   b) look into the pidfile of the daemon
+   c) will then wait until that pid does not exist anymore
+   d) and then it exits and cinit will restart it (goto a) now)
+
+Such a program is included into this cinit release,
+though I do not recommend using it. You should better contact the
+authors and make them implement a clean non-forking mode.
+
+The name of the program (actually a shell script) is "cinit.wait.for.daemon".
+
+You will use it as the "on" part of the service and you have to add
+
+   a) the pidfile to on.params
+   b) the daemon binary
+
+Thus the service would look like:
+
+   svc-broken-daemon/
+      on -> /sbin/cinit.wait.for.daemon
+      on.params:
+         /var/run/apache.pid
+         /usr/packages/apache-2.0.51/bin/httpd
+         -DSSL
+
+Be aware: This is just a hack, first try to avoid backgrounding
+and you won't need this hack!
+
+
+2.2 Logging
+
+Currently there's no special logging support.
+When programs write to stdout, it will be displayed on
+the same stdout cinit is connected to
+(we don't even open /dev/console - we are too lazy currently).
+
+
+2.3 Using prepared scripts
+
+In the bin/ directory of this tarball you'll find at least:
+
+   cinit.add.dependency - add a dependency to a service
+   cinit.add.getty      - add a new getty
+   cinit.create.empty.service - create an empty service
+   cinit.reboot         - reboot in /bin/sh
+   cinit.remove.getty   - remove a getty service
+   cinit.respawn.off    - switch respawing off
+   cinit.respawn.on     - switch respawing on
+   cinit.shutdown       - shutdown in /bin/sh
+
+
+3. Profiles
+
+Since cinit-0.0.6 there is profile in cinit.
+Profiles are described in doc/profile.support.
+
+X. Examples
+
+Can be found in the tarballs below samples/.

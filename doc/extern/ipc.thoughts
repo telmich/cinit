@@ -1,0 +1,83 @@
+--------------------------------------------------------------------------------
+Thoughts about different UNIX-IPC,
+Nico Schottelius, 2005-04-28 (Last Modified: 2005-06-11)
+--------------------------------------------------------------------------------
+
+Howto cinit communicates with
+   a) cinit-forks
+   b) any other program
+
+a) cinit-forks
+
+a.1) shared memory
+
+Access could generally be done with shared memory. The problem with
+that is, that -lrt is required, which implicits -lpthread, which
+makes linking staticly problematic (at least for glibc).
+
+a.2) pipes
+
+A maximum of ~510 pipes could be used ( (1024-3)/2 ),
+1024 is the maximum opened file deskriptors,
+minus 3 (stdin/stdout/stderr) already opened, divided
+by two, because two fds needed per client.
+
+Pipes cannot be used easily through forks of forks.
+
+a.3) fifos
+
+FIFOs are easy to use, but you would need to create two FIFOs
+for _every_ service, as with only two FIFOs we cannot reliable
+detect, _who_ is writting to us currently and who wants to read.
+
+The same limit as above is true for fifo, too: A maximum of ~510
+services.
+
+a.4) system-v-ipc
+
+No documentation found nor tested.
+
+a.5) sockets
+
+Are indeed a very clean way. There's only one problem:
+bind() fails on read-only mounted devices:
+
+   - The socket either does not exists and cannot be created
+   - or the socket exists, but bind() refuses to reuse it
+     (error: Address already in use)
+
+Imho bind() should even honour the socket-option SO_REUSEADDR,
+which allows to re-use a socket, if there's no other program bound to.
+
+As far as I can see, SO_REUSEADDR is only honoured, if socket is of
+type PF_INET (we use PF_UNIX) and POSIX does only specify how to
+check for support, but not that sockets have to be able to use
+SO_REUSEADDR (see posix.aardvark.bug.report).
+
+That way, we are forced to mount a temporarily filesystem on
+/etc/cinit/tmp and create the socket below this directory. This is not
+the clean and easy solution one would wish. Still, sockets
+seem to be the cleanest and most reliable way to have IPC for
+this situation.
+
+See socket(2), bind(2), listen(2), accept(2), socket(7) and unix(7)
+for help.
+
+b) any other program
+
+What you can do is to tell cinit to
+   - reboot,
+   - halt,
+   - poweroff,
+   - update itself (hot-reboot)
+   - and to start a rescue mode (see using.rescue).
+
+Simple send cinit a signal, what to do:
+   HUP: reboot
+   USR1: halt
+   USR2: rescue
+   TERM: poweroff
+   CONT: update
+
+See signal(2) and signal(7) for help and serv/sig_reboot.c for implementation.
+--------------------------------------------------------------------------------

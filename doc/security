@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+security,
+Nico Schottelius 2005-06-13 (Last Modified: 2005-06-14)
+--------------------------------------------------------------------------------
+
+A little note about cinit security and how to exploit it:
+
+cinit trusts its socket, /etc/cinit/tmp/coala. If somebody not
+authorised has access to it, your system is taken over.
+
+Through this socket anybody with write access can:
+
+   - shutdown, restart and power-off the host
+   - spawn a local unprotected shell
+   - execute anything as the user cinit runs (most likely root)
+
+Currently cinit does not care very much about the socket permissions.
+On my system this creates a socket with srwxr-x-rx permissions, which
+isi suitable for normal operation, which will not accept connect()
+by others than root.
+
+But you can also loosen the security and allow people from a specfic group
+to control your system:
+
+   ei # chmod 770 /etc/cinit/tmp/coala
+   ei # chown root:cinit /etc/cinit/tmp/coala
+
+Now everybody in the cinit group can control your system.
+Please think twice before doing that, as you read above, anyone from
+the cinit group may start a root shell on the initial console then!
+
+For extra parnoid settings you can do the following:
+
+   ei # chmod 700 /etc/cinit/tmp/coala
+   ei # chown root:root /etc/cinit/tmp/coala

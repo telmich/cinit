@@ -1,0 +1,5 @@
+cinit is a fast executing, small and simple init with support for profiles. It
+minds dependencies (hard and soft, 'needs' and 'wants') and executes processes
+in parallel. And it has a simple configuration, which makes many shell-scripts
+unecessary (but you still could use them if you really want), which leads to
+better performance and less memory using.

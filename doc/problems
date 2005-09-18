@@ -1,0 +1,9 @@
+fsck:
+   returns non-zero if it repaired something.
+   You have to wrap it into a shell-script :-(
+
+      #!/bin/sh
+      fsck $@
+      [ $? -le 1 ] && exit 0
+      exit 1
+

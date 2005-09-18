@@ -1,0 +1,17 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: read configuration into variables
+# Date: 2005-05-24 (Last Changed: 2005-08-08)
+
+# try environment first
+if [ "$CINIT_CONF_DIR" ]; then
+   CONFDIR=$CINIT_CONF_DIR
+elif [ -d $(dirname $0)/../conf/ ]; then
+   CONFDIR=$(dirname $0)/../conf/
+else
+   echo 'Did not find cinit configuration!' >&2
+   echo "Please set the variable CINIT_CONF_DIR" >&2
+   exit 1
+fi
+
+echo $CONFDIR

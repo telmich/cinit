@@ -1,0 +1,9 @@
+.env
+
+The extension to c_on and c_off, which will contain the environment \n seperated.
+
+For instance:
+
+CLIENT_IP=192.168.23.42
+ACCEPT_CONN=32
+

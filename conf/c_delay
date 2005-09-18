@@ -1,0 +1,4 @@
+delay
+
+Name of the file which contains the delay between sending SIGKILL after
+SIGTERM for respawning processes.

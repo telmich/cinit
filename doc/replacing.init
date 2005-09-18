@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+replacing your current init system,
+Nico Schottelius 2005-06-14 (Last Modified: 2005-06-14)
+--------------------------------------------------------------------------------
+
+Simply install cinit (make install), configure cinit
+(see configuring.cinit), restart system using
+cinit (see README/Installing) delete /sbin/init
+and link, move or copy cinit to init (ln -s /sbin/cinit /sbin/init), reboot.
+
+That's everything in general, the biggest part will be to configuring cinit.
+
+See also doc/merging.other.initsystems.

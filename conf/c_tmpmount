@@ -1,0 +1,4 @@
+tmpfs
+
+The name of the mount target, we'll mount with c_tmpfs on the c_tmp directory.
+On Linux this can be anything, but we will use the default "tmpfs".

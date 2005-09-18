@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+Socket: poll(2) vs. O_ASYNC,
+Nico Schottelius 2005-06-22 (Last Modified: 2005-06-22)
+--------------------------------------------------------------------------------
+
+0. General problem
+1. O_ASYNC
+2. poll(2)
+
+
+0. General problem
+
+cinit has to react, as soon as there's data on the socket.
+
+1. O_ASYNC
+
+When you open a socket with O_ASYNC (or specify it with fcntl(2)) under
+Linux, your process recieves the SIGIO signal from the kernel, as soon
+as data is available.
+
+The problem is the handling of signals seems not to be serialised:
+
+The function, which is called on the SIGIO signal (called sigio() here)
+calls other functions. Those functions way recieve SIGIO while working,
+so the first data stream is not yet finished, though the next
+stream is beeing read.
+
+This gives very nice race-conditions, which are very nice to debug.
+
+2. poll(2)
+
+poll(2) is a standard Unix-call (XPG4-UNIX), which waits a specific
+timeout (or infinite time if you specify a value less that zero) for
+the socket (or the fd in general) to be in a state where
+data is available to read (in fact poll can do much more, but we are
+not interested only in POLLIN and POLLPRI).
+
+While poll(2) seems to be a very bit slower than sigio it works reliable.
+

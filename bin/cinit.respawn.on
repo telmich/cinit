@@ -1,0 +1,24 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: switch respawning on
+# 2005-05-24
+
+set -e
+
+# init variables
+. $(dirname $0)/cinit.read-conf
+
+if [ $# -lt 1 ]; then
+   echo "`basename $0`: service-name(s)"
+   echo "   Services will be marked respawning"
+   exit 1
+fi
+
+BASEDIR=$DESTDIR/$CINIT_DIR
+
+for svc in $@; do
+   echo -n "Marking $svc respawning ..."
+   touch "${BASEDIR}/${svc}/${C_RESPAWN}"
+   echo "finished."
+done
+

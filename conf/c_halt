@@ -1,0 +1,4 @@
+halt
+
+Name of the service we should start when 'halting' (system stop, but no
+power off).

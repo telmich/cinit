@@ -1,0 +1,4 @@
+1
+
+How many seconds to sleep before rechecking if the service was executed.
+Used by run_svc().

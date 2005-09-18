@@ -1,0 +1,41 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: create dependency: service a needs or wants service b
+
+set -e
+
+# init variables
+. $(dirname $0)/cinit.read-conf
+
+BASEDIR=$DESTDIR/$CINIT_DIR
+
+if [ $# -ne 3 ]; then
+   echo "`basename $0`: service_A [wants|needs] service_B"
+   echo ""
+   echo "   Service A needs or wants Service B."
+   echo "   Use relative paths, not absolute."
+   echo "   You must specify whether to use wants or needs."
+   echo ""
+   exit 23
+fi
+
+SVC_A=$1
+DEP=$2
+SVC_B=$3
+
+case $DEP in
+   wants) DEP=$C_WANTS ;;
+   needs) DEP=$C_NEEDS ;;
+   *) echo "Did not I say \"want\" or \"need\"? You _must_ use those terms."
+esac
+
+# FIXME: could some PLEASE simply that?
+SLASHES=$(echo $SVC_A | sed -e 's,/$,,' -e 's,[^/],,g' -e 's,/,../,g' -e 's,^,../../,')
+DEST_NAME=$(echo $SVC_B | sed -e 's,/$,,' -e 's,/,-,g')
+
+SOURCE="${SLASHES}${SVC_B}"
+DEST="${BASEDIR}/${SVC_A}/${DEP}/${DEST_NAME}"
+
+echo -n "Linking $SOURCE to $DEST ... "
+ln -sf "$SOURCE" "$DEST"
+echo "finished."

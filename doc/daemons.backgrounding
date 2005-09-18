@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------
+daemons backgrounding,
+Nico Schottelius 2005-06-12 (Last Modified: 2005-09-15)
+--------------------------------------------------------------------------------
+
+0. Definition
+
+A daemon is a program which runs in the background, not having a tty
+associated necesserally. Running in background does not mean it has
+to background (fork()) itself, but that you cannot control it directly
+from a shell.
+
+1. Daemons and cinit
+
+Respawning daemons is a bit more difficult, as daemons do often fork()
+(go to background, the calling process exits).
+
+This way cinit cannot watch it directly.
+
+The first solution is to check the documentation of your daemon program,
+if it has a switch to disable forking
+
+The following daemons / servers are known to avoid backgrounding easily:
+
+      asterisk [pbx]:               -f
+      bind [dns server/caching]:    -f
+      cardmgr [pcmcia/cardbus]:     -f
+      cron (vixie) [schedular]:     -f
+      cupsd [printer server]:       -f or -F
+      dhclient [dhcp client]:       -d
+      dhcp3 (isc) [dhcp server]:    -f
+      distccd [compile server]:     normal behaviour
+      fcron [schedular]:            -f
+      frox [ftp proxy]:             "NoDetach" in config
+      gdm [display manager]:        -nodaemon
+      mini-lpd [printer server]:    normal behaviour
+      metalog [log server]:         normal behaviour
+      monotone [vcs]:               normal behaviour
+      nessusd ["security server"]:  normal behaviour
+      ntpd [time server]:           -n
+      oidentd [identd server]:      -i
+      oops [http proxy]:            normal behaviour
+      openssh [ssh server]:         -D
+      openvpn [vpn server]:         normal behaviour
+      pbbuttonsd [power management]:normal behaviour
+      proftpd [ftp server]:         -n
+      qmail [mta]:                  normal behaviour
+      rsync ["file server"]:        --no-detach
+      slapd [ldap]:                 -d
+      snmpd [snmp daemon]:          -f
+      svnserve [vcs]:               --foreground
+      syslogd [log server]:         -n
+      syslog-ng [log server]:       -F
+      tcpserver [super server]:     normal behaviour
+      udhcpc [dhcp client]:         normal behaviour
+      vsftpd [ftp server]:          normal behaviour (or: config: background=no)
+      xinetd [super server]:        -dontfork
+
+Those are the daemons that do not offer the possibility (as of release 0.2):
+
+      apache   (only with debug mode)
+      acpid    (only with debug mode)
+      atd      (no switch, no configuraton option)
+      inetd    (some variants)
+      nscd     (no switch, no configuraton option)
+      portmap  (only with debug mode)

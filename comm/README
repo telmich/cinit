@@ -1,0 +1,3 @@
+comm/
+   The communication part of cinit.
+   The functions are used in client and in server code.

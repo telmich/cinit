@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+Debugging your init configuration,
+Nico Schottelius 2005-06-17 (Last Modified: 2005-06-17)
+--------------------------------------------------------------------------------
+
+As writing an init configuration is not the easiest thing, 
+here are some problems (P) and debugging hints (H):
+
+P: There's no output!
+H: If you don't start a service which outputs something there won't be any,
+    cinit starts up silently.
+
+P: Service XYZ seems not to work?
+H: Try the following in your shell:
+   cd /etc/cinit/the-service; ./on "$(on.params)"
+   If that succeeds it has perhaps something missing which should have been
+   started before.
+H: Create a test-service, which contains the following:
+   on: link to /bin/echo
+   on.params: "A test string" (with or without the quotes)
+   Now add the test-service to the needs directory of service XYZ.
+   If you see output the next time, the service is started.
+   Otherwise you forgot to make another service dependent on service
+   XYZ.
+
+P: How can I test if a non-outputting service successfully started?
+H: Create another service, which depends on your service and make
+   it echo something.
+
+P: Does that profile support really work?
+H: Try that: cprofile:NONEXISTENT and you'll see.
+

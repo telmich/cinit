@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+Merging other init systems to cinit,
+Nico Schottelius, 2005-06-02 (Last Modified: 2005-06-11)
+--------------------------------------------------------------------------------
+
+1. Preamble
+2. General to do
+3. Create a script
+
+
+1. Preamble
+
+There is no tool available to merge any existing init-system-configuration
+to cinit style. This is not because the author of cinit does not
+care about support for that. He simply he has
+
+   a) no access to every init-system available
+   b) not the time to analyze every init system
+
+He instead spends the time to improve and bugfix cinit.
+This does not mean that he does not accepts scripts, which do the work.
+In fact, creating and submitting a merge tool is much appreciated!
+
+
+2. General to do
+
+   1. Choose your target init and possibly target platform:
+      - sysvinit may be different on AIX, SuSE and Debian
+      - /etc/rc may look different on each *BSD
+      - Sometimes even same platforms differ in versions:
+         SuSE 5.1 uses a different configuration then SuSE 9.0
+
+      So decide whether you want and can write a general merge tool
+      or if you have to specialize.
+      After deciding, name the script you want to write with the following
+      syntax:
+
+         cinit-merge.$init-$platform-$version
+
+         $platform and $version (either both or only platform) can be omitted.
+
+      Examples:
+
+         cinit-merge.sysvinit-debian-3.0
+         cinit-merge.minit
+   
+   2. Analyze how it works, detect the mechanism in it
+      
+      Your script has to detect if dependencies exist and resolve
+      them. It has to take care of special configurations and possibly
+      warn the user.
+
+
+3. Create a script
+
+Now, after you learned how  the old init system works, you can start creating
+the merge-script (naming see above).
+
+This merge script
+   a) will perhaps not cover full old system (if so, warnings should be printed
+   b) should try to avoid using old (shell)-scripts, as starting
+      a shell for every service needed makes starting up slow
+   c) will include some basic features, that are needed everytime on this
+      platform (setting kernel configuration, hostname, etc)

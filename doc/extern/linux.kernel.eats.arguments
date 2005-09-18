@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+Linux, the kernel, eats arguments
+Nico Schottelius 2005-06-17 (Last Modified: 2005-06-17)
+--------------------------------------------------------------------------------
+
+If you specify
+
+   variable=value
+
+to the Linux kernel, the argument will NOT be passed to cinit.
+
+Here's the relevant code block from init/main.c of the Linux kernel:
+
+-------------------------------------------------------------------------------
+
+From init(void * unused) the function run_init_process(char *init_filename)
+is called, which passes argv_init (char * argv_init[MAX_INIT_ARGS+2]) to init.
+
+First init_setup(char *str) resets all elements of the argv_init to NULL.
+
+The function unknown_bootoption(char *param, char *val) fills the
+argv_init array, but only with parameters, which have no value
+(val). 
+
+The function parse_args calls unknown_bootoption with the unknown options.
+
+-------------------------------------------------------------------------------
+
+This way the profile support in all cinit versions below cinit-0.1 will
+only work if you change conf/profile, because "cprofile=value" will
+not be given to cinit, because it's not treated as a command line option.
+
+The original value "cprofile=" is replaced by "cprofile:" as of cinit-0.1.

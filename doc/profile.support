@@ -1,0 +1,72 @@
+--------------------------------------------------------------------------------
+Profiles,
+Nico Schottelius, 2005-06-04
+--------------------------------------------------------------------------------
+
+1. What are profiles?
+2. How to use profiles?
+3. How to configure profiles?
+4. Some examples
+
+
+1. What are profiles?
+
+Profiles are different configurations for different scenarios.
+This means you can use the 'home' profile to setup things
+differently than at work, where you would use either
+no profile (standard configuration) or the 'work' profile.
+
+
+2. How to use profiles?
+
+Simply pass 'cprofile:PROFILENAME' (like cprofile:home) to cinit.
+How to pass argumenents to cinit? Under Linux the init-system
+gets the kernel arguments (see linux.kernel.eats.arguments) as arguments.
+So you can use
+
+   kernel /usr/src/linux/vmlinuz cprofile:work (grub1,grub2)
+   append="cprofile:work" (LILO,yaboot)
+
+Other Unices should work like Linux, please consult your local
+documentation.
+
+
+3. How to configure profiles?
+
+It's very simple: Normally cinit would call /etc/cinit/init as
+primary service and solve all dependencies. If you pass
+cprofile=wireless to it, cinit will start /etc/cinit/wireless as
+primary service instead.
+
+   [Note: /etc/cinit/yourprofile is the service that will be started.
+    You need/should/must NOT create /etc/cinit/yourprofile/init!]
+
+So the only thing you have to do is to create a service directory
+below /etc/cinit with the name of the profile you want to use.
+
+You can simply copy the init-dir and use it as a template:
+
+   ei # cd /etc/cinit; rsync -a init yourprofile
+   
+   Standard cp will copy the linked files, not the links, that's why I use rsync
+   You could also use tar:
+   
+   ei # cd /etc/cinit/init; tar c . | (mkdir ../yp; cd ../yp; tar x )
+
+That's it!
+
+
+4. Some examples
+
+Here are some examples we found in #cLinux:
+
+   profile name            what it does
+
+   musibox                 only start mp3blaster
+   terminal                start only minicom, which opens the serial line
+   net-terminal            start a respawning shell script, which starts
+                           ssh to the selected host
+   video                   start X+mplayer, which plays the dvd/cdrom
+   wireless                What to start when beeing in an unknown wlan
+   home/work               selected services (nfs, ip, ...) for home or work
+

@@ -1,0 +1,5 @@
+contrib+tools/
+   programs written by others and external tools not necessary
+   needed but nice to have
+
+   cinit-vis.pl (cinit.graph.text) - draw an ascii graph of cinit configuration

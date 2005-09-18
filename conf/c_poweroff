@@ -1,0 +1,3 @@
+poweroff
+
+Name of the service we should start, when system power-off is called.

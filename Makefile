@@ -1,0 +1,128 @@
+#
+# cinit
+# Nico Schottelius
+#
+# Don't edit Makefiles, use conf/* for configuration.
+#
+
+#
+# compile/link options
+#
+# do not use DEBUG and OPTIMIZE at the same time!
+#DEBUG=-DDEBUG
+#OPTIMIZE=-Werror 
+#DEBUG=-g -DDEBUG
+OPTIMIZE=-pipe -Os -Werror 
+
+# init should be static per default!
+LDFLAGS=-static      
+
+# programs
+CC=gcc $(DEBUG) $(OPTIMIZE) $(TIMEME)
+CFLAGS=-Wall -I.
+LD=gcc
+STRIP=strip -R .comment -R .note
+
+# monotone
+MT=monotone
+
+# directories and files
+DDOC=ddoc
+SDIRS=bin client conf comm doc generic serv util
+FILES=Changelog Makefile README TODO cinit.h
+
+# objects
+SERV=serv/sigio.o serv/cinit.o serv/list.o  \
+     serv/run_init_svc.o serv/panic.o serv/sig_reboot.o \
+     serv/sig_child.o
+
+CLIENT=client/msg_svc_on_off.o client/msg_change_status.o client/run_svc.o \
+       client/exec_svc.o client/respawn_svc.o client/run_run_svcs.o \
+       client/connect_sock.o client/begin_msg.o client/sig_terminate.o
+
+COMMUNICATION=comm/do_change_status.o comm/do_result.o comm/do_svc_name.o
+
+BOTH=generic/set_signals.o generic/mini_printf.o generic/usage.o
+
+OBJ=$(SERV) $(CLIENT) $(BOTH) $(COMMUNICATION)
+
+CSVC_OBJ=util/cservice.o generic/mini_printf.o util/msg_reboot.o \
+         generic/usage.o \
+         $(CLIENT) $(COMMUNICATION)
+
+CCO_OBJ=util/ccontrol.o generic/mini_printf.o util/msg_reboot.o \
+         generic/usage.o \
+         $(CLIENT) $(COMMUNICATION)
+
+# DO NOT CHANGE THIS.
+SBIN=sbin
+CINIT_BIN=$(SBIN)/cinit
+
+# targets
+warn:
+	@cat doc/.buildwarn
+
+all: cinit cservice ccontrol sizecheck docs
+
+cinit: $(CINIT_BIN)
+
+docs: $(DDOC) bin/cdoc-man.sh
+	./bin/cdoc-man.sh doc/cinit-doc     > $(DDOC)/cinit.8
+	./bin/cdoc-man.sh doc/cservice-doc  > $(DDOC)/cservice.8
+
+$(DDOC):
+	mkdir $(DDOC)
+
+$(CSVC_OBJ) $(OBJ): config.h
+
+$(CINIT_BIN): $(SBIN) $(OBJ)
+	$(LD) $(LDFLAGS) $(OBJ) -o $@
+	$(STRIP) $@
+
+$(SBIN):
+	mkdir $(SBIN)
+
+sizecheck: cinit cservice
+	FILE="size/`date +%Y-%m-%d-%T`"; ls -l sbin/ > $$FILE; cat $$FILE
+	@echo -n "Source size (in KiB): "
+	@du -s $(SDIRS) | awk '{ sum+=$$1 } END { print sum }'
+#	@du -s bin client comm conf doc generic serv | awk '{ sum+=$1 } END { print sum }'
+clean:
+	rm -f *.o */*.o sbin/* config.h
+
+config.h: conf/*
+	./bin/cinit.mkheader > config.h
+
+cservice: $(SBIN)/cservice
+
+$(SBIN)/cservice util/cservice: $(SBIN) $(CSVC_OBJ)
+	$(LD) $(LDFLAGS) $(CSVC_OBJ) -o $@
+	$(STRIP) $@
+
+ccontrol: $(SBIN)/ccontrol
+
+$(SBIN)/ccontrol util/ccontrol: $(SBIN) $(CCO_OBJ)
+	$(LD) $(LDFLAGS) $(CCO_OBJ) -o $@
+	$(STRIP) $@
+
+# monotone
+mt-update:
+	$(MT) add $(SDIRS) $(FILES) 2>/dev/null
+mt-commit:
+	$(MT) commit
+mt-sync:
+	$(MT) sync monotone.schottelius.org info.clinux.cinit
+
+install: install-dir cinit cservice ccontrol
+	@echo '*** Installing cinit ***'
+	./bin/cinit.install.binary
+
+install-miniconf:
+	./bin/cinit.install.miniconf
+
+install-dir:
+	./bin/cinit.install.dir
+
+install-test:
+	@echo "***> Please get a sample from http://linux.schottelius.org/cinit/"
+	@echo "***\ This make target is no longer supported"

@@ -1,0 +1,4 @@
+/sbin/sulogin
+
+The path to sulogin. We'll execute it only if we panic().
+If you need arguments, you tave to hack serv/panic.c

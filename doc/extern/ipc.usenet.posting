@@ -1,0 +1,48 @@
+From: Nico Schottelius
+Subject: Unix IPC, socket/AF_UNIX; bind on r/o devices?
+Date: 09 May 2005 09:51:27 GMT
+To: comp.unix.programmer
+
+Hello!
+
+Situation:
+   - everything mounted readonly (as when starting the system)
+   - one process with n children, which may have n children (recursive)
+   - all the children and children of children should be able to talk to the
+     first parent
+
+Problem:
+   - Using bind() will fail, because
+      a) socket cannot created
+      b) the existing socket cannot be reused
+
+Other possibilities not working:
+   - shared memory is not an option, as one need
+     -lrt, which needs -lpthread, which is problematic to link statically
+
+   - pipes: handling the pipes from parent to child of child of child
+     would be hard to program
+   
+   - socketpair: should be the same problematic as it's with pipes
+
+   - fifos: one would have to create the fifos before and two fifos
+     for each child; possible, but very unelegant; and one would have
+     to memorize, which child is connected to which fifo; again possible,
+     but somehow unelegant
+   
+   - signaling: one could implement communication with some kind of
+     morse code with signals, but that won't be a good solution
+
+Questions:
+   - Is there any way, case b) (socket already existing) can be solved in
+     a way that I tell bind() to use an existing socket?
+   - What would be the best solution to talk bidirectional to clients
+     in this scenario?
+
+I appreciate any hint, as I really like the socket mechanism and would
+like to keep it.
+
+
+Thanks in advance,
+
+Nico

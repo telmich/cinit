@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+testing cinit in a User-Mode-Linux (uml),
+Nico Schottelius 2005-06-14 (Last Modified: 2005-06-14)
+--------------------------------------------------------------------------------
+
+1. Get an image you want to install cinit to
+2. Compile an UML
+3. change bin/cinit.uml.test to your needs
+4. put a configuration (/etc/cinit) on to your image
+5. ./bin/cinit.uml.test
+   -> wait, your Linux starts with cinit enabled.
+
+If you omit 4, you'll see how cinit will fail without having its base
+directory.

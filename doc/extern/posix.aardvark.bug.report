@@ -1,0 +1,52 @@
+To: austin-review-l__AT__opengroup.org
+From: nico-posix__AT__schottelius.org
+Subject: Bug in TC2-d6 bind - bind a name to a socket
+Reply-To: austin-group-l__AT__opengroup.org
+
+   Bug report from : Nico Schottelius , cLinux
+
+(Note that the reply-to line automatically redirects 
+to austin-group-l__AT__opengroup.org for further discussion on bug reports)
+
+@ page 1 line 0 section bind - bind a name to a socket objection {-1}
+
+Problem:
+
+bind should 'assign a name to a socket', but in particular environments it will fail, where it could succeed.
+
+Long Description:
+
+When opening a new socket, with type PF_UNIX
+(sock = socket(PF_UNIX,SOCK_STREAM,0);) and one sets
+the socket option SO_REUSEADDR
+(setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &tmp, sizeof(tmp))),
+bind does not honour this setting.
+
+It is reported on irc channels, that SO_REUSEADDR is only supported on
+PF_INET sockets and that's what I would claim a bug.
+
+If a socket exists in the filesystem and no process is bound to
+it, bind wail fail anyway.
+
+This is especially problematic, when one is in an environment,
+which is pre-startup (like beeing init) and one wants to use
+sockets, but everything is mounted read-only.
+
+So, if bind() would honour the option, it would be able
+to bind() to a socket, which exists (as creating one on a
+read-only filesystem is not possible).
+
+
+
+Action:
+
+Proposal:
+
+Add better specification to either socket(7) or bind(2), which
+explains the behaviour of bind, when this option is set
+or even better: Specify, that bind should take care of this bit,
+also when using PF_UNIX.
+
+In general the socket(7) manpage should explain more in detail
+or at least reference other documents (unix(7)?), which explain what the
+option for a specific protocol does.

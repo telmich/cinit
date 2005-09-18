@@ -1,0 +1,20 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install basic test config
+# 
+
+. $(dirname $0)/cinit.read-conf
+
+TARDIR=$(dirname $0)/../samples
+
+case `uname -s` in
+   Linux)
+      [ -e /etc/gentoo-release ] && TAR=${TARDIR}/gentoo.tar
+      [ -e /etc/debian_version ] && TAR=${TARDIR}/debian.tar
+      [ -e /etc/SuSE-release ] && TAR=${TARDIR}/suse.tar
+      [ -e /etc/mandrake-release ] && TAR=${TARDIR}/mandrake.tar
+      [ -e /etc/fedora-release ] && TAR=${TARDIR}/fedora.tar
+   ;;
+esac
+
+tar xf ${TAR} -C "$DESTDIR/$PREFIX/$CINIT_DIR"

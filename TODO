@@ -1,0 +1,84 @@
+- ccontrol
+- manpages
+- Error codes when shutting down a service?
+
+- remove umount, swapoff?
+--> to services?
+
+- on.out, on.err, on.in?
+   -> reading/writing from/to files
+
+- Split cservice?
+   - ccontrol:
+      - reboot
+      - shutdown
+      - halt
+   - cservice
+      - (r)estart
+      - (e)in/on
+      - (a)us/off
+
+-u: daten weg???
+--> komplett neu starten, deshalb!
+
+--> Wenn kein ReSPAWN und der Prozess beendet sich nicht,
+    dann haengt init!
+
+Doku!!!
+
+gettys:
+http://www.nongnu.org/fbgetty/docs/fbgetty.8.html, 
+http://www.die.net/doc/linux/man/man8/mgetty.8.html, 
+http://qingy.sourceforge.net/manual.php
+
+--------------------------------------------------------------------------------
+- Source Logic issues
+   - remove FIXME entries (and what should be fixed, too)
+   - cleanup sig_reboot.c
+   - memset for timespecs?
+   - move umount, swapoff and remount to off of init?
+      -> cleanup sig_reboot.c
+   - run_svc:
+      o we have many strcat()s, perhaps save length of pathbuf and strncat at
+         pathtmp[strlen(pathbuf)] ?
+   - do we really need swapoff?
+--------------------------------------------------------------------------------
+- Documentation
+   - Write manpages (use doc/* as base for that)
+   - Check Spell and Grammar in documentation
+   - write howto:
+      o Howto-cinit
+      o Howto-cinit-uml
+--------------------------------------------------------------------------------
+create_mini_cinit / configuration samples
+   -> use a tarball? (samples/*)
+   -> create something which should be runnable
+      -> mount, fsck, getty
+         --> for dev in `read /etc/fstab` ...
+               fsck $dev
+         --> getty from /etc/inittab or /sbin/*getty
+            -> find out, which gettys with which params
+   -> use it on 'make install'
+--------------------------------------------------------------------------------
+Optional tasks:
+
+   - check for other possibilities to create a smaller binary
+      - strip options
+      - gcc options
+      - ld options
+      - alternative libc (uclibc and dietlibc work fine!)
+
+--------------------------------------------------------------------------------
+Things I did not do and I don't know whether we have to care about:
+
+- Porting
+   - add porting code to other unices?
+   - like openssh guys do?
+
+- close(*>2) before forking / executing
+   -> close fds, clean environment, etc., ...
+   -> do we really need that?
+- logging service!
+   -> write output $somewhere, wait for syslog?
+   -> flush at the end of start-process?
+   -> perhaps pipe logging output to a program?

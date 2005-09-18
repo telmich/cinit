@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------
+Closed thoughts,
+Nico Schottelius, 2005-05-XX (Last Modified: 2005-06-14)
+--------------------------------------------------------------------------------
+
+1. using SIDs (service IDs) to communicated with external processes
+
+   This was a very bad idea: The external program could exploit us by
+   specifying an arbitary big SID (as the SID is simply the index
+   of our service array).
+
+2. using function pointers to handle messages
+   
+   Seems like it works fine. We have handlers for each
+   message (do_*), which are called by client and server.
+   The function pointer is simply to read or write, dependending
+   if it is the client or the server. This way we don't need
+   to rewrite communications parts.
+
+3. Using different storage
+   
+   First all services were saved in a service array of the size
+   MAX_SVC. This has been replaced by a double-linked list.
+   Have a look at serv/list.c.
+
+4. Using sockets for IPC (between cinit forks)
+   
+   Works very fine, though we have to mount a temporarily fs before.
+
+5. Removing the maximum number of direct dependencies
+
+   Is not planned, as it looks like the current number (32, see
+   conf/max_deps) seems to be much more than needed. And if
+   one really needs more, simply increase conf/max_deps.
+
+6. Using a directory params with 1,2,3,4 for argv
+   
+   This would make substituting a single argument easier, but only
+   if you know which one you have to change. This would add
+   an additional dirent(), which would not replace the current read(), but
+   add more open() and close()s. As this does not seem to make live
+   easier for system administrators, this is not implemented.
+   If you really like it, hack client/exec_svc.c
+
+7. Using TCP/IP sockets
+   
+   This would be a very small change in the code, but would allow
+   to control cinit over network. Since there is no authentication,
+   this would be highly insecure. On the other hand, cinit
+   could control the parallel start of many hosts, if they
+   should become 'one' computer at the end. As this is not needed
+   currently, it's not implemented.

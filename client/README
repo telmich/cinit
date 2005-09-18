@@ -1,0 +1,2 @@
+client/
+   These sources are used by the children which are spawned by cinit.

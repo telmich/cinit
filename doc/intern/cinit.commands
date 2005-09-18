@@ -1,0 +1,73 @@
+--------------------------------------------------------------------------------
+cinit commands,
+Nico Schottelius 2005-04-28 (Last Modified: 2005-06-11)
+--------------------------------------------------------------------------------
+
+cinit allows communication through a socket (see ipc.thoughs for reasons).
+
+Sockets allow to find out the accessing uid, gid and pid (using SO_PEERCRED as
+socketoption).
+
+The communication-protocol is binary, the implementation can be found
+in comm/* mostly (clients use begin_msg() and server sigio() additonally).
+
+--------------------------------------------------------------------------------
+Protocol overview
+--------------------------------------------------------------------------------
+
+Any communication begins with a command. A command is a one byte
+unsigned char. Depending on the command, the communication has its own
+semantics.
+
+
+Commands are: (values can be found in cinit.h)
+
+   CMD_START_SVC:    I want to start a service.
+   CMD_CHG_STATUS:   I want to change the status of a service.
+   CMD_STOP_SVC:     Please shutdown a service.
+
+   CMD_RESCUE:       Kill everything, and spawn a sulogin shell.
+   CMD_UPDATE:       Hot-reboot system and reload cinit.
+   
+   CMD_HALT:         Halt the system
+   CMD_REBOOT:       Reboot the system
+   CMD_POWEROFF:     Power-off the system
+
+--------------------------------------------------------------------------------
+Detailled command-listing
+--------------------------------------------------------------------------------
+
+CMD_START_SVC
+   1. int len;       /* length of service name, including \0 */
+   2. char *svc;     /* name of the service, absolute pathname */ 
+
+   cinit returns:
+      a) status of service
+      b) fail
+
+CMD_CHG_STATUS:   I want to change the status of a service.
+   0. int len;
+   1. char *svc;
+   2. char status;   /* status:
+                        once: started successfully the service once.
+                        fail: tried to start once, but the service exit ungracefully
+                        respawn: I am on it, as soon it exists I'll restart! */
+   2. pid_t pid      /* the pid of the service, if started once
+                        or the pid of the service watcher, if respawning */
+
+   cinit returns: MSG_OK|MSG_FAIL (char)
+
+CMD_STOP_SVC:     Please shutdown a service and its dependencies.
+   1. int len;       /* length of service name, including \0 */
+   2. char *svc;     /* name of the service, absolute pathname */ 
+
+   cinit returns: Status of service (should be ST_OFF)
+
+
+The following commands do not return anything nor do they need any parameter:
+
+CMD_RESCUE:       Kill everything, and spawn a sulogin shell. Irreversible.
+CMD_HALT:         Halt the system.
+CMD_REBOOT:       Reboot the system.
+CMD_POWEROFF:     Power-off the system.
+CMD_UPDATE:       Update cinit, hot-reboot the system.

@@ -1,0 +1,4 @@
+/usr/bin/install
+
+Program we use to install. install_directory contains parameter
+to create directory.

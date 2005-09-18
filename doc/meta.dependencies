@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+Meta-dependencies,
+Nico Schottelius, 2005-05-24
+--------------------------------------------------------------------------------
+
+1. What are Meta-Dependencies?
+2. What are the advantages / disadvantages of it?
+3. The solutions
+
+1. What are Meta-Dependencies?
+
+A Meta-depedency describes the type of service another service wants, but
+not the exact service.
+
+Example:
+   remote-services/ssh wants a dns-resolver, it does not care about
+   what it is (tinycache, bind, maradns, ...), but that it does
+   name caching.
+
+
+2. What are the advantages / disadvantages of it?
+
+Meta means beeing indirect. Indirect means beeing slow. So, if
+cinit would have to care about meta-dependencies, the code would become
+much bigger and slower.
+
+On the other hand, one would perhaps like to use meta-dependencies, if
+one tests different services with the same functionality or switches
+them dependending on the situation (see profile.support).
+
+
+3. The solutions
+
+As told above, cinit won't care about meta-dependencies and as you'll see
+why it does not even need to.
+
+The first solution would be to have a mapping table outside of cinit.
+This table could be a file for every meta-dependency and contain the
+possibilities:
+
+   dns-resolver:
+      remote-services/bind
+      local-services/tinydns
+      ...
+
+So one would have to call a program, which creates the real cinit
+configuration. This is imho not a very elegant solution and could cause
+problems, when handling self-written services.
+
+Another possibility is to use symlinks: Create service-directories
+for all services beeing installed, but do dependencies in "wants/"
+and "needs/" to a symlink (for instance create /etc/cinit/meta
+and link to real services in there):
+
+   /etc/cinit/meta/dns-resolver -> ../remote-services/bind/
+
+This way you have the indirection (meta-dependencies) in the filesystem
+and cinit does not need any additional code.

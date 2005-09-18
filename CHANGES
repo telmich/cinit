@@ -1,0 +1,44 @@
+- /etc/csys
+- Mailing list
+- cinit-vis.pl
+- online speech in german
+- Neu:
+   - cconfig.graph.xml.rb
+   - cinit.graph.text
+   - cinit-vis-killerfox.pl cinit-vis.pl
+
+- remove unecessary signalling
+
+- you can now also disable 'once ran' services, so you can restart them
+with csevice -a cservice -e
+- respawn watcher do eat zombies now, too
+
+- added script to automaticly build configuration:cinit... miniconf
+- added many helper scripts to install services (cinit.install.service*)
+- fixed many small bugs in:
+   cinit.add.getty
+   cinit.get-conf
+
+-u == update
+-w == warm reboot
+
+???? SIGQUIT = warm reboot
+
+mini_printf(): do not add \n anymore
+util/cservice: use LOG instead of mini_printf
+- Better error descriptions
+- A bit more verbose reporting
+
+- structured run_svc, better error detection
+
+Remove RUN_RUN_SVCs, move code to run_svc so one can determine
+which services failed?
+--> sequentieller ablauf!
+--> parallel ablauf, struct-array mit namen und ergebnis?
+--> for dep in deps/*; do fork(run_svc() ); done
+-----> while(any_is_running) { sleep }
+-------> array durchsuchen, ergebnis nutzen.
+- ueberpruefen von wo aus run_svc() aufgerufen wird
+
+- added generic/usage.c
+- cleaned up serv/cinit.c

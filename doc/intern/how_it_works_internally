@@ -1,0 +1,26 @@
+The following is a very simple process structure of cinit internals:
+
+cinit-main starts
+\
+ |-> execute run_init_svc()
+ |  \ run_svc(CINIT_INIT);
+ |   | check status    <-------------------\
+ |   | set status = temp                    |
+ |   \ check dependencies                   |
+ |    | fork(run_svc()) for every WANT      |
+ |    | run_svc() for every NEED           /
+ |   / check if respawning { do .. while(repawn?)
+ |   \ yes: (remember: run_svc _must_ return!)
+ |    | msg_change_status(respawn)
+ |    | add watcher_signal handler to stop! (SIGTERM)
+ |    | fork(exec_svc)     <--|
+ |    | waitpid(fork)         |  while(1) { ...  }
+ |    \ sleep(WAIT_SECS)   ---/
+ |   | no: fork(exec_svc)
+ |   \ waitpid(fork) -> yes, wait!
+ |    | msg_change_status
+ |   /
+ | /
+ | -> while(1)
+ | - listen to signals
+ | - listen on socket

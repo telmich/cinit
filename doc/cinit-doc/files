@@ -1,0 +1,5 @@
+/sbin/cinit - the init system
+/sbin/cservice - control cinit
+/sbin/cinit.reboot (/sbin/reboot if non-existent before)
+/sbin/cinit.shutdown (/sbin/shutdown if non-existent before)
+/etc/cinit - configuration directory

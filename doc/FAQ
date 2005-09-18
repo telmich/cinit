@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+FAQ - Frequently asked questions,
+Nico Schottelius, 2005-06-05 (Last Modified: 2005-06-12)
+--------------------------------------------------------------------------------
+
+Q: So, what's good in cinit?
+A: Fast executing, clean design, parallel execution, profile support,
+   small binary size (~50KiB static against uclibc), easy configuration,
+   just to name the main facts.
+
+Q: How do I start cinit?
+A: You don't start cinit directly, but your kernel does.
+   Please have a look at your system documentation how to tell your kernel
+   to load /sbin/cinit as init. You'll also find some examples in
+   the README file.
+
+Q: What is /etc/cinit/init used for?
+A: The init service is not just a placeholder, it is the beginning of
+   executing services.
+
+Q: /etc/cinit/init seems not to be used when I use profiles?
+A: That's true. When you select a profile, cinit will begin in this
+   directory: "cprofile:home" will use /etc/cinit/home as starting
+   point.
+
+Q: Why does it take so long before my getty is respawned?
+A: cinit only waits 5 seconds (see conf/sleep_svc), if
+   a) a service didn't exit normally
+   b) the service had a non-zero exit code
+   
+   So fixing the problem would mean fixing your getty / shell.
+
+Q: I am using a tarball from samples/ and there is no getty on tty1!?
+A: That's true, the first console is used for logging purpose in the
+   examples. You still have six console (tty2-tty7) running getty.

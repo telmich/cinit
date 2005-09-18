@@ -1,0 +1,4 @@
+32
+
+Maximum number of direct dependencies (in each wants and needs,
+that way doubling this number) a service may have. The default is 32.

@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+'Geheimnisse' in German,
+Nico Schottelius, 2005-05-XX (Last Modified: 2005-06-11)
+--------------------------------------------------------------------------------
+
+- Dependencies beginning with a '.' (dot) are ignored.
+  So you can temporarily disable a dependency moving it to
+  want/.name
+
+- Why is the name of the socket "coala"?
+  Well, coala could mean 'cinit object abstract layer access', but
+  perhaps it's a much simpler reason.
+
+- cinit will start a little bit faster if you omit non needed
+  'wants' and 'needs' dirs as they need to be scanned if they
+   do not exist
+
+- Currently there is no support to react on 'ctr+alt+del':
+   1. It is not handled to switch on / off
+      (Linux: See man 2 reboot and /proc/sys/kernel/ctrl-alt-del)
+   2. If the kernel handles it and sends signals to cinit
+      (SIGINT on Linux) they will be ignored.
+      There is no problem in implementing a handler for this signal,
+      the only reason why it is not there
+      (well, a template is in old/sig_special.c) is that nobody
+      could tell me what would be the most senseful thing to handle
+      ctrl-alt-del. If you can, I'll perhaps integrate it.
+   3. ctrl-alt-del is currently disabled under Linux within
+      the service local-tuning/ctrl-alt-del
+
+- cinit ignores the Keyboard request
+   Same thing with 'ctr-alt-del': SIGWINCH is sent, but I don't
+   know what to do when recieving it.
+
+- cinit does not care about its pid
+  nor does cinit care if it is already running
+
+  in serv/cinit.c is a line calling run_init_svc().
+  If you call that only if getpid() == 1, cinit will behave like sysvinit
+  and refuse to start if pid is not 1.
+
+  Currently cinit has no chance to control whether it's started or
+  not as /etc/cinit/tmp mounted again for every start.
+
+- cinit will sleep after respawing if ...
+
+   a) the service did not terminate normally (!WIFEXITED(status))
+   b) the service did return a non-zero exit status
+
+- sleeping before rechecking if a service is finished can be optimised
+
+   Currently run_svc() checks every SLEEP_RERUN seconds (default: 1),
+   if the service it should start was finished by another instance
+   of run_svc(). As run_svc() internally uses nanosleep() for sleeping,
+   one could modify run_svc to use conf/sleep_rerun as a nanoseconds
+   value. This would add most likely much often checking, but would
+   result in faster results from run_svc.
+   What's the best value for SLEEP_RERUN is currently unknown.

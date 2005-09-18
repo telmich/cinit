@@ -1,0 +1,7 @@
+4
+
+Maximum number of digits which may be in the delay file.
+If there are more, the string "12345678901" will be cut to the
+right length "1234567890". I don't think you'll ever need
+a timeout greater 4 digits (9999 seconds are 166,65~ minutes, are
+2 hours, 46 minutes and 39 seconds). See doc/configuring.cinit.

@@ -1,0 +1,110 @@
+--------------------------------------------------------------------------------
+cinit, Nico Schottelius, 2005-04-28 [last change: 2005-05-07]
+--------------------------------------------------------------------------------
+
+Introduction
+============
+
+cinit is a fast init system with dependency features and
+profile support. It was orientated on the design off Richard Gooch's
+need [0] and Felix von Leitner's minit[1]. Minit does not support real
+dependencies (you don't know whether the service you depend on really
+started) and the need concept is somehow slow (as seen in gentoo).
+In addition, minit needs libowfat and dietlibc, which may not be found
+on every Unix system.
+
+cinit main features:
+- portability: it should run on every Linux system (and it's quite easy
+  to port it to other Unices)
+- true dependencies
+- parallel execution
+- highly customisable (see conf/*)
+- profile support (specify what services to start depending on the profile)
+
+
+Getting cinit
+=============
+
+This README is part of the source, so you should have it.
+If not, goto the homepage [2] and download the tar archive
+or get the lastest snapshot via monotone.
+
+
+Pre-Configuring
+===============
+
+If you want to fine tune cinit parameters, add different path names,
+change the DESTDIR, ... have a look at conf/*.
+
+
+Installing
+==========
+
+You can install cinit parallel to any other init-system, it won't
+kill other init's config nor /sbin/init, if it exists.
+
+You only have to tell your kernel to execute /sbin/cinit instead
+of /sbin/init.
+
+Everybody do:
+# make all install
+
+This will create /sbin/cinit.
+If /sbin/init does not exist, it will be linked to /sbin/cinit.
+
+If it's the first time you operate with cinit, you can also do:
+# make install-test
+
+This will populate /etc/cinit with a testing configuration,
+which is somehow minimalistic
+(mounting root r/w, starting gettys, setting hostname).
+
+Although this should work on most Linux systems, it's really
+minimalistic. Please configure your cinit installation yourself,
+see below how to do that.
+
+After configuring you need to tell your kernel to boot cinit instead
+of your current init system. How to do that depends on your system:
+
+   Linux/LILO and Linux/yaboot (ppc):
+      append="init=/sbin/cinit"
+   Linux/grub1 and Linux/grub2:
+      kernel <normal kernel specification> init=/sbin/cinit
+
+
+Configuring 
+===========
+
+You'll have to configure /etc/cinit and add your existing services.
+
+Please read doc/configuring.cinit for details.
+Please read doc/FAO if there are still questions open.
+Please join #cLinux on irc.freenode.org if there are still questions open.
+
+There can be found some (currently only one) testing examples
+below samples/ (some I do use for testing, beware if you use it:
+It loads the dvorak keymapping at startup!).
+
+There are currently no tools to merge your existing init-system
+to cinit (like sysvinit-merge, bsd-merge or minit-merge) available.
+If someone cares and tries to do that, I would be happy to include
+the script(s).
+
+Additionally I would be thankful for tar-balls containing a complete
+replacement of $your_unix_init.
+
+
+Author, Contact, Bug reports, etc.
+==================================
+Nico Schottelius (nico-linux-cinit<<at>>schottelius [[dot]] org) is the
+author. Bug reports should be send to this address.
+
+The homepage of cinit is [2].
+
+
+References:
+===========
+
+[0]: need:  http://www.atnf.csiro.au/people/rgooch/linux/boot-scripts/
+[1]: minit: http://www.fefe.de/minit/
+[2]: cinit: http://linux.schottelius.org/cinit/
