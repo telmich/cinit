@@ -1,5 +1,9 @@
 contrib+tools/
    programs written by others and external tools not necessary
    needed but nice to have
+   
 
-   cinit-vis.pl (cinit.graph.text) - draw an ascii graph of cinit configuration
+   cinit-vis.pl                - draw an ascii graph of cinit configuration [perl]
+
+   cconfig.graph.xml.rb        - creates a xml file from a cconfig  [ruby]
+   make.cconfig.from.xml.rb    - creates a cconfig from a xml file  [ruby]

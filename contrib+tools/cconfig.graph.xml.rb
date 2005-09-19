@@ -9,9 +9,13 @@
     This script is written for the clinux-System and published
     under the terms of GPL 2.0
 
-    Version: 0.2
+    Version: 0.3
 
     ChangeLog:
+        Version 0.3 (René Nussbaumer):
+        * Added support for binary files
+        * Added sha1 checksum for binary files
+    
         Version 0.2 (René Nussbaumer):
         * Changed checking order: symlink, directory, file. Because of
           a logical bug -> directory follows symlink so, when a symlink
@@ -33,6 +37,12 @@
 =end
 
 require 'rexml/document'
+require 'base64'
+require 'digest/sha1'
+
+require 'filemagic'
+
+@version = '0.3'
 
 def determineTarget(entry)
     return 'external'  if(!File.expand_path(entry).index(@initpath))
@@ -44,7 +54,7 @@ end
 
 def createTree(dir, parent)
     dir.each { |entry|
-        next if(entry =~ /\.|\.\./)
+        next if(entry =~ /^(\.|\.\.)$/)
 
         if(FileTest.symlink?(entry))
             e = parent.add_element('link')
@@ -66,7 +76,17 @@ def createTree(dir, parent)
             e.add_attribute('name', entry)
             if(File.stat(entry).size?)
                 # Yeah, we got one WITH content! W00h00, let's party.
-                e.add_text(File.new(entry).read)
+
+                fm = FileMagic.new(FileMagic::MAGIC_MIME)
+                if(fm.file(entry) =~ /executable/)
+                    e.add_attribute('type', 'binary')
+                    text = File.new(entry).read
+                    e.add_attribute('sha1', Digest::SHA1.hexdigest(text))
+                    e.add_text(Base64.encode64(text))
+                else
+                    e.add_text(File.new(entry).read)
+                end
+                fm.close()
             end
         end
     }
@@ -82,6 +102,7 @@ doc = REXML::Document.new
 
 e = doc.add_element('cconfig')
 e.add_attribute('name', File.basename(ARGV[0]))
+e.add_attribute('version', @version)
 
 @initpath = File.expand_path(ARGV[0])
 Dir.chdir(ARGV[0])
