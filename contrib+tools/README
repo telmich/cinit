@@ -4,6 +4,8 @@ contrib+tools/
    
 
    cinit-vis.pl                - draw an ascii graph of cinit configuration [perl]
+   cinit.graph.text            - draw an ascii graph of cinit configuration [c]
 
    cconfig.graph.xml.rb        - creates a xml file from a cconfig  [ruby]
    make.cconfig.from.xml.rb    - creates a cconfig from a xml file  [ruby]
+   
