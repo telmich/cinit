@@ -1,0 +1,24 @@
+#
+# cinit
+# Nico Schottelius
+#
+# Don't edit Makefiles, use conf/* for configuration.
+#
+
+#
+# compile/link options
+#
+# do not use DEBUG and OPTIMIZE at the same time!
+#DEBUG=-DDEBUG
+#OPTIMIZE=-Werror 
+#DEBUG=-g -DDEBUG
+OPTIMIZE=-pipe -Os -Werror 
+
+# init should be static per default!
+LDFLAGS=-static      
+
+# programs
+CC=gcc $(DEBUG) $(OPTIMIZE) $(TIMEME)
+CFLAGS=-Wall -I.
+LD=gcc
+STRIP=strip -R .comment -R .note

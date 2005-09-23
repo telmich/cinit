@@ -1,6 +1,6 @@
 contrib+tools/
    programs written by others and external tools not necessary
-   needed but nice to have
+   needed but (very) nice to have
    
 
    cinit-vis.pl                - draw an ascii graph of cinit configuration [perl]

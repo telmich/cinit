@@ -5,26 +5,7 @@
 # Don't edit Makefiles, use conf/* for configuration.
 #
 
-#
-# compile/link options
-#
-# do not use DEBUG and OPTIMIZE at the same time!
-#DEBUG=-DDEBUG
-#OPTIMIZE=-Werror 
-#DEBUG=-g -DDEBUG
-OPTIMIZE=-pipe -Os -Werror 
-
-# init should be static per default!
-LDFLAGS=-static      
-
-# programs
-CC=gcc $(DEBUG) $(OPTIMIZE) $(TIMEME)
-CFLAGS=-Wall -I.
-LD=gcc
-STRIP=strip -R .comment -R .note
-
-# monotone
-MT=monotone
+include Makefile.include
 
 # directories and files
 DDOC=ddoc
@@ -62,7 +43,7 @@ CINIT_BIN=$(SBIN)/cinit
 warn:
 	@cat doc/.buildwarn
 
-all: cinit cservice ccontrol sizecheck docs
+all: cinit cservice ccontrol sizecheck docs contrib+tools
 
 cinit: $(CINIT_BIN)
 
@@ -104,14 +85,6 @@ ccontrol: $(SBIN)/ccontrol
 $(SBIN)/ccontrol util/ccontrol: $(SBIN) $(CCO_OBJ)
 	$(LD) $(LDFLAGS) $(CCO_OBJ) -o $@
 	$(STRIP) $@
-
-# monotone
-mt-update:
-	$(MT) add $(SDIRS) $(FILES) 2>/dev/null
-mt-commit:
-	$(MT) commit
-mt-sync:
-	$(MT) sync monotone.schottelius.org info.clinux.cinit
 
 install: install-dir cinit cservice ccontrol
 	@echo '*** Installing cinit ***'

@@ -60,6 +60,7 @@ cinit.graph.text: $(OBJ)
 
 clean:
 	rm -f *.o
+	rm -f $(PROGRAMS)
 
 install: all
 	@echo '*** Installing contrib+tools ***'
