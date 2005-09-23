@@ -49,7 +49,7 @@ pid_t cpid;
    "\t-h\t- (halt)      Halt the system \n" \
    "\t-r\t- (reboot)    Reboot the system\n" \
    "\t-s\t- (single user/rescue) Rescue mode\n" \
-   "\t-u\t- (update)             Update cinit\n" \
+   "\t-u\t- (update) XXX????     Update cinit\n" \
    "\t-w\t- (warm reboot) XXX??? Stop and start everything\n\n"
 
 #define C_USAGE(error) usage(USAGE_TEXT,error)
