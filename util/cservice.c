@@ -114,7 +114,7 @@ int main(int argc, char **argv)
          mini_printf(argv[2],1);
          mini_printf(": ",1);
          switch (run_svc(argv[2])) { /* run_svc fuzzys itself */
-            case ST_FAILED:
+            case RT_SVC_FAILED:
                mini_printf("Service failed to start before.\n",1);
                break;
             case ST_FAIL:

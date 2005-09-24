@@ -24,8 +24,8 @@ int msg_svc_on_off(char *svc, int action)
       cmd = CMD_STOP_SVC;
    }
 
-   if(!begin_msg(cmd)) return ST_ERR_COMM;
-   if(!do_svc_name(sock,svc,ACT_CLIENT)) return ST_ERR_COMM;
+   if(!begin_msg(cmd)) return RT_ERR_COMM;
+   if(!do_svc_name(sock,svc,ACT_CLIENT)) return RT_ERR_COMM;
    return (int) do_result(sock,NULL);
 }
 /* returns cinit-0.2-style return codes */

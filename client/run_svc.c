@@ -57,24 +57,24 @@ int run_svc(char *rpath)
       tmp = msg_svc_on_off(abspath,CMD_START_SVC);    /* check status */
       
       switch(tmp) {
-         case ST_FAIL:     /* somebody failed, we won't retry */
-         case ST_FAILED:   /* somebody failed, we won't retry */
-            return ST_FAILED;
+         case ST_FAIL:     /* somebody failed before, we won't retry */
+            return RT_SVC_FAILED;
             break;
          case ST_TMP: /* someone is working on it */
             ts.tv_sec = SLEEP_RERUN;
             nanosleep(&ts,NULL);
             break;
-         case 0:           /* failed to communicate */
-         case ST_ONCE:     /* somebody did our work */
-         case ST_RESPAWN:  /* somebody does our work */
+         case ST_ONCE:        /* somebody did our work */
+         case RT_ERR_COMM:    /* communication failed */
+         case ST_RESPAWN:     /* somebody does our work */
+         case ST_NEED_FAIL:   /* the needs failed before */
             return tmp;
-            break;   		/* FIXME: should this break stay? */
-         case ST_TMPNOW: /* we are on it! */
-            D_PRINTF("wir sind dran");
+            break;
+         case ST_TMPNOW: /* it's our turn */
             break;
          default:
-            printf("Hier nicht rein: %d\n",tmp);
+            mini_printf(MSG_SHOULD_NOT_HAPPEN);
+            return 0;
             break;
       }
    } while(tmp != ST_TMPNOW);
@@ -86,11 +86,12 @@ int run_svc(char *rpath)
    
    D_PRINTF(pathtmp);
 
+   /* check for needs */
    if( stat(pathtmp,&buf) == 0 ) {
       if( ! run_run_svcs(pathtmp) ) {
          LOG(abspath);
          LOG(LOG_NEED_FAIL);
-         msg_change_status(abspath, ST_FAIL, 0);
+         msg_change_status(abspath, ST_NEED_FAIL, 0);
          return 0;
       }
    }

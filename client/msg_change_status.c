@@ -11,10 +11,12 @@
 
 #include "cinit.h"
 
+/* FIXME: change return code validation */
+
 int msg_change_status(char *svc, char status, pid_t pid)
 {
    if(!begin_msg(CMD_CHG_STATUS)) {
-      return 0;
+      return RT_ERR_COMM;
    }
    if(!do_change_status(svc,&status,&pid,sock,ACT_CLIENT)) {
       return 0;

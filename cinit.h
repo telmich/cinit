@@ -32,8 +32,10 @@
 #define CMD_UPDATE      8
 #define CMD_WBOOT       9
 
-/* status of a service - errors and success */
-#define ST_FAILED    27       /* tried earlier, service failed, won't retry */
+/* status of a service and return codes - errors and success */
+#define RT_ERR_COMM  26       /* communication failed */
+#define RT_FAILED    27       /* tried earlier, service failed, won't retry */
+
 #define ST_FAIL      28       /* failed to start service */
 #define ST_UNSPEC    29       /* some kind of error, unspecified */
 #define ST_ERR       30       /* tried earlier, service failed, won't retry */
