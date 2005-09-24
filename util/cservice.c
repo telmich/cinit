@@ -84,25 +84,35 @@ char *fuzzy_path(char *rpath)
  */
 int main(int argc, char **argv)
 {
+   /* FIXME: move messages to message.h */
    /* argv */
    if(argc != 3)              C_USAGE("Too less arguments!");
    if(argv[1][0] != '-')      C_USAGE("Wrong arguments");
    if(strlen(argv[1]) != 2)   C_USAGE("Wrong parameter length");
 
-   mini_printf(argv[2],1);
-   mini_printf(": ",1);
 
    switch(argv[1][1]) {
       case 'a':   /* aus */
       case 'r':   /* restart */
-         if( msg_svc_on_off( fuzzy_path(argv[2]),0 ) == ST_OFF ) { 
-            mini_printf("Service successfully stoped.\n",1);
-         } else {
-            mini_printf("An error occured.\n",1);
+         mini_printf(argv[2],1);
+         mini_printf(": ",1);
+         /* FIXME: move messages to message.h */
+         switch( msg_svc_on_off( fuzzy_path(argv[2]),0 ) ) {
+            case ST_OFF:
+               mini_printf("Service successfully stoped.\n",1);
+               break;
+            case ST_ERR_COMM:
+               mini_printf("Communication error\n",1);
+               break;
+            default:
+               mini_printf("Unknown error occured.\n",1);
+               break;
          }
          if( argv[1][1] == 'a') break; /* only continue if restarting */
 
       case 'e':   /* ein */
+         mini_printf(argv[2],1);
+         mini_printf(": ",1);
          switch (run_svc(argv[2])) { /* run_svc fuzzys itself */
             case ST_FAILED:
                mini_printf("Service failed to start before.\n",1);

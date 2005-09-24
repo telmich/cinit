@@ -25,8 +25,9 @@ char do_result(int nsock, char *value)
 
    if(fpoint(nsock,value,1) == -1) {  /* result */
       perror(MSG_ERR_IO);
-      return 0;                 
+      return ST_ERR_COMM;
    }
 
    return *value;
 }
+/* returns cinit-0.2-style return codes */
