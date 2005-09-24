@@ -22,6 +22,7 @@ if it has a switch to disable forking
 
 The following daemons / servers are known to avoid backgrounding easily:
 
+      acpid [x86 power management:  -f (undocumentated but works)
       asterisk [pbx]:               -f
       bind [dns server/caching]:    -f
       cardmgr [pcmcia/cardbus]:     -f
@@ -59,7 +60,6 @@ The following daemons / servers are known to avoid backgrounding easily:
 Those are the daemons that do not offer the possibility (as of release 0.2):
 
       apache   (only with debug mode)
-      acpid    (only with debug mode)
       atd      (no switch, no configuraton option)
       inetd    (some variants)
       nscd     (no switch, no configuraton option)
