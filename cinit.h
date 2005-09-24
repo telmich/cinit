@@ -38,12 +38,13 @@
 #define ST_UNSPEC    29       /* some kind of error, unspecified */
 #define ST_ERR       30       /* tried earlier, service failed, won't retry */
 
-#define ST_SUCCESS   51        /* currently working on it */
+#define ST_SUCCESS   50        /* successfully started */
 #define ST_TMP       51        /* currently working on it */
 #define ST_ONCE      52        /* executed once */
 #define ST_RESPAWN   53        /* running and respawning */
 #define ST_TMPNOW    55        /* now you are on it - only for clients */
 #define ST_OFF       56        /* Switching service off */
+
 
 /* actions for i/o handlers (see comm/do_*) */
 #define ACT_SERV     0

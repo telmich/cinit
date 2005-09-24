@@ -26,8 +26,6 @@ int run_svc(char *rpath)
    struct stat buf;
    struct timespec ts;
    
-/*   P_START_SERVICE(rpath); */
-
    /******************* absolute PATH ***************/
    /* get current working dir */
    if(! (int) getcwd(pathtmp,PATH_MAX)) {
@@ -56,11 +54,11 @@ int run_svc(char *rpath)
    
    /******************* REGISTER SERVICE ***************/
    do {
-      tmp = msg_svc_on_off(abspath,1);    /* check status */
+      tmp = msg_svc_on_off(abspath,CMD_START_SVC);    /* check status */
       
       switch(tmp) {
-         case ST_FAIL: /* somebody failed, we won't retry */
-         case ST_FAILED: /* somebody failed, we won't retry */
+         case ST_FAIL:     /* somebody failed, we won't retry */
+         case ST_FAILED:   /* somebody failed, we won't retry */
             return ST_FAILED;
             break;
          case ST_TMP: /* someone is working on it */
