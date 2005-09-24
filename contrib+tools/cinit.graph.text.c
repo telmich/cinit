@@ -5,9 +5,16 @@
   This script is written for the clinux-System and published
   under the terms of GPL 2.0
 
-  Version: 0.1
+  Version: 0.2
 
   ChangeLog:
+    Version 0.2 (Peter Portmann):
+      * Not assigned link destinies are marked by (!).
+      * Not readable directories are marked by "directory not readable".
+    
+    Version 0.1 (Peter Portmann):
+      * Print of the directory structure of the contained files and links
+        without following the links.
 
   Todo:
 
@@ -22,6 +29,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "cinit.h"
 #include "error.h"
 
 #define FTW_F 1   /* file isn't a directory */
@@ -48,17 +56,6 @@ static long int filecount = 0;
 static EACH_ENTRY each_entry;
 static int pp_ftw(char *, EACH_ENTRY *);
 static int each_getinfo(EACH_ENTRY *);
-
-/***********************************************************************
- * usage: tell the user what's wrong and a help text
- */
-void usage(char *stext)
-{
-   printf(CSERVICE_BANNER);
-   printf(stext);
-   printf(USAGE_TEXT);
-   exit(1);
-}
 
 /***********************************************************************
  * pp_ftw: file tree walk
@@ -135,6 +132,7 @@ static int each_getinfo(EACH_ENTRY *function)
  */
 static int each_entry(const char *filepath, const struct stat *statzgr, int filetype)
 {
+   struct stat statpuff;
    static bool erstemal=TRUE;
    int i;
  
@@ -161,6 +159,8 @@ static int each_entry(const char *filepath, const struct stat *statzgr, int file
                printf(" -> "); 
                if(( i=readlink(filepath, link, MAX_CHAR)) != -1)
                   printf("%.*s", i, link);
+                  if(stat(filepath, &statpuff) < 0)
+                     printf(" (!)");
                break;
             case S_IFSOCK: printf(" s"); break;
             default: printf(" ?"); break;
@@ -173,7 +173,7 @@ static int each_entry(const char *filepath, const struct stat *statzgr, int file
          break;
 
       case FTW_DNR:
-         printf("/-\n");
+         printf("/ directory not readable\n");
          break;
 
       case FTW_NS:
@@ -194,7 +194,7 @@ static int each_entry(const char *filepath, const struct stat *statzgr, int file
 int main(int argc, char *argv[])
 {
    if(argc != 2)
-      usage("Wrong number of arguments.");
+      usage(CSERVICE_BANNER, USAGE_TEXT);
 
    exit(pp_ftw(argv[1], each_entry));
 }

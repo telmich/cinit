@@ -27,7 +27,7 @@ LDFLAGS=
 
 # programs
 CC=gcc $(DEBUG) $(OPTIMIZE) $(TIMEME)
-CFLAGS=-Wall -I.
+CFLAGS=-Wall -I. -I../
 LD=gcc
 STRIP=strip -R .comment -R .note
 
@@ -40,7 +40,7 @@ bindir = $(prefix)/bin
 
 CLIENT=cinit.graph.text.o 
 
-COMMUNICATION=error.o
+COMMUNICATION=error.o ../generic/usage.o ../generic/mini_printf.o
 
 OBJ=$(CLIENT) $(COMMUNICATION)
 
