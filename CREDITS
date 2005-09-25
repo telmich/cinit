@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 Credits - People contributed to cinit
-Nico Schottelius, 2005-05-17 (Last Change: 2005-06-23)
+Nico Schottelius, 2005-05-17 (Last Change: 2005-09-25)
 --------------------------------------------------------------------------------
 
 The following list is sorted chronological, new contributors are
@@ -19,3 +19,5 @@ Sandro Koechli
    * testing, testing and testing cinit and cinit documentation
 Marcus Wagner
    * building and maintaining the Debian package
+Peter Portmann <peter.portmann((_at_))sygroup.ch>
+   * testing cinit and documentation, writing cinit.graph.text in C, other coding
