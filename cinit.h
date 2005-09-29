@@ -22,32 +22,33 @@
 #define CINIT_SOCK CINIT_TMNT SLASH C_SOCK
 #define CINIT_BIN  PREFIX SLASH "sbin" SLASH "cinit"
 
-/* commands (maximum: 2^8 = 256)*/
-#define CMD_START_SVC   1
-#define CMD_CHG_STATUS  2
-#define CMD_STOP_SVC    3
-#define CMD_RESCUE      4
-#define CMD_HALT        5
-#define CMD_REBOOT      6
-#define CMD_POWEROFF    7
-#define CMD_UPDATE      8
-#define CMD_WBOOT       9
+/* commands (maximum: 2^8 = 256, because we use a single byte)*/
+enum commands {   CMD_START_SVC=1, 
+                  CMD_CHG_STATUS,
+                  CMD_STOP_SVC,
+                  CMD_RESCUE,
+                  CMD_HALT,
+                  CMD_REBOOT,
+                  CMD_POWEROFF,
+                  CMD_UPDATE,
+                  CMD_WBOOT };
 
 /* status of a service and return codes - errors and success */
-#define RT_ERR_COMM     26       /* communication failed */
-#define RT_SVC_FAILED   27       /* tried earlier, service failed, won't retry */
+enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
+                   RT_ERR_COM,      /* communication failed */
+                   RT_ERR,          /* service starting failed */
+                   RT_SVC_FAILED,   /* tried earlier, service failed, won't retry */
+                   RT_UNSPEC,       /* some kind of error, unspecified */
+                   RT_SUCCESS,      /* successfully started */
 
-#define ST_NEED_FAIL 28       /* failed to start service */
-#define ST_FAIL      28       /* failed to start service */
-#define ST_UNSPEC    29       /* some kind of error, unspecified */
-#define ST_ERR       30       /* tried earlier, service failed, won't retry */
+                   ST_NEED_FAIL,    /* failed to start a need for this service */
+                   ST_FAIL,         /* failed to start service */
+                   ST_OFF,          /* service is off */
 
-#define ST_SUCCESS   50        /* successfully started */
-#define ST_TMP       51        /* currently working on it */
-#define ST_ONCE      52        /* executed once */
-#define ST_RESPAWN   53        /* running and respawning */
-#define ST_TMPNOW    55        /* now you are on it - only for clients */
-#define ST_OFF       56        /* Switching service off */
+                   ST_TMP,          /* currently working on it */
+                   ST_ONCE,         /* executed once */
+                   ST_RESPAWN       /* running and respawning */
+                };
 
 
 /* actions for i/o handlers (see comm/do_*) */

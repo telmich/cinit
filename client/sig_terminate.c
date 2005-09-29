@@ -21,8 +21,6 @@ void sig_terminate(int signal)
    struct timespec ts;
    int status;
    
-   D_PRINTF("ausssachalten");
-
    if( kill(cpid,SIGTERM) == -1) {
       if(errno != ESRCH) {
          perror(MSG_TERMKILL);
