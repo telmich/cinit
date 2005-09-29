@@ -15,6 +15,7 @@
 #define C_OFFENV  C_OFF C_ENV
 
 #define SLASH     "/"
+#define MSG_DP    ":"
 
 #define CINIT_INIT CINIT_DIR SLASH C_INIT
 #define CINIT_TMNT CINIT_DIR SLASH C_TMP
@@ -33,9 +34,10 @@
 #define CMD_WBOOT       9
 
 /* status of a service and return codes - errors and success */
-#define RT_ERR_COMM  26       /* communication failed */
-#define RT_FAILED    27       /* tried earlier, service failed, won't retry */
+#define RT_ERR_COMM     26       /* communication failed */
+#define RT_SVC_FAILED   27       /* tried earlier, service failed, won't retry */
 
+#define ST_NEED_FAIL 28       /* failed to start service */
 #define ST_FAIL      28       /* failed to start service */
 #define ST_UNSPEC    29       /* some kind of error, unspecified */
 #define ST_ERR       30       /* tried earlier, service failed, won't retry */
@@ -53,7 +55,7 @@
 #define ACT_CLIENT   1
 
 /* Messages to the outside */
-#define MSG_CINIT          "cinit-0.1.1 booting from "
+#define MSG_CINIT          "cinit-0.2 booting from "
 #define MSG_NOT_ONE        "cinit should not be started directly, but by your kernel."
 #define MSG_USAGE          "cinit: [cprofile:profile]\n"
 #define MSG_ERR_OPEN       "open"
@@ -90,6 +92,8 @@
 #define MSG_START_SVC   "Starting "
 #define MSG_STOP_SVC    "Stoping "
 #define MSG_EXEC_FAILED "Failed to execute "
+
+#define MSG_SHOULD_NOT_HAPPEN "This should not happen, I do not know what todo!"
 
 
 struct listitem {

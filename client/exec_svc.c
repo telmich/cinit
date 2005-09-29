@@ -29,8 +29,6 @@ pid_t exec_svc(char *abspath, int on)
    int fd, argc;
    struct stat buf;
    
-   D_PRINTF(abspath);
-
    cpid = fork();
    if( cpid == -1 ) {
       perror(MSG_ERR_FORK);
@@ -45,8 +43,11 @@ pid_t exec_svc(char *abspath, int on)
             return cpid;
          }
       }
-      LOG(abspath);
-      LOG(LOG_SVC_FAIL);
+      /* FIXME: make this nicer, remove double execution */
+      mini_printf(abspath,2);
+      mini_printf(MSG_DP,2);
+      mini_printf(LOG_SVC_FAIL,2);
+      mini_printf("\n",2);
       return 0;
    }
 
