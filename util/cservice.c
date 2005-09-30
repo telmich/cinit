@@ -117,9 +117,6 @@ int main(int argc, char **argv)
             case ST_FAIL:
                SERVICE_LOG(argv[2],LOG_SVC_FAIL);
                break;
-            case ST_TMP:
-               mini_printf("Service is beeing started already.\n",1);
-               break;
             case ST_ONCE:
                mini_printf("Service executed once.\n",1);
                break;
