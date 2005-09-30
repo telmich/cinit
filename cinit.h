@@ -92,7 +92,6 @@ enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
 #define MSG_ERR_BAD_ARGS   "Wrong arguments / parameter"
 #define MSG_ERR_ARGS_LEN   "Wrong parameter length"
 
-
 #define LOG_SVC_STOPED     "Service stoped"
 #define LOG_SVC_ONCE       "Started once"
 #define LOG_SVC_RESPAWN    "Is respawning"
@@ -101,10 +100,16 @@ enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
 #define LOG_SVC_FAILED     "Service already failed, not starting."
 #define LOG_SVC_NOTEXIST   "Service does not exist"
 
-#define MSG_START_SVC   "Starting "
-#define MSG_STOP_SVC    "Stoping "
-#define MSG_EXEC_FAILED "Failed to execute "
+#define MSG_START_SVC      "Starting "
+#define MSG_STOP_SVC       "Stoping "
+#define MSG_EXEC_FAILED    "Failed to execute "
 
+#define MSG_POWER_OFF      "Powering off..."
+#define MSG_HALT           "Halting system ..."
+#define MSG_REBOOT         "Rebooting ..."
+#define MSG_RESCUE         "Switching to rescue mode ..."
+#define MSG_UPDATE         "Updating cinit ..."
+#define MSG_HOT_REBOOT     "Hot reboot in progress ..."
 
 #define MSG_SHOULD_NOT_HAPPEN "This should not happen, I do not know what todo!"
 

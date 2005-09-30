@@ -60,37 +60,37 @@ pid_t cpid;
 int main(int argc, char **argv)
 {
    /* argv */
-   if(argc != 2)              C_USAGE("Too less arguments!");
-   if(argv[1][0] != '-')      C_USAGE("Wrong arguments");
+   if(argc != 2)              C_USAGE(MSG_ERR_LESS_ARGS);
+   if(argv[1][0] != '-')      C_USAGE(MSG_ERR_BAD_ARGS);
 
    switch(argv[1][1]) {
       case 'p':   /* power off */
-         LOG("Powering off...");
+         LOG(MSG_POWER_OFf);
          msg_reboot(CMD_POWEROFF);
          break;
 
       case 'h':   /* halt */
-         LOG("Halting...");
+         LOG(MSG_HALT);
          msg_reboot(CMD_HALT);
          break;
 
       case 'r':   /* reboot */
-         LOG("Rebooting...");
+         LOG(MSG_REBOOT);
          msg_reboot(CMD_REBOOT);
          break;
 
       case 's':   /* rescue */
-         LOG("Rescue mode...");
+         LOG(MSG_RESCUE);
          msg_reboot(CMD_RESCUE);
          break;
 
       case 'u':   /* update */
-         LOG("Update in progress...");
+         LOG(MSG_UPDATE);
          msg_reboot(CMD_UPDATE);
          break;
 
       case 'w':   /* warm reboot */
-         LOG("Hot reboot in progress...");
+         LOG(MSG_HOT_REBOOT);
          msg_reboot(CMD_WBOOT);
          break;
 
