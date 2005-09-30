@@ -70,9 +70,10 @@ char *fuzzy_path(char *rpath)
    }
    
    re = malloc( strlen(pathtmp) + 1);
-   if(re == NULL) return NULL;
 
-   strcpy(re,pathtmp);
+   if(re != NULL) {
+      strcpy(re,pathtmp);
+   }
 
    return re;
 }
