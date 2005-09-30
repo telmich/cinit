@@ -70,14 +70,12 @@ int run_svc(char *rpath)
          case ST_NEED_FAIL:   /* the needs failed before */
             return tmp;
             break;
-         case RT_TMPNOW: /* it's our turn */
-            break;
          default:
-            mini_printf(MSG_SHOULD_NOT_HAPPEN);
+            mini_printf(MSG_SHOULD_NOT_HAPPEN,1);
             return RT_UNSPEC;
             break;
       }
-   } while(tmp != ST_TMPNOW);
+   } while(tmp != RT_TMPNOW);
 
    /******************* BEGIN DEPENDENCIES ***************/
    strcpy(pathtmp,abspath);
