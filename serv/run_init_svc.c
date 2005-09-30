@@ -33,7 +33,7 @@ int run_init_svc(char *cinit_svc)
       set_signals(ACT_CLIENT);
       D_PRINTF(cinit_svc);
       /* FIXME: open stderr, stdin, stdout to files / syslog / logable ?*/
-      if ( run_svc(cinit_svc) >= ST_SUCCESS )
+      if ( run_svc(cinit_svc) >= RT_SUCCESS )
          _exit(0);
       else
          _exit(1);

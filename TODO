@@ -1,3 +1,4 @@
+- do not kill respawing service, if off exists
 - ccontrol
 - manpages
 - Error codes when shutting down a service?

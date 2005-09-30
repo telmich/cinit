@@ -1,6 +1,7 @@
-- /etc/csys
+- C_DELAY support
+- /etc/csys in wasserstof example
 - Mailing list
-- cinit-vis.pl
+- cinit-vis.pl + other contrib
 - online speech in german
 - Neu:
    - cconfig.graph.xml.rb

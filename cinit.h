@@ -15,7 +15,7 @@
 #define C_OFFENV  C_OFF C_ENV
 
 #define SLASH     "/"
-#define MSG_DP    ":"
+#define MSG_DP    ": "
 
 #define CINIT_INIT CINIT_DIR SLASH C_INIT
 #define CINIT_TMNT CINIT_DIR SLASH C_TMP
@@ -35,11 +35,12 @@ enum commands {   CMD_START_SVC=1,
 
 /* status of a service and return codes - errors and success */
 enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
-                   RT_ERR_COM,      /* communication failed */
+                   RT_ERR_COMM,     /* communication failed */
                    RT_ERR,          /* service starting failed */
                    RT_SVC_FAILED,   /* tried earlier, service failed, won't retry */
                    RT_UNSPEC,       /* some kind of error, unspecified */
-                   RT_SUCCESS,      /* successfully started */
+                   RT_SUCCESS,      /* successfully started: respawning or once */
+                   RT_NOTEXIST,     /* service does not exist */
 
                    ST_NEED_FAIL,    /* failed to start a need for this service */
                    ST_FAIL,         /* failed to start service */
@@ -160,6 +161,15 @@ int      msg_reboot(char cmd);
 #endif
 
 /* macros */
-#define LOG(s) { mini_printf(s,1); mini_printf("\n",1); }
+#define SERVICE_LOG(svc,message) {  \
+   mini_printf(svc,1);              \
+   mini_printf(MSG_DP,1);           \
+   mini_printf(message,1);          \
+   mini_printf("\n",1);             \
+}
+#define LOG(s) {                    \
+   mini_printf(s,1);                \
+   mini_printf("\n",1);             \
+}
 #define P_START_SERVICE(name) { mini_printf(MSG_START_SVC,1); mini_printf(name,1); mini_printf("\n",1); }
 #define P_EXEC_FAILED(name) { mini_printf(MSG_EXEC_FAILED,1); mini_printf(name,1); mini_printf("\n",1); }

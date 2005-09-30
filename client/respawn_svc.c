@@ -84,14 +84,12 @@ pid_t respawn_svc(char *abspath)
       if( ! exec_svc(abspath, 1) ) {
          /* only sleep if the service exited itself and is not
             killed by sig_term */
-         D_PRINTF("Service unerfolgreich");
+         SERVICE_LOG(abspath,LOG_SVC_FAIL);
          if(cpid != 0) {
             D_PRINTF("sloefen");
             sleep(SLEEP_SVC);
             D_PRINTF("Zuende geschlafen");
          }
-      } else {
-         D_PRINTF("Service erfolgreich");
       }
    } while( cpid ); /* cpid is reset by sig_terminate() */
 

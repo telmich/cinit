@@ -47,7 +47,6 @@ void sigio(int socket)
          if(!tmp) break;
 
          buf[tmp] = 0;
-         D_PRINTF(buf);
          list_tmp = list_search(buf);
 
          if(list_tmp != NULL) {   /* service already exists, return status */
@@ -61,7 +60,7 @@ void sigio(int socket)
             LOG(MSG_ERR_ADD_SVC);
             status = ST_FAIL;
          } else {
-            status = ST_TMPNOW;
+            status = RT_TMPNOW;
          }
          do_result(nsock,&status);
       break;
@@ -76,12 +75,11 @@ void sigio(int socket)
          
          if(list_tmp != NULL) {   /* service exists */
             if(list_tmp->status == ST_RESPAWN) {
-               D_PRINTF("respawner ausschalten");
+                /* kill cinit watcher, which kills the real process */
                kill(list_tmp->pid,SIGTERM);
 
                /* wait for watcher to terminate */
                waitpid(list_tmp->pid,&tmp,0);
-
             }
 
             status = ST_OFF;

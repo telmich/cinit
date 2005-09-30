@@ -30,25 +30,25 @@ int run_svc(char *rpath)
    /* get current working dir */
    if(! (int) getcwd(pathtmp,PATH_MAX)) {
       perror(pathtmp);
-      return 0;
+      return RT_NOTEXIST;
    }
 
    /* change to rpath */
    if(chdir(rpath) == -1) {
       perror(rpath);
-      return 0;
+      return RT_NOTEXIST;
    }
 
    /* get absolute name of rpath */
    if(! (int) getcwd(abspath,PATH_MAX)) {
       perror(abspath);
-      return 0;
+      return RT_UNSPEC;
    }
 
    /* change back */
    if(chdir(pathtmp) == -1) {
       perror(pathtmp);
-      return 0;
+      return RT_UNSPEC; 
    }
    D_PRINTF(abspath);
    
@@ -70,11 +70,11 @@ int run_svc(char *rpath)
          case ST_NEED_FAIL:   /* the needs failed before */
             return tmp;
             break;
-         case ST_TMPNOW: /* it's our turn */
+         case RT_TMPNOW: /* it's our turn */
             break;
          default:
             mini_printf(MSG_SHOULD_NOT_HAPPEN);
-            return 0;
+            return RT_UNSPEC;
             break;
       }
    } while(tmp != ST_TMPNOW);
@@ -84,8 +84,6 @@ int run_svc(char *rpath)
    strcat(pathtmp,SLASH);
    strcat(pathtmp,C_NEEDS);
    
-   D_PRINTF(pathtmp);
-
    /* check for needs */
    if( stat(pathtmp,&buf) == 0 ) {
       if( ! run_run_svcs(pathtmp) ) {
