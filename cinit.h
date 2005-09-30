@@ -99,7 +99,7 @@ enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
 #define LOG_SVC_FAIL       "Service failed"
 #define LOG_NEED_FAIL      "One or more need failed"
 #define LOG_SVC_FAILED     "Service already failed, not starting."
-#define LOG_NOT_EXIST      "Service does not exist"
+#define LOG_SVC_NOTEXIST   "Service does not exist"
 
 #define MSG_START_SVC   "Starting "
 #define MSG_STOP_SVC    "Stoping "
