@@ -85,12 +85,10 @@ char *fuzzy_path(char *rpath)
  */
 int main(int argc, char **argv)
 {
-   /* FIXME: move messages to message.h */
    /* argv */
-   if(argc != 3)              C_USAGE("Too less arguments!");
-   if(argv[1][0] != '-')      C_USAGE("Wrong arguments");
-   if(strlen(argv[1]) != 2)   C_USAGE("Wrong parameter length");
-
+   if(argc != 3)              C_USAGE(MSG_ERR_LESS_ARGS);
+   if(argv[1][0] != '-')      C_USAGE(MSG_ERR_BAD_ARGS);
+   if(strlen(argv[1]) != 2)   C_USAGE(MSG_ERR_ARGS_LEN);
 
    switch(argv[1][1]) {
       case 'a':   /* aus */
