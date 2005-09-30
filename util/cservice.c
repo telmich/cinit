@@ -1,6 +1,6 @@
 /* 
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
- * cservice: control cinit
+ * (c) 2005 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ * cservice: control cinit services
  * part of cLinux/cinit
  */
 
@@ -40,12 +40,12 @@ int sock;
 pid_t cpid;
 
 /***********************************************************************
- * cservice - control cinit
+ * cservice - control cinit services
  */
 
 #define USAGE_TEXT "cservice - start and stop cinit services\n\n" \
    "cservice -[ear] <service>\n"  \
-   "\t-e\t- (ein,on)    start a service (respawn if respawning is set)\n" \
+   "\t-e\t- (ein,on )   start a service (respawn if respawning is set)\n" \
    "\t-a\t- (aus,off)   stop a respawing service\n" \
    "\t-r\t- (restart)   stop and start a service\n"
 
