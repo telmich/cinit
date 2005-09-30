@@ -1,5 +1,5 @@
 /* 
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
+ * (c) 2005 Nico Schottelius (nico-linux-cinit at schottelius.org)
  * run_svc
  * part of cinit
  */

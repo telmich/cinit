@@ -79,21 +79,30 @@ enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
 #define MSG_NOT_DIR        "not a directory"
 #define MSG_CHDIR          "chdir"
 #define MSG_READLINK       "readlink"
-#define MSG_ERR_ADD_SVC     "Adding service failed"
+#define MSG_ERR_ADD_SVC    "Adding service failed"
 #define MSG_CMD_UNKNOWN    "Unknown command"
 #define MSG_ERR_DEPS       "Too many dependencies"
 #define MSG_ERR_ACCEPT     "accept"
 #define MSG_ERR_WAITPID    "waitpid"
 #define MSG_ERR_POLL       "poll"
 #define MSG_ERR_MODIFY     "modify list failed"
+#define MSG_ERR_COMM       "communication failed"
 
+#define MSG_ERR_LESS_ARGS  "Too less arguments!"
+#define MSG_ERR_BAD_ARGS   "Wrong arguments"
+#define MSG_ERR_ARGS_LEN   "Wrong parameter length"
+
+
+#define LOG_SVC_STOPED     "Service stoped"
 #define LOG_SVC_FAIL       "Service failed"
 #define LOG_NEED_FAIL      "One or more need failed"
 #define LOG_SVC_FAILED     "Service already failed, not starting."
+#define LOG_NOT_EXIST      "Service does not exist"
 
 #define MSG_START_SVC   "Starting "
 #define MSG_STOP_SVC    "Stoping "
 #define MSG_EXEC_FAILED "Failed to execute "
+
 
 #define MSG_SHOULD_NOT_HAPPEN "This should not happen, I do not know what todo!"
 

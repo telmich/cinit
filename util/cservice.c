@@ -93,31 +93,29 @@ int main(int argc, char **argv)
    switch(argv[1][1]) {
       case 'a':   /* aus */
       case 'r':   /* restart */
-         mini_printf(argv[2],1);
-         mini_printf(": ",1);
-         /* FIXME: move messages to message.h */
          switch( msg_svc_on_off( fuzzy_path(argv[2]),0 ) ) {
             case ST_OFF:
-               mini_printf("Service successfully stoped.\n",1);
+               SERVICE_LOG(argv[2],LOG_SVC_STOPED);
                break;
-            case ST_ERR_COMM:
-               mini_printf("Communication error\n",1);
+            case RT_ERR_COMM:
+               SERVICE_LOG(argv[2],MSG_ERR_COMM);
                break;
             default:
-               mini_printf("Unknown error occured.\n",1);
+               SERVICE_LOG(argv[2],MSG_SHOULD_NOT_HAPPEN);
                break;
          }
          if( argv[1][1] == 'a') break; /* only continue if restarting */
 
       case 'e':   /* ein */
-         mini_printf(argv[2],1);
-         mini_printf(": ",1);
          switch (run_svc(argv[2])) { /* run_svc fuzzys itself */
+            case RT_NOTEXIST:
+               SERVICE_LOG(argv[2],LOG_SVC_NOTEXIST);
+               break;
             case RT_SVC_FAILED:
-               mini_printf("Service failed to start before.\n",1);
+               SERVICE_LOG(argv[2],LOG_SVC_FAILED);
                break;
             case ST_FAIL:
-               mini_printf("Service failed to start.\n",1);
+               SERVICE_LOG(argv[2],LOG_SVC_FAIL);
                break;
             case ST_TMP:
                mini_printf("Service is beeing started already.\n",1);
@@ -128,9 +126,8 @@ int main(int argc, char **argv)
             case ST_RESPAWN:
                mini_printf("Service is respawning.\n",1);
                break;
-            case ST_UNSPEC:
             default:
-               mini_printf("Unknown error occured.\n",1);
+               SERVICE_LOG(argv[2],MSG_SHOULD_NOT_HAPPEN);
                break;
          }
          break;
