@@ -25,7 +25,7 @@ char do_result(int nsock, char *value)
 
    if(fpoint(nsock,value,1) == -1) {  /* result */
       perror(MSG_ERR_IO);
-      return ST_ERR_COMM;
+      return RT_ERR_COMM;
    }
 
    return *value;
