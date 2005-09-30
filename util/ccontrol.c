@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 
    switch(argv[1][1]) {
       case 'p':   /* power off */
-         LOG(MSG_POWER_OFf);
+         LOG(MSG_POWER_OFF);
          msg_reboot(CMD_POWEROFF);
          break;
 
@@ -95,8 +95,9 @@ int main(int argc, char **argv)
          break;
 
       default:
-         C_USAGE("Unknown parameter");
+         C_USAGE(MSG_ERR_BAD_ARGS);
          break;
    }
    return 0;
 }
+/* cinit-0.2 return codes implemented - nothing changed*/
