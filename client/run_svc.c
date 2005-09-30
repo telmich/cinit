@@ -87,10 +87,9 @@ int run_svc(char *rpath)
    /* check for needs */
    if( stat(pathtmp,&buf) == 0 ) {
       if( ! run_run_svcs(pathtmp) ) {
-         LOG(abspath);
-         LOG(LOG_NEED_FAIL);
+         SERVICE_LOG(abspath,LOG_NEED_FAIL);
          msg_change_status(abspath, ST_NEED_FAIL, 0);
-         return 0;
+         return ST_NEED_FAIL;
       }
    }
    
@@ -98,8 +97,6 @@ int run_svc(char *rpath)
    strcpy(pathtmp,abspath);
    strcat(pathtmp,SLASH);
    strcat(pathtmp,C_WANTS);
-
-   D_PRINTF(pathtmp);
 
    if( stat(pathtmp,&buf) == 0 ) {
       run_run_svcs(pathtmp);  /* don't care about what happens with the want svc */
@@ -120,12 +117,13 @@ int run_svc(char *rpath)
 
    if(!pid) {
       msg_change_status(abspath, ST_FAIL, pid);
-      return 0;
+      return ST_FAIL;
    }
 
    if(!msg_change_status(abspath, tmp, pid) ) {
-      return 0;
+      return RT_ERR_COMM;
    }
 
-   return 1;
+   return RT_SUCCESS;
 }
+/* cinit-0.2 return codes implemented */
