@@ -118,10 +118,16 @@ int main(int argc, char **argv)
                SERVICE_LOG(argv[2],LOG_SVC_FAIL);
                break;
             case ST_ONCE:
-               mini_printf("Service executed once.\n",1);
+               SERVICE_LOG(argv[2],LOG_SVC_ONCE);
+               break;
+            case RT_ERR_COMM:
+               SERVICE_LOG(argv[2],MSG_ERR_COMM);
                break;
             case ST_RESPAWN:
-               mini_printf("Service is respawning.\n",1);
+               SERVICE_LOG(argv[2],LOG_SVC_RESPAWN);
+               break;
+            case ST_NEED_FAIL:
+               SERVICE_LOG(argv[2],LOG_NEED_FAIL);
                break;
             default:
                SERVICE_LOG(argv[2],MSG_SHOULD_NOT_HAPPEN);
@@ -129,8 +135,9 @@ int main(int argc, char **argv)
          }
          break;
       default:
-         C_USAGE("Unknown parameter");
+         C_USAGE(MSG_ERR_BAD_ARGS);
          break;
    }
    return 0;
 }
+/* uses cinit-0.2 return code style */
