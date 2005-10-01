@@ -133,8 +133,7 @@ void sigio(int socket)
    }
 	
    /* hier kommt man haeufiger herein, interrupted system call */
-   /* FIXME: ignore more errnos? */
-   if( errno != EAGAIN ) { /* report, but don't panic */
+   if( errno != EAGAIN && errno != EINTR) { /* report, but don't panic */
       perror(MSG_ERR_ACCEPT);
    }
 }

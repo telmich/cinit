@@ -82,9 +82,6 @@ pid_t respawn_svc(char *abspath)
    do {
       /* exec_svc will set cpid accordingly */
       if( ! exec_svc(abspath, 1) ) {
-         /* only sleep if the service exited itself and is not
-            killed by sig_term */
-         SERVICE_LOG(abspath,LOG_SVC_FAIL);
          if(cpid != 0) {
             D_PRINTF("sloefen");
             sleep(SLEEP_SVC);

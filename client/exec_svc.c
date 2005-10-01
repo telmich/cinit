@@ -44,10 +44,7 @@ pid_t exec_svc(char *abspath, int on)
          }
       }
       /* FIXME: make this nicer, remove double execution */
-      mini_printf(abspath,2);
-      mini_printf(MSG_DP,2);
-      mini_printf(LOG_SVC_FAIL,2);
-      mini_printf("\n",2);
+      SERVICE_LOG(abspath,LOG_SVC_FAIL);
       return 0;
    }
 
