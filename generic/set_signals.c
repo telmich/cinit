@@ -25,18 +25,12 @@ void set_signals(int action)
 
    sigaction(SIGQUIT,&sa,NULL);     /* warm reboot??? */
 
-   /* cleaning dead processes */
-//   if(action == ACT_SERV) {
+   /* cleaning dead processes - only process 1 */
+   if(action == ACT_SERV) {
       sa.sa_handler=sig_child;
-//   } 
-   /* server and client need sig_chld */
+   } 
+   /* server and client need sig_chld - really??? FIXME in exec_svc then! */
    sigaction(SIGCHLD,&sa,NULL);     /* what todo when a child exited    */
-
-   /* sigio is called to act on the socket */
-/*   if(action == ACT_SERV) {
-      sa.sa_handler=sigio;
-   }
-   sigaction(SIGIO,&sa,NULL); This should not be needed anymore */
 
    /* signal handlers to do special things with: reboot */
    if(action == ACT_SERV) {

@@ -51,7 +51,7 @@ pid_t exec_svc(char *abspath, int action)
    strcpy(pathtmp,abspath);
    strcat(pathtmp,SLASH);
 
-   if(on == CMD_START_SVC) {
+   if(action == CMD_START_SVC) {
       strcat(pathtmp,C_ON);
    } else {
       strcat(pathtmp,C_OFF);
@@ -72,7 +72,7 @@ pid_t exec_svc(char *abspath, int action)
       strcpy(pathtmp,abspath);
       strcat(pathtmp,SLASH);
 
-      if(on == CMD_START_SVC) { 
+      if(action == CMD_START_SVC) { 
          strcat(pathtmp,C_ON);
       } else {
          strcat(pathtmp,C_OFF);
@@ -98,7 +98,7 @@ pid_t exec_svc(char *abspath, int action)
    strcpy(pathtmp,abspath);
    strcat(pathtmp,SLASH);
 
-   if(on == CMD_START_SVC) {
+   if(action == CMD_START_SVC) {
       strcat(pathtmp,C_ONARG);
    } else {
       strcat(pathtmp,C_OFFARG);
@@ -183,7 +183,7 @@ pid_t exec_svc(char *abspath, int action)
    /********************** read environment *********************/
    strcpy(pathtmp,abspath);
    strcat(pathtmp,SLASH);
-   if(on == CMD_START_SVC) {
+   if(action == CMD_START_SVC) {
       strcat(pathtmp,C_ONENV);
    } else {
       strcat(pathtmp,C_OFFENV);
