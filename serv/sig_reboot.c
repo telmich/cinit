@@ -74,8 +74,6 @@ void sig_reboot(int signal)
 
 /* THIS IS FUCKING UNCLEAN AND SHOULD BE CLEANED UP VERY MUCH!!! */
 #define CMD_CNT 4
-#define SWAP_OFF_CMD    "/sbin/swapoff"
-#define SWAP_OFF_ARG1   "-a"
 
 #define UMOUNT_CMD    "/bin/umount"
 #define UMOUNT_ARG1   "-arfd"
@@ -90,16 +88,6 @@ void sig_reboot(int signal)
    /* now: we are completley alone. umount everything, go to bed */
    cmd = (char **) malloc( (CMD_CNT+1) * ( sizeof (char*) ) );
    if(cmd) {
-      /*  /sbin/swapoff -a */
-      cmd[0] = SWAP_OFF_CMD;
-      cmd[1] = SWAP_OFF_ARG1;
-      cmd[2] = NULL;
-
-      i = fork();
-      if(i == 0) {
-         execv(cmd[0],cmd);
-         _exit(1);   /* if exec fails in child */
-      }
       /*  /bin/umount -a */
       cmd[0] = UMOUNT_CMD;
       cmd[1] = UMOUNT_ARG1;
