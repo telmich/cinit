@@ -117,25 +117,25 @@ void sig_reboot(int signal)
    
    switch(signal) {
       case SIGTERM: /* power off */
-         D_PRINTF("ausmachen");
+         LOG(MSG_POWER_OFF);
          reboot(RB_POWER_OFF);
          break;
       case SIGHUP: /* reboot */
-         D_PRINTF("reboot");
+         LOG(MSG_REBOOT);
          reboot(RB_AUTOBOOT);
          break;
       case SIGUSR1: /* halt */
-         D_PRINTF("halten");
+         LOG(MSG_HALT);
          reboot(RB_HALT_SYSTEM);
          break;
       case SIGUSR2: /* rescue - destroy ourself */
-         D_PRINTF("rescue");
+         LOG(MSG_RESCUE);
          cmd[0] = RESCUE_CMD;
          cmd[1] = NULL;
          execv(cmd[0],cmd);
          break;
       case SIGCONT: /* update */
-         D_PRINTF(CINIT_BIN);
+         LOG(MSG_UPDATE);
          cmd[0] = CINIT_BIN;
          cmd[1] = NULL;
          execv(cmd[0],cmd);
