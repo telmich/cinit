@@ -30,7 +30,7 @@ int run_svc(char *rpath)
    /* get current working dir */
    if(! (int) getcwd(pathtmp,PATH_MAX)) {
       perror(pathtmp);
-      return RT_NOTEXIST;
+      return RT_UNSPEC;
    }
 
    /* change to rpath */
@@ -70,7 +70,7 @@ int run_svc(char *rpath)
          case ST_NEED_FAIL:   /* the needs failed before */
             return tmp;
             break;
-         case RT_TMPNOW:      /* do not go to defaul: */
+         case RT_TMPNOW:      /* do not go to default: */
             break;
          default:
             mini_printf(MSG_SHOULD_NOT_HAPPEN,1);
