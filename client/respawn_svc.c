@@ -93,11 +93,12 @@ pid_t respawn_svc(char *abspath)
       }
    } while( cpid ); /* cpid is reset by sig_terminate() */
 
+   /* FIXME: put most code of sig_terminate here */
+
    /* start off task */
    exec_svc(abspath,0);
 
    /* FIXME: this happens, if exec_svc returns */
-
    D_PRINTF("jetzt weg");
    _exit(0);
 }

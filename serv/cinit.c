@@ -78,7 +78,7 @@ int main(int argc, char **argv)
       argc--;
    }
 
-   /* tell the world we are there */
+   /* tell the world we are there FIXME: do we really need three calls? */
    mini_printf(MSG_CINIT,1); mini_printf(initdir,1); mini_printf("\n",1);
 
    if( chdir(CINIT_INIT) == -1) {

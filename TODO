@@ -1,7 +1,9 @@
+- implement "no_kill" until cinit-0.2 or 0.3?
 - do not kill respawing service, if off exists
 - ccontrol
 - manpages
 - Error codes when shutting down a service?
+- Delay dokumentieren
 
 - remove umount, swapoff?
 --> to services?

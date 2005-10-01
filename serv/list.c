@@ -8,7 +8,6 @@
 #include <string.h>
 #include "cinit.h"
 
-
 int list_insert(char *path, int status)
 {
    struct listitem *tmp;
@@ -19,16 +18,15 @@ int list_insert(char *path, int status)
       return 0;
    }
 
-
    if( list == NULL ) { /* list is empty, we have to init it */
       list = tmp;
       list->after    = list;
       list->before   = list;
-   } else {             /* list has members, add this one */
-      tmp->after           = list;  /* after the new element comes the begin */
-      tmp->before          = list->before;   /* change to the ex-last */
-      list->before->after  = tmp;   /* change last element */
-      list->before         = tmp;   /* first element has us as previous now */
+   } else {                                  /* list has members,add this one */
+      tmp->after           = list;           /* begin after the new element   */
+      tmp->before          = list->before;   /* change to the ex-last         */
+      list->before->after  = tmp;            /* change last element           */
+      list->before         = tmp;            /* first refers to previous now  */
    }
 
    tmp->abs_path = malloc( strlen(path) + 1);

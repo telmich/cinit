@@ -21,6 +21,7 @@ void sig_terminate(int signal)
    struct timespec ts;
    int status;
    
+   /* FIXME: only send SIGTERM, if not_kill does not exist */
    if( kill(cpid,SIGTERM) == -1) {
       if(errno != ESRCH) {
          perror(MSG_TERMKILL);
