@@ -122,6 +122,6 @@ int run_svc(char *rpath)
       return RT_ERR_COMM;
    }
 
-   return RT_SUCCESS;
+   return tmp;    /* ST_ONCE || ST_RESPAWN */
 }
 /* cinit-0.2 return codes implemented */

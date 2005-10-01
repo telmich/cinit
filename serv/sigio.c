@@ -54,7 +54,7 @@ void sigio(int socket)
             do_result(nsock,&status);
             break;
          }
-         
+
          tmp = list_insert(buf,ST_TMP); /* add service */
          if(!tmp) { /* failed */
             LOG(MSG_ERR_ADD_SVC);
@@ -70,7 +70,6 @@ void sigio(int socket)
          tmp = do_svc_name(nsock,buf,ACT_SERV);
          if(!tmp) break;
          buf[tmp] = 0;
-         D_PRINTF(buf);
          list_tmp = list_search(buf);
          
          if(list_tmp != NULL) {   /* service exists */
@@ -100,10 +99,8 @@ void sigio(int socket)
          if(!tmp) break;
          buf[tmp] = 0;  /* terminate buf */
 
-         D_PRINTF(buf);
-
          if(!list_modify(buf,status,pid)) {
-            LOG(MSG_ERR_MODIFY);
+            SERVICE_LOG(buf,MSG_ERR_MODIFY);
             status = 0;
          }
          do_result(nsock,&status);
@@ -136,6 +133,7 @@ void sigio(int socket)
    }
 	
    /* hier kommt man haeufiger herein, interrupted system call */
+   /* FIXME: ignore more errnos? */
    if( errno != EAGAIN ) { /* report, but don't panic */
       perror(MSG_ERR_ACCEPT);
    }
