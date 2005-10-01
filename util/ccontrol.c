@@ -44,7 +44,7 @@ pid_t cpid;
  */
 
 #define USAGE_TEXT "ccontrol - control cinit\n\n" \
-   "\n\nUsage:\n\nccontrol -[phearsuw] <service>\n"  \
+   "Usage:\n\nccontrol -[phearsuw] <service>\n"  \
    "\t-p\t- (power off) Power off the system\n" \
    "\t-h\t- (halt)      Halt the system \n" \
    "\t-r\t- (reboot)    Reboot the system\n" \

@@ -14,17 +14,9 @@
 /* ********************************************************************** 
  * action: 1=on, 0=off
  */
-int msg_svc_on_off(char *svc, int action)
+int msg_svc_on_off(char *svc, char action)
 {
-   char cmd;
-
-   if(action) {
-      cmd = CMD_START_SVC;
-   } else {
-      cmd = CMD_STOP_SVC;
-   }
-
-   if(!begin_msg(cmd)) return RT_ERR_COMM;
+   if(!begin_msg(action)) return RT_ERR_COMM;
    if(!do_svc_name(sock,svc,ACT_CLIENT)) return RT_ERR_COMM;
    return (int) do_result(sock,NULL);
 }

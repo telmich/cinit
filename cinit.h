@@ -24,8 +24,8 @@
 
 /* commands (maximum: 2^8 = 256, because we use a single byte)*/
 enum commands {   CMD_START_SVC=1, 
-                  CMD_CHG_STATUS,
                   CMD_STOP_SVC,
+                  CMD_CHG_STATUS,
                   CMD_RESCUE,
                   CMD_HALT,
                   CMD_REBOOT,
@@ -57,7 +57,7 @@ enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
 #define ACT_CLIENT   1
 
 /* Messages to the outside */
-#define MSG_CINIT          "cinit-0.2 booting from "
+#define MSG_CINIT          "cinit-0.2: Booting from "
 #define MSG_NOT_ONE        "cinit should not be started directly, but by your kernel."
 #define MSG_USAGE          "cinit: [cprofile:profile]\n"
 #define MSG_ERR_OPEN       "open"
@@ -148,7 +148,7 @@ void     panic(void);
 void     sig_child(int signal);
 
 /* client / message functions */
-int      msg_svc_on_off(char *svc, int action);
+int      msg_svc_on_off(char *svc, char action);
 int      msg_change_status(char *svc, char status, pid_t pid);
 int      begin_msg(char cmd);
 
