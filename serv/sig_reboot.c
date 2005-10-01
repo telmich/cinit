@@ -49,7 +49,7 @@ void sig_reboot(int signal)
       }
 
       /* execute shutdown service FIXME: parallelize that?*/
-      exec_svc(tmp->abs_path,0);
+      exec_svc(tmp->abs_path,CMD_STOP_SVC);
       tmp = tmp->before;
    } while( tmp != list );
 

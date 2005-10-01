@@ -111,7 +111,7 @@ int run_svc(char *rpath)
       pid = respawn_svc(abspath);
       tmp = ST_RESPAWN;
    } else {
-      pid = exec_svc(abspath, 1);
+      pid = exec_svc(abspath, CMD_START_SVC);
       tmp = ST_ONCE;
    }
 

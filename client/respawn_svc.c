@@ -81,7 +81,7 @@ pid_t respawn_svc(char *abspath)
    
    do {
       /* exec_svc will set cpid accordingly */
-      if( ! exec_svc(abspath, 1) ) {
+      if( ! exec_svc(abspath, CMD_START_SVC) ) {
          if(cpid != 0) {
             D_PRINTF("sloefen");
             sleep(SLEEP_SVC);
@@ -90,10 +90,10 @@ pid_t respawn_svc(char *abspath)
       }
    } while( cpid ); /* cpid is reset by sig_terminate() */
 
-   /* FIXME: put most code of sig_terminate here */
+   /* FIXME: put most code of sig_terminate here, look for no_kill */
 
    /* start off task */
-   exec_svc(abspath,0);
+   exec_svc(abspath,CMD_STOP_SVC);
 
    /* FIXME: this happens, if exec_svc returns */
    D_PRINTF("jetzt weg");
