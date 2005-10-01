@@ -1,6 +1,5 @@
-/* 
- * cinit
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
+/* cinit
+ * (c) 2005 Nico Schottelius (nico-linux-cinit at schottelius.org)
  * We are called, when a child dies. Remove it.
  */
 
@@ -16,7 +15,6 @@
 
 void sig_child(int signal)
 {
-   mini_printf("sigchild\n",1);
    do {
       signal = waitpid(-1,&signal,WNOHANG);
    } while( signal > 0);

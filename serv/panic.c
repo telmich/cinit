@@ -14,7 +14,6 @@ void panic(void)
    nargv[0] = SULOGIN;
    nargv[1] = NULL;
 
-   /* FIXME: perhaps fork before? And return to standard after? */
    execv(SULOGIN,nargv);
    _exit(1);
 }
