@@ -21,7 +21,7 @@
  * exec_svc: exec service abspath C_ON or C_OFF
  */
 
-pid_t exec_svc(char *abspath, int on)
+pid_t exec_svc(char *abspath, int action)
 {
    int tmp;
    char *p, pathtmp[PATH_MAX];
@@ -43,7 +43,6 @@ pid_t exec_svc(char *abspath, int on)
             return cpid;
          }
       }
-      /* FIXME: make this nicer, remove double execution */
       SERVICE_LOG(abspath,LOG_SVC_FAIL);
       return 0;
    }
@@ -52,7 +51,7 @@ pid_t exec_svc(char *abspath, int on)
    strcpy(pathtmp,abspath);
    strcat(pathtmp,SLASH);
 
-   if(on) {
+   if(on == CMD_START_SVC) {
       strcat(pathtmp,C_ON);
    } else {
       strcat(pathtmp,C_OFF);
@@ -73,7 +72,7 @@ pid_t exec_svc(char *abspath, int on)
       strcpy(pathtmp,abspath);
       strcat(pathtmp,SLASH);
 
-      if(on) { 
+      if(on == CMD_START_SVC) { 
          strcat(pathtmp,C_ON);
       } else {
          strcat(pathtmp,C_OFF);
@@ -99,7 +98,7 @@ pid_t exec_svc(char *abspath, int on)
    strcpy(pathtmp,abspath);
    strcat(pathtmp,SLASH);
 
-   if(on) {
+   if(on == CMD_START_SVC) {
       strcat(pathtmp,C_ONARG);
    } else {
       strcat(pathtmp,C_OFFARG);
@@ -184,7 +183,7 @@ pid_t exec_svc(char *abspath, int on)
    /********************** read environment *********************/
    strcpy(pathtmp,abspath);
    strcat(pathtmp,SLASH);
-   if(on) {
+   if(on == CMD_START_SVC) {
       strcat(pathtmp,C_ONENV);
    } else {
       strcat(pathtmp,C_OFFENV);
