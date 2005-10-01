@@ -14,11 +14,8 @@
 /* we trust the caller */
 int msg_reboot(char cmd)
 {
-   D_PRINTF("aus damit");
    if(!begin_msg(cmd)) return 0;
-   D_PRINTF("abschliessen");
    close(sock);
-   D_PRINTF("und programm terminieren");
-
    return 1;
 }
+/* clean for cinit-0.2 */
