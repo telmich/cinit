@@ -70,6 +70,8 @@ int run_svc(char *rpath)
          case ST_NEED_FAIL:   /* the needs failed before */
             return tmp;
             break;
+         case RT_TMPNOW:      /* let's do it */
+            break;
          default:
             mini_printf(MSG_SHOULD_NOT_HAPPEN,1);
             return RT_UNSPEC;
