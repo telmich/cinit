@@ -71,7 +71,6 @@ void sig_reboot(int signal)
       perror(CINIT_TMNT);
    }
 
-
 /* THIS IS FUCKING UNCLEAN AND SHOULD BE CLEANED UP VERY MUCH!!! */
 #define CMD_CNT 4
 

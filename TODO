@@ -2,8 +2,10 @@
    - exec_svc wants to waitpid() itself, so SIG_CHILD makes problems
    - respawn_svc: does that need to act on SIGCHLD if the master process
    is still running?
-   - 
-- remove umount code
+   - kill respawn -> sigchild cleans up, we do not get waitpid perhaps?
+
+- remove umount code?
+- remove zombies, but keep away from SIGCHILD problems
 - remove mount /etc/cinit/tmp code
    -> how to replace?
 - fix bug in Makefile: linking happens twice

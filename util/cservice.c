@@ -93,7 +93,7 @@ int main(int argc, char **argv)
    switch(argv[1][1]) {
       case 'a':   /* aus */
       case 'r':   /* restart */
-         switch( msg_svc_on_off( fuzzy_path(argv[2]),0 ) ) {
+         switch( msg_svc_on_off( fuzzy_path(argv[2]),CMD_STOP_SVC) ) {
             case ST_OFF:
                SERVICE_LOG(argv[2],LOG_SVC_STOPED);
                break;

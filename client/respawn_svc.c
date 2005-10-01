@@ -95,7 +95,6 @@ pid_t respawn_svc(char *abspath)
    /* start off task */
    exec_svc(abspath,CMD_STOP_SVC);
 
-   /* FIXME: this happens, if exec_svc returns */
    D_PRINTF("jetzt weg");
    _exit(0);
 }
