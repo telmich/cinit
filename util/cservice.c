@@ -85,52 +85,55 @@ char *fuzzy_path(char *rpath)
  */
 int main(int argc, char **argv)
 {
+   char *real_name = NULL;
+   
    /* argv */
    if(argc != 3)              C_USAGE(MSG_ERR_LESS_ARGS);
    if(argv[1][0] != '-')      C_USAGE(MSG_ERR_BAD_ARGS);
    if(strlen(argv[1]) != 2)   C_USAGE(MSG_ERR_ARGS_LEN);
 
+   real_name = fuzzy_path(argv[2]);
    switch(argv[1][1]) {
       case 'a':   /* aus */
       case 'r':   /* restart */
-         switch( msg_svc_on_off( fuzzy_path(argv[2]),CMD_STOP_SVC) ) {
+         switch( msg_svc_on_off(real_name,CMD_STOP_SVC) ) {
             case ST_OFF:
-               SERVICE_LOG(argv[2],LOG_SVC_STOPED);
+               SERVICE_LOG(real_name,LOG_SVC_STOPED);
                break;
             case RT_ERR_COMM:
-               SERVICE_LOG(argv[2],MSG_ERR_COMM);
+               SERVICE_LOG(real_name,MSG_ERR_COMM);
                break;
             default:
-               SERVICE_LOG(argv[2],MSG_SHOULD_NOT_HAPPEN);
+               SERVICE_LOG(real_name,MSG_SHOULD_NOT_HAPPEN);
                break;
          }
          if( argv[1][1] == 'a') break; /* only continue if restarting */
 
       case 'e':   /* ein */
-         switch (run_svc(argv[2])) { /* run_svc fuzzys itself */
+         switch (run_svc(real_name)) { /* run_svc fuzzys itself */
             case RT_NOTEXIST:
-               SERVICE_LOG(argv[2],LOG_SVC_NOTEXIST);
+               SERVICE_LOG(real_name,LOG_SVC_NOTEXIST);
                break;
             case RT_SVC_FAILED:
-               SERVICE_LOG(argv[2],LOG_SVC_FAILED);
+               SERVICE_LOG(real_name,LOG_SVC_FAILED);
                break;
             case ST_FAIL:
-               SERVICE_LOG(argv[2],LOG_SVC_FAIL);
+               SERVICE_LOG(real_name,LOG_SVC_FAIL);
                break;
             case ST_ONCE:
-               SERVICE_LOG(argv[2],LOG_SVC_ONCE);
+               SERVICE_LOG(real_name,LOG_SVC_ONCE);
                break;
             case RT_ERR_COMM:
-               SERVICE_LOG(argv[2],MSG_ERR_COMM);
+               SERVICE_LOG(real_name,MSG_ERR_COMM);
                break;
             case ST_RESPAWN:
-               SERVICE_LOG(argv[2],LOG_SVC_RESPAWN);
+               SERVICE_LOG(real_name,LOG_SVC_RESPAWN);
                break;
             case ST_NEED_FAIL:
-               SERVICE_LOG(argv[2],LOG_NEED_FAIL);
+               SERVICE_LOG(real_name,LOG_NEED_FAIL);
                break;
             default:
-               SERVICE_LOG(argv[2],MSG_SHOULD_NOT_HAPPEN);
+               SERVICE_LOG(real_name,MSG_SHOULD_NOT_HAPPEN);
                break;
          }
          break;
