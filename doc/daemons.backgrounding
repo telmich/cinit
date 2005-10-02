@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 daemons backgrounding,
-Nico Schottelius 2005-06-12 (Last Modified: 2005-09-15)
+Nico Schottelius 2005-06-12 (Last Modified: 2005-10-02)
 --------------------------------------------------------------------------------
 
 0. Definition
@@ -22,7 +22,7 @@ if it has a switch to disable forking
 
 The following daemons / servers are known to avoid backgrounding easily:
 
-      acpid [x86 power management:  -f (undocumentated but works)
+      acpid [x86 power management]: -f (undocumentated but works)
       asterisk [pbx]:               -f
       bind [dns server/caching]:    -f
       cardmgr [pcmcia/cardbus]:     -f
@@ -34,9 +34,11 @@ The following daemons / servers are known to avoid backgrounding easily:
       fcron [schedular]:            -f
       frox [ftp proxy]:             "NoDetach" in config
       gdm [display manager]:        -nodaemon
+      icecast2 [sound streamer]:    normal behaviour
       mini-lpd [printer server]:    normal behaviour
       metalog [log server]:         normal behaviour
       monotone [vcs]:               normal behaviour
+      mpd [music server]:           --no-daemon
       nessusd ["security server"]:  normal behaviour
       ntpd [time server]:           -n
       oidentd [identd server]:      -i

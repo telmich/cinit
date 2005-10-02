@@ -3,13 +3,11 @@
    - respawn_svc: does that need to act on SIGCHLD if the master process
    is still running?
    - kill respawn -> sigchild cleans up, we do not get waitpid perhaps?
-
 - remove umount code?
 - remove zombies, but keep away from SIGCHILD problems
 - remove mount /etc/cinit/tmp code
    -> how to replace?
 - fix bug in Makefile: linking happens twice
-- implement "no_kill" until cinit-0.2 or 0.3?
 - do not kill respawing service, if off exists
 - ccontrol
 - manpages
@@ -37,6 +35,7 @@
 
 --> Wenn kein ReSPAWN und der Prozess beendet sich nicht,
     dann haengt init!
+- implement "no_kill" until cinit-0.2 or 0.3?
 
 Doku!!!
 
@@ -48,7 +47,6 @@ http://qingy.sourceforge.net/manual.php
 --------------------------------------------------------------------------------
 - Source Logic issues
    - remove FIXME entries (and what should be fixed, too)
-   - cleanup sig_reboot.c
    - memset for timespecs?
    - move umount, swapoff and remount to off of init?
       -> cleanup sig_reboot.c
@@ -64,25 +62,6 @@ http://qingy.sourceforge.net/manual.php
       o Howto-cinit
       o Howto-cinit-uml
 --------------------------------------------------------------------------------
-create_mini_cinit / configuration samples
-   -> use a tarball? (samples/*)
-   -> create something which should be runnable
-      -> mount, fsck, getty
-         --> for dev in `read /etc/fstab` ...
-               fsck $dev
-         --> getty from /etc/inittab or /sbin/*getty
-            -> find out, which gettys with which params
-   -> use it on 'make install'
---------------------------------------------------------------------------------
-Optional tasks:
-
-   - check for other possibilities to create a smaller binary
-      - strip options
-      - gcc options
-      - ld options
-      - alternative libc (uclibc and dietlibc work fine!)
-
---------------------------------------------------------------------------------
 Things I did not do and I don't know whether we have to care about:
 
 - Porting
@@ -96,3 +75,4 @@ Things I did not do and I don't know whether we have to care about:
    -> write output $somewhere, wait for syslog?
    -> flush at the end of start-process?
    -> perhaps pipe logging output to a program?
+
