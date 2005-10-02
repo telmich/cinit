@@ -122,9 +122,6 @@ void sigio(int socket)
       case CMD_UPDATE:
          sig_reboot(SIGCONT);
          break;
-      case CMD_WBOOT:
-         sig_reboot(SIGQUIT);
-         break;
       default:
          LOG(MSG_CMD_UNKNOWN);
          break;
