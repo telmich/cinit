@@ -1,27 +1,22 @@
-- C_DELAY support
-- /etc/csys in wasserstoff example
-- Mailing list
-- cinit-vis.pl + other contrib
-- online speech in german
-- Neu:
-   - cconfig.graph.xml.rb
-   - cinit.graph.text
-   - cinit-vis-killerfox.pl cinit-vis.pl
+cinit-0.2:
 
-- remove unecessary signalling
-
-- you can now also disable 'once ran' services, so you can restart them
-with csevice -a cservice -e
-- respawn watcher do eat zombies now, too
-
-- added script to automaticly build configuration:cinit... miniconf
-- added many helper scripts to install services (cinit.install.service*)
-- fixed many small bugs in:
-   cinit.add.getty
-   cinit.get-conf
-
--u == update
--w == warm reboot
+- Much more verbose error reporting
+- You can now also disable 'once ran' services,
+- You can restart services with csevice -r
+- Online speech in German is available
+- C_DELAY support - variable delay for sending SIGKILL after SIGTERM
+- First /etc/csys configuration example (wasserstoff) is available
+- a Mailing list was created
+- Added tools to analyze cinit configuration
+   (cinit-vis.pl, cinit.graph.text.c)
+- Added tools to import and export configuration to XML
+  (make.cconfig.from.xml.rb,cconfig.graph.xml.rb)
+- Removed unecessary signalling
+- Added many helper scripts to install services (cinit.install.service*)
+- Fixed many small bugs in old helper scripts (cinit.add.getty, cinit.get-conf, ...)
+- Added ccontrol, which allows to control cinit
+- Added update (-u) and warm reboot function (-w) via ccontrol
+- Stripped cservice, which now "only" controls services
 
 ???? SIGQUIT = warm reboot
 

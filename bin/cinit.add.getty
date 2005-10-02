@@ -38,6 +38,10 @@ for getty in $GETTYS; do
          mygetty=$getty
          params="38400 tty${NUMBER} linux"
       ;;
+      */mgetty)
+         mygetty=$getty
+         params="38400 tty${NUMBER}"
+      ;;
       *)
          echo "Unknown Getty type $getty"
          echo "Please report standard parameters to me."

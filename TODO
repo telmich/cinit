@@ -13,6 +13,8 @@
 - manpages
 - Error codes when shutting down a service?
 - Delay dokumentieren
+- no_kill dokumentieren
+- ddoc zuendefuehren
 
 - remove umount, swapoff?
 --> to services?
@@ -40,7 +42,6 @@
 Doku!!!
 
 gettys:
-http://www.nongnu.org/fbgetty/docs/fbgetty.8.html, 
 http://www.die.net/doc/linux/man/man8/mgetty.8.html, 
 http://qingy.sourceforge.net/manual.php
 
