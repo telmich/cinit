@@ -1,5 +1,4 @@
 cinit-0.2:
-
 - Much more verbose error reporting
 - You can now also disable 'once ran' services,
 - You can restart services with csevice -r
@@ -17,24 +16,7 @@ cinit-0.2:
 - Added ccontrol, which allows to control cinit
 - Added update (-u) and warm reboot function (-w) via ccontrol
 - Stripped cservice, which now "only" controls services
-
-???? SIGQUIT = warm reboot
-
-mini_printf(): do not add \n anymore
-util/cservice: use LOG instead of mini_printf
-- Better error descriptions
+- Removed swapoff from cinit code, should be handled by off
+- Much better error and processing descriptions
 - A bit more verbose reporting
-
-- structured run_svc, better error detection
-
-Remove RUN_RUN_SVCs, move code to run_svc so one can determine
-which services failed?
---> sequentieller ablauf!
---> parallel ablauf, struct-array mit namen und ergebnis?
---> for dep in deps/*; do fork(run_svc() ); done
------> while(any_is_running) { sleep }
--------> array durchsuchen, ergebnis nutzen.
-- ueberpruefen von wo aus run_svc() aufgerufen wird
-
-- added generic/usage.c
-- cleaned up serv/cinit.c
+- Restructured run_svc, now with better error detection

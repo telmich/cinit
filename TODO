@@ -1,3 +1,12 @@
+- Remove RUN_RUN_SVCs, move code to run_svc so one can determine which
+  services failed?
+ --> sequentieller ablauf!
+ --> parallel ablauf, struct-array mit namen und ergebnis?
+ --> for dep in deps/*; do fork(run_svc() ); done
+ -----> while(any_is_running) { sleep }
+ -------> array durchsuchen, ergebnis nutzen.
+ - ueberpruefen von wo aus run_svc() aufgerufen wird
+
 - Fix SIGCHILD problem:
    - exec_svc wants to waitpid() itself, so SIG_CHILD makes problems
    - respawn_svc: does that need to act on SIGCHLD if the master process
@@ -40,10 +49,6 @@
 - implement "no_kill" until cinit-0.2 or 0.3?
 
 Doku!!!
-
-gettys:
-http://www.die.net/doc/linux/man/man8/mgetty.8.html, 
-http://qingy.sourceforge.net/manual.php
 
 --------------------------------------------------------------------------------
 - Source Logic issues
