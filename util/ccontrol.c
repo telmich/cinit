@@ -49,8 +49,7 @@ pid_t cpid;
    "\t-h\t- (halt)               Halt the system \n" \
    "\t-r\t- (reboot)             Reboot the system\n" \
    "\t-s\t- (single user/rescue) Rescue mode\n" \
-   "\t-u\t- (update)             Reboot (warm) and update cinit\n" \
-   "\t-w\t- (warm reboot)        Stop and start everything\n\n"
+   "\t-u\t- (update)             Reboot (warm) and update cinit\n\n"
 
 #define C_USAGE(error) usage(USAGE_TEXT,error)
 
@@ -87,11 +86,6 @@ int main(int argc, char **argv)
       case 'u':   /* update */
          LOG(MSG_UPDATE);
          msg_reboot(CMD_UPDATE);
-         break;
-
-      case 'w':   /* warm reboot */
-         LOG(MSG_HOT_REBOOT);
-         msg_reboot(CMD_WBOOT);
          break;
 
       default:
