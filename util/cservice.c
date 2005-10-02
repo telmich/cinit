@@ -97,6 +97,9 @@ int main(int argc, char **argv)
       case 'a':   /* aus */
       case 'r':   /* restart */
          switch( msg_svc_on_off(real_name,CMD_STOP_SVC) ) {
+            case ST_FAIL:
+               SERVICE_LOG(real_name,LOG_SVC_FAIL);
+               break;
             case ST_OFF:
                SERVICE_LOG(real_name,LOG_SVC_STOPED);
                break;
