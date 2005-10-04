@@ -132,12 +132,14 @@ void sig_reboot(int signal)
          cmd[0] = RESCUE_CMD;
          cmd[1] = NULL;
          execv(cmd[0],cmd);
+         panic();
          break;
       case SIGCONT: /* update */
          LOG(MSG_UPDATE);
          cmd[0] = CINIT_BIN;
          cmd[1] = NULL;
          execv(cmd[0],cmd);
+         panic();
          break;
    }
 
