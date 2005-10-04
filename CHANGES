@@ -20,3 +20,4 @@ cinit-0.2:
 - Much better error and processing descriptions
 - A bit more verbose reporting
 - Restructured run_svc, now with better error detection
+- Removed Kernel panic, when halting system
