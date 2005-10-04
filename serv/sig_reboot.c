@@ -141,5 +141,5 @@ void sig_reboot(int signal)
          break;
    }
 
-   _exit(0);
+   /* do not exit, Linux does that for us */
 }
