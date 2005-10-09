@@ -1,17 +1,15 @@
+- remove cinit watcher?
+   -> sig_child -> cycle through list?
+- ccontrol -?
 - cservice -a service (vorher once) und wieder ein geht nicht
 - DOKU: what happens when a service does not terminate....
    und er als once drin ist
-cinit -u thilo nach cservice -u thilo/?
 - MANPAGE!
 - execve() fails -> no sleep!!
-- when one process blocks socket -> cinit not reachable
-- cservice -u seems not to work 100%
-- panic when cservice -h -> _exit(0);
 - multiple zombies sometimes - problemservices
    -> zombies of respawn watchers are not caught!
    -> sig_chld also therein
-- infinite loop when cservice -u
-   -> schon tmp
+   -> problematic due to wait for child
 -doubled cinit instance
    - nur einmal
 - free() everything before starting child
