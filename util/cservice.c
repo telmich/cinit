@@ -106,9 +106,22 @@ int main(int argc, char **argv)
             case RT_ERR_COMM:
                SERVICE_LOG(real_name,MSG_ERR_COMM);
                break;
-            default:
-               SERVICE_LOG(real_name,MSG_SHOULD_NOT_HAPPEN);
+            /* FIX THIS AFTER cinit-0.2 */
+            case RT_TMPNOW:
+            case RT_ERR:
+            case RT_SVC_FAILED:
+            case RT_UNSPEC:
+            case RT_SUCCESS:
+            case ST_NEED_FAIL:
+            case ST_TMP:
+            case ST_ONCE:
+            case RT_NOTEXIST:
+            case ST_RESPAWN:
+//               SERVICE_LOG(real_name,"Ein bekanntest ding");
                break;
+/*            default:
+               SERVICE_LOG(real_name,MSG_SHOULD_NOT_HAPPEN);
+               break; */
          }
          if( argv[1][1] == 'a') break; /* only continue if restarting */
 

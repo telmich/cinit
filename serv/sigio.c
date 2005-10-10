@@ -65,12 +65,18 @@ void sigio(int socket)
          do_result(nsock,&status);
       break;
 
-      /********************** STOP RESPAWNING *******************/
+      /********************** STOP (RESPAWNING) *******************/
       case CMD_STOP_SVC:
          tmp = do_svc_name(nsock,buf,ACT_SERV);
          if(!tmp) break;
          buf[tmp] = 0;
          list_tmp = list_search(buf);
+
+         /* FIXME: 
+            - handle off
+            - handle switching off once services
+            - perhaps remove old cinit code, which has respawing childs
+          */
          
          if(list_tmp != NULL) {   /* service exists */
             if(list_tmp->status == ST_RESPAWN) {
@@ -88,7 +94,7 @@ void sigio(int socket)
                status = list_tmp->status;
             }
          } else { /* no service there */
-            status = ST_OFF;
+            status = RT_NOTEXIST;
          }
          do_result(nsock,&status);
       break;

@@ -1,3 +1,4 @@
+- Fix Switching services off !!
 - Remove RUN_RUN_SVCs, move code to run_svc so one can determine which
   services failed?
  --> sequentieller ablauf!
@@ -81,4 +82,36 @@ Things I did not do and I don't know whether we have to care about:
    -> write output $somewhere, wait for syslog?
    -> flush at the end of start-process?
    -> perhaps pipe logging output to a program?
+--------------------------------------------------------------------------------
+[OLD BUGS]
+- remove cinit watcher?
+   -> sig_child -> cycle through list?
+- ccontrol -?
+- cservice -a service (vorher once) und wieder ein geht nicht
+- DOKU: what happens when a service does not terminate....
+   und er als once drin ist
+- MANPAGE!
+- execve() fails -> no sleep!!
+- multiple zombies sometimes - problemservices
+   -> zombies of respawn watchers are not caught!
+   -> sig_chld also therein
+   -> problematic due to wait for child
+-doubled cinit instance
+   - nur einmal
+- free() everything before starting child
+- cservice!
+   - prozess nur einmal -> WARTET! cinit auch!
+doku:
+  cservice einmal starten -> wartet auf ende
+  cint ersetzt init bei gentoo
+  an error occuerd-> verbose
+  multuicall probleme -> busysbox --> GIBT ES NICHT!!
+  ---> DOKU DAZU! mit links, doppelt links, aus test
+  ---> erklaeren, dass es unproblematisch ist!
+
+11:09 < folken23> telmich: zsb. eine grund angabe warum ein dienst nicht gestartet 
+                  werden konnte. 
+11:09 < folken23> telmich: e.g. file nicht gefunden, service hat nicht 0 
+                  zurueckgeworfen. 
+11:09 < folken23> telmich: oder service allready started. 
 
