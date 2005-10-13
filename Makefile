@@ -10,6 +10,7 @@ include Makefile.include
 # directories and files
 DDOC=ddoc
 SDIRS=bin client conf comm doc generic serv util
+CDIRS=contrib+tools
 FILES=Changelog Makefile README TODO cinit.h
 
 # objects
@@ -43,7 +44,7 @@ CINIT_BIN=$(SBIN)/cinit
 warn:
 	@cat doc/.buildwarn
 
-all: cinit cservice ccontrol sizecheck docs contrib+tools
+all:: cinit cservice ccontrol sizecheck docs
 
 cinit: $(CINIT_BIN)
 
@@ -68,8 +69,9 @@ sizecheck: cinit cservice
 	@echo -n "Source size (in KiB): "
 	@du -s $(SDIRS) | awk '{ sum+=$$1 } END { print sum }'
 #	@du -s bin client comm conf doc generic serv | awk '{ sum+=$1 } END { print sum }'
-clean:
-	rm -f *.o */*.o sbin/* config.h
+
+clean::
+	rm -f *.o */*.o sbin/* config.h ddoc/*
 
 config.h: conf/*
 	./bin/cinit.mkheader > config.h
@@ -86,7 +88,7 @@ $(SBIN)/ccontrol util/ccontrol: $(SBIN) $(CCO_OBJ)
 	$(LD) $(LDFLAGS) $(CCO_OBJ) -o $@
 	$(STRIP) $@
 
-install: install-dir cinit cservice ccontrol
+install:: install-dir cinit cservice ccontrol
 	@echo '*** Installing cinit ***'
 	./bin/cinit.install.binary
 
@@ -99,3 +101,11 @@ install-dir:
 install-test:
 	@echo "***> Please get a sample from http://linux.schottelius.org/cinit/"
 	@echo "***\ This make target is no longer supported"
+
+
+all install clean::
+	@for subdir in $(CDIRS); do \
+	  echo "Making $@ in $$subdir"; \
+	(cd $$subdir && $(MAKE) $(MAKEFLAGS) $@) \
+	 || exit 1;\
+	 done;
