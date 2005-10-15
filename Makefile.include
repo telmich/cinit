@@ -10,12 +10,12 @@
 #
 # do not use DEBUG and OPTIMIZE at the same time!
 #DEBUG=-DDEBUG
-#OPTIMIZE=-Werror 
+OPTIMIZE=-Werror 
 #DEBUG=-g -DDEBUG
 OPTIMIZE=-pipe -Os -Werror 
 
-# init should be static per default!
-LDFLAGS=-static      
+# init should be static per default! - but not the other programs!
+CINIT_LDFLAGS=-static      
 
 # programs
 CC=gcc $(DEBUG) $(OPTIMIZE) $(TIMEME)

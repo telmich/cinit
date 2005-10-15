@@ -1,14 +1,13 @@
 - print service name or cinit: before _everything_ WE print
 
-18:31 < BMH1980> -p|--power-off`)
-
 TESTING:
    - does cinit eat zombies?
    - is the reporting ok?
    - does cservice and ccontrol what's expected?
-   -
 
 # cinit.create.empty.service: can only be started from the bin directory
+
+- compile cinit static and other tools dynamically per default
 
 - Fix Switching services off !!
 - Remove RUN_RUN_SVCs, move code to run_svc so one can determine which
@@ -43,19 +42,6 @@ TESTING:
 
 - on.out, on.err, on.in?
    -> reading/writing from/to files
-
-- Split cservice?
-   - ccontrol:
-      - reboot
-      - shutdown
-      - halt
-   - cservice
-      - (r)estart
-      - (e)in/on
-      - (a)us/off
-
--u: daten weg???
---> komplett neu starten, deshalb!
 
 --> Wenn kein ReSPAWN und der Prozess beendet sich nicht,
     dann haengt init!
@@ -98,8 +84,6 @@ Things I did not do and I don't know whether we have to care about:
 [OLD BUGS]
 - remove cinit watcher?
    -> sig_child -> cycle through list?
-- ccontrol -?
-- cservice -a service (vorher once) und wieder ein geht nicht
 - DOKU: what happens when a service does not terminate....
    und er als once drin ist
 - MANPAGE!
@@ -126,4 +110,3 @@ doku:
 11:09 < folken23> telmich: e.g. file nicht gefunden, service hat nicht 0 
                   zurueckgeworfen. 
 11:09 < folken23> telmich: oder service allready started. 
-

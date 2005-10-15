@@ -1,0 +1,22 @@
+#!/bin/sh
+# Nico Schottelius
+# Build release tar
+# Date: Sat Oct 15 21:38:29 CEST 2005
+
+
+if [ $# -ne 2 ]; then
+   echo $(basename $0): source-dir version
+   exit 1
+fi
+
+DIR=$1
+VERSION=$2
+
+if [ ! -d "$DIR" ]; then
+   echo "$DIR is not a directory"
+   exit 1
+fi
+
+( cd "$DIR" && make clean ) || exit 1
+
+tar cvj -X $DIR/.exclude -f cinit-${VERSION}.tar.bz2 $DIR
