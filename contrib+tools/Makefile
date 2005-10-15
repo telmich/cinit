@@ -5,9 +5,11 @@
 # This script is written for the clinux-System and published
 # under the terms of GPL 2.0
 #
-# Version: 0.1
+# Version: 0.2
+#  clean with a single command instead of two commands.
 #
 # ChangeLog:
+#   0.1 initial version
 #
 # Todo:
 #
@@ -59,8 +61,7 @@ cinit.graph.text: $(OBJ)
 	$(STRIP) $@
 
 clean:
-	rm -f *.o
-	rm -f $(PROGRAMS)
+	rm -f *.o $(PROGRAMS)
 
 install: all
 	@echo '*** Installing contrib+tools ***'
