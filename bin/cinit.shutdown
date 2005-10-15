@@ -1,6 +1,7 @@
 #!/bin/sh
 # Nico Schottelius
 # shutdown system
+# TODO: use ccontrol!
 # 2005-05-24 (Last changed: 2005-06-18)
 
 
@@ -22,7 +23,7 @@ fi
 
 case $1 in
    -r|--reboot)      kill -HUP  1 ;;
-   -p|--power-off`)  kill -TERM 1 ;;
+   -p|--power-off)   kill -TERM 1 ;;
    -h|--halt)        kill -USR1 1 ;;
    -s|--rescue)      kill -USR2 1 ;;
     *)               usage ;;
