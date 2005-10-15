@@ -82,7 +82,7 @@ $(SBIN)/cservice util/cservice: $(SBIN) $(CSVC_OBJ)
 
 ccontrol: $(SBIN)/ccontrol
 
-$(SBIN)/ccontrol util/ccontrol: $(SBIN) $(CCO_OBJ)
+$(SBIN)/ccontrol util/ccontrol: config.h $(SBIN) $(CCO_OBJ)
 	$(LD) $(LDFLAGS) $(CCO_OBJ) -o $@
 	$(STRIP) $@
 

@@ -1,3 +1,15 @@
+- print service name or cinit: before _everything_ WE print
+
+18:31 < BMH1980> -p|--power-off`)
+
+TESTING:
+   - does cinit eat zombies?
+   - is the reporting ok?
+   - does cservice and ccontrol what's expected?
+   -
+
+# cinit.create.empty.service: can only be started from the bin directory
+
 - Fix Switching services off !!
 - Remove RUN_RUN_SVCs, move code to run_svc so one can determine which
   services failed?

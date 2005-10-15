@@ -44,12 +44,12 @@ pid_t cpid;
  */
 
 #define USAGE_TEXT "ccontrol - control cinit\n\n" \
-   "Usage:\n\nccontrol -[phrsuw] <service>\n"  \
+   "Usage:\n\nccontrol -[phurs]\n"  \
    "\t-p\t- (power off)          Power off the system\n" \
    "\t-h\t- (halt)               Halt the system \n" \
+   "\t-u\t- (update)             Reboot (warm) and update cinit\n" \
    "\t-r\t- (reboot)             Reboot the system\n" \
-   "\t-s\t- (single user/rescue) Rescue mode\n" \
-   "\t-u\t- (update)             Reboot (warm) and update cinit\n\n"
+   "\t-s\t- (single user/rescue) Rescue mode\n\n" \
 
 #define C_USAGE(error) usage(USAGE_TEXT,error)
 

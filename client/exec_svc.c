@@ -194,7 +194,7 @@ pid_t exec_svc(char *abspath, int action)
    if( !stat(pathtmp,&buf) ) {
       fd = open(pathtmp,O_RDONLY);
 
-      /* if a file exists, failing to open it is an error */
+      /* file exists, failing to open it is an error */
       if(fd == -1) {
          perror(MSG_ERR_OPEN);
          _exit(1);
