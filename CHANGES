@@ -14,7 +14,7 @@ cinit-0.2:
 - Added many helper scripts to install services (cinit.install.service*)
 - Fixed many small bugs in old helper scripts (cinit.add.getty, cinit.get-conf, ...)
 - Added ccontrol, which allows to control cinit
-- Added update (-u) and warm reboot function (-w) via ccontrol
+- Added update (-u) via ccontrol
 - Stripped cservice, which now "only" controls services
 - Removed swapoff from cinit code, should be handled by off
 - Much better error and processing descriptions

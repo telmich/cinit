@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 daemons backgrounding,
-Nico Schottelius 2005-06-12 (Last Modified: 2005-10-02)
+Nico Schottelius 2005-06-12 (Last Modified: 2005-10-15)
 --------------------------------------------------------------------------------
 
 0. Definition
@@ -50,6 +50,7 @@ The following daemons / servers are known to avoid backgrounding easily:
       proftpd [ftp server]:         -n
       qmail [mta]:                  normal behaviour
       rsync ["file server"]:        --no-detach
+      silcd ["secure chat server"]: -F, --foreground
       slapd [ldap]:                 -d
       snmpd [snmp daemon]:          -f
       svnserve [vcs]:               --foreground
