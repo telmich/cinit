@@ -98,11 +98,6 @@ install-miniconf:
 install-dir:
 	./bin/cinit.install.dir
 
-install-test:
-	@echo "***> Please get a sample from http://linux.schottelius.org/cinit/"
-	@echo "***\ This make target is no longer supported"
-
-
 all install clean::
 	@for subdir in $(CDIRS); do \
 	  echo "Making $@ in $$subdir"; \
