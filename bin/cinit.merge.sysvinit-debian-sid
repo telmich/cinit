@@ -86,10 +86,6 @@ for i in `seq 2 8`; do
    $(dirname $0)/cinit.add.dependency getty wants getty/$i
 done
 
-set +e
-
-exit 0
-
 #
 # Convert services: check /etc/rcS.d and /etc/rcX.d
 #
@@ -97,12 +93,23 @@ echo "***> Converting services ..."
 for script in $(cd /etc/rcS.d/; ls S*; cd /etc/rc${RUNLEVEL}.d/; ls S*); do
    echo -n "$script: "
    case $script in
+         # SCRIPTS READY
+         *ntpdate)
+            $(dirname $0)/cinit.install.service.ntpdate.debian
+            $(dirname $0)/cinit.add.dependency local-tuning/ntpdate needs network
+         ;;
+         
+         # SCRIPTS NEVER READY
       *glibc.sh|*module-init-tools|*modutils|*procps.sh|*hotplug-net|*bootmisc.sh|*nviboot|*screen-cleanup|*x11-common|*sudo|*makedev|*rmnologin)
          echo "Ignoring (useless)."
          ;;
-      *mountvirtfs|*udev*|*checkroot.sh|*ifupdown-clean|*checkfs.sh|*mountall.sh|*ifupdown|*hostname*|*mountnfs.sh|*ntpdate|*alsa|*rsync|*ssh|*fam|*cron|*gdm)
-         echo "converting later."
+
+         # SCRIPTS NOT YET READY
+      *mountvirtfs|*udev*|*checkroot.sh|*ifupdown-clean|*checkfs.sh|*mountall.sh|*ifupdown|*hostname*|*mountnfs.sh|*alsa|*rsync|*ssh|*fam|*cron|*gdm)
+         echo "converting planned later."
          ;;
+
+         # SCRIPTS LATER TO DO
       *bootlogd|*keymap.sh|*hwclock*|*discover|*pppd-dns|*dns-clean|*networking|*portmap|*console-screen.sh|*urandom|*klogd|*apmd|*dbus-1|*exim4|*pcmcia|*nfs-common|*stop-bootlogd)
          echo "unsupported currently (FIXME PLEASE)."
          ;;
