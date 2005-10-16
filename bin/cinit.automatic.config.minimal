@@ -4,7 +4,35 @@
 
 . $(dirname $0)/cinit.read-conf
 
+
 ROOT_DEV=${ROOT_DEV:-$(awk '$2 ~ /^\/$/ { print $1 }' /etc/fstab)}
+RUNLEVEL=${RUNLEVEL:-$(runlevel | awk '{ print $2 }')}
+
+# check /etc/rcS.d and /etc/rcX.d
+for script in $(cd /etc/rcS.d/; ls S*; cd /etc/rc${RUNLEVEL}.d/; ls S*); do
+   echo -n "$script: "
+   case $script in
+      *glibc.sh|*module-init-tools|*modutils|*procps.sh|*hotplug-net|*bootmisc.sh|*nviboot|*screen-cleanup|*x11-common|*sudo|*makedev|*rmnologin)
+         echo "Ignoring (useless)."
+         ;;
+      *mountvirtfs|*udev*|*checkroot.sh|*ifupdown-clean|*checkfs.sh|*mountall.sh|*ifupdown|*hostname*|*mountnfs.sh|*ntpdate|*alsa|*rsync|*ssh|*fam|*cron|*gdm)
+         echo "converting later."
+         ;;
+      *bootlogd|*keymap.sh|*hwclock*|*discover|*pppd-dns|*dns-clean|*networking|*portmap|*console-screen.sh|*urandom|*klogd|*apmd|*dbus-1|*exim4|*pcmcia|*nfs-common|*stop-bootlogd)
+         echo "unsupported currently (FIXME PLEASE)."
+         ;;
+      *sysklogd|*ppp|*inetd|*lpd|*aumix|*atd)
+         echo "unsupported (choose a better alternative)."
+         ;;
+      *initrd-tools.sh|*libdevmapper*|*hotplug)
+         echo "Ignoring (general or bloated script)."
+         ;;
+      *)
+         echo "Ignoring (unknown)"
+         ;;
+   esac
+done
 
 
-echo "Root device:            $ROOT_DEV (\$ROOT_DEV)"
+echo "Root device   (\$ROOT_DEV):            $ROOT_DEV"
+echo "Runlevel      (\$RUNLEVEL):            $RUNLEVEL"
