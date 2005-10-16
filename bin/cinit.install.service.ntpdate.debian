@@ -15,11 +15,33 @@ fi
 
 . /etc/default/ntpdate
 
-echo $NTPSERVERS
+if [ -z "$NTPSERVERS" ]; then
+   echo "No ntp servers found, aborting"
+   exit 1
+fi
 
-#"$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
-#                          "${DESTDIR}/${CINIT_DIR}/network/hostname"
-#ln -sf "$HOSTNAME_BIN"    "${DESTDIR}/${CINIT_DIR}/network/hostname/$C_ON"
-#echo "$HOSTNAME"        > "${DESTDIR}/${CINIT_DIR}/network/hostname/$C_ON$C_PARAMS"
-#
-#exit 0
+BINARY_PATH=$($(dirname $0)/cinit.path-find ntpdate)
+
+if [ $? -ne 0 ]; then
+   echo "Did not find binary ntpdate."
+   exit 1
+fi
+
+if [ -d  "${DESTDIR}/${CINIT_DIR}/local-tuning/ntpdate" ]; then
+   echo "Service ntpdate already exists."
+   exit 1
+fi
+
+echo -n "Installing ntpdate to ${DESTDIR}/${CINIT_DIR}/local-tuning/ntpdate ..."
+
+"$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
+                          "${DESTDIR}/${CINIT_DIR}/local-tuning/ntpdate"
+ln -sf "$BINARY_PATH"     "${DESTDIR}/${CINIT_DIR}/local-tuning/ntpdate/$C_ON"
+
+for server in $NTPSERVERS; do
+   echo "$server"        >> "${DESTDIR}/${CINIT_DIR}/local-tuning/ntpdate/$C_ON$C_PARAMS"
+done
+
+echo "finished."
+
+exit 0
