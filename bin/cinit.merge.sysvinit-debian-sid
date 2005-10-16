@@ -49,10 +49,11 @@ if [ -d "${DESTDIR}${CINIT_DIR}" ]; then
    exit 1
 fi
 
-echo "***> Installing standard structure"
+echo "***> Installing standard structure and dependencies"
 set -e
 $(dirname $0)/cinit.install.config-dir
-$(dirname $0)/cinit.install.standard-dirs
+$(dirname $0)/cinit.install.standard.dirs
+$(dirname $0)/cinit.install.standard.init.deps
 
 echo "***> Adding mount / r/w"
 $(dirname $0)/cinit.install.service.mount-root
@@ -68,6 +69,9 @@ fi
 
 echo "***> Setting up hostname: $HOSTNAME"
 $(dirname $0)/cinit.install.service.hostname.generic "$HOSTNAME"
+
+echo "***> Setting up keymap"
+$(dirname $0)/cinit.install.service.keymap.c_keymap
 
 echo "***> Creating getties (tty1-8)"
 for i in `seq 1 8`; do

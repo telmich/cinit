@@ -1,0 +1,43 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install swap
+# Date: 2005-10-15
+# 
+
+. $(dirname $0)/cinit.read-conf
+
+SERVICE=mount/swap
+
+if [ $# -ne 0 ]; then
+  echo "$(basename $0) (no args)"
+  exit 1
+fi
+
+BINARY=swapon
+BINARY_PATH=$($(dirname $0)/cinit.path-find $BINARY)
+if [ $? -ne 0 ]; then
+   echo "Did not find binary $BINARY."
+   exit 1
+fi
+
+HAS_SWAP=$(awk '$3 ~ /swap/ { print $3 }' /etc/fstab)
+if [ -z "$HAS_SWAP" ]; then
+   echo "Seems you have no swap, service not installing"
+   exit 1
+fi
+if [ -d  "${DESTDIR}/${CINIT_DIR}/${SERVICE}" ]; then
+   echo "Service ${SERVICE} already exists."
+   exit 1
+fi
+
+echo -n "Installing ${SERVICE} to ${DESTDIR}${CINIT_DIR}/${SERVICE} ..."
+
+"$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
+                          "${DESTDIR}/${CINIT_DIR}/${SERVICE}"
+ln -sf "$BINARY_PATH"     "${DESTDIR}/${CINIT_DIR}/${SERVICE}/$C_ON"
+
+echo "-a"              >> "${DESTDIR}/${CINIT_DIR}/${SERVICE}/$C_ON$C_PARAMS"
+
+echo "finished."
+
+exit 0
