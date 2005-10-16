@@ -50,8 +50,7 @@ OBJ=$(CLIENT) $(COMMUNICATION)
 PROGRAMS=cinit.graph.text
 SCRIPTS=cconfig.graph.xml.rb \
 	make.cconfig.from.xml.rb \
-	cinit-vis.pl \
-	cinit-vis-killerfox.pl
+	cinit-vis.pl
 
 # targets
 all: $(PROGRAMS)
@@ -66,4 +65,6 @@ clean:
 install: all
 	@echo '*** Installing contrib+tools ***'
 	$(INSTALL) -d -m755 $(DESTDIR)$(bindir)
-	$(INSTALL) $(PROGRAMS) $(SCRIPTS) $(DESTDIR)$(bindir)
+	for bin in $(SCRIPTS) $(PROGRAMS); do \
+		$(INSTALL) $$bin  $(DESTDIR)/$(bindir); \
+	done
