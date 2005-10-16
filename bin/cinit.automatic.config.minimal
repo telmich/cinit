@@ -2,21 +2,28 @@
 # Nico Schottelius
 # Date: Sun Oct 16 16:57:03 CEST 2005
 # cLinux/cinit
+# Automagically convert Debian-Sysv-Iinit
+# THIS IS NOT CLEAN.
+# THIS IS NOT EVEN INTENTED TO BE CLEAN.
+# This is just a small hack, because my girlfriend wants her notebook back.
 
+
+# read standard values, may be overwritten from outside
 . $(dirname $0)/cinit.read-conf
 
 # variables, which can be set from the outside
-
-DESTDIR=${DESTDIR:-}
-CINIT_CONF_DIR=${CINIT_CONF_DIR:-/etc/cinit}
 ROOT_DEV=${ROOT_DEV:-$(awk '$2 ~ /^\/$/ { print $1 }' /etc/fstab)}
+ROOT_FSCK=${ROOT_FSCK:-$(awk '$2 ~ /^\/$/ { print $6 }' /etc/fstab)}
+ROOT_FS=${ROOT_FS:-$(awk '$2 ~ /^\/$/ { print $3 }' /etc/fstab)}
 RUNLEVEL=${RUNLEVEL:-$(runlevel | awk '{ print $2 }')}
 
 echo "***> $(basename $0): converting Debian-Sys-V-Init"
 echo "Root device   (\$ROOT_DEV):            $ROOT_DEV"
+echo "Root fsck     (\$ROOT_FSCK):           $ROOT_FSCK"
+echo "Root FS       (\$ROOT_FS):             $ROOT_FS"
 echo "Runlevel      (\$RUNLEVEL):            $RUNLEVEL"
 echo "Destdir:      (\$DESTDIR):             $DESTDIR"
-echo "Config-Dir:   (\$CINIT_CONF_DIR):      $CINIT_CONF_DIR"
+echo "Config-Dir:   (\$CINIT_DIR):           $CINIT_DIR"
 read -p "Is this correct (Y/n) " correct
 
 if [ "$correct" != "y" -a "$correct" != "Y" ]; then
@@ -24,10 +31,28 @@ if [ "$correct" != "y" -a "$correct" != "Y" ]; then
    exit 1
 fi
 
-if [ -d "${DESTDIR}${CINIT_CONF_DIR}" ]; then
-   echo "Configuration already exists at ${DESTDIR}${CINIT_CONF_DIR}."
+if [ -d "${DESTDIR}${CINIT_DIR}" ]; then
+   echo "ERROR: Configuration already exists at ${DESTDIR}${CINIT_DIR}."
    exit 1
 fi
+
+echo "***> Installing standard structure"
+set -e
+$(dirname $0)/cinit.install.config-dir
+$(dirname $0)/cinit.install.standard-dirs
+
+echo "***> Adding mount / r/w"
+$(dirname $0)/cinit.install.service.mount-root
+
+if [ "$ROOT_FSCK" = "1" ]; then
+   echo "***> Adding fsck for $ROOT_DEV ..."
+   $(dirname $0)/cinit.install.fsck root "$ROOT_DEV" "$ROOT_FS"
+   echo "***> Adding dependency"
+fi
+
+set +e
+
+exit 0
 
 #
 # Convert services: check /etc/rcS.d and /etc/rcX.d

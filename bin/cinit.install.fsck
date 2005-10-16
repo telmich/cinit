@@ -1,0 +1,36 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install service: init
+# Date: 2005-10-15
+# 
+
+. $(dirname $0)/cinit.read-conf
+
+set -e
+
+if [ $# -ne 3 ]; then
+  echo "$(basename $0): name device filesystem-type"
+  exit 1
+fi
+
+NAME=$1
+DEVICE=$2
+FS_TYPE=$3
+
+FSCK=/sbin/fsck.$FS_TYPE
+
+if [ ! -f "$FSCK" ]; then
+   echo "Missing $FSCK, abort."
+   exit 1
+fi
+
+if [ ! -e "$DEVICE" ]; then
+   echo "Missing $DEVICE abort."
+   exit 1
+fi
+
+"$INSTALL_PROG"      "$INSTALL_DIRECTORY" "${DESTDIR}/${CINIT_DIR}/fsck/$NAME"
+ln -sf  "$FSCK"      "${DESTDIR}/${CINIT_DIR}/fsck/$NAME/$C_ON"
+echo "$DEVICE"   >   "${DESTDIR}/${CINIT_DIR}/fsck/$NAME/$C_ON$C_PARAMS"
+
+exit 0
