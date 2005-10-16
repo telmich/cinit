@@ -21,29 +21,16 @@ RUNLEVEL=${RUNLEVEL:-$(runlevel | awk '{ print $2 }')}
 
 echo "***> Detecting keymap (this may take some time)"
 
-DEBIAN_KEYMAP=/etc/console/boottime.kmap.gz
-
-# nothing told by the user
-set +e
 if [ -z "$C_KEYMAP" ]; then
-   for keymap in $(find /usr/share/keymaps); do
-      echo $keymap
-      if [ -f "$keymap" ]; then
-      	echo diff "$DEBIAN_KEYMAP" "$keymap"
-      	diff "$DEBIAN_KEYMAP" "$keymap"
-      	if [ $? = 0 ]; then
-            echo null
-            C_KEYMAY=$keymap
-	         break
-         else
-            echo nicht null
-         fi
-      fi
-   done
+   echo "Please set the variable C_KEYMAP to your keymap."
+   echo "It is impossible to detect reliable your keymap in Debian."
+   exit 1
 fi
+
 
 echo "***> Configuration"
 echo "Hostname      (\$HOSTNAME):            $HOSTNAME"
+echo "Keymap        (\$C_KEYMAP):            $C_KEYMAP"
 echo "Root device   (\$ROOT_DEV):            $ROOT_DEV"
 echo "Root fsck     (\$ROOT_FSCK):           $ROOT_FSCK"
 echo "Root FS       (\$ROOT_FS):             $ROOT_FS"
