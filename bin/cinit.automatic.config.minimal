@@ -48,6 +48,7 @@ if [ "$ROOT_FSCK" = "1" ]; then
    echo "***> Adding fsck for $ROOT_DEV ..."
    $(dirname $0)/cinit.install.fsck root "$ROOT_DEV" "$ROOT_FS"
    echo "***> Adding dependency"
+   $(dirname $0)/cinit.add.dependency mount/root needs fsck/root
 fi
 
 set +e
