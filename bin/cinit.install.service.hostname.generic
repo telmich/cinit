@@ -1,0 +1,24 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install service, which sets the hostname
+# Date: 2005-10-15
+# 
+
+. $(dirname $0)/cinit.read-conf
+
+set -e
+
+if [ $# -ne 1 ]; then
+  echo "$(basename $0): hostname"
+  exit 1
+fi
+
+HOSTNAME=$1
+HOSTNAME_BIN=${HOSTNAME_BIN:-/bin/hostname}
+
+"$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
+                          "${DESTDIR}/${CINIT_DIR}/network/hostname"
+ln -sf "$HOSTNAME_BIN"    "${DESTDIR}/${CINIT_DIR}/network/hostname/$C_ON"
+echo "$HOSTNAME"        > "${DESTDIR}/${CINIT_DIR}/network/hostname/$C_ON$C_PARAMS"
+
+exit 0

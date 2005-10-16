@@ -7,17 +7,43 @@
 # THIS IS NOT EVEN INTENTED TO BE CLEAN.
 # This is just a small hack, because my girlfriend wants her notebook back.
 
+echo "***> $(basename $0): converting Debian-Sys-V-Init"
 
 # read standard values, may be overwritten from outside
 . $(dirname $0)/cinit.read-conf
 
+echo "***> Finding standard config ..."
 # variables, which can be set from the outside
 ROOT_DEV=${ROOT_DEV:-$(awk '$2 ~ /^\/$/ { print $1 }' /etc/fstab)}
 ROOT_FSCK=${ROOT_FSCK:-$(awk '$2 ~ /^\/$/ { print $6 }' /etc/fstab)}
 ROOT_FS=${ROOT_FS:-$(awk '$2 ~ /^\/$/ { print $3 }' /etc/fstab)}
 RUNLEVEL=${RUNLEVEL:-$(runlevel | awk '{ print $2 }')}
 
-echo "***> $(basename $0): converting Debian-Sys-V-Init"
+echo "***> Detecting keymap (this may take some time)"
+
+DEBIAN_KEYMAP=/etc/console/boottime.kmap.gz
+
+# nothing told by the user
+set +e
+if [ -z "$C_KEYMAP" ]; then
+   for keymap in $(find /usr/share/keymaps); do
+      echo $keymap
+      if [ -f "$keymap" ]; then
+      	echo diff "$DEBIAN_KEYMAP" "$keymap"
+      	diff "$DEBIAN_KEYMAP" "$keymap"
+      	if [ $? = 0 ]; then
+            echo null
+            C_KEYMAY=$keymap
+	         break
+         else
+            echo nicht null
+         fi
+      fi
+   done
+fi
+
+echo "***> Configuration"
+echo "Hostname      (\$HOSTNAME):            $HOSTNAME"
 echo "Root device   (\$ROOT_DEV):            $ROOT_DEV"
 echo "Root fsck     (\$ROOT_FSCK):           $ROOT_FSCK"
 echo "Root FS       (\$ROOT_FS):             $ROOT_FS"
@@ -49,7 +75,29 @@ if [ "$ROOT_FSCK" = "1" ]; then
    $(dirname $0)/cinit.install.fsck root "$ROOT_DEV" "$ROOT_FS"
    echo "***> Adding dependency"
    $(dirname $0)/cinit.add.dependency mount/root needs fsck/root
+else
+   echo "***> Skipping fsck for $ROOT_DEV ..."
 fi
+
+echo "***> Setting up hostname: $HOSTNAME"
+$(dirname $0)/cinit.install.service.hostname.generic "$HOSTNAME"
+
+echo "***> Creating getties (tty1-8)"
+for i in `seq 1 8`; do
+   $(dirname $0)/cinit.add.getty
+
+   # each getty needs:
+   # - root r/w
+   $(dirname $0)/cinit.add.dependency getty/$i needs mount/root
+   # - hostname
+   $(dirname $0)/cinit.add.dependency getty/$i needs network/hostname
+done
+
+echo "***> Enabling getties (tty2-8)"
+for i in `seq 2 8`; do
+   # add getties to getty/
+   $(dirname $0)/cinit.add.dependency getty wants getty/$i
+done
 
 set +e
 

@@ -20,7 +20,7 @@ NUMBER=$(echo $LAST_NUMBER + 1 | bc)
 
 DDIR=$BASEDIR/$NUMBER
 
-echo "Creating getty number $NUMBER in $DDIR ..."
+#echo "Creating getty number $NUMBER in $DDIR ..."
 
 if [ "$USE_THIS_GETTY" ]; then
    GETTYS="$USE_THIS_GETTY"
@@ -62,7 +62,7 @@ if [ ! "$params" -o ! "$mygetty" ]; then
    exit 23
 fi
 
-echo "Putting $mygetty $params into $DDIR ... "
+echo -n "Creating $mygetty ($params) in $DDIR ... "
 "$INSTALL_PROG" "$INSTALL_DIRECTORY" "$DDIR"
 ln -s "$mygetty" "$DDIR/$C_ON"
 
