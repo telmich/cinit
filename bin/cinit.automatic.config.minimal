@@ -1,0 +1,10 @@
+#!/bin/sh
+# Nico Schottelius
+# Date: Sun Oct 16 16:57:03 CEST 2005
+
+. $(dirname $0)/cinit.read-conf
+
+ROOT_DEV=${ROOT_DEV:-$(awk '$2 ~ /^\/$/ { print $1 }' /etc/fstab)}
+
+
+echo "Root device:            $ROOT_DEV (\$ROOT_DEV)"
