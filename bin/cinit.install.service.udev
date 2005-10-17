@@ -47,22 +47,18 @@ echo "/dev"            >> "${DESTDIR}${CINIT_DIR}/mount/udev/$C_ON$C_PARAMS"
 # 2. udevstart
 "$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
                           "${DESTDIR}${CINIT_DIR}/${SERVICE}/udevstart"
-ln -sf "$BIN_UDEVSTART"   "${DESTDIR}${CINIT_DIR}/${SERVICE}/$C_ON"
+ln -sf "$BIN_UDEVSTART"   "${DESTDIR}${CINIT_DIR}/${SERVICE}/udevstart/$C_ON"
 
 # dependencies
 $(dirname $0)/cinit.add.dependency ${SERVICE}/udevstart needs mount/sys
-$(dirname $0)/cinit.add.dependency ${SERVICE}/udevstart needs mount/proc
 $(dirname $0)/cinit.add.dependency ${SERVICE}/udevstart needs mount/udev
 
-# udev to hotplug
-
+# 3. udev to hotplug
 "$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
-                          "${DESTDIR}/${CINIT_DIR}/local-tuning/ntpdate"
-ln -sf "$BINARY_PATH"     "${DESTDIR}/${CINIT_DIR}/local-tuning/ntpdate/$C_ON"
+                          "${DESTDIR}/${CINIT_DIR}/${SERVICE}/hotplug"
+ln -sf "$BIN_SYSCTL"      "${DESTDIR}/${CINIT_DIR}/${SERVICE}/hotplug/$C_ON"
+echo "$BIN_UDEVSEND"    > "${DESTDIR}${CINIT_DIR}/${SERVICE}/hotplug/$C_ON$C_PARAMS"
 
-for server in $NTPSERVERS; do
-done
-
-echo "finished."
+$(dirname $0)/cinit.add.dependency ${SERVICE}/hotplug needs mount/proc
 
 exit 0
