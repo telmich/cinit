@@ -2,6 +2,7 @@
 # Nico Schottelius
 # Build release tar
 # Date: Sat Oct 15 21:38:29 CEST 2005
+# Last Changed: Fr Okt 28 01:24:58 CEST 2005
 
 
 if [ $# -ne 2 ]; then
@@ -11,6 +12,10 @@ fi
 
 DIR=$1
 VERSION=$2
+OUT_NAME=cinit-${VERSION}.tar.bz2
+D_HOST=creme.schottelius.org
+D_DIR=www/org/schottelius/linux/cinit/archives/
+D_SOURCE=www/org/schottelius/linux/cinit/browse_source/
 
 if [ ! -d "$DIR" ]; then
    echo "$DIR is not a directory"
@@ -19,4 +24,13 @@ fi
 
 ( cd "$DIR" && make clean ) || exit 1
 
-tar cvj -X $DIR/.exclude -f cinit-${VERSION}.tar.bz2 $DIR
+echo "Creating bzip2 compressed tar"
+tar cj -X $DIR/.exclude -f "$OUT_NAME"  $DIR
+chmod 0644 "$OUT_NAME"
+echo "Transfering to $D_HOST"
+scp "$OUT_NAME" "$D_HOST:$D_DIR"
+echo "Extracting to $D_SOURCE"
+ssh "$D_HOST" "tar xfj $D_DIR/$OUT_NAME -C $D_SOURCE"
+echo "Correcting paranoid permissions"
+ssh "$D_HOST" "find \"$D_SOURCE/$DIR\" -type f -exec chmod 0644 {} \\;"
+ssh "$D_HOST" "find \"$D_SOURCE/$DIR\" -type d -exec chmod 0755 {} \\;"
