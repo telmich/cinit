@@ -1,3 +1,7 @@
+- change client handler (SIGCHILD!) code
+- perhaps use dnotify?
+- recheck warm reboot
+- fix cservice
 - print service name or cinit: before _everything_ WE print
 
 TESTING:
