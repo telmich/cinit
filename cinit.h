@@ -4,6 +4,9 @@
  * header of cinit
  */
 
+/* version */
+#define MSG_CINIT          "cinit-0.2.2: Booting from "
+
 /* includes */
 #include <sys/types.h>  /* pid_t */
 #include "config.h"     /* paths, socket options, etc. */
@@ -57,7 +60,6 @@ enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
 #define ACT_CLIENT   1
 
 /* Messages to the outside */
-#define MSG_CINIT          "cinit-0.2: Booting from "
 #define MSG_NOT_ONE        "cinit should not be started directly, but by your kernel."
 #define MSG_USAGE          "cinit: [cprofile:profile]\n"
 #define MSG_ERR_OPEN       "open"
