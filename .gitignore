@@ -1,0 +1,10 @@
+MT
+*.o
+*.a
+ccontrol
+cservice
+cinit
+*0?
+config.h
+ddoc
+tmp
