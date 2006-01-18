@@ -1,3 +1,14 @@
+Als naechstes:
+
+- beim booten kommunizieren via RAM / anonymer Socket?
+   cinit -> 
+      1. needs
+      2. wants (vom init)
+      Und die wiederum mit ihren Kindern
+- danach: via unix socket unter /dev
+- mount code entfernen
+
+--------------------------------------------------------------------------------
 - change client handler (SIGCHILD!) code
 - perhaps use dnotify?
 - recheck warm reboot

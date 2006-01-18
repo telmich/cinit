@@ -21,8 +21,8 @@
 # do not use DEBUG and OPTIMIZE at the same time!
 #DEBUG=-DDEBUG
 #OPTIMIZE=-Werror 
-#DEBUG=-g -DDEBUG
-OPTIMIZE=-pipe -Os -Werror 
+DEBUG=-g -DDEBUG
+#OPTIMIZE=-pipe -Os -Werror 
 
 # init should be static per default!
 LDFLAGS=     
