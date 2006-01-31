@@ -1,5 +1,5 @@
 /* 
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
+ * (c) 2005, 2006 Nico Schottelius (nico-linux at schottelius.org)
  * cinit.c
  * part of cLinux/cinit
  */
@@ -24,9 +24,6 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/un.h>
-
-/* mount */
-#include <sys/mount.h>
 
 #include <stdio.h>
 #include <stdlib.h>

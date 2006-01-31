@@ -41,5 +41,4 @@ void set_signals(int action)
    sigaction(SIGTERM,&sa,NULL);     /* poweroff */
    sigaction(SIGHUP,&sa,NULL);      /* reboot */
    sigaction(SIGCONT,&sa,NULL);     /* update */
-
 }

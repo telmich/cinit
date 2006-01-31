@@ -1,3 +1,5 @@
+cinit-0.2.2:
+
 cinit-0.2.1: (Bugfix release)
 - Fixed problem in contrib+tools/Makefile when installing
 - added many new scripts to convert sys-v-init, which are still early beta

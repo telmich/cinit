@@ -16,6 +16,8 @@
 void sig_child(int signal)
 {
    do {
+
+      /* check if it's a watched child */
       signal = waitpid(-1,&signal,WNOHANG);
    } while( signal > 0);
 }

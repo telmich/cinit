@@ -1,3 +1,12 @@
+--------------------------------------------------------------------------------
+1. Entfernung mount
+2. kommunikation ueber
+   1. einen fork pro service
+      fork(fork)
+3. Socket wird erst nach einem Signal erstellt
+   -> Konfiguration sollte SIGWHATEVER senden
+
+--------------------------------------------------------------------------------
 Als naechstes:
 
 - beim booten kommunizieren via RAM / anonymer Socket?
