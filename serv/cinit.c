@@ -55,7 +55,7 @@ int main(int argc, char **argv)
       usage(CINIT_VERSION,MSG_USAGE);
    }
 
-   set_signals(ACT_SERV);  /* set signal handlers */
+   set_signals(ACT_SERV);
 
    /* read args, profile support */
    while(argc > 1) {
@@ -82,6 +82,8 @@ int main(int argc, char **argv)
       perror(MSG_CHDIR);
       panic();
    }
+
+   /* create pipes */
 
    /* start init or profile */
    run_init_svc(initdir);

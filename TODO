@@ -5,7 +5,7 @@
       fork(fork)
 3. Socket wird erst nach einem Signal erstellt
    -> Konfiguration sollte SIGWHATEVER senden
-
+4. Vielleicht panicen, wenn init fehlschlaegt
 --------------------------------------------------------------------------------
 Als naechstes:
 

@@ -8,3 +8,4 @@ cinit
 config.h
 ddoc
 tmp
+contrib+tools/cinit.graph.text
