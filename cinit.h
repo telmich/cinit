@@ -1,11 +1,10 @@
 /* 
- * cinit
  * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
- * header of cinit
  */
 
 /* version */
-#define MSG_CINIT          "cinit-0.2.2: Booting from "
+#define CINIT_VERSION      "cinit-0.2.2"
+#define MSG_BOOTING        CINIT_VERSION ": Booting from "
 
 /* includes */
 #include <sys/types.h>  /* pid_t */
@@ -60,8 +59,8 @@ enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
 #define ACT_CLIENT   1
 
 /* Messages to the outside */
-#define MSG_NOT_ONE        "cinit should not be started directly, but by your kernel."
-#define MSG_USAGE          "cinit: [cprofile:profile]\n"
+//#define MSG_NOT_ONE        "Do not start cinit yourself, your kernel does the job.\n"
+#define MSG_USAGE          ": fast executing, small and simple init with support for profiles\n"
 #define MSG_ERR_OPEN       "open"
 #define MSG_ERR_READ       "read"
 #define MSG_ERR_IO         "i/o"

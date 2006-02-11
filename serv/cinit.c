@@ -43,7 +43,7 @@ pid_t cpid;
 
 int main(int argc, char **argv)
 {
-   struct sockaddr_un addr;
+   //struct sockaddr_un addr;
    struct pollfd plist;
    char  *initdir;
 
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
 
    cpid = getpid();
    if(cpid != 1) {
-      usage(MSG_USAGE,MSG_NOT_ONE);
+      usage(CINIT_VERSION,MSG_USAGE);
    }
 
    set_signals(ACT_SERV);  /* set signal handlers */
@@ -76,41 +76,13 @@ int main(int argc, char **argv)
    }
 
    /* tell the world we are there FIXME: do we really need three calls? */
-   mini_printf(MSG_CINIT,1); mini_printf(initdir,1); mini_printf("\n",1);
+   mini_printf(MSG_BOOTING,1); mini_printf(initdir,1); mini_printf("\n",1);
 
    if( chdir(CINIT_INIT) == -1) {
       perror(MSG_CHDIR);
       panic();
    }
 
-   /******************** TMPDIR  **********************/
-   if( mount(C_TMPMOUNT,CINIT_TMNT,C_TMPFS,0,NULL) == -1 ) {
-      perror(MSG_ERR_MOUNT);
-      panic();
-   }
-
-   /******************** begin socket **********************/
-   sock = socket(AF_UNIX,SOCK_STREAM,0); /* create socket */
-   if( sock == -1 ) {
-      perror(MSG_SOCKET);
-      panic();
-   }
-   
-   memset(&addr, 0, sizeof(addr) ); /* clear addr */
-   strcpy(addr.sun_path, CINIT_SOCK);
-   addr.sun_family = AF_UNIX;
-   
-   if(bind(sock,(struct sockaddr *)&addr,sizeof(addr)) == -1) {
-      perror(MSG_BIND);
-      panic();
-   }
-   
-   /* start listening */
-   if(listen(sock,SOCK_QUEUE) == -1) {
-      perror(MSG_LISTEN);
-      panic();
-   }
-   
    /* start init or profile */
    run_init_svc(initdir);
    
@@ -118,6 +90,8 @@ int main(int argc, char **argv)
    if(initdir != CINIT_INIT) {
       free(initdir);
    }
+
+   /* wait until we recieved the signal to create the socket */
 
    /* our life is polling a socket */
    plist.fd = sock;
