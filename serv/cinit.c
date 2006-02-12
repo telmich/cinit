@@ -47,6 +47,8 @@ int main(int argc, char **argv)
    struct pollfd plist;
    char  *initdir;
 
+   int pfd[2];
+
    list = NULL;            /* list of services is empty currently */
    initdir = CINIT_INIT;   /* default init dir */
 
@@ -78,12 +80,17 @@ int main(int argc, char **argv)
    /* tell the world we are there FIXME: do we really need three calls? */
    mini_printf(MSG_BOOTING,1); mini_printf(initdir,1); mini_printf("\n",1);
 
-   if( chdir(CINIT_INIT) == -1) {
+   if(chdir(CINIT_INIT) == -1) {
       perror(MSG_CHDIR);
       panic();
    }
 
    /* create pipes */
+   if(pipe(pfd) == -1) {
+      perror("pipe");
+      exit(EXIT_FAILURE);
+   }
+
 
    /* start init or profile */
    run_init_svc(initdir);
