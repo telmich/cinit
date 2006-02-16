@@ -166,9 +166,10 @@ void     sig_terminate(int signal);
 
 /* listing functions (server only) */
 int      list_insert(char *path, int status);
-struct   listitem *list_search(char *path);
 int      list_delete(char *path);
 int      list_modify(char *path, int new_status, pid_t new_pid);
+struct   listitem *list_search(char *path);
+struct   listitem *list_search_pid(pid_t pid);
 
 /* util */
 int      msg_reboot(char cmd);

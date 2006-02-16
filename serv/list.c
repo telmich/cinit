@@ -63,6 +63,7 @@ struct listitem *list_search(char *path)
    return NULL;
 }
 
+/* ... */
 int list_delete(char *path)
 {
    struct listitem *tmp;
@@ -102,3 +103,25 @@ int list_modify(char *path, int new_status, pid_t new_pid)
 
    return 1;
 }
+
+/* find service by pid */
+inline struct listitem *list_search_pid(pid_t pid)
+{
+   struct listitem *tmp;
+
+   if( list == NULL ) {
+      return NULL;
+   } else {
+      tmp = list;
+   }
+
+   do {
+      if( pid == tmp->pid) {
+         return tmp;
+      }
+      tmp = tmp->before;
+   } while(tmp != list);
+   
+   return NULL;
+}
+
