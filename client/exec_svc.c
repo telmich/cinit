@@ -21,7 +21,7 @@
  * exec_svc: exec service abspath C_ON or C_OFF
  */
 
-pid_t exec_svc(char *abspath, int action)
+inline pid_t exec_svc(char *abspath, int action)
 {
    int tmp;
    char *p, pathtmp[PATH_MAX];
