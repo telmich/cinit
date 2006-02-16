@@ -104,7 +104,9 @@ int list_modify(char *path, int new_status, pid_t new_pid)
    return 1;
 }
 
-/* find service by pid */
+/* find service by pid, needs to be online because it is called
+ * by a signal handler
+ */
 inline struct listitem *list_search_pid(pid_t pid)
 {
    struct listitem *tmp;

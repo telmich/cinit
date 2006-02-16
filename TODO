@@ -1,3 +1,5 @@
+- cleanup serv/sig_reboot.c:7:
+   o implement os-specific reboot function
 --------------------------------------------------------------------------------
 1. Entfernung mount
 2. kommunikation ueber

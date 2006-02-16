@@ -13,11 +13,22 @@
  * collect the children
  */
 
-void sig_child(int signal)
+void sig_child(int tmp)
 {
-   do {
+   struct listitem *svc;
 
+   do {
       /* check if it's a watched child */
-      signal = waitpid(-1,&signal,WNOHANG);
+      tmp = waitpid(-1,&tmp,WNOHANG);
+      
+      /* restart service, if we are watching it */
+      svc = list_search_pid((pid_t) tmp);
+
+      if( svc ) {
+         /* call exec_svc */
+
+         svc->pid = exec_svc(svc->abs_path, CMD_START_SVC);
+      }
+      
    } while( signal > 0);
 }
