@@ -2,6 +2,9 @@
  * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
  */
 
+#ifndef _CINIT_H
+#define _CINIT_H
+
 /* version */
 #define CINIT_VERSION      "cinit-0.2.2"
 #define MSG_BOOTING        CINIT_VERSION ": Booting from "
@@ -190,3 +193,5 @@ int      msg_reboot(char cmd);
 }
 #define P_START_SERVICE(name) { mini_printf(MSG_START_SVC,1); mini_printf(name,1); mini_printf("\n",1); }
 #define P_EXEC_FAILED(name) { mini_printf(MSG_EXEC_FAILED,1); mini_printf(name,1); mini_printf("\n",1); }
+
+#endif   /* _CINIT_H */

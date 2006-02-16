@@ -5,7 +5,7 @@
       fork(fork)
 3. Socket wird erst nach einem Signal erstellt
    -> Konfiguration sollte SIGWHATEVER senden
-4. Vielleicht panicen, wenn init fehlschlaegt
+4. Vielleicht panicen, wenn init fehlschlaegt?
 --------------------------------------------------------------------------------
 Als naechstes:
 
@@ -17,6 +17,13 @@ Als naechstes:
 - danach: via unix socket unter /dev
 - mount code entfernen
 
+--------------------------------------------------------------------------------
+Documentation:
+   - Installing cinit
+      o compiling cinit from source
+      o debian / gentoo
+   - Configuring
+--------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 - change client handler (SIGCHILD!) code
 - perhaps use dnotify?
