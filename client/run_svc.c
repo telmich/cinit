@@ -22,12 +22,12 @@ int run_svc(char *rpath)
 {
    int tmp;
    pid_t pid;
-   char abspath[PATH_MAX], pathtmp[PATH_MAX]; /* pathtmp = use-it-for-all bitch*/
+   char abspath[PATH_MAX], pathtmp[PATH_MAX]; /* pathtmp will be misused */
    struct stat buf;
    struct timespec ts;
    
    /******************* absolute PATH ***************/
-   /* get current working dir */
+   /* save current working dir */
    if(! (int) getcwd(pathtmp,PATH_MAX)) {
       perror(pathtmp);
       return RT_UNSPEC;

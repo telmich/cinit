@@ -25,10 +25,7 @@ void sig_child(int tmp)
       svc = list_search_pid((pid_t) tmp);
 
       if( svc ) {
-         /* call exec_svc */
-
          svc->pid = exec_svc(svc->abs_path, CMD_START_SVC);
       }
-      
    } while( signal > 0);
 }

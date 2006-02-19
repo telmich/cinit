@@ -88,7 +88,7 @@ pid_t respawn_svc(char *abspath)
             D_PRINTF("Zuende geschlafen");
          }
       }
-   } while( cpid ); /* cpid is reset by sig_terminate() */
+   } while(cpid); /* cpid is reset by sig_terminate() */
 
    /* FIXME: put most code of sig_terminate here, look for no_kill */
 

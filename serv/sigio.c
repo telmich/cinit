@@ -29,9 +29,8 @@ void sigio(int socket)
    struct listitem   *list_tmp; 
    pid_t             pid;
    
-   while (
-      (nsock = accept(socket,(struct sockaddr *) NULL, (socklen_t *) NULL) )
-         != -1) {
+   while ( (nsock = accept(socket,(struct sockaddr *) NULL,
+                          (socklen_t *) NULL)) != -1) {
 
       if( read(nsock,&buf[0],1) == -1) {
          perror(MSG_ERR_READ);
