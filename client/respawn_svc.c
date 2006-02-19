@@ -1,6 +1,6 @@
 /* 
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
- * run_svc
+ * (c) 2005,2006 Nico Schottelius (nico-linux at schottelius.org)
+ * respawn_svc
  * part of cinit
  */
 
@@ -14,7 +14,6 @@
 #include <limits.h>
 #include <stdlib.h>
 #include <string.h>
-
 
 #include "cinit.h"
 

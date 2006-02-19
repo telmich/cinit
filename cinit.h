@@ -27,7 +27,7 @@
 #define CINIT_SOCK CINIT_TMNT SLASH C_SOCK
 #define CINIT_BIN  PREFIX SLASH "sbin" SLASH "cinit"
 
-/* commands (maximum: 2^8 = 256, because we use a single byte)*/
+/* commands (maximum: 2^8 = 256, because we use a single byte) */
 enum commands {   CMD_START_SVC=1, 
                   CMD_STOP_SVC,
                   CMD_CHG_STATUS,
@@ -70,7 +70,6 @@ enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
 #define MSG_SOCKET         "socket"
 #define MSG_TERMKILL       "sigterm"
 #define MSG_USAGE          ": fast executing, small and simple init with support for profiles\n"
-
 #define MSG_ERR_FORK       "fork"
 #define MSG_ERR_IO         "i/o"
 #define MSG_ERR_OPEN       "open"
@@ -85,6 +84,7 @@ enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
 #define MSG_READLINK       "readlink"
 #define MSG_ERR_ADD_SVC    "Adding service failed"
 #define MSG_CMD_UNKNOWN    "Unknown command"
+
 #define MSG_ERR_DEPS       "Too many dependencies"
 #define MSG_ERR_ACCEPT     "accept"
 #define MSG_ERR_WAITPID    "waitpid"
