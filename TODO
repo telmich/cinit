@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
-
+- add error handling to cinit.install.binary
 - put some logic around exec_svc:
    o put waiting code herein -> waiting code to structure!
 - cleanup serv/sig_reboot.c:7:

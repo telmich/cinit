@@ -35,7 +35,7 @@ STRIP=strip -R .comment -R .note
 
 INSTALL = install
 
-prefix = $(HOME)
+prefix = /usr
 bindir = $(prefix)/bin
 
 # objects

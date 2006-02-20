@@ -4,6 +4,7 @@
 # Date: -
 # 
 
+set -x
 
 . $(dirname $0)/cinit.read-conf
 
