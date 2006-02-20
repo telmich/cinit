@@ -19,12 +19,12 @@ void sig_child(int tmp)
 
    do {
       /* check if it's a watched child */
-      tmp = waitpid(-1,&tmp,WNOHANG);
+      tmp = waitpid(-1, &tmp, WNOHANG);
       
       /* restart service, if we are watching it */
       svc = list_search_pid((pid_t) tmp);
 
-      if( svc ) {
+      if( svc != NULL ) {
          svc->pid = exec_svc(svc->abs_path, CMD_START_SVC);
       }
    } while( signal > 0);

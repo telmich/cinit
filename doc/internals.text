@@ -12,7 +12,8 @@ to be read by developers.
 
 
 Child handler code in cinit-0.3
---------------------------------------------------------------------------------
+-------------------------------
+
 In cinit versions <= cinit-0.2.1 the respawning services where
 handled by an extra child handler, which was a fork of cinit. This
 had some problems:
@@ -21,11 +22,14 @@ had some problems:
      cinit were copied
    - The SIG_CHILD-handler was not written very clean, in some versions
      it was completly missing.
-- no extra child handlers
-- when sig_child is recieved do:
-   o check against respawn list
-   o if it is a respawning service,
-      [do the following in a seperate fork?]
-      check whether it successfully stoped
-      if yes: restart immediatly
-      if no: sleep $sleep_time and then restart
+
+
+. So in `cinit-0.3` we changed it the following way:
+   - no extra child handlers
+   - handle everything in the SIG_CHILD handling function
+   - when sig_child is recieved do:
+      - check against respawn list
+      -  if it is a respawning service, [do the following in a seperate fork?]
+         check whether it successfully stoped
+         - if yes: restart immediatly
+         - if no: sleep $sleep_time and then restart
