@@ -4,8 +4,6 @@
  * part of cLinux/cinit
  */
 
-/* *stat() */
-#include <sys/stat.h>
 #include <unistd.h>
 
 /* open */
@@ -87,8 +85,8 @@ int main(int argc, char **argv)
 
    /* create pipes */
    if(pipe(pfd) == -1) {
-      perror("pipe");
-      exit(EXIT_FAILURE);
+      perror(MSG_ERR_PIPE);
+      panic();
    }
 
 
