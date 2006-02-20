@@ -1,11 +1,9 @@
-MT
 *.o
 *.a
-ccontrol
-cservice
-cinit
 *0?
-config.h
+MT
 ddoc
-tmp
 contrib+tools/cinit.graph.text
+config.h
+sbin
+tmp
