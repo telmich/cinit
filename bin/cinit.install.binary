@@ -4,8 +4,6 @@
 # Date: -
 # 
 
-set -x
-
 . $(dirname $0)/cinit.read-conf
 
 "$INSTALL_PROG" sbin/cinit $DESTDIR/$PREFIX/sbin/cinit

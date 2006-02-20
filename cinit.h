@@ -69,7 +69,10 @@ enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
 #define MSG_LISTEN         "listen"
 #define MSG_SOCKET         "socket"
 #define MSG_TERMKILL       "sigterm"
-#define MSG_USAGE          ": fast executing, small and simple init with support for profiles\n"
+#define MSG_USAGE_1        ": fast executing, small and simple init "
+#define MSG_USAGE_2        "with support for profiles\n"
+#define MSG_USAGE_3        "\nError: cinit must be started as PID 1.\n"
+#define MSG_USAGE          MSG_USAGE_1 MSG_USAGE_2 MSG_USAGE_3
 #define MSG_ERR_FORK       "fork"
 #define MSG_ERR_IO         "i/o"
 #define MSG_ERR_OPEN       "open"
