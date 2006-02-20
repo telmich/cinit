@@ -126,4 +126,3 @@ inline struct listitem *list_search_pid(pid_t pid)
    
    return NULL;
 }
-
