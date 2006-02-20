@@ -1,5 +1,8 @@
 --------------------------------------------------------------------------------
 - add error handling to cinit.install.binary
+- remove sigio(), create new functions:
+   - one for cleaning up the socket
+   - one for doing the communication (specify two fd's)
 - put some logic around exec_svc:
    o put waiting code herein -> waiting code to structure!
 - cleanup serv/sig_reboot.c:7:
@@ -21,7 +24,6 @@ Als naechstes:
       2. wants (vom init)
       Und die wiederum mit ihren Kindern
 - danach: via unix socket unter /dev
-- mount code entfernen
 - add code do implement stopping / restarting with dependency tree
    o add used_by to the list of services
    o used_by should be a simple (double?) linked list
@@ -33,7 +35,6 @@ Documentation:
    - Configuring
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-- change client handler (SIGCHILD!) code
 - perhaps use dnotify?
 - recheck warm reboot
 - fix cservice
