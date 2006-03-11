@@ -1,0 +1,19 @@
+cinit 0.4 - Redesign of cinit
+============================================
+Nico Schottelius <nico-linux-cinit__@__schottelius.org>
+0.4.0, for cinit 0.4, Initial Version from 2006-03-11
+:Author Initials: NS
+
+
+cinit 0.2 ran fine and the general project of developing a
+parallel executing init system is finished.
+With cinit 0.4 there are new aims to reach.
+
+
+Introduction
+------------
+
+. AIMS
+   - portability: no Linux-dependency anymore
+   - cleaner signal handling
+   
