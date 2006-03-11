@@ -1,0 +1,62 @@
+cinit 0.4 - Redesign of cinit
+============================================
+Nico Schottelius <nico-linux-cinit__@__schottelius.org>
+0.4.0, for cinit 0.4, Initial Version from 2006-03-11
+:Author Initials: NS
+
+
+cinit 0.2 ran fine and the general project of developing a
+parallel executing init system is finished.
+With cinit 0.4 there are new aims to reach.
+
+
+Introduction
+------------
+
+. AIMS
+   - portability: no Linux-dependency anymore
+   - cleaner signal handling
+   
+
+Current problems
+----------------
+
+Temporary filesystem and socket problematic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The mount(2) system call is os-specific.
+The temporary fs is os-specific.
+
+
+Signal handlers are not clean
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Race conditions when multiple signals arrive
+
+
+Reboot code is os specific
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+serv/sig_reboot.c contains umount, remount hard coded.
+
+
+Solutions
+---------
+
+Temporary filesystem and socket problematic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Remove 
+- the mount call
+- do not create an initial socket
+
+Wait until we recieve a signal, then we create a socket
+under the configured socket directory (see `conf/sockdir`).
+
+
+Signal handlers are not clean
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Reboot code is os specific
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
