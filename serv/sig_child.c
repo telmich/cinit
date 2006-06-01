@@ -28,5 +28,5 @@ void sig_child(int tmp)
       if( svc != NULL ) {
          svc->pid = exec_svc(svc->abs_path, CMD_START_SVC);
       }
-   } while( signal > 0);
+   } while( tmp > 0);
 }
