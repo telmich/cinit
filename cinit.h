@@ -177,6 +177,12 @@ inline struct   listitem *list_search_pid(pid_t pid);
 /* util */
 int      msg_reboot(char cmd);
 
+/* os-functions */
+
+void cinit_reboot(void);
+void cinit_halt(void);
+void cinit_poweroff(void);
+
 /* DEBUG */
 #ifdef DEBUG
 # define D_PRINTF(x)  ( printf("[%s:%d]: %s\n",__FILE__,__LINE__,x) )

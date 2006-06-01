@@ -18,6 +18,11 @@ SERV=serv/sigio.o serv/cinit.o serv/list.o  \
      serv/run_init_svc.o serv/panic.o serv/sig_reboot.o \
      serv/sig_child.o
 
+#
+# os-specific
+#
+SERV_OS=os/current/halt.o os/current/poweroff.o os/current/reboot.o 
+
 CLIENT=client/msg_svc_on_off.o client/msg_change_status.o client/run_svc.o \
        client/exec_svc.o client/respawn_svc.o client/run_run_svcs.o \
        client/connect_sock.o client/begin_msg.o client/sig_terminate.o
@@ -26,7 +31,7 @@ COMMUNICATION=comm/do_change_status.o comm/do_result.o comm/do_svc_name.o
 
 BOTH=generic/set_signals.o generic/mini_printf.o generic/usage.o
 
-OBJ=$(SERV) $(CLIENT) $(BOTH) $(COMMUNICATION)
+OBJ=$(SERV) $(SERV_OS) $(CLIENT) $(BOTH) $(COMMUNICATION)
 
 CSVC_OBJ=util/cservice.o generic/mini_printf.o util/msg_reboot.o \
          generic/usage.o \

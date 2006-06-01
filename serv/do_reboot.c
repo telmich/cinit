@@ -1,7 +1,7 @@
 /* 
  * cinit
  * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
- * We are called by signal to reboot
+ * We are doing the ugly job to shutdown the system
  */
 
 #include <sys/mount.h>

@@ -1,4 +1,5 @@
 cinit-0.2.2:
+   * added first parts for portable version
 
 cinit-0.2.1: (Bugfix release)
 - Fixed problem in contrib+tools/Makefile when installing
