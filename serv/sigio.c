@@ -113,19 +113,19 @@ void sigio(int socket)
 
       /********************** SPECIAL ACTIONS *******************/
       case CMD_REBOOT:
-         sig_reboot(SIGHUP);
+         do_reboot(SIGHUP);
          break;
       case CMD_POWEROFF:
-         sig_reboot(SIGTERM);
+         do_reboot(SIGTERM);
          break;
       case CMD_HALT:
-         sig_reboot(SIGUSR1);
+         do_reboot(SIGUSR1);
          break;
       case CMD_RESCUE:
-         sig_reboot(SIGUSR2);
+         do_reboot(SIGUSR2);
          break;
       case CMD_UPDATE:
-         sig_reboot(SIGCONT);
+         do_reboot(SIGCONT);
          break;
       default:
          LOG(MSG_CMD_UNKNOWN);

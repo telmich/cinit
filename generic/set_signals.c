@@ -34,7 +34,7 @@ void set_signals(int action)
 
    /* signal handlers to do special things with: reboot */
    if(action == ACT_SERV) {
-      sa.sa_handler=sig_reboot;
+      sa.sa_handler=do_reboot;
    }
    sigaction(SIGUSR1,&sa,NULL);     /* halt */
    sigaction(SIGUSR2,&sa,NULL);     /* Rescue */

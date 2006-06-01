@@ -49,7 +49,7 @@ CINIT_BIN=$(SBIN)/cinit
 warn:
 	@cat doc/.buildwarn
 
-all:: cinit cservice ccontrol sizecheck docs
+all:: os-config cinit cservice ccontrol sizecheck docs
 
 cinit: $(CINIT_BIN)
 
@@ -111,5 +111,5 @@ all install clean::
 	 || exit 1;\
 	 done;
 
-conf:
+os-config:
 	./bin/cinit.configure.os
