@@ -60,3 +60,19 @@ Signal handlers are not clean
 Reboot code is os specific
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+Misc
+~~~~
+
+- Configuration
+   /etc/cinit/config/
+      init -> link to initial service
+      pre_boot
+      pre_boot_args
+      post_boot
+      post_boot_args
+   /etc/cinit/services/
+   /etc/cinit/profiles/
+      links to the starting services
+
+   

@@ -1,3 +1,44 @@
+comm/*:
+   int read
+   int write
+   --> fuer pipes
+
+run_init_svc
+   muss alle services wissen, die gestartet werden
+
+   start_services_with_deps
+      gibt pointer auf struktur zurueck
+         -> Anzahl Services (array!)
+         -> Service:
+            Name (Pfad)
+            Ergebniss
+         -> beim fehler, die nachricht, strerror?
+         http://www.opengroup.org/onlinepubs/009695399/functions/strerror.html
+
+
+Beim starten werden needs und wants als needs behandelt, weil
+jeder starter _alle_ services zurueckgeben muss.
+
+   Ein Prozess kann maximal 512 abhaengigkeiten haben.
+      -> open files
+
+
+Neues cinit:
+   Wenn service fehlschlaegt, wird eine Struktur zurueckgegeben.
+   
+   Diese enhaelt:
+
+      int success = 
+         enum { SVC_SUCCESS, SVC_FAILED, SVC_NEED_FAILED, ... }
+      
+      char *reason;
+
+   Ausgaben nach Beendigung vom Starten des Services.
+
+   [ on  ] %s + Ergebnis
+   [ off ] %s
+
+   Rekursives herunter/rauffahren
 --------------------------------------------------------------------------------
 - add error handling to cinit.install.binary
 - remove sigio(), create new functions:

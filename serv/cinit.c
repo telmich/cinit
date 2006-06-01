@@ -93,6 +93,7 @@ int main(int argc, char **argv)
    run_init_svc(initdir);
 
    /* listen for incomming messages */
+   /* read pipe */
    
    /* free, if we malloc()ed before */
    if(initdir != CINIT_INIT) {
