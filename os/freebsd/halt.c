@@ -14,5 +14,5 @@
  */
 void cinit_halt(void)
 {
-   reboot(RB_HALT_SYSTEM);
+   reboot(RB_HALT);
 }

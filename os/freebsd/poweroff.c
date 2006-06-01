@@ -14,5 +14,5 @@
  */
 void cinit_poweroff(void)
 {
-   reboot(RB_POWER_OFF);
+   reboot(RB_POWEROFF);
 }
