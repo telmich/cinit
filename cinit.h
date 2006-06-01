@@ -150,7 +150,7 @@ struct   listitem *list_search(char *path);
 int      list_delete(char *path);
 int      run_init_svc(char *cinit_svc);
 void     sigio(int socket);
-void     sig_reboot(int signal);
+void     do_reboot(int signal);
 void     panic(void);
 void     sig_child(int signal);
 

@@ -15,7 +15,7 @@ FILES=Changelog Makefile README TODO cinit.h
 
 # objects
 SERV=serv/sigio.o serv/cinit.o serv/list.o  \
-     serv/run_init_svc.o serv/panic.o serv/sig_reboot.o \
+     serv/run_init_svc.o serv/panic.o serv/do_reboot.o \
      serv/sig_child.o
 
 #

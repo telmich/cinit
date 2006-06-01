@@ -21,7 +21,7 @@
  * Shutdown the system 
  */
 
-void sig_reboot(int signal)
+void do_reboot(int signal)
 {
    struct listitem *tmp;
    struct timespec ts;
@@ -117,15 +117,15 @@ void sig_reboot(int signal)
    switch(signal) {
       case SIGTERM: /* power off */
          LOG(MSG_POWER_OFF);
-         reboot(RB_POWER_OFF);
+         cinit_poweroff();
          break;
       case SIGHUP: /* reboot */
          LOG(MSG_REBOOT);
-         reboot(RB_AUTOBOOT);
+         cinit_reboot();
          break;
       case SIGUSR1: /* halt */
          LOG(MSG_HALT);
-         reboot(RB_HALT_SYSTEM);
+         cinit_halt();
          break;
       case SIGUSR2: /* rescue - destroy ourself */
          LOG(MSG_RESCUE);
