@@ -71,7 +71,7 @@ sizecheck: cinit cservice
 #	@du -s bin client comm conf doc generic serv | awk '{ sum+=$1 } END { print sum }'
 
 clean::
-	rm -f *.o */*.o sbin/* config.h ddoc/*
+	rm -f *.o */*.o */*/*.o sbin/* config.h ddoc/*
 
 config.h: conf/*
 	./bin/cinit.mkheader > config.h
