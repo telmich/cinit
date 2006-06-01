@@ -66,11 +66,6 @@ void do_reboot(int signal)
    }
    D_PRINTF("SIGKILL GESENDET");
 
-   /* release tmp */
-   if(umount(CINIT_TMNT) == -1) {
-      perror(CINIT_TMNT);
-   }
-
 /* THIS IS FUCKING UNCLEAN AND SHOULD BE CLEANED UP VERY MUCH!!! */
 #define CMD_CNT 4
 
