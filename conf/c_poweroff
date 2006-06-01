@@ -1,3 +1,4 @@
 poweroff
 
-Name of the service we should start, when system power-off is called.
+Name of the link belowe c_special, which links to the program
+to be executed right before powering off the system.
