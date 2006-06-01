@@ -4,10 +4,8 @@
  * We are doing the ugly job to shutdown the system
  */
 
-#include <sys/mount.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/reboot.h>
 #include <unistd.h>
 #include <signal.h>
 #include <stdio.h>
