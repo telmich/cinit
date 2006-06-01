@@ -72,6 +72,7 @@ sizecheck: cinit cservice
 
 clean::
 	rm -f *.o */*.o */*/*.o sbin/* config.h ddoc/*
+	rm -f os/current
 
 config.h: conf/*
 	./bin/cinit.mkheader > config.h
@@ -104,3 +105,6 @@ all install clean::
 	(cd $$subdir && $(MAKE) $(MAKEFLAGS) $@) \
 	 || exit 1;\
 	 done;
+
+conf:
+	./bin/cinit.configure.os
