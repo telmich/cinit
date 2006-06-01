@@ -23,6 +23,9 @@ SERV=serv/sigio.o serv/cinit.o serv/list.o  \
 #
 SERV_OS=os/current/halt.o os/current/poweroff.o os/current/reboot.o 
 
+#
+# Client modules
+#
 CLIENT=client/msg_svc_on_off.o client/msg_change_status.o client/run_svc.o \
        client/exec_svc.o client/respawn_svc.o client/run_run_svcs.o \
        client/connect_sock.o client/begin_msg.o client/sig_terminate.o
