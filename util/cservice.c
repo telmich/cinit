@@ -90,6 +90,11 @@ int main(int argc, char **argv)
    if(strlen(argv[1]) != 2)   C_USAGE(MSG_ERR_ARGS_LEN);
 
    real_name = fuzzy_path(argv[2]);
+
+   /* fuzzy path failed, restore old name */
+   if(real_name == NULL) {
+      real_name = argv[2];
+   }
    switch(argv[1][1]) {
       case 'a':   /* aus */
       case 'r':   /* restart */
