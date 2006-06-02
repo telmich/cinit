@@ -25,9 +25,6 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 
-/* mount */
-#include <sys/mount.h>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
