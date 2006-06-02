@@ -18,8 +18,8 @@ OPTIMIZE=-pipe -Os -Werror
 CINIT_LDFLAGS=-static
 
 # programs
-CC=$(head -n conf/cc)
+CC=./tmpbin/cc
 #CC=gcc $(DEBUG) $(OPTIMIZE) $(TIMEME)
-CFLAGS=-Wall -I.
-LD=gcc
+CFLAGS=
+LD=./tmpbin/ld
 STRIP=strip -R .comment -R .note

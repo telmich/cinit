@@ -53,9 +53,10 @@ warn:
 	@cat doc/.buildwarn
 
 %.o: %.c
+	echo $(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 
-all:: os-config cinit cservice ccontrol sizecheck docs
+all:: config cinit cservice ccontrol sizecheck docs
 
 cinit: $(CINIT_BIN)
 
@@ -84,6 +85,7 @@ sizecheck: cinit cservice
 clean::
 	rm -f *.o */*.o */*/*.o sbin/* config.h ddoc/*
 	rm -f os/current
+	rm -f tmpbin/*
 
 config.h: conf/*
 	./bin/cinit.mkheader > config.h
@@ -117,5 +119,6 @@ all install clean::
 	 || exit 1;\
 	 done;
 
-os-config:
-	./bin/cinit.configure.os
+config:
+	@./bin/cinit.configure.os
+	@./bin/cinit.configure.tools
