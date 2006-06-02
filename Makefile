@@ -52,6 +52,9 @@ CINIT_BIN=$(SBIN)/cinit
 warn:
 	@cat doc/.buildwarn
 
+%.o: %.c
+	$(CC) -Wall $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
+
 all:: os-config cinit cservice ccontrol sizecheck docs
 
 cinit: $(CINIT_BIN)

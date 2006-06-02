@@ -22,7 +22,3 @@ CC=gcc $(DEBUG) $(OPTIMIZE) $(TIMEME)
 CFLAGS=-Wall -I.
 LD=gcc
 STRIP=strip -R .comment -R .note
-
-%.o: %c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
-
