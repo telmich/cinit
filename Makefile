@@ -76,7 +76,7 @@ $(SBIN):
 	mkdir $(SBIN)
 
 sizecheck: cinit cservice
-	FILE="size/`date +%Y-%m-%d-%T`"; ls -l sbin/ > $$FILE; cat $$FILE
+	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l sbin/ > $$FILE; cat $$FILE
 	@echo -n "Source size (in KiB): "
 	@du -s $(SDIRS) | awk '{ sum+=$$1 } END { print sum }'
 #	@du -s bin client comm conf doc generic serv | awk '{ sum+=$1 } END { print sum }'
