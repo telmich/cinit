@@ -11,6 +11,9 @@ void mini_printf(char *str,int fd)
    char *p;
    size_t length = 0;
 
+   /* don't get fooled by bad pointers */
+   if(str == NULL) return;
+
    p = str;
    while ( *p != '\0') {
       ++length;
