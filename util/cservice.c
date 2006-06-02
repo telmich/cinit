@@ -62,7 +62,7 @@ char *fuzzy_path(char *rpath)
 
    /* get absolute name of rpath */
    if(! (int) getcwd(pathtmp,PATH_MAX)) {
-      perror(pathtmp);
+      perror(rpath);
       return NULL;
    }
    
