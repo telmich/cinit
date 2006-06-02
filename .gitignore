@@ -7,3 +7,4 @@ contrib+tools/cinit.graph.text
 config.h
 sbin
 tmp
+os/current
