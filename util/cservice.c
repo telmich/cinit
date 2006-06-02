@@ -91,9 +91,9 @@ int main(int argc, char **argv)
 
    real_name = fuzzy_path(argv[2]);
 
-   /* fuzzy path failed, restore old name */
+   /* fuzzy path failed, exit! */
    if(real_name == NULL) {
-      real_name = argv[2];
+      return 1;
    }
    switch(argv[1][1]) {
       case 'a':   /* aus */
