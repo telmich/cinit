@@ -8,4 +8,4 @@ config.h
 sbin
 tmp
 os/current
-tmpbin/
+tmpbin
