@@ -15,10 +15,11 @@ OPTIMIZE=-Werror
 OPTIMIZE=-pipe -Os -Werror 
 
 # init should be static per default! - but not the other programs!
-CINIT_LDFLAGS=-static      
+CINIT_LDFLAGS=-static
 
 # programs
-CC=gcc $(DEBUG) $(OPTIMIZE) $(TIMEME)
+CC=$(head -n conf/cc)
+#CC=gcc $(DEBUG) $(OPTIMIZE) $(TIMEME)
 CFLAGS=-Wall -I.
 LD=gcc
 STRIP=strip -R .comment -R .note
