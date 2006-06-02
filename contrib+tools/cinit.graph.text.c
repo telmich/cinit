@@ -24,7 +24,7 @@
 //#include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
-//#include <limits.h>
+#include <limits.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
