@@ -53,7 +53,6 @@ warn:
 	@cat doc/.buildwarn
 
 %.o: %.c
-	echo $(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 
 all:: config cinit cservice ccontrol sizecheck docs
