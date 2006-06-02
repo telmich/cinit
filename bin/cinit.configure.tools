@@ -9,13 +9,16 @@ CC=$(head -n 1 "$HIER/../conf/cc")
 CFLAGS=$(head -n 1 "$HIER/../conf/cflags")
 LD=$(head -n 1 "$HIER/../conf/ld")
 LDFLAGS=$(head -n 1 "$HIER/../conf/ldflags")
+STRIP=$(head -n 1 "$HIER/../conf/strip")
 
 echo "Creating development scripts in $DDIR ..."
 
+mkdir -p "$DDIR"
 cd "$DDIR"
 
 echo "$CC $CFLAGS \"\$@\"" > cc
 echo "$LD $LDFLAGS \"\$@\"" > ld
+echo "$STRIP \"\$@\"" > strip
 
 # set correct permissions
 chmod 0700 *

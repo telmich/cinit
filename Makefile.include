@@ -2,24 +2,11 @@
 # cinit
 # Nico Schottelius
 #
-# Don't edit Makefiles, use conf/* for configuration.
+# DON'T edit Makefiles, use conf/* for configuration.
 #
 
-#
-# compile/link options
-#
-# do not use DEBUG and OPTIMIZE at the same time!
-#DEBUG=-DDEBUG
-OPTIMIZE=-Werror 
-#DEBUG=-g -DDEBUG
-OPTIMIZE=-pipe -Os -Werror 
-
-# init should be static per default! - but not the other programs!
-CINIT_LDFLAGS=-static
-
-# programs
 CC=./tmpbin/cc
-#CC=gcc $(DEBUG) $(OPTIMIZE) $(TIMEME)
 CFLAGS=
 LD=./tmpbin/ld
-STRIP=strip -R .comment -R .note
+LDFLAGS=
+STRIP=./tmpbin/strip
