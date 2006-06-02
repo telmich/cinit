@@ -39,7 +39,7 @@
 #define MAX_CHAR   4096
 
 /***********************************************************************
- * cinit.gaph.text - textual representatio of the cinitdirectory
+ * cinit.gaph.text - textual representation of the cinit directory
  */
 
 #define CSERVICE_BANNER    "cinit.gaph.text - textual representatio of the cinitdirectory\n\n"
