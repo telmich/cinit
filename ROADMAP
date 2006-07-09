@@ -16,6 +16,8 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
    end user doc: add warning for special binaries and hint for r/o only
                  amiga alike systems
 
+   doc: begin to merge old documents into new structure and move them
+        to the doc/ancient directory
 0.3.1:
    devel doc: how to write merging scripts
    devel doc: merging framework:
@@ -50,6 +52,8 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
       o start samba (for company lan)
       o use nis and nfs (company profile)
 
+   doc: continue to merge old documents into new structure and move them
+        to the doc/ancient directory
 0.3.2:
    end user doc: what to read to use cinit
    end user doc: installing cinit
@@ -68,9 +72,14 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
       o pid vom einmal ausgefuehrten Programm
 
 
+   doc: end to merge old documents into new structure and move them
+        to the doc/ancient directory
+
 0.3.3:
    devel doc: writing an init system
    devel doc: the conf/-configuration system
+   
+   code: check conf/ and perhaps rewrite b0rken english sentences
 
    code / doc: add logging support for services -> use multilog?
    code: add porting code: add support for netbsd
@@ -79,7 +88,6 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
    first stable, tested, well documented version.
 
    code: check for optimisation
-   code: check
 
    other: compare with other init systems
 
