@@ -60,6 +60,14 @@ Sockets
 ~~~~~~~
 Clean and beautiful. They allow easy two way communication.
 
+If you created a socket, fs is r/o, you cannot use it, although
+there is SO_REUSE.
+
+First method: Using memory mapped part (tmpfs).
+Second method: use interal communication (pipes!) and external after
+/etc/cinit/ becomes writable.
+
+
 --------------------------------------------------------------------------------
 TO SORT:
 
