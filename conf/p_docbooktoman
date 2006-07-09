@@ -1,0 +1,6 @@
+docbook2x-man
+
+The binary on your system (with or without path) which converts
+docbook to manpages.
+
+Default: docbook2x-man

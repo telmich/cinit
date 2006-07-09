@@ -1,0 +1,6 @@
+docbook2x-texi
+
+The binary on your system (with or without path) which converts
+docbook to texinfo.
+
+Default: docbook2x-texi
