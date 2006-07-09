@@ -15,7 +15,20 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
    devel doc: how to write merging scripts
    tools: general framework for merging
    end user doc: merging old init to cinit
+
    code: add porting code: add support for freebsd
+   code: better readable output:
+      -> starting
+      [ started once ]
+      [ respawning ]
+      [ failed ]         (+ REASON!)
+      [ needs failed ]   (which ones)
+
+      -> stopping
+      [ stopping ] (for dependencies)
+      [ stopped ] ?
+      [ not running ] ?
+
 
 0.3.2:
    end user doc: what to read to use cinit
