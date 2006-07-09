@@ -1,9 +1,0 @@
-until 0.3:
-   * stabilize code, remove experimenting parts
-   * provide readable documentation
-   * make in runnable on Unix, instead of only Linux?
-   * cleanup Makefile(s)
-   * make portable
-until 0.4:
-   * have graphical (dialog based?) configuration tool
-   * have migration tools for first Linux distributions

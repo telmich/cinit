@@ -7,6 +7,7 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
    code: fix / check signal handlers
    code: cleanup makefile
    code: add porting code: add support for any unix in general
+   code: stabilize code, remove experimenting parts
 
 0.3.1:
    devel doc: how to write merging scripts
@@ -18,7 +19,7 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
    end user doc: what to read to use cinit
    end user doc: installing cinit
    end user doc: configuring cinit
-   tools: writing cinit-config
+   tools: writing cinit-config (graphical (dialog based?) configuration tool)
    code: add porting code: add support for openbsd
 
 0.3.3:
