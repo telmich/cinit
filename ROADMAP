@@ -33,7 +33,9 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
       [ stopping ] (for dependencies)
       [ stopped ] ?
       [ not running ] ?
-
+   
+   code: export profile information (CINIT_PROFILE)
+   end user doc: using different profiles in user space
 
 0.3.2:
    end user doc: what to read to use cinit

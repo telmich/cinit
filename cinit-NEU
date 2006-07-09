@@ -7,9 +7,6 @@
       o pid vom Daemon
       o pid vom einmal ausgefuehrten Programm
 
-- enable easy profile using
-   o export variable CINIT_PROFILE
-
 - Write scripts for end-user use of profile
    o switch ssh known_hosts based on profile
    o different proxy settings in browsers
