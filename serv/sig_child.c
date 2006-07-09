@@ -12,6 +12,9 @@
 /***********************************************************************
  * sig_child
  * collect the children
+ * FIXME: check whether we've race conditions when reciieving multiiple
+ * signals
+ * Perhaps disable listening to sig_child in meantime?
  */
 
 void sig_child(int tmp)

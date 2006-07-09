@@ -12,9 +12,6 @@
 /* siggnal */
 #include <signal.h>
 
-/* PATH_MAX */
-#include <limits.h>
-
 /* str* */
 #include <string.h>
 
@@ -94,6 +91,8 @@ int main(int argc, char **argv)
 
    /* listen for incomming messages */
    /* read pipe */
+   
+   /* HIER WEITER */
    
    /* free, if we malloc()ed before */
    if(initdir != CINIT_INIT) {
