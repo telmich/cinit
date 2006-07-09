@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
+--------------------------------------------------------------------------------
+
+0.3:
+   code: seperate ipc from the rest
+   code: fix / check signal handlers
+   code: cleanup makefile
+
+   end user doc: what to read to use cinit
+   end user doc: installing cinit
+   end user doc: configuring cinit
+   end user doc: merging old init to cinit
+
+   tools: general framework for merging
+   tools: writing cinit-config
+
+   devel doc: how to write merging scripts
+   devel doc: writing an init system
+   devel doc: the conf/-configuration system
+
+   code / doc: add logging support for services -> use multilog?
