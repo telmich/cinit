@@ -13,6 +13,11 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
 
 0.3.1:
    devel doc: how to write merging scripts
+   devel doc: merging framework:
+      - minimal (do not look at the current configuration, build minimal)
+      - use current system (slowly, may use old scripts)
+      - rebuilt current system (recommened)
+
    tools: general framework for merging
    end user doc: merging old init to cinit
 

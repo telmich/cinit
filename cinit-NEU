@@ -7,12 +7,6 @@
       o pid vom Daemon
       o pid vom einmal ausgefuehrten Programm
 
-- Programme zur automatischen Migration hinzufuegen
-   o verschiedene Modi
-      - minimal
-      - momentane System (langsam)
-      - momentane System nachbauen (empfohlen)
-
 - Kommunikation intern
    o pipes
 
