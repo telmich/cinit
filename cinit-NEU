@@ -1,5 +1,3 @@
-- Linux spezifische Sachen entfernen
-- Delay support raus, das soll off / off.params machen
 - staerker Konfigurierbar
 - besserer Ausgaben
    o Anzeigen wenn ein Service gestartet wird und Status
