@@ -1,0 +1,85 @@
+IPC - in cinit and in general
+=============================
+Nico Schottelius <nico-linux-cinit__@__schottelius.org>
+0.1, Initial Version from 2006-07-09
+:Author Initials: NS
+
+IPC - Inter process communication
+
+Introduction
+------------
+This document describes the IPC methods used and/or tested for
+cinit.
+
+It does not describe in detail, how the different methods work
+(this is already done many times, there's great documentation
+available online), but more the advantages and disadvantages
+(especially for an init system).
+
+What is IPC?
+~~~~~~~~~~~~
+IPC describes methods to communicate between different processes
+(programs).
+
+IPC as described by SUSV3 (The Single UNIX Specification Version 3)
+aka IEEE Std 1003.1, 2004 Edition aka POSIX only defines
+MQ, SHM and Semaphores as IPC. This document also covers
+Sockets and FIFOs.
+
+What is not (yet) covered by this document?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Speed of different IPC methods, different behaviour on different
+unices.
+
+Why do you need IPC for an init system?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+cinit IPC history + analysis
+----------------------------
+
+
+FIFOs
+~~~~~
+First in - first out
+File on the filesystem
+Always need two files for two way communication
+
+Hints
+^^^^^
+The first idea for IPC in cinit was to use two FIFOs, like minit does.
+Wrong assumption: 
+runit also uses fifos, but two fifos for each services. That way
+more parallel transmissions is possible.
+You have to pay attention: Maximum number of opened files!
+(On Linux 2.6 this is 1024, which makes a maximum of 512 services.
+This limit is most likely never reached, but you have to keep it
+in mind).
+
+Sockets
+~~~~~~~
+Clean and beautiful. They allow easy two way communication.
+
+--------------------------------------------------------------------------------
+TO SORT:
+
+1. message queues
+   o clients schreiben rein
+   o datenpaket gross genug fuer antwort?
+ 
+2. shared memory
+   o client kann direkt rauslesen, was gestartet werden muss
+   o client kann direkt abhaengigkeiten starten, muss diese aber
+     eintragen
+
+Ausprobieren:
+   - Mutexe
+   - Message Queues
+   - 
+
+Ideen:
+   Message queue
+      1. Client geht auf die normale
+      als id = pid (cast!)
+      dann rueck via anderer queue
+
