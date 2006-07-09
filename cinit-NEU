@@ -1,8 +1,0 @@
-- Kontrolle verbessern
-   o neustarten
-      o mit herunterfahren
-      o mit herunterfahren und allen Diensten, die abhaengen
-      o ohne herunterfahren
-   o Statische Daten
-      o pid vom Daemon
-      o pid vom einmal ausgefuehrten Programm

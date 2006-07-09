@@ -57,6 +57,17 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
    tools: writing cinit-config (graphical (dialog based?) configuration tool)
    code: add porting code: add support for openbsd
 
+   code: add reverse dependency chain (or earlier?)
+   code: better support for external tools
+   o neustarten
+      o mit herunterfahren
+      o mit herunterfahren und allen Diensten, die abhaengen
+      o ohne herunterfahren
+   o Statische Daten
+      o pid vom Daemon
+      o pid vom einmal ausgefuehrten Programm
+
+
 0.3.3:
    devel doc: writing an init system
    devel doc: the conf/-configuration system
