@@ -228,3 +228,11 @@ root      1972  0.0  0.1  2604  828 tty2     R+   19:05   0:00      \_ ps axuwwf
 root      1945  0.0  0.0     0    0 tty2     Z    19:01   0:00 [loadkeys] <defunct>
 cinit: [cprofile:profile]
 cinit should not be started directly, but by your kernel.
+umount raus
+/etc/cinit/specials/... rein
+
+1. Doku auf asciidoc umstellen
+2. den signalhandler code fixen
+3. den tempmount entfernen
+
+--> cinit-0.3-rc1
