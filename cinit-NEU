@@ -17,13 +17,3 @@
    o create more examples
       x 'insecure'
          -> firewall
-
-- OS-Specific things
-
-   /etc/cinit/specials/
-
-   mount hat verschiedene paraameter
-
-   umount -a ...
-
-

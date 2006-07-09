@@ -10,6 +10,11 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
    code: add porting code: add support for any unix in general
    code: stabilize code, remove experimenting parts
    code: remove delay support, let off/off.params do that.
+   code: add special directory (/etc/cinit/special?) for os specific binaries
+      -> halt, poweroff, reboot (NOTHING MORE THEY CAN DO)
+      -> SHOULD NOT BE IN THE PATH
+   end user doc: add warning for special binaries and hint for r/o only
+                 amiga alike systems
 
 0.3.1:
    devel doc: how to write merging scripts
