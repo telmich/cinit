@@ -1,0 +1,58 @@
+- Linux spezifische Sachen entfernen
+- Delay support raus, das soll off / off.params machen
+- staerker Konfigurierbar
+- besserer Ausgaben
+   o Anzeigen wenn ein Service gestartet wird und Status
+      [ started once ]
+      [ respawning ]
+      [ failed ]        -> warum
+      [ need failed ]   -> welches
+
+   o beim Herunterfahren
+      [ stopping ] (wenn abhaengigkeiten da sind)
+      [ stopped ]
+
+- Kontrolle verbessern
+   o neustarten
+      o mit herunterfahren
+      o mit herunterfahren und allen Diensten, die abhaengen
+      o ohne herunterfahren
+   o Statische Daten
+      o pid vom Daemon
+      o pid vom einmal ausgefuehrten Programm
+
+- Programme zur automatischen Migration hinzufuegen
+   o verschiedene Modi
+      - minimal
+      - momentane System (langsam)
+      - momentane System nachbauen (empfohlen)
+
+- Kommunikation intern
+   o pipes
+
+- Kommunikation extern
+   o socket (nach dem booten in eine Schleife zum Erstellen)
+
+- enable easy profile using
+   o export variable CINIT_PROFILE
+
+- Write scripts for end-user use of profile
+   o switch ssh known_hosts based on profile
+   o different proxy settings in browsers
+      - environment
+      - mozilla settings
+
+- Profiles
+   o create more examples
+      x 'insecure'
+         -> firewall
+
+- OS-Specific things
+
+   /etc/cinit/specials/
+
+   mount hat verschiedene paraameter
+
+   umount -a ...
+
+
