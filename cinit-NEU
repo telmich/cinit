@@ -6,14 +6,3 @@
    o Statische Daten
       o pid vom Daemon
       o pid vom einmal ausgefuehrten Programm
-
-- Write scripts for end-user use of profile
-   o switch ssh known_hosts based on profile
-   o different proxy settings in browsers
-      - environment
-      - mozilla settings
-
-- Profiles
-   o create more examples
-      x 'insecure'
-         -> firewall

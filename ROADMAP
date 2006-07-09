@@ -41,6 +41,14 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
    
    code: export profile information (CINIT_PROFILE)
    end user doc: using different profiles in user space
+   end user doc: write examples for profiles:
+      o switch ssh known_hosts based on profile
+      o different proxy settings in browsers
+         - environment
+         - mozilla settings
+      o start samba (for lan)
+      o start samba (for company lan)
+      o use nis and nfs (company profile)
 
 0.3.2:
    end user doc: what to read to use cinit
