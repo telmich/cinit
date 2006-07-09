@@ -7,9 +7,6 @@
       o pid vom Daemon
       o pid vom einmal ausgefuehrten Programm
 
-- Kommunikation intern
-   o pipes
-
 - Kommunikation extern
    o socket (nach dem booten in eine Schleife zum Erstellen)
 
