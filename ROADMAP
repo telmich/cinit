@@ -13,6 +13,7 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
    code: add special directory (/etc/cinit/special?) for os specific binaries
       -> halt, poweroff, reboot (NOTHING MORE THEY CAN DO)
       -> SHOULD NOT BE IN THE PATH
+   code: move production code to src/
    end user doc: add warning for special binaries and hint for r/o only
                  amiga alike systems
 
