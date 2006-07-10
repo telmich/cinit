@@ -11,10 +11,22 @@ for conf in $CONFS; do
    NAME="$(basename $conf | tr a-z A-Z)"
    value=$(head -n 1 $conf)
 
-   # check if numeric - no I didn't see an easier way
+   # check if numeric: no quotes needed
    numeric=$(echo $value | awk '/^((0[xX])[0-9a-fA-F]+)|([0-9]+)$/ { print }')
 
-   [ "$numeric" ] || value="\"$value\""
-
+   #
+   # Check for quote type
+   #
+   if [ ! "$numeric" ]; then
+      one_char=$(echo $value | wc -c)
+      
+      # one character + \n
+      if [ "$one_char" -eq 2 ]; then
+         value="'$value'"
+      else
+         # is a string
+         value="\"$value\""
+      fi
+   fi
    echo "#define" "$NAME" "$value"
 done
