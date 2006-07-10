@@ -1,0 +1,4 @@
+/bin/sh
+
+Used to generate an unique identifier for the message queue.
+See ftok(3).

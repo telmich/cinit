@@ -1,0 +1,4 @@
+o
+
+This is use in ftok to generate a key_t for the message queue use to write
+to the clients. See ftok(3).
