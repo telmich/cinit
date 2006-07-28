@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+cservice,
+Nico Schottelius, 2005-06-10 (Last Modified: 2005-06-22)
+--------------------------------------------------------------------------------
+
+cservice - control cinit
+
+cservice -[phearsu] <service>
+   -e   - (ein) start a service (including all needed dependencies)
+   -a   - (aus) stop a respawing service, don't care about other services
+
+   -r   - reboot
+   -h   - halt
+   -p   - poweroff (on some systems the same as halt)
+   -s   - reScue mode - only a shell
+
+   -u   - update: hot reboot - shutdown system and execute /sbin/cinit
+
+A service may be specified either as relative or as absolute path.
+
+-h, -p, -r, -s and -u need the "Magic Word" to do their work: "thilo"
+
+--------------------------------------------------------------------------------
+
+Some examples:
+
+   cservice -e /etc/cinit/getty/8         # fire up getty/8
+   cd /etc/cinit/getty; cservice -a ./8   # shut down getty/8
+   cservice -h thilo                      # halt
+   cservice -r thilo                      # reboot
+   cservice -s thilo                      # rescue
+   cservice -u thilo                      # update
+
+--------------------------------------------------------------------------------
