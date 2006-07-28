@@ -68,6 +68,19 @@ Second method: use interal communication (pipes!) and external after
 /etc/cinit/ becomes writable.
 
 
+Current IPC configuration
+--------------------------
+
+- switchable (conf/ipc_method)
+- each ipc implementation needs:
+
+   ipc.h -> for global variables and ipc specific things
+      prefix variables with ipc_
+   int cinit_ipc_init(void);     -> general initialization
+      return 1 on success, 0 on failure
+   int cinit_ipc_listen(void);   -> begin to listen for messages
+   int cinit_ipc_send(void *data)   -> send data to a client
+
 --------------------------------------------------------------------------------
 TO SORT:
 
