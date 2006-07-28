@@ -1,0 +1,11 @@
+#!/bin/sh
+# Nico Schottelius, 2006-07-28
+# 
+# cinit: configure the ipc method to use
+# 
+
+HIER=$(dirname $0)
+DDIR=$HIER/../src/ipc
+IPC_METHOD=$(head -n 1 "$HIER/../conf/ipc_method")
+
+ln -s "$IPC_METHOD" "${DDIR}/current"
