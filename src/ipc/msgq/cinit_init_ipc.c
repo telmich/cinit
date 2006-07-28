@@ -6,8 +6,7 @@
 #include <sys/ipc.h>             /* ftok */
 #include <sys/msg.h>             /* msgget */
 
-
-PERROR?!
+#include "cinit.h"
 
 int cinit_ipc_init(void)
 {
@@ -19,5 +18,4 @@ int cinit_ipc_init(void)
    
    mq_server = msgget(k_tmp,0600 | IPC_CREAT);
    if(mq_server == -1) return 0;
-
 }
