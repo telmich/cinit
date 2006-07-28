@@ -121,3 +121,4 @@ all install clean::
 config:
 	@./bin/cinit.configure.os
 	@./bin/cinit.configure.tools
+	@./bin/cinit.configure.ipc
