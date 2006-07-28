@@ -81,6 +81,10 @@ int main(int argc, char **argv)
       perror(MSG_CHDIR);
       panic();
    }
+   
+   if( ! cinit_ipc_init() ) {
+      
+   }
 
    /* create pipes */
    if(pipe(pfd) == -1) {
