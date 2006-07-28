@@ -4,7 +4,7 @@
 # 
 
 
-DDIR=$(dirname $0)/../os/
+DDIR=$(dirname $0)/../src/os/
 OSCONFIG=$(dirname $0)/../conf/os
 
 OS=$(head -n 1 "$OSCONFIG")

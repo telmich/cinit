@@ -8,4 +8,4 @@ HIER=$(dirname $0)
 DDIR=$HIER/../src/ipc
 IPC_METHOD=$(head -n 1 "$HIER/../conf/ipc_method")
 
-ln -s "$IPC_METHOD" "${DDIR}/current"
+ln -fs "$IPC_METHOD" "${DDIR}/current"
