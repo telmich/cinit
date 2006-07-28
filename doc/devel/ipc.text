@@ -26,10 +26,12 @@ aka IEEE Std 1003.1, 2004 Edition aka POSIX only defines
 MSQ, SHM and Semaphores as IPC. This document also covers
 Sockets and FIFOs.
 
+
 What is not (yet) covered by this document?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Speed of different IPC methods, different behaviour on different
 unices.
+
 
 Why do you need IPC for an init system?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

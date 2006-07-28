@@ -12,6 +12,7 @@ DDOC=ddoc
 SDIRS=bin client conf comm doc generic serv util
 CDIRS=contrib+tools
 FILES=Changelog Makefile README TODO cinit.h
+CONFIG_H=src/headers/config.h
 
 # objects
 SERV=serv/sigio.o serv/cinit.o serv/list.o  \
@@ -66,7 +67,7 @@ docs: $(DDOC) bin/cdoc-man.sh
 $(DDOC):
 	mkdir $(DDOC)
 
-$(CSVC_OBJ) $(OBJ): config.h
+$(CSVC_OBJ) $(OBJ): $(CONFIG_H)
 
 $(CINIT_BIN): $(SBIN) $(OBJ)
 	$(LD) $(LDFLAGS) $(OBJ) -o $@
@@ -82,12 +83,12 @@ sizecheck: cinit cservice
 #	@du -s bin client comm conf doc generic serv | awk '{ sum+=$1 } END { print sum }'
 
 clean::
-	rm -f *.o */*.o */*/*.o sbin/* config.h ddoc/*
+	rm -f *.o */*.o */*/*.o sbin/* $(CONFIG_H) ddoc/*
 	rm -f os/current
 	rm -f tmpbin/*
 
-config.h: conf/*
-	./bin/cinit.mkheader > config.h
+$(CONFIG_H): conf/*
+	./bin/cinit.mkheader > $(CONFIG_H)
 
 cservice: $(SBIN)/cservice
 
