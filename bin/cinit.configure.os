@@ -13,5 +13,4 @@ echo "Making links for $OS ..."
 
 cd "$DDIR"
 
-rm -f current
 ln -sf "$OS" current
