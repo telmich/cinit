@@ -3,6 +3,7 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
 --------------------------------------------------------------------------------
 
 0.3:
+   code: Make cinit compile again :)
    code: double check to remove Linux specific source from general tree
    code: seperate ipc from the rest
    code: fix / check signal handlers
