@@ -1,6 +1,8 @@
 /* 
  * (c) 2005, 2006 Nico Schottelius (nico-linux at schottelius.org)
- * cinit.c
+ *
+ * cinit.c: the main file
+ *
  * part of cLinux/cinit
  */
 
