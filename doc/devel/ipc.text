@@ -23,7 +23,7 @@ IPC describes methods to communicate between different processes
 
 IPC as described by SUSV3 (The Single UNIX Specification Version 3)
 aka IEEE Std 1003.1, 2004 Edition aka POSIX only defines
-MQ, SHM and Semaphores as IPC. This document also covers
+MSQ, SHM and Semaphores as IPC. This document also covers
 Sockets and FIFOs.
 
 What is not (yet) covered by this document?
