@@ -5,8 +5,8 @@
 # DON'T edit Makefiles, use conf/* for configuration.
 #
 
-CC=./tmpbin/cc
+CC=../tmpbin/cc
 CFLAGS=
-LD=./tmpbin/ld
+LD=../tmpbin/ld
 LDFLAGS=
-STRIP=./tmpbin/strip
+STRIP=../tmpbin/strip
