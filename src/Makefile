@@ -17,14 +17,10 @@ CONFIG_H=src/headers/config.h
 
 # objects
 CINIT_CORE_OBJ=$(shell cat core/objects)
+CINIT_IPC_OBJ=$(shell cat ipc/current/objects)
+CINIT_OS_OBJ=$(shell cat os/current/objects)
 
-IPC_OBJ=$(shell cat ipc/current/objects)
-
-CINIT_OBJ=$(CINIT_CORE_OBJ) $(IPC_OBJ)
-
-SERV=serv/sigio.o serv/cinit.o serv/list.o  \
-     serv/run_init_svc.o serv/panic.o serv/do_reboot.o \
-     serv/sig_child.o
+CINIT_OBJ=$(CINIT_CORE_OBJ) $(CINIT_IPC_OBJ) $(CINIT_OS_OBJ)
 
 #
 # os-specific
@@ -75,7 +71,7 @@ docs: $(DDOC) bin/cdoc-man.sh
 $(DDOC):
 	mkdir $(DDOC)
 
-$(CSVC_OBJ) $(OBJ): $(CONFIG_H)
+#$(CSVC_OBJ) $(OBJ): $(CONFIG_H)
 
 $(CINIT_BIN): $(SBIN) $(OBJ)
 	$(LD) $(LDFLAGS) $(OBJ) -o $@
@@ -94,8 +90,9 @@ clean::
 	rm -f *.o */*.o */*/*.o sbin/* $(CONFIG_H) ddoc/*
 	rm -f os/current
 	rm -f tmpbin/*
+	echo $(shell find -name \*.o)
 
-$(CONFIG_H): conf/*
+$(CONFIG_H): ../conf/*
 	./bin/cinit.mkheader > $(CONFIG_H)
 
 cservice: $(SBIN)/cservice
