@@ -18,8 +18,8 @@ CONFIG_H=headers/config.h
 
 # objects for the cinit part
 CINIT_CORE_OBJ=$(shell cat core/objects)
-CINIT_IPC_OBJ=$(shell cat ipc/current/objects 2>/dev/null)
-CINIT_OS_OBJ=$(shell cat os/current/objects 2>/dev/null)
+CINIT_IPC_OBJ=$(shell cat ipc/current/objects)
+CINIT_OS_OBJ=$(shell cat os/current/objects)
 CINIT_OBJ=$(CINIT_CORE_OBJ) $(CINIT_IPC_OBJ) $(CINIT_OS_OBJ)
 
 #
@@ -43,37 +43,23 @@ CCO_OBJ=util/ccontrol.o generic/mini_printf.o util/msg_reboot.o \
          generic/usage.o \
          $(CLIENT) $(COMMUNICATION)
 
-# DO NOT CHANGE THIS.
-SBIN=sbin
-CINIT_BIN=$(SBIN)/cinit
-
-# targets
-warn:
-	@cat doc/.buildwarn
-
 %.o: %.c
 	$(CC) -c -o $@ $<
 
+#
+# End user targets
+#
 all:: config cinit cservice ccontrol sizecheck docs
-
-cinit: $(CINIT_OBJ)
-	echo $(LD) $(CFLAGS) -c -o $@ $<
-
-docs: $(DDOC) bin/cdoc-man.sh
-	./bin/cdoc-man.sh doc/cinit-doc     > $(DDOC)/cinit.8
-	./bin/cdoc-man.sh doc/cservice-doc  > $(DDOC)/cservice.8
-
-$(DDOC):
-	mkdir $(DDOC)
 
 $(CINIT_OBJ): $(CONFIG_H)
 
-$(CINIT_BIN): $(SBIN) $(OBJ)
-	$(LD) $(LDFLAGS) $(OBJ) -o $@
-	$(STRIP) $@
+cinit: $(CINIT_OBJ)
+	$(LD) $^ -o $@
 
-$(SBIN):
-	mkdir $(SBIN)
+
+#$(CINIT_BIN): $(SBIN) $(OBJ)
+#	$(LD) $(LDFLAGS) $(OBJ) -o $@
+#	$(STRIP) $@
 
 sizecheck: cinit cservice
 	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l sbin/ > $$FILE; cat $$FILE
