@@ -5,8 +5,6 @@
 # Don't edit Makefiles, use conf/* for configuration.
 #
 
-include Makefile.include
-
 # directories and files
 DDOC=ddoc
 SDIRS=bin client conf comm doc generic serv util
