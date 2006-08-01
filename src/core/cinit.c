@@ -32,7 +32,6 @@
 
 /* global variables */
 struct listitem *list;
-int sock;
 pid_t cpid;
 
 /***********************************************************************
@@ -41,11 +40,7 @@ pid_t cpid;
 
 int main(int argc, char **argv)
 {
-   //struct sockaddr_un addr;
-   struct pollfd plist;
    char  *initdir;
-
-   int pfd[2];
 
    list = NULL;            /* list of services is empty currently */
    initdir = CINIT_INIT;   /* default init dir */
