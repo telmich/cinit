@@ -16,7 +16,11 @@ FILES=Changelog Makefile README TODO cinit.h
 CONFIG_H=src/headers/config.h
 
 # objects
-CINIT_OBJ=core/cinit.o
+CINIT_CORE_OBJ=core/cinit.o
+
+IPC_OBJ=$(shell cat ipc/current/objects)
+
+CINIT_OBJ=$(CINIT_CORE_OBJ) $(IPC_OBJ)
 
 SERV=serv/sigio.o serv/cinit.o serv/list.o  \
      serv/run_init_svc.o serv/panic.o serv/do_reboot.o \
