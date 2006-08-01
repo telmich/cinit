@@ -16,7 +16,7 @@ FILES=Changelog Makefile README TODO cinit.h
 CONFIG_H=src/headers/config.h
 
 # objects
-CINIT_CORE_OBJ=core/cinit.o
+CINIT_CORE_OBJ=$(shell cat core/objects)
 
 IPC_OBJ=$(shell cat ipc/current/objects)
 
