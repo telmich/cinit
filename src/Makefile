@@ -6,26 +6,24 @@
 # Don't edit Makefiles, use conf/* for configuration.
 #
 
-include Makefile.include
+# Build tools
+CC=../tmpbin/cc
+CFLAGS=
+LD=../tmpbin/ld
+LDFLAGS=
+STRIP=../tmpbin/strip
 
 # directories and files
-DDOC=ddoc
 SDIRS=bin client conf comm doc generic serv util
 CDIRS=contrib+tools
 FILES=Changelog Makefile README TODO cinit.h
 CONFIG_H=src/headers/config.h
 
-# objects
+# objects for the cinit part
 CINIT_CORE_OBJ=$(shell cat core/objects)
 CINIT_IPC_OBJ=$(shell cat ipc/current/objects)
 CINIT_OS_OBJ=$(shell cat os/current/objects)
-
 CINIT_OBJ=$(CINIT_CORE_OBJ) $(CINIT_IPC_OBJ) $(CINIT_OS_OBJ)
-
-#
-# os-specific
-#
-SERV_OS=os/current/halt.o os/current/poweroff.o os/current/reboot.o 
 
 #
 # Client modules
