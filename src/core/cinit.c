@@ -28,6 +28,7 @@
 #include <sys/poll.h>  /* poll */
 
 #include "cinit.h"
+#include "ipc.h"
 
 /* global variables */
 struct listitem *list;

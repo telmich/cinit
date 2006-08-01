@@ -6,5 +6,10 @@
 #ifndef CINIT_IPC_HEADER
 #define CINIT_IPC_HEADER
 
+/*****************************************************************************
+ * Functions
+ */
+
+int cinit_ipc_init(void);
 
 #endif
