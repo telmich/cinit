@@ -14,15 +14,12 @@ LDFLAGS=
 STRIP=../tmpbin/strip
 
 # directories and files
-SDIRS=bin client conf comm doc generic serv util
-CDIRS=contrib+tools
-FILES=Changelog Makefile README TODO cinit.h
-CONFIG_H=src/headers/config.h
+CONFIG_H=headers/config.h
 
 # objects for the cinit part
 CINIT_CORE_OBJ=$(shell cat core/objects)
-CINIT_IPC_OBJ=$(shell cat ipc/current/objects)
-CINIT_OS_OBJ=$(shell cat os/current/objects)
+CINIT_IPC_OBJ=$(shell cat ipc/current/objects 2>/dev/null)
+CINIT_OS_OBJ=$(shell cat os/current/objects 2>/dev/null)
 CINIT_OBJ=$(CINIT_CORE_OBJ) $(CINIT_IPC_OBJ) $(CINIT_OS_OBJ)
 
 #
@@ -55,12 +52,12 @@ warn:
 	@cat doc/.buildwarn
 
 %.o: %.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
+	$(CC) -c -o $@ $<
 
 all:: config cinit cservice ccontrol sizecheck docs
 
-#cinit: $(CINIT_BIN)
 cinit: $(CINIT_OBJ)
+	echo $(LD) $(CFLAGS) -c -o $@ $<
 
 docs: $(DDOC) bin/cdoc-man.sh
 	./bin/cdoc-man.sh doc/cinit-doc     > $(DDOC)/cinit.8
@@ -69,7 +66,7 @@ docs: $(DDOC) bin/cdoc-man.sh
 $(DDOC):
 	mkdir $(DDOC)
 
-#$(CSVC_OBJ) $(OBJ): $(CONFIG_H)
+$(CINIT_OBJ): $(CONFIG_H)
 
 $(CINIT_BIN): $(SBIN) $(OBJ)
 	$(LD) $(LDFLAGS) $(OBJ) -o $@
@@ -84,14 +81,17 @@ sizecheck: cinit cservice
 	@du -s $(SDIRS) | awk '{ sum+=$$1 } END { print sum }'
 #	@du -s bin client comm conf doc generic serv | awk '{ sum+=$1 } END { print sum }'
 
-clean::
-	rm -f *.o */*.o */*/*.o sbin/* $(CONFIG_H) ddoc/*
-	rm -f os/current
-	rm -f tmpbin/*
-	echo $(shell find -name \*.o)
+#clean::
+clean:
+	echo rm  $(shell find -name \*.o)
+	#rm -f sbin/* $(CONFIG_H) ddoc/*
+	#rm -f tmpbin/*
+
+distclean:
+	rm -f os/current ipc/current
 
 $(CONFIG_H): ../conf/*
-	./bin/cinit.mkheader > $(CONFIG_H)
+	../bin/cinit.mkheader > $(CONFIG_H)
 
 cservice: $(SBIN)/cservice
 
@@ -115,7 +115,7 @@ install-miniconf:
 install-dir:
 	./bin/cinit.install.dir
 
-all install clean::
+all install::
 	@for subdir in $(CDIRS); do \
 	  echo "Making $@ in $$subdir"; \
 	(cd $$subdir && $(MAKE) $(MAKEFLAGS) $@) \
@@ -123,6 +123,6 @@ all install clean::
 	 done;
 
 config:
-	@./bin/cinit.configure.os
-	@./bin/cinit.configure.tools
-	@./bin/cinit.configure.ipc
+	@../bin/cinit.configure.os
+	@../bin/cinit.configure.tools
+	@../bin/cinit.configure.ipc

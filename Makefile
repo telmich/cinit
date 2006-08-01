@@ -10,38 +10,6 @@ DDOC=ddoc
 SDIRS=bin client conf comm doc generic serv util
 CDIRS=contrib+tools
 FILES=Changelog Makefile README TODO cinit.h
-CONFIG_H=src/headers/config.h
-
-# objects
-SERV=serv/sigio.o serv/cinit.o serv/list.o  \
-     serv/run_init_svc.o serv/panic.o serv/do_reboot.o \
-     serv/sig_child.o
-
-#
-# os-specific
-#
-SERV_OS=os/current/halt.o os/current/poweroff.o os/current/reboot.o 
-
-#
-# Client modules
-#
-CLIENT=client/msg_svc_on_off.o client/msg_change_status.o client/run_svc.o \
-       client/exec_svc.o client/respawn_svc.o client/run_run_svcs.o \
-       client/connect_sock.o client/begin_msg.o client/sig_terminate.o
-
-COMMUNICATION=comm/do_change_status.o comm/do_result.o comm/do_svc_name.o
-
-BOTH=generic/set_signals.o generic/mini_printf.o generic/usage.o
-
-OBJ=$(SERV) $(SERV_OS) $(CLIENT) $(BOTH) $(COMMUNICATION)
-
-CSVC_OBJ=util/cservice.o generic/mini_printf.o util/msg_reboot.o \
-         generic/usage.o \
-         $(CLIENT) $(COMMUNICATION)
-
-CCO_OBJ=util/ccontrol.o generic/mini_printf.o util/msg_reboot.o \
-         generic/usage.o \
-         $(CLIENT) $(COMMUNICATION)
 
 # DO NOT CHANGE THIS.
 SBIN=sbin
@@ -67,10 +35,6 @@ $(DDOC):
 
 $(CSVC_OBJ) $(OBJ): $(CONFIG_H)
 
-$(CINIT_BIN): $(SBIN) $(OBJ)
-	$(LD) $(LDFLAGS) $(OBJ) -o $@
-	$(STRIP) $@
-
 $(SBIN):
 	mkdir $(SBIN)
 
@@ -84,9 +48,6 @@ clean::
 	rm -f *.o */*.o */*/*.o sbin/* $(CONFIG_H) ddoc/*
 	rm -f os/current
 	rm -f tmpbin/*
-
-$(CONFIG_H): conf/*
-	./bin/cinit.mkheader > $(CONFIG_H)
 
 cservice: $(SBIN)/cservice
 
