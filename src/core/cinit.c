@@ -8,42 +8,24 @@
  *
  */
 
-#include <unistd.h>
-
-/* signal */
-#include <signal.h>
-
-/* str* */
-#include <string.h>
-
-/* sockets */
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/un.h>
-
-#include <stdio.h>
-#include <stdlib.h>
-
-#include <sys/poll.h>  /* poll */
+#include <unistd.h>           /* getpid,chdir            */
+#include <string.h>           /* str(ncmp,len,cpy,cat)   */
+#include <stdio.h>            /* perror                  */
+#include <stdlib.h>           /* malloc                  */
 
 #include "cinit.h"
 #include "messages.h"
 #include "ipc.h"
 
-/* global variables */
 struct listitem *list;
 pid_t cpid;
-
-/***********************************************************************
- * the main procedure
- */
 
 int main(int argc, char **argv)
 {
    char  *initdir;
 
-   list = NULL;            /* list of services is empty currently */
-   initdir = CINIT_INIT;   /* default init dir */
+   list     = NULL;              /* empty list of services  */
+   initdir  = CINIT_INIT;        /* default init dir        */
 
    cpid = getpid();
    if(cpid != 1) {
