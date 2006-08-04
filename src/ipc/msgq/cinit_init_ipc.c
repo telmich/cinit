@@ -1,12 +1,17 @@
-/* 
- * (c) 2006 Nico Schottelius (nico-linux-cinit //@\\ schottelius.org)
- * part of cinit
+/***********************************************************************
+ *
+ *    2006 Nico Schottelius (nico-linux-cinit //@\\ schottelius.org)
+ *
+ *    part of cLinux/cinit
+ *
+ *    Create new queues: One for recieving, one for sending
+ *
  */
 
 #include <sys/ipc.h>             /* ftok */
 #include <sys/msg.h>             /* msgget */
 
-#include "cinit.h"
+#include "config.h"
 #include "msgq.h"
 
 int cinit_ipc_init(void)
