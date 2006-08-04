@@ -28,6 +28,7 @@
 #include <sys/poll.h>  /* poll */
 
 #include "cinit.h"
+#include "messages.h"
 #include "ipc.h"
 
 /* global variables */
@@ -78,13 +79,7 @@ int main(int argc, char **argv)
       panic();
    }
    
-   if( ! cinit_ipc_init() ) {
-      
-   }
-
-   /* create pipes */
-   if(pipe(pfd) == -1) {
-      perror(MSG_ERR_PIPE);
+   if(!cinit_ipc_init()) {
       panic();
    }
 
@@ -92,26 +87,11 @@ int main(int argc, char **argv)
    run_init_svc(initdir);
 
    /* listen for incomming messages */
-   /* read pipe */
-   
-   /* HIER WEITER */
    
    /* free, if we malloc()ed before */
    if(initdir != CINIT_INIT) {
       free(initdir);
    }
 
-   /* wait until we recieved the signal to create the socket */
-
-   /* our life is polling a socket */
-   plist.fd = sock;
-   plist.events = POLLIN | POLLPRI;
-   while(1) {
-      if(poll(&plist, 1, -1) != -1) {
-         if( (plist.revents & POLLIN)  == POLLIN ||
-             (plist.revents & POLLPRI) == POLLPRI) {
-            sigio(sock);
-         }
-      }
-   }
+   return 0;      /* gcc wants that, we not :( */
 }
