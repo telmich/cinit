@@ -1,5 +1,5 @@
-cinit.h
-config.h
-ipc.h
-messages.h
-os.h
+headers/cinit.h
+headers/config.h
+headers/ipc.h
+headers/messages.h
+headers/os.h
