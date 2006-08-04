@@ -9,6 +9,8 @@
 #include <sys/types.h>  /* pid_t */
 #include "config.h"     /* paths, socket options, etc. */
 
+#define SLASH "/"
+
 /* paths */
 #define C_ONARG   C_ON  C_PARAMS
 #define C_OFFARG  C_OFF C_PARAMS

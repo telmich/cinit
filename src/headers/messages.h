@@ -9,7 +9,6 @@
 #define CINIT_VERSION      "cinit-0.2.2"
 #define MSG_BOOTING        CINIT_VERSION ": Booting from "
 
-#define SLASH     "/"
 #define MSG_DP    ": "
 
 /* Messages to the outside */
