@@ -55,7 +55,9 @@ int main(int argc, char **argv)
    }
 
    /* tell the world we are there FIXME: do we really need three calls? */
-   mini_printf(MSG_BOOTING,1); mini_printf(initdir,1); mini_printf("\n",1);
+   mini_printf(MSG_BOOTING,1);
+   mini_printf(initdir,1);
+   mini_printf("\n",1);
 
    if(chdir(CINIT_INIT) == -1) {
       perror(MSG_CHDIR);

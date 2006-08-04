@@ -21,6 +21,12 @@ CINIT_CORE_OBJ=$(shell cat core/objects)
 CINIT_IPC_OBJ=$(shell cat ipc/current/objects)
 CINIT_OS_OBJ=$(shell cat os/current/objects)
 CINIT_OBJ=$(CINIT_CORE_OBJ) $(CINIT_IPC_OBJ) $(CINIT_OS_OBJ)
+CINIT_HEADERS=$(shell cat headers/listing)
+
+#
+# Dependencies
+#
+$(CINIT_OBJ): $(CINIT_HEADERS)
 
 #
 # Client modules
