@@ -6,8 +6,23 @@
 #ifndef CINIT_IPC_HEADER
 #define CINIT_IPC_HEADER
 
+/***********************************************************************
+ * configuration
+ */
+
+#define MSGQ_PATHNAME      "/bin/sh"      /* should be on every *nix */
+#define MSGQ_TO_SERVER     'i'            /* also for ftok           */
+#define MSGQ_TO_CLIENT     'o'            /* also for ftok           */
+
+/***********************************************************************
+ * global variables
+ */
 int mq_server;                   /* to the server           */
 int mq_client;                   /* to the clients          */
+
+/***********************************************************************
+ * structures
+ */
 
 /* messages _from_ the client _to_ the server */
 struct msg_client {
