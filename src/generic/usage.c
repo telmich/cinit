@@ -1,7 +1,11 @@
-/* 
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
- * usage: tell the world what we want - no capitalism
- * part of cLinux/cinit
+/***********************************************************************
+ *
+ *    2005-2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *
+ *    part of cLinux/cinit
+ *
+ *    usage: tell the world what we want - seriously no capitalism
+ *
  */
 
 #include <unistd.h>

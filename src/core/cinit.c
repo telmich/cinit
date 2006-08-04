@@ -1,17 +1,16 @@
-/* 
- * (c) 2005, 2006 Nico Schottelius (nico-linux at schottelius.org)
+/***********************************************************************
  *
- * cinit.c: the main file
+ *    2005-2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
  *
- * part of cLinux/cinit
+ *    part of cLinux/cinit
+ *
+ *    The main file
+ *
  */
 
 #include <unistd.h>
 
-/* open */
-#include <fcntl.h>
-
-/* siggnal */
+/* signal */
 #include <signal.h>
 
 /* str* */
@@ -48,7 +47,9 @@ int main(int argc, char **argv)
 
    cpid = getpid();
    if(cpid != 1) {
-      usage(CINIT_VERSION,MSG_USAGE);
+      mini_printf(CINIT_VERSION,2);
+      mini_printf(MSG_USAGE,2);
+      return 0;
    }
 
    set_signals(ACT_SERV);
