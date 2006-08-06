@@ -17,8 +17,8 @@
 /***********************************************************************
  * global variables
  */
-int mq_server;                   /* to the server           */
-int mq_client;                   /* to the clients          */
+int mq_in;                    /* input    */
+int mq_out;                   /* output   */
 
 /***********************************************************************
  * structures

@@ -33,3 +33,7 @@ had some problems:
          check whether it successfully stoped
          - if yes: restart immediatly
          - if no: sleep $sleep_time and then restart
+
+
+Messages
+--------

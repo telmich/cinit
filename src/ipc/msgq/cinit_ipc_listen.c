@@ -42,9 +42,8 @@ int cinit_ipc_listen(void)
       exit(1);
    }
     
-    /* wrong tabsto ;-) */
-while (1) {
-   tmp =  msgrcv(mq_in,&m_client,(sizeof m_client),0,0);
+   while (1) {
+      tmp = msgrcv(mq_in,&m_client,(sizeof m_client),0,0);
 
    if(tmp == -1) {
       perror("msgrcv");
