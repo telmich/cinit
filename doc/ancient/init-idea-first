@@ -1,0 +1,38 @@
+- restarting/respawning 
+   touch respawn
+- dependencies
+   a needs started b
+- clean multiply dependencies
+- start & stop dependencies
+   start_depends
+   stop_depends
+- parallel executation
+- start and stop commands
+   start -> link
+   start_param -> parameters, like minit
+   stop -> link
+   stop_param -> parameters, like minit
+
+   if no stop command is available, try to kill the pid we started at stop
+
+/startup/
+   start_depends=gettys
+/shutdown/
+   stop_depends=power_off
+
+
+gettys/
+   start_depends=getty/1
+   start_depends=getty/2
+   start_depends=getty/3
+   start_depends=getty/4 ...
+
+getty/1/
+   start=/sbin/fgetty
+   respawn
+
+power_off/
+   stop_depend=umount
+
+umount/
+   stop_depend=
