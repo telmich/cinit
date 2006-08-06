@@ -63,8 +63,8 @@ all:: .configured cinit cservice ccontrol sizecheck docs
 	@if [ ! -e .configured ]; then \
 	   echo -n "Please run \"make config\" in parent directory: " ; \
 	   echo "\"(cd ..; make config)\""; \
+	   exit 1; \
 	fi; \
-	exit 1
 
 $(CINIT_OBJ): $(CONFIG_H)
 
