@@ -73,12 +73,12 @@ install-miniconf:
 install-dir:
 	./bin/cinit.install.dir
 
-all install clean::
-	@for subdir in $(CDIRS); do \
-	  echo "Making $@ in $$subdir"; \
-	(cd $$subdir && $(MAKE) $(MAKEFLAGS) $@) \
-	 || exit 1;\
-	 done;
+#all install clean::
+#	@for subdir in $(CDIRS); do \
+#	  echo "Making $@ in $$subdir"; \
+#	(cd $$subdir && $(MAKE) $(MAKEFLAGS) $@) \
+#	 || exit 1;\
+#	 done;
 
 config:
 	@./bin/cinit.configure.os
