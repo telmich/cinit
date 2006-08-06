@@ -13,7 +13,11 @@
 /*****************************************************************************
  * Functions
  */
-int cinit_ipc_init(void);
-int cinit_ipc_listen(void);
+int cinit_ipc_init(void);        /* init in init      */
+int cinit_ipc_listen(void);      /* listen in init    */
+int cinit_ipc_logoff(void);      /* logoff from init  */
+
+int cinit_ipc_logon(void);       /* logon to init     */
+int cinit_ipc_connect(void);     /* connect to init   */
 
 #endif
