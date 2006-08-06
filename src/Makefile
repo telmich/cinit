@@ -55,7 +55,16 @@ CCO_OBJ=util/ccontrol.o generic/mini_printf.o util/msg_reboot.o \
 #
 # End user targets
 #
-all:: config cinit cservice ccontrol sizecheck docs
+#all:: config cinit cservice ccontrol sizecheck docs
+#all: testconfig cinit cservice ccontrol sizecheck docs
+all:: .configured cinit cservice ccontrol sizecheck docs
+
+.configured: ../conf/*
+	@if [ ! -e .configured ]; then \
+	   echo -n "Please run \"make config\" in parent directory: " ; \
+	   echo "\"(cd ..; make config)\""; \
+	fi; \
+	exit 1
 
 $(CINIT_OBJ): $(CONFIG_H)
 

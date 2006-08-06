@@ -22,7 +22,10 @@ warn:
 %.o: %.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 
-all:: config cinit cservice ccontrol sizecheck docs
+all:: sources
+
+sources: config
+	$(MAKE) -C src all
 
 cinit: $(CINIT_BIN)
 
@@ -46,7 +49,6 @@ sizecheck: cinit cservice
 
 clean::
 	rm -f *.o */*.o */*/*.o sbin/* $(CONFIG_H) ddoc/*
-	rm -f os/current
 	rm -f tmpbin/*
 
 cservice: $(SBIN)/cservice
@@ -82,3 +84,4 @@ config:
 	@./bin/cinit.configure.os
 	@./bin/cinit.configure.tools
 	@./bin/cinit.configure.ipc
+	@touch src/.configured
