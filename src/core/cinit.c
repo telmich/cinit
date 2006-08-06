@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 
    set_signals(ACT_SERV);
 
-   /* read args, profile support */
+   /* Look whether we should start a profile */
    while(argc > 1) {
       if( !strncmp(PROFILE, argv[argc-1], strlen(PROFILE)) ) {
          initdir = (char *) malloc(
@@ -64,6 +64,7 @@ int main(int argc, char **argv)
       panic();
    }
    
+   /* initialize ipc method */
    if(!cinit_ipc_init()) {
       panic();
    }
@@ -71,12 +72,14 @@ int main(int argc, char **argv)
    /* start init or profile */
    run_init_svc(initdir);
 
-   /* listen for incomming messages */
-   
    /* free, if we malloc()ed before */
    if(initdir != CINIT_INIT) {
       free(initdir);
    }
 
-   return 0;      /* gcc wants that, we not :( */
+   /* listen for incomming messages */
+   if(! cinit_ipc_listen()) {
+      panic();
+   }
+   return 0;
 }
