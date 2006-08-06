@@ -1,0 +1,19 @@
+configuring
+
+   /etc/cinit/defaults/panic -> link to something to execute on panic
+   (most likely /sbin/sulogin)
+
+   /etc/cinit/defaults/tmp    -> link to a directory where
+                                 the socket should be created,
+                                 after finishing boot
+
+   What todo right before halting/rebooting/powering off
+   /etc/cinit/special/
+      -> halt
+      -> reboot
+      -> poweroff
+
+Configuration
+-------------
+
+Send kill signal
