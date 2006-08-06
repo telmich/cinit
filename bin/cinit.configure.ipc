@@ -6,8 +6,15 @@
 
 HIER=$(dirname $0)
 DDIR=$HIER/../src/ipc
+DFILE=${DDIR}/current
 IPC_METHOD=$(head -n 1 "$HIER/../conf/ipc_method")
 
-echo "Using $IPC_METHOD as IPC"
+echo "Configure: IPC: Using \"$IPC_METHOD\" as IPC method"
 
-ln -fs "$IPC_METHOD" "${DDIR}/current"
+# always remove link before, as ln seems to be broken
+# Doing ln -sf src/ipc/$method current twice, will create the file
+# "current" _BELOW_ src/ipc/$method and not overwrite the link
+# src/ipc/current
+
+rm -f "${DFILE}"
+ln -sf "${IPC_METHOD}" "${DFILE}"

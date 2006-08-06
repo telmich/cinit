@@ -4,14 +4,12 @@
 # 
 
 DDIR=$(dirname $0)/../src/os
+DFILE="$DDIR/current"
 OSCONFIG=$(dirname $0)/../conf/os
 
 OS=$(head -n 1 "$OSCONFIG")
 
-echo "Making links for $OS ..."
+echo "Configure: OS:  Binaries are created for $OS ..."
 
-# OLD:
-#cd "$DDIR"
-#ln -sf "$OS" current
-
-ln -sf "$OS" "$DDIR/current"
+rm -f "${DFILE}"
+ln -sf "${OS}" "${DFILE}"
