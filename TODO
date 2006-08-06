@@ -68,12 +68,6 @@ Neues cinit:
 --------------------------------------------------------------------------------
 Als naechstes:
 
-- beim booten kommunizieren via RAM / anonymer Socket?
-   cinit -> 
-      1. needs
-      2. wants (vom init)
-      Und die wiederum mit ihren Kindern
-- danach: via unix socket unter /dev
 - add code do implement stopping / restarting with dependency tree
    o add used_by to the list of services
    o used_by should be a simple (double?) linked list
@@ -84,6 +78,7 @@ Documentation:
       o debian / gentoo
    - Configuring
 --------------------------------------------------------------------------------
+Add "used" by to each service, so we can track which services to shutdown.
 --------------------------------------------------------------------------------
 - perhaps use dnotify?
 - recheck warm reboot
