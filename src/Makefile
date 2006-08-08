@@ -53,11 +53,15 @@ CCO_OBJ=util/ccontrol.o generic/mini_printf.o util/msg_reboot.o \
 	$(CC) -c -o $@ $<
 
 #
-# End user targets
+# End user target
 #
-#all:: config cinit cservice ccontrol sizecheck docs
-#all: testconfig cinit cservice ccontrol sizecheck docs
-all:: .configured cinit cservice ccontrol sizecheck docs
+#all: cinit cservice ccontrol sizecheck docs
+all: cinit
+
+#
+# First do configuration, so we include the right variables
+#
+Makefile: config
 
 .configured: ../conf/*
 	@if [ ! -e .configured ]; then \
@@ -82,6 +86,9 @@ sizecheck: cinit cservice
 	@du -s $(SDIRS) | awk '{ sum+=$$1 } END { print sum }'
 #	@du -s bin client comm conf doc generic serv | awk '{ sum+=$1 } END { print sum }'
 
+
+
+.PHONY: clean
 #clean::
 clean:
 	echo rm  $(shell find -name \*.o)
@@ -106,7 +113,7 @@ $(SBIN)/ccontrol util/ccontrol: config.h $(SBIN) $(CCO_OBJ)
 	$(LD) $(LDFLAGS) $(CCO_OBJ) -o $@
 	$(STRIP) $@
 
-install:: install-dir cinit cservice ccontrol
+install: install-dir cinit cservice ccontrol
 	@echo '*** Installing cinit ***'
 	./bin/cinit.install.binary
 
@@ -115,13 +122,6 @@ install-miniconf:
 
 install-dir:
 	./bin/cinit.install.dir
-
-all install::
-	@for subdir in $(CDIRS); do \
-	  echo "Making $@ in $$subdir"; \
-	(cd $$subdir && $(MAKE) $(MAKEFLAGS) $@) \
-	 || exit 1;\
-	 done;
 
 config:
 	@../bin/cinit.configure.os
