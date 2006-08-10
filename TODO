@@ -1,4 +1,8 @@
 --------------------------------------------------------------------------------
+comm:
+   tmpnow: search for pid in list,
+           save the pid in the list, so we know whether our executer died!
+--------------------------------------------------------------------------------
 Logging / cinit:
    fuer unsere eigenen ausgaben auch multilog?
 
