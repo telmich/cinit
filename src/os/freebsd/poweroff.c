@@ -1,17 +1,16 @@
-/* 
- * cinit
- * (c) 2005-2006 Nico Schottelius (nico-linux at schottelius.org)
- * poweroff
+/***********************************************************************
+ *
+ *    2005-2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *
+ *    part of cLinux/cinit
+ *
+ *    poweroff
+ *
  */
 
-#include <sys/reboot.h>
 #include <unistd.h>
+#include <sys/reboot.h>
 
-#include "cinit.h"
-
-/**********************************************************************
- * poweroff the system
- */
 void cinit_poweroff(void)
 {
    reboot(RB_POWEROFF);

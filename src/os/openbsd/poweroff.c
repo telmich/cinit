@@ -4,13 +4,14 @@
  *
  *    part of cLinux/cinit
  *
- *    How to halt the system
+ *    poweroff
+ *
  */
 
 #include <unistd.h>
 #include <sys/reboot.h>
 
-void cinit_halt(void)
+void cinit_poweroff(void)
 {
-   reboot(RB_HALT_SYSTEM);
+   reboot(RB_HALT | RB_POWERDOWN);
 }
