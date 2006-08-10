@@ -22,36 +22,6 @@
 #define CINIT_SOCK CINIT_TMNT SLASH C_SOCK
 #define CINIT_BIN  PREFIX SLASH "sbin" SLASH "cinit"
 
-/* commands (maximum: 2^8 = 256, because we use a single byte) */
-enum commands {   CMD_START_SVC=1, 
-                  CMD_STOP_SVC,
-                  CMD_CHG_STATUS,
-                  CMD_RESCUE,
-                  CMD_HALT,
-                  CMD_REBOOT,
-                  CMD_POWEROFF,
-                  CMD_UPDATE,
-                  CMD_WBOOT };
-
-/* status of a service and return codes - errors and success */
-enum svc_status {  RT_TMPNOW=1,     /* now you are on it - only for clients */
-                   RT_ERR_COMM,     /* communication failed */
-                   RT_ERR,          /* service starting failed */
-                   RT_SVC_FAILED,   /* tried earlier, service failed, won't retry */
-                   RT_UNSPEC,       /* some kind of error, unspecified */
-                   RT_SUCCESS,      /* successfully started: respawning or once */
-                   RT_NOTEXIST,     /* service does not exist */
-
-                   ST_NEED_FAIL,    /* failed to start a need for this service */
-                   ST_FAIL,         /* failed to start service */
-                   ST_OFF,          /* service is off */
-
-                   ST_TMP,          /* currently working on it */
-                   ST_ONCE,         /* executed once */
-                   ST_RESPAWN       /* running and respawning */
-                };
-
-
 /* actions for i/o handlers (see comm/do_*) */
 #define ACT_SERV     0
 #define ACT_CLIENT   1
@@ -62,6 +32,7 @@ struct listitem {
    pid_t    pid;                 /* pid of service / respawn watcher */
    struct   listitem *before;    /* previous item */
    struct   listitem *after;     /* next item */
+   struct   listitem *used_by    /* list of services that use this service */
 };
 
 /* variables */

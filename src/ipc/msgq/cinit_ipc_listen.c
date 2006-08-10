@@ -24,31 +24,31 @@ int cinit_ipc_listen(void)
    struct msg_client m_client;
    struct msg_server m_serv;
    
-   /* generiere nen schluessel */
+   /* generate keys */
    k_in  = ftok(IPC_KEY,IPC_IN);
    k_out = ftok(IPC_KEY,IPC_OUT);
 
    if(k_in == -1 || k_out == -1) {
-      perror("ftok");
-      exit(1);
+      perror(MSG_MSGQ_FTOK);
+      return 0;
    }
    
-   /* neue queue */
-   mq_in    = msgget(k_in,0666 | IPC_CREAT);
-   mq_out   = msgget(k_out,0666 | IPC_CREAT);
+   /* create queues */
+   mq_in    = msgget(k_in, 0660 | IPC_CREAT);
+   mq_out   = msgget(k_out,0660 | IPC_CREAT);
 
    if(mq_in == -1 || mq_out == -1) {
-      perror("msgget");
-      exit(1);
+      perror(MSG_MSGQ_MSGGET);
+      return 0;
    }
     
    while (1) {
       tmp = msgrcv(mq_in,&m_client,(sizeof m_client),0,0);
 
-   if(tmp == -1) {
-      perror("msgrcv");
-      exit(1);
-   }
+      if(tmp == -1) {
+         perror("msgrcv");
+         exit(1);
+      }
 
    printf("pid: %d, m_client: %s\n",m_client.pid,m_client.text);
 
