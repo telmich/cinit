@@ -1,0 +1,44 @@
+cinit - communication
+=====================
+Nico Schottelius <nico-linux-cinit__@__schottelius.org>
+0.1 for cinit-0.3, Initial version: 2006-08-11
+:Author Initials: NS
+
+This document describes the internal communication of cinit.
+It is thought to be read by developers.
+
+
+Introduction
+------------
+This document describes the messages used between cinit, cinit forks
+and other programs that want to talk to cinit. It does NOT
+describe the communication method, but only the messages sent
+(for the communication method read "ipc.text").
+
+Document status
+~~~~~~~~~~~~~~~
+This document is still being written, it is not finished.
+
+
+About Messages
+--------------
+
+Order
+~~~~~
+The client always initiates the communication.
+cinit will begin listening to messages directly after its start.
+
+Data
+~~~~~
+A message always conists of a predefined structure (see src/headers/comm.h).
+The byte order is host specific (may be little or big endian).
+
+
+The messages
+------------
+
+Start a service (and its dependencies) (CMD_START_SVC)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This command is issued either by a cinit fork or by a general client.
+cinit will start a fork, which tries to start the service and its dependencies.
+

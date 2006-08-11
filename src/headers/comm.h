@@ -15,7 +15,7 @@
  * maximum number of commands: 2^8 = 256
  */
 enum commands {
-   CMD_START_SVC=1,  /* the client wants to start that service    */
+   CMD_START_SVC=1,  /* the client wants US to start a service    */
    CMD_STOP_SVC,     /* the clients wants us to stop the service  */
    CMD_STOP_SVC_REC, /* stop service and all depending services   */
    CMD_CHG_STAT,     /* the client reports a status change        */
@@ -48,7 +48,10 @@ enum svc_status {
    ST_RESPAWN       /* running and respawning */
 };
 
-struct msg_svcstatus {
+/***********************************************************************
+ * messages from the client
+ */
+struct msg_client {
    pid_t pid;           /* pid of the telling client        */
    char cmd;            /* which cmd is issued to us        */
    char status;         /* status of the service            */
@@ -56,8 +59,10 @@ struct msg_svcstatus {
    char name[PATH_MAX]; /* name of the service              */
 };
 
-
-struct client_question {
+/***********************************************************************
+ * messages from the server
+ */
+struct msg_server {
 
 
 };
