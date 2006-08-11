@@ -22,9 +22,4 @@ Download, edit conf/os to the os
 
 Cross-compiling
 ^^^^^^^^^^^^^^^
-conf/os to destination os
-conf/cc
-conf/ld
-conf/cflags
-conf/ldflags
-
+For cross compiling see 'cross-compiling.text'.

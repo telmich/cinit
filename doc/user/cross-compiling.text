@@ -1,0 +1,6 @@
+conf/os to destination os
+conf/cc
+conf/ld
+conf/cflags
+conf/ldflags
+
