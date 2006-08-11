@@ -1,0 +1,20 @@
+cinit/src/ipc/msgq: About this msqg implementation
+===================================================
+Nico Schottelius <nico-linux-cinit__@__schottelius.org>
+0.1, Initial Version from 2006-08-04
+:Author Initials: NS
+
+Intro here
+
+Introduction
+------------
+
+cinit opens a 
+
+Files
+-----
+- README.text: This file
+- cinit_init_ipc.c: Init
+msgq.h
+objects
+
