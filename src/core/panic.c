@@ -1,7 +1,10 @@
-/* 
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
- * panic: if cinit fails, start sulogin
- * part of cinit
+/***********************************************************************
+ *
+ *    2005-2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *
+ *    part of cLinux/cinit
+ *
+ *    Execute something 
  */
 
 #include "cinit.h"
@@ -10,7 +13,8 @@
 void panic(void)
 {
    char *nargv[2];
-
+   
+   /* USE execute_something but do NOT fork it, but let us replace */
    nargv[0] = SULOGIN;
    nargv[1] = NULL;
 
