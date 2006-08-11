@@ -17,8 +17,9 @@
 enum commands {
    CMD_START_SVC=1,     /* the client wants US to start a service    */
    CMD_START_SVC_ONLY,  /* start this service without dependencies   */
-   CMD_STOP_SVC,        /* the clients wants us to stop the service  */
+   CMD_STOP_SVC,        /* stop svc and all svcs that need it        */
    CMD_STOP_SVC_ONLY,   /* we should stop _only_ this service        */
+   CMD_STOP_SVC_WANTS,  /* stop svc, all svcs that need or want it   */
    CMD_CHG_STAT,        /* the client reports a status change        */
    CMD_RESCUE,          /* we should start the rescue mode           */
    CMD_HALT,            /* halt the system                           */
@@ -33,12 +34,10 @@ enum commands {
  */
 enum svc_status {
    ST_TMPNOW=1,     /* the client is now starting the service     */
-   RT_ERR_COMM,     /* communication failed */
-   RT_ERR,          /* service starting failed */
    RT_SVC_FAILED,   /* tried earlier, service failed, won't retry */
    RT_UNSPEC,       /* some kind of error, unspecified */
    RT_SUCCESS,      /* successfully started: respawning or once */
-   RT_NOTEXIST,     /* service does not exist */
+   ST_NOTEXIST,     /* service does not exist */
 
    ST_NEED_FAIL,    /* failed to start a need for this service */
    ST_FAIL,         /* failed to start service */
@@ -48,6 +47,12 @@ enum svc_status {
    ST_ONCE,         /* executed once */
    ST_RESPAWN       /* running and respawning */
 };
+
+/* old
+   RT_ERR_COMM,     * communication failed *
+   RT_ERR,          * service starting failed *
+
+*/
 
 /***********************************************************************
  * messages from the client
