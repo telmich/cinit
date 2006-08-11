@@ -27,17 +27,18 @@
 #define ACT_CLIENT   1
 
 struct listitem {
-   char     *abs_path;           /* name of service */
-   int      status;              /* current status */
-   pid_t    pid;                 /* pid of service / respawn watcher */
-   struct   listitem *before;    /* previous item */
-   struct   listitem *after;     /* next item */
-   struct   listitem *used_by    /* list of services that use this service */
+   char     *abs_path;           /* name of service                           */
+   int      status;              /* current status                            */
+   pid_t    pid;                 /* pid of service / respawn watcher          */
+   struct   listitem *before;    /* previous item                             */
+   struct   listitem *after;     /* next item                                 */
+   struct   listitem *wanted;    /* list of services that want this service   */
+   struct   listitem *needed;    /* list of services that need this service   */
 };
 
 /* variables */
-extern struct  listitem *list;   /* the process linked chain */
-extern int     sock;             /* current writing/reading socket */
+extern struct  listitem *list;   /* the process linked chain                  */
+extern int     sock;             /* current writing/reading socket            */
 extern pid_t   cpid;             /* used by main() and reused be respaw_svc() */
 
 /* functions (used by server and client) */
