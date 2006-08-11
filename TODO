@@ -1,4 +1,10 @@
 --------------------------------------------------------------------------------
+Add handler for ctrl+alt+delete
+--------------------------------------------------------------------------------
+panic:
+   read configuratio from defaults/panic*
+   -> write execute_something before!
+--------------------------------------------------------------------------------
 comm:
    tmpnow: search for pid in list,
            save the pid in the list, so we know whether our executer died!
