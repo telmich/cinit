@@ -1,7 +1,11 @@
-/* 
- * cinit
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
- * print string
+/***********************************************************************
+ *
+ *    2005-2006 Nico Schottelius (nico-linux-cinit //@\\ schottelius.org)
+ *
+ *    part of cLinux/cinit
+ *
+ *    Print to the world!
+ *
  */
 
 #include <unistd.h>
@@ -9,17 +13,13 @@
 void mini_printf(char *str,int fd)
 {
    char *p;
-   size_t length = 0;
 
    /* don't get fooled by bad pointers */
    if(str == NULL) return;
 
    p = str;
-   while ( *p != '\0') {
-      ++length;
-      ++p;
-   }
-   write(fd,str,length);
-   /* \n is put by outside function */
-   /* write(fd,"\n",1); */
+   while ( *p ) p++;
+   p--;
+   
+   write(fd,str,(size_t) (p - str) );
 }

@@ -19,15 +19,18 @@ CONFIG_H=headers/config.h
 #
 # objects for the cinit part
 #
-CINIT_CORE_OBJ=$(shell cat core/objects)
-CINIT_OBJ=$(CINIT_CORE_OBJ) $(CINIT_IPC_OBJ) $(CINIT_OS_OBJ)
 CINIT_HEADERS=$(shell cat headers/listing)
+CINIT_CORE_OBJ=$(shell cat core/objects)
+CINIT_GENERIC_OBJ=$(shell cat generic/objects)
 
 #
 # The current link may be missing in the first run
 #
 CINIT_IPC_OBJ=$(shell cat ipc/current/objects 2>/dev/null)
 CINIT_OS_OBJ=$(shell  cat os/current/objects  2>/dev/null)
+
+CINIT_OBJ=$(CINIT_CORE_OBJ) $(CINIT_IPC_OBJ) $(CINIT_OS_OBJ)   \
+          $(CINIT_GENERIC_OBJ)
 
 #
 # Dependencies

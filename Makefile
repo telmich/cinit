@@ -9,7 +9,6 @@
 DDOC=ddoc
 SDIRS=bin client conf comm doc generic serv util
 CDIRS=contrib+tools
-FILES=Changelog Makefile README TODO cinit.h
 
 # DO NOT CHANGE THIS.
 SBIN=sbin
@@ -26,8 +25,6 @@ all:: sources
 
 sources: config
 	$(MAKE) -C src all
-
-cinit: $(CINIT_BIN)
 
 docs: $(DDOC) bin/cdoc-man.sh
 	./bin/cdoc-man.sh doc/cinit-doc     > $(DDOC)/cinit.8
