@@ -98,11 +98,8 @@ sizecheck: cinit cservice
 
 
 .PHONY: clean
-#clean::
 clean:
-	echo rm  $(shell find -name \*.o)
-	#rm -f sbin/* $(CONFIG_H) ddoc/*
-	#rm -f tmpbin/*
+	rm -f $(CINIT_OBJ)
 
 distclean:
 	rm -f os/current ipc/current
