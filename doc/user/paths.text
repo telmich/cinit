@@ -17,6 +17,11 @@ Introduction
       sulogin??
       panic?
 
+
+/etc/cinit/special
+   panic{.*}
+   umount{.*}
+
 From source
 ~~~~~~~~~~~
 
