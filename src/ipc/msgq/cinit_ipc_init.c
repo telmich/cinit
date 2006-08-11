@@ -8,8 +8,9 @@
  *
  */
 
-#include <sys/ipc.h>             /* ftok */
-#include <sys/msg.h>             /* msgget */
+#include <sys/ipc.h>       /* ftok           */
+#include <sys/msg.h>       /* msgget         */
+#include <stdio.h>         /* msgget         */
 
 #include "config.h"
 #include "msgq.h"
