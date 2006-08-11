@@ -37,8 +37,48 @@ The byte order is host specific (may be little or big endian).
 The messages
 ------------
 
-Start a service (and its dependencies) (CMD_START_SVC)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The client always uses the same structure (struct msg_client) to contact
+cinit. This way cinit does not need to handle dynamic data structures.
+
+cinit in contrast delivers different data structures to its clients,
+depending on the question.
+
+Question: Start a service (and its dependencies)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This command is issued either by a cinit fork or by a general client.
 cinit will start a fork, which tries to start the service and its dependencies.
+
+The client must provide cinit with the following information:
+. Name of the service to be started
+. Reason why to start it
+. eventually additional information (see below)
+
+The structure send is "asw_sstatus".
+
+The reason
+^^^^^^^^^^
+Can be one of:
+- RS_NONE   (it's a manual start request)
+- RS_WANTS  (a currently starting service wants to start this service)
+- RS_NEEDS  (a currently starting service needs to start this service)
+
+If the reason is RS_WANTS or RS_NEEDS the client must supply the name
+of the service, which wants it to be started.
+
+Question: Start a service (nothing else)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This command may only be issued by an external client.
+cinit will start a fork, which tries to start the service and which will
+report the status back.
+
+
+Answer: Return short status of a service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This answer is used as a response to:
+- Start a service (and its dependencies)
+- Start a service (nothing else)
+
+cinit only responds the status of the asked service.
+The structure send is "asw_sstatus", which only include a status byte.
+
 
