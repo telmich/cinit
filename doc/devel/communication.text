@@ -168,3 +168,11 @@ This answer is used as a response to:
 
 cinit only responds the status of the asked service.
 The structure send is "asw_sstatus", which only include a status byte.
+
+
+Answer: Return long status of a service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This answer is used as a response to:
+
+   - Question: Could you send information about a service?
+

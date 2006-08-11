@@ -10,6 +10,8 @@
 #ifndef CINIT_COMM_HEADER
 #define CINIT_COMM_HEADER
 
+#include <limits.h>     /* PATH_MAX                                  */
+
 /***********************************************************************
  * Commands the clients may issue to us
  * maximum number of commands: 2^8 = 256
@@ -33,8 +35,7 @@ enum commands {
  * status of a service and return codes - errors and success
  */
 enum svc_status {
-   ST_TMPNOW=1,     /* the client is now starting the service           */
-   RT_SVC_FAILED,   /* tried earlier, service failed, won't retry       */
+   ST_TMPNOW=1,     /* the client is now starting the service NEEDED??? */
    ST_NOTEXIST,     /* service does not exist                           */
 
    ST_NEED_FAIL,    /* failed to start a need for this service          */
@@ -42,11 +43,13 @@ enum svc_status {
 
    ST_OFF,          /* service is off                                   */
    ST_OFF_ALL,      /* service and those that need it are off           */
+   ST_OFF_ALL_F,    /* same, but something failed                       */
    ST_OFF_WANTS,    /* service + those that need or want it are off     */
+   ST_OFF_WANTS_F,  /* same, but something failed                       */
 
-   ST_TMP,          /* currently working on it */
-   ST_ONCE,         /* executed once */
-   ST_RESPAWN       /* running and respawning */
+   ST_TMP,          /* currently working on it                          */
+   ST_ONCE,         /* executed once                                    */
+   ST_RESPAWN       /* running and respawning                           */
 };
 
 /* old
@@ -54,6 +57,7 @@ enum svc_status {
    RT_ERR,          * service starting failed *
    RT_UNSPEC,       * some kind of error, unspecified                  *
    RT_SUCCESS,      * successfully started: respawning or once         *
+   RT_SVC_FAILED,   * tried earlier, service failed, won't retry       *
 
 */
 
@@ -65,7 +69,6 @@ struct msg_client {
    pid_t pid;                 /* pid of the telling client              */
    char cmd;                  /* which cmd is issued to us              */
    char status;               /* status of the service                  */
-   char cmdstatus             /* both in one byte?                      */
    char svc[PATH_MAX];        /* name of the service                    */
    char svc_orig[PATH_MAX];   /* the service, which wants to start us   */
 };
@@ -81,6 +84,7 @@ struct msg_client {
 struct asw_sstatus {
    long  mtype;
    char  status;
+   char  msg[PATH_MAX];
 };
 
 #endif

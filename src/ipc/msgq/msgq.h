@@ -6,6 +6,8 @@
 #ifndef CINIT_IPC_HEADER
 #define CINIT_IPC_HEADER
 
+#include <comm.h>                         /* structures              */
+
 /***********************************************************************
  * configuration
  */
@@ -26,16 +28,16 @@ int mq_out;                   /* output   */
  */
 
 /* messages _from_ the client _to_ the server */
-struct msg_client {
+struct msgq_client {
     long mtype;
-    char text[MSG_SIZE];
     pid_t pid;
+    struct msg_client msg;
 };
 
 /* messages _from_ the server _to_ the client */
-struct msg_server {
+struct msgq_server_short {
     long mtype;
-    char text[MSG_SIZE];
+    struct asw_sstatus answer;
 };
 
 /***********************************************************************
@@ -44,5 +46,6 @@ struct msg_server {
 
 #define MSG_MSGQ_FTOK         "ftok"
 #define MSG_MSGQ_MSGGET       "msgget"
+#define MSG_MSGQ_MSGRCV       "msgrcv"
 
 #endif

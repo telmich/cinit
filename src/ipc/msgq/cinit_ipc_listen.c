@@ -10,6 +10,7 @@
 
 #include <sys/ipc.h>             /* ftok */
 #include <sys/msg.h>             /* msgget */
+#include <stdio.h>         /* perror */
 
 #include "config.h"
 #include "msgq.h"
@@ -17,23 +18,20 @@
 int cinit_ipc_listen(void)
 {
    int tmp;
-   int mq_in = 0, mq_out = 0;
-   int tmp = 0;
 
    struct msg_client m_client;
-   struct msg_server m_serv;
-   
+
    while (1) {
       /* FIXME: change msg structure */
       tmp = msgrcv(mq_in,&m_client,(sizeof m_client),0,0);
 
       if(tmp == -1) {
-         perror("msgrcv");
+         perror(MSG_MSGQ_MSGRCV);
       }
 
-      printf("pid: %d, m_client: %s\n",m_client.pid,m_client.text);
+      printf("pid: %d, m_client\n",m_client.pid);
 
-      /* use pid as the message type */
+      /* use pid as the message type 
       m_serv.mtype = (long) m_client.pid;
       strcpy(m_serv.text,"Alles ok\n");
 
@@ -42,7 +40,7 @@ int cinit_ipc_listen(void)
       if(tmp == -1) {
          perror("msgsnd");
          return 0;
-      }
+      } */
    }
 
    return 1;
