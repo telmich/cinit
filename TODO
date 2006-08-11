@@ -8,8 +8,9 @@ Logging / cinit:
 
    Logger: shared memory?
 --------------------------------------------------------------------------------
-
+Implement full starting logic in server?
 --------------------------------------------------------------------------------
+Build full dependency tree at start? And begin from the end?
 --------------------------------------------------------------------------------
 comm/*:
    int read
@@ -241,3 +242,7 @@ umount raus
 3. den tempmount entfernen
 
 --> cinit-0.3-rc1
+--------------------------------------------------------------------------------
+Check: use of perror, strerror+write?
+--------------------------------------------------------------------------------
+Check: tuning of ipc-code?

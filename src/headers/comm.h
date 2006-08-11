@@ -12,7 +12,7 @@
 
 /***********************************************************************
  * Commands the clients may issue to us
- * maximum: 2^8 = 256, because we use a single byte)
+ * maximum number of commands: 2^8 = 256
  */
 enum commands {
    CMD_START_SVC=1,  /* the client wants to start that service    */
@@ -52,6 +52,7 @@ struct msg_svcstatus {
    pid_t pid;           /* pid of the telling client        */
    char cmd;            /* which cmd is issued to us        */
    char status;         /* status of the service            */
+   char cmdstatus       /* both in one byte?                */
    char name[PATH_MAX]; /* name of the service              */
 };
 

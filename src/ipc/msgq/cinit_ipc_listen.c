@@ -43,27 +43,27 @@ int cinit_ipc_listen(void)
    }
     
    while (1) {
+      /* FIXME: change msg structure */
       tmp = msgrcv(mq_in,&m_client,(sizeof m_client),0,0);
 
       if(tmp == -1) {
          perror("msgrcv");
-         exit(1);
+         
       }
 
-   printf("pid: %d, m_client: %s\n",m_client.pid,m_client.text);
+      printf("pid: %d, m_client: %s\n",m_client.pid,m_client.text);
 
-   /* use pid as the message type */
-   m_serv.mtype = (long) m_client.pid;
-   strcpy(m_serv.text,"Alles ok\n");
+      /* use pid as the message type */
+      m_serv.mtype = (long) m_client.pid;
+      strcpy(m_serv.text,"Alles ok\n");
 
-   tmp = msgsnd(mq_out, &m_serv, sizeof(m_serv), 0);
+      tmp = msgsnd(mq_out, &m_serv, sizeof(m_serv), 0);
 
-   if(tmp == -1) {
-      perror("msgsnd");
-      exit(1);
+      if(tmp == -1) {
+         perror("msgsnd");
+         return 0;
+      }
    }
-} /* while */
-
 
    return 1;
 }
