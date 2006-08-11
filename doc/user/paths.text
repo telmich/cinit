@@ -13,12 +13,9 @@ Introduction
 
 /etc/cinit
    svc      -> services
-   special  -> special files
-      sulogin??
-      panic?
+   conf     -> "configuration"
 
-
-/etc/cinit/special
+/etc/cinit/conf
    panic{.*}
    umount{.*}
 

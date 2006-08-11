@@ -11,7 +11,9 @@
 
 #define SLASH "/"
 
-/* paths */
+/***********************************************************************
+ * Paths
+ */
 #define C_ONARG   C_ON  C_PARAMS
 #define C_OFFARG  C_OFF C_PARAMS
 #define C_ONENV   C_ON  C_ENV
@@ -21,6 +23,10 @@
 #define CINIT_TMNT CINIT_DIR SLASH C_TMP
 #define CINIT_SOCK CINIT_TMNT SLASH C_SOCK
 #define CINIT_BIN  PREFIX SLASH "sbin" SLASH "cinit"
+
+#define CINIT_CONFDIR   CINIT_DIR SLASH C_CONFDIR
+#define CINIT_PANIC     CINIT_CONFDIR SLASH C_PANIC
+#define CINIT_UMOUNT    CINIT_CONFDIR SLASH C_UMOUNT
 
 /* actions for i/o handlers (see comm/do_*) */
 #define ACT_SERV     0
