@@ -33,15 +33,16 @@ enum commands {
  * status of a service and return codes - errors and success
  */
 enum svc_status {
-   ST_TMPNOW=1,     /* the client is now starting the service     */
-   RT_SVC_FAILED,   /* tried earlier, service failed, won't retry */
-   RT_UNSPEC,       /* some kind of error, unspecified */
-   RT_SUCCESS,      /* successfully started: respawning or once */
-   ST_NOTEXIST,     /* service does not exist */
+   ST_TMPNOW=1,     /* the client is now starting the service           */
+   RT_SVC_FAILED,   /* tried earlier, service failed, won't retry       */
+   ST_NOTEXIST,     /* service does not exist                           */
 
-   ST_NEED_FAIL,    /* failed to start a need for this service */
-   ST_FAIL,         /* failed to start service */
-   ST_OFF,          /* service is off */
+   ST_NEED_FAIL,    /* failed to start a need for this service          */
+   ST_FAIL,         /* failed to start service                          */
+
+   ST_OFF,          /* service is off                                   */
+   ST_OFF_ALL,      /* service and those that need it are off           */
+   ST_OFF_WANTS,    /* service + those that need or want it are off     */
 
    ST_TMP,          /* currently working on it */
    ST_ONCE,         /* executed once */
@@ -51,6 +52,8 @@ enum svc_status {
 /* old
    RT_ERR_COMM,     * communication failed *
    RT_ERR,          * service starting failed *
+   RT_UNSPEC,       * some kind of error, unspecified                  *
+   RT_SUCCESS,      * successfully started: respawning or once         *
 
 */
 

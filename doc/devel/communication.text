@@ -107,6 +107,52 @@ Question: Could you change the status? [CMD_CHG_STAT]
 A cinit fork reports the new status of a service.
 
 
+Question: Could you start the rescue mode? [CMD_RESCUE]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This command may only be issued by an external client.
+cinit will not give an answer to this question.
+cinit will stop all services, kill all other processes and after that
+spawn the rescue program.
+
+
+Question: Could you halt the system? [CMD_HALT]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This command may only be issued by an external client.
+cinit will not give an answer to this question.
+cinit will stop all services, kill all other processes and after that
+halt the system.
+
+
+Question: Could you reboot the system? [CMD_REBOOT]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This command may only be issued by an external client.
+cinit will not give an answer to this question.
+cinit will stop all services, kill all other processes and after that
+reboot the system.
+
+
+Question: Could you poweroff the system? [CMD_POWEROFF]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This command may only be issued by an external client.
+cinit will not give an answer to this question.
+cinit will stop all services, kill all other processes and after that
+poweroff the system. If poweroff is not possible, the system will
+be halted.
+
+
+Question: Could you warmboot the system? [CMD_WBOOT]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This command may only be issued by an external client.
+cinit will not give an answer to this question.
+cinit will stop all services, kill all other processes and after that
+restart itself and the bootup process.
+
+
+Question: Could you send information about a service? [CMD_INFO]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This command may only be issued by an external client.
+cinit will respond with detailled information about the service
+to the client.
 
 
 Answer: Return short status of a service
