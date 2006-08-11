@@ -1,1 +1,2 @@
 core/cinit.o
+core/set_signals.o
