@@ -13,6 +13,7 @@
 #define MSGQ_PATHNAME      "/bin/sh"      /* should be on every *nix */
 #define MSGQ_TO_SERVER     'i'            /* also for ftok           */
 #define MSGQ_TO_CLIENT     'o'            /* also for ftok           */
+#define MSGQ_PERMS         0660           /* queue permissions       */
 
 /***********************************************************************
  * global variables

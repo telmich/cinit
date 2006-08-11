@@ -24,8 +24,8 @@ int cinit_ipc_init(void)
       perror(MSG_MSGQ_FTOK);
       return 0;
    }
-   mq_server = msgget(k_tmp,0600 | IPC_CREAT);
-   if(mq_server == -1) {
+   mq_in = msgget(k_tmp,MSGQ_PERMS | IPC_CREAT);
+   if(mq_in == -1) {
       perror(MSG_MSGQ_MSGGET);
       return 0;
    }
@@ -36,8 +36,8 @@ int cinit_ipc_init(void)
       perror(MSG_MSGQ_FTOK);
       return 0;
    }
-   mq_client = msgget(k_tmp,0600 | IPC_CREAT);
-   if(mq_client == -1) {
+   mq_out = msgget(k_tmp,MSGQ_PERMS | IPC_CREAT);
+   if(mq_out == -1) {
       perror(MSG_MSGQ_MSGGET);
       return 0;
    }
