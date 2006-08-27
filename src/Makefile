@@ -8,12 +8,13 @@
 
 include Makefile.tests
 
-# Build tools
+# Build tools / locations
 CC=../tmpbin/cc
 CFLAGS=
 LD=../tmpbin/ld
 LDFLAGS=
 STRIP=../tmpbin/strip
+SBIN=../sbin
 
 # directories and files
 CONFIG_H=headers/config.h
