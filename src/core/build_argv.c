@@ -30,6 +30,8 @@
 #include "build_argv.h"
 
  /*
+ * FIXME: we are perhaps loosing a byte, the \0 for the full
+ *        string of argv and envp! too tired to check.
  * char *basename: something we should execute
  * (*basename) + ".params" will be added as parameters
  * (*basename) + ".env" will be added as environment
@@ -47,6 +49,12 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    char *sbuf = NULL;
    struct stat buf;
 
+   /* sane values */
+   bav->argv = NULL;
+   bav->envp = NULL;
+
+   printf("basename %s\n",basename);
+
    /***********************************************************************
     * Try to get realname (for links)
     */
@@ -59,8 +67,6 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
       if (errno != EINVAL) {
          return BA_E_OTHER;
       }
-
-   } else { /* original filename, no link */
       tmp=strlen(basename);
       strncpy(pathtmp,basename,tmp);
    }
@@ -75,9 +81,9 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    if(bav->argv == NULL) return BA_E_MEM;
 
    *bav->argv = malloc( tmp );
-   if(*bav->argv == NULL) return BA_E_MEM;
+   if(*(bav->argv) == NULL) return BA_E_MEM;
 
-   strncpy(*bav->argv,pathtmp,tmp);
+   strncpy(*(bav->argv),pathtmp,tmp);
 
    /********************** read params *********************/
    strcat(pathtmp,C_PARAMS);

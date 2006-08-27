@@ -1,4 +1,7 @@
 #!/bin/sh
+# Nico Schottelius
+# Test-skript for cinit
 
+echo '$0': "$0"
 echo '$@': "$@"
 echo 'cinit_is_great:' $cinit_is_great

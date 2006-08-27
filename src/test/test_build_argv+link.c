@@ -15,7 +15,7 @@
 
 int main()
 {
-   char *file = "./test_exec";
+   char *file = "./test_exec_link";
    struct ba_argv cargv;
    int tmp;
 
