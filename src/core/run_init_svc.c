@@ -7,19 +7,11 @@
  *    run initial service(s)
  */
 
-#include <sys/wait.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <stdio.h>
+#include <unistd.h>           /* _exit, fork */
 
 #include "cinit.h"
-
-#include <time.h>
-
-/*********************************************************************** 
- * start the first service
- */
+#include "messages.h"
+#include "ipc.h"
 
 int run_init_svc(char *cinit_svc)
 {
