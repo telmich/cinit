@@ -1,4 +1,5 @@
 core/build_argv.o
 core/cinit.o
-core/set_signals.o
 core/panic.o
+core/run_init_svc.o
+core/set_signals.o
