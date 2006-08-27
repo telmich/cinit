@@ -22,7 +22,7 @@
 
 /***********************************************************************
  *
- * TODO: add a forking and a non-forking version
+ * TODO: add a forking and a non-forking version: fork: other file!
  *
  * Return values:
  * - Does not return on success.

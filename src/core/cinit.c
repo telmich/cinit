@@ -13,9 +13,9 @@
 #include <stdio.h>            /* perror                  */
 #include <stdlib.h>           /* malloc                  */
 
-#include "cinit.h"
-#include "messages.h"
-#include "ipc.h"
+#include "cinit.h"            /* general things          */
+#include "messages.h"         /* messages                */
+#include "ipc.h"              /* general ipc methods     */
 
 struct listitem *list;
 pid_t cpid;

@@ -19,7 +19,6 @@ void mini_printf(char *str,int fd)
 
    p = str;
    while ( *p ) p++;
-   p--;
    
    write(fd,str,(size_t) (p - str) );
 }
