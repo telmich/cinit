@@ -89,6 +89,7 @@ inline struct   listitem *list_search_pid(pid_t pid);
 
 /* util */
 int      msg_reboot(char cmd);
+int      print_errno(char *text);
 
 /* os-functions */
 
