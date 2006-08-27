@@ -1,3 +1,6 @@
-- integrate panic()
-   - integrate execute_sth ($path, $path.env, $path.params)
-   - integrate execute_sth_fork
+- implement cinit_ipc_sclose
+- cleanup run_svc
+- define messages!
+- cleanup sig_child
+- think of how to implement do_reboot
+- test and release cinit-0.3rc1
