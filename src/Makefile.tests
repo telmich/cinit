@@ -1,0 +1,13 @@
+#
+# Makefile for cinit tests
+#
+# Nico Schottelius
+#
+# Don't edit Makefiles, use conf/* for configuration.
+#
+
+TEST_BUILD_ARGV=test/test_build_argv.o core/build_argv.o
+
+tests: test_build_argv
+
+test_build_argv: $(TEST_BUILD_ARGV)

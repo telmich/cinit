@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo '$@': "$@"
+echo 'cinit_is_great:' $cinit_is_great

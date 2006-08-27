@@ -6,6 +6,8 @@
 # Don't edit Makefiles, use conf/* for configuration.
 #
 
+include Makefile.tests
+
 # Build tools
 CC=../tmpbin/cc
 CFLAGS=
