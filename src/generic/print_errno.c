@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    tcpserver_blocker
+ *    stolen from tcpserver_blocker
  *
  *    Author: Nico Schottelius
  *    Date: 2006-08-24
@@ -11,8 +11,7 @@
 #include <string.h>                 /* strerror             */
 #include <errno.h>                  /* errno                */
 
-
-#include "tcpserver_blocker.h"      /* mini_printf, PD_ERR  */
+#include "cinit.h"                  /* mini_printf, PD_ERR  */
 
 void print_errno(char *msg)
 { 

@@ -1,3 +1,5 @@
 - integrate panic()
    - integrate execute_sth ($path, $path.env, $path.params)
+      - integrate print_errno
+      - check for correctness of mini_printf
    - integrate execute_sth_fork

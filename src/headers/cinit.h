@@ -9,7 +9,16 @@
 #include <sys/types.h>  /* pid_t */
 #include "config.h"     /* paths, socket options, etc. */
 
+/***********************************************************************
+ * Defines
+ */
 #define SLASH "/"
+
+enum {         /* FIXME: there are some default defines somewhere for that */
+   FD_IN=0,
+   FD_OUT=1,
+   FD_ERR=2
+};
 
 /***********************************************************************
  * Paths
@@ -89,7 +98,7 @@ inline struct   listitem *list_search_pid(pid_t pid);
 
 /* util */
 int      msg_reboot(char cmd);
-int      print_errno(char *text);
+void     print_errno(char *text);
 
 /* os-functions */
 
