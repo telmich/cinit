@@ -72,14 +72,13 @@ all: cinit
 #
 # First do configuration, so we include the right variables
 #
-Makefile: config
+Makefile: .configured
 
 .configured: ../conf/*
-	@if [ ! -e .configured ]; then \
-	   echo -n "Please run \"make config\" in parent directory: " ; \
-	   echo "\"(cd ..; make config)\""; \
-	   exit 1; \
-	fi; \
+	@../bin/cinit.configure.os
+	@../bin/cinit.configure.tools
+	@../bin/cinit.configure.ipc
+	@../bin/cinit.configure.mark
 
 $(CINIT_OBJ): $(CONFIG_H)
 
@@ -101,7 +100,9 @@ sizecheck: cinit cservice
 
 .PHONY: clean
 clean:
+	rm -f .configured
 	rm -f $(CINIT_OBJ)
+	rm -f ../tmpbin/*
 
 distclean:
 	rm -f os/current ipc/current
@@ -130,8 +131,3 @@ install-miniconf:
 
 install-dir:
 	./bin/cinit.install.dir
-
-config:
-	@../bin/cinit.configure.os
-	@../bin/cinit.configure.tools
-	@../bin/cinit.configure.ipc

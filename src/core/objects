@@ -1,3 +1,4 @@
+core/build_argv.o
 core/cinit.o
 core/set_signals.o
 core/panic.o
