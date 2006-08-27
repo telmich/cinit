@@ -1,7 +1,10 @@
-/* 
- * cinit
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
- * run initial service
+/***********************************************************************
+ *
+ *    2005-2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *
+ *    part of cLinux/cinit
+ *
+ *    run initial service(s)
  */
 
 #include <sys/wait.h>
@@ -26,16 +29,19 @@ int run_init_svc(char *cinit_svc)
    pid = fork();
    
    if(pid == -1) { /* err */
-      perror(MSG_ERR_FORK);
+      print_errno(MSG_ERR_FORK);
       return 0;
    } else if(pid == 0) { /* child */
-      close(sock);
+      cinit_ipc_sclose();
       set_signals(ACT_CLIENT);
-      /* FIXME: open stderr, stdin, stdout to files / syslog / logable ?*/
-      if ( run_svc(cinit_svc) >= RT_SUCCESS )
-         _exit(0);
-      else
-         _exit(1);
+
+      /* FIXME: open stderr, stdin, stdout to files / syslog / logable ?
+       * IMPLEMENT PER SERVICE!
+       */
+      
+      run_svc(cinit_svc);
+
+      _exit(0);   /* nobody cares about us, so exit successfully anyway */
    }
    /* parent exits, we don't care about our children */
    return 1;

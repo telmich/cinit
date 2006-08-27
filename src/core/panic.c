@@ -13,11 +13,18 @@
 void panic(void)
 {
    char *nargv[2];
+
+   execute_sth(CINIT_PANIC);
    
-   /* USE execute_something but do NOT fork it, but let us replace */
+   /***********************************************************************
+    * THIS SHOULD NOT HAPPEN, fallback to hardcoded sulogin
+    * (conf/sulogin)
+    */
    nargv[0] = SULOGIN;
    nargv[1] = NULL;
 
    execv(SULOGIN,nargv);
+
+   /* there's nothing todo, if everything fails */
    _exit(1);
 }

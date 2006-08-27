@@ -13,6 +13,8 @@
  * Defines
  */
 #define SLASH "/"
+#define CINIT_CONFDIR   CINIT_DIR SLASH C_CONFDIR
+#define CINIT_PANIC  CINIT_CONFDIR SLASH C_PANIC
 
 enum {         /* FIXME: there are some default defines somewhere for that */
    FD_IN=0,
@@ -95,6 +97,9 @@ int      list_delete(char *path);
 int      list_modify(char *path, int new_status, pid_t new_pid);
 struct   listitem *list_search(char *path);
 inline struct   listitem *list_search_pid(pid_t pid);
+
+/* generic */
+void execute_sth(char *basename);
 
 /* util */
 int      msg_reboot(char cmd);
