@@ -1,1 +1,2 @@
 generic/mini_printf.o
+generic/print_errno.o
