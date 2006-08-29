@@ -12,6 +12,7 @@
 #include <sys/msg.h>       /* msgget         */
 #include <stdio.h>         /* msgget         */
 
+#include "cinit.h"
 #include "config.h"
 #include "msgq.h"
 
@@ -22,12 +23,12 @@ int cinit_ipc_init(void)
    /* to_server */
    k_tmp = ftok(MSGQ_PATHNAME,MSGQ_TO_SERVER);
    if(k_tmp == -1) {
-      perror(MSG_MSGQ_FTOK);
+      print_errno(MSG_MSGQ_FTOK);
       return 0;
    }
    mq_in = msgget(k_tmp,MSGQ_PERMS | IPC_CREAT);
    if(mq_in == -1) {
-      perror(MSG_MSGQ_MSGGET);
+      print_errno(MSG_MSGQ_MSGGET);
       return 0;
    }
 

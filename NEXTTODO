@@ -1,3 +1,4 @@
+- replace cinit_ipc_logon with cinit_ipc_init...
 - cleanup run_svc
 - implement do_reboot.c
 - define messages!

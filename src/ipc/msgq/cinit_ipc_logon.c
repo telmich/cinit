@@ -8,24 +8,20 @@
  *
  */
 
-#include <sys/ipc.h>             /* ftok */
-#include <sys/msg.h>             /* msgget */
+#include <sys/ipc.h>             /* ftok              */
+#include <sys/msg.h>             /* msgget            */
 
 #include "config.h"
+#include "cinit.h"               /* print_errno       */
 #include "msgq.h"
 
 int cinit_ipc_logon(void)
 {
-   int tmp;
    key_t k_in, k_out;
-   int mq_in = 0, mq_out = 0;
-
-   struct msg_client m_client;
-   struct msg_server m_serv;
 
    /* generiere nen schluessel: andersrum als im Server */
-   k_in  = ftok(IPC_KEY,IPC_OUT);
-   k_out = ftok(IPC_KEY,IPC_IN);
+   k_in  = ftok(MSGQ_PATHNAME,MSGQ_TO_CLIENT);
+   k_out = ftok(MSGQ_PATHNAME,MSGQ_TO_SERVER);
 
    if(k_in == -1 || k_out == -1) {
       print_errno(MSG_MSGQ_FTOK);
