@@ -1,6 +1,5 @@
-- implement cinit_ipc_sclose
 - cleanup run_svc
+- implement do_reboot.c
 - define messages!
 - cleanup sig_child
-- think of how to implement do_reboot
 - test and release cinit-0.3rc1
