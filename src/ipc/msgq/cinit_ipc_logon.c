@@ -17,7 +17,7 @@
 
 int cinit_ipc_logon(void)
 {
-   key_t k_in, k_out;
+   key_t k_in, k_out;   /* FIXME: remove one variable */
 
    /* generiere nen schluessel: andersrum als im Server */
    k_in  = ftok(MSGQ_PATHNAME,MSGQ_TO_CLIENT);
