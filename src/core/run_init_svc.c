@@ -27,6 +27,8 @@ int run_init_svc(char *cinit_svc)
       cinit_ipc_sclose();
       set_signals(ACT_CLIENT);
 
+   if(!cinit_ipc_logon()) _exit(1);
+
       /* FIXME: open stderr, stdin, stdout to files / syslog / logable ?
        * IMPLEMENT PER SERVICE!
        */

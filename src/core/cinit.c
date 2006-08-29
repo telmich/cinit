@@ -77,8 +77,8 @@ int main(int argc, char **argv)
       free(initdir);
    }
 
-   /* listen for incomming messages */
-   if(! cinit_ipc_listen()) {
+   /* listen for incomming messages: should never return */
+   if(!cinit_ipc_listen()) {
       panic();
    }
    return 0;
