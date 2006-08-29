@@ -15,8 +15,10 @@
 #include <time.h>
 #include <stdlib.h>
 
+#include "ipc.h"
 #include "cinit.h"
 #include "os.h"
+#include "messages.h"
 
 /***********************************************************************
  * sig_reboot
@@ -25,19 +27,19 @@
 
 void do_reboot(int signal)
 {
-   struct listitem *tmp;
+   //struct listitem *tmp;
    struct timespec ts;
-   char **cmd;
-   int   i;
+   //char **cmd;
+   //int   i;
    
-   /* shutdown all services */
+   /* shutdown all services: take care about the dependency tree? */
 
    /* do not listen to client requests anymore */
-   cinit_ipc_destrop();
-
+//   cinit_ipc_destroy();
+   cinit_ipc_destroy();
    /* now: all services are down, let's kill all other processes */
    if( kill(-1,SIGTERM) == -1) {
-      perror(MSG_TERMKILL);
+      print_errno(MSG_TERMKILL);
    }
 
    ts.tv_sec   = SLEEP_KILL; /* defined in conf/sleep_kill */
@@ -45,10 +47,10 @@ void do_reboot(int signal)
    nanosleep(&ts,NULL);
 
    if( kill(-1,SIGKILL) == -1) {
-      perror(MSG_KILLBILL);
+      print_errno(MSG_KILLBILL);
    }
 
-   /* execute umount, as defined in defaults/umount */
+   /* execute umount, as defined in conf/umount */
 
    /* execute_sth(CINIT_UMOUNT); */
 
