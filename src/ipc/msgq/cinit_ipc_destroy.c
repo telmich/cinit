@@ -11,8 +11,8 @@
 #include <sys/msg.h>       /* msgget         */
 #include <stdio.h>         /* NULL           */
 
-#include "msgq.h"
-#include "cinit.h"
+#include "msgq.h"          /* mq_in, mq_out  */
+#include "cinit.h"         /* print_errno    */
 
 void cinit_ipc_destroy(void)
 {
