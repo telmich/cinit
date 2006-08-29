@@ -7,8 +7,8 @@
  *    os specific functions
  */
 
-#ifndef CINIT_IPC_HEADER
-#define CINIT_IPC_HEADER
+#ifndef CINIT_OS_HEADER
+#define CINIT_OS_HEADER
 
 /*****************************************************************************
  * Functions
