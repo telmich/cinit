@@ -1,2 +1,3 @@
 ipc/current/cinit_ipc_init.o
 ipc/current/cinit_ipc_listen.o
+cinit_ipc_sclose.o

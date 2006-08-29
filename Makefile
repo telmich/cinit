@@ -21,9 +21,9 @@ warn:
 %.o: %.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 
-all:: sources
+all: sources
 
-sources: config
+sources:
 	$(MAKE) -C src all
 
 docs: $(DDOC) bin/cdoc-man.sh
@@ -44,8 +44,9 @@ sizecheck: cinit cservice
 	@du -s $(SDIRS) | awk '{ sum+=$$1 } END { print sum }'
 #	@du -s bin client comm conf doc generic serv | awk '{ sum+=$1 } END { print sum }'
 
-clean::
-	rm -f *.o */*.o */*/*.o sbin/* $(CONFIG_H) ddoc/*
+clean:
+	$(MAKE) -C src clean
+	#rm -f *.o */*.o */*/*.o sbin/* $(CONFIG_H) ddoc/*
 	rm -f tmpbin/*
 
 cservice: $(SBIN)/cservice
