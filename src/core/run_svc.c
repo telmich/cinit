@@ -15,6 +15,8 @@
 
 #include "cinit.h"
 
+#error "needs to be cleaned up"
+
 /***********************************************************************
  * run_svc: run a service and before all dependencies
  */
@@ -29,7 +31,7 @@ int run_svc(char *rpath)
    /******************* absolute PATH ***************/
    /* save current working dir */
    if(! (int) getcwd(pathtmp,PATH_MAX)) {
-      perror(pathtmp);
+      print_errno(pathtmp);
       return RT_UNSPEC;
    }
 
