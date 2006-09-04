@@ -254,3 +254,4 @@ umount raus
 Check: use of perror, strerror+write?
 --------------------------------------------------------------------------------
 Check: tuning of ipc-code?
+local-services schlaegt fehl, ist aber nichts drin!
