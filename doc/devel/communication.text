@@ -176,3 +176,16 @@ This answer is used as a response to:
 
    - Question: Could you send information about a service?
 
+
+old Messages (to be transferred into this document)
+---------------------------------------------------
+   CMD_START_SVC:    I want to start a service.
+   CMD_CHG_STATUS:   I want to change the status of a service.
+   CMD_STOP_SVC:     Please shutdown a service.
+
+   CMD_RESCUE:       Kill everything, and spawn a sulogin shell.
+   CMD_UPDATE:       Hot-reboot system and reload cinit.
+
+   CMD_HALT:         Halt the system
+   CMD_REBOOT:       Reboot the system
+   CMD_POWEROFF:     Power-off the system

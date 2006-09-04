@@ -16,6 +16,7 @@ Introduction
 . AIMS
    - portability: no Linux-dependency anymore
    - cleaner signal handling
+   - better documentation so more people can use it
    
 
 Current problems
@@ -76,3 +77,39 @@ Misc
       links to the starting services
 
    
+
+cinit - Internals
+=================
+Nico Schottelius <nico-cinit__@__schottelius.org>
+0.1 for cinit-0.3, Initial version: So Feb 19 10:25:46 CET 2006
+:Author Initials: NS
+
+
+Introduction
+------------
+This document describes the internals of cinit. It is thought
+to be read by developers.
+
+
+Child handler code in cinit-0.3
+-------------------------------
+
+In cinit versions <= cinit-0.2.1 the respawning services where
+handled by an extra child handler, which was a fork of cinit. This
+had some problems:
+
+   - We allocated more memory than necessary, unecessary parts of
+     cinit were copied
+   - The SIG_CHILD-handler was not written very clean, in some versions
+     it was completly missing.
+
+
+. So in `cinit-0.3` we changed it the following way:
+   - no extra child handlers
+   - handle everything in the SIG_CHILD handling function
+   - when sig_child is recieved do:
+      - check against respawn list
+      -  if it is a respawning service, [do the following in a seperate fork?]
+         check whether it successfully stoped
+         - if yes: restart immediatly
+         - if no: sleep $sleep_time and then restart
