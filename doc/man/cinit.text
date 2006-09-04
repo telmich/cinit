@@ -1,0 +1,54 @@
+cinit(8)
+========
+Nico Schottelius <nico-linux-cinit__@__schottelius.org>
+
+
+NAME
+----
+cinit - fast executing, small and simple init with support for profiles
+
+
+SYNOPSIS
+--------
+'cinit' [cprofile:name_of_profile]
+
+
+DESCRIPTION
+-----------
+ccollect is a backup utility written in the sh-scripting language.
+It does not depend on a specific shell, only `/bin/sh` needs to be
+bourne shell compatibel (like 'dash', 'ksh', 'zsh', 'bash', ...).
+
+For more information refer to the texinfo or html documentation.
+
+
+OPTIONS
+-------
+
+cprofile:name_of_profile::
+   If specified, cinit will start the named profile instead of the
+   standard service (which is confdir/init/)
+
+BUGS
+----
+cinit is not tested nor documented very well currently.
+
+Additionally the porting to other OS is not finished yet.
+
+Both is work in progress.
+
+
+AUTHOR
+------
+Nico Schottelius <mailto:nico-linux-cinit__@__schottelius.org[]>
+
+
+RESOURCES
+---------
+Main web site: http://unix.schottelius.org/cinit/[]
+
+
+COPYING
+-------
+Copyright \(C) 2006 Nico Schottelius. Free use of this software is
+granted under the terms of the GNU General Public License (GPL).

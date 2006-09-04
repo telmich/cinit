@@ -1,0 +1,36 @@
+TODO:
+   - merge into "Cross compiling"
+
+cinit - Problems that may arise
+===============================
+Nico Schottelius <nico-linux-cinit__@__schottelius.org>
+0.1, for cinit 0.3, Initial Version from 2006-06-03
+:Author Initials: NS
+
+Max open files
+   OS dependent
+
+Installing cinit
+
+Introduction
+------------
+General sections, OS-specific, ...
+
+Installing
+----------
+
+From source
+~~~~~~~~~~~
+
+In General
+^^^^^^^^^^
+Download, edit conf/os to the os
+
+Cross-compiling
+^^^^^^^^^^^^^^^
+conf/os to destination os
+conf/cc
+conf/ld
+conf/cflags
+conf/ldflags
+
