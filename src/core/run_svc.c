@@ -37,7 +37,7 @@ int run_svc(char *rpath)
 
    /* change to rpath */
    if(chdir(rpath) == -1) {
-      perror(rpath);
+      print_errno(rpath);
       return RT_NOTEXIST;
    }
 
