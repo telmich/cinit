@@ -32,16 +32,18 @@ void do_reboot(int signal)
    //char **cmd;
    //int   i;
    
-   /* shutdown all services: take care about the dependency tree? */
+   /* shutdown all services: take care about the dependency tree */
 
-   /* do not listen to client requests anymore */
-//   cinit_ipc_destroy();
+   /* do not listen to client requests anymore
+    * FIXME: perhaps before shutdown? */
    cinit_ipc_destroy();
+
    /* now: all services are down, let's kill all other processes */
    if( kill(-1,SIGTERM) == -1) {
       print_errno(MSG_TERMKILL);
    }
 
+   /* FIXME make SLEEP_KILL an optional configuration statement */
    ts.tv_sec   = SLEEP_KILL; /* defined in conf/sleep_kill */
    ts.tv_nsec  = 0;
    nanosleep(&ts,NULL);
@@ -69,6 +71,4 @@ void do_reboot(int signal)
          cinit_halt();
          break;
    }
-
-   /* last action */
 }
