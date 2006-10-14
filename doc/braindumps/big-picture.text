@@ -11,3 +11,52 @@ Just a small hint-file for me to see how cinit works:
 --------------------------------------------------------------------------------
 another idea:
    
+   - cinit starts
+   - cinit reads the full depedency tree
+      * it builds n-depth trees
+      * it begins at the set init service (profile or init!)
+      * init is the first entry. always.
+      * read full service information (like on/off/params/respawn)
+      * design of each tree element: see below
+   - add a tree for the needs
+   - add a tree for the wants
+   - the elements have links, one service is created only once
+   - after the tree is created, execution begins
+      * begin from the bottom
+      * save a pointer to the last level somehow before?
+
+--------------------------------------------------------------------------------
+Sample dependency tree:
+
+                                       init
+                              /                  \
+                         needs                    wants
+                        /  |  \                  /  |  \
+                      a    b   c                d   e   f
+                  /        |     \
+               needs    needs    needs
+              /  |  \
+             b   c   d
+
+
+--------------------------------------------------------------------------------
+
+tree elements:
+   * name (= path)
+   * on, off, +params
+   * respawn_delay
+      - -1 if not respawning
+      - >= 0 time to wait between restart
+   * status
+      - NOT STARTED     (status on initialisation)
+      - RESPAWNING      (running, respawning)
+      - RESPAWN_DELAY   (waiting to respawn it)
+      - ONCE            (started once)
+   * errormsg
+      - pointer to an error message in case of failure
+   * needs
+      - List of services we need
+   * wants
+      - List of services we want
+   * used_by
+      - List of services which use this service
