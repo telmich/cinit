@@ -27,3 +27,9 @@ What todo with circular dependencies?
          be concerned:
             - start both a and b?
             - or stop due to circular dependency?
+
+   - Abort on detection of a circular dependency
+      * possible without pre-calculating?
+         - perhaps only with direct communication possible?
+      * pre calculate
+         - do not start that services?
