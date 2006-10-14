@@ -33,10 +33,10 @@ Sample dependency tree:
                          needs                    wants
                         /  |  \                  /  |  \
                       a    b   c                d   e   f
-                  /        |     \
-               needs    needs    needs
-              /  |  \
-             b   c   d
+                  /        |     \             /    |    \
+               needs    needs    needs       END  needs   END
+              /  |  \   \   |    |  |              |
+             b   c   d   c  f    a  e              a
 
 
 --------------------------------------------------------------------------------
