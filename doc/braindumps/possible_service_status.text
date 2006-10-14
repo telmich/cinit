@@ -6,5 +6,9 @@
          - senseful for single process service watcher
       * HINT: using nanosleep()?
          - senseful for per service process watcher
-
+   - NEED_FAILED
+      * add a (somehow terminated) list of services that failed?
+      * use global status to checkout which services failed?
+   - WANT_FAILED?
+      * NOT NECESSARY, it is a simple want, we do not need it.
 
