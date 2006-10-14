@@ -79,7 +79,13 @@ Now cinit would it do the following way:
 --------------------------------------------------------------------------------
 Now let's think about how this could look like in code...
 - when we built up the tree, we have some ends (n to say)
+- we can / must start starting (;-) at the end
+- we would have more than one line back (z may be needed by c, i, and a)
+   * like in "c is needed by s, c, o"
+   * maxdepth counter?
+   * asynchronous rollback?
 
+--> to think more about it!
 --------------------------------------------------------------------------------
 
 tree elements:
