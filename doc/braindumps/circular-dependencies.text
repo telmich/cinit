@@ -1,0 +1,10 @@
+What todo with circular dependencies?
+   a needs b
+   b needs a
+
+   - try to start them?
+      a wants b, so a service starter for b starts
+      service starter for b sees that a is needed
+      service starter for b sees that a is already being started
+      service starter for b begins to execute b
+      service a waits for b?
