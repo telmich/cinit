@@ -3,8 +3,27 @@ What todo with circular dependencies?
    b needs a
 
    - try to start them?
+         status a: is_starting
+         status b: not_set
       a wants b, so a service starter for b starts
+         status a: is_starting, waiting for b
+         status b: is_starting
       service starter for b sees that a is needed
       service starter for b sees that a is already being started
       service starter for b begins to execute b
-      service a waits for b?
+         status a: is_starting, waiting for b
+         status b: is_starting, executing "on"
+      service starter b finishes
+         status a: is_starting, waiting for b
+         status b: FAILED | RESPAWN | ONCE
+      service a continues
+         b successful:  execute on
+         b failed:      register / print that we do not start, because
+                        b failed
+   
+      -> this would only catch possible deadlocks, if the dependency
+         tree / status check is done dynamically
+      -> in case of pre-building the dep-tree this situation must
+         be concerned:
+            - start both a and b?
+            - or stop due to circular dependency?
