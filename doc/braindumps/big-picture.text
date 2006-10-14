@@ -63,6 +63,23 @@ How this would be sorted::
    f:
       -
 --------------------------------------------------------------------------------
+So in this case, cinit may start services the following way:
+   d f
+   -> Wouldn't be possible in pre-calculation, because of circular dependencies.
+--------------------------------------------------------------------------------
+   Try a 'real' dependency tree:
+      a needs b c d
+      b needs c d
+      c and d do not need other stuff
+--------------------------------------------------------------------------------
+Now cinit would it do the following way:
+   start c, start d
+   b will be started, as soon as c and d successfully finish
+   as soon as b is finished, a will be started
+--------------------------------------------------------------------------------
+Now let's think about how this could look like in code...
+- when we built up the tree, we have some ends (n to say)
+
 --------------------------------------------------------------------------------
 
 tree elements:
