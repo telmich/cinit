@@ -37,8 +37,24 @@ Sample dependency tree:
                needs    needs    needs       END  needs   END
               /  |  \   \   |    |  |              |
              b   c   d   c  f    a  e              a
-
-
+--------------------------------------------------------------------------------
+How this would be sorted::
+   init:
+      needs: a b c
+      wants: d e f
+   a:
+      needs: b c d
+   b:
+      needs: c f
+   c:
+      needs: a e
+   d:
+      -
+   e:
+      needs: a
+   f:
+      -
+--------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
 tree elements:
