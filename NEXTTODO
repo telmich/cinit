@@ -1,3 +1,5 @@
+- define how it should work (doc/braindums/big-picture.text)
+- define service status in one document, so repeatition stops!
 - define messages
    a) human readable
    b) binary data?
