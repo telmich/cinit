@@ -1,0 +1,10 @@
+
+   - NOT_SET: this service has not yet been initialized
+   - RESPAWNING: happily respawning
+   - RESPAWN_DELAY: waiting delay before restarting
+      * HINT: using alarm()?
+         - senseful for single process service watcher
+      * HINT: using nanosleep()?
+         - senseful for per service process watcher
+
+
