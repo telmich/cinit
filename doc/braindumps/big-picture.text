@@ -25,6 +25,14 @@ another idea:
       * begin from the bottom
       * save a pointer to the last level somehow before?
 
+Pre calculation:
+   - need to act on changes (some kind of file watcher)
+      * need to keep status (?)
+      * what with now missing needs / wants?
+         - missing needs: shutdown now missing needs?
+         - simply ignore them?
+         - shut them down if not needed (no one has a link in needs?)
+      * 
 --------------------------------------------------------------------------------
 Sample dependency tree:
 
