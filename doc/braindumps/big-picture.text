@@ -1,0 +1,13 @@
+Just a small hint-file for me to see how cinit works:
+
+   - cinit starts
+      * cinit executes either init or a profile
+         - the dependency-tree begins
+
+   - now cinit begins to try to execute the dependencies
+      * first the needs (if those fail, wants are never called)
+         - fork() for every dependency?
+         
+--------------------------------------------------------------------------------
+another idea:
+   
