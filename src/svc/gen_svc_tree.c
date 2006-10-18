@@ -15,12 +15,13 @@
 int gen_svc_tree(char *svc)
 {
    char buf[PATH_MAX+1];
+   DIR *dir;
 
    /* only do something if the service is not already known */
    if(svc_known(svc)) return 1;
 
    strcpy(buf,svc);
-   if(!path_append(buf,C_NEEDS) return 0;
+   if(!path_append(buf,C_NEEDS)) return 0;
 
    /* check for needs */
    /* 
