@@ -12,4 +12,12 @@
 
 int gen_svc_tree(char *start)
 {
+   /* only do something if the service is not already known */
+   if(svc_known(start)) return 1;
+
+   /* check for needs */
+
+   /* check for wants */
+
+   return 1;
 }
