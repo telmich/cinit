@@ -8,8 +8,6 @@
  *    List handling
  */
 
-#include <stdlib.h>
-#include <string.h>
 #include "cinit.h"
 
 /* search for an entry by path, reverse: from end to the beginning */
