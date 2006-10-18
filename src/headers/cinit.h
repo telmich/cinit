@@ -95,6 +95,7 @@ inline struct   listitem *list_search_pid(pid_t pid);
 
 /* generic */
 void execute_sth(char *basename);
+int path_append(char *path, char *append);
 
 /* util */
 int      msg_reboot(char cmd);

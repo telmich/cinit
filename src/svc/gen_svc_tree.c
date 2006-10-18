@@ -9,9 +9,12 @@
 
 #include "cinit.h"
 #include <unistd.h>
+#include <limits.h>        /* PATH_MAX    */
 
 int gen_svc_tree(char *start)
 {
+   char buf[PATH_MAX+1];
+
    /* only do something if the service is not already known */
    if(svc_known(start)) return 1;
 
