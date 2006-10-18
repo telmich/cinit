@@ -1,7 +1,11 @@
-/* (c) 2005 by Marcus Przyklink (downhill-clinux (at) burningchaos.org)
- * list handling: the processes cinit will execute/executed
- * part of cinit
- * changed some formatting, Nico Schottelius
+/***********************************************************************
+ * 
+ *    (c) 2005 Marcus Przyklink (downhill-clinux (at) burningchaos.org)
+ *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ * 
+ *    part of cLinux/cinit
+ * 
+ *    List handling
  */
 
 #include <stdlib.h>
