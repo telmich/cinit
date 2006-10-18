@@ -107,3 +107,16 @@ tree elements:
       - List of services we want
    * used_by
       - List of services which use this service
+--------------------------------------------------------------------------------
+
+Conclusions
+------------
+
+cinit as the main executor
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+If cinit should start all services directly and manage dependencies
+only internally, it will need to have build a reverse dependency tree,
+so it begins starting at the end.
+
+cinit could execute all possible parallel running services in parallel
+and open pipes to the (dumb) service executors.
