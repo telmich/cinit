@@ -9,17 +9,20 @@
 
 #include "cinit.h"
 #include <unistd.h>
+#include <string.h>
 #include <limits.h>        /* PATH_MAX    */
 
-int gen_svc_tree(char *start)
+int gen_svc_tree(char *svc)
 {
    char buf[PATH_MAX+1];
 
    /* only do something if the service is not already known */
-   if(svc_known(start)) return 1;
+   if(svc_known(svc)) return 1;
+
+   strcpy(buf,svc);
+   if(!path_append(buf,C_NEEDS) return 0;
 
    /* check for needs */
-   /* start (+ SLASH) + needs */
    /* 
     * create_path_needs()
     * opendir()

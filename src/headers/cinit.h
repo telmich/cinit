@@ -101,8 +101,10 @@ int path_append(char *path, char *append);
 int      msg_reboot(char cmd);
 void     print_errno(char *text);
 
-/* os-functions */
+/* service */
+int svc_known(char *svc);
 
+/* os-functions */
 void cinit_reboot(void);
 void cinit_halt(void);
 void cinit_poweroff(void);
