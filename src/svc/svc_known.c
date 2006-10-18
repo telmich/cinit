@@ -8,6 +8,7 @@
  */
 
 #include "cinit.h"
+#include <stdio.h>      /* NULL */
 
 int svc_known(char *svc)
 {
