@@ -1,5 +1,7 @@
 - create
-   svc_known() that searches by (absolute) pathname
+   * svc_known() that searches by (absolute) pathname
+   * svc_on() that tries to start a service
+   * svc_off() that tries to stop a service
 - define how it should work (doc/braindums/big-picture.text)
 - define service status in one document, so repeatition stops!
 - define messages
