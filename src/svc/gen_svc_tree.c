@@ -23,48 +23,29 @@
 int gen_svc_tree(char *svc)
 {
    char buf[PATH_MAX+1];
-   DIR *dir;
-
-   /* only do something if the service is not already known */
-   if(svc_known(svc)) return 1;
-
-   strcpy(buf,svc);
-   if(!path_append(buf,C_NEEDS)) return 0;
-
-   /* clone run_run_svcs into here */
-
-
-   DIR *d_tmp = NULL;
+   DIR *d_tmp;
    struct dirent *tdirent;
    char pathbuf[PATH_MAX+1];
    pid_t pids[MAX_DEPS];
    int status, i, ret = 1;
 
-   D_PRINTF(abspath);
+   /* only do something if the service is not already known */
+   if(svc_known(svc)) return 1;
 
+   /* create a template, so other instances won't try to recreate us */
+
+   strcpy(buf,svc);
+   if(!path_append(buf,C_NEEDS)) return 0;
+
+   /* open needs */
    d_tmp = opendir(abspath);
    
    /* if there is no such dir, we are finished */
-   if(d_tmp == NULL) {
-      return 1;
-   }
+   if(d_tmp != NULL) {
    
-   i = 0;
-   while( (tdirent = readdir(d_tmp) ) != NULL) {
-      /* ignore . and .. and everything with a . at the beginning */
-      if ( *(tdirent->d_name) == '.') continue;
-
-      if(i < MAX_DEPS) {
-         pids[i] = fork();
-      } else {
-         LOG(MSG_ERR_DEPS);
-         break;
-      }
-
-      if(pids[i] == -1) { /* err */
-         perror(MSG_ERR_FORK);
-         return 0;
-      }
+      while( (tdirent = readdir(d_tmp) ) != NULL) {
+         /* ignore . and .. and everything with a . at the beginning */
+         if ( *(tdirent->d_name) == '.') continue;
 
       if(pids[i] == 0) { /* child */
          strcpy(pathbuf,abspath);
