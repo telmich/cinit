@@ -11,5 +11,9 @@
       - needs entry in service
       - wanted by entry in dependencies
       - wants entry in service
+
+   * record
+      - (on,off)(,.env,.params)?
+      - alternatively put that code into service starter
    * add services without further needs into a special
      "begin" structure to be reused at fireing of the services?
