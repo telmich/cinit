@@ -25,11 +25,6 @@ enum {         /* FIXME: there are some default defines somewhere for that */
 /***********************************************************************
  * Paths
  */
-#define C_ONARG   C_ON  C_PARAMS    /* FIXME: OBSOLETE */
-#define C_OFFARG  C_OFF C_PARAMS    /* FIXME: OBSOLETE */
-#define C_ONENV   C_ON  C_ENV       /* FIXME: OBSOLETE */
-#define C_OFFENV  C_OFF C_ENV       /* FIXME: OBSOLETE */
-
 #define CINIT_INIT CINIT_DIR SLASH C_INIT
 #define CINIT_TMNT CINIT_DIR SLASH C_TMP
 #define CINIT_SOCK CINIT_TMNT SLASH C_SOCK
