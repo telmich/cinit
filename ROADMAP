@@ -2,7 +2,26 @@
 THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
 --------------------------------------------------------------------------------
 
+Timeline
+---------
+   * ~ End of October 2006:   Reunderstand the code, manifest changes
+   * ~ Mid of November 2006:  Have a compile-able cinit
+   * ~ End of November 2006:  Have a testsystem booting cinit
+   * ~ Mid of December 2006:  Have production stable cinit
+                                 - Begin with migration scripts
+                                 - publish installable pre-releases
+   * ~ End of December 2006:  Have some generic migration scripts
+                                 - Have (different) understanable documents
+   * ~ Mid of January 2007:   Begin official release of cinit-0.3
+
+
+
+
+Versions
+---------
+
 0.3:
+~~~
    code: Make cinit compile again :)
    code: double check to remove Linux specific source from general tree
    code: seperate ipc from the rest
