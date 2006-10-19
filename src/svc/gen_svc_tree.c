@@ -33,34 +33,37 @@ int gen_svc_tree(char *svc)
    if(svc_known(svc)) return 1;
 
    /* create a template, so other instances won't try to recreate us */
+   if(!svc_create(svc)) return 0;
 
+   /* check needs */
    strcpy(buf,svc);
    if(!path_append(buf,C_NEEDS)) return 0;
 
-   /* open needs */
-   d_tmp = opendir(abspath);
+   d_tmp = opendir(buf);
    
    /* if there is no such dir, we are finished */
    if(d_tmp != NULL) {
-   
       while( (tdirent = readdir(d_tmp) ) != NULL) {
          /* ignore . and .. and everything with a . at the beginning */
          if ( *(tdirent->d_name) == '.') continue;
 
-      if(pids[i] == 0) { /* child */
-         strcpy(pathbuf,abspath);
-         strcat(pathbuf,SLASH);
-         strcat(pathbuf,tdirent->d_name);
-         if ( run_svc(pathbuf) )
-            _exit(0);
-         else
-            _exit(1);
-      } else { /* parent */
-         ++i;
+         /* STOPPED */
+         /* check if entry is a directory */
+
+         /* get absolute pathname      */
+         if(!path_absolute(buf,tdirent->d_name)) return 0;
+
+         /* add all needs to our tree (call us recursively) */
+         if(!gen_svc_tree(buf)) return 0;
+      }
+      closedir(d_tmp);
+   } else {
+      if(errno != ENOENT) {
+         print_errno(buf);
+         return 0;
       }
    }
-
-   closedir(d_tmp);
+   /* read service information */
    
    /* wait for pids */
    --i; /* the index is one too much since last i++ */
