@@ -1,7 +1,8 @@
-svc/gen_svc_tree.c
-svc/list_delete.c
-svc/list_insert.c
-svc/list_modify.c
-svc/list_search.c
-svc/list_search_pid.c
-svc/svc_known.c
+svc/gen_svc_tree.o
+svc/list_delete.o
+svc/list_display_all.o
+svc/list_insert.o
+svc/list_modify.o
+svc/list_search.o
+svc/list_search_pid.o
+svc/svc_known.o

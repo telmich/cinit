@@ -67,6 +67,8 @@ char  do_result(int sock2, char *value);
 int      list_insert(char *path, int status);
 struct   listitem *list_search(char *path);
 int      list_delete(char *path);
+int      list_display_all();
+
 int      run_init_svc(char *cinit_svc);
 void     sigio(int socket);
 void     do_reboot(int signal);

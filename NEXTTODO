@@ -1,6 +1,4 @@
 - create
-   * svc_known() that searches by (absolute) pathname
-   * create path_absolute!
    * svc_on() that tries to start a service
    * svc_off() that tries to stop a service
 - define how it should work (doc/braindums/big-picture.text)
