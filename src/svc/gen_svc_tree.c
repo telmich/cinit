@@ -65,23 +65,6 @@ int gen_svc_tree(char *svc)
    }
    /* read service information */
    
-   /* wait for pids */
-   --i; /* the index is one too much since last i++ */
-   while(i >= 0) {
-      waitpid(pids[i], &status, 0);
-
-      /* if anything failed, we failed */
-      if( ! WIFEXITED(status)) {
-         ret = 0;
-      } else {
-         if( WEXITSTATUS(status) ) {
-            ret = 0;
-         }
-      }
-      --i;
-   }
-   return ret;
-
    /* check for needs */
    /* 
     * create_path_needs()
