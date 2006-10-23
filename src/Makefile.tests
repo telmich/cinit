@@ -15,4 +15,11 @@ tests: $(PROGS)
 test_build_argv: test/test_build_argv.o core/build_argv.o
 test_build_argv_link: test/test_build_argv+link.o core/build_argv.o
 
-test_gen_svc_tree: 
+test_gen_svc_tree: test/test_gen_svc_tree.o svc/list_display_all.o \
+							svc/list_display_all.o \
+							svc/list_display_all.o \
+							svc/list_display_all.o \
+							svc/list_display_all.o \
+							svc/gen_svc_tree.o 		\
+							generic/mini_printf.o \
+							svc/list_display_all.o

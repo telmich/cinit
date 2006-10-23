@@ -8,8 +8,8 @@
  */
 
 #include "cinit.h"
+#include <stdio.h>         /* NULL     */
 
-/* search for an entry by path, reverse: from end to the beginning */
 int list_display_all()
 {
    struct listitem *tmp;
@@ -21,7 +21,9 @@ int list_display_all()
    }
 
    do {
-      mini_pprintf(tmp->abs_path,1);
+      mini_printf("Service: ",1);
+      mini_printf(tmp->abs_path,1);
+      mini_printf("\n",1);
       tmp = tmp->before;
    } while(tmp != list);
    

@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "cinit.h"
 
+void     sig_child(int signal) { signal=2; } /* HACK */
+
 void set_signals(int action)
 {
    struct sigaction sa;

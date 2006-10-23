@@ -11,3 +11,4 @@ os/current
 tmpbin
 src/os/current
 src/ipc/current
+src/cinit

@@ -13,6 +13,8 @@
 #include "messages.h"
 #include "ipc.h"
 
+int run_svc(char *rpath) { rpath = "test"; return 0; }  /* a hack to compile cinit for now */
+
 int run_init_svc(char *cinit_svc)
 {
    pid_t pid;
