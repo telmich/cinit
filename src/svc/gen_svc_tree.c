@@ -47,11 +47,8 @@ int gen_svc_tree(char *svc)
          /* ignore . and .. and everything with a . at the beginning */
          if ( *(tdirent->d_name) == '.') continue;
 
-         /* STOPPED */
-         /* check if entry is a directory */
-
-         /* get absolute pathname      */
-         if(!path_absolute(buf,tdirent->d_name)) return 0;
+         /* skip non-working directories */
+         if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
 
          /* add all needs to our tree (call us recursively) */
          if(!gen_svc_tree(buf)) return 0;
@@ -65,16 +62,6 @@ int gen_svc_tree(char *svc)
    }
    /* read service information */
    
-   /* check for needs */
-   /* 
-    * create_path_needs()
-    * opendir()
-    *    skip .*
-    * chdir()
-    *    warn about broken links!
-    * gen_svc_tree(need)
-    */
-
    /* check for wants */
 
    return 1;
