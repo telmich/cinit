@@ -27,12 +27,12 @@ int main(int argc, char **argv)
    list     = NULL;              /* empty list of services  */
    initdir  = CINIT_INIT;        /* default init dir        */
 
-   cpid = getpid();
+   /* RE-ENABLE as SOON AS PRODUCTIVE cpid = getpid();
    if(cpid != 1) {
       mini_printf(CINIT_VERSION,2);
       mini_printf(MSG_USAGE,2);
       return 0;
-   }
+   }*/
 
    set_signals(ACT_SERV);
 
