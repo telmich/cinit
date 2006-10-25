@@ -1,0 +1,12 @@
+- doc/user/paths.text
+   * finish
+   * add examples
+- add cross-compilation howto
+Cross-compiling
+^^^^^^^^^^^^^^^
+conf/os to destination os
+conf/cc
+conf/ld
+conf/cflags
+conf/ldflags
+
