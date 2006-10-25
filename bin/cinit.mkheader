@@ -12,16 +12,16 @@ for conf in $CONFS; do
    value=$(head -n 1 $conf)
 
    # check if numeric: no quotes needed
-   numeric=$(echo $value | awk '/^((0[xX])[0-9a-fA-F]+)|([0-9]+)$/ { print }')
+   is_numeric=$(echo $value | awk '/^((0[xX])[0-9a-fA-F]+)|([0-9]+)$/ { print }')
+   is_string="$(echo $value | grep '^"')"
 
    #
    # Check for quote type
    #
-   if [ ! "$numeric" ]; then
-      one_char=$(echo $value | wc -c)
+   if [ ! "$is_numeric" -a ! "$is_string" ]; then
+      one_char=$(echo -n $value | wc -c)
       
-      # one character + \n
-      if [ "$one_char" -eq 2 ]; then
+      if [ "$one_char" -eq 1 ]; then
          value="'$value'"
       else
          # is a string

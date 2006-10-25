@@ -6,7 +6,7 @@
 #define _CINIT_MSG_H
 
 /* version */
-#define CINIT_VERSION      "cinit-0.2.2"
+#define CINIT_VERSION      "cinit-" VERSION
 #define MSG_BOOTING        CINIT_VERSION ": Booting from "
 
 #define MSG_DP    ": "
