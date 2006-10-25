@@ -27,7 +27,7 @@ int main(int argc, char **argv)
    list     = NULL;              /* empty list of services  */
    initdir  = CINIT_INIT;        /* default init dir        */
 
-   /* RE-ENABLE as SOON AS PRODUCTIVE cpid = getpid();
+   /* FIXME: RE-ENABLE as SOON AS PRODUCTIVE cpid = getpid();
    if(cpid != 1) {
       mini_printf(CINIT_VERSION,2);
       mini_printf(MSG_USAGE,2);
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
          if(initdir == NULL) {
             panic();
          }
-         strcpy(initdir,CINIT_DIR);
+         strcpy(initdir,CINIT_SVCDIR);
          strcat(initdir,SLASH);
          strcat(initdir,&argv[argc-1][strlen(PROFILE)]);
          break;
@@ -54,10 +54,8 @@ int main(int argc, char **argv)
       argc--;
    }
 
-   /* tell the world we are there FIXME: do we really need three calls? */
-   mini_printf(MSG_BOOTING,1);
-   mini_printf(initdir,1);
-   mini_printf("\n",1);
+   /* FIXME: do we really need three calls? */
+   mini_printf(MSG_BOOTING,1); mini_printf(initdir,1); mini_printf("\n",1);
 
    if(chdir(CINIT_INIT) == -1) {
       perror(MSG_CHDIR);
