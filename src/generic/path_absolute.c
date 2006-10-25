@@ -8,10 +8,19 @@
  */
 
 #include <unistd.h>                 /* chdir(),getcwd       */
+#include <limits.h>                 /* PATH_MAX             */
 #include "cinit.h"                  /* print_errno          */
+#include "messages.h"               /* print_errno          */
 
 int path_absolute(char *relpath, char *newpath, size_t size)
 {
+   char oldpath[PATH_MAX+1];
+
+   if(!getcwd(oldpath,PATH_MAX+1)) {
+      print_errno(MSG_CHDIR);
+      return 0;
+   }
+
    if(chdir(relpath) == -1) {
       print_errno(relpath);
       return 0;
@@ -19,6 +28,11 @@ int path_absolute(char *relpath, char *newpath, size_t size)
 
    if(!getcwd(newpath,size)) {
       print_errno(relpath);
+      return 0;
+   }
+
+   if(chdir(oldpath) == -1) {
+      print_errno(oldpath);
       return 0;
    }
 
