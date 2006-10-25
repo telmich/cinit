@@ -4,33 +4,64 @@ Nico Schottelius <nico-linux-cinit__@__schottelius.org>
 0.1, for cinit 0.3, Initial Version from 2006-06-03
 :Author Initials: NS
 
-Configuring cinit
+Configuring cinit - the paths used
+
 
 Introduction
 ------------
-/etc/cinit, adjustable pre-compilation in conf/
+The base directory under which all configurations are found
+is '/etc/cinit'.
 
-
+The basic hierarchy is shown below:
+----------------------------------------------------------------------
 /etc/cinit
    svc      -> services
-   conf     -> "configuration"
+   conf     -> general configuration
+----------------------------------------------------------------------
 
-/etc/cinit/conf
-   panic{.*}
-   umount{.*}
 
-From source
-~~~~~~~~~~~
+General pathnames
+~~~~~~~~~~~~~~~~~~
+When you create something that cinit should execute (like on
+starting a service, on stopping a service, on panic, ...), cinit
+will recognize the following extensions:
 
-In General
-^^^^^^^^^^
-Download, edit conf/os to the os
+. cinit executions extensions
+   - 'name' - the file that should be executed
+   - 'name'.params - the parameter to pass to 'name' when executing
+   - 'name'.env - the environment to pass to 'name' when executing
 
-Cross-compiling
-^^^^^^^^^^^^^^^
-conf/os to destination os
-conf/cc
-conf/ld
-conf/cflags
-conf/ldflags
 
+Name.params
+^^^^^^^^^^^
+The 'params' file is a simple file containing one argument on each
+line.
+
+Name.env
+^^^^^^^^
+The 'env' file contains one assignment on each line.
+"testvar=testvalue".
+
+
+The subdirectory 'conf'
+~~~~~~~~~~~~~~~~~~~~~~~
+In this directory are general configurations located.
+
+. The executable files in this directory are:
+   - panic{.*}
+   - umount{.*}
+
+The subdirectory 'svc'
+~~~~~~~~~~~~~~~~~~~~~~
+This directory contains the services. A service is a directory
+which may contain the following files:
+
+. List of files
+   - on - What to execute when starting the service
+      * on.env - Environment to pass to 'on'
+      * on.params - Parameters to pass to 'on'
+   - off - What to execute when stopping the service
+      * off.env - Environment to pass to 'on'
+      * off.params - Parameters to pass to 'on'
+   - respawn - An empty file that tells cinit to restart the service
+      when it exits

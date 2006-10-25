@@ -1,3 +1,4 @@
+- change bootup to ../svc/
 - create
    * svc_on() that tries to start a service
    * svc_off() that tries to stop a service
