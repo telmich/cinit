@@ -25,7 +25,8 @@ enum {         /* FIXME: there are some default defines somewhere for that */
 /***********************************************************************
  * Paths
  */
-#define CINIT_INIT CINIT_DIR SLASH C_INIT
+#define CINIT_SVCDIR CINIT_DIR SLASH SVCDIR
+#define CINIT_INIT CINIT_SVCDIR SLASH C_INIT
 #define CINIT_TMNT CINIT_DIR SLASH C_TMP
 #define CINIT_SOCK CINIT_TMNT SLASH C_SOCK
 #define CINIT_BIN  PREFIX SLASH "sbin" SLASH "cinit"

@@ -40,7 +40,7 @@ int main(int argc, char **argv)
    while(argc > 1) {
       if( !strncmp(PROFILE, argv[argc-1], strlen(PROFILE)) ) {
          initdir = (char *) malloc(
-                              strlen(CINIT_DIR) +
+                              strlen(CINIT_SVCDIR) +
                               strlen(&argv[argc-1][strlen(PROFILE)]) + 2
                               );
          if(initdir == NULL) {
