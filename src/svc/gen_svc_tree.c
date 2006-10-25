@@ -19,19 +19,17 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <limits.h>
+#include <errno.h>
 
 int gen_svc_tree(char *svc)
 {
    char buf[PATH_MAX+1];
    DIR *d_tmp;
    struct dirent *tdirent;
-   char pathbuf[PATH_MAX+1];
-   pid_t pids[MAX_DEPS];
-   int status, i, ret = 1;
 
-   mini_printf("Service: ");
-   mini_printf(svc);
-   mini_printf("\n");
+   mini_printf("Service: ",1);
+   mini_printf(svc,1);
+   mini_printf("\n",1);
    /* only do something if the service is not already known */
    if(svc_known(svc)) return 1;
 

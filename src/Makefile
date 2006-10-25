@@ -25,7 +25,7 @@ CONFIG_H=headers/config.h
 CINIT_HEADERS=$(shell cat headers/listing)
 CINIT_CORE_OBJ=$(shell cat core/objects)
 CINIT_GENERIC_OBJ=$(shell cat generic/objects)
-CINIT_SVC_OBJ=$(shell cat generic/objects)
+CINIT_SVC_OBJ=$(shell cat svc/objects)
 
 #
 # The current link may be missing in the first run

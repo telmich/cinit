@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cinit.h"
+#include "messages.h"
 
 int list_insert(char *path, int status)
 {

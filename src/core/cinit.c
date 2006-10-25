@@ -67,6 +67,9 @@ int main(int argc, char **argv)
       panic();
    }
 
+   /* pre-calculate service tree */
+   gen_svc_tree(initdir);
+
    /* start init or profile */
    run_init_svc(initdir);
 

@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cinit.h"
+#include "comm.h"    /* for ST_OFF */
 
 /* change pid and status of a process */
 int list_modify(char *path, int new_status, pid_t new_pid)
