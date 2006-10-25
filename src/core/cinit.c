@@ -58,7 +58,7 @@ int main(int argc, char **argv)
    mini_printf(MSG_BOOTING,1); mini_printf(initdir,1); mini_printf("\n",1);
 
    if(chdir(initdir) == -1) {
-      perror(MSG_CHDIR);
+      print_errno(initdir);
       panic();
    }
    

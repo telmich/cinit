@@ -29,6 +29,9 @@ int gen_svc_tree(char *svc)
    pid_t pids[MAX_DEPS];
    int status, i, ret = 1;
 
+   mini_printf("Service: ");
+   mini_printf(svc);
+   mini_printf("\n");
    /* only do something if the service is not already known */
    if(svc_known(svc)) return 1;
 
