@@ -23,7 +23,7 @@
 
 int gen_svc_tree(char *svc)
 {
-   char buf[PATH_MAX+1];
+   char buf[PATH_MAX+1], *p;
    DIR *d_tmp;
    struct dirent *tdirent;
 
@@ -40,19 +40,34 @@ int gen_svc_tree(char *svc)
    strcpy(buf,svc);
    if(!path_append(buf,C_NEEDS)) return 0;
 
+   for(p=buf; *p != \'0'; p++) ; /* save current end */
+
    d_tmp = opendir(buf);
    
    /* if there is no such dir, we are finished */
    if(d_tmp != NULL) {
+      if(chdir(buf) == -1) {
+         print_errno(buf);
+         return 0;
+      }
+
+      /* FIXME: problem: relative paths, due to non-chdir */
       while( (tdirent = readdir(d_tmp) ) != NULL) {
          /* ignore . and .. and everything with a . at the beginning */
          if ( *(tdirent->d_name) == '.') continue;
+
+   mini_printf(tdirent->d_name,1);
+   mini_printf("\n",1);
 
          /* skip non-working directories */
          if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
 
          /* add all needs to our tree (call us recursively) */
          if(!gen_svc_tree(buf)) return 0;
+      }
+      if(chdir(svc) == -1) {
+         print_errno(svc);
+         return 0;
       }
       closedir(d_tmp);
    } else {

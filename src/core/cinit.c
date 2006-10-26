@@ -70,6 +70,8 @@ int main(int argc, char **argv)
    /* pre-calculate service tree */
    gen_svc_tree(initdir);
 
+   mini_printf("test\n",1);
+
    /* start init or profile */
    run_init_svc(initdir);
 
