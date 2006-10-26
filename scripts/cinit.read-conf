@@ -6,11 +6,12 @@
 CONFS=$($(dirname $0)/cinit.get-confdir)/*
 
 set -e
+set -x
 
 for conf in $CONFS; do
    NAME="$(basename $conf | tr a-z A-Z)"
    if eval test -z \$$NAME; then
-      eval $NAME="$(head -n 1 $conf)"
+      eval $NAME=\"$(head -n 1 $conf)\"
       eval export $NAME
    fi
 #   eval echo $NAME = \$$NAME
