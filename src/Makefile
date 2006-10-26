@@ -110,7 +110,7 @@ distclean:
 	rm -f os/current ipc/current
 
 $(CONFIG_H): ../conf/*
-	../bin/cinit.mkheader > $(CONFIG_H)
+	../scripts/cinit.mkheader > $(CONFIG_H)
 
 cservice: $(SBIN)/cservice
 
