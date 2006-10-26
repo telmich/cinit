@@ -1,30 +1,32 @@
 cinit-0.3:
-   * added first parts for portable version
+   - cinit is now compileable on standard Unices
+   - Rewrote script infrastructure
 
 cinit-0.2.1: (Bugfix release)
-- Fixed problem in contrib+tools/Makefile when installing
-- added many new scripts to convert sys-v-init, which are still early beta
-  (see bin/cinit.merge.sysvinit-debian-sid)
+   - Fixed problem in contrib+tools/Makefile when installing
+   - added many new scripts to convert sys-v-init, which are still early beta
+      (see bin/cinit.merge.sysvinit-debian-sid)
+
 cinit-0.2:
-- Much more verbose error reporting
-- You can now also disable 'once ran' services,
-- You can restart services with csevice -r
-- Online speech in German is available
-- C_DELAY support - variable delay for sending SIGKILL after SIGTERM
-- First /etc/csys configuration example (wasserstoff) is available
-- a Mailing list was created
-- Added tools to analyze cinit configuration
-   (cinit-vis.pl, cinit.graph.text.c)
-- Added tools to import and export configuration to XML
-  (make.cconfig.from.xml.rb,cconfig.graph.xml.rb)
-- Removed unecessary signalling
-- Added many helper scripts to install services (cinit.install.service*)
-- Fixed many small bugs in old helper scripts (cinit.add.getty, cinit.get-conf, ...)
-- Added ccontrol, which allows to control cinit
-- Added update (-u) via ccontrol
-- Stripped cservice, which now "only" controls services
-- Removed swapoff from cinit code, should be handled by off
-- Much better error and processing descriptions
-- A bit more verbose reporting
-- Restructured run_svc, now with better error detection
-- Removed Kernel panic, when halting system
+   - Much more verbose error reporting
+   - You can now also disable 'once ran' services,
+   - You can restart services with csevice -r
+   - Online speech in German is available
+   - C_DELAY support - variable delay for sending SIGKILL after SIGTERM
+   - First /etc/csys configuration example (wasserstoff) is available
+   - a Mailing list was created
+   - Added tools to analyze cinit configuration
+      (cinit-vis.pl, cinit.graph.text.c)
+   - Added tools to import and export configuration to XML
+      (make.cconfig.from.xml.rb,cconfig.graph.xml.rb)
+   - Removed unecessary signalling
+   - Added many helper scripts to install services (cinit.install.service*)
+   - Fixed many small bugs in old helper scripts (cinit.add.getty, cinit.get-conf, ...)
+   - Added ccontrol, which allows to control cinit
+   - Added update (-u) via ccontrol
+   - Stripped cservice, which now "only" controls services
+   - Removed swapoff from cinit code, should be handled by off
+   - Much better error and processing descriptions
+   - A bit more verbose reporting
+   - Restructured run_svc, now with better error detection
+   - Removed Kernel panic, when halting system

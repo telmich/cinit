@@ -3,8 +3,10 @@
 # 2006-10-23
 # cLinux/cinit
 
-DIR=/etc/cinit
+. $(dirname $0)/cinit.build-env
 
-mkdir -p "$DIR"
-mkdir "${DIR}/svc"
-mkdir "${DIR}/conf"
+set -e
+
+mkdir -p "$BASEDIR"
+mkdir -p "${SERVICES}"
+mkdir -p "${CONFIG}"

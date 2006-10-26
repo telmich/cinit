@@ -7,4 +7,6 @@
 
 . $(dirname $0)/cinit.read-conf
 
-
+export BASEDIR=${DESTDIR}${CINIT_DIR}
+export SERVICES=${BASEDIR}/${SVCDIR}
+export CONFIG=${BASEDIR}/${CONFDIR}
