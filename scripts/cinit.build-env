@@ -1,0 +1,10 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: build environment to be used in scripts
+#  * Should be sourced by using scripts
+# 2006-10-26
+# 
+
+. $(dirname $0)/cinit.read-conf
+
+

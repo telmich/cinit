@@ -1,12 +1,12 @@
 #!/bin/sh
 # Nico Schottelius
 # cinit: read configuration into variables
+# ~ 2005
 # 
 
 CONFS=$($(dirname $0)/cinit.get-confdir)/*
 
 set -e
-set -x
 
 for conf in $CONFS; do
    NAME="$(basename $conf | tr a-z A-Z)"

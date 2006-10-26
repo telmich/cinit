@@ -1,0 +1,3 @@
+conf
+
+The subdirectory below /etc/cinit to be used for general configurations.
