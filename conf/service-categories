@@ -1,0 +1,4 @@
+getty local-tuning local-services mount network remote-services
+
+List of directories normally created below /etc/cinit/svc/ as
+'pseudo-services'.
