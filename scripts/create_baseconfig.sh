@@ -8,5 +8,8 @@
 set -e
 
 mkdir -p "$BASEDIR"
+
 mkdir -p "${SERVICES}"
+mkdir -p "${SERVICES}/${C_INIT}"
+
 mkdir -p "${CONFIG}"
