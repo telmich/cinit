@@ -1,6 +1,7 @@
 #!/bin/sh
 # Nico Schottelius
 # 2006-10-23
+# cLinux/cinit
 
 DIR=/etc/cinit
 

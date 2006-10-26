@@ -40,7 +40,7 @@ int gen_svc_tree(char *svc)
    strcpy(buf,svc);
    if(!path_append(buf,C_NEEDS)) return 0;
 
-   for(p=buf; *p != \'0'; p++) ; /* save current end */
+   for(p=buf; *p != '\0'; p++) ; /* save current end */
 
    d_tmp = opendir(buf);
    
