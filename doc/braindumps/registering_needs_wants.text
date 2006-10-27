@@ -1,0 +1,55 @@
+Each service has a list of services it
+   - needs
+   - is needed by
+   - wants
+   - is wanted by
+
+
+Each entry is a service pointer.
+The simplest list could look like this:
+
+   service a:
+      needs:
+         b f g NULL
+
+So the needs pointer is NULL terminated:
+   needs = realloc(count_links)
+      -> how to get the count?
+   0x02
+   0x
+
+   Better: A double linked list (like the main service list)?
+
+Could look like:
+   service a:
+      needs:
+         *service
+         *next
+         *prev
+
+This design could also be used for wants.
+
+On the other hand, we've to register us at the needed/wanted service:
+
+   service b:
+      needed_by:
+         *service
+         *next
+         *prev
+
+
+So each service needs four pointers:
+   needs
+   needed_by
+   wants
+   wanted_by
+
+And on each <dep = needs|wants> request both lists have to be modified!
+
+Example:
+   
+   Service "a" adds "b" as needed:
+
+      - add "a" needs "b"
+      - add "b" needed_by "a"
+
