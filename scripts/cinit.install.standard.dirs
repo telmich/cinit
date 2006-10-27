@@ -4,12 +4,10 @@
 # Date: 2005-08-07
 # 
 
-. $(dirname $0)/cinit.read-conf
+. $(dirname $0)/cinit.build-env
 
-"$INSTALL_PROG" "$INSTALL_DIRECTORY" "$DESTDIR/$CINIT_DIR/getty"
-"$INSTALL_PROG" "$INSTALL_DIRECTORY" "$DESTDIR/$CINIT_DIR/local-services"
-"$INSTALL_PROG" "$INSTALL_DIRECTORY" "$DESTDIR/$CINIT_DIR/local-tuning"
-"$INSTALL_PROG" "$INSTALL_DIRECTORY" "$DESTDIR/$CINIT_DIR/mount"
-"$INSTALL_PROG" "$INSTALL_DIRECTORY" "$DESTDIR/$CINIT_DIR/network"
+for svc in $SERVICE_CATEGORIES; do
+   "$INSTALL_PROG" "$INSTALL_DIRECTORY" "${SERVICES}/${svc}"
+done
 
 exit 0

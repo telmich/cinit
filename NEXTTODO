@@ -1,5 +1,9 @@
-- change bootup to ../svc/
 - create
+   * svc_add_needs
+      - also adds 'needed by'!
+   * svc_add_wants
+      - also adds 'wanted by'!
+   * Same for svc_del_{needs/wants}
    * svc_on() that tries to start a service
    * svc_off() that tries to stop a service
 - define how it should work (doc/braindums/big-picture.text)
