@@ -2,3 +2,21 @@ Lists in cinit-0.3 are generalized, all have the same general layout:
 
    - double linked
    - have 'prev' and 'next' as pointers
+
+   Add an element to a list
+
+     /--------------------------\ 
+    |<->first<->middle<->last<->|
+
+
+   After insert:
+
+     /-------------------------------\ 
+    |<->first<->middle<->last<->new<->|
+
+   We alway have 'first'.
+   Need to adjust:
+      - new->prev = last   (= first->next)
+      - new->next = first
+      - first->prev  = new
+      - first->prev->next (= last->next)  = new
