@@ -1,6 +1,5 @@
 /***********************************************************************
  * 
- *    (c) 2005 Marcus Przyklink (downhill-clinux (at) burningchaos.org)
  *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
  * 
  *    part of cLinux/cinit
@@ -11,14 +10,22 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cinit.h"
-#include "svc.h"
 #include "messages.h"
 
-int list_insert(char *path, int status)
+/*
+ * list: pointer to the list
+ * new:  pointer to insert
+ * size: size of an element in the list (for initialisation)
+ */
+int entry_add(void *list, void *new, size_t size)
 {
    struct listitem *tmp;
 
    tmp = malloc( sizeof(struct listitem) );
+
+   if( list == NULL ) {
+      return 0;
+   }
 
    if( tmp == NULL ) {
       return 0;

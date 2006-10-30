@@ -16,8 +16,9 @@ int svc_add_needs(char *needs, char *is_needed)
 {
    struct listitem *svc_needs, *svc_is_needed;
 
-   svc_needs = svc_is_needed = NULL;
 
+   /* retrieve service entries in global service list */
+   svc_needs = svc_is_needed = NULL;
    svc_needs = list_search(needs);
    svc_is_needed = list_search(is_needed);
 
@@ -37,8 +38,8 @@ int svc_add_needs(char *needs, char *is_needed)
       svc->next = neu;
    }
 
-   /* write generic function: */
-   list_entry_add(list_pointer,new_entry);
+   /* write generic function for dependencies or even all lists */
+   dep_entry_add(list_pointer,new_entry);
 
    if( list == NULL ) { /* list is empty, we have to init it */
       list = tmp;

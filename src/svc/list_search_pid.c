@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cinit.h"
+#include "svc.h"
 
 /* find service by pid, needs to be online because it is called
  * by a signal handler

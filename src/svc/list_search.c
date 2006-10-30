@@ -8,9 +8,10 @@
  *    List handling
  */
 
-#include "cinit.h"
 #include <stdio.h>         /* NULL              */
 #include <string.h>        /* strcmp            */
+#include "cinit.h"
+#include "svc.h"
 
 /* search for an entry by path, reverse: from end to the beginning */
 struct listitem *list_search(char *path)

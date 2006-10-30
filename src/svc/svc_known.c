@@ -7,8 +7,8 @@
  *    Check whether service is existent
  */
 
-#include "cinit.h"
 #include <stdio.h>      /* NULL */
+#include "svc.h"
 
 int svc_known(char *svc)
 {

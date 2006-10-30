@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cinit.h"
+#include "svc.h"
 
 /* ... */
 int list_delete(char *path)

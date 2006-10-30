@@ -1,0 +1,4 @@
+Lists in cinit-0.3 are generalized, all have the same general layout:
+
+   - double linked
+   - have 'prev' and 'next' as pointers
