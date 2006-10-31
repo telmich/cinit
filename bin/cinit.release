@@ -13,9 +13,10 @@ fi
 DIR=$1
 VERSION=$2
 OUT_NAME=cinit-${VERSION}.tar.bz2
-D_HOST=creme.schottelius.org
-D_DIR=www/org/schottelius/linux/cinit/archives/
-D_SOURCE=www/org/schottelius/linux/cinit/browse_source/
+D_HOST=home.schottelius.org
+D_BASE=www/org/schottelius/unix/www/cinit
+D_DIR=${D_BASE}/archives/
+D_SOURCE=${D_BASE}/browse_source/
 
 if [ ! -d "$DIR" ]; then
    echo "$DIR is not a directory"
