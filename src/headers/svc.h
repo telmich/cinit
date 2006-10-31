@@ -37,4 +37,9 @@ int svc_known(char *svc);
 int svc_create(char *svc);
 int gen_svc_tree(char *svc);
 
+enum dep_types {
+   DEP_WANTS,
+   DEP_NEEDS
+};
+
 #endif   /* _CINIT_SVC_H */

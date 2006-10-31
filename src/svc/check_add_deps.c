@@ -23,7 +23,7 @@
 #include "cinit.h"
 #include "messages.h"
 
-int gen_svc_tree(char *svc)
+int check_add_deps(char *svc,int type)
 {
    char buf[PATH_MAX+1];
    char oldpath[PATH_MAX+1];
