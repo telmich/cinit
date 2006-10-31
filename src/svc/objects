@@ -1,4 +1,5 @@
 svc/gen_svc_tree.o
+svc/list_entry_add.o
 svc/list_delete.o
 svc/list_display_all.o
 svc/list_insert.o
@@ -7,3 +8,4 @@ svc/list_search.o
 svc/list_search_pid.o
 svc/svc_known.o
 svc/svc_create.o
+svc/check_add_deps.o

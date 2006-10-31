@@ -7,6 +7,7 @@
  *    Pre calculate the service tree
  */
 
+/* FIXME: clean headers */
 #include <unistd.h>
 #include <string.h>
 #include <limits.h>        /* PATH_MAX    */
@@ -22,6 +23,7 @@
 
 #include "cinit.h"
 #include "messages.h"
+#include "svc.h"
 
 int check_add_deps(char *svc,int type)
 {
@@ -61,13 +63,15 @@ int check_add_deps(char *svc,int type)
       /* ignore . and .. and everything with a . at the beginning */
       if ( *(tdirent->d_name) == '.') continue;
 
+      /* skip non-working directories */
+      if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
+
       /* FIXME: Debug */
       mini_printf("cad::",1);
       mini_printf(tdirent->d_name,1);
+      mini_printf(" :: ",1);
+      mini_printf(buf,1);
       mini_printf("\n",1);
-
-      /* skip non-working directories */
-      if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
 
       /* add dependencies of the new service */
       if(!gen_svc_tree(buf)) return 0;

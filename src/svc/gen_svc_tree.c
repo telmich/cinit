@@ -21,6 +21,7 @@
 #include <errno.h>
 
 #include "cinit.h"
+#include "svc.h"
 #include "messages.h"
 
 int gen_svc_tree(char *svc)
