@@ -1,6 +1,7 @@
-cinit-0.3:
-   - cinit is now compileable on standard Unices
-   - Rewrote script infrastructure
+cinit-0.3pre1:
+   - cinit should now compile on mostly all unices
+   - introduced much new code
+   - THIS IS A DEVELOPER RELEASE, NOT USABLE IN PRODUCTION ENVIRONMENTS.
 
 cinit-0.2.1: (Bugfix release)
    - Fixed problem in contrib+tools/Makefile when installing
