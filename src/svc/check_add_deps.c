@@ -30,67 +30,55 @@ int check_add_deps(char *svc,int type)
    DIR *d_tmp;
    struct dirent *tdirent;
 
-   mini_printf("Adding service: ",1);
-   mini_printf(svc,1);
-   mini_printf("\n",1);
-
-   /* only do something if the service is not already known */
-   if(svc_known(svc))   return 1;
-
-   /* create a template, so other instances won't try to recreate us */
-   if(!svc_create(svc)) return 0;
-
-   /* check needs */
-   strcpy(buf,svc);
-   if(!path_append(buf,C_NEEDS)) return 0;
-
-   d_tmp = opendir(buf);
-
+   /* remember where we are */
    if(!getcwd(oldpath,PATH_MAX+1)) {
       print_errno(MSG_CHDIR);
       return 0;
    }
-   
-   /* if there is no such dir, we are finished */
-   if(d_tmp != NULL) {
-      if(chdir(buf) == -1) {
-         print_errno(buf);
-         return 0;
-      }
 
-      while( (tdirent = readdir(d_tmp) ) != NULL) {
-         /* ignore . and .. and everything with a . at the beginning */
-         if ( *(tdirent->d_name) == '.') continue;
-
-   mini_printf(tdirent->d_name,1);
-   mini_printf("\n",1);
-
-         /* skip non-working directories */
-         if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
-
-         /* add all needs to our tree (call us recursively) */
-         if(!gen_svc_tree(buf)) return 0;
-      }
-      if(chdir(svc) == -1) {
-         print_errno(svc);
-         return 0;
-      }
-
-      if(chdir(oldpath) == -1) {
-         print_errno(buf);
-         return 0;
-      }
-      closedir(d_tmp);
+   /* Create path */
+   strcpy(buf,svc);
+   if(type == DEP_NEEDS) {
+      if(!path_append(buf,C_NEEDS)) return 0;
    } else {
+      if(!path_append(buf,C_WANTS)) return 0;
+   }
+
+   d_tmp = opendir(buf);
+   if(d_tmp == NULL) {
       if(errno != ENOENT) {
          print_errno(buf);
          return 0;
       }
+      return 1;   /* it's fine when there's no needs */
    }
-   /* read service information */
-   /* svc_add_needs(svc); */
-   
-   /* check for wants */
+   if(chdir(buf) == -1) { /* change to needs or wants */
+      print_errno(buf);
+      return 0;
+   }
+
+   while( (tdirent = readdir(d_tmp) ) != NULL) {
+      /* ignore . and .. and everything with a . at the beginning */
+      if ( *(tdirent->d_name) == '.') continue;
+
+      /* FIXME: Debug */
+      mini_printf("cad::",1);
+      mini_printf(tdirent->d_name,1);
+      mini_printf("\n",1);
+
+      /* skip non-working directories */
+      if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
+
+      /* add dependencies of the new service */
+      if(!gen_svc_tree(buf)) return 0;
+
+      /* now add to our list */
+   }
+   if(chdir(oldpath) == -1) {
+      print_errno(buf);
+      return 0;
+   }
+   closedir(d_tmp);
 
    return 1;
 }

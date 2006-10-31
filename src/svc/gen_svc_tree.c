@@ -40,6 +40,11 @@ int gen_svc_tree(char *svc)
    /* create a template, so other instances won't try to recreate us */
    if(!svc_create(svc)) return 0;
 
+   if(!check_add_deps(svc,DEP_NEEDS)) return 0;
+   if(!check_add_deps(svc,DEP_WANTS)) return 0;
+
+   return 1;
+
    /* check needs */
    strcpy(buf,svc);
    if(!path_append(buf,C_NEEDS)) return 0;
