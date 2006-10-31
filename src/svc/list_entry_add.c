@@ -17,7 +17,7 @@
  * new:  pointer to data to insert (already filled up)
  * size: size of an element in the list (for initialisation)
  */
-int entry_add(void *list, void *new)
+int list_entry_add(void *list, void *new)
 {
    if( list == NULL ) {       /* new list          */
       list        = new;
