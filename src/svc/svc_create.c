@@ -10,15 +10,10 @@
 #include <stdio.h>      /* NULL */
 #include "svc.h"
 
+/* checking for existence is done before! */
 int svc_create(char *svc)
 {
-   /* status is currently -1 -> unset */
-   /* FIXME: do NOT use list_insert, as it does not
-    * check whether the service already exists!
-    *
-    * Is that really an issue? We are most likely only called
-    * from gen_svc_tree, which checks before...
-    */
 
+   /* FIXME: change to list_entry_add later */
    return list_insert(svc,-1);
 }

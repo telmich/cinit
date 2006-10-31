@@ -4,7 +4,7 @@
  * 
  *    part of cLinux/cinit
  * 
- *    List handling
+ *    List handling: Add a new item to a (non-)empty list
  */
 
 #include <stdlib.h>
@@ -15,7 +15,6 @@
 /*
  * list: pointer to the list
  * new:  pointer to data to insert (already filled up)
- * size: size of an element in the list (for initialisation)
  */
 int list_entry_add(void *list, void *new)
 {

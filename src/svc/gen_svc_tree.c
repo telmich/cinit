@@ -35,7 +35,7 @@ int gen_svc_tree(char *svc)
    mini_printf("\n",1);
 
    /* only do something if the service is not already known */
-   if(svc_known(svc)) return 1;
+   if(svc_known(svc))   return 1;
 
    /* create a template, so other instances won't try to recreate us */
    if(!svc_create(svc)) return 0;

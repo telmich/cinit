@@ -22,6 +22,7 @@ int svc_add_needs(char *needs, char *is_needed)
    svc_needs = list_search(needs);
    svc_is_needed = list_search(is_needed);
 
+   /* and exit if one is missing */
    if( !svc_needs || !svc_is_needed ) {
       return 0;
    }
