@@ -7,6 +7,9 @@
  *    List handling: Add a new item to a (non-)empty list
  */
 
+#include <stdio.h>
+#include "svc.h"
+
 /*
  * list: pointer to the list
  * new:  pointer to data to insert (already filled up)
