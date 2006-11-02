@@ -32,7 +32,7 @@ int check_add_deps(char *svc,int type)
    DIR *d_tmp;
    struct dirent *tdirent;
 
-   /* remember where we are */
+   /* remember where we started */
    if(!getcwd(oldpath,PATH_MAX+1)) {
       print_errno(MSG_CHDIR);
       return 0;

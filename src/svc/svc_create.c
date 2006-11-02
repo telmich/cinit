@@ -13,7 +13,5 @@
 /* checking for existence is done before! */
 int svc_create(char *svc)
 {
-
-   /* FIXME: change to list_entry_add later */
    return list_insert(svc,-1);
 }

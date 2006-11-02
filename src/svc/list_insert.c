@@ -9,7 +9,7 @@
  */
 
 #include <stdlib.h>
-#include <string.h>
+#include <string.h>        /* bzero / memset       */
 #include "cinit.h"
 #include "svc.h"
 #include "messages.h"
@@ -24,6 +24,7 @@ int list_insert(char *path, int status)
    if( tmp == NULL ) {
       return 0;
    }
+   memset(tmp,'\0',sizeof(struct listitem));
 
    if( list == NULL ) { /* list is empty, we have to init it */
       list = tmp;

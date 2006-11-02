@@ -18,8 +18,12 @@ struct listitem {
    int      status;              /* current status                            */
    pid_t    pid;                 /* pid of service / respawn watcher          */
 
-   struct   dep      *wants;     /* list of services that want this service   */
-   struct   dep      *needs;     /* list of services that need this service   */
+
+   struct   dep      *wanted;    /* list of services that want this service   */
+   struct   dep      *needed;    /* list of services that need this service   */
+
+   struct   dep      *wants;     /* list of services that this service wants  */
+   struct   dep      *needs;     /* list of services that this service needs  */
 };
 
 /* list of dependencies */
