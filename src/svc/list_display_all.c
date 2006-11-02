@@ -25,7 +25,7 @@ int list_display_all()
       mini_printf("Service: ",1);
       mini_printf(tmp->abs_path,1);
       mini_printf("\n",1);
-      tmp = tmp->before;
+      tmp = tmp->prev;
    } while(tmp != list);
    
    return 1;

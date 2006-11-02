@@ -30,7 +30,7 @@ inline struct listitem *list_search_pid(pid_t pid)
       if( pid == tmp->pid) {
          return tmp;
       }
-      tmp = tmp->before;
+      tmp = tmp->prev;
    } while(tmp != list);
    
    return NULL;

@@ -28,7 +28,7 @@ struct listitem *list_search(char *path)
       if( !strcmp(path, tmp->abs_path) ) {
          return tmp;
       }
-      tmp = tmp->before;
+      tmp = tmp->prev;
    } while(tmp != list);
    
    return NULL;

@@ -27,13 +27,13 @@ int list_insert(char *path, int status)
 
    if( list == NULL ) { /* list is empty, we have to init it */
       list = tmp;
-      list->after    = list;
-      list->before   = list;
+      list->next     = list;
+      list->prev     = list;
    } else {                                  /* list has members,add this one */
-      tmp->after           = list;           /* begin after the new element   */
-      tmp->before          = list->before;   /* change to the ex-last         */
-      list->before->after  = tmp;            /* change last element           */
-      list->before         = tmp;            /* first refers to previous now  */
+      tmp->next            = list;           /* begin after the new element   */
+      tmp->prev            = list->prev;     /* change to the ex-last         */
+      list->prev->next     = tmp;            /* change last element           */
+      list->prev           = tmp;            /* first refers to previous now  */
    }
 
    tmp->abs_path = malloc( strlen(path) + 1);

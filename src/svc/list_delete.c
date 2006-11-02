@@ -24,8 +24,8 @@ int list_delete(char *path)
       return 0;
    }
 
-   tmp->after->before = tmp->before;
-   tmp->before->after = tmp->after;
+   tmp->next->prev = tmp->prev;
+   tmp->prev->next = tmp->next;
    free(tmp->abs_path);
    free(tmp);
    return 1;
