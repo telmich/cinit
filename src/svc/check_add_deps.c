@@ -29,8 +29,11 @@ int check_add_deps(char *svc,int type)
 {
    char buf[PATH_MAX+1];
    char oldpath[PATH_MAX+1];
+
    DIR *d_tmp;
    struct dirent *tdirent;
+   struct dep *deps;
+   struct listitem *ltmp;
 
    /* remember where we started */
    if(!getcwd(oldpath,PATH_MAX+1)) {
@@ -54,6 +57,7 @@ int check_add_deps(char *svc,int type)
       }
       return 1;   /* it's fine when there's no needs */
    }
+
    if(chdir(buf) == -1) { /* change to needs or wants */
       print_errno(buf);
       return 0;
@@ -73,10 +77,17 @@ int check_add_deps(char *svc,int type)
       mini_printf(buf,1);
       mini_printf("\n",1);
 
-      /* add dependencies of the new service */
+      /* 1. create the service we depend on
+       * 2. initialize its dependencies
+       */
       if(!gen_svc_tree(buf)) return 0;
 
-      /* now add to our list */
+      /* now we add it to our list AND
+       * we add US to its list */
+      ltmp = list_search(svc);
+      if(!ltmp) return 0;
+      
+      /* STOPPED: dep_entryAdd */
    }
    if(chdir(oldpath) == -1) {
       print_errno(buf);
