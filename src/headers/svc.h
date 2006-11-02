@@ -11,11 +11,12 @@
 
 /* service list */
 struct listitem {
+   struct   listitem *prev;      /* previous item                             */
+   struct   listitem *next;      /* next item                                 */
+
    char     *abs_path;           /* name of service                           */
    int      status;              /* current status                            */
    pid_t    pid;                 /* pid of service / respawn watcher          */
-   struct   listitem *prev;      /* previous item                             */
-   struct   listitem *next;      /* next item                                 */
 
    struct   dep      *wants;     /* list of services that want this service   */
    struct   dep      *needs;     /* list of services that need this service   */
@@ -23,9 +24,9 @@ struct listitem {
 
 /* list of dependencies */
 struct dep {
-   struct listitem   *svc;
    struct dep        *prev;
    struct dep        *next;
+   struct listitem   *svc;
 };
 
 /* variables */
@@ -45,6 +46,8 @@ int svc_known(char *svc);
 int svc_create(char *svc);
 int gen_svc_tree(char *svc);
 int check_add_deps(char *svc, int type);
+int dep_entry_add(struct dep *list, struct dep *new);
+
 
 enum dep_types {
    DEP_WANTS,

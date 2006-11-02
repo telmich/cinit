@@ -11,7 +11,7 @@
  * list: pointer to the list
  * new:  pointer to data to insert (already filled up)
  */
-int list_entry_add(void *list, void *new)
+int dep_entry_add(struct dep *list, struct dep *new)
 {
    if( list == NULL ) {       /* new list          */
       list        = new;

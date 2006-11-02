@@ -19,6 +19,7 @@ int list_insert(char *path, int status)
    struct listitem *tmp;
 
    tmp = malloc( sizeof(struct listitem) );
+   /* bzero, ... */
 
    if( tmp == NULL ) {
       return 0;
