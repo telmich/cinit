@@ -18,21 +18,24 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <limits.h>
 #include <errno.h>
+
+
+#include <limits.h>        /* PATH_MAX          */
+#include <stdlib.h>        /* malloc            */
 
 #include "cinit.h"
 #include "messages.h"
 #include "svc.h"
 
-int check_add_deps(char *svc,int type)
+int check_add_deps(char *svc, int type)
 {
    char buf[PATH_MAX+1];
    char oldpath[PATH_MAX+1];
 
    DIR *d_tmp;
    struct dirent *tdirent;
-   struct dep *deps;
+   struct dep *deps = NULL;
    struct listitem *ltmp;
 
    /* remember where we started */
@@ -73,7 +76,7 @@ int check_add_deps(char *svc,int type)
       /* FIXME: Debug */
       mini_printf("cad::",1);
       mini_printf(tdirent->d_name,1);
-      mini_printf(" :: ",1);
+      mini_printf(" -> ",1);
       mini_printf(buf,1);
       mini_printf("\n",1);
 
@@ -82,11 +85,37 @@ int check_add_deps(char *svc,int type)
        */
       if(!gen_svc_tree(buf)) return 0;
 
-      /* now we add it to our list AND
-       * we add US to its list */
+      /* We need ALL dependencies, as we are called only once
+       * per process; no need to test that first!
+       *
+       * And the other service CANNOT know anything about us yet,
+       * so we always add us to its list.
+       */
+
+      /* now we add it to our list AND we add US to its list */
       ltmp = list_search(svc);
       if(!ltmp) return 0;
+
+      /* Dependencies:
+       * - a.needs b; add b to the list of dependencies.
+       * - a.needs b; add a to the list of needed by b.
+       *
+       * 1. check whether the dependency already exists
+       * 2. otherwise add it
+       * 3. do it once for needs, once for needed_by
+       */
+
+      deps  = malloc(sizeof(struct dep));
+      if(!deps) return 0;
+
+      deps->listitem = ltmp;
+
+      /* dep_entry_add(ltmp->wanted,
+      deps  = malloc?
+      dep_entry_add(ltmp->wanted, */
       
+      /* then add dependenecy to the dependency: needs, then wants */
+
       /* STOPPED: dep_entryAdd */
    }
    if(chdir(oldpath) == -1) {

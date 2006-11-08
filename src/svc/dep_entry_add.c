@@ -7,7 +7,7 @@
  *    List handling: Add a new item to a (non-)empty list
  */
 
-#include <stdio.h>
+#include <stdio.h>         /* NULL     */
 #include "svc.h"
 
 /*
