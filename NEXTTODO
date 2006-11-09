@@ -1,9 +1,3 @@
-- check list_insert, if it is senseful to return a pointer to the new object
-   * seems to be senseful, change on the way home!
-   * that way we save some cpu cycles and add a simple pointer (32 Bit) additional
-
-h check_add_deps
-- include check_add_deps into gen_svc_tree
 - Inserting elements into lists
    * write a function that checks for already
      existing service
