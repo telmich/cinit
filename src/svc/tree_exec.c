@@ -9,9 +9,8 @@
 
 #include <unistd.h>           /* _exit, fork */
 
-#include "cinit.h"
-#include "messages.h"
-#include "ipc.h"
+//#include "cinit.h"            /* svc_init    */
+#include "svc.h"              /* svc_init    */
 
 /* some thoughts...
  *
@@ -21,11 +20,11 @@
  * - after starting the first service we have to care about SIG_CHILD
  *   to record changes
  *
- *
- *
- *
- *
- *
+ * - we execute all services in parallel without problems, because of
+ *   SIG_CHILD notification
+ * 
+ * - After successfully starting the service we start the service that
+ *   need or want that service
  *
  *
  *
@@ -33,28 +32,20 @@
 
 int tree_exec()
 {
-   pid_t pid;
-
-   /* leave cinit alone */
-   pid = fork();
+   struct dep *begin = svc_init->next;
    
-   if(pid == -1) { /* err */
-      print_errno(MSG_ERR_FORK);
-      return 0;
-   } else if(pid == 0) { /* child */
-      cinit_ipc_sclose();
-      set_signals(ACT_CLIENT);
+   while(begin != svc_init) {
+      begin->svc->pid = fork();
 
-   if(!cinit_ipc_logon()) _exit(1);
+      if(begin->svc->pid == -1) return 0;
 
-      /* FIXME: open stderr, stdin, stdout to files / syslog / logable ?
-       * IMPLEMENT PER SERVICE!
-       */
+      if(begin->svc->pid == 0) { /* child code */
+         execute_sth(begin->svc->name);
+      }
+
       
-      run_svc(cinit_svc);
-
-      _exit(0);   /* nobody cares about us, so exit successfully anyway */
+      begin = begin->next;
    }
-   /* parent exits, we don't care about our children */
+
    return 1;
 }
