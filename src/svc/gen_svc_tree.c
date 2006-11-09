@@ -26,77 +26,20 @@
 
 int gen_svc_tree(char *svc)
 {
-   char buf[PATH_MAX+1];
-   char oldpath[PATH_MAX+1];
-   DIR *d_tmp;
-   struct dirent *tdirent;
+   struct listitem   *li;
 
-   mini_printf("Adding service: ",1);
+   mini_printf("gen_svc_tree: ",1);
    mini_printf(svc,1);
    mini_printf("\n",1);
 
    /* only do something if the service is not already known */
-   if(svc_known(svc))   return 1;
+   if(svc_known(svc))                  return 1;
 
    /* create a template, so other instances won't try to recreate us */
-   if(!svc_create(svc)) return 0;
+   if(!(li=svc_create(svc)))           return 0;
 
-   if(!check_add_deps(svc,DEP_NEEDS)) return 0;
-   if(!check_add_deps(svc,DEP_WANTS)) return 0;
-
-   return 1;
-
-   /* check needs */
-   strcpy(buf,svc);
-   if(!path_append(buf,C_NEEDS)) return 0;
-
-   d_tmp = opendir(buf);
-
-   if(!getcwd(oldpath,PATH_MAX+1)) {
-      print_errno(MSG_CHDIR);
-      return 0;
-   }
-   
-   /* if there is no such dir, we are finished */
-   if(d_tmp != NULL) {
-      if(chdir(buf) == -1) {
-         print_errno(buf);
-         return 0;
-      }
-
-      while( (tdirent = readdir(d_tmp) ) != NULL) {
-         /* ignore . and .. and everything with a . at the beginning */
-         if ( *(tdirent->d_name) == '.') continue;
-
-   mini_printf(tdirent->d_name,1);
-   mini_printf("\n",1);
-
-         /* skip non-working directories */
-         if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
-
-         /* add all needs to our tree (call us recursively) */
-         if(!gen_svc_tree(buf)) return 0;
-      }
-      if(chdir(svc) == -1) {
-         print_errno(svc);
-         return 0;
-      }
-
-      if(chdir(oldpath) == -1) {
-         print_errno(buf);
-         return 0;
-      }
-      closedir(d_tmp);
-   } else {
-      if(errno != ENOENT) {
-         print_errno(buf);
-         return 0;
-      }
-   }
-   /* read service information */
-   /* svc_add_needs(svc); */
-   
-   /* check for wants */
+   if(!check_add_deps(li,DEP_NEEDS))   return 0;
+   if(!check_add_deps(li,DEP_WANTS))   return 0;
 
    return 1;
 }

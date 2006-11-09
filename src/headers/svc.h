@@ -1,4 +1,4 @@
-/* 
+/*
  * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
  */
 
@@ -37,19 +37,19 @@ struct dep {
 extern struct  listitem *list;   /* the process linked chain                  */
 
 /* list functions */
-int      list_insert(char *path, int status);
-int      list_delete(char *path);
-int      list_modify(char *path, int new_status, pid_t new_pid);
-struct   listitem *list_search(char *path);
+struct      listitem *list_insert(char *path, int status);
+int         list_delete(char *path);
+int         list_modify(char *path, int new_status, pid_t new_pid);
+struct      listitem *list_search(char *path);
 inline struct   listitem *list_search_pid(pid_t pid);
 int      list_display_all();
 
 
 /* service */
 int svc_known(char *svc);
-int svc_create(char *svc);
+struct listitem  *svc_create(char *svc);
 int gen_svc_tree(char *svc);
-int check_add_deps(char *svc, int type);
+int check_add_deps(struct listitem *svc, int type);
 int dep_entry_add(struct dep *list, struct dep *new);
 
 

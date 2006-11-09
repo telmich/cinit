@@ -11,7 +11,7 @@
 #include "svc.h"
 
 /* checking for existence is done before! */
-int svc_create(char *svc)
+struct listitem *svc_create(char *svc)
 {
    return list_insert(svc,-1);
 }

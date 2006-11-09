@@ -81,11 +81,6 @@ int path_absolute(char *relpath, char *buf, size_t size);
 int      msg_reboot(char cmd);
 void     print_errno(char *text);
 
-/* service */
-int svc_known(char *svc);
-int svc_create(char *svc);
-int gen_svc_tree(char *svc);
-
 /* os-functions */
 void cinit_reboot(void);
 void cinit_halt(void);

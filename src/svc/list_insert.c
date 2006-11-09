@@ -14,17 +14,13 @@
 #include "svc.h"
 #include "messages.h"
 
-int list_insert(char *path, int status)
+struct listitem *list_insert(char *path, int status)
 {
    struct listitem *tmp;
 
-   tmp = malloc( sizeof(struct listitem) );
-   /* bzero, ... */
-
-   if( tmp == NULL ) {
-      return 0;
-   }
-   memset(tmp,'\0',sizeof(struct listitem));
+   tmp = malloc( sizeof( struct listitem ) );
+   if( tmp == NULL ) return NULL;
+   memset( tmp, '\0', sizeof( struct listitem ) );
 
    if( list == NULL ) { /* list is empty, we have to init it */
       list = tmp;
@@ -38,14 +34,11 @@ int list_insert(char *path, int status)
    }
 
    tmp->abs_path = malloc( strlen(path) + 1);
-   if( tmp->abs_path == NULL ) {
-      LOG(MSG_ERR_ALLOC);
-      return 0;
-   }
+   if( tmp->abs_path == NULL ) return NULL;
 
    strcpy(tmp->abs_path,path);
    tmp->status = status;
    tmp->pid    = 0;
    
-   return 1;
+   return tmp;
 }

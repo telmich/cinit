@@ -16,6 +16,7 @@
 #include "cinit.h"            /* general things          */
 #include "messages.h"         /* messages                */
 #include "ipc.h"              /* general ipc methods     */
+#include "svc.h"              /* gen_svc_tree            */
 
 struct listitem *list;
 pid_t cpid;

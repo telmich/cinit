@@ -28,15 +28,14 @@
 #include "messages.h"
 #include "svc.h"
 
-int check_add_deps(char *svc, int type)
+int check_add_deps(struct listitem *svc, int type)
 {
-   char buf[PATH_MAX+1];
-   char oldpath[PATH_MAX+1];
-
-   DIR *d_tmp;
-   struct dirent *tdirent;
-   struct dep *deps = NULL;
-   struct listitem *ltmp;
+   char              buf[PATH_MAX+1];
+   char              oldpath[PATH_MAX+1];
+   struct dirent     *tdirent;
+   struct dep        *deps = NULL;
+//   struct listitem   *ltmp;
+   DIR               *d_tmp;
 
    /* remember where we started */
    if(!getcwd(oldpath,PATH_MAX+1)) {
@@ -45,7 +44,7 @@ int check_add_deps(char *svc, int type)
    }
 
    /* Create path */
-   strcpy(buf,svc);
+   strcpy(buf,svc->abs_path);
    if(type == DEP_NEEDS) {
       if(!path_append(buf,C_NEEDS)) return 0;
    } else {
@@ -66,9 +65,8 @@ int check_add_deps(char *svc, int type)
       return 0;
    }
 
-   while( (tdirent = readdir(d_tmp) ) != NULL) {
-      /* ignore . and .. and everything with a . at the beginning */
-      if ( *(tdirent->d_name) == '.') continue;
+   while((tdirent=readdir(d_tmp))!=NULL) {
+      if(*(tdirent->d_name)=='.') continue; /* ignore .* */
 
       /* skip non-working directories */
       if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
@@ -93,8 +91,8 @@ int check_add_deps(char *svc, int type)
        */
 
       /* now we add it to our list AND we add US to its list */
-      ltmp = list_search(svc);
-      if(!ltmp) return 0;
+//      ltmp = list_search(svc);
+//      if(!ltmp) return 0;
 
       /* Dependencies:
        * - a.needs b; add b to the list of dependencies.
@@ -108,7 +106,7 @@ int check_add_deps(char *svc, int type)
       deps  = malloc(sizeof(struct dep));
       if(!deps) return 0;
 
-      deps->listitem = ltmp;
+//      deps->svc = ltmp;
 
       /* dep_entry_add(ltmp->wanted,
       deps  = malloc?
