@@ -1,7 +1,3 @@
-- Inserting elements into lists
-   * write a function that checks for already
-     existing service
-   * the wrapper should check for existence first!
 - create
    * svc_add_needs
       - also adds 'needed by'!
