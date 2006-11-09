@@ -34,7 +34,8 @@ struct dep {
 };
 
 /* variables */
-extern struct  listitem *list;   /* the process linked chain                  */
+extern struct  listitem *list;      /* the process linked chain         */
+extern struct  dep      *svc_init;  /* the services to start            */
 
 /* list functions */
 struct      listitem *list_insert(char *path, int status);

@@ -18,8 +18,9 @@
 #include "ipc.h"              /* general ipc methods     */
 #include "svc.h"              /* gen_svc_tree            */
 
-struct listitem *list;
-pid_t cpid;
+struct listitem   *list;
+struct deps       *svc_init;
+pid_t             cpid;
 
 int main(int argc, char **argv)
 {

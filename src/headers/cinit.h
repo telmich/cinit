@@ -39,9 +39,6 @@ enum {         /* FIXME: there are some default defines somewhere for that */
 #define ACT_SERV     0
 #define ACT_CLIENT   1
 
-//extern int     sock;             /* current writing/reading socket            */
-//extern pid_t   cpid;             /* used by main() and reused be respaw_svc() */
-
 /* functions (used by server and client) */
 int   run_svc(char *rpath);
 void  mini_printf(char *str, int fd);
