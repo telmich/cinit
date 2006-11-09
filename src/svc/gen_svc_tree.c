@@ -7,26 +7,14 @@
  *    Pre calculate the service tree
  */
 
-#include <unistd.h>
-#include <string.h>
-#include <limits.h>        /* PATH_MAX    */
-
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <dirent.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <limits.h>
-#include <errno.h>
-
+#include <stdlib.h>
 #include "cinit.h"
 #include "svc.h"
-#include "messages.h"
 
 int gen_svc_tree(char *svc)
 {
    struct listitem   *li;
+   struct dep        *deps;
 
    mini_printf("gen_svc_tree: ",1);
    mini_printf(svc,1);
@@ -43,10 +31,11 @@ int gen_svc_tree(char *svc)
 
    if(!li->wants && !li->needs) {
       mini_printf("NO: Service has no dependencies, end service\n",1);
+      deps = malloc(sizeof(struct dep));
+      if(!deps) return 0;
+      deps->svc = li;
+      dep_entry_add(svc_init,deps);
    }
-   
-   /* STOPPED */
-   dep_entry_add(svc_init
 
    return 1;
 }

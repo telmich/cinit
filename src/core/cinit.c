@@ -19,12 +19,12 @@
 #include "svc.h"              /* gen_svc_tree            */
 
 struct listitem   *list       = NULL;
-struct deps       *svc_init   = NULL;
+struct dep        *svc_init   = NULL;
 
 int main(int argc, char **argv)
 {
    char     *initdir;
-   pid_t    cpid;
+//   pid_t    cpid;
 
    initdir  = CINIT_INIT;        /* default init dir        */
 
