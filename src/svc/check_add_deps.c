@@ -34,7 +34,7 @@ int check_add_deps(struct listitem *svc, int type)
    char              oldpath[PATH_MAX+1];
    struct dirent     *tdirent;
    struct dep        *deps = NULL;
-//   struct listitem   *ltmp;
+   struct listitem   *ltmp;
    DIR               *d_tmp;
 
    /* remember where we started */
@@ -84,15 +84,11 @@ int check_add_deps(struct listitem *svc, int type)
       if(!gen_svc_tree(buf)) return 0;
 
       /* We need ALL dependencies, as we are called only once
-       * per process; no need to test that first!
+       * per service; no need to test that first!
        *
        * And the other service CANNOT know anything about us yet,
        * so we always add us to its list.
        */
-
-      /* now we add it to our list AND we add US to its list */
-//      ltmp = list_search(svc);
-//      if(!ltmp) return 0;
 
       /* Dependencies:
        * - a.needs b; add b to the list of dependencies.
@@ -103,18 +99,28 @@ int check_add_deps(struct listitem *svc, int type)
        * 3. do it once for needs, once for needed_by
        */
 
+      /* find the other service */
+      ltmp = list_search(buf);
+      if(!ltmp) return 0;
+
       deps  = malloc(sizeof(struct dep));
       if(!deps) return 0;
+      deps->svc = svc;
+      if(type == DEP_NEEDS) {
+         dep_entry_add(ltmp->needed,deps);
 
-//      deps->svc = ltmp;
-
-      /* dep_entry_add(ltmp->wanted,
-      deps  = malloc?
-      dep_entry_add(ltmp->wanted, */
-      
-      /* then add dependenecy to the dependency: needs, then wants */
-
-      /* STOPPED: dep_entryAdd */
+         /* allocate new memory for the second dependency list */
+         deps  = malloc(sizeof(struct dep));
+         if(!deps) return 0;
+         deps->svc = ltmp;
+         dep_entry_add(svc->needs,deps);
+      } else {
+         dep_entry_add(ltmp->wanted,deps);
+         deps  = malloc(sizeof(struct dep));
+         if(!deps) return 0;
+         deps->svc = ltmp;
+         dep_entry_add(svc->wants,deps);
+      }
    }
    if(chdir(oldpath) == -1) {
       print_errno(buf);
