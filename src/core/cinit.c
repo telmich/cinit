@@ -18,15 +18,14 @@
 #include "ipc.h"              /* general ipc methods     */
 #include "svc.h"              /* gen_svc_tree            */
 
-struct listitem   *list;
-struct deps       *svc_init;
-pid_t             cpid;
+struct listitem   *list       = NULL;
+struct deps       *svc_init   = NULL;
 
 int main(int argc, char **argv)
 {
-   char  *initdir;
+   char     *initdir;
+   pid_t    cpid;
 
-   list     = NULL;              /* empty list of services  */
    initdir  = CINIT_INIT;        /* default init dir        */
 
    /* FIXME: RE-ENABLE as SOON AS PRODUCTIVE cpid = getpid();

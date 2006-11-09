@@ -44,6 +44,9 @@ int gen_svc_tree(char *svc)
    if(!li->wants && !li->needs) {
       mini_printf("NO: Service has no dependencies, end service\n",1);
    }
+   
+   /* STOPPED */
+   dep_entry_add(svc_init
 
    return 1;
 }
