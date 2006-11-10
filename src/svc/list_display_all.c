@@ -15,10 +15,10 @@ int list_display_all()
 {
    struct listitem *tmp;
 
-   if( list == NULL ) {
+   if( svc_list == NULL ) {
       return 0;
    } else {
-      tmp = list;
+      tmp = svc_list;
    }
 
    do {
@@ -26,7 +26,7 @@ int list_display_all()
       mini_printf(tmp->abs_path,1);
       mini_printf("\n",1);
       tmp = tmp->prev;
-   } while(tmp != list);
+   } while(tmp != svc_list);
    
    return 1;
 }

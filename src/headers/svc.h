@@ -34,24 +34,25 @@ struct dep {
 };
 
 /* variables */
-extern struct  listitem *list;      /* the process linked chain         */
+extern struct  listitem *svc_list;  /* the process linked chain         */
 extern struct  dep      *svc_init;  /* the services to start            */
 
 /* list functions */
-struct      listitem *list_insert(char *path, int status);
-int         list_delete(char *path);
-int         list_modify(char *path, int new_status, pid_t new_pid);
-struct      listitem *list_search(char *path);
-inline struct   listitem *list_search_pid(pid_t pid);
-int      list_display_all();
+struct         listitem *list_insert(char *path, int status);
+int            list_delete(char *path);
+int            list_modify(char *path, int new_status, pid_t new_pid);
+struct         listitem *list_search(char *path);
+inline struct  listitem *list_search_pid(pid_t pid);
+int            list_display_all();
 
 
 /* service */
-int svc_known(char *svc);
+int               svc_known(char *svc);
 struct listitem  *svc_create(char *svc);
-int gen_svc_tree(char *svc);
-int check_add_deps(struct listitem *svc, int type);
-int dep_entry_add(struct dep *list, struct dep *new);
+int               gen_svc_tree(char *svc);
+int               check_add_deps(struct listitem *svc, int type);
+int               dep_entry_add(struct dep **list, struct dep *new);
+int               tree_exec(struct dep *start);
 
 
 enum dep_types {

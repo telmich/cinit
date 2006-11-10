@@ -18,7 +18,7 @@
 #include "ipc.h"              /* general ipc methods     */
 #include "svc.h"              /* gen_svc_tree            */
 
-struct listitem   *list       = NULL;
+struct listitem   *svc_list   = NULL;
 struct dep        *svc_init   = NULL;
 
 int main(int argc, char **argv)
@@ -70,6 +70,9 @@ int main(int argc, char **argv)
 
    /* pre-calculate service tree */
    gen_svc_tree(initdir);
+
+   /* start tree from the bottom */
+   if(!tree_exec(svc_init)) return 1;
 
    mini_printf("test\n",1);
 

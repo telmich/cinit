@@ -107,19 +107,19 @@ int check_add_deps(struct listitem *svc, int type)
       if(!deps) return 0;
       deps->svc = svc;
       if(type == DEP_NEEDS) {
-         dep_entry_add(ltmp->needed,deps);
+         dep_entry_add(&(ltmp->needed),deps);
 
          /* allocate new memory for the second dependency list */
          deps  = malloc(sizeof(struct dep));
          if(!deps) return 0;
          deps->svc = ltmp;
-         dep_entry_add(svc->needs,deps);
+         dep_entry_add(&(svc->needs),deps);
       } else {
-         dep_entry_add(ltmp->wanted,deps);
+         dep_entry_add(&(ltmp->wanted),deps);
          deps  = malloc(sizeof(struct dep));
          if(!deps) return 0;
          deps->svc = ltmp;
-         dep_entry_add(svc->wants,deps);
+         dep_entry_add(&(svc->wants),deps);
       }
    }
    if(chdir(oldpath) == -1) {

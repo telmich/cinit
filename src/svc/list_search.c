@@ -18,10 +18,10 @@ struct listitem *list_search(char *path)
 {
    struct listitem *tmp;
 
-   if( list == NULL ) { /* think positive */
+   if( svc_list == NULL ) { /* think positive */
       return NULL;
    } else {
-      tmp = list;
+      tmp = svc_list;
    }
 
    do {
@@ -29,7 +29,7 @@ struct listitem *list_search(char *path)
          return tmp;
       }
       tmp = tmp->prev;
-   } while(tmp != list);
+   } while(tmp != svc_list);
    
    return NULL;
 }

@@ -7,10 +7,11 @@
  *    Start the service tree we created
  */
 
-#include <unistd.h>           /* _exit, fork */
+#include <unistd.h>              /* _exit, fork */
 
-//#include "cinit.h"            /* svc_init    */
-#include "svc.h"              /* svc_init    */
+#include "cinit.h"            
+#include "messages.h"            /* D_PRINTF */
+#include "svc.h"                 /* svc_init    */
 
 /* some thoughts...
  *
@@ -30,22 +31,32 @@
  *
  */
 
-int tree_exec()
+int tree_exec(struct dep *start)
 {
-   struct dep *begin = svc_init->next;
+   struct dep *tmp;
    
-   while(begin != svc_init) {
-      begin->svc->pid = fork();
+   
+   if(start == NULL) return 1;
 
-      if(begin->svc->pid == -1) return 0;
+   tmp = start->next;
+   mini_printf("Test 01\n",1);
+   do {
+      mini_printf(tmp->svc->abs_path,1);
+      mini_printf("\n",1);
 
-      if(begin->svc->pid == 0) { /* child code */
-         execute_sth(begin->svc->name);
+      tmp->svc->pid = fork();
+
+
+      if(tmp->svc->pid == -1) return 0;
+
+      if(tmp->svc->pid == 0) { /* child code */
+         execute_sth(tmp->svc->abs_path);
+//         _exit(1);
       }
 
-      
-      begin = begin->next;
-   }
+      tmp = tmp->next;
+   } while(tmp != start);
+   mini_printf("Test 02\n",1);
 
    return 1;
 }

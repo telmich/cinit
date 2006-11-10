@@ -20,10 +20,10 @@ inline struct listitem *list_search_pid(pid_t pid)
 {
    struct listitem *tmp;
 
-   if( list == NULL ) {
+   if( svc_list == NULL ) {
       return NULL;
    } else {
-      tmp = list;
+      tmp = svc_list;
    }
 
    do {
@@ -31,7 +31,7 @@ inline struct listitem *list_search_pid(pid_t pid)
          return tmp;
       }
       tmp = tmp->prev;
-   } while(tmp != list);
+   } while(tmp != svc_list);
    
    return NULL;
 }

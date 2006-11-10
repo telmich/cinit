@@ -34,7 +34,9 @@ int gen_svc_tree(char *svc)
       deps = malloc(sizeof(struct dep));
       if(!deps) return 0;
       deps->svc = li;
-      dep_entry_add(svc_init,deps);
+      mini_printf(deps->svc->abs_path,1);
+      mini_printf("\n",1);
+      dep_entry_add(&svc_init,deps);
    }
 
    return 1;

@@ -22,15 +22,15 @@ struct listitem *list_insert(char *path, int status)
    if( tmp == NULL ) return NULL;
    memset( tmp, '\0', sizeof( struct listitem ) );
 
-   if( list == NULL ) { /* list is empty, we have to init it */
-      list = tmp;
-      list->next     = list;
-      list->prev     = list;
+   if( svc_list == NULL ) { /* list is empty, we have to init it */
+      svc_list = tmp;
+      svc_list->next     = svc_list;
+      svc_list->prev     = svc_list;
    } else {                                  /* list has members,add this one */
-      tmp->next            = list;           /* begin after the new element   */
-      tmp->prev            = list->prev;     /* change to the ex-last         */
-      list->prev->next     = tmp;            /* change last element           */
-      list->prev           = tmp;            /* first refers to previous now  */
+      tmp->next            = svc_list;           /* begin after the new element   */
+      tmp->prev            = svc_list->prev;     /* change to the ex-last         */
+      svc_list->prev->next     = tmp;            /* change last element           */
+      svc_list->prev           = tmp;            /* first refers to previous now  */
    }
 
    tmp->abs_path = malloc( strlen(path) + 1);
