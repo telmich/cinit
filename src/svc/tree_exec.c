@@ -35,26 +35,28 @@ int tree_exec(struct dep *start)
 {
    struct dep *tmp;
    
-   
    if(start == NULL) return 1;
 
-   tmp = start->next;
+   //tmp = start->next;
+   tmp = start;
+
    mini_printf("Test 01\n",1);
    do {
       mini_printf(tmp->svc->abs_path,1);
       mini_printf("\n",1);
 
-      tmp->svc->pid = fork();
+//      tmp->svc->pid = fork();
 
 
-      if(tmp->svc->pid == -1) return 0;
+//      if(tmp->svc->pid == -1) return 0;
 
-      if(tmp->svc->pid == 0) { /* child code */
-         execute_sth(tmp->svc->abs_path);
+ //     if(tmp->svc->pid == 0) { /* child code */
+  //       execute_sth(tmp->svc->abs_path);
 //         _exit(1);
-      }
+   //   }
 
-      tmp = tmp->next;
+      //tmp = tmp->next;
+      tmp = tmp->prev;
    } while(tmp != start);
    mini_printf("Test 02\n",1);
 

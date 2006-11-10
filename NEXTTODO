@@ -1,3 +1,5 @@
+- break in dep_entry_add, schauen ob die liste richtig generiert wird!
+
 - Check that the initial service list is generated correctly
    * add (and use for that aim) tree_exec()
 - Fix SIG_CHILD handler!
