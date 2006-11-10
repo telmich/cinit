@@ -1,6 +1,13 @@
 - define how it should work (doc/braindums/big-picture.text)
 - define service status in one document, so repeatition stops!
 
+
+--------------------------------------------------------------------------------
+- rename headers/ -> includes/
+- remove client/ from top level
+--------------------------------------------------------------------------------
+- write about shell scripts in system startup
+- write about general behaviour (covering the death)
 --------------------------------------------------------------------------------
 Generate automatic asciidoc from conf/*
 --------------------------------------------------------------------------------
