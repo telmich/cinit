@@ -17,12 +17,12 @@ STRIP=../tmpbin/strip
 SBIN=../sbin
 
 # directories and files
-CONFIG_H=headers/config.h
+CONFIG_H=include/config.h
 
 #
 # objects for the cinit part
 #
-CINIT_HEADERS=$(shell cat headers/listing)
+CINIT_HEADERS=$(shell cat include/listing)
 CINIT_CORE_OBJ=$(shell cat core/objects)
 CINIT_GENERIC_OBJ=$(shell cat generic/objects)
 CINIT_SVC_OBJ=$(shell cat svc/objects)
