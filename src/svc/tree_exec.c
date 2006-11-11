@@ -57,6 +57,7 @@ int tree_exec(struct dep *start)
 
       //tmp = tmp->next;
       tmp = tmp->prev;
+   //} while(tmp != NULL);
    } while(tmp != start);
    mini_printf("Test 02\n",1);
 
