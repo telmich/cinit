@@ -16,20 +16,21 @@
  *
  * Returns either the next object or NULL if there's no next object
  */
-struct dep *dep_entry_del(struct dep **tmp)
+struct dep *dep_entry_del(struct dep *del)
 {  
+   struct dep *tmp;
+
    /* last service in the list */
-   if((*tmp)->next == (*tmp) && (*tmp)->prev == (*tmp)) {
-      free(tmp);
-      return NULL;
+   if(del->next == del && del->del == tmp) {
+      free(del);
+      tmp=NULL;
    } else {
       /* remove from list */
-      tmp->prev->next = tmp->next;
-      tmp->next->prev = tmp->prev;
+      del->prev->next = del->next;
+      del->next->prev = del->prev;
+      tmp = del->next;
+      free(del);
    }
 
-   /* remove from memory */
-   free(tmp);
-
-   return 1;
+   return tmp;
 }
