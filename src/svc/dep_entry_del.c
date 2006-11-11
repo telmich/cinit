@@ -11,21 +11,25 @@
 #include "svc.h"
 
 /*
- * list: pointer to the list
- * new:  pointer to data to insert (already filled up)
+ * tmp:  pointer to data to remove (must not be NULL)
+ *    -> perhaps work on the pointer to the pointer?
+ *
+ * Returns either the next object or NULL if there's no next object
  */
-int dep_entry_add(struct dep **list, struct dep *new)
-{
-   if( *list == NULL ) {       /* new list          */
-      *list          = new;
-      (*list)->prev  = *list;
-      (*list)->next  = *list;
-   } else {                                     /* already existing  */
-      new->next            = *list;             /* new-> first       */
-      new->prev            = (*list)->prev;     /* last <- new       */
-      (*list)->prev->next  = new;               /* last -> new       */
-      (*list)->prev        = new;               /* new <- first      */
+struct dep *dep_entry_del(struct dep **tmp)
+{  
+   /* last service in the list */
+   if((*tmp)->next == (*tmp) && (*tmp)->prev == (*tmp)) {
+      free(tmp);
+      return NULL;
+   } else {
+      /* remove from list */
+      tmp->prev->next = tmp->next;
+      tmp->next->prev = tmp->prev;
    }
+
+   /* remove from memory */
+   free(tmp);
 
    return 1;
 }
