@@ -8,6 +8,7 @@
  */
 
 #include <stdio.h>         /* NULL     */
+#include <stdlib.h>        /* free()   */
 #include "svc.h"
 
 /*
@@ -21,9 +22,9 @@ struct dep *dep_entry_del(struct dep *del)
    struct dep *tmp;
 
    /* last service in the list */
-   if(del->next == del && del->del == tmp) {
-      free(del);
+   if(del->next == del && del->prev == del) {
       tmp=NULL;
+      free(del);
    } else {
       /* remove from list */
       del->prev->next = del->next;

@@ -52,6 +52,7 @@ struct listitem  *svc_create(char *svc);
 int               gen_svc_tree(char *svc);
 int               check_add_deps(struct listitem *svc, int type);
 int               dep_entry_add(struct dep **list, struct dep *new);
+struct dep       *dep_entry_del(struct dep *del);
 int               tree_exec(struct dep *start);
 
 

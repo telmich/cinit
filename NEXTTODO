@@ -1,5 +1,9 @@
-- write dep_remove, so we can remove services.
-   * set list to NULL after deleting the last service
+- add_service must record whether the service is respawning or not
+- cleanup the sig_child handler
+   * disable signals in sig_child handler
+   * update status of service
+      - use list_search_pid
+
 - continue tree_exec()
    * start first list, remove objects that have been started
    * add new dependencies (wanted_by and needed_by from the service

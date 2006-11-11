@@ -9,4 +9,5 @@ svc/svc_known.o
 svc/svc_create.o
 svc/check_add_deps.o
 svc/dep_entry_add.o
+svc/dep_entry_del.o
 svc/tree_exec.o

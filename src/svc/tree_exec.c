@@ -55,10 +55,31 @@ int tree_exec(struct dep *start)
 //         _exit(1);
    //   }
 
-      //tmp = tmp->next;
-      tmp = tmp->prev;
-   //} while(tmp != NULL);
-   } while(tmp != start);
+      /* execute this service */
+
+      /* add the services that want or need this service to the list
+       * of services to be executed the next time
+       *
+       * We should add the new services at the beginning, so we
+       * clean the original onse first
+       *
+       * And we need to check, whether the dependencies are already
+       * solved.
+       *
+       * A service may be in status:
+       *
+       * - Unset (never touched)
+       * - Being started (passed our loop, but did not yet finish)
+       * - Respawning (means was started and we take care
+       *   about it
+       * - failed (with reason copied, so one can reprint it later?)
+       * - once - started once successfully
+       * - need failed - not started, because need failed. perhaps
+       *   registert which dependenc(y|ies) failed?
+       */
+      /* delete it from the service list */
+      tmp = dep_entry_del(tmp);
+   } while(tmp != NULL);
    mini_printf("Test 02\n",1);
 
    return 1;
