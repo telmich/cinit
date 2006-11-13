@@ -31,8 +31,6 @@ enum commands {
    CMD_INFO             /* send information about that service       */
 };
 
-eof
-
 /* old
    RT_ERR_COMM,     * communication failed *
    RT_ERR,          * service starting failed *

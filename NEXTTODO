@@ -1,7 +1,8 @@
 - add_service must record whether the service is respawning or not
 - tree_exec:
    * check status of needs before executing, but only after the base
-     services have been started (perhaps a second loop?)
+     services have been started (perhaps a second loop, implementing
+     a new pointer
 - cleanup the sig_child handler
    * disable signals in sig_child handler
    * update status of service
