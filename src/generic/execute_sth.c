@@ -16,7 +16,7 @@ void execute_sth(char *basename)
    struct ba_argv bav;
    int tmp;
 
-   if( ( tmp = cinit_build_argv(basename,&bav) ) != BA_OK) {
+   if((tmp = cinit_build_argv(basename,&bav)) != BA_OK) {
       if(tmp != BA_E_MEM) {
          print_errno(basename);
       } /* do not print something on memory errors */

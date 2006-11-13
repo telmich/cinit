@@ -265,7 +265,12 @@ umount raus
 
 --> cinit-0.3-rc1
 --------------------------------------------------------------------------------
-Check: use of perror, strerror+write?
 --------------------------------------------------------------------------------
-Check: tuning of ipc-code?
-local-services schlaegt fehl, ist aber nichts drin!
+--------------------------------------------------------------------------------
+
+Optimisations
+-------------
+
+tree_exec
+~~~~~~~~~
+- only check dependencies after the basic run?

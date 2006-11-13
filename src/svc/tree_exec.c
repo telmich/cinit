@@ -33,17 +33,26 @@
 
 int tree_exec(struct dep *start)
 {
-   struct dep *tmp;
+   struct dep *tmp, *tmp2;
    
-   if(start == NULL) return 1;
-
-   //tmp = start->next;
    tmp = start;
 
    mini_printf("Test 01\n",1);
+   /* the main starting loop: All services in this list should be
+    * started, but it is possible that dependent services are in the
+    * list. In this case simply skip the current service 
+    */
    do {
       mini_printf(tmp->svc->abs_path,1);
       mini_printf("\n",1);
+
+      /* check status of service */
+      tmp2 = tmp->svc->needs;
+
+      do {
+
+      } while (tmp2 != tmp->svc->needs);
+
 
 //      tmp->svc->pid = fork();
 
@@ -80,7 +89,6 @@ int tree_exec(struct dep *start)
       /* delete it from the service list */
       tmp = dep_entry_del(tmp);
    } while(tmp != NULL);
-   mini_printf("Test 02\n",1);
 
    return 1;
 }

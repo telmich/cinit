@@ -31,26 +31,7 @@ enum commands {
    CMD_INFO             /* send information about that service       */
 };
 
-/***********************************************************************
- * status of a service and return codes - errors and success
- */
-enum svc_status {
-   ST_TMPNOW=1,     /* the client is now starting the service NEEDED??? */
-   ST_NOTEXIST,     /* service does not exist                           */
-
-   ST_NEED_FAIL,    /* failed to start a need for this service          */
-   ST_FAIL,         /* failed to start service                          */
-
-   ST_OFF,          /* service is off                                   */
-   ST_OFF_ALL,      /* service and those that need it are off           */
-   ST_OFF_ALL_F,    /* same, but something failed                       */
-   ST_OFF_WANTS,    /* service + those that need or want it are off     */
-   ST_OFF_WANTS_F,  /* same, but something failed                       */
-
-   ST_TMP,          /* currently working on it                          */
-   ST_ONCE,         /* executed once                                    */
-   ST_RESPAWN       /* running and respawning                           */
-};
+eof
 
 /* old
    RT_ERR_COMM,     * communication failed *
