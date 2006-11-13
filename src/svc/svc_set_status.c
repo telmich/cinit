@@ -4,18 +4,13 @@
  *
  *    part of cLinux/cinit
  *
- *    Check whether service is existent
+ *    Set the status of a service
  */
 
-#include <stdio.h>      /* NULL        */
-#include <limits.h>     /* PATH_MAX    */
 #include "svc.h"
 
 /* checking for existence is done before! */
-int svc_respawn_check(struct listitem *svc)
+int svc_set_status(struct listitem *li, int status)
 {
-   char buf[PATH_MAX+1];
-
-   strcpy(buf,svc->abs_path);
-   if(!path_append(buf,C_RESPAWN)) return 0
+   return (li->status = status);
 }

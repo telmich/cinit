@@ -11,3 +11,4 @@ svc/check_add_deps.o
 svc/dep_entry_add.o
 svc/dep_entry_del.o
 svc/tree_exec.o
+svc/svc_set_status.o

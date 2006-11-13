@@ -54,6 +54,7 @@ int               check_add_deps(struct listitem *svc, int type);
 int               dep_entry_add(struct dep **list, struct dep *new);
 struct dep       *dep_entry_del(struct dep *del);
 int               tree_exec(struct dep *start);
+int svc_set_status(struct listitem *li, int status);
 
 
 /***********************************************************************
@@ -67,7 +68,7 @@ enum dep_types {
 /***********************************************************************
  * status of a service and return codes - errors and success
  */
-enum svc_status {
+enum svc_status_old {
    ST_TMPNOW=1,     /* the client is now starting the service NEEDED??? */
    ST_NOTEXIST,     /* service does not exist                           */
 
@@ -85,4 +86,16 @@ enum svc_status {
    ST_RESPAWN       /* running and respawning                           */
 };
 
+/***********************************************************************
+ * The real status types a service may have (ignore above)
+ * We have 32 Bits, we should use them ;-)
+ */
+enum svc_status {
+   /* first define basics */
+   ST_SH_ONCE     = 1,     /* service SHould be started once            */
+   ST_SH_RESPAWN  = 2,     /* service SHould respawn                    */
+   ST_ONCE_OK     = 4,     /* service was successfully started once     */
+   ST_ONCE_FAIL   = 8,     /* service failed to start                   */
+   ST_RESPAWNING  = 16,    /* service is respawning                     */
+}
 #endif   /* _CINIT_SVC_H */
