@@ -54,7 +54,8 @@ int               check_add_deps(struct listitem *svc, int type);
 int               dep_entry_add(struct dep **list, struct dep *new);
 struct dep       *dep_entry_del(struct dep *del);
 int               tree_exec(struct dep *start);
-int svc_set_status(struct listitem *li, int status);
+int               svc_set_status(struct listitem *li, int status);
+int               svc_should_respawn(struct listitem *li);
 
 
 /***********************************************************************
