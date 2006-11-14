@@ -46,7 +46,9 @@ int tree_exec(struct dep *start)
       mini_printf(tmp->svc->abs_path,1);
       mini_printf("\n",1);
 
-      /* check status of needs */
+      /* FIXME:
+       * what was my idea here and why does it segfault currently?
+       * check status of needs */
       tmp2 = tmp->svc->needs;
       do {
          tmp2 = tmp2->next;
