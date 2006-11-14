@@ -31,7 +31,13 @@ struct listitem *svc_create(char *svc)
    if(!path_append(buf,C_RESPAWN)) return NULL;
 
    if(stat(svc,&statbuf) == -1) {
-      if(errno != ENOENT) return NULL;
+      if(errno == ENOENT) {
+         svc_set_status(li,ST_SH_ONCE);
+      } else {
+         return NULL;
+      }
+   } else {
+      svc_set_status(li,ST_SH_RESPAWN);
    }
 
    return li;
