@@ -34,8 +34,8 @@ struct dep {
 };
 
 /* variables */
-extern struct  listitem *svc_list;  /* the process linked chain         */
 extern struct  dep      *svc_init;  /* the services to start            */
+extern struct  listitem *svc_list;  /* the list of services             */
 
 /* list functions */
 struct         listitem *list_insert(char *path, int status);
@@ -97,6 +97,6 @@ enum svc_status {
    ST_SH_RESPAWN  = 2,     /* service SHould respawn                    */
    ST_ONCE_OK     = 4,     /* service was successfully started once     */
    ST_ONCE_FAIL   = 8,     /* service failed to start                   */
-   ST_RESPAWNING  = 16,    /* service is respawning                     */
-}
+   ST_RESPAWNING  = 16     /* service is respawning                     */
+};
 #endif   /* _CINIT_SVC_H */
