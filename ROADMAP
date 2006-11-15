@@ -4,8 +4,8 @@ THIS DOCUMENT SHOULD VANISH AS SOON AS EVERYTHING IS FINE
 
 Timeline
 ---------
-   * ~ End of October 2006:   Reunderstand the code, manifest changes
-   * ~ Mid of November 2006:  Have a compile-able cinit
+   * ~ End of October 2006:   Reunderstand the code, manifest changes   [DONE]
+   * ~ Mid of November 2006:  Have a compile-able cinit                 [DONE]
    * ~ End of November 2006:  Have a testsystem booting cinit
    * ~ Mid of December 2006:  Have production stable cinit
                                  - Begin with migration scripts
@@ -22,12 +22,12 @@ Versions
 
 0.3:
 ~~~
-   code: Make cinit compile again :)
+   code: Make cinit compile again :) [DONE]
    code: double check to remove Linux specific source from general tree
-   code: seperate ipc from the rest
+   code: seperate ipc from the rest [DONE]
    code: fix / check signal handlers
    code: cleanup makefile
-   code: add porting code: add support for any unix in general
+   code: add porting code: add support for any unix in general [DONE]
    code: stabilize code, remove experimenting parts
    code: remove delay support, let off/off.params do that.
    code: add special directory (/etc/cinit/special?) for os specific binaries
@@ -39,6 +39,7 @@ Versions
 
    doc: begin to merge old documents into new structure and move them
         to the doc/ancient directory
+
 0.3.1:
    devel doc: how to write merging scripts
    devel doc: merging framework:
