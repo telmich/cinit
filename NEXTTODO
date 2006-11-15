@@ -1,3 +1,5 @@
+- finish svc_needs_status
+   * continue with tree_exec, catch the return value
 - add_service must record whether the service is respawning or not
 - tree_exec:
    * check status of needs before executing, but only after the base
