@@ -1,6 +1,21 @@
-indent: 3 spaces
+Coding style
+============
+Nico Schottelius <nico-cinit]at[schottelius.org>
+0.1, for cinit, Initial version from 2006-11-13
+:Author Initials: NS
 
+This document describes the coding style used in cinit.
+
+
+Indent
+------
+Indent the code by 3 spaces for each level.
+
+
+Unsorted
+---------
 Linebreaks:
+
 
 if(...) {
 
