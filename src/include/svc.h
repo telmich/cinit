@@ -1,6 +1,12 @@
-/*
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
- */
+/***********************************************************************
+ *
+ *    2006,2006 Nico Schottelius (nico-cinit at schottelius.org)
+ * 
+ *    part of cLinux/cinit
+ *
+ *    Start the service tree we created
+ */ 
+
 
 #ifndef _CINIT_SVC_H
 #define _CINIT_SVC_H
@@ -97,6 +103,16 @@ enum svc_status {
    ST_SH_RESPAWN  = 2,     /* service SHould respawn                    */
    ST_ONCE_OK     = 4,     /* service was successfully started once     */
    ST_ONCE_FAIL   = 8,     /* service failed to start                   */
-   ST_RESPAWNING  = 16     /* service is respawning                     */
+   ST_RESPAWNING  = 16,    /* service is respawning                     */
+   ST_NEED_FAILD  = 32     /* this service is not started, need failed  */
+};
+
+/***********************************************************************
+ * Possibilities the needs of a service may have
+ */
+enum svc_needs_status {
+   SNS_NEEDS_STARTED = 1,  /* all needs are started. We may start, too  */
+   SNS_NEED_FAILED,        /* one ore more needs failed                 */
+   SNS_NEEDS_UNFINISHED    /* one ore more needs are not yet started    */
 };
 #endif   /* _CINIT_SVC_H */

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -50,9 +50,9 @@ int tree_exec(struct dep *start)
        * what was my idea here and why does it segfault currently?
        * check status of needs */
       tmp2 = tmp->svc->needs;
-      do {
-         tmp2 = tmp2->next;
-      } while (tmp2 != tmp->svc->needs);
+ //     do {
+  //       tmp2 = tmp2->next;
+   //   } while (tmp2 != tmp->svc->needs);
 
 
 //      tmp->svc->pid = fork();
