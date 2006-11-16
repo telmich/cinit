@@ -1,3 +1,5 @@
+- check that the new wants and need elements are nserted the other way round
+   * we go to next, elements must be put before us!
 - insert new dependencies in tree_exec!
 - write svc_execute, which forks away the new process
 - cleanup the sig_child handler
