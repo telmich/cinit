@@ -33,7 +33,7 @@
 
 int tree_exec(struct dep *start)
 {
-   struct dep *tmp, *tmp2;
+   struct dep *tmp;
    
    tmp = start;
 
@@ -44,23 +44,27 @@ int tree_exec(struct dep *start)
     */
    do {
       mini_printf(tmp->svc->abs_path,1);
-      mini_printf("\n",1);
+      mini_printf(":::",1);
 
       switch(svc_needs_status(tmp->svc)) {
          case SNS_NEEDS_STARTED:
+            mini_printf("alle gestartet",1);
             /* execute service, remowe from list */
             tmp = dep_entry_del(tmp);
             break;
-         case SNS_NEEDS_FAILED::
+         case SNS_NEEDS_FAILED:
+            mini_printf("wer fehlgeschlagen",1);
             /* mark service as NEED_FAILD and delete from list */
             svc_set_status(tmp->svc,ST_NEED_FAILD);
             tmp = dep_entry_del(tmp);
             break;
          case SNS_NEEDS_UNFINISHED:
+            mini_printf("noch warten",1);
             /* continue with the next item */
             tmp = tmp->next;
             break;
       }
+      mini_printf("\n",1);
 
 //      tmp->svc->pid = fork();
 

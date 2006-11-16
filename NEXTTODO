@@ -1,5 +1,4 @@
-x finish svc_needs_status
-   * continue with tree_exec, catch the return value
+- insert new dependencies in tree_exec!
 - write svc_execute, which forks away the new process
 - cleanup the sig_child handler
    * disable signals in sig_child handler
