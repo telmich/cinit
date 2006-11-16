@@ -62,6 +62,7 @@ struct dep       *dep_entry_del(struct dep *del);
 int               tree_exec(struct dep *start);
 int               svc_set_status(struct listitem *li, int status);
 int               svc_should_respawn(struct listitem *li);
+int               svc_needs_status(struct listitem *li);
 
 
 /***********************************************************************
@@ -112,7 +113,7 @@ enum svc_status {
  */
 enum svc_needs_status {
    SNS_NEEDS_STARTED = 1,  /* all needs are started. We may start, too  */
-   SNS_NEED_FAILED,        /* one ore more needs failed                 */
+   SNS_NEEDS_FAILED,       /* one ore more needs failed                 */
    SNS_NEEDS_UNFINISHED    /* one ore more needs are not yet started    */
 };
 #endif   /* _CINIT_SVC_H */

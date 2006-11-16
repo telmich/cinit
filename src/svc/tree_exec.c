@@ -46,14 +46,21 @@ int tree_exec(struct dep *start)
       mini_printf(tmp->svc->abs_path,1);
       mini_printf("\n",1);
 
-      /* FIXME:
-       * what was my idea here and why does it segfault currently?
-       * check status of needs */
-      tmp2 = tmp->svc->needs;
- //     do {
-  //       tmp2 = tmp2->next;
-   //   } while (tmp2 != tmp->svc->needs);
-
+      switch(svc_needs_status(tmp->svc)) {
+         case SNS_NEEDS_STARTED:
+            /* execute service, remowe from list */
+            tmp = dep_entry_del(tmp);
+            break;
+         case SNS_NEEDS_FAILED::
+            /* mark service as NEED_FAILD and delete from list */
+            svc_set_status(tmp->svc,ST_NEED_FAILD);
+            tmp = dep_entry_del(tmp);
+            break;
+         case SNS_NEEDS_UNFINISHED:
+            /* continue with the next item */
+            tmp = tmp->next;
+            break;
+      }
 
 //      tmp->svc->pid = fork();
 
@@ -64,8 +71,6 @@ int tree_exec(struct dep *start)
   //       execute_sth(tmp->svc->abs_path);
 //         _exit(1);
    //   }
-
-      /* execute this service */
 
       /* add the services that want or need this service to the list
        * of services to be executed the next time
@@ -87,8 +92,6 @@ int tree_exec(struct dep *start)
        * - need failed - not started, because need failed. perhaps
        *   registert which dependenc(y|ies) failed?
        */
-      /* delete it from the service list */
-      tmp = dep_entry_del(tmp);
    } while(tmp != NULL);
 
    return 1;

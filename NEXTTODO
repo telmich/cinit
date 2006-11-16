@@ -1,10 +1,6 @@
-- finish svc_needs_status
+x finish svc_needs_status
    * continue with tree_exec, catch the return value
-- add_service must record whether the service is respawning or not
-- tree_exec:
-   * check status of needs before executing, but only after the base
-     services have been started (perhaps a second loop, implementing
-     a new pointer
+- write svc_execute, which forks away the new process
 - cleanup the sig_child handler
    * disable signals in sig_child handler
    * update status of service
