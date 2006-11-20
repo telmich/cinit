@@ -31,9 +31,8 @@ int gen_svc_tree(char *svc)
 
    if(!li->wants && !li->needs) {
       mini_printf("NO: Service has no dependencies, end service\n",1);
-      deps = malloc(sizeof(struct dep));
+      deps = dep_create(li);
       if(!deps) return 0;
-      deps->svc = li;
       mini_printf(deps->svc->abs_path,1);
       mini_printf("\n",1);
       dep_entry_add(&svc_init,deps);
