@@ -1,5 +1,10 @@
 - check that the new wants and need elements are nserted the other way round
    * we go to next, elements must be put before us!
+- check when replacing the service with its needs that the services are
+   not inserted twice, like in:
+      a is wanted by c
+      b is wanted by c
+      c is entered twice, because c has still status ST_SH_ONCE!
 - insert new dependencies in tree_exec!
 - write svc_execute, which forks away the new process
 - cleanup the sig_child handler

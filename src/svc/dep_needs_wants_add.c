@@ -20,7 +20,7 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc)
    struct dep *tmp;
 
    /* first add needs, then add wants
-    * but only add the service, it's still a virgin
+    * but only add the service, if it's still a virgin
     */
    tmp = svc->needed;
    if(tmp != NULL) {
