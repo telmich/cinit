@@ -15,3 +15,4 @@ svc/svc_set_status.o
 svc/svc_should_respawn.o
 svc/svc_needs_status.o
 svc/dep_needs_wants_add.o
+svc/dep_create.o

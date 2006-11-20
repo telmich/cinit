@@ -48,9 +48,13 @@ int tree_exec(struct dep *start)
 
       switch(svc_needs_status(tmp->svc)) {
          case SNS_NEEDS_STARTED:
-            mini_printf("alle gestartet, wants und needs hinzufuegen",1);
+            mini_printf("abhaengigkeiten gestartet, exec; add wants, needs",1);
             /* execute service, remowe from list */
-            dep_needs_wants_add(&start,tmp->svc);
+            dep_needs_wants_add(&tmp,tmp->svc);
+
+            /* update status */
+
+            /* delete service from list */
             tmp = dep_entry_del(tmp);
             break;
          case SNS_NEEDS_FAILED:
