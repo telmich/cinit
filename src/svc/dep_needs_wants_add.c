@@ -20,28 +20,24 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc)
    struct dep *tmp;
 
    /* first add needs, then add wants
-    * but only add the service, if it's still a virgin
+    * but only add the services, if they are still a virgin
     */
+   /* check status   */
+
+   /* check needs    */
+
+   /* check wants    */
    tmp = svc->needed;
    if(tmp != NULL) {
       do {
-         if((tmp->svc->status & ST_SH_ONCE) ||
-            (tmp->svc->status & ST_SH_RESPAWN))
-               /* FIXME: add entry */
+         if(((tmp->svc->status   & ST_SH_ONCE)     ||
+            (tmp->svc->status    & ST_SH_RESPAWN)) &&
+            !(tmp->svc->status   & ST_IN_LIST)) {
+               dep_entry_add(list,tmp->svc);
+            }
       } while(tmp != svc->needed);
    }
-   
-   dep_entry_add(
-   f( *list == NULL ) {       /* new list          */
-      *list          = new;
-      (*list)->prev  = *list;
-      (*list)->next  = *list;
-   } else {                                     /* already existing  */
-      new->next            = *list;             /* new-> first       */
-      new->prev            = (*list)->prev;     /* last <- new       */
-      (*list)->prev->next  = new;               /* last -> new       */
-      (*list)->prev        = new;               /* new <- first      */
-   }
+
 
    return 1;
 }

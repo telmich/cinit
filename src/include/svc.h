@@ -63,6 +63,7 @@ int               tree_exec(struct dep *start);
 int               svc_set_status(struct listitem *li, int status);
 int               svc_should_respawn(struct listitem *li);
 int               svc_needs_status(struct listitem *li);
+int               dep_needs_wants_add(struct dep **list, struct listitem *svc);
 
 
 /***********************************************************************
@@ -106,7 +107,7 @@ enum svc_status {
    ST_ONCE_FAIL   = 8,     /* service failed to start                   */
    ST_RESPAWNING  = 16,    /* service is respawning                     */
    ST_NEED_FAILD  = 32,    /* this service is not started, need failed  */
-   ST_IN_START    = 64     /* this service is being started (= in list) */
+   ST_IN_LIST     = 64     /* this service is being started (= in list) */
 };
 
 /***********************************************************************

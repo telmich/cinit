@@ -37,6 +37,9 @@ int gen_svc_tree(char *svc)
       mini_printf(deps->svc->abs_path,1);
       mini_printf("\n",1);
       dep_entry_add(&svc_init,deps);
+
+      /* mark it as being in _THE_ list */
+      li->status |= ST_IN_LIST;
    }
 
    return 1;
