@@ -45,12 +45,27 @@ int tree_exec(struct dep *start)
     * list. In this case simply skip the current service 
     */
    do {
+      /* FIXME debug */
+      mini_printf("TEX::",1);
       mini_printf(tmp->svc->abs_path,1);
-      mini_printf(":::",1);
+      mini_printf("\n",1);
+      {
+         struct dep *tmp2;
+         tmp2=tmp->svc->needs;
+         if(tmp2) {
+            do {
+               mini_printf("::",1);
+               mini_printf(tmp2->svc->abs_path,1);
+      mini_printf("\n",1);
+               fprintf(stderr,"%s: <<%d>>\n",tmp2->svc->abs_path,tmp2->svc->status);
+               tmp2 = tmp2->next;
+            } while (tmp2 != tmp->svc->needs);
+         }
+      }
 
       switch(svc_needs_status(tmp->svc)) {
          case SNS_NEEDS_STARTED:
-            mini_printf("abhaengigkeiten gestartet, exec; add wants, needs",1);
+            mini_printf("abhaengigkeiten gestartet, exec; add wants, needs\n",1);
             /* FIXME: execute service */
 
             /* update status */
@@ -65,28 +80,17 @@ int tree_exec(struct dep *start)
             tmp = dep_entry_del(tmp);
             break;
          case SNS_NEEDS_FAILED:
-            mini_printf("wer fehlgeschlagen",1);
+            mini_printf("wer fehlgeschlagen\n",1);
             /* mark service as NEED_FAILD and delete from list */
             svc_set_status(tmp->svc,ST_NEED_FAILD);
             tmp = dep_entry_del(tmp);
             break;
          case SNS_NEEDS_UNFINISHED:
-            mini_printf("noch warten",1);
-            {
-               struct dep *tmp2;
-               tmp2=tmp->svc->needs;
-               do {
-                  mini_printf("::",1);
-                  mini_printf(tmp2->svc->abs_path,1);
-                  fprintf(stderr,"%s: <<%d>>\n",tmp2->svc->abs_path,tmp2->svc->status);
-                  tmp2 = tmp2->next;
-               } while (tmp2 != tmp->svc->needs);
-            }
+            mini_printf("noch warten\n",1);
             /* continue with the next item */
             tmp = tmp->next;
             break;
       }
-      mini_printf("\n",1);
 
 //      tmp->svc->pid = fork();
 

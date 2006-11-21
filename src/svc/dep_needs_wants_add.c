@@ -27,25 +27,25 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc)
     */
    /* check status   */
 
-   mini_printf("dep_needs_wants_add::",1);
+   mini_printf("DNWA::",1);
    mini_printf(svc->abs_path,1);
-
 
    /* check needs    */
    tmp = svc->needed;
    if(tmp != NULL) {
       do {
-         mini_printf(" ",1);
+         mini_printf("::",1);
+         mini_printf(tmp->svc->abs_path,1);
          if(((tmp->svc->status   & ST_SH_ONCE)     ||
             (tmp->svc->status    & ST_SH_RESPAWN)) &&
             !(tmp->svc->status   & ST_IN_LIST)) {
-               mini_printf(" add: (",1);
-               mini_printf(tmp->svc->abs_path,1);
+               mini_printf("::(A)::",1);
                new = dep_create(tmp->svc);
                if(!new) return 0;
                dep_entry_add(list,new);
-               mini_printf(") ",1);
             }
+         /* FIXME: go forward or backwards? */
+         tmp = tmp->next;
       } while(tmp != svc->needed);
    }
    mini_printf("\n",1);

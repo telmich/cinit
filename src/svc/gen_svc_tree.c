@@ -35,6 +35,7 @@ struct listitem *gen_svc_tree(char *svc)
       mini_printf("START::",1);
       mini_printf(li->abs_path,1);
       mini_printf("\n",1);
+
       deps = dep_create(li);
       if(!deps) return NULL;
       dep_entry_add(&svc_init,deps);
