@@ -1,3 +1,7 @@
+- printout the generated tree, to verify it
+   * possible bug
+- debug execution of tree
+   * possible bug
 - remove endless loop, correct the status
 - check free on dep_del!
 - dep_create into tree_exec
