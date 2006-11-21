@@ -1,9 +1,6 @@
 - printout the generated tree, to verify it
    * possible bug -> no, tree is generated correctly
    * check dependency generation: OK
-- rewrite svc_known to return pointer to service if existent!
-- rewrite gen_svc_tree to return pointer to service after execution
-- rewrite check_add_deps.c to use the new return of gen_svc_tree
 - debug execution of tree
    * possible bug
 - remove endless loop, correct the status
