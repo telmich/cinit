@@ -5,7 +5,6 @@ svc/list_insert.o
 svc/list_modify.o
 svc/list_search.o
 svc/list_search_pid.o
-svc/svc_known.o
 svc/svc_create.o
 svc/check_add_deps.o
 svc/dep_entry_add.o

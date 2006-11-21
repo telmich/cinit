@@ -53,9 +53,8 @@ int            list_display_all();
 
 
 /* service */
-int               svc_known(char *svc);
 struct listitem  *svc_create(char *svc);
-int               gen_svc_tree(char *svc);
+struct listitem  *gen_svc_tree(char *svc);
 int               check_add_deps(struct listitem *svc, int type);
 int               dep_entry_add(struct dep **list, struct dep *new);
 struct dep       *dep_entry_del(struct dep *del);

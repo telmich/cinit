@@ -18,14 +18,14 @@ struct listitem *list_search(char *path)
 {
    struct listitem *tmp;
 
-   if( svc_list == NULL ) { /* think positive */
+   if(svc_list == NULL) { /* think positive */
       return NULL;
    } else {
       tmp = svc_list;
    }
 
    do {
-      if( !strcmp(path, tmp->abs_path) ) {
+      if(!strcmp(path, tmp->abs_path)) {
          return tmp;
       }
       tmp = tmp->prev;
