@@ -1,12 +1,5 @@
-- there's a bug, tha leads to unfinished inserting of services into the execution pointer
-   * perhaps in dep_needs_wants_add()
-   * perhaps in tree_exec()
-   * or when creating the double links
-- printout the generated tree, to verify it
-   * possible bug -> no, tree is generated correctly
-   * check dependency generation: OK
-- perhaps the bug is in dep_needs_wants_add?
 - remove endless loop, correct the status
+   * check with bugfix
 - check free on dep_del!
 - dep_create into tree_exec
 - check that the new wants and need elements are nserted the other way round
