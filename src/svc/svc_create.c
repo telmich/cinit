@@ -27,16 +27,24 @@ struct listitem *svc_create(char *svc)
    li = list_insert(svc,-1);
    if(!li) return NULL;
 
+   /* FIXME: add two path length checks? svc and svc+strlen(C_RESPAWN)? */
    strcpy(buf,svc);
    if(!path_append(buf,C_RESPAWN)) return NULL;
 
-   if(stat(svc,&statbuf) == -1) {
+   mini_printf("respawner: ",1);
+   mini_printf(buf,1);
+   mini_printf("\n",1);
+
+   if(stat(buf,&statbuf) == -1) {
       if(errno == ENOENT) {
          svc_set_status(li,ST_SH_ONCE);
       } else {
          return NULL;
       }
    } else {
+      mini_printf("respawn: ",1);
+      mini_printf(li->abs_path,1);
+      mini_printf("\n",1);
       svc_set_status(li,ST_SH_RESPAWN);
    }
 
