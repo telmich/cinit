@@ -96,23 +96,23 @@ int check_add_deps(struct listitem *svc, int type)
       ltmp = list_search(buf);
       if(!ltmp) return 0;
 
-      deps  = malloc(sizeof(struct dep));
+      /* create a dependency entry containing us */
+      deps  = dep_create(svc);
       if(!deps) return 0;
-      deps->svc = svc;
+
       if(type == DEP_NEEDS) {
          dep_entry_add(&(ltmp->needed),deps);
 
-         /* allocate new memory for the second dependency list */
-         //deps  = malloc(sizeof(struct dep));
+         /* second link */
          deps  = dep_create(ltmp);
          if(!deps) return 0;
-         //deps->svc = ltmp;
          dep_entry_add(&(svc->needs),deps);
       } else {
          dep_entry_add(&(ltmp->wanted),deps);
-         deps  = malloc(sizeof(struct dep));
+
+         /* second link */
+         deps  = dep_create(ltmp);
          if(!deps) return 0;
-         deps->svc = ltmp;
          dep_entry_add(&(svc->wants),deps);
       }
    }

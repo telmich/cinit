@@ -14,17 +14,17 @@
  * list: pointer to the list
  * new:  pointer to data to insert (already filled up)
  */
-int dep_entry_add(struct dep **list, struct dep *new)
+int dep_entry_add(struct dep **deplist, struct dep *new)
 {
-   if( *list == NULL ) {       /* new list          */
-      *list          = new;
-      (*list)->prev  = *list;
-      (*list)->next  = *list;
-   } else {                                     /* already existing  */
-      new->next            = *list;             /* new-> first       */
-      new->prev            = (*list)->prev;     /* last <- new       */
-      (*list)->prev->next  = new;               /* last -> new       */
-      (*list)->prev        = new;               /* new <- first      */
+   if( *deplist == NULL ) {       /* new list          */
+      *deplist          = new;
+      (*deplist)->prev  = *deplist;
+      (*deplist)->next  = *deplist;
+   } else {                                        /* already existing  */
+      new->next               = *deplist;          /* new-> first       */
+      new->prev               = (*deplist)->prev;  /* last <- new       */
+      (*deplist)->prev->next  = new;               /* last -> new       */
+      (*deplist)->prev        = new;               /* new <- first      */
    }
 
    return 1;
