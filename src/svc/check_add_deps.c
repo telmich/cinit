@@ -34,7 +34,7 @@ int check_add_deps(struct listitem *svc, int type)
    char              oldpath[PATH_MAX+1];
    struct dirent     *tdirent;
    struct dep        *deps = NULL;
-   struct listitem   *ltmp;
+   struct listitem   *new_svc;
    DIR               *d_tmp;
 
    /* remember where we started */
@@ -42,6 +42,10 @@ int check_add_deps(struct listitem *svc, int type)
       print_errno(MSG_CHDIR);
       return 0;
    }
+
+   mini_printf("CAD::",1);
+   mini_printf(svc->abs_path,1);
+   mini_printf("\n",1);
 
    /* Create path */
    strcpy(buf,svc->abs_path);
@@ -71,10 +75,17 @@ int check_add_deps(struct listitem *svc, int type)
       /* skip non-working directories */
       if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
 
+   /* FIXME: remove debug */
+   mini_printf("CAD::NEW::",1);
+   mini_printf(svc->abs_path,1);
+   mini_printf("::",1);
+   mini_printf(buf,1);
+   mini_printf("\n",1);
+
       /* 1. create the service we depend on
        * 2. initialize its dependencies
        */
-      if(!gen_svc_tree(buf)) return 0;
+      if(!(new_svc = gen_svc_tree(buf))) return 0;
 
       /* We need ALL dependencies, as we are called only once
        * per service; no need to test that first!
@@ -92,26 +103,22 @@ int check_add_deps(struct listitem *svc, int type)
        * 3. do it once for needs, once for needed_by
        */
 
-      /* find the other service */
-      ltmp = list_search(buf);
-      if(!ltmp) return 0;
-
       /* create a dependency entry containing us */
       deps  = dep_create(svc);
       if(!deps) return 0;
 
       if(type == DEP_NEEDS) {
-         dep_entry_add(&(ltmp->needed),deps);
+         dep_entry_add(&(new_svc->needed),deps);
 
          /* second link */
-         deps  = dep_create(ltmp);
+         deps  = dep_create(new_svc);
          if(!deps) return 0;
          dep_entry_add(&(svc->needs),deps);
       } else {
-         dep_entry_add(&(ltmp->wanted),deps);
+         dep_entry_add(&(new_svc->wanted),deps);
 
          /* second link */
-         deps  = dep_create(ltmp);
+         deps  = dep_create(new_svc);
          if(!deps) return 0;
          dep_entry_add(&(svc->wants),deps);
       }

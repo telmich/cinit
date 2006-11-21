@@ -22,7 +22,7 @@ struct listitem *gen_svc_tree(char *svc)
    /* create a template, so other instances won't try to recreate us */
    if(!(li=svc_create(svc)))  return NULL;
 
-   /* FIXME:debug */
+   /* FIXME: remove debug */
    mini_printf("gen_tree::",1);
    mini_printf(svc,1);
    mini_printf("\n",1);
@@ -31,6 +31,7 @@ struct listitem *gen_svc_tree(char *svc)
    if(!check_add_deps(li,DEP_WANTS))   return NULL;
 
    if(!li->wants && !li->needs) {
+      /* FIXME: remove debug */
       mini_printf("START::",1);
       mini_printf(li->abs_path,1);
       mini_printf("\n",1);
