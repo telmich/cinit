@@ -1,0 +1,16 @@
+[17:12] wasserstoff:svc# pwd
+/etc/cinit/svc
+[17:12] wasserstoff:svc# ls
+init
+17:12] wasserstoff:svc# mkdir getty
+[17:12] wasserstoff:svc# mkdir getty/2/
+[17:12] wasserstoff:svc# cd getty/2 
+[17:12] wasserstoff:2# ln -s /sbin/getty on
+17:12] wasserstoff:2# echo 38400 > on.params
+[17:13] wasserstoff:2# echo tty2 >> on.params     
+[17:13] wasserstoff:2# cd ../../init 
+[17:14] wasserstoff:init# mkdir needs
+[17:14] wasserstoff:init# cd needs 
+[17:14] wasserstoff:needs# ln -s ../../getty/2 getty-2
+[17:14] wasserstoff:needs# 
+

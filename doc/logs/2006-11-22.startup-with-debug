@@ -1,0 +1,55 @@
+[0:08] wasserstoff:cinit-0.3pre3% ./src/cinit
+cinit-0.3pre3: Booting from /etc/cinit/svc/init
+gen_tree::/etc/cinit/svc/init
+CAD::/etc/cinit/svc/init
+CAD::NEW::/etc/cinit/svc/init::/etc/cinit/svc/getty::
+gen_tree::/etc/cinit/svc/getty
+CAD::/etc/cinit/svc/getty
+CAD::NEW::/etc/cinit/svc/getty::/etc/cinit/svc/getty/2::
+gen_tree::/etc/cinit/svc/getty/2
+CAD::/etc/cinit/svc/getty/2
+CAD::NEW::/etc/cinit/svc/getty/2::/etc/cinit/svc/local-tuning/keyboard-layout::
+gen_tree::/etc/cinit/svc/local-tuning/keyboard-layout
+CAD::/etc/cinit/svc/local-tuning/keyboard-layout
+CAD::/etc/cinit/svc/local-tuning/keyboard-layout
+START::/etc/cinit/svc/local-tuning/keyboard-layout
+CAD::/etc/cinit/svc/getty/2
+CAD::NEW::/etc/cinit/svc/getty::/etc/cinit/svc/getty/3::
+gen_tree::/etc/cinit/svc/getty/3
+CAD::/etc/cinit/svc/getty/3
+CAD::NEW::/etc/cinit/svc/getty/3::/etc/cinit/svc/local-tuning/keyboard-layout::
+CAD::/etc/cinit/svc/getty/3
+CAD::/etc/cinit/svc/getty
+CAD::NEW::/etc/cinit/svc/init::/etc/cinit/svc/local-tuning::
+gen_tree::/etc/cinit/svc/local-tuning
+CAD::/etc/cinit/svc/local-tuning
+CAD::NEW::/etc/cinit/svc/local-tuning::/etc/cinit/svc/local-tuning/keyboard-layout::
+CAD::/etc/cinit/svc/local-tuning
+CAD::NEW::/etc/cinit/svc/init::/etc/cinit/svc/mount::
+gen_tree::/etc/cinit/svc/mount
+CAD::/etc/cinit/svc/mount
+CAD::NEW::/etc/cinit/svc/mount::/etc/cinit/svc/mount/root::
+gen_tree::/etc/cinit/svc/mount/root
+CAD::/etc/cinit/svc/mount/root
+CAD::/etc/cinit/svc/mount/root
+START::/etc/cinit/svc/mount/root
+CAD::/etc/cinit/svc/mount
+CAD::NEW::/etc/cinit/svc/init::/etc/cinit/svc/network::
+gen_tree::/etc/cinit/svc/network
+CAD::/etc/cinit/svc/network
+CAD::NEW::/etc/cinit/svc/network::/etc/cinit/svc/network/eth0::
+respawn: /etc/cinit/svc/network/eth0
+gen_tree::/etc/cinit/svc/network/eth0
+CAD::/etc/cinit/svc/network/eth0
+CAD::/etc/cinit/svc/network/eth0
+START::/etc/cinit/svc/network/eth0
+CAD::NEW::/etc/cinit/svc/network::/etc/cinit/svc/network/loopback::
+gen_tree::/etc/cinit/svc/network/loopback
+CAD::/etc/cinit/svc/network/loopback
+CAD::/etc/cinit/svc/network/loopback
+START::/etc/cinit/svc/network/loopback
+CAD::/etc/cinit/svc/network
+CAD::/etc/cinit/svc/init
+========> tree_exec() 
+/etc/cinit/svc/local-tuning/keyboard-layout:::abhaengigkeiten gestartet, exec; add wants, needsdep_needs_wants_add::/etc/cinit/svc/local-tuning/keyboard-layout  add: (/etc/cinit/svc/getty/2) 
+
