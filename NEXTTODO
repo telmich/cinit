@@ -1,5 +1,6 @@
 - printout the generated tree, to verify it
-   * possible bug
+   * possible bug -> no, tree is generated correctly
+   * check dependency generation
 - debug execution of tree
    * possible bug
 - remove endless loop, correct the status

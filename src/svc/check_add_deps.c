@@ -103,9 +103,10 @@ int check_add_deps(struct listitem *svc, int type)
          dep_entry_add(&(ltmp->needed),deps);
 
          /* allocate new memory for the second dependency list */
-         deps  = malloc(sizeof(struct dep));
+         //deps  = malloc(sizeof(struct dep));
+         deps  = dep_create(ltmp);
          if(!deps) return 0;
-         deps->svc = ltmp;
+         //deps->svc = ltmp;
          dep_entry_add(&(svc->needs),deps);
       } else {
          dep_entry_add(&(ltmp->wanted),deps);
