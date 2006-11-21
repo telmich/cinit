@@ -71,13 +71,6 @@ int check_add_deps(struct listitem *svc, int type)
       /* skip non-working directories */
       if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
 
-      /* FIXME: Debug */
-      mini_printf("cad::",1);
-      mini_printf(tdirent->d_name,1);
-      mini_printf(" -> ",1);
-      mini_printf(buf,1);
-      mini_printf("\n",1);
-
       /* 1. create the service we depend on
        * 2. initialize its dependencies
        */

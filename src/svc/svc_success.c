@@ -9,7 +9,7 @@
 
 #include "svc.h"
 
-void svc_sucess(struct listitem *li)
+void svc_success(struct listitem *li)
 {
    if(li->status & ST_SH_ONCE)
       li->status = ST_ONCE_OK;

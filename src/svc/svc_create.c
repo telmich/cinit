@@ -31,10 +31,6 @@ struct listitem *svc_create(char *svc)
    strcpy(buf,svc);
    if(!path_append(buf,C_RESPAWN)) return NULL;
 
-   mini_printf("respawner: ",1);
-   mini_printf(buf,1);
-   mini_printf("\n",1);
-
    if(stat(buf,&statbuf) == -1) {
       if(errno == ENOENT) {
          svc_set_status(li,ST_SH_ONCE);

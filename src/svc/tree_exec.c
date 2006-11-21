@@ -7,6 +7,8 @@
  *    Start the service tree we created
  */
 
+#include <stdio.h>              /* DEBUG */
+
 #include <unistd.h>              /* _exit, fork */
 
 #include "cinit.h"            
@@ -37,7 +39,7 @@ int tree_exec(struct dep *start)
    
    tmp = start;
 
-   mini_printf("Test 01\n",1);
+   mini_printf("========> tree_exec() \n",1);
    /* the main starting loop: All services in this list should be
     * started, but it is possible that dependent services are in the
     * list. In this case simply skip the current service 
@@ -49,10 +51,15 @@ int tree_exec(struct dep *start)
       switch(svc_needs_status(tmp->svc)) {
          case SNS_NEEDS_STARTED:
             mini_printf("abhaengigkeiten gestartet, exec; add wants, needs",1);
-            /* execute service, remowe from list */
-            dep_needs_wants_add(&tmp,tmp->svc);
+            /* FIXME: execute service */
 
             /* update status */
+            /* FIXME: check return code of execute_sth */
+            svc_success(tmp->svc);
+
+            /* execute service, remowe from list */
+            /* FIXME check return code? */
+            dep_needs_wants_add(&tmp,tmp->svc);
 
             /* delete service from list */
             tmp = dep_entry_del(tmp);
@@ -65,6 +72,16 @@ int tree_exec(struct dep *start)
             break;
          case SNS_NEEDS_UNFINISHED:
             mini_printf("noch warten",1);
+            {
+               struct dep *tmp2;
+               tmp2=tmp->svc->needs;
+               do {
+                  mini_printf("::",1);
+                  mini_printf(tmp2->svc->abs_path,1);
+                  fprintf(stderr,"%s: <<%d>>\n",tmp2->svc->abs_path,tmp2->svc->status);
+                  tmp2 = tmp2->next;
+               } while (tmp2 != tmp->svc->needs);
+            }
             /* continue with the next item */
             tmp = tmp->next;
             break;
@@ -101,6 +118,8 @@ int tree_exec(struct dep *start)
        * - need failed - not started, because need failed. perhaps
        *   registert which dependenc(y|ies) failed?
        */
+      /* FIXME: debug delay */
+      sleep(1);
    } while(tmp != NULL);
 
    return 1;

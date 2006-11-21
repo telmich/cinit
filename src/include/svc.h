@@ -65,7 +65,7 @@ int               svc_should_respawn(struct listitem *li);
 int               svc_needs_status(struct listitem *li);
 int               dep_needs_wants_add(struct dep **list, struct listitem *svc);
 struct dep        *dep_create(struct listitem *svc);
-void              svc_sucess(struct listitem *li);
+void              svc_success(struct listitem *li);
 
 
 /***********************************************************************
