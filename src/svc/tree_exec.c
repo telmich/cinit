@@ -124,7 +124,7 @@ int tree_exec(struct dep *start)
        *   registert which dependenc(y|ies) failed?
        */
       /* FIXME: debug delay */
-      sleep(1);
+      //sleep(1);
    } while(tmp != NULL);
 
    return 1;

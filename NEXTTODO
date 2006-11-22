@@ -1,38 +1,24 @@
+- create svc_start
+   * respawn, fork()ing, updating service status
+- create svc_report_status
+   * function to inform the user about what failed
 - check free on dep_del!
 - dep_create into tree_exec
 - check that the new wants and need elements are nserted the other way round
    * we go to next, elements must be put before us!
-- check when replacing the service with its needs that the services are
-   not inserted twice, like in:
-      a is wanted by c
-      b is wanted by c
-      c is entered twice, because c has still status ST_SH_ONCE!
-- insert new dependencies in tree_exec!
-- write svc_execute, which forks away the new process
 - cleanup the sig_child handler
    * disable signals in sig_child handler
    * update status of service
+   * Lookup other signalling things, too.
       - use list_search_pid
 
-- continue tree_exec()
-   * start first list, remove objects that have been started
-   * add new dependencies (wanted_by and needed_by from the service
-     being removed)
-   * so tree_exec runs as long as there are elements in the list!
-      - not only as long as the list is cycled!
-- Fix SIG_CHILD handler!
-   * Lookup other signalling things, too.
-- add respawn when creating the service
-- create
-   * svc_on() that tries to start a service
-   * svc_off() that tries to stop a service
-   
 - define messages
    a) human readable
    b) binary data?
    ?
 - replace cinit_ipc_logon with cinit_ipc_init...
 - cleanup run_svc
+   * NOT NECESSARY ANYMORE!
 - implement do_reboot.c
 - cleanup sig_child
 
