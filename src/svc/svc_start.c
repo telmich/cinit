@@ -34,8 +34,10 @@ void svc_start(struct listitem *li)
       return;
    }
 
-   /* Client: FIXME: check for valid length? use strncpy? */
-   strcpy(buf,li->abs_path);
+   /* Client: FIXME: check for valid length! */
+   /* misuse status field (doesn't matter in fork) for strlen */
+   li->status = strlen(li->abs_path);
+   strncpy(buf,li->abs_path,li->status);
    strncat(buf,SLASH,PATH_MAX);
    strncat(buf,C_ON,PATH_MAX);
    execute_sth(buf);

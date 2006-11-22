@@ -41,12 +41,12 @@
 
 int cinit_build_argv(char *basename, struct ba_argv *bav)
 {
-   int tmp;
-   int fd;
-   int argc;
-   char pathtmp[PATH_MAX+1];
-   char *p;
-   char *sbuf = NULL;
+   int         tmp;
+   int         fd;
+   int         argc;
+   char        pathtmp[PATH_MAX+1];
+   char        *sbuf = NULL;
+   char        *p;
    struct stat buf;
 
    /* sane values */
@@ -58,7 +58,7 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    /***********************************************************************
     * Try to get realname (for links)
     */
-   if ( ( tmp = readlink(basename,pathtmp,PATH_MAX) ) == -1) {
+   if((tmp = readlink(basename,pathtmp,PATH_MAX)) == -1) {
 
       /* nothing there? */
       if(errno == ENOENT) {
@@ -77,10 +77,10 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    /***********************************************************************
     * prepare argv0
     */
-   bav->argv = malloc( sizeof(char *) );
+   bav->argv = malloc(sizeof(char *));
    if(bav->argv == NULL) return BA_E_MEM;
 
-   *bav->argv = malloc( tmp );
+   *bav->argv = malloc(tmp);
    if(*(bav->argv) == NULL) return BA_E_MEM;
 
    strncpy(*(bav->argv),pathtmp,tmp);
@@ -89,9 +89,10 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    strcat(pathtmp,C_PARAMS);
 
    /* open params file */
-   if( !stat(pathtmp,&buf) ) {
+   if(!stat(pathtmp,&buf)) {
       fd = open(pathtmp,O_RDONLY);
-
+      
+      /* FIXME: check return code, ignore if there's no params */
       if(fd == -1) {
          return BA_E_PARAMS;
       }
@@ -99,8 +100,9 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
       argc = 0;
 
       /* fill sbuf with content */
-      while ( (tmp = read(fd,pathtmp,PATH_MAX) ) != 0 ) {
+      while ((tmp = read(fd,pathtmp,PATH_MAX)) != 0) {
          if(tmp == -1) { 
+            /* FIXME: print_ernno! */
             return BA_E_PARAMS;
          }
 
@@ -108,6 +110,7 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
          strncpy(&sbuf[argc],pathtmp,tmp);
          argc += tmp;
       }
+      /* FIXME also catch close errors? */
       close(fd);
 
       if(argc) {
@@ -121,7 +124,7 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
     * Now split the string, converting \n to \0
     */
    argc = 1; /* argv0 */
-   while( sbuf != NULL) {
+   while(sbuf != NULL) {
       p = strchr(sbuf,'\n');
       bav->argv = realloc(bav->argv, sizeof(char *) * (argc + 1));
 
@@ -137,7 +140,11 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
          /* set to the end of sbuf, not to the \0, but one before */
          p = sbuf + (strlen(sbuf)-1); 
       }
+      mini_printf("argc: ",1);
+      mini_printf(sbuf,1);
+      mini_printf("\n",1);
       
+      /* FIXME: control whether we lose one byte or not! */
       /* if next byte is 0, the end of string is found */
       if( *(p+1) == '\0') {
          sbuf = NULL;

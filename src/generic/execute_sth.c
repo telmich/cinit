@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -13,8 +13,8 @@
 
 void execute_sth(char *basename)
 {
+   int            tmp;
    struct ba_argv bav;
-   int tmp;
 
    if((tmp = cinit_build_argv(basename,&bav)) != BA_OK) {
       if(tmp != BA_E_MEM) {
