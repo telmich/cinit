@@ -19,6 +19,14 @@
 
 void sig_child(int tmp)
 {
+   /* New code:
+    * - disable almost all signal handlers, so we do not get interrupted
+    * - search for pid in service list
+    *   * if (respawn) -> start new
+    *    - insert delay? if exit code is non-zero? if uptime too less?
+    *   * if (once) -> update service status
+    *   * else ignore, but reap away
+    */
    struct listitem *svc;
 
    do {
