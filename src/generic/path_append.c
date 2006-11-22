@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -15,7 +15,6 @@
 int path_append(char *path, char *append)
 {
    size_t end = strlen(path);
-
 
    if(strcmp(&path[end-1],SLASH)) {
       if((end + strlen(SLASH) + strlen(append)) > PATH_MAX) return 0;

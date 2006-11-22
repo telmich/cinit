@@ -22,6 +22,14 @@ enum {         /* FIXME: there are some default defines somewhere for that */
    FD_ERR=2
 };
 
+enum {         /* returns of openreadclose */
+   ORC_OK,
+   ORC_ERR_NONEXISTENT,
+   ORC_ERR_OPEN,
+   ORC_ERR_READ,
+   ORC_ERR_CLOSE
+};
+
 /***********************************************************************
  * Paths
  */

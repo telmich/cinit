@@ -1,10 +1,10 @@
 /***********************************************************************
  *
- *    2005-2006 Nico Schottelius (nico-linux-cinit //@\\ schottelius.org)
+ *    2005-2006 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
- *    Print to the world!
+ *    Print the world!
  *
  */
 

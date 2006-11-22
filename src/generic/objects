@@ -3,3 +3,4 @@ generic/mini_printf.o
 generic/path_absolute.o
 generic/path_append.o
 generic/print_errno.o
+generic/openreadclose.o
