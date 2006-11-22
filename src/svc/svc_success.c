@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2005-2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
