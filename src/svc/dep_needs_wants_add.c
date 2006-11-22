@@ -42,6 +42,7 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc)
                mini_printf("::(A)::",1);
                new = dep_create(tmp->svc);
                if(!new) return 0;
+               tmp->svc->status |= ST_IN_LIST;
                dep_entry_add(list,new);
             }
          /* FIXME: go forward or backwards? */
