@@ -71,18 +71,15 @@ int main(int argc, char **argv)
    /* pre-calculate service tree */
    gen_svc_tree(initdir);
 
-   /* start tree from the bottom */
-   if(!tree_exec(svc_init)) return 1;
-
-   mini_printf("test\n",1);
-
-   /* start init or profile */
-   run_init_svc(initdir);
-
    /* free, if we malloc()ed before */
    if(initdir != CINIT_INIT) {
       free(initdir);
    }
+
+   /* start tree from the bottom */
+   if(!tree_exec(svc_init)) return 1;
+
+   mini_printf("=> cinit started.\n",1);
 
    /* listen for incomming messages: should never return */
    if(!cinit_ipc_listen()) {
