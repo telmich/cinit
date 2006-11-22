@@ -73,7 +73,6 @@ void     sig_terminate(int signal);
 void execute_sth(char *basename);
 int path_append(char *path, char *append);
 int path_absolute(char *relpath, char *buf, size_t size);
-void svc_report_status(char *svc, char *msg, char *err);
 
 /* util */
 int      msg_reboot(char cmd);

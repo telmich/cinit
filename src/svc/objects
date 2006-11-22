@@ -17,3 +17,4 @@ svc/dep_needs_wants_add.o
 svc/dep_create.o
 svc/svc_success.o
 svc/svc_report_status.o
+svc/svc_start.o

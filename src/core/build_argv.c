@@ -1,12 +1,12 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
  *    Build **argv for execution in cinit way:
  *    1. check whether cmd is a valid executable
- *    2. try to read cmd.params and write paramaters
+ *    2. try to read cmd.params and write parameters
  *    3. try to read cmd.env and setup environment
  *
  *    Returns:

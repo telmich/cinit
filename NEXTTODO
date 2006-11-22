@@ -1,9 +1,4 @@
-- create svc_start
-   * respawn, fork()ing, updating service status
-- create svc_report_status
-   * function to inform the user about what failed
 - check free on dep_del!
-- dep_create into tree_exec
 - check that the new wants and need elements are nserted the other way round
    * we go to next, elements must be put before us!
 - cleanup the sig_child handler
@@ -20,7 +15,6 @@
 - cleanup run_svc
    * NOT NECESSARY ANYMORE!
 - implement do_reboot.c
-- cleanup sig_child
 
 Finally:
 - test and release cinit-0.3rc1

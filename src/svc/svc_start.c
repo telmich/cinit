@@ -10,10 +10,15 @@
 #include <unistd.h>        /* fork        */
 #include <string.h>        /* strerror    */
 #include <errno.h>         /* errno       */
-#include "svc.h"
+#include <limits.h>        /* PATH_MAX    */
+#include "svc.h"           /* struct *    */
+#include "messages.h"      /* MSG_*       */
+#include "cinit.h"         /* execute_sth */
 
 void svc_start(struct listitem *li)
 {
+   char              buf[PATH_MAX+1];
+
    li->pid = fork();
 
    if(li->pid < 0) {
@@ -28,8 +33,10 @@ void svc_start(struct listitem *li)
          li->status = ST_RESPAWNING;
       return;
    }
-   /* Client */
-   if(li->pid == 0) {
-      execute_sth(li->abs_path);
-   }
+
+   /* Client: FIXME: check for valid length? use strncpy? */
+   strcpy(buf,li->abs_path);
+   strncat(buf,SLASH,PATH_MAX);
+   strncat(buf,C_ON,PATH_MAX);
+   execute_sth(buf);
 }
