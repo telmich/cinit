@@ -1,3 +1,4 @@
+- include openreadclose() into build_argv
 - debug build_argv.c, there seem to be some problems in it!
 - check execute_sth and control build_argv.c
 - do not reports errors, when on or off do not exist!

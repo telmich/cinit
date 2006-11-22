@@ -23,3 +23,5 @@ test_gen_svc_tree: test/test_gen_svc_tree.o svc/list_display_all.o \
 							svc/gen_svc_tree.o 		\
 							generic/mini_printf.o \
 							svc/list_display_all.o
+
+test_openreadclose: test/test_openreadclose.o generic/openreadclose.o

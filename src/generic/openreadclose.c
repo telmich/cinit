@@ -24,7 +24,6 @@ int openreadclose(char *filename, char **where)
    int         fd;
    char        buf[512];
 
-      
    while((fd = open(filename,O_RDONLY)) == -1) {
       if(errno == ENOENT)  return ORC_ERR_NONEXISTENT;
       if(errno != EINTR)   return ORC_ERR_OPEN;
@@ -32,7 +31,7 @@ int openreadclose(char *filename, char **where)
 
    *where   = NULL;
    cnt      = 0;
-   /* fill sbuf with content */
+
    while (1) {
 //   while ((tmp = read(fd,pathtmp,PATH_MAX)) != 0) {
       tmp = read(fd,buf,512);
@@ -42,6 +41,8 @@ int openreadclose(char *filename, char **where)
             continue;
          else
             return ORC_ERR_READ;
+      } else if(tmp == 0) {
+         break;
       }
       
       cnt += tmp;
@@ -53,4 +54,6 @@ int openreadclose(char *filename, char **where)
       if(errno == EINTR) continue;
       return ORC_ERR_CLOSE;
    }
+
+   return ORC_OK;
 }
