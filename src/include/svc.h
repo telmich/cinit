@@ -108,7 +108,8 @@ enum svc_status {
    ST_ONCE_FAIL   = 8,     /* service failed to start                   */
    ST_RESPAWNING  = 16,    /* service is respawning                     */
    ST_NEED_FAILD  = 32,    /* this service is not started, need failed  */
-   ST_IN_LIST     = 64     /* this service is being started (= in list) */
+   ST_IN_LIST     = 64,    /* this service is being started (= in list) */
+   ST_BAD_ERR     = 128    /* some kind of error that SHOULD NOT happen */
 };
 
 /***********************************************************************

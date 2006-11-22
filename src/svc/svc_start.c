@@ -7,7 +7,9 @@
  *    Start a service
  */
 
-#include <unistd.h>        /* fork     */
+#include <unistd.h>        /* fork        */
+#include <string.h>        /* strerror    */
+#include <errno.h>         /* errno       */
 #include "svc.h"
 
 void svc_start(struct listitem *li)
@@ -15,7 +17,8 @@ void svc_start(struct listitem *li)
    li->pid = fork();
 
    if(li->pid < 0) {
-      /* FIXME: print descriptive error message */
+      svc_report_status(li->abs_path,MSG_SVC_FORK,strerror(errno));
+      svc_set_status(li,ST_BAD_ERR);
       return;
    }
    if(li->pid > 0) {

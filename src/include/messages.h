@@ -91,4 +91,8 @@
 #define P_START_SERVICE(name) { mini_printf(MSG_START_SVC,1); mini_printf(name,1); mini_printf("\n",1); }
 #define P_EXEC_FAILED(name) { mini_printf(MSG_EXEC_FAILED,1); mini_printf(name,1); mini_printf("\n",1); }
 
+/* NEW (clean) Service status: Messages to the outside */
+#define MSG_SVC_FORK       "fork() failed"
+
+
 #endif   /* _CINIT_MSG_H */
