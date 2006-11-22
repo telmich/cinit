@@ -67,10 +67,10 @@ int tree_exec(struct dep *start)
          case SNS_NEEDS_STARTED:
             mini_printf("abhaengigkeiten gestartet, exec; add wants, needs\n",1);
             /* FIXME: execute service */
+            svc_start(tmp->svc);
 
-            /* update status */
-            /* FIXME: check return code of execute_sth */
-            svc_success(tmp->svc);
+            /* FIXME: update status must be included in child handler! */
+            //svc_success(tmp->svc);
 
             /* execute service, remowe from list */
             /* FIXME check return code? */
