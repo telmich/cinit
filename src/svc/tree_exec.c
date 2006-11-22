@@ -74,7 +74,8 @@ int tree_exec(struct dep *start)
 
             /* execute service, remowe from list */
             /* FIXME check return code? */
-            dep_needs_wants_add(&tmp,tmp->svc);
+            dep_needs_wants_add(&tmp,tmp->svc,DEP_NEEDS);
+            dep_needs_wants_add(&tmp,tmp->svc,DEP_WANTS);
 
             /* delete service from list */
             tmp = dep_entry_del(tmp);

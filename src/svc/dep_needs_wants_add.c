@@ -17,21 +17,25 @@
  */
 
 /* FIXME unfinished (wants) and possibly not adding all? */
-int dep_needs_wants_add(struct dep **list, struct listitem *svc)
+int dep_needs_wants_add(struct dep **list, struct listitem *svc, int type)
 {
 
-   struct dep *tmp, *new;
+   struct dep *tmp, *new, *end;
 
    /* first add needs, then add wants
     * but only add the services, if they are still a virgin
     */
-   /* check status   */
+   if(type == DEP_NEEDS) {
+      end = svc->needed;
+   } else {
+      end = svc->wanted;
+   }
 
    mini_printf("DNWA::",1);
    mini_printf(svc->abs_path,1);
 
    /* check needs    */
-   tmp = svc->needed;
+   tmp = end;
    if(tmp != NULL) {
       do {
          mini_printf("::",1);
@@ -49,7 +53,7 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc)
           * this decision will influence starting order
           * and may thereby add a minimal mount of speed enhancement */
          tmp = tmp->next;
-      } while(tmp != svc->needed);
+      } while(tmp != end);
    }
    mini_printf("\n",1);
 
