@@ -1,5 +1,9 @@
+cinit-0.3pre3:
+   - Finished execution all services via the reversed service tree.
+
 cinit-0.3pre2:
    - Finished generation of the dependency tree.
+
 cinit-0.3pre1:
    - cinit should now compile on mostly all unices
    - introduced much new code
