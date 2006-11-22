@@ -22,11 +22,10 @@ void svc_start(struct listitem *li)
       return;
    }
    if(li->pid > 0) {
-      /* FIXME: Update status: Being started */
-   if(li->status & ST_SH_ONCE)
-      li->status = ST_ONCE_OK;
-   else
-      li->status = ST_RESPAWNING;
+      if(li->status & ST_SH_ONCE)
+         li->status = ST_ONCE_OK;
+      else
+         li->status = ST_RESPAWNING;
       return;
    }
    /* Client */
