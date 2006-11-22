@@ -45,7 +45,9 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc)
                tmp->svc->status |= ST_IN_LIST;
                dep_entry_add(list,new);
             }
-         /* FIXME: go forward or backwards? */
+         /* FIXME: go forward or backwards?
+          * this decision will influence starting order
+          * and may thereby add a minimal mount of speed enhancement */
          tmp = tmp->next;
       } while(tmp != svc->needed);
    }

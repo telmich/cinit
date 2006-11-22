@@ -1,5 +1,3 @@
-- it seems like a service is inserted multiple times into the starter
-  list, if it has more than one service referring to it. CHECK.
 - check free on dep_del!
 - dep_create into tree_exec
 - check that the new wants and need elements are nserted the other way round
