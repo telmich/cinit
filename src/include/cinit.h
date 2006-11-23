@@ -82,6 +82,7 @@ void execute_sth(char *basename);
 int path_append(char *path, char *append);
 int path_absolute(char *relpath, char *buf, size_t size);
 int openreadclose(char *filename, char **where);
+char *strip_final_newline(char *str);
 
 /* util */
 int      msg_reboot(char cmd);

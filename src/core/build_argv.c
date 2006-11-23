@@ -30,12 +30,9 @@
 #include "build_argv.h"
 
  /*
- * FIXME: we are perhaps loosing a byte, the \0 for the full
- *        string of argv and envp! too tired to check.
  * char *basename: something we should execute
  * (*basename) + ".params" will be added as parameters
  * (*basename) + ".env" will be added as environment
- *
  */
 
 
@@ -97,38 +94,8 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
       print_errno(pathtmp);
       return BA_E_PARAMS;
    }
-
-   /* open params file */
-   if(!stat(pathtmp,&buf)) {
-      fd = open(pathtmp,O_RDONLY);
-      
-      /* FIXME: check return code, ignore if there's no params */
-      if(fd == -1) {
-         return BA_E_PARAMS;
-      }
-
-      argc = 0;
-
-      /* fill sbuf with content */
-      while ((tmp = read(fd,pathtmp,PATH_MAX)) != 0) {
-         if(tmp == -1) { 
-            /* FIXME: print_ernno! */
-            return BA_E_PARAMS;
-         }
-
-         sbuf = realloc(sbuf,argc + tmp + 1);
-         strncpy(&sbuf[argc],pathtmp,tmp);
-         argc += tmp;
-      }
-      /* FIXME also catch close errors? */
-      close(fd);
-
-      if(argc) {
-         sbuf[argc] = '\0'; /* terminate string */
-      }
-   } else {
-      sbuf = NULL;
-   }
+   
+   sbuf = strip_final_newline(sbuf);
 
    /***********************************************************************
     * Now split the string, converting \n to \0
@@ -138,37 +105,25 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
       p = strchr(sbuf,'\n');
       bav->argv = realloc(bav->argv, sizeof(char *) * (argc + 1));
 
-      if(bav->argv == NULL) {
-         return BA_E_MEM;
-      }
-
+      if(bav->argv == NULL) return BA_E_MEM;
       bav->argv[argc] = sbuf;     /* here begins the current argument */
       
       if(p != NULL) {   /* found another \n */
          *p = '\0';
+         sbuf = p+1;
       } else {          /* end of string */
-         /* set to the end of sbuf, not to the \0, but one before */
-         p = sbuf + (strlen(sbuf)-1); 
+         sbuf = NULL;
       }
       mini_printf("argc: ",1);
       mini_printf(sbuf,1);
       mini_printf("\n",1);
       
-      /* FIXME: control whether we lose one byte or not! */
-      /* if next byte is 0, the end of string is found */
-      if( *(p+1) == '\0') {
-         sbuf = NULL;
-      } else {
-         sbuf = p+1;
-      }
       ++argc;
    }
 
    /************ close argv list **************/
    bav->argv = realloc(bav->argv, sizeof(char *) * (argc + 1)); /* 1: NULL-pointer */
-   if(bav->argv == NULL) {
-      return BA_E_MEM;
-   }
+   if(bav->argv == NULL) return BA_E_MEM;
    bav->argv[argc] = NULL;  /* terminate argv list */
 
    /********************** read environment *********************/

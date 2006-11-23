@@ -15,7 +15,12 @@ void execute_sth(char *basename)
 {
    int            tmp;
    struct ba_argv bav;
+   
+   mini_printf("ES::",1);
+   mini_printf(basename,1);
+   mini_printf("\n",1);
 
+   tmp = cinit_build_argv(basename,&bav);
    if((tmp = cinit_build_argv(basename,&bav)) != BA_OK) {
       if(tmp != BA_E_MEM) {
          print_errno(basename);
