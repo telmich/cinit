@@ -50,7 +50,9 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    bav->argv = NULL;
    bav->envp = NULL;
 
-   printf("basename %s\n",basename);
+   mini_printf("CBA::",1);
+   mini_printf(basename,1);
+   mini_printf("\n",1);
 
    /***********************************************************************
     * Try to get realname (for links)
