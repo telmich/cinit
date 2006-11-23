@@ -7,6 +7,8 @@
  *    Start a service
  */
 
+#include <stdio.h>        /* DEBUG        */
+
 #include <unistd.h>        /* fork        */
 #include <string.h>        /* strerror    */
 #include <errno.h>         /* errno       */
@@ -17,7 +19,7 @@
 
 void svc_start(struct listitem *li)
 {
-   char              buf[PATH_MAX+1];
+   char buf[PATH_MAX+1];
 
    li->pid = fork();
 
@@ -34,11 +36,23 @@ void svc_start(struct listitem *li)
       return;
    }
 
-   /* Client: FIXME: check for valid length! */
+   /* Client: FIXME: check for valid length!
+    * strlen(abs_path) + strlen(SLASH) + strlen(C_ON) */
    /* misuse status field (doesn't matter in fork) for strlen */
    li->status = strlen(li->abs_path);
    strncpy(buf,li->abs_path,li->status);
+   buf[li->status] = '\0';
+   printf("buf1: %s\n",buf);
+   printf("buf-orig: %s\n",li->abs_path);
    strncat(buf,SLASH,PATH_MAX);
+   printf("buf2: %s\n",buf);
    strncat(buf,C_ON,PATH_MAX);
+   printf("buf3: %s\n",buf);
+
+   mini_printf("SS::",1);
+   mini_printf(li->abs_path,1);
+   mini_printf("::",1);
+   mini_printf(buf,1);
+   mini_printf("\n",1);
    execute_sth(buf);
 }

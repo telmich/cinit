@@ -3,6 +3,12 @@
    /etc/cinit/svc/getty/3spawn/on: No such file or directory
    /etc/cinit/svc/mount/rootwn/on: No such file or directory
 
+problem area:
+TEX::/etc/cinit/svc/mount/root
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/mount/rootwn/on
+
+
 - Cleanup build_argv.c, use openreadclose, strip_final_newline
 - check execute_sth
 - do not reports errors, when on or off do not exist!
