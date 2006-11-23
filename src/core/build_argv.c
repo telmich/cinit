@@ -87,6 +87,16 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
 
    /********************** read params *********************/
    strcat(pathtmp,C_PARAMS);
+   /* ORC_ERR_NONEXISTENT: Ok, have sbuf set to NULL
+    * ORC_OK: Ok, have a filled buffer (perhaps NULL, too)
+    * other: Error, print errno
+    */
+   tmp = openreadclose(pathtmp,&sbuf);
+
+   if(tmp != ORC_ERR_NONEXISTENT && tmp != ORC_OK) {
+      print_errno(pathtmp);
+      return BA_E_PARAMS;
+   }
 
    /* open params file */
    if(!stat(pathtmp,&buf)) {

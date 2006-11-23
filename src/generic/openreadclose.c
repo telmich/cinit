@@ -24,14 +24,14 @@ int openreadclose(char *filename, char **where)
    int         fd;
    char        buf[512];
 
+   *where   = NULL;
+
    while((fd = open(filename,O_RDONLY)) == -1) {
       if(errno == ENOENT)  return ORC_ERR_NONEXISTENT;
       if(errno != EINTR)   return ORC_ERR_OPEN;
    }
 
-   *where   = NULL;
    cnt      = 0;
-
    while (1) {
 //   while ((tmp = read(fd,pathtmp,PATH_MAX)) != 0) {
       tmp = read(fd,buf,512);
