@@ -33,7 +33,6 @@ int openreadclose(char *filename, char **where)
 
    cnt      = 0;
    while (1) {
-//   while ((tmp = read(fd,pathtmp,PATH_MAX)) != 0) {
       tmp = read(fd,buf,512);
 
       if(tmp == -1) { 
@@ -47,6 +46,9 @@ int openreadclose(char *filename, char **where)
       
       cnt += tmp;
       *where = realloc(*where,cnt + 1);
+      /* FIXME: BAEH! Catch return! */
+      /* FIXME check correctness of copied buffer...
+       * and get some sleep..soon, very soon! */
       strncpy(&(*where)[cnt-tmp],buf,tmp);
    }
    

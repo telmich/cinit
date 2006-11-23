@@ -35,7 +35,6 @@
  * (*basename) + ".env" will be added as environment
  */
 
-
 int cinit_build_argv(char *basename, struct ba_argv *bav)
 {
    int         tmp;
@@ -58,7 +57,6 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
     * Try to get realname (for links)
     */
    if((tmp = readlink(basename,pathtmp,PATH_MAX)) == -1) {
-
       /* nothing there? */
       if(errno == ENOENT) {
          return BA_E_NOTFOUND;
@@ -73,6 +71,8 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    ++tmp; /* the byte to add to memory for \0;
              neither readlink nor strlen count the \0 */
    
+   mini_printf("CBA::NOCH DA1",1);
+   mini_printf("\n",1);
    /***********************************************************************
     * prepare argv0
     */
@@ -90,12 +90,21 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
     * ORC_OK: Ok, have a filled buffer (perhaps NULL, too)
     * other: Error, print errno
     */
+   mini_printf("CBA::NOCH DA2",1);
+   mini_printf("\n",1);
    tmp = openreadclose(pathtmp,&sbuf);
+   mini_printf("CBA::NOCH DA3",1);
+   mini_printf("\n",1);
+   
+   mini_printf(sbuf,1);
 
    if(tmp != ORC_ERR_NONEXISTENT && tmp != ORC_OK) {
       print_errno(pathtmp);
       return BA_E_PARAMS;
    }
+   mini_printf("CBA::NOCH DA4",1);
+   mini_printf("\n",1);
+   
    
    sbuf = strip_final_newline(sbuf);
 
