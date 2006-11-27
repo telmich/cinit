@@ -38,12 +38,10 @@
 int cinit_build_argv(char *basename, struct ba_argv *bav)
 {
    int         tmp;
-   int         fd;
    int         argc;
    char        pathtmp[PATH_MAX+1];
    char        *sbuf = NULL;
    char        *p;
-   struct stat buf;
 
    /* sane values */
    bav->argv = NULL;
@@ -70,9 +68,7 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    pathtmp[tmp] = '\0';
    ++tmp; /* the byte to add to memory for \0;
              neither readlink nor strlen count the \0 */
-   
-   mini_printf("CBA::NOCH DA1",1);
-   mini_printf("\n",1);
+
    /***********************************************************************
     * prepare argv0
     */
@@ -98,9 +94,7 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
       print_errno(pathtmp);
       return BA_E_PARAMS;
    }
-   mini_printf("CBA::NOCH DA4",1);
-   mini_printf("\n",1);
-   
+
    sbuf = strip_final_newline(sbuf);
 
    /***********************************************************************
@@ -113,23 +107,19 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
 
       if(bav->argv == NULL) return BA_E_MEM;
       bav->argv[argc] = sbuf;     /* here begins the current argument */
-      
+
       if(p != NULL) {   /* found another \n */
          *p = '\0';
          sbuf = p+1;
       } else {          /* end of string */
          sbuf = NULL;
       }
-      mini_printf("argc: ",1);
-      mini_printf(sbuf,1);
-      mini_printf("\n",1);
-      
+
       ++argc;
    }
-   mini_printf("PAST ARGV\n",1);
 
    /************ close argv list **************/
-   bav->argv = realloc(bav->argv, sizeof(char *) * (argc + 1)); /* 1: NULL-pointer */
+   bav->argv = realloc(bav->argv, sizeof(char *) * (argc + 1));
    if(bav->argv == NULL) return BA_E_MEM;
    bav->argv[argc] = NULL;  /* terminate argv list */
 
@@ -149,31 +139,22 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
 
    sbuf = strip_final_newline(sbuf);
    
-   /* STOPPED HERE */
-
    /************** build environment string **************/
    argc = 0;
-   while( sbuf != NULL ) {
+   while(sbuf != NULL) {
       p = strchr(sbuf,'\n');
          
       bav->envp = realloc(bav->envp, sizeof(char *) * (argc + 1));
-      if(bav->envp == NULL) {
-         return BA_E_MEM;
-      }
+      if(bav->envp == NULL) return BA_E_MEM;
+
       bav->envp[argc] = sbuf;
 
       /* if we found \n */
       if(p != NULL) {
          *p = '\0';
-      } else {
-         /* set to the end of sbuf, not to the \0, but one before */
-         p = sbuf + (strlen(sbuf)-1); 
-      }
-
-      if( *(p+1) == '\0') {
-         sbuf = NULL;
-      } else {
          sbuf = p+1;
+      } else {
+         sbuf = NULL;
       }
       ++argc;
    }
