@@ -1,4 +1,6 @@
 - Look into openreadclose, whether pointer is correctly filled up!
+   * check whether calling functions catch all return values
+   * looks like a copy issue...
 - Cleanup build_argv.c, use openreadclose, strip_final_newline
 - check execute_sth
 - do not reports errors, when on or off do not exist!
