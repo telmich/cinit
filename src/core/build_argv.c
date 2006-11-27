@@ -92,17 +92,7 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
     * ORC_OK: Ok, have a filled buffer (perhaps NULL, too)
     * other: Error, print errno
     */
-   mini_printf("CBA::NOCH DA2",1);
-   mini_printf("\n",1);
    tmp = openreadclose(pathtmp,&sbuf);
-
-   printf("tmp:: %d\n",tmp);
-
-   mini_printf("CBA:",1);
-   mini_printf(sbuf,1);
-   mini_printf("\n",1);
-   
-   mini_printf(sbuf,1);
 
    if(tmp != ORC_ERR_NONEXISTENT && tmp != ORC_OK) {
       print_errno(pathtmp);
@@ -144,32 +134,22 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    bav->argv[argc] = NULL;  /* terminate argv list */
 
    /********************** read environment *********************/
-   strcpy(pathtmp,bav->argv[0]);
+   strcpy(pathtmp,basename);
    strcat(pathtmp,C_ENV);
 
-   argc = 0;
+   tmp = argc = 0;
    sbuf = NULL;
-   if( !stat(pathtmp,&buf) ) {
-      fd = open(pathtmp,O_RDONLY);
 
-      /* file exists, failing to open it is an error */
-      if(fd == -1) {
-         return BA_E_ENV;
-      }
+   tmp = openreadclose(pathtmp,&sbuf);
 
-      while ( (tmp = read(fd,pathtmp,PATH_MAX) ) != 0 ) {
-         if(tmp == -1) { 
-            return BA_E_ENV;
-         }
-
-         sbuf = realloc(sbuf,argc + tmp + 1);
-         strncpy(&sbuf[argc],pathtmp,tmp);
-         argc += tmp;
-      }
-      close(fd);
-      if(argc)
-         sbuf[argc] = '\0'; /* terminate string */
+   if(tmp != ORC_ERR_NONEXISTENT && tmp != ORC_OK) {
+      print_errno(pathtmp);
+      return BA_E_PARAMS;
    }
+
+   sbuf = strip_final_newline(sbuf);
+   
+   /* STOPPED HERE */
 
    /************** build environment string **************/
    argc = 0;
