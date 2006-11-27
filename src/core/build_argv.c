@@ -85,6 +85,8 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    strncpy(*(bav->argv),pathtmp,tmp);
 
    /********************** read params *********************/
+   /* FIXME check bounds! */
+   strcpy(pathtmp,basename);
    strcat(pathtmp,C_PARAMS);
    /* ORC_ERR_NONEXISTENT: Ok, have sbuf set to NULL
     * ORC_OK: Ok, have a filled buffer (perhaps NULL, too)
@@ -93,7 +95,11 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    mini_printf("CBA::NOCH DA2",1);
    mini_printf("\n",1);
    tmp = openreadclose(pathtmp,&sbuf);
-   mini_printf("CBA::NOCH DA3",1);
+
+   printf("tmp:: %d\n",tmp);
+
+   mini_printf("CBA:",1);
+   mini_printf(sbuf,1);
    mini_printf("\n",1);
    
    mini_printf(sbuf,1);
@@ -104,7 +110,6 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
    }
    mini_printf("CBA::NOCH DA4",1);
    mini_printf("\n",1);
-   
    
    sbuf = strip_final_newline(sbuf);
 
@@ -131,6 +136,7 @@ int cinit_build_argv(char *basename, struct ba_argv *bav)
       
       ++argc;
    }
+   mini_printf("PAST ARGV\n",1);
 
    /************ close argv list **************/
    bav->argv = realloc(bav->argv, sizeof(char *) * (argc + 1)); /* 1: NULL-pointer */

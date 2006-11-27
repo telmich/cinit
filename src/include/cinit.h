@@ -27,7 +27,8 @@ enum {         /* returns of openreadclose */
    ORC_ERR_NONEXISTENT,
    ORC_ERR_OPEN,
    ORC_ERR_READ,
-   ORC_ERR_CLOSE
+   ORC_ERR_CLOSE,
+   ORC_ERR_MEM
 };
 
 /***********************************************************************
