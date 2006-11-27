@@ -64,5 +64,8 @@ int openreadclose(char *filename, char **where)
       return ORC_ERR_CLOSE;
    }
 
+   /* terminate string! */
+   (*where)[cnt] = '\0';
+
    return ORC_OK;
 }
