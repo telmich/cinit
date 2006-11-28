@@ -1,18 +1,25 @@
 ****************************************************************************
-First of all configure cinit through the configuration files found in conf/.
+Welcome, cinit greets you.
+****************************************************************************
 
-The documentation can be found in doc/, read
+Hints:
+------
+   - Settings used for compiling (not only) can be found in conf/*
+   - The boot configuration normally resides below /etc/cinit
 
-   README and doc/configuring.cinit
 
-_before_ first use.
+Documentation
+-------------
+The documentation can be found in doc/:
 
-After reading and configuring use:
+   - doc/user/ contains documentation for users
+   - doc/devel/ contains documentation for developers
+
+
+Building cinit
+--------------
 
    "make all" - to build cinit
    "make install" - to install cinit
-   "make install-miniconf" - to install a minimal cinit-configuration
 
-After that you'll have to configure it. Some sample configurations can be
-found on the cinit homepage at http://linux.schottelius.org/cinit/.
 ****************************************************************************

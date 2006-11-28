@@ -1,6 +1,11 @@
-/* cinit
- * (c) 2005 Nico Schottelius (nico-linux-cinit at schottelius.org)
- * We are called, when a child dies. Remove it.
+/***********************************************************************
+ *
+ *    2005-2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *
+ *    part of cLinux/cinit
+ *
+ *    The child handler
+ *
  */
 
 #include <sys/types.h>
@@ -21,6 +26,7 @@ void sig_child(int tmp)
 {
    /* New code:
     * - disable almost all signal handlers, so we do not get interrupted
+    *   * 
     * - search for pid in service list
     *   * if (respawn) -> start new
     *    - insert delay? if exit code is non-zero? if uptime too less?
