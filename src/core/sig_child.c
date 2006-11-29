@@ -46,8 +46,6 @@ void sig_child(int tmp)
       /* restart service, if we are watching it */
       svc = list_search_pid((pid_t) tmp);
 
-      /* FIXME: restart service only if respawn is set!
-       * FIXME: change service status field always! */
       mini_printf("SC::",1);
       if(svc != NULL) {
          mini_printf(svc->abs_path,1);
@@ -58,6 +56,7 @@ void sig_child(int tmp)
             if(svc->status == ST_RESPAWNING) {
                /* respawn: restart */
                svc_start(svc);
+            } else { /* FIXME: SET PID = 0, so it's not found later again
             }
          } else {
             mini_printf("::FAILED::",1);
