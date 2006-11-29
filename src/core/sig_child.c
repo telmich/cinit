@@ -51,6 +51,14 @@ void sig_child(int tmp)
       mini_printf("SC::",1);
       if(svc != NULL) {
          mini_printf(svc->abs_path,1);
+         if(WIFEXITED(tmp)) {
+            if(!WEXITSTATUS(tmp)) {
+               /* process successfully terminated */
+               svc_success(svc);
+               if(svc->status == RESPAWNING) {
+                  /* respawn */
+               }
+            }
       } else {
          mini_printf("Cleanup: reparenting",1);
       }
