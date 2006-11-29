@@ -1,6 +1,7 @@
 cinit-0.3pre5:
    - Finished new SIGCHLD handler
    - First cleanups for real release.
+   - This version is the first 0.3pre version that can handle respawn!
 
 cinit-0.3pre4:
    - Re-implemented execution of services.

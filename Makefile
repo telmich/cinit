@@ -21,7 +21,7 @@ warn:
 %.o: %.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 
-all: sources
+all: sources sizecheck
 
 sources:
 	$(MAKE) -C src all
@@ -38,15 +38,13 @@ $(CSVC_OBJ) $(OBJ): $(CONFIG_H)
 $(SBIN):
 	mkdir $(SBIN)
 
-sizecheck: cinit cservice
-	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l sbin/ > $$FILE; cat $$FILE
+sizecheck: sources
+	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l src/cinit > $$FILE; cat $$FILE
 	@echo -n "Source size (in KiB): "
-	@du -s $(SDIRS) | awk '{ sum+=$$1 } END { print sum }'
-#	@du -s bin client comm conf doc generic serv | awk '{ sum+=$1 } END { print sum }'
+	@du -s src/ | awk '{ sum+=$$1 } END { print sum }'
 
 clean:
 	$(MAKE) -C src clean
-	#rm -f *.o */*.o */*/*.o sbin/* $(CONFIG_H) ddoc/*
 	rm -f tmpbin/*
 
 cservice: $(SBIN)/cservice
