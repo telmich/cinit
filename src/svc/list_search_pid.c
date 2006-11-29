@@ -5,30 +5,29 @@
  * 
  *    part of cLinux/cinit
  * 
- *    List handling: Search by pid */
+ *    List handling: Search by pid
  */
 
-#include <stdlib.h>     /* malloc */
-#include <string.h>
-#include "cinit.h"
-#include "svc.h"
+#include <stdio.h>      /* NULL   */
+#include <sys/types.h>  /* pid_t */
+#include "svc.h"        /* struct listitem */
 
 struct listitem *list_search_pid(pid_t pid)
 {
    struct listitem *tmp;
 
-   if( svc_list == NULL ) {
+   if(svc_list == NULL) {
       return NULL;
    } else {
       tmp = svc_list;
    }
 
    do {
-      if( pid == tmp->pid) {
+      if(pid == tmp->pid) {
          return tmp;
       }
       tmp = tmp->prev;
    } while(tmp != svc_list);
-   
+
    return NULL;
 }
