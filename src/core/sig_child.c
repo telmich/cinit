@@ -40,9 +40,8 @@ void sig_child(int tmp)
    sa.sa_handler = SIG_IGN;
    sigaction(SIGCHLD,&sa,NULL);
 
-   do {
+   while((tmp = waitpid(-1, &tmp, WNOHANG)) > 0) {
       /* check if it's a watched child */
-      tmp = waitpid(-1, &tmp, WNOHANG);
       
       /* restart service, if we are watching it */
       svc = list_search_pid((pid_t) tmp);
@@ -56,7 +55,7 @@ void sig_child(int tmp)
          mini_printf("Cleanup: reparenting",1);
       }
       mini_printf("\n",1);
-   } while(tmp > 0);
+   }
 
    sa.sa_handler = sig_child;
    sigaction(SIGCHLD,&sa,NULL);
