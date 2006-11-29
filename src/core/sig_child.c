@@ -14,6 +14,7 @@
 
 #include <signal.h>     /* sigaction */
 #include "cinit.h"
+#include "svc.h"        /* list_search_pid   */
 
 /***********************************************************************
  * sig_child
@@ -37,7 +38,7 @@ void sig_child(int tmp)
 
    /* do not interrupt us or anything we might call */
    sa.sa_handler = SIG_IGN;
-   sigaction(SIGCHILD,&sa,NULL);
+   sigaction(SIGCHLD,&sa,NULL);
 
    do {
       /* check if it's a watched child */
@@ -48,11 +49,15 @@ void sig_child(int tmp)
 
       /* FIXME: restart service only if respawn is set!
        * FIXME: change service status field always! */
+      mini_printf("SC::",1);
       if(svc != NULL) {
-         svc->pid = exec_svc(svc->abs_path, CMD_START_SVC);
+         mini_printf(svc->abs_path,1);
+      } else {
+         mini_printf("Cleanup: reparenting",1);
       }
-   } while( tmp > 0);
+      mini_printf("\n",1);
+   } while(tmp > 0);
 
    sa.sa_handler = sig_child;
-   sigaction(SIGCHILD,&sa,NULL);
+   sigaction(SIGCHLD,&sa,NULL);
 }

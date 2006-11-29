@@ -9,6 +9,7 @@
 
 
 #include <signal.h>        /* sigaction      */
+//#include <sys/types.h>     /* SIG* defs      */
 #include <stdio.h>         /* NULL           */
 #include "cinit.h"         /* defines        */
 
@@ -19,7 +20,7 @@ void set_signals(int action)
    if(action == ACT_SERV) {
       sa.sa_handler=sig_child;
    } else {
-      sa.sa_handler=SIG_DFL
+      sa.sa_handler=SIG_DFL;
    }
    sigaction(SIGCHLD,&sa,NULL);     /* what todo when a child exited    */
 
