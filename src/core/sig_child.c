@@ -61,10 +61,11 @@ void sig_child(int tmp)
             }
          } else {
             mini_printf("::FAILED::",1);
-            svc_report_status(svc->abs_path,"FAILED",NULL);
+            //svc_report_status(svc->abs_path,"FAILED",NULL);
             /* FAILED */
             svc_fail(svc);
             if(svc->status == ST_RESPAWNING) {
+               mini_printf("::RESPAWN::",1);
                /* respawn: restart */
                svc_start(svc);
             }
