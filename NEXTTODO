@@ -1,3 +1,4 @@
+- FIX list_search_pid!
 - FIX the child handler!
    * switch to sa_sigaction? -> check in posix
    * CLD_EXITED -> ok, check return code
