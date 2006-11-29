@@ -51,21 +51,23 @@ void sig_child(int tmp)
       mini_printf("SC::",1);
       if(svc != NULL) {
          mini_printf(svc->abs_path,1);
-         if(WIFEXITED(tmp)) {
-            if(!WEXITSTATUS(tmp)) {
-               mini_printf("::JUHU::",1);
-               /* process successfully terminated */
-               svc_success(svc);
-               if(svc->status == ST_RESPAWNING) {
-                  /* respawn: restart */
-                  svc_start(svc);
-               }
+         if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
+            mini_printf("::JUHU::",1);
+            /* process successfully terminated */
+            svc_success(svc);
+            if(svc->status == ST_RESPAWNING) {
+               /* respawn: restart */
+               svc_start(svc);
             }
          } else {
             mini_printf("::FAILED::",1);
-            svc_report_status(svc->abs_path,"FAILED", "WHICH ERR");
+            svc_report_status(svc->abs_path,"FAILED",NULL);
             /* FAILED */
             svc_fail(svc);
+            if(svc->status == ST_RESPAWNING) {
+               /* respawn: restart */
+               svc_start(svc);
+            }
          }
       } else {
          mini_printf("Cleanup: reparenting",1);
