@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006-2006 Nico Schottelius (nico-linux-cinit //@\\ schottelius.org)
+ *    2006-2006 Nico Schottelius (nico-cinit //@\\ schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -8,11 +8,9 @@
  */
 
 
-#include <signal.h>
-#include <stdio.h>
-#include "cinit.h"
-
-void     sig_child(int signal) { signal=2; } /* HACK */
+#include <signal.h>        /* sigaction      */
+#include <stdio.h>         /* NULL           */
+#include "cinit.h"         /* defines        */
 
 void set_signals(int action)
 {
@@ -20,7 +18,9 @@ void set_signals(int action)
 
    if(action == ACT_SERV) {
       sa.sa_handler=sig_child;
-   } 
+   } else {
+      sa.sa_handler=SIG_DFL
+   }
    sigaction(SIGCHLD,&sa,NULL);     /* what todo when a child exited    */
 
    if(action == ACT_SERV) {

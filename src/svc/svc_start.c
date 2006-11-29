@@ -21,6 +21,13 @@ void svc_start(struct listitem *li)
 {
    char buf[PATH_MAX+1];
 
+   /* FIXME: All cleanup must go here
+    * close(fds);
+    * reset signals
+    * reset env?
+    *
+    * FIXME: Add logging possibility to here
+    * open (0,1,2) to other processes, if specified */
    li->pid = fork();
 
    if(li->pid < 0) {

@@ -1,4 +1,8 @@
 - FIX the child handler!
+   * switch to sa_sigaction? -> check in posix
+   * CLD_EXITED -> ok, check return code
+   * insert updating functions (status!)
+   * check for correct behaviour in tree_exec()
 - do not reports errors, when on or off does not exist!
 - check free on dep_del!
 - check that the new wants and need elements are nserted the other way round
@@ -8,7 +12,8 @@
    * update status of service
    * Lookup other signalling things, too.
       - use list_search_pid
-
+- implement do_reboot()
+   * so not only booting with cinit works, but also the shutdown
 - define messages
    a) human readable
    b) binary data?
@@ -16,6 +21,7 @@
 - replace cinit_ipc_logon with cinit_ipc_init...
 - cleanup run_svc
    * NOT NECESSARY ANYMORE!
+   * remove run_svc?
 - implement do_reboot.c
 
 Finally:

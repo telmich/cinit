@@ -12,6 +12,7 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
+#include <signal.h>     /* sigaction */
 #include "cinit.h"
 
 /***********************************************************************
@@ -25,8 +26,6 @@
 void sig_child(int tmp)
 {
    /* New code:
-    * - disable almost all signal handlers, so we do not get interrupted
-    *   * 
     * - search for pid in service list
     *   * if (respawn) -> start new
     *    - insert delay? if exit code is non-zero? if uptime too less?
@@ -34,6 +33,11 @@ void sig_child(int tmp)
     *   * else ignore, but reap away
     */
    struct listitem *svc;
+   struct sigaction sa;
+
+   /* do not interrupt us or anything we might call */
+   sa.sa_handler = SIG_IGN;
+   sigaction(SIGCHILD,&sa,NULL);
 
    do {
       /* check if it's a watched child */
@@ -42,8 +46,13 @@ void sig_child(int tmp)
       /* restart service, if we are watching it */
       svc = list_search_pid((pid_t) tmp);
 
-      if( svc != NULL ) {
+      /* FIXME: restart service only if respawn is set!
+       * FIXME: change service status field always! */
+      if(svc != NULL) {
          svc->pid = exec_svc(svc->abs_path, CMD_START_SVC);
       }
    } while( tmp > 0);
+
+   sa.sa_handler = sig_child;
+   sigaction(SIGCHILD,&sa,NULL);
 }
