@@ -1,9 +1,6 @@
-- FIX list_search_pid!
 - FIX the child handler!
-   * switch to sa_sigaction? -> check in posix
-   * CLD_EXITED -> ok, check return code
-   * insert updating functions (status!)
    * check for correct behaviour in tree_exec()
+- Begin documentation
 - do not reports errors, when on or off does not exist!
 - check free on dep_del!
 - check that the new wants and need elements are nserted the other way round
