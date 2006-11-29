@@ -1,22 +1,19 @@
 /***********************************************************************
  * 
  *    (c) 2005 Marcus Przyklink (downhill-clinux (at) burningchaos.org)
- *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006 Nico Schottelius (nico-cinit at schottelius.org)
  * 
  *    part of cLinux/cinit
  * 
- *    List handling
+ *    List handling: Search by pid */
  */
 
-#include <stdlib.h>
+#include <stdlib.h>     /* malloc */
 #include <string.h>
 #include "cinit.h"
 #include "svc.h"
 
-/* find service by pid, needs to be online because it is called
- * by a signal handler
- */
-inline struct listitem *list_search_pid(pid_t pid)
+struct listitem *list_search_pid(pid_t pid)
 {
    struct listitem *tmp;
 
