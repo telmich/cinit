@@ -23,11 +23,6 @@ struct listitem *list_search_pid(pid_t pid)
    }
 
    do {
-      /* PROBLEME HERE: Does not return as I want it:
-       * LSP:: 30276: /etc/cinit/svc/local-tuning/keyboard-layout:4 (30260)
-       * LSP:: 30276: /etc/cinit/svc/getty/2:4 (30267)
-       * LSP:: 30276: /etc/cinit/svc/getty:4 (30273)
-       */
       printf("LSP:: %d: %s:%d (%d)\n",pid,tmp->abs_path,tmp->status,tmp->pid);
       if(pid == tmp->pid) {
          return tmp;

@@ -7,12 +7,8 @@
  *    Start the service tree we created
  */
 
-#include <stdio.h>              /* DEBUG */
-
-#include <unistd.h>              /* _exit, fork */
-
+#include <stdio.h>               /* NULL        */
 #include "cinit.h"            
-#include "messages.h"            /* D_PRINTF */
 #include "svc.h"                 /* svc_init    */
 
 /* some thoughts...
@@ -123,8 +119,6 @@ int tree_exec(struct dep *start)
        * - need failed - not started, because need failed. perhaps
        *   registert which dependenc(y|ies) failed?
        */
-      /* FIXME: debug delay */
-      //sleep(1);
    } while(tmp != NULL);
 
    return 1;
