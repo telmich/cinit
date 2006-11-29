@@ -53,12 +53,20 @@ void sig_child(int tmp)
          mini_printf(svc->abs_path,1);
          if(WIFEXITED(tmp)) {
             if(!WEXITSTATUS(tmp)) {
+               mini_printf("::JUHU::",1);
                /* process successfully terminated */
                svc_success(svc);
-               if(svc->status == RESPAWNING) {
-                  /* respawn */
+               if(svc->status == ST_RESPAWNING) {
+                  /* respawn: restart */
+                  svc_start(svc);
                }
             }
+         } else {
+            mini_printf("::FAILED::",1);
+            svc_report_status(svc->abs_path,"FAILED", "WHICH ERR");
+            /* FAILED */
+            svc_fail(svc);
+         }
       } else {
          mini_printf("Cleanup: reparenting",1);
       }
