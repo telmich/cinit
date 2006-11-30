@@ -1,6 +1,6 @@
 cinit(8)
 ========
-Nico Schottelius <nico-linux-cinit__@__schottelius.org>
+Nico Schottelius <nico-cinit__@__schottelius.org>
 
 
 NAME
@@ -15,9 +15,17 @@ SYNOPSIS
 
 DESCRIPTION
 -----------
-ccollect is a backup utility written in the sh-scripting language.
-It does not depend on a specific shell, only `/bin/sh` needs to be
-bourne shell compatibel (like 'dash', 'ksh', 'zsh', 'bash', ...).
+Cinit is an init system. It normally gets started by the operating
+system (Linux, *BSD, ...) directly after the kernel has been loaded.
+
+Cinit uses parallel execution of services as far as possible. To
+ensure the correct boot order you need to specify which service
+'needs' or 'wants' another service. The resulting dependency tree
+is used at startup to determine which service to start when.
+
+This may result in different boot orders depending on whether
+one service is one time faster or slower. Due to the dependencies
+this is not a problem, but allowed and wished per design.
 
 For more information refer to the texinfo or html documentation.
 
@@ -27,20 +35,22 @@ OPTIONS
 
 cprofile:name_of_profile::
    If specified, cinit will start the named profile instead of the
-   standard service (which is confdir/init/)
+   standard 'init' service
+
 
 BUGS
 ----
 cinit is not tested nor documented very well currently.
 
-Additionally the porting to other OS is not finished yet.
+The porting to other OS is not finished yet (mainly missing
+system level binaries: shutdown, reboot, halt).
 
 Both is work in progress.
 
 
 AUTHOR
 ------
-Nico Schottelius <mailto:nico-linux-cinit__@__schottelius.org[]>
+Nico Schottelius <mailto:nico-cinit__@__schottelius.org[]>
 
 
 RESOURCES

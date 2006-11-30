@@ -1,6 +1,16 @@
 - FIX the child handler!
    * check for correct behaviour in tree_exec()
+   * think about howto NOT find once, if the system uses duplicated pids
+      -> pid reset
+      -> check only SH_ONCE?
 - Begin documentation
+   * Check Makefile
+   * Integrate Makefile into main Makefile
+   * create manpage
+   * Write a small manual
+      - install
+      - configure
+      - boot (different OS)
 - do not reports errors, when on or off does not exist!
 - check free on dep_del!
 - check that the new wants and need elements are nserted the other way round
