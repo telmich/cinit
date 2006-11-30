@@ -1,0 +1,1821 @@
+cinit-0.3pre4: Booting from /etc/cinit/svc/init
+gen_tree::/etc/cinit/svc/init
+CAD::/etc/cinit/svc/init
+CAD::NEW::/etc/cinit/svc/init::/etc/cinit/svc/getty
+gen_tree::/etc/cinit/svc/getty
+CAD::/etc/cinit/svc/getty
+CAD::NEW::/etc/cinit/svc/getty::/etc/cinit/svc/getty/2
+gen_tree::/etc/cinit/svc/getty/2
+CAD::/etc/cinit/svc/getty/2
+CAD::NEW::/etc/cinit/svc/getty/2::/etc/cinit/svc/local-tuning/keyboard-layout
+gen_tree::/etc/cinit/svc/local-tuning/keyboard-layout
+CAD::/etc/cinit/svc/local-tuning/keyboard-layout
+CAD::/etc/cinit/svc/local-tuning/keyboard-layout
+START::/etc/cinit/svc/local-tuning/keyboard-layout
+CAD::/etc/cinit/svc/getty/2
+CAD::NEW::/etc/cinit/svc/getty::/etc/cinit/svc/getty/3
+gen_tree::/etc/cinit/svc/getty/3
+CAD::/etc/cinit/svc/getty/3
+CAD::NEW::/etc/cinit/svc/getty/3::/etc/cinit/svc/local-tuning/keyboard-layout
+CAD::/etc/cinit/svc/getty/3
+CAD::/etc/cinit/svc/getty
+CAD::NEW::/etc/cinit/svc/init::/etc/cinit/svc/local-tuning
+gen_tree::/etc/cinit/svc/local-tuning
+CAD::/etc/cinit/svc/local-tuning
+CAD::NEW::/etc/cinit/svc/local-tuning::/etc/cinit/svc/local-tuning/keyboard-layout
+CAD::/etc/cinit/svc/local-tuning
+CAD::NEW::/etc/cinit/svc/init::/etc/cinit/svc/mount
+gen_tree::/etc/cinit/svc/mount
+CAD::/etc/cinit/svc/mount
+CAD::NEW::/etc/cinit/svc/mount::/etc/cinit/svc/mount/root
+gen_tree::/etc/cinit/svc/mount/root
+CAD::/etc/cinit/svc/mount/root
+CAD::/etc/cinit/svc/mount/root
+START::/etc/cinit/svc/mount/root
+CAD::/etc/cinit/svc/mount
+CAD::NEW::/etc/cinit/svc/init::/etc/cinit/svc/network
+gen_tree::/etc/cinit/svc/network
+CAD::/etc/cinit/svc/network
+CAD::NEW::/etc/cinit/svc/network::/etc/cinit/svc/network/eth0
+respawn: /etc/cinit/svc/network/eth0
+gen_tree::/etc/cinit/svc/network/eth0
+CAD::/etc/cinit/svc/network/eth0
+CAD::/etc/cinit/svc/network/eth0
+START::/etc/cinit/svc/network/eth0
+CAD::NEW::/etc/cinit/svc/network::/etc/cinit/svc/network/loopback
+gen_tree::/etc/cinit/svc/network/loopback
+CAD::/etc/cinit/svc/network/loopback
+CAD::/etc/cinit/svc/network/loopback
+START::/etc/cinit/svc/network/loopback
+CAD::/etc/cinit/svc/network
+CAD::NEW::/etc/cinit/svc/init::/etc/cinit/svc/test
+gen_tree::/etc/cinit/svc/test
+CAD::/etc/cinit/svc/test
+CAD::NEW::/etc/cinit/svc/test::/etc/cinit/svc/test/env
+gen_tree::/etc/cinit/svc/test/env
+CAD::/etc/cinit/svc/test/env
+CAD::/etc/cinit/svc/test/env
+START::/etc/cinit/svc/test/env
+CAD::/etc/cinit/svc/test
+CAD::/etc/cinit/svc/init
+========> tree_exec() 
+TEX::/etc/cinit/svc/local-tuning/keyboard-layout
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+DNWA::/etc/cinit/svc/local-tuning/keyboard-layout::/etc/cinit/svc/getty/2::(A)::::/etc/cinit/svc/getty/3::(A)::::/etc/cinit/svc/local-tuning::(A)::
+DNWA::/etc/cinit/svc/local-tuning/keyboard-layout
+TEX::/etc/cinit/svc/mount/root
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/mount/root/on
+CBA::/etc/cinit/svc/mount/root/on
+ORC:/etc/cinit/svc/mount/root/on.params
+DNWA::/etc/cinit/svc/mount/root::/etc/cinit/svc/mount::(A)::
+DNWA::/etc/cinit/svc/mount/root
+TEX::/etc/cinit/svc/network/eth0
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/network/eth0/on
+CBA::/etc/cinit/svc/network/eth0/on
+ORC:/etc/cinit/svc/network/eth0/on.params
+DNWA::/etc/cinit/svc/network/eth0::/etc/cinit/svc/network::(A)::
+DNWA::/etc/cinit/svc/network/eth0
+TEX::/etc/cinit/svc/network/loopback
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/network/loopback/on
+CBA::/etc/cinit/svc/network/loopback/on
+ORC:/etc/cinit/svc/network/loopback/on.params
+DNWA::/etc/cinit/svc/network/loopback::/etc/cinit/svc/network
+DNWA::/etc/cinit/svc/network/loopback
+TEX::/etc/cinit/svc/test/env
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/test/env/on
+CBA::/etc/cinit/svc/test/env/on
+DNWA::/etc/cinit/svc/test/env::/etc/cinit/svc/test::(A)::
+DNWA::/etc/cinit/svc/test/env
+TEX::/etc/cinit/svc/getty/2
+::/etc/cinit/svc/local-tuning/keyboard-layout
+/etc/cinit/svc/local-tuning/keyboard-layout: <<4>>
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/getty/2/on
+CBA::/etc/cinit/svc/getty/2/on
+DNWA::/etc/cinit/svc/getty/2::/etc/cinit/svc/getty::(A)::
+DNWA::/etc/cinit/svc/getty/2
+TEX::/etc/cinit/svc/getty/3
+::/etc/cinit/svc/local-tuning/keyboard-layout
+/etc/cinit/svc/local-tuning/keyboard-layout: <<4>>
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/getty/3/on
+CBA::/etc/cinit/svc/getty/3/on
+ORC:/etc/cinit/svc/getty/3/on.params
+DNWA::/etc/cinit/svc/getty/3::/etc/cinit/svc/getty
+DNWA::/etc/cinit/svc/getty/3
+TEX::/etc/cinit/svc/local-tuning
+::/etc/cinit/svc/local-tuning/keyboard-layout
+/etc/cinit/svc/local-tuning/keyboard-layout: <<4>>
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/local-tuning/on
+CBA::/etc/cinit/svc/local-tuning/on
+CBA::/etc/cinit/svc/local-tuning/on
+/etc/cinit/svc/local-tuning/on: No such file or directory
+SC::Cleanup: reparenting
+DNWA::/etc/cinit/svc/local-tuning::/etc/cinit/svc/init::(A)::
+DNWA::/etc/cinit/svc/local-tuning
+TEX::/etc/cinit/svc/mount
+::/etc/cinit/svc/mount/root
+/etc/cinit/svc/mount/root: <<4>>
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/mount/on
+CBA::/etc/cinit/svc/mount/on
+CBA::/etc/cinit/svc/mount/on
+/etc/cinit/svc/mount/on: No such file or directory
+SC::Cleanup: reparenting
+DNWA::/etc/cinit/svc/mount::/etc/cinit/svc/init
+DNWA::/etc/cinit/svc/mount
+TEX::/etc/cinit/svc/network
+::/etc/cinit/svc/network/eth0
+/etc/cinit/svc/network/eth0: <<16>>
+::/etc/cinit/svc/network/loopback
+/etc/cinit/svc/network/loopback: <<4>>
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/network/on
+CBA::/etc/cinit/svc/network/on
+CBA::/etc/cinit/svc/network/on
+/etc/cinit/svc/network/on: No such file or directory
+SC::Cleanup: reparenting
+DNWA::/etc/cinit/svc/network::/etc/cinit/svc/init
+DNWA::/etc/cinit/svc/network
+TEX::/etc/cinit/svc/test
+::/etc/cinit/svc/test/env
+/etc/cinit/svc/test/env: <<4>>
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/test/on
+CBA::/etc/cinit/svc/test/on
+CBA::/etc/cinit/svc/test/on
+/etc/cinit/svc/test/on: No such file or directory
+SC::Cleanup: reparenting
+DNWA::/etc/cinit/svc/test::/etc/cinit/svc/init
+DNWA::/etc/cinit/svc/test
+TEX::/etc/cinit/svc/getty
+::/etc/cinit/svc/getty/2
+/etc/cinit/svc/getty/2: <<4>>
+::/etc/cinit/svc/getty/3
+/etc/cinit/svc/getty/3: <<4>>
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/getty/on
+CBA::/etc/cinit/svc/getty/on
+CBA::/etc/cinit/svc/getty/on
+/etc/cinit/svc/getty/on: No such file or directory
+SC::Cleanup: reparenting
+DNWA::/etc/cinit/svc/getty::/etc/cinit/svc/init
+DNWA::/etc/cinit/svc/getty
+TEX::/etc/cinit/svc/init
+::/etc/cinit/svc/getty
+/etc/cinit/svc/getty: <<4>>
+::/etc/cinit/svc/local-tuning
+/etc/cinit/svc/local-tuning: <<4>>
+::/etc/cinit/svc/mount
+/etc/cinit/svc/mount: <<4>>
+::/etc/cinit/svc/network
+/etc/cinit/svc/network: <<4>>
+::/etc/cinit/svc/test
+/etc/cinit/svc/test: <<4>>
+abhaengigkeiten gestartet, exec; add wants, needs
+ES::/etc/cinit/svc/init/on
+CBA::/etc/cinit/svc/init/on
+DNWA::/etc/cinit/svc/init
+DNWA::/etc/cinit/svc/init
+=> cinit started.
+ORC:/etc/cinit/svc/test/env/on.params
+SFN: NULL
+ORC:/etc/cinit/svc/test/env/on.env
+ORC: 38400
+tty3
+
+ORC:/etc/cinit/svc/getty/3/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/getty/3/on
+ORC:/etc/cinit/svc/getty/3/on.params
+ORC: 38400
+tty3
+
+ORC:/etc/cinit/svc/getty/3/on.env
+SFN: NULL
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+ORC:/etc/cinit/svc/init/on.params
+ORC:/etc/cinit/svc/getty/2/on.params
+ORC: -f
+-i
+eth0
+
+ORC:/etc/cinit/svc/network/eth0/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/network/eth0/on
+ORC:/etc/cinit/svc/network/eth0/on.params
+ORC: -f
+-i
+eth0
+
+ORC:/etc/cinit/svc/network/eth0/on.env
+SFN: NULL
+ORC: test=Wunderbar es tut
+
+CBA::/etc/cinit/svc/test/env/on
+ORC:/etc/cinit/svc/test/env/on.params
+SFN: NULL
+ORC:/etc/cinit/svc/test/env/on.env
+ORC: test=Wunderbar es tut
+
+pre-test
+Wunderbar es tut
+post-test
+SC::/etc/cinit/svc/test/env::FAILED::::RESPAWN::ES::/etc/cinit/svc/test/env/on
+CBA::/etc/cinit/svc/test/env/on
+ORC:/etc/cinit/svc/test/env/on.params
+SFN: NULL
+ORC:/etc/cinit/svc/test/env/on.env
+ORC: test=Wunderbar es tut
+
+CBA::/etc/cinit/svc/test/env/on
+ORC:/etc/cinit/svc/test/env/on.params
+SFN: NULL
+ORC:/etc/cinit/svc/test/env/on.env
+ORC: test=Wunderbar es tut
+
+pre-test
+Wunderbar es tut
+post-test
+
+msgrcv: Interrupted system call
+ORC: lo
+127.0.0.1
+up
+
+ORC:/etc/cinit/svc/network/loopback/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/network/loopback/on
+ORC:/etc/cinit/svc/network/loopback/on.params
+ORC: lo
+127.0.0.1
+up
+
+ORC:/etc/cinit/svc/network/loopback/on.env
+SFN: NULL
+ORC: -n
+-o
+remount,rw
+/
+
+ORC:/etc/cinit/svc/mount/root/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/mount/root/on
+ORC:/etc/cinit/svc/mount/root/on.params
+ORC: -n
+-o
+remount,rw
+/
+
+ORC:/etc/cinit/svc/mount/root/on.env
+SFN: NULL
+ORC: 38400
+tty2
+
+ORC:/etc/cinit/svc/getty/2/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/getty/2/on
+ORC:/etc/cinit/svc/getty/2/on.params
+ORC: 38400
+tty2
+
+ORC:/etc/cinit/svc/getty/2/on.env
+SFN: NULL
+udhcpc (v0.9.9-pre) started
+socket failed!: Operation not permitted
+SC::/etc/cinit/svc/network/eth0::FAILED::::RESPAWN::ES::/etc/cinit/svc/network/eth0/on
+CBA::/etc/cinit/svc/network/eth0/on
+ORC:/etc/cinit/svc/network/eth0/on.params
+ORC: -f
+-i
+eth0
+
+ORC:/etc/cinit/svc/network/eth0/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/network/eth0/on
+ORC:/etc/cinit/svc/network/eth0/on.params
+ORC: -f
+-i
+eth0
+
+ORC:/etc/cinit/svc/network/eth0/on.env
+SFN: NULL
+udhcpc (v0.9.9-pre) started
+socket failed!: Operation not permitted
+
+msgrcv: Interrupted system call
+ORC: The initial service has been started.
+
+ORC:/etc/cinit/svc/init/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/init/on
+ORC:/etc/cinit/svc/init/on.params
+ORC: The initial service has been started.
+
+ORC:/etc/cinit/svc/init/on.env
+SFN: NULL
+The initial service has been started. 
+SC::/etc/cinit/svc/init::FAILED::::RESPAWN::ES::/etc/cinit/svc/init/on
+CBA::/etc/cinit/svc/init/on
+ORC:/etc/cinit/svc/init/on.params
+ORC: The initial service has been started.
+
+ORC:/etc/cinit/svc/init/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/init/on
+ORC:/etc/cinit/svc/init/on.params
+ORC: The initial service has been started.
+
+ORC:/etc/cinit/svc/init/on.env
+SFN: NULL
+The initial service has been started. 
+
+msgrcv: Interrupted system call
+SIOCSIFADDR: Permission denied
+SIOCSIFFLAGS: Permission denied
+SIOCSIFFLAGS: Permission denied
+Unknown server error
+ifconfig: `--help' gives usage information.
+SC::/etc/cinit/svc/network/loopback::FAILED::::RESPAWN::ES::/etc/cinit/svc/network/loopback/on
+CBA::/etc/cinit/svc/network/loopback/on
+ORC:/etc/cinit/svc/network/loopback/on.params
+ORC: lo
+127.0.0.1
+up
+
+ORC:/etc/cinit/svc/network/loopback/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/network/loopback/on
+ORC:/etc/cinit/svc/network/loopback/on.params
+ORC: lo
+127.0.0.1
+up
+
+ORC:/etc/cinit/svc/network/loopback/on.env
+SFN: NULL
+SIOCSIFADDR: Permission denied
+SIOCSIFFLAGS: Permission denied
+SIOCSIFFLAGS: Permission denied
+Unknown server error
+ifconfig: `--help' gives usage information.
+
+msgrcv: Interrupted system call
+mount: only root can do that
+SC::/etc/cinit/svc/mount/root::FAILED::::RESPAWN::ES::/etc/cinit/svc/mount/root/on
+CBA::/etc/cinit/svc/mount/root/on
+ORC:/etc/cinit/svc/mount/root/on.params
+ORC: -n
+-o
+remount,rw
+/
+
+ORC:/etc/cinit/svc/mount/root/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/mount/root/on
+ORC:/etc/cinit/svc/mount/root/on.params
+ORC: -n
+-o
+remount,rw
+/
+
+ORC:/etc/cinit/svc/mount/root/on.env
+SFN: NULL
+mount: only root can do that
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+LSP:: 32705: /etc/cinit/svc/init:1 (0)
+LSP:: 32705: /etc/cinit/svc/test/env:4 (32702)
+LSP:: 32705: /etc/cinit/svc/test:65 (0)
+LSP:: 32705: /etc/cinit/svc/network/loopback:4 (32701)
+LSP:: 32705: /etc/cinit/svc/network/eth0:16 (32700)
+LSP:: 32705: /etc/cinit/svc/network:65 (0)
+LSP:: 32705: /etc/cinit/svc/mount/root:4 (32699)
+LSP:: 32705: /etc/cinit/svc/mount:65 (0)
+LSP:: 32705: /etc/cinit/svc/local-tuning:65 (0)
+LSP:: 32705: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32705: /etc/cinit/svc/local-tuning/keyboard-layout:4 (32698)
+LSP:: 32705: /etc/cinit/svc/getty/2:4 (32703)
+LSP:: 32705: /etc/cinit/svc/getty:65 (0)
+LSP:: 32706: /etc/cinit/svc/init:65 (0)
+LSP:: 32706: /etc/cinit/svc/test/env:4 (32702)
+LSP:: 32706: /etc/cinit/svc/test:65 (0)
+LSP:: 32706: /etc/cinit/svc/network/loopback:4 (32701)
+LSP:: 32706: /etc/cinit/svc/network/eth0:16 (32700)
+LSP:: 32706: /etc/cinit/svc/network:65 (0)
+LSP:: 32706: /etc/cinit/svc/mount/root:4 (32699)
+LSP:: 32706: /etc/cinit/svc/mount:65 (0)
+LSP:: 32706: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 32706: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32706: /etc/cinit/svc/local-tuning/keyboard-layout:4 (32698)
+LSP:: 32706: /etc/cinit/svc/getty/2:4 (32703)
+LSP:: 32706: /etc/cinit/svc/getty:65 (0)
+LSP:: 32707: /etc/cinit/svc/init:65 (0)
+LSP:: 32707: /etc/cinit/svc/test/env:4 (32702)
+LSP:: 32707: /etc/cinit/svc/test:65 (0)
+LSP:: 32707: /etc/cinit/svc/network/loopback:4 (32701)
+LSP:: 32707: /etc/cinit/svc/network/eth0:16 (32700)
+LSP:: 32707: /etc/cinit/svc/network:65 (0)
+LSP:: 32707: /etc/cinit/svc/mount/root:4 (32699)
+LSP:: 32707: /etc/cinit/svc/mount:4 (32706)
+LSP:: 32707: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 32707: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32707: /etc/cinit/svc/local-tuning/keyboard-layout:4 (32698)
+LSP:: 32707: /etc/cinit/svc/getty/2:4 (32703)
+LSP:: 32707: /etc/cinit/svc/getty:65 (0)
+LSP:: 32708: /etc/cinit/svc/init:65 (0)
+LSP:: 32708: /etc/cinit/svc/test/env:4 (32702)
+LSP:: 32708: /etc/cinit/svc/test:65 (0)
+LSP:: 32708: /etc/cinit/svc/network/loopback:4 (32701)
+LSP:: 32708: /etc/cinit/svc/network/eth0:16 (32700)
+LSP:: 32708: /etc/cinit/svc/network:4 (32707)
+LSP:: 32708: /etc/cinit/svc/mount/root:4 (32699)
+LSP:: 32708: /etc/cinit/svc/mount:4 (32706)
+LSP:: 32708: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 32708: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32708: /etc/cinit/svc/local-tuning/keyboard-layout:4 (32698)
+LSP:: 32708: /etc/cinit/svc/getty/2:4 (32703)
+LSP:: 32708: /etc/cinit/svc/getty:65 (0)
+LSP:: 32709: /etc/cinit/svc/init:65 (0)
+LSP:: 32709: /etc/cinit/svc/test/env:4 (32702)
+LSP:: 32709: /etc/cinit/svc/test:4 (32708)
+LSP:: 32709: /etc/cinit/svc/network/loopback:4 (32701)
+LSP:: 32709: /etc/cinit/svc/network/eth0:16 (32700)
+LSP:: 32709: /etc/cinit/svc/network:4 (32707)
+LSP:: 32709: /etc/cinit/svc/mount/root:4 (32699)
+LSP:: 32709: /etc/cinit/svc/mount:4 (32706)
+LSP:: 32709: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 32709: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32709: /etc/cinit/svc/local-tuning/keyboard-layout:4 (32698)
+LSP:: 32709: /etc/cinit/svc/getty/2:4 (32703)
+LSP:: 32709: /etc/cinit/svc/getty:65 (0)
+LSP:: 32702: /etc/cinit/svc/init:4 (32710)
+LSP:: 32702: /etc/cinit/svc/test/env:4 (32702)
+pid: 0, m_client
+LSP:: 32700: /etc/cinit/svc/init:4 (32710)
+LSP:: 32700: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 32700: /etc/cinit/svc/test:4 (32708)
+LSP:: 32700: /etc/cinit/svc/network/loopback:4 (32701)
+LSP:: 32700: /etc/cinit/svc/network/eth0:16 (32700)
+pid: 0, m_client
+LSP:: 32710: /etc/cinit/svc/init:4 (32710)
+pid: 0, m_client
+LSP:: 32701: /etc/cinit/svc/init:16 (32719)
+LSP:: 32701: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 32701: /etc/cinit/svc/test:4 (32708)
+LSP:: 32701: /etc/cinit/svc/network/loopback:4 (32701)
+pid: 0, m_client
+LSP:: 32699: /etc/cinit/svc/init:16 (32719)
+LSP:: 32699: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 32699: /etc/cinit/svc/test:4 (32708)
+LSP:: 32699: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 32699: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 32699: /etc/cinit/svc/network:4 (32707)
+LSP:: 32699: /etc/cinit/svc/mount/root:4 (32699)
+pid: 0, m_client
+LSP::SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+ 32698: /etc/cinit/svc/init:16 (32719)
+LSP:: 32698: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 32698: /etc/cinit/svc/test:4 (32708)
+LSP:: 32698: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 32698: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 32698: /etc/cinit/svc/network:4 (32707)
+LSP:: 32698: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 32698: /etc/cinit/svc/mount:4 (32706)
+LSP:: 32698: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 32698: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32698: /etc/cinit/svc/local-tuning/keyboard-layout:4 (32698)
+pid: 0, m_client
+LSP:: 32728: /etc/cinit/svc/init:16 (32719)
+LSP:: 32728: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 32728: /etc/cinit/svc/test:4 (32708)
+LSP:: 32728: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 32728: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 32728: /etc/cinit/svc/network:4 (32707)
+LSP:: 32728: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 32728: /etc/cinit/svc/mount:4 (32706)
+LSP:: 32728: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 32728: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32728: /etc/cinit/svc/local-tuning/keyboard-layout:16 (32728)
+pid: 0, m_client
+LSP:: 32735: /etc/cinit/svc/init:16 (32719)
+LSP:: 32735: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 32735: /etc/cinit/svc/test:4 (32708)
+LSP:: 32735: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 32735: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 32735: /etc/cinit/svc/network:4 (32707)
+LSP:: 32735: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 32735: /etc/cinit/svc/mount:4 (32706)
+LSP:: 32735: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 32735: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32735: /etc/cinit/svc/local-tuning/keyboard-layout:16 (32735)
+pid: 0, m_client
+LSP:: 32742: /etc/cinit/svc/init:16 (32719)
+LSP:: 32742: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 32742: /etc/cinit/svc/test:4 (32708)
+LSP:: 32742: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 32742: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 32742: /etc/cinit/svc/network:4 (32707)
+LSP:: 32742: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 32742: /etc/cinit/svc/mount:4 (32706)
+LSP:: 32742: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 32742: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32742: /etc/cinit/svc/local-tuning/keyboard-layout:16 (32742)
+pid: 0, m_client
+LSP:: 32749: /etc/cinit/svc/init:16 (32719)
+LSP:: 32749: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 32749: /etc/cinit/svc/test:4 (32708)
+LSP:: 32749: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 32749: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 32749: /etc/cinit/svc/network:4 (32707)
+LSP:: 32749: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 32749: /etc/cinit/svc/mount:4 (32706)
+LSP:: 32749: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 32749: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32749: /etc/cinit/svc/local-tuning/keyboard-layout:16 (32749)
+pid: 0, m_client
+LSP:: 32756: /etc/cinit/svc/init:16 (32719)
+LSP:: 32756: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 32756: /etc/cinit/svc/test:4 (32708)
+LSP:: 32756: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 32756: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 32756: /etc/cinit/svc/network:4 (32707)
+LSP:: 32756: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 32756: /etc/cinit/svc/mount:4 (32706)
+LSP:: 32756: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 32756: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32756: /etc/cinit/svc/local-tuning/keyboard-layout:16 (32756)
+pid: 0, m_client
+LSP:: 32763: /etc/cinit/svc/init:16 (32719)
+LSP:: 32763: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 32763: /etc/cinit/svc/test:4 (32708)
+LSP:: 32763: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 32763: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 32763: /etc/cinit/svc/network:4 (32707)
+LSP:: 32763: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 32763: /etc/cinit/svc/mount:4 (32706)
+LSP:: 32763: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 32763: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 32763: /etc/cinit/svc/local-tuning/keyboard-layout:16 (32763)
+pid: 0, m_client
+LSP:: 302: /etc/cinit/svc/init:16 (32719)
+LSP:: 302: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 302: /etc/cinit/svc/test:4 (32708)
+LSP:: 302: /etc/ciSC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::
+msgrcv: Interrupted system call
+ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+nit/svc/network/loopback:16 (32720)
+LSP:: 302: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 302: /etc/cinit/svc/network:4 (32707)
+LSP:: 302: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 302: /etc/cinit/svc/mount:4 (32706)
+LSP:: 302: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 302: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 302: /etc/cinit/svc/local-tuning/keyboard-layout:16 (302)
+pid: 0, m_client
+LSP:: 312: /etc/cinit/svc/init:16 (32719)
+LSP:: 312: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 312: /etc/cinit/svc/test:4 (32708)
+LSP:: 312: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 312: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 312: /etc/cinit/svc/network:4 (32707)
+LSP:: 312: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 312: /etc/cinit/svc/mount:4 (32706)
+LSP:: 312: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 312: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 312: /etc/cinit/svc/local-tuning/keyboard-layout:16 (312)
+pid: 0, m_client
+LSP:: 326: /etc/cinit/svc/init:16 (32719)
+LSP:: 326: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 326: /etc/cinit/svc/test:4 (32708)
+LSP:: 326: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 326: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 326: /etc/cinit/svc/network:4 (32707)
+LSP:: 326: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 326: /etc/cinit/svc/mount:4 (32706)
+LSP:: 326: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 326: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 326: /etc/cinit/svc/local-tuning/keyboard-layout:16 (326)
+pid: 0, m_client
+LSP:: 333: /etc/cinit/svc/init:16 (32719)
+LSP:: 333: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 333: /etc/cinit/svc/test:4 (32708)
+LSP:: 333: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 333: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 333: /etc/cinit/svc/network:4 (32707)
+LSP:: 333: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 333: /etc/cinit/svc/mount:4 (32706)
+LSP:: 333: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 333: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 333: /etc/cinit/svc/local-tuning/keyboard-layout:16 (333)
+pid: 0, m_client
+LSP:: 340: /etc/cinit/svc/init:16 (32719)
+LSP:: 340: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 340: /etc/cinit/svc/test:4 (32708)
+LSP:: 340: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 340: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 340: /etc/cinit/svc/network:4 (32707)
+LSP:: 340: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 340: /etc/cinit/svc/mount:4 (32706)
+LSP:: 340: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 340: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 340: /etc/cinit/svc/local-tuning/keyboard-layout:16 (340)
+pid: 0, m_client
+LSP:: 347: /etc/cinit/svc/init:16 (32719)
+LSP:: 347: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 347: /etc/cinit/svc/test:4 (32708)
+LSP:: 347: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 347: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 347: /etc/cinit/svc/network:4 (32707)
+LSP:: 347: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 347: /etc/cinit/svc/mount:4 (32706)
+LSP:: 347: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 347: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 347: /etc/cinit/svc/local-tuning/keyboard-layout:16 (347)
+pid: 0, m_client
+LSP:: 354: /etc/cinit/svc/init:16 (32719)
+LSP:: 354: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 354: /etc/cinit/svc/test:4 (32708)
+LSP:: 354: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 354: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 354: /etc/cinit/svc/network:4 (32707)
+LSP:: 354: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 354: /etc/cinit/svc/mount:4 (32706)
+LSP:: 354: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 354: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 354: /etc/cinit/svc/local-tuning/keyboard-layout:16 (354)
+pid: 0, m_client
+LSP:: 372: /etc/cinit/svc/init:16 (32719)
+LSP:: 372: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 372: /etc/cinit/svc/test:4 (32708)
+LSP:: 372: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 372: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 372: /etc/cinit/svc/network:4 (32707)
+LSP:: 372: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 372: /etc/cinit/svc/mount:4 (32706)
+LSP:: 372: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 372: /etc/cinit/svc/getty/3:4 (327SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+04)
+LSP:: 372: /etc/cinit/svc/local-tuning/keyboard-layout:16 (372)
+pid: 0, m_client
+LSP:: 379: /etc/cinit/svc/init:16 (32719)
+LSP:: 379: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 379: /etc/cinit/svc/test:4 (32708)
+LSP:: 379: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 379: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 379: /etc/cinit/svc/network:4 (32707)
+LSP:: 379: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 379: /etc/cinit/svc/mount:4 (32706)
+LSP:: 379: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 379: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 379: /etc/cinit/svc/local-tuning/keyboard-layout:16 (379)
+pid: 0, m_client
+LSP:: 386: /etc/cinit/svc/init:16 (32719)
+LSP:: 386: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 386: /etc/cinit/svc/test:4 (32708)
+LSP:: 386: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 386: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 386: /etc/cinit/svc/network:4 (32707)
+LSP:: 386: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 386: /etc/cinit/svc/mount:4 (32706)
+LSP:: 386: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 386: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 386: /etc/cinit/svc/local-tuning/keyboard-layout:16 (386)
+pid: 0, m_client
+LSP:: 393: /etc/cinit/svc/init:16 (32719)
+LSP:: 393: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 393: /etc/cinit/svc/test:4 (32708)
+LSP:: 393: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 393: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 393: /etc/cinit/svc/network:4 (32707)
+LSP:: 393: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 393: /etc/cinit/svc/mount:4 (32706)
+LSP:: 393: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 393: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 393: /etc/cinit/svc/local-tuning/keyboard-layout:16 (393)
+pid: 0, m_client
+LSP:: 400: /etc/cinit/svc/init:16 (32719)
+LSP:: 400: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 400: /etc/cinit/svc/test:4 (32708)
+LSP:: 400: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 400: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 400: /etc/cinit/svc/network:4 (32707)
+LSP:: 400: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 400: /etc/cinit/svc/mount:4 (32706)
+LSP:: 400: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 400: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 400: /etc/cinit/svc/local-tuning/keyboard-layout:16 (400)
+pid: 0, m_client
+LSP:: 407: /etc/cinit/svc/init:16 (32719)
+LSP:: 407: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 407: /etc/cinit/svc/test:4 (32708)
+LSP:: 407: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 407: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 407: /etc/cinit/svc/network:4 (32707)
+LSP:: 407: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 407: /etc/cinit/svc/mount:4 (32706)
+LSP:: 407: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 407: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 407: /etc/cinit/svc/local-tuning/keyboard-layout:16 (407)
+pid: 0, m_client
+LSP:: 414: /etc/cinit/svc/init:16 (32719)
+LSP:: 414: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 414: /etc/cinit/svc/test:4 (32708)
+LSP:: 414: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 414: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 414: /etc/cinit/svc/network:4 (32707)
+LSP:: 414: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 414: /etc/cinit/svc/mount:4 (32706)
+LSP:: 414: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 414: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 414: /etc/cinit/svc/local-tuning/keyboard-layout:16 (414)
+pid: 0, m_client
+LSP:: 421: /etc/cinit/svc/init:16 (32719)
+LSP:: 421: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 421: /etc/cinit/svc/test:4 (32708)
+LSP:: 421: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 421: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 421: /etc/cinit/svc/network:4 (32707)
+LSP:: 421: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 421: /etc/cinit/svc/mount:4 (32706)
+LSP:: 421: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 421: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 421: /etc/cinit/svc/local-tuning/keyboard-layout:16 (421)
+pid: 0, m_client
+LSP:: 428: /etc/cinit/svc/init:16 (32719)
+LSP:: 428: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 428: /etc/cinit/svc/test:4 (32708)
+LSP:: 428: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 428: /etc/cinit/svc/network/eth0:16SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+ (32718)
+LSP:: 428: /etc/cinit/svc/network:4 (32707)
+LSP:: 428: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 428: /etc/cinit/svc/mount:4 (32706)
+LSP:: 428: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 428: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 428: /etc/cinit/svc/local-tuning/keyboard-layout:16 (428)
+pid: 0, m_client
+LSP:: 435: /etc/cinit/svc/init:16 (32719)
+LSP:: 435: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 435: /etc/cinit/svc/test:4 (32708)
+LSP:: 435: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 435: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 435: /etc/cinit/svc/network:4 (32707)
+LSP:: 435: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 435: /etc/cinit/svc/mount:4 (32706)
+LSP:: 435: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 435: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 435: /etc/cinit/svc/local-tuning/keyboard-layout:16 (435)
+pid: 0, m_client
+LSP:: 452: /etc/cinit/svc/init:16 (32719)
+LSP:: 452: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 452: /etc/cinit/svc/test:4 (32708)
+LSP:: 452: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 452: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 452: /etc/cinit/svc/network:4 (32707)
+LSP:: 452: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 452: /etc/cinit/svc/mount:4 (32706)
+LSP:: 452: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 452: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 452: /etc/cinit/svc/local-tuning/keyboard-layout:16 (452)
+pid: 0, m_client
+LSP:: 459: /etc/cinit/svc/init:16 (32719)
+LSP:: 459: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 459: /etc/cinit/svc/test:4 (32708)
+LSP:: 459: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 459: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 459: /etc/cinit/svc/network:4 (32707)
+LSP:: 459: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 459: /etc/cinit/svc/mount:4 (32706)
+LSP:: 459: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 459: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 459: /etc/cinit/svc/local-tuning/keyboard-layout:16 (459)
+pid: 0, m_client
+LSP:: 466: /etc/cinit/svc/init:16 (32719)
+LSP:: 466: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 466: /etc/cinit/svc/test:4 (32708)
+LSP:: 466: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 466: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 466: /etc/cinit/svc/network:4 (32707)
+LSP:: 466: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 466: /etc/cinit/svc/mount:4 (32706)
+LSP:: 466: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 466: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 466: /etc/cinit/svc/local-tuning/keyboard-layout:16 (466)
+pid: 0, m_client
+LSP:: 473: /etc/cinit/svc/init:16 (32719)
+LSP:: 473: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 473: /etc/cinit/svc/test:4 (32708)
+LSP:: 473: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 473: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 473: /etc/cinit/svc/network:4 (32707)
+LSP:: 473: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 473: /etc/cinit/svc/mount:4 (32706)
+LSP:: 473: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 473: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 473: /etc/cinit/svc/local-tuning/keyboard-layout:16 (473)
+pid: 0, m_client
+LSP:: 480: /etc/cinit/svc/init:16 (32719)
+LSP:: 480: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 480: /etc/cinit/svc/test:4 (32708)
+LSP:: 480: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 480: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 480: /etc/cinit/svc/network:4 (32707)
+LSP:: 480: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 480: /etc/cinit/svc/mount:4 (32706)
+LSP:: 480: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 480: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 480: /etc/cinit/svc/local-tuning/keyboard-layout:16 (480)
+pid: 0, m_client
+LSP:: 487: /etc/cinit/svc/init:16 (32719)
+LSP:: 487: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 487: /etc/cinit/svc/test:4 (32708)
+LSP:: 487: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 487: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 487: /etc/cinit/svc/network:4 (32707)
+LSP:: 487: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 487: /etc/cinit/svc/mount:4 (32706)
+LSP:: 487: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 487: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 487: /etc/cinit/svc/local-tuning/keyboard-layout:16 (487)
+pid: 0, mLoading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+_client
+LSP:: 494: /etc/cinit/svc/init:16 (32719)
+LSP:: 494: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 494: /etc/cinit/svc/test:4 (32708)
+LSP:: 494: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 494: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 494: /etc/cinit/svc/network:4 (32707)
+LSP:: 494: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 494: /etc/cinit/svc/mount:4 (32706)
+LSP:: 494: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 494: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 494: /etc/cinit/svc/local-tuning/keyboard-layout:16 (494)
+pid: 0, m_client
+LSP:: 501: /etc/cinit/svc/init:16 (32719)
+LSP:: 501: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 501: /etc/cinit/svc/test:4 (32708)
+LSP:: 501: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 501: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 501: /etc/cinit/svc/network:4 (32707)
+LSP:: 501: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 501: /etc/cinit/svc/mount:4 (32706)
+LSP:: 501: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 501: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 501: /etc/cinit/svc/local-tuning/keyboard-layout:16 (501)
+pid: 0, m_client
+LSP:: 510: /etc/cinit/svc/init:16 (32719)
+LSP:: 510: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 510: /etc/cinit/svc/test:4 (32708)
+LSP:: 510: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 510: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 510: /etc/cinit/svc/network:4 (32707)
+LSP:: 510: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 510: /etc/cinit/svc/mount:4 (32706)
+LSP:: 510: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 510: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 510: /etc/cinit/svc/local-tuning/keyboard-layout:16 (510)
+pid: 0, m_client
+LSP:: 520: /etc/cinit/svc/init:16 (32719)
+LSP:: 520: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 520: /etc/cinit/svc/test:4 (32708)
+LSP:: 520: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 520: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 520: /etc/cinit/svc/network:4 (32707)
+LSP:: 520: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 520: /etc/cinit/svc/mount:4 (32706)
+LSP:: 520: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 520: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 520: /etc/cinit/svc/local-tuning/keyboard-layout:16 (520)
+pid: 0, m_client
+LSP:: 533: /etc/cinit/svc/init:16 (32719)
+LSP:: 533: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 533: /etc/cinit/svc/test:4 (32708)
+LSP:: 533: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 533: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 533: /etc/cinit/svc/network:4 (32707)
+LSP:: 533: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 533: /etc/cinit/svc/mount:4 (32706)
+LSP:: 533: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 533: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 533: /etc/cinit/svc/local-tuning/keyboard-layout:16 (533)
+pid: 0, m_client
+LSP:: 541: /etc/cinit/svc/init:16 (32719)
+LSP:: 541: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 541: /etc/cinit/svc/test:4 (32708)
+LSP:: 541: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 541: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 541: /etc/cinit/svc/network:4 (32707)
+LSP:: 541: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 541: /etc/cinit/svc/mount:4 (32706)
+LSP:: 541: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 541: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 541: /etc/cinit/svc/local-tuning/keyboard-layout:16 (541)
+pid: 0, m_client
+LSP:: 548: /etc/cinit/svc/init:16 (32719)
+LSP:: 548: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 548: /etc/cinit/svc/test:4 (32708)
+LSP:: 548: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 548: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 548: /etc/cinit/svc/network:4 (32707)
+LSP:: 548: /etc/cinit/svc/mount/root:16 (32721)
+LSP:: 548: /etc/cinit/svc/mount:4 (32706)
+LSP:: 548: /etc/cinit/svc/local-tuning:4 (32705)
+LSP:: 548: /etc/cinit/svc/getty/3:4 (32704)
+LSP:: 548: /etc/cinit/svc/local-tuning/keyboard-layout:16 (548)
+pid: 0, m_client
+LSP:: 555: /etc/cinit/svc/init:16 (32719)
+LSP:: 555: /etc/cinit/svc/test/env:16 (32717)
+LSP:: 555: /etc/cinit/svc/test:4 (32708)
+LSP:: 555: /etc/cinit/svc/network/loopback:16 (32720)
+LSP:: 555: /etc/cinit/svc/network/eth0:16 (32718)
+LSP:: 555: /etc/cinit/svc/network:4 (32707)
+LSP:: 555: /etc/cinit/svSC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+findkeymap: No such file or directory
+cannot open file 
+Loading /usr/share/keymaps/i386/dvorak/dvorak.kmap.gz
+SC::/etc/cinit/svc/local-tuning/keyboard-layout::FAILED::::RESPAWN::ES::/etc/cinit/svc/local-tuning/keyboard-layout/on
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+CBA::/etc/cinit/svc/local-tuning/keyboard-layout/on
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.params
+ORC: dvorak
+
+ORC:/etc/cinit/svc/local-tuning/keyboard-layout/on.env
+SFN: NULL
+
+msgrcv: Interrupted system call
