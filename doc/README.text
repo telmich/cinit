@@ -1,0 +1,57 @@
+cinit/doc
+=========
+Nico Schottelius <nico-cinit__@__schottelius.org>
+0.1, Initial Version from 2006-11-30
+:Author Initials: NS
+
+This directory contains the cinit documentation.
+
+Files and directories in this directory
+----------------------------------------
+
+ancient
+~~~~~~~
+Old documents, only thought to irritate you.
+They are not interesting for most people and may contain
+obsoleted or wrong information.
+
+
+braindumps
+~~~~~~~~~~
+Files I used to make the situation clear to myself.
+They are not interesting for most people and may contain
+obsoleted or wrong information.
+
+
+devel
+~~~~~
+Developer related documents. Contains information for adding code,
+for developing external tools to cinit or code guidelines for writing
+patches to cinit.
+
+
+logs
+~~~~
+Logfiles or raw data dumps.
+
+
+Makefile
+~~~~~~~~
+The makefile used to generate the documentation.
+
+
+man
+~~~
+Manpages.
+
+
+README.text
+~~~~~~~~~~~
+This file
+
+
+user
+~~~~
+The most important part: Documentation for users (aka sysadmins,
+hackers, endusers?): Explains howto install, configure, use and
+debug cinit.
