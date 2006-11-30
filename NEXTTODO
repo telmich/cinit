@@ -15,11 +15,6 @@
 - check free on dep_del!
 - check that the new wants and need elements are nserted the other way round
    * we go to next, elements must be put before us!
-- cleanup the sig_child handler
-   * disable signals in sig_child handler
-   * update status of service
-   * Lookup other signalling things, too.
-      - use list_search_pid
 - implement do_reboot()
    * so not only booting with cinit works, but also the shutdown
 - define messages
