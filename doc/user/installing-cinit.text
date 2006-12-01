@@ -1,20 +1,29 @@
 cinit - Installing
 ==================
-Nico Schottelius <nico-linux-cinit__@__schottelius.org>
+Nico Schottelius <nico-cinit__@__schottelius.org>
 0.1, for cinit 0.3, Initial Version from 2006-06-02
 :Author Initials: NS
 
-Installing cinit
-
-Introduction
-------------
-General sections, OS-specific, ...
+This documentes describes how to install cinit.
 
 Installing
 ----------
+Installing cinit is not a big deal, so is this document.
+Where possible I added a list of commands to execute at the
+end of each section.
 
 From source
 ~~~~~~~~~~~
+Retrieve the latest source from http://unix.schottelius.org/cinit/.
+Then extract it, change to the sourcedir, adjust your OS in the file
+"conf/os" and type "make all".
+
+Code to install cinit:
+----------------------------------------------------------------------
+# the program we use to retrieve the source
+get=wget
+
+----------------------------------------------------------------------
 
 In General
 ^^^^^^^^^^
@@ -23,3 +32,11 @@ Download, edit conf/os to the os
 Cross-compiling
 ^^^^^^^^^^^^^^^
 For cross compiling see 'cross-compiling.text'.
+
+
+
+
+Introduction
+------------
+General sections, OS-specific, ...
+
