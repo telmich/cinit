@@ -1,6 +1,6 @@
 /***********************************************************************
  * 
- *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006 Nico Schottelius (nico-cinit at schottelius.org)
  * 
  *    part of cLinux/cinit
  * 
@@ -8,15 +8,17 @@
  */
 
 #include <stdio.h>         /* NULL     */
-#include "svc.h"
+#include "svc.h"           /* types    */
 
 /*
  * list: pointer to the list
  * new:  pointer to data to insert (already filled up)
+ *
+ * We add the new element BEFORE the existing element!
  */
-int dep_entry_add(struct dep **deplist, struct dep *new)
+void dep_entry_add(struct dep **deplist, struct dep *new)
 {
-   if( *deplist == NULL ) {       /* new list          */
+   if(*deplist == NULL) {       /* new list          */
       *deplist          = new;
       (*deplist)->prev  = *deplist;
       (*deplist)->next  = *deplist;
@@ -26,6 +28,4 @@ int dep_entry_add(struct dep **deplist, struct dep *new)
       (*deplist)->prev->next  = new;               /* last -> new       */
       (*deplist)->prev        = new;               /* new <- first      */
    }
-
-   return 1;
 }
