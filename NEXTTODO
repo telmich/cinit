@@ -2,6 +2,7 @@
    * think about howto NOT find once, if the system uses duplicated pids
       -> pid reset
       -> check only SH_ONCE?
+      ----> selected only the valid types
 - Add START message into svc_start
 - Begin documentation
    * Check Makefile
