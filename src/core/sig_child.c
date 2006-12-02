@@ -8,22 +8,17 @@
  *
  */
 
-#include <sys/types.h>
+#include <sys/types.h>  /* FIXME: check headers (->Posix!) */
 #include <sys/wait.h>
-#include <stdio.h>
+#include <stdio.h>      /* NULL              */
 
-#include <signal.h>     /* sigaction */
-#include "cinit.h"
+#include <signal.h>     /* sigaction         */
+#include "cinit.h"      /*                   */
 #include "svc.h"        /* list_search_pid   */
 
 /***********************************************************************
- * sig_child
- * collect the children
- * FIXME: check whether we've race conditions when reciieving multiiple
- * signals
- * Perhaps disable listening to sig_child in meantime?
+ * sig_child: (c)collect the children
  */
-
 void sig_child(int tmp)
 {
    /* New code:
@@ -46,33 +41,29 @@ void sig_child(int tmp)
       /* restart service, if we are watching it */
       svc = list_search_pid((pid_t) tmp);
 
-      mini_printf("SC::",1);
       if(svc != NULL) {
-         mini_printf(svc->abs_path,1);
-         if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
-            mini_printf("::JUHU::",1);
-            /* process successfully terminated */
-            svc_success(svc);
-            if(svc->status == ST_RESPAWNING) {
-               /* respawn: restart */
-               svc_start(svc);
-            } else { /* FIXME: SET PID = 0, so it's not found later again */
-            }
-         } else {
-            mini_printf("::FAILED::",1);
-            //svc_report_status(svc->abs_path,"FAILED",NULL);
-            /* FAILED */
-            svc_fail(svc);
-            if(svc->status == ST_RESPAWNING) {
-               mini_printf("::RESPAWN::",1);
-               /* respawn: restart */
-               svc_start(svc);
+         /* Check, that we are operating on it =. that it is no normal child */
+         if(svc->status & ST_SH_ONCE
+         || svc->status & ST_SH_RESPAWN
+         || svc->status & ST_RESPAWNING) {
+            if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
+               svc_success(svc);
+               svc_report_status(svc->abs_path,MSG_SVC_OK,NULL);
+            } else {
+               svc_fail(svc);
+               svc_report_status(svc->abs_path,MSG_SVC_FAIL,NULL);
             }
          }
+
+         /* respawn: restart */
+         if(svc->status == ST_RESPAWNING) {
+            svc_report_status(svc->abs_path,MSG_SVC_RESTART,NULL);
+            svc_start(svc);
+         }
       } else {
-         mini_printf("Cleanup: reparenting",1);
+         /* FIXME remove in production version */
+         mini_printf("Cleanup: reparenting\n",1);
       }
-      mini_printf("\n",1);
    }
 
    sa.sa_handler = sig_child;

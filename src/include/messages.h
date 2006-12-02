@@ -52,7 +52,6 @@
 #define LOG_SVC_STOPED     "Service stoped"
 #define LOG_SVC_ONCE       "Started once"
 #define LOG_SVC_RESPAWN    "Respawns now"
-#define LOG_SVC_FAIL       "Service failed"
 #define LOG_NEED_FAIL      "One or more need failed"
 #define LOG_SVC_FAILED     "Service already failed, not starting."
 #define LOG_SVC_NOTEXIST   "Service does not exist"
@@ -92,11 +91,17 @@
 #define P_EXEC_FAILED(name) { mini_printf(MSG_EXEC_FAILED,1); mini_printf(name,1); mini_printf("\n",1); }
 
 /* NEW (clean) Service status: Messages to the outside */
+#define MSG_INTRO_OK       "[OK] "
 #define MSG_INTRO_FAIL     "[FAIL] "
 #define MSG_INTRO_CINIT    "[cinit] "
+#define MSG_INTRO_RESPAWN  "[RESPAWN] "
 
 #define MSG_SVC_FORK       "fork() failed"
 #define MSG_SVC_NEED_FAIL  MSG_INTRO_FAIL "Needs failed for service"
+#define MSG_SVC_FAIL       MSG_INTRO_FAIL "Service failed!"
+#define MSG_SVC_OK         MSG_INTRO_OK   "Service successfully executed."
+#define MSG_SVC_RESTART    MSG_INTRO_RESPAWN "Restarting service."
+
 #define MSG_TREE_EXEC      MSG_INTRO_CINIT "Execution of reverse service tree\n"
 
 
