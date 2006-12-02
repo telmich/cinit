@@ -93,9 +93,11 @@
 
 /* NEW (clean) Service status: Messages to the outside */
 #define MSG_INTRO_FAIL     "[FAIL] "
+#define MSG_INTRO_CINIT    "[cinit] "
 
 #define MSG_SVC_FORK       "fork() failed"
 #define MSG_SVC_NEED_FAIL  MSG_INTRO_FAIL "Needs failed for service"
+#define MSG_TREE_EXEC      MSG_INTRO_CINIT "Execution of reverse service tree\n"
 
 
 #endif   /* _CINIT_MSG_H */

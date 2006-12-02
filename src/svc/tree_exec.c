@@ -8,7 +8,7 @@
  */
 
 #include <stdio.h>               /* NULL        */
-#include "cinit.h"            
+#include "cinit.h"               /* mini_printf */
 #include "svc.h"                 /* svc_init    */
 #include "messages.h"            /* messages    */
 
@@ -23,54 +23,26 @@
  * - we execute all services in parallel without problems, because of
  *   SIG_CHILD notification
  * 
- * - After successfully starting the service we start the service that
+ * - After successfully starting the service we start the services that
  *   need or want that service
- *
- *
- *
  */
-
 int tree_exec(struct dep *start)
 {
-   struct dep *tmp;
-   
-   tmp = start;
+   struct dep *tmp = start;
 
-   mini_printf("========> tree_exec() \n",1);
+   mini_printf(MSG_TREE_EXEC,1);
+
    /* the main starting loop: All services in this list should be
     * started, but it is possible that dependent services are in the
     * list. In this case simply skip the current service 
     */
    do {
-      /* FIXME debug */
-      mini_printf("TEX::",1);
-      mini_printf(tmp->svc->abs_path,1);
-      mini_printf("\n",1);
-      {
-         struct dep *tmp2;
-         tmp2=tmp->svc->needs;
-         if(tmp2) {
-            do {
-               mini_printf("::",1);
-               mini_printf(tmp2->svc->abs_path,1);
-      mini_printf("\n",1);
-               fprintf(stderr,"%s: <<%d>>\n",tmp2->svc->abs_path,tmp2->svc->status);
-               tmp2 = tmp2->next;
-            } while (tmp2 != tmp->svc->needs);
-         }
-      }
-
       switch(svc_needs_status(tmp->svc)) {
          case SNS_NEEDS_STARTED:
-            mini_printf("abhaengigkeiten gestartet, exec; add wants, needs\n",1);
+            /* execute service, add dependencies, remowe from list */
             svc_start(tmp->svc);
-
-            /* execute service, remowe from list */
-            /* FIXME check return code? */
             if(!dep_needs_wants_add(&tmp,tmp->svc,DEP_NEEDS)) return 0;
             if(!dep_needs_wants_add(&tmp,tmp->svc,DEP_WANTS)) return 0;
-
-            /* delete service from list */
             tmp = dep_entry_del(tmp);
             break;
 
