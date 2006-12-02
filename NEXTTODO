@@ -1,8 +1,7 @@
-- FIX the child handler!
-   * think about howto NOT find once, if the system uses duplicated pids
-      -> pid reset
-      -> check only SH_ONCE?
-      ----> selected only the valid types
+- "src/svc/svc_start.c"
+   * add path_append
+   * add strcpy -> abs_path is never > PATH_MAX!
+
 - Add START message into svc_start
 - Begin documentation
    * Check Makefile

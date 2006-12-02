@@ -9,7 +9,6 @@
 
 
 #include <signal.h>        /* sigaction      */
-//#include <sys/types.h>     /* SIG* defs      */
 #include <stdio.h>         /* NULL           */
 #include "cinit.h"         /* defines        */
 

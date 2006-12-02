@@ -43,6 +43,9 @@ void svc_start(struct listitem *li)
       return;
    }
 
+   /* FIXME: reset signals: Is this necessary? Or does fork clean it anyway? */
+   set_signals(ACT_CLIENT);
+
    /* FIXME: check for valid length!
     * strlen(abs_path) + strlen(SLASH) + strlen(C_ON) */
    /* misuse status field (doesn't matter in fork) for strlen */
