@@ -1,3 +1,7 @@
+cinit-0.3pre6:
+   - Many code cleanups
+   - Added user and cleaned documentation in general
+
 cinit-0.3pre5:
    - Finished new SIGCHLD handler
    - First cleanups for real release.

@@ -1,8 +1,10 @@
+- tree_exec: cleanup!
 - FIX the child handler!
    * check for correct behaviour in tree_exec()
    * think about howto NOT find once, if the system uses duplicated pids
       -> pid reset
       -> check only SH_ONCE?
+- Add START message into svc_start
 - Begin documentation
    * Check Makefile
    * Integrate Makefile into main Makefile

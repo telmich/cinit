@@ -56,7 +56,7 @@ void sig_child(int tmp)
             if(svc->status == ST_RESPAWNING) {
                /* respawn: restart */
                svc_start(svc);
-            } else { /* FIXME: SET PID = 0, so it's not found later again
+            } else { /* FIXME: SET PID = 0, so it's not found later again */
             }
          } else {
             mini_printf("::FAILED::",1);
