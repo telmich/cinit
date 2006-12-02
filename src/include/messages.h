@@ -91,10 +91,11 @@
 #define P_EXEC_FAILED(name) { mini_printf(MSG_EXEC_FAILED,1); mini_printf(name,1); mini_printf("\n",1); }
 
 /* NEW (clean) Service status: Messages to the outside */
-#define MSG_INTRO_OK       "[OK] "
-#define MSG_INTRO_FAIL     "[FAIL] "
-#define MSG_INTRO_CINIT    "[cinit] "
+#define MSG_INTRO_OK       "[SUCCESS] "
+#define MSG_INTRO_FAIL     "[FAILED] "
+#define MSG_INTRO_CINIT    "[CINIT] "
 #define MSG_INTRO_RESPAWN  "[RESPAWN] "
+#define MSG_INTRO_SVC      "[SERVICE] "
 
 #define MSG_SVC_FORK       "fork() failed"
 #define MSG_SVC_NEED_FAIL  MSG_INTRO_FAIL "Needs failed for service"

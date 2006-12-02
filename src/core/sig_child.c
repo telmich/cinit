@@ -15,6 +15,7 @@
 #include <signal.h>     /* sigaction         */
 #include "cinit.h"      /*                   */
 #include "svc.h"        /* list_search_pid   */
+#include "messages.h"   /* messages          */
 
 /***********************************************************************
  * sig_child: (c)collect the children

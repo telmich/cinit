@@ -8,10 +8,11 @@
  */
 
 #include "cinit.h"         /* mini_printf    */
+#include "messages.h"      /* MSG_INTRO_SVC  */
 
 void svc_report_status(char *svc, char *msg, char *err)
 {
-   mini_printf("[Service] ",1);
+   mini_printf(MSG_INTRO_SVC,1);
    mini_printf(svc,1);
    mini_printf(": ",1);
    mini_printf(msg,1);
