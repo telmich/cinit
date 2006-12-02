@@ -1,6 +1,6 @@
 /***********************************************************************
  * 
- *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006 Nico Schottelius (nico-cinit at schottelius.org)
  * 
  *    part of cLinux/cinit
  * 
@@ -13,7 +13,6 @@
 
 /*
  * tmp:  pointer to data to remove (must not be NULL)
- *    -> perhaps work on the pointer to the pointer?
  *
  * Returns either the next object or NULL if there's no next object
  */
@@ -24,14 +23,14 @@ struct dep *dep_entry_del(struct dep *del)
    /* last service in the list */
    if(del->next == del && del->prev == del) {
       tmp=NULL;
-      free(del);
    } else {
       /* remove from list */
       del->prev->next = del->next;
       del->next->prev = del->prev;
       tmp = del->next;
-      free(del);
    }
+
+   free(del);
 
    return tmp;
 }
