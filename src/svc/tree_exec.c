@@ -10,6 +10,7 @@
 #include <stdio.h>               /* NULL        */
 #include "cinit.h"            
 #include "svc.h"                 /* svc_init    */
+#include "messages.h"            /* messages    */
 
 /* some thoughts...
  *
@@ -62,63 +63,30 @@ int tree_exec(struct dep *start)
       switch(svc_needs_status(tmp->svc)) {
          case SNS_NEEDS_STARTED:
             mini_printf("abhaengigkeiten gestartet, exec; add wants, needs\n",1);
-            /* FIXME: execute service */
             svc_start(tmp->svc);
-
-            /* FIXME: update status must be included in child handler! */
-            //svc_success(tmp->svc);
 
             /* execute service, remowe from list */
             /* FIXME check return code? */
-            dep_needs_wants_add(&tmp,tmp->svc,DEP_NEEDS);
-            dep_needs_wants_add(&tmp,tmp->svc,DEP_WANTS);
+            if(!dep_needs_wants_add(&tmp,tmp->svc,DEP_NEEDS)) return 0;
+            if(!dep_needs_wants_add(&tmp,tmp->svc,DEP_WANTS)) return 0;
 
             /* delete service from list */
             tmp = dep_entry_del(tmp);
             break;
+
          case SNS_NEEDS_FAILED:
-            mini_printf("wer fehlgeschlagen\n",1);
             /* mark service as NEED_FAILD and delete from list */
+            svc_report_status(tmp->svc->abs_path,MSG_SVC_NEED_FAIL,NULL);
             svc_set_status(tmp->svc,ST_NEED_FAILD);
             tmp = dep_entry_del(tmp);
             break;
+
          case SNS_NEEDS_UNFINISHED:
-            mini_printf("noch warten\n",1);
             /* continue with the next item */
             tmp = tmp->next;
             break;
       }
 
-//      tmp->svc->pid = fork();
-
-
-//      if(tmp->svc->pid == -1) return 0;
-
- //     if(tmp->svc->pid == 0) { /* child code */
-  //       execute_sth(tmp->svc->abs_path);
-//         _exit(1);
-   //   }
-
-      /* add the services that want or need this service to the list
-       * of services to be executed the next time
-       *
-       * We should add the new services at the beginning, so we
-       * clean the original onse first
-       *
-       * And we need to check, whether the dependencies are already
-       * solved.
-       *
-       * A service may be in status:
-       *
-       * - Unset (never touched)
-       * - Being started (passed our loop, but did not yet finish)
-       * - Respawning (means was started and we take care
-       *   about it
-       * - failed (with reason copied, so one can reprint it later?)
-       * - once - started once successfully
-       * - need failed - not started, because need failed. perhaps
-       *   registert which dependenc(y|ies) failed?
-       */
    } while(tmp != NULL);
 
    return 1;
