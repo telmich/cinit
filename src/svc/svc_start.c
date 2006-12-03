@@ -7,6 +7,7 @@
  *    Start a service
  */
 
+#include <stdio.h>         /* NULL        */
 #include <unistd.h>        /* fork        */
 #include <string.h>        /* strerror    */
 #include <errno.h>         /* errno       */
@@ -40,6 +41,10 @@ void svc_start(struct listitem *li)
          li->status = ST_RESPAWNING;
       return;
    }
+   
+   /********* Client ***********/
+   
+   svc_report_status(li->abs_path,MSG_SVC_START,NULL);
 
    /* FIXME: reset signals: Is this necessary? Or does fork clean it anyway? */
    set_signals(ACT_CLIENT);

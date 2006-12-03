@@ -7,9 +7,9 @@
  *    Pre calculate the service tree
  */
 
-/* FIXME: clean headers */
+/* FIXME: clean headers, check:
+ * getcwd */
 #include <unistd.h>
-#include <string.h>
 
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -22,8 +22,9 @@
 
 #include <limits.h>        /* PATH_MAX          */
 #include <stdlib.h>        /* malloc            */
+#include <string.h>        /* strcpy            */
 
-#include "cinit.h"
+#include "cinit.h"         /* mini_printf       */
 #include "messages.h"
 #include "svc.h"
 
@@ -38,6 +39,7 @@ int check_add_deps(struct listitem *svc, int type)
 
    /* remember where we started */
    if(!getcwd(oldpath,PATH_MAX+1)) {
+      /* FIXME use report status */
       print_errno(MSG_CHDIR);
       return 0;
    }
