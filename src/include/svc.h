@@ -21,7 +21,7 @@ struct listitem {
    struct   listitem *next;      /* next item                                 */
 
    char     *abs_path;           /* name of service                           */
-   int      status;              /* current status                            */
+   long int      status;         /* current status                            */
    pid_t    pid;                 /* pid of service / respawn watcher          */
 
 
@@ -106,14 +106,15 @@ enum svc_status_old {
  */
 enum svc_status {
    /* first define basics */
-   ST_SH_ONCE     = 1,     /* service SHould be started once            */
-   ST_SH_RESPAWN  = 2,     /* service SHould respawn                    */
-   ST_ONCE_OK     = 4,     /* service was successfully started once     */
-   ST_ONCE_FAIL   = 8,     /* service failed to start                   */
-   ST_RESPAWNING  = 16,    /* service is respawning                     */
-   ST_NEED_FAILD  = 32,    /* this service is not started, need failed  */
-   ST_IN_LIST     = 64,    /* this service is being started (= in list) */
-   ST_BAD_ERR     = 128    /* some kind of error that SHOULD NOT happen */
+   ST_SH_ONCE     = 0x1,     /* service SHould be started once            */
+   ST_SH_RESPAWN  = 0x2,     /* service SHould respawn                    */
+   ST_ONCE_OK     = 0x4,     /* service was successfully started once     */
+   ST_ONCE_FAIL   = 0x8,     /* service failed to start                   */
+   ST_RESPAWNING  = 0x10,    /* service is respawning                     */
+   ST_NEED_FAILD  = 0x20,    /* this service is not started, need failed  */
+   ST_IN_LIST     = 0x40,    /* this service is being started (= in list) */
+   ST_BAD_ERR     = 0x80,    /* some kind of error that SHOULD NOT happen */
+   ST_ONCE_RUN    = 0x100    /* the once process is currently running     */
 };
 
 /***********************************************************************
