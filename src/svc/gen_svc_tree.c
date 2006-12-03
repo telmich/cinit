@@ -31,13 +31,8 @@ struct listitem *gen_svc_tree(char *svc)
       if(!deps) return NULL;
       dep_entry_add(&svc_init,deps);
 
-      /* mark it as being in _THE_ list */
-      /* FIXME: is ST_IN_LIST already being checked? */
-      /* FIXME check for the starting list and
-       * for general list.. general list perhaps realized by
-       * svc_create ... */
-      /* FIXME or is this not necessary anyway, because we exit if we
-       * already exist? */
+      /* Mark it as being in the startup list, so it does not
+       * get added again in a dep_needs_wants_add call */
       li->status |= ST_IN_LIST;
    }
 

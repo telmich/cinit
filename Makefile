@@ -46,7 +46,7 @@ sizecheck: sources
 
 clean:
 	$(MAKE) -C src clean
-	rm -f tmpbin/*
+	rm -f $(CINIT_BIN) tmpbin/*
 
 cservice: $(SBIN)/cservice
 

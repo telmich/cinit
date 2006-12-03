@@ -7,6 +7,9 @@
  *    Add all wants or needs from a specific service to dep list
  *       -> this builds the needs and needed_by and
  *       -> or this builds the wants and wanted_by and
+ *
+ *    This function is used to fillup the starting list with dependencies
+ *    after a service has sucessfully been executed.
  */
 
 #include <stdio.h>         /* NULL     */
@@ -31,7 +34,11 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc, int type)
    tmp = end;
    if(tmp != NULL) {
       do {
-         /* FIXME: why this check? too tired currently... */
+         /* Add service to the starter list, which
+          *    - should be started once
+          *    - should be respawned (both VIRGIN services!)
+          *    - and which are not already in the list!
+          */
          if(((tmp->svc->status   & ST_SH_ONCE)     ||
             (tmp->svc->status    & ST_SH_RESPAWN)) &&
             !(tmp->svc->status   & ST_IN_LIST)) {
@@ -40,7 +47,7 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc, int type)
                tmp->svc->status |= ST_IN_LIST;
                dep_entry_add(list,new);
             }
-         /* FIXME: go forward or backwards?
+         /* FIXME: Clearify if we should go forward or backwards?
           * this decision will influence starting order
           * and may thereby add a minimal mount of speed enhancement
           *
