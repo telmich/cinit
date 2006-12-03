@@ -8,7 +8,7 @@
  *
  */
 
-#include <unistd.h>
+#include <unistd.h>        /* open, read, close */
 #include <string.h>        /* strncpy           */
 #include <stdlib.h>        /* realloc           */
 #include <errno.h>         /* errno             */
@@ -34,7 +34,7 @@ int openreadclose(char *filename, char **where)
       if(errno != EINTR)   return ORC_ERR_OPEN;
    }
 
-   cnt      = 0;
+   cnt = 0;
    while (1) {
       tmp = read(fd,buf,512);
 

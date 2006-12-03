@@ -36,7 +36,7 @@ void svc_start(struct listitem *li)
    if(li->pid > 0) {
       if(li->status & ST_SH_ONCE)
          /* FIXME: WRONG! This should be IN_STARTING or similar! */
-         li->status = ST_ONCE_OK;
+         li->status = ST_ONCE_RUN;
       else
          li->status = ST_RESPAWNING;
       return;
