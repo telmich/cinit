@@ -38,13 +38,11 @@ void sig_child(int tmp)
 
    while((tmp = waitpid(-1, &tmp, WNOHANG)) > 0) {
       /* check if it's a watched child */
-      
-      /* restart service, if we are watching it */
       svc = list_search_pid((pid_t) tmp);
 
       if(svc != NULL) {
          /* Check, that we are operating on it =. that it is no normal child */
-         if(svc->status & ST_SH_ONCE
+         if(svc->status & ST_ONCE_RUN
          || svc->status & ST_SH_RESPAWN
          || svc->status & ST_RESPAWNING) {
             if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {

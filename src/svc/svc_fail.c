@@ -11,7 +11,7 @@
 
 void svc_fail(struct listitem *li)
 {
-   if(li->status & ST_SH_ONCE)
+   if(li->status & ST_ONCE_RUN)
       li->status = ST_ONCE_FAIL;
    else {
       /* FIXME: do something senseful, record time of dead? */

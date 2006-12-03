@@ -39,7 +39,8 @@ $(SBIN):
 	mkdir $(SBIN)
 
 sizecheck: sources
-	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l src/cinit > $$FILE; cat $$FILE
+	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l src/cinit > $$FILE; cat $$FILE; \
+	cg-add $$FILE
 	@echo -n "Source size (in KiB): "
 	@du -s src/ | awk '{ sum+=$$1 } END { print sum }'
 

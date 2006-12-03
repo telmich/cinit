@@ -23,7 +23,7 @@ struct listitem *list_search_pid(pid_t pid)
    }
 
    do {
-      printf("LSP:: %d: %s:%d (%d)\n",pid,tmp->abs_path,tmp->status,tmp->pid);
+      printf("LSP:: %d: %s:%ld (%d)\n",pid,tmp->abs_path,tmp->status,tmp->pid);
       if(pid == tmp->pid) {
          return tmp;
       }
