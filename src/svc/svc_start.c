@@ -7,8 +7,6 @@
  *    Start a service
  */
 
-#include <stdio.h>        /* DEBUG        */
-
 #include <unistd.h>        /* fork        */
 #include <string.h>        /* strerror    */
 #include <errno.h>         /* errno       */
@@ -37,6 +35,7 @@ void svc_start(struct listitem *li)
    }
    if(li->pid > 0) {
       if(li->status & ST_SH_ONCE)
+         /* FIXME: WRONG! This should be IN_STARTING or similar! */
          li->status = ST_ONCE_OK;
       else
          li->status = ST_RESPAWNING;
@@ -46,14 +45,9 @@ void svc_start(struct listitem *li)
    /* FIXME: reset signals: Is this necessary? Or does fork clean it anyway? */
    set_signals(ACT_CLIENT);
 
-   /* FIXME: check for valid length!
-    * strlen(abs_path) + strlen(SLASH) + strlen(C_ON) */
-   /* misuse status field (doesn't matter in fork) for strlen */
-   li->status = strlen(li->abs_path);
-   strncpy(buf,li->abs_path,li->status);
-   buf[li->status] = '\0';
-   strncat(buf,SLASH,PATH_MAX);
-   strncat(buf,C_ON,PATH_MAX);
+   /* length check is done by path_append */
+   strcpy(buf,li->abs_path);
+   if(!path_append(buf,C_ON)) return;
 
    execute_sth(buf);
 }

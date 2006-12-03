@@ -1,6 +1,5 @@
 - "src/svc/svc_start.c"
-   * add path_append
-   * add strcpy -> abs_path is never > PATH_MAX!
+   * do NOT set status to ST_ONCE_OK, because it's not true!
 
 - Add START message into svc_start
 - Begin documentation
