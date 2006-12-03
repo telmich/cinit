@@ -1,5 +1,7 @@
 - Check the ST_IN_LIST
    * starting list correctly generated?
+   * check src/svc/check_add_deps.c
+   * check src/svc/dep_needs_wants_add.c
 - Add START message into svc_start
 - Begin documentation
    * Check Makefile

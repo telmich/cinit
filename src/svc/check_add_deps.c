@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2005-2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -10,7 +10,6 @@
 /* FIXME: clean headers */
 #include <unistd.h>
 #include <string.h>
-#include <limits.h>        /* PATH_MAX    */
 
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -61,7 +60,7 @@ int check_add_deps(struct listitem *svc, int type)
          print_errno(buf);
          return 0;
       }
-      return 1;   /* it's fine when there's no needs */
+      return 1;   /* it's fine when there's no dependencies  */
    }
 
    if(chdir(buf) == -1) { /* change to needs or wants */

@@ -4,7 +4,9 @@
  * 
  *    part of cLinux/cinit
  * 
- *    Add all wants and needs from a specific service to dep list
+ *    Add all wants or needs from a specific service to dep list
+ *       -> this builds the needs and needed_by and
+ *       -> or this builds the wants and wanted_by and
  */
 
 #include <stdio.h>         /* NULL     */
@@ -25,10 +27,11 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc, int type)
       end = svc->wanted;
    }
 
-   /* check needs    */
+   /* Place to the first dependency of this service */
    tmp = end;
    if(tmp != NULL) {
       do {
+         /* FIXME: why this check? too tired currently... */
          if(((tmp->svc->status   & ST_SH_ONCE)     ||
             (tmp->svc->status    & ST_SH_RESPAWN)) &&
             !(tmp->svc->status   & ST_IN_LIST)) {
