@@ -25,6 +25,7 @@ struct listitem *gen_svc_tree(char *svc)
    if(!check_add_deps(li,DEP_NEEDS))   return NULL;
    if(!check_add_deps(li,DEP_WANTS))   return NULL;
 
+   /* no dependencies? then you are a start service */
    if(!li->wants && !li->needs) {
       deps = dep_create(li);
       if(!deps) return NULL;
@@ -35,6 +36,8 @@ struct listitem *gen_svc_tree(char *svc)
       /* FIXME check for the starting list and
        * for general list.. general list perhaps realized by
        * svc_create ... */
+      /* FIXME or is this not necessary anyway, because we exit if we
+       * already exist? */
       li->status |= ST_IN_LIST;
    }
 
