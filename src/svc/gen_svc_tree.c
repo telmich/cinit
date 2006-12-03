@@ -32,6 +32,9 @@ struct listitem *gen_svc_tree(char *svc)
 
       /* mark it as being in _THE_ list */
       /* FIXME: is ST_IN_LIST already being checked? */
+      /* FIXME check for the starting list and
+       * for general list.. general list perhaps realized by
+       * svc_create ... */
       li->status |= ST_IN_LIST;
    }
 

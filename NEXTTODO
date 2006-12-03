@@ -1,3 +1,5 @@
+- Check the ST_IN_LIST
+   * starting list correctly generated?
 - Add START message into svc_start
 - Begin documentation
    * Check Makefile
