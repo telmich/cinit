@@ -288,3 +288,11 @@ developer
 user
 ----
 - dependencies with leading '.' (dot) are ignored.
+- about cinit-configuration structure
+   * cconfig
+   * svc/
+   * special/ (or however we called it)
+      - panic
+      - halt
+      - poweroff
+      - reboot

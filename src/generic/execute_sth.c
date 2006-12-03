@@ -15,6 +15,11 @@ void execute_sth(char *basename)
 {
    int            tmp;
    struct ba_argv bav;
+
+   /* FIXME:
+    * - add stat()
+    * - add error, if EXEC_STRICT is set
+    */
    
    mini_printf("ES::",1);
    mini_printf(basename,1);
@@ -22,15 +27,14 @@ void execute_sth(char *basename)
 
    tmp = cinit_build_argv(basename,&bav);
    if((tmp = cinit_build_argv(basename,&bav)) != BA_OK) {
-      if(tmp != BA_E_MEM) {
+      if(tmp != BA_E_MEM) { /* do not print something on memory errors */
          print_errno(basename);
-      } /* do not print something on memory errors */
-      _exit(1);   /* FIXME: adjust exit code? */
+      }
+      _exit(1);
    }
 
    execve((bav.argv)[0],bav.argv,bav.envp);
    print_errno(basename);
-   _exit(1);    /* FIXME: return specific error code, so cinit knows
-                            * what happened! - sure? perhaps this gets non
-                            * standard errors from other programs, too ... */
+   _exit(1);   /* simply exit non-zero. That's enough for cinit to recognize
+                  it as faulty */
 }

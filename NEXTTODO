@@ -1,3 +1,13 @@
+- add stat() to execute_sth, so we only execute it, if it exists
+   -> do not reports errors, when on or off does not exist!
+   * or perhaps use EXEC_STRICT (complain about missing),
+                    EXEC_FUZZY (ignore missing)
+      - could be necessary for special services like:
+         - panic
+         - halt
+         - poweroff
+         - reboot
+      - also pass it to svc_start?
 - Begin documentation
    * Check Makefile
    * Integrate Makefile into main Makefile
@@ -8,7 +18,6 @@
       - boot (different OS)
 - Shutdomn code:
    * begin at init, then shutdown wants/needs, ...
-- do not reports errors, when on or off does not exist!
 - check free on dep_del!
 - check that the new wants and need elements are nserted the other way round
    * we go to next, elements must be put before us!
@@ -17,12 +26,11 @@
 - define messages
    a) human readable
    b) binary data?
-   ?
 - replace cinit_ipc_logon with cinit_ipc_init...
-- cleanup run_svc
-   * NOT NECESSARY ANYMORE!
-   * remove run_svc?
-- implement do_reboot.c
+   * delay ipc code -> after start!
+- Remove old code
+   * remove run_svc
+   * remove run_init_svc
 
 Finally:
 - test and release cinit-0.3rc1
