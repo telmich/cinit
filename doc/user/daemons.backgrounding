@@ -49,6 +49,7 @@ The following daemons / servers are known to avoid backgrounding easily:
       openssh [ssh server]:         -D
       openvpn [vpn server]:         normal behaviour
       pbbuttonsd [power management]:normal behaviour
+      portmap  [portmapper]:        -f
       proftpd [ftp server]:         -n
       qmail [mta]:                  normal behaviour
       rsync ["file server"]:        --no-detach
@@ -68,4 +69,3 @@ Those are the daemons that do not offer the possibility (as of release 0.2):
       atd      (no switch, no configuraton option)
       inetd    (some variants)
       nscd     (no switch, no configuraton option)
-      portmap  (only with debug mode)
