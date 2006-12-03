@@ -107,5 +107,7 @@
 #define MSG_TREE_EXEC      MSG_INTRO_CINIT "Execution of reverse service tree\n"
 //#define MSG_GEN_TREE       MSG_INTRO_CINIT "Generating service tree...\n"
 
+/* general errors */
+#define MSG_GETCWD         "Getcwd failed! Your system is most likely broken!"
 
 #endif   /* _CINIT_MSG_H */

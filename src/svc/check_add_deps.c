@@ -39,8 +39,7 @@ int check_add_deps(struct listitem *svc, int type)
 
    /* remember where we started */
    if(!getcwd(oldpath,PATH_MAX+1)) {
-      /* FIXME use report status */
-      print_errno(MSG_CHDIR);
+      print_errno(MSG_GETCWD);
       return 0;
    }
 
@@ -71,17 +70,11 @@ int check_add_deps(struct listitem *svc, int type)
    }
 
    while((tdirent=readdir(d_tmp))!=NULL) {
-      if(*(tdirent->d_name)=='.') continue; /* ignore .* */
+      if(*(tdirent->d_name) == '.') continue; /* ignore .* */
 
-      /* skip non-working directories */
+      /* skip non-working directories / broken links
+       * path_absolute reports errors on failure */
       if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
-
-   /* FIXME: remove debug */
-   mini_printf("CAD::NEW::",1);
-   mini_printf(svc->abs_path,1);
-   mini_printf("::",1);
-   mini_printf(buf,1);
-   mini_printf("\n",1);
 
       /* 1. create the service we depend on
        * 2. initialize its dependencies

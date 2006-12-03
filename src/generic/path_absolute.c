@@ -17,7 +17,7 @@ int path_absolute(char *relpath, char *newpath, size_t size)
    char oldpath[PATH_MAX+1];
 
    if(!getcwd(oldpath,PATH_MAX+1)) {
-      print_errno(MSG_CHDIR);
+      print_errno(MSG_GETCWD);
       return 0;
    }
 

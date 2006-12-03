@@ -283,3 +283,8 @@ developer
 - ST_IN_LIST == startup marker, used to (NOT) insert services into startup
 - dep_needs_wants_add is used to add dependencies of a service to the general
   starter list
+
+
+user
+----
+- dependencies with leading '.' (dot) are ignored.

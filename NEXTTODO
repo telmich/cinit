@@ -1,7 +1,3 @@
-- Add START message into svc_start
-- Check the ST_IN_LIST
-   * starting list correctly generated?
-   * check src/svc/check_add_deps.c
 - Begin documentation
    * Check Makefile
    * Integrate Makefile into main Makefile
@@ -10,6 +6,8 @@
       - install
       - configure
       - boot (different OS)
+- Shutdomn code:
+   * begin at init, then shutdown wants/needs, ...
 - do not reports errors, when on or off does not exist!
 - check free on dep_del!
 - check that the new wants and need elements are nserted the other way round
