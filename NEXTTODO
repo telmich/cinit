@@ -1,6 +1,3 @@
-- "src/svc/svc_start.c"
-   * do NOT set status to ST_ONCE_OK, because it's not true!
-
 - Add START message into svc_start
 - Begin documentation
    * Check Makefile

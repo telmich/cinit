@@ -20,9 +20,9 @@ struct listitem {
    struct   listitem *prev;      /* previous item                             */
    struct   listitem *next;      /* next item                                 */
 
-   char     *abs_path;           /* name of service                           */
-   long int      status;         /* current status                            */
-   pid_t    pid;                 /* pid of service / respawn watcher          */
+   char        *abs_path;        /* name of service                           */
+   long int    status;           /* current status                            */
+   pid_t       pid;              /* pid of service / respawn watcher          */
 
 
    struct   dep      *wanted;    /* list of services that want this service   */

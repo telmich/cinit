@@ -104,6 +104,7 @@
 #define MSG_SVC_RESTART    MSG_INTRO_RESPAWN "Restarting service."
 
 #define MSG_TREE_EXEC      MSG_INTRO_CINIT "Execution of reverse service tree\n"
+//#define MSG_GEN_TREE       MSG_INTRO_CINIT "Generating service tree...\n"
 
 
 #endif   /* _CINIT_MSG_H */
