@@ -1,7 +1,7 @@
 /***********************************************************************
  * 
  *    (c) 2005 Marcus Przyklink (downhill-clinux (at) burningchaos.org)
- *    2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *        2006 Nico Schottelius (nico-cinit at schottelius.org)
  * 
  *    part of cLinux/cinit
  * 
@@ -23,7 +23,6 @@ struct listitem *list_search_pid(pid_t pid)
    }
 
    do {
-      printf("LSP:: %d: %s:%ld (%d)\n",pid,tmp->abs_path,tmp->status,tmp->pid);
       if(pid == tmp->pid) {
          return tmp;
       }
