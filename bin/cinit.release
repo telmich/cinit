@@ -4,11 +4,21 @@
 # Date: Sat Oct 15 21:38:29 CEST 2005
 # Last Changed: Fr Okt 28 01:24:58 CEST 2005
 
-
 if [ $# -ne 2 ]; then
    echo $(basename $0): source-dir version
    exit 1
 fi
+
+cat << eof
+   Erinnerung:
+
+   - Version in conf/version angepasst?
+   - make clean && make all && make distclean ausgefuehrt?
+   
+   Nein? Strg+C bitte...
+eof
+read a
+
 
 DIR=$1
 VERSION=$2
