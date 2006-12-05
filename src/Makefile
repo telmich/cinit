@@ -19,6 +19,8 @@ SBIN=../sbin
 # directories and files
 CONFIG_H=include/config.h
 
+BIN=cinit
+
 #
 # objects for the cinit part
 #
@@ -69,6 +71,7 @@ CCO_OBJ=util/ccontrol.o generic/mini_printf.o util/msg_reboot.o \
 # End user target
 #
 #all: cinit cservice ccontrol sizecheck docs
+#all: $(BIN)
 all: cinit
 
 #
@@ -88,20 +91,13 @@ cinit: $(CINIT_OBJ)
 	$(LD) $^ -o $@
 
 
-sizecheck: cinit cservice
-	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l sbin/ > $$FILE; cat $$FILE
-	@echo -n "Source size (in KiB): "
-	@du -s $(SDIRS) | awk '{ sum+=$$1 } END { print sum }'
-#	@du -s bin client comm conf doc generic serv | awk '{ sum+=$1 } END { print sum }'
-
-
-
 .PHONY: clean
 clean:
 	rm -f .configured
-	rm -f $(CINIT_OBJ)
+	rm -f $(BIN)
 	rm -f ../tmpbin/*
 
+.PHONY: distclean
 distclean:
 	rm -f os/current ipc/current
 
