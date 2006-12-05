@@ -88,10 +88,6 @@ cinit: $(CINIT_OBJ)
 	$(LD) $^ -o $@
 
 
-#$(CINIT_BIN): $(SBIN) $(OBJ)
-#	$(LD) $(LDFLAGS) $(OBJ) -o $@
-#	$(STRIP) $@
-
 sizecheck: cinit cservice
 	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l sbin/ > $$FILE; cat $$FILE
 	@echo -n "Source size (in KiB): "

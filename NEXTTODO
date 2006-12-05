@@ -1,3 +1,11 @@
+- Cleanup object lists
+   object-lists/
+      cinit
+      cservice
+      ccontrol
+      cinit.halt
+      cinit.reboot
+      cinit.shutdown (shell script?!?)
 - add stat() to execute_sth, so we only execute it, if it exists
    -> do not reports errors, when on or off does not exist!
    * or perhaps use EXEC_STRICT (complain about missing),
