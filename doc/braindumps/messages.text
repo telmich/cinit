@@ -1,0 +1,6 @@
+This document describes the messages used between cinit and its
+"clients" (i.e. ccontrol, cservice, cinit.halt, ...):
+
+Signal messages
+---------------
+As signals 
