@@ -7,7 +7,6 @@ Hints:
    - Settings used for compiling (not only) can be found in conf/*
    - The boot configuration normally resides below /etc/cinit
 
-
 Documentation
 -------------
 The documentation can be found in doc/:
@@ -15,11 +14,8 @@ The documentation can be found in doc/:
    - doc/user/ contains documentation for users
    - doc/devel/ contains documentation for developers
 
-
 Building cinit
 --------------
 
-   "make all" - to build cinit
-   "make install" - to install cinit
+   "make all"     - to build cinit
 
-****************************************************************************
