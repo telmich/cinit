@@ -74,9 +74,7 @@ int   do_svc_name(int sock2, char *svc, int action);
 int   do_change_status(char *svc, char *status, pid_t *pid, int sock2, int action);
 char  do_result(int sock2, char *value);
 
-/* server functions */
-int      run_init_svc(char *cinit_svc);
-void     sigio(int socket);
+/* core functions */
 void     do_reboot(int signal);
 void     panic(void);
 void     sig_child(int signal);
@@ -87,10 +85,7 @@ int      msg_change_status(char *svc, char status, pid_t pid);
 int      begin_msg(char cmd);
 
 /* client functions */
-int      run_run_svcs(char *abspath);
-pid_t    exec_svc(char *abspath, int on);
 pid_t    respawn_svc(char *abspath);
-int      connect_sock(int socke);
 char     **read_file(char *file);
 void     sig_terminate(int signal);
 
@@ -100,6 +95,7 @@ int path_append(char *path, char *append);
 int path_absolute(char *relpath, char *buf, size_t size);
 int openreadclose(char *filename, char **where);
 char *strip_final_newline(char *str);
+int file_exists(char *filename);
 
 /* util */
 int      msg_reboot(char cmd);
