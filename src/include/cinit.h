@@ -31,6 +31,22 @@ enum {         /* returns of openreadclose */
    ORC_ERR_MEM
 };
 
+/* values for execute_sth:
+ * STRICT: print and error, if .../on does not exist
+ * NOSTRICT: no .../on is fine
+ */
+enum {
+   EXEC_STRICT,
+   EXEC_NOSTRICT
+};
+
+enum {
+   FE_FILE,       /* file exists and is a file     */
+   FE_OTHER,      /* file exists, but is no file   */
+   FE_NOT,        /* file does not exist           */
+   FE_ERR         /* some error occured            */
+};
+
 /***********************************************************************
  * Paths
  */

@@ -38,6 +38,10 @@ CINIT_OS_OBJ=$(shell  cat os/current/objects  2>/dev/null)
 CINIT_OBJ=$(CINIT_CORE_OBJ) $(CINIT_IPC_OBJ) $(CINIT_OS_OBJ)   \
           $(CINIT_GENERIC_OBJ) $(CINIT_SVC_OBJ)
 
+# NEW
+CINIT_OBJ=$(shell cat object_lists/cinit)
+
+
 #
 # Dependencies
 #

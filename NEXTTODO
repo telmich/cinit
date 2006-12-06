@@ -1,3 +1,5 @@
+- Finish svc_start
+   -> check for existence
 - Cleanup object lists
    object-lists/
       cinit

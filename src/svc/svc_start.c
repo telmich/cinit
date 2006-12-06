@@ -16,7 +16,7 @@
 #include "messages.h"      /* MSG_*       */
 #include "cinit.h"         /* execute_sth */
 
-void svc_start(struct listitem *li)
+void svc_start(struct listitem *li, int strict)
 {
    char buf[PATH_MAX+1];
 
@@ -52,6 +52,8 @@ void svc_start(struct listitem *li)
    /* length check is done by path_append */
    strcpy(buf,li->abs_path);
    if(!path_append(buf,C_ON)) return;
+
+   /* Check for existence */
 
    execute_sth(buf);
 }

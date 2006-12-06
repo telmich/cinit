@@ -16,11 +16,6 @@ void execute_sth(char *basename)
    int            tmp;
    struct ba_argv bav;
 
-   /* FIXME:
-    * - add stat()
-    * - add error, if EXEC_STRICT is set
-    */
-   
    mini_printf("ES::",1);
    mini_printf(basename,1);
    mini_printf("\n",1);
