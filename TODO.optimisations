@@ -1,0 +1,16 @@
+This file describes enhancements or optimisations that
+could be done / checked.
+
+
+Code
+----
+
+fork()
+~~~~~~
+
+Security
+^^^^^^^^^
+- Closed fds?
+- Close other things?
+- IPC?
+
