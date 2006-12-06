@@ -1,3 +1,5 @@
+- Doc.next:
+   configuring.cinit
 - Begin documentation
    * Check Makefile
    * Integrate Makefile into main Makefile
@@ -7,6 +9,13 @@
       - configure
       - boot (different OS)
    * generate asciidoc!
+- Doc way:
+   * installing
+   * configuring
+      - testconfig!
+   * booting
+      - different OS / bootloader
+   * debugging
 - Shutdomn code:
    * begin at init, then shutdown wants/needs, ...
 - check free on dep_del!
