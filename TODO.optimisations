@@ -14,3 +14,6 @@ Security
 - Close other things?
 - IPC?
 
+Cleanup
+^^^^^^^
+- Do we have to reset signals or is that done anyway by fork()?
