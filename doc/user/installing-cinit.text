@@ -6,11 +6,13 @@ Nico Schottelius <nico-cinit__@__schottelius.org>
 
 This documentes describes how to install cinit.
 
+
 Installing
 ----------
 Installing cinit is not a big deal, so is this document.
 Where possible I added a list of commands to execute at the
 end of each section.
+
 
 From source
 ~~~~~~~~~~~
@@ -20,23 +22,28 @@ Then extract it, change to the sourcedir, adjust your OS in the file
 
 Code to install cinit:
 ----------------------------------------------------------------------
-# the program we use to retrieve the source
+# the program we use to retrieve the source (fetch on FreeBSD)
 get=wget
-
+# change to current version
+version=0.3pre6
+url=http://unix.schottelius.org/cinit/cinit-${version}.tar.bz2
+# get it
+$get "$url"
+# exctract it
+tar xvjf "cinit-${version}.tar.bz2"
+# build it
+cd cinit-${version} && make all
 ----------------------------------------------------------------------
 
-In General
-^^^^^^^^^^
-Download, edit conf/os to the os
+Warning: Currently the install target is missing. Simply copy
+"src/cinit" to /sbin/cinit.
+
 
 Cross-compiling
-^^^^^^^^^^^^^^^
+---------------
 For cross compiling see 'cross-compiling.text'.
 
 
-
-
-Introduction
-------------
-General sections, OS-specific, ...
-
+Continue reading
+----------------
+After having installed cinit, continue reading the document "Configuring cinit".

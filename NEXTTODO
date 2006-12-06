@@ -6,6 +6,7 @@
       - install
       - configure
       - boot (different OS)
+   * generate asciidoc!
 - Shutdomn code:
    * begin at init, then shutdown wants/needs, ...
 - check free on dep_del!
