@@ -1,23 +1,3 @@
-- Finish svc_start
-   -> check for existence
-- Cleanup object lists
-   object-lists/
-      cinit
-      cservice
-      ccontrol
-      cinit.halt
-      cinit.reboot
-      cinit.shutdown (shell script?!?)
-- add stat() to execute_sth, so we only execute it, if it exists
-   -> do not reports errors, when on or off does not exist!
-   * or perhaps use EXEC_STRICT (complain about missing),
-                    EXEC_FUZZY (ignore missing)
-      - could be necessary for special services like:
-         - panic
-         - halt
-         - poweroff
-         - reboot
-      - also pass it to svc_start?
 - Begin documentation
    * Check Makefile
    * Integrate Makefile into main Makefile
@@ -44,3 +24,12 @@
 
 Finally:
 - test and release cinit-0.3rc1
+
+- Cleanup object lists
+   object-lists/
+      cinit
+      cservice
+      ccontrol
+      cinit.halt
+      cinit.reboot
+      cinit.shutdown (shell script?!?)

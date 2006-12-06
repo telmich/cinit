@@ -12,6 +12,7 @@
 #include <unistd.h>
 
 #include <errno.h>         /* errno                   */
+#include "cinit.h"
 
 int file_exists(char *filename)
 {
@@ -21,6 +22,7 @@ int file_exists(char *filename)
       if(errno == ENOENT) {
          return FE_NOT;
       } else {
+         print_errno(filename);
          return FE_ERR;
       }
    } else {

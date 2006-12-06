@@ -6,6 +6,7 @@ core/set_signals.o
 core/do_reboot.o
 core/sig_child.o
 generic/execute_sth.o
+generic/file_exists.o
 generic/mini_printf.o
 generic/path_absolute.o
 generic/path_append.o

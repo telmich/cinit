@@ -16,7 +16,8 @@
 #include "messages.h"      /* MSG_*       */
 #include "cinit.h"         /* execute_sth */
 
-void svc_start(struct listitem *li, int strict)
+//void svc_start(struct listitem *li, int strict)
+void svc_start(struct listitem *li)
 {
    char buf[PATH_MAX+1];
 
@@ -42,18 +43,26 @@ void svc_start(struct listitem *li, int strict)
       return;
    }
    
-   /********* Client ***********/
-   
+   /********************** Client / fork() ************************/
    svc_report_status(li->abs_path,MSG_SVC_START,NULL);
-
-   /* FIXME: reset signals: Is this necessary? Or does fork clean it anyway? */
-   set_signals(ACT_CLIENT);
 
    /* length check is done by path_append */
    strcpy(buf,li->abs_path);
    if(!path_append(buf,C_ON)) return;
 
    /* Check for existence */
+   li->status = file_exists(buf);
 
-   execute_sth(buf);
+   if(li->status == FE_NOT) _exit(0);  /* nothing there? fine! */
+
+   if(li->status == FE_FILE) {
+      /* FIXME: reset signals: Is this necessary? Or does fork clean it anyway? */
+      set_signals(ACT_CLIENT);
+
+      /* and now, fire it up */
+      execute_sth(buf);
+   } else {
+      /* either no file or an error */
+      _exit(1);
+   }
 }
