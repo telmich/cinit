@@ -1,5 +1,14 @@
 - Doc.next:
+   - installing: report!
    configuring.cinit
+- Doc
+   * the conf/ system: conf-system.text
+   * paths.text
+   * current-init-problems.text
+   * profiles.text (profile.support)
+   * 'example-directory-structure.text'
+   * 'dependencies.text'
+   * 'os-integration.text'
 - Begin documentation
    * Check Makefile
    * Integrate Makefile into main Makefile
@@ -9,6 +18,7 @@
       - configure
       - boot (different OS)
    * generate asciidoc!
+- report broken links in needs/wants
 - Doc way:
    * installing
    * configuring
