@@ -1,7 +1,7 @@
 cinit - Installing
 ==================
 Nico Schottelius <nico-cinit__@__schottelius.org>
-0.1, for cinit 0.3, Initial Version from 2006-06-02
+0.1, for cinit 0.3, Initial version from 2006-06-02
 :Author Initials: NS
 
 This documentes describes how to install cinit.
@@ -17,8 +17,8 @@ end of each section.
 From source
 ~~~~~~~~~~~
 Retrieve the latest source from http://unix.schottelius.org/cinit/.
-Then extract it, change to the sourcedir, adjust your OS in the file
-"conf/os" and type "make all".
+Then extract it, change to the source directory, adjust your OS in the
+file "conf/os" and type "make all".
 
 Code to install cinit:
 ----------------------------------------------------------------------
@@ -37,6 +37,12 @@ cd cinit-${version} && make all
 
 Warning: Currently the install target is missing. Simply copy
 "src/cinit" to /sbin/cinit.
+
+
+Changing compile time paramaters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+All compile time configurations are kept below the "conf"
+directory. Please read 'conf-system.text' for more information.
 
 
 Cross-compiling
