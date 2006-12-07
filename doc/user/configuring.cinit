@@ -1,43 +1,81 @@
---------------------------------------------------------------------------------
-configuring cinit,
-Nico Schottelius 2005-05-28 (Last Modified: 2005-06-05)
---------------------------------------------------------------------------------
-
-0. Pre-compile configuration
-1. General configuration layout
-2. Hints
-2.0 Service executing / parameters
-2.1 Daemons
-2.2 Logging
-2.3 Using prepared scripts
-3. Profiles
+cinit - Configuring
+===================
+Nico Schottelius <nico-cinit__@__schottelius.org>
+0.1, for cinit 0.3, Initial version from 2005-05-28
+:Author Initials: NS
 
 
-0. Pre-compile configuration
+This documentes describes how to configure cinit.
+You should already have cinit installed, otherwise read "cinit - Installing"
+first.
 
-Have a look at conf/*. Those variable will mostly be used when
-compiling cinit. Some will be read later (like destdir).
+
+General configuration layout
+----------------------------
+Cinit uses the <<cconfig>> configuration syntax, which means that
+the configuration is kept as simple as possible. The following
+sections will show you what that means.
+
+Paths
+-----
+Normally the configuration is kept below '/etc/cinit'
+(though you can change this before compiling in conf/cinit_dir).
+
+The full description of the path layout of cinit and how to change it
+can be found in 'paths.text'.
+
+Services
+--------
+cinit is service based. Other init systems use shell
+scripts (for instance /etc/rc, /etc/init.d/rc as starters
+and /etc/rc*.d/* as "service definitions").
+
+'current-init-problems.text' explains why cinit does *not*
+use nor recommends the use of shell scripts.
+
+A service s simply a directory. This directory contains information
+on
+
+- what should be started when starting the service
+- what should be started when stoping the service
+- what dependencies the service has
+- whether to restart it, when it exits
 
 
-1. General configuration layout
-
-/etc/cinit (configurable via conf/cinit_dir) stores the complete
-cinit configuration.
-
-cinit is service based.
-A service consists of
-   - a base directory (like /etc/cinit/getty/1)
+Full service definition
+~~~~~~~~~~~~~~~~~~~~~~~
+. A service consists of
+   - a base directory (like /etc/cinit/svc/mount/root/)
    - dependency configuration:
+   - start/stop programs
+   - respawn flag
 
-      ./wants  - services it wants to be started before (but it
-                 will work anyway)
 
-      ./needs/ - services it needs. If those services fail, this service
-                 won't be started.
- 
-   - a flag indicating whether to respawn the service:
+Base directory
+^^^^^^^^^^^^^^
+You can create the base directory everywhere below /etc/cinit/svc.
+You may and it is recommened to create a directory structure
+(see 'example-directory-structure.text').
 
-      ./respawn (simply touch it)
+
+Dependencies
+^^^^^^^^^^^^
+The subdirectories
+- `wants`
+- and `needs`
+are the two dependency describing directories.
+
+Read 'dependencies.text' for more information.
+
+Respawning
+^^^^^^^^^^^
+If you create the empty file 'respawn' (adjustable via conf/c_respawn)
+the service will be restarted after it exits.
+
+--------------------------------------------------------------------------------
+# Tell cinit to respawn the eth0.udhcpc service
+touch /etc/cinit/svc/network/eth0.udhcpc
+--------------------------------------------------------------------------------
 
    - a delay: how long to wait for the service (in seconds) before
      sending SIGKILL after the SIGTERM (only for respawning processes):
@@ -179,11 +217,22 @@ In the bin/ directory of this tarball you'll find at least:
    cinit.shutdown       - shutdown in /bin/sh
 
 
-3. Profiles
+Profiles
+--------
+Profiles allow you to define different startup scenarios and select
+those before bootup. Read 'profiles.text' for more information about
+profiles.
 
-Since cinit-0.0.6 there is profile in cinit.
-Profiles are described in doc/profile.support.
+The profile support was added in cinit-0.0.6.
 
-X. Examples
 
-Can be found in the tarballs below samples/.
+Examples
+--------
+Currently there are no example configurations available.
+As soon as they are, you will be able to download them at
+cinit's homepage.
+
+
+References
+----------
++ [[cconfig]]
