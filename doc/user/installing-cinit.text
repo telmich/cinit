@@ -39,7 +39,7 @@ Warning: Currently the install target is missing. Simply copy
 "src/cinit" to /sbin/cinit.
 
 
-Changing compile time paramaters
+Changing compile time parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 All compile time configurations are kept below the "conf"
 directory. Please read 'conf-system.text' for more information.
