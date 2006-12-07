@@ -10,13 +10,13 @@ Configuring cinit - the paths used
 Introduction
 ------------
 The base directory under which all configurations are found
-is '/etc/cinit'.
+is '/etc/cinit' (changable via conf/cinit_dir).
 
 The basic hierarchy is shown below:
 ----------------------------------------------------------------------
 /etc/cinit
-   svc      -> services
-   conf     -> general configuration
+   svc      -> services                (adjustable: conf/svcdir)
+   conf     -> general configuration   (adjustable: conf/confdir)
 ----------------------------------------------------------------------
 
 

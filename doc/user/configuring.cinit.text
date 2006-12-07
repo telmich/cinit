@@ -16,6 +16,7 @@ Cinit uses the <<cconfig>> configuration syntax, which means that
 the configuration is kept as simple as possible. The following
 sections will show you what that means.
 
+
 Paths
 -----
 Normally the configuration is kept below '/etc/cinit'
@@ -23,6 +24,7 @@ Normally the configuration is kept below '/etc/cinit'
 
 The full description of the path layout of cinit and how to change it
 can be found in 'paths.text'.
+
 
 Services
 --------
@@ -33,8 +35,7 @@ and /etc/rc*.d/* as "service definitions").
 'current-init-problems.text' explains why cinit does *not*
 use nor recommends the use of shell scripts.
 
-A service s simply a directory. This directory contains information
-on
+A service s simply a directory. This directory contains information about
 
 - what should be started when starting the service
 - what should be started when stoping the service
@@ -46,9 +47,9 @@ Full service definition
 ~~~~~~~~~~~~~~~~~~~~~~~
 . A service consists of
    - a base directory (like /etc/cinit/svc/mount/root/)
-   - dependency configuration:
-   - start/stop programs
-   - respawn flag
+   - dependency configuration (`needs` and `wants`)
+   - start/stop programs (`on` and `off`)
+   - respawn flag (`respawn`)
 
 
 Base directory
@@ -77,15 +78,28 @@ the service will be restarted after it exits.
 touch /etc/cinit/svc/network/eth0.udhcpc
 --------------------------------------------------------------------------------
 
-   - the program to run when switching the service on and off:
 
-      ./on        (a link to a program or a shell script)
-      ./on.params (see conf/c_params, the parameters to pass to the program)
-      ./on.env    (see conf/c_env, the environment to pass to the program)
+Execution: on and off
+^^^^^^^^^^^^^^^^^^^^^
+When a service starts, the file `on` in the service
+directory is executed. It is ok, if this file is not existing.
+When a service stops, the file `off` in the service
+directory is executed.
 
-      ./off          (call that when shutting down the service)
-      ./off.params   (the parameters to pass to the program)
-      ./on.env       (the environment to pass to the program)
+The file with the extension `.params` is used to specify the arguments
+to pass. Each line contains exactly one parameter.
+
+The file with the extension `.env` is used to specify the environment
+to pass. Each line contains exactly one variable definition in the form
+'variable=value'.
+
+. The following six files are possibly used on starting/stoping:
+   - ./on            (the program called on startup)
+   - ./on.params     (the parameters to pass to the program, see conf/c_params)
+   - ./on.env        (the environment to pass to the program, see conf/c_env)
+   - ./off           (the program called when shutting down the service)
+   - ./off.params    (the parameters to pass to the program)
+   - ./on.env        (the environment to pass to the program)
 
 You should have a look at the samples/ directory for examples.
 
