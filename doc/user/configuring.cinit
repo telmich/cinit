@@ -77,19 +77,6 @@ the service will be restarted after it exits.
 touch /etc/cinit/svc/network/eth0.udhcpc
 --------------------------------------------------------------------------------
 
-   - a delay: how long to wait for the service (in seconds) before
-     sending SIGKILL after the SIGTERM (only for respawning processes):
-      
-      ./delay (one line with only the digits)
-
-      If delay is non-existing or not readable, the delay from
-      conf/sleep_kill_svc is taken. The maximum length of this
-      number ("9999" uses length 4, "42" needs 2 bytes) can be adjusted
-      at compile time in conf/max_delay. Internally this is a signed
-      integer, so the maximum size depends on your system. Though
-      I don't think anybody will want to wait for a service as long as
-      an integer would allow.
-
    - the program to run when switching the service on and off:
 
       ./on        (a link to a program or a shell script)
