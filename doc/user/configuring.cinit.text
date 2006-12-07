@@ -101,29 +101,29 @@ to pass. Each line contains exactly one variable definition in the form
    - ./off.params    (the parameters to pass to the program)
    - ./on.env        (the environment to pass to the program)
 
-You should have a look at the samples/ directory for examples.
-
-If things are missing, cinit will continue with what's available.
-This way you only need the files you use. Some examples:
-
-   /etc/cinit/init:
+Some examples:
+----------------------------------------------------------------------
+   /etc/cinit/svc/init:
       ./wants -> services it wants
       ./needs -> services it needs
-      That's everything
+----------------------------------------------------------------------
 
+A more or less normal service without dependencies:
+----------------------------------------------------------------------
    /etc/cinit/testsvc:
       on       -> link to program
       on.param -> parameters to program
       respawn  -> restart it
-      That's everything, as it has no dependencies
+----------------------------------------------------------------------
  
+A service with all options used:
+----------------------------------------------------------------------
    /etc/cinit/fullsvc:
       on          -> program to start when switching on
       on.params   -> parameters to pass to start program
       on.env      -> environment to pass to start program
 
-      respawn     -> respawn on service
-      delay       -> wait this time before sending SIGKILL after SIGTERM
+      respawn     -> respawn service
 
       off         -> program to start when switching off
       off.params  -> parameters to pass to stop program
@@ -131,6 +131,7 @@ This way you only need the files you use. Some examples:
 
       wants/*     -> services it wants before starting (non-critical ones)
       needs/*     -> links to needed services (critical!) before starting
+----------------------------------------------------------------------
 
 
 2. Hints
