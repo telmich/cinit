@@ -1,6 +1,6 @@
 - Doc.next:
+   - configuring.cinit: Execution / on / off
    - installing: report!
-   configuring.cinit
 - Doc
    * the conf/ system: conf-system.text
    * paths.text
