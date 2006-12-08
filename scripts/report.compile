@@ -10,5 +10,9 @@ echo "----------------------------"
 echo "----------------------------"
 uname -a
 echo "----------------------------"
+. "$(dirname $0)/cinit.read-conf"
+echo '$CC'
+"$CC" -v
+echo "----------------------------"
 echo -n "Size: "
 ls -l "$(dirname $0)/../src/cinit"

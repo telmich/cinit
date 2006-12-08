@@ -4,11 +4,11 @@
 # ~ 2005
 # 
 
-CONFS=$($(dirname $0)/cinit.get-confdir)/*
+CONFS=$($(dirname $0)/cinit.get-confdir)
 
 set -e
 
-for conf in $CONFS; do
+for conf in ${CONFS}/*; do
    NAME="$(basename $conf | tr a-z A-Z)"
    if eval test -z \$$NAME; then
       eval $NAME=\"$(head -n 1 $conf)\"
