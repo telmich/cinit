@@ -21,7 +21,9 @@ Then extract it, change to the source directory, adjust your OS in the
 file "conf/os" and type "make all".
 
 To report success run scripts/report.compile and send the output
-to nico-cinit-report |at| schottelius.org.
+to nico-cinit-report |at| schottelius.org. I will use this information
+to know how and where cinit is compiled. Personal values like hostnames
+or your e-mail address will *not* be published.
 
 Code to install cinit:
 ----------------------------------------------------------------------
