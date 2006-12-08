@@ -1,14 +1,16 @@
 - Doc.next:
-   - configuring.cinit: Execution / on / off
    - installing: report!
 - Doc
    * the conf/ system: conf-system.text
    * paths.text
+      - The full description of the path layout of cinit and how to change it can be found in paths.text
    * current-init-problems.text
+      - current-init-problems.text explains why cinit does not use nor recommends the use of shell scripts.
    * profiles.text (profile.support)
    * 'example-directory-structure.text'
    * 'dependencies.text'
    * 'os-integration.text'
+   * 'daemons.backgrounding'
 - Begin documentation
    * Check Makefile
    * Integrate Makefile into main Makefile

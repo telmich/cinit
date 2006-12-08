@@ -12,7 +12,7 @@ first.
 
 General configuration layout
 ----------------------------
-Cinit uses the <<cconfig>> configuration syntax, which means that
+Cinit uses the <<<cconfig>>> configuration syntax, which means that
 the configuration is kept as simple as possible. The following
 sections will show you what that means.
 
@@ -35,7 +35,7 @@ and /etc/rc*.d/* as "service definitions").
 'current-init-problems.text' explains why cinit does *not*
 use nor recommends the use of shell scripts.
 
-A service s simply a directory. This directory contains information about
+A service is simply a directory. This directory contains information about
 
 - what should be started when starting the service
 - what should be started when stoping the service
@@ -62,11 +62,14 @@ You may and it is recommened to create a directory structure
 Dependencies
 ^^^^^^^^^^^^
 The subdirectories
+
 - `wants`
 - and `needs`
-are the two dependency describing directories.
+
+contain the dependencies for the service.
 
 Read 'dependencies.text' for more information.
+
 
 Respawning
 ^^^^^^^^^^^
@@ -133,92 +136,6 @@ A service with all options used:
       needs/*     -> links to needed services (critical!) before starting
 ----------------------------------------------------------------------
 
-
-2. Hints
-
-2.0 Service executing / parameters
-
-The on and off files can and should be links to the programs you want
-to execute. This way you save yourself loading the big shell (which is
-on many Linux systems bash, why so ever, dash does the job as good, still
-beeing small).
-
-The on.params and off.params files could also be links to system configuration:
-
-Assume the service is called local-tuning/keyboard. The on script
-could look like:
-
-   on -> /bin/loadkeys
-   on.params -> /etc/sys/keyboard.mapping
-
-   And /etc/sys/keyboard.mapping would contain only the string
-   "dvorak" (or "de-latin1" or "sg-latin1" or ...).
-
-
-2.1 Daemons
-
-Respawning daemons is a bit more difficult, as daemons do often fork()
-(go to background, the calling process exits).
-
-This way cinit cannot watch it directly.
-
-The first solution is to check the documentation of your daemon program,
-if it has a switch to disable forking (Please have a look at
-daemons.backgrounding for a list of known daemons and their switches
-to avoid backgrounding).
-
-The other possibility is to use a program, which will
-   a) start the daemon
-   b) look into the pidfile of the daemon
-   c) will then wait until that pid does not exist anymore
-   d) and then it exits and cinit will restart it (goto a) now)
-
-Such a program is included into this cinit release,
-though I do not recommend using it. You should better contact the
-authors and make them implement a clean non-forking mode.
-
-The name of the program (actually a shell script) is "cinit.wait.for.daemon".
-
-You will use it as the "on" part of the service and you have to add
-
-   a) the pidfile to on.params
-   b) the daemon binary
-
-Thus the service would look like:
-
-   svc-broken-daemon/
-      on -> /sbin/cinit.wait.for.daemon
-      on.params:
-         /var/run/apache.pid
-         /usr/packages/apache-2.0.51/bin/httpd
-         -DSSL
-
-Be aware: This is just a hack, first try to avoid backgrounding
-and you won't need this hack!
-
-
-2.2 Logging
-
-Currently there's no special logging support.
-When programs write to stdout, it will be displayed on
-the same stdout cinit is connected to
-(we don't even open /dev/console - we are too lazy currently).
-
-
-2.3 Using prepared scripts
-
-In the bin/ directory of this tarball you'll find at least:
-
-   cinit.add.dependency - add a dependency to a service
-   cinit.add.getty      - add a new getty
-   cinit.create.empty.service - create an empty service
-   cinit.reboot         - reboot in /bin/sh
-   cinit.remove.getty   - remove a getty service
-   cinit.respawn.off    - switch respawing off
-   cinit.respawn.on     - switch respawing on
-   cinit.shutdown       - shutdown in /bin/sh
-
-
 Profiles
 --------
 Profiles allow you to define different startup scenarios and select
@@ -226,6 +143,102 @@ those before bootup. Read 'profiles.text' for more information about
 profiles.
 
 The profile support was added in cinit-0.0.6.
+
+
+Hints
+-----
+
+Service executing / parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The on and off files can and should be links to the programs you want
+to execute instead of a shell script. This way you save yourself the overhead
+of loading a shell. The speed enhancement is very big if you have shells
+like bash installed as /bin/sh (which is *not* senseful anyway, I would
+recommend dash or ksh for /bin/sh).
+
+The on.params and off.params files could also be links to system configuration:
+
+Assume the service is called local-tuning/keyboard.
+The service could look like this:
+----------------------------------------------------------------------
+   on -> /bin/loadkeys
+   on.params -> /etc/sys/keyboard.mapping
+
+   And /etc/sys/keyboard.mapping would contain only the string
+   "dvorak" (or "de-latin1" or "sg-latin1" or ...).
+----------------------------------------------------------------------
+
+
+Daemons
+~~~~~~~~
+Daemons are programs that go away to the background (using fork()) after
+start.
+
+The fork-away strategy seems to be some illness introduced by traditional
+init systems, that are dependent on the fact, that a service exits.
+
+Cinit in contrast remembers the process ID (pid) of the services it
+restarts (those with `respawn` enabled).
+
+So when the daemon fork()s away and the parent process exits it looks to
+cinit like the watched service died and cinit will restart it.
+
+Happily, most processes can be taught not to go to background.
+Some processes even do that by default and very less are broken that
+one cannot tell them not to background.
+
+A list of known processes that are normally used in respawn
+processes can be found in 'daemons.backgrounding.text'.
+
+If your process is not listed in `daemons.backgrounding.text', 
+check the documentation of your daemon program, if may have a
+switch to disable forking.
+
+But, with a small hack it is even possible to respawn those broken processes:
+
+We start a program, that
+   - starts the daemon,
+   - monitors the pidfile of the daemon,
+   - waits until that pid does not exist anymore
+   - and then exits.
+
+Such a program is included into the cinit source tarball,
+though I do not recommend using it. The better way is to implement
+non forking mode into your process.
+
+The name of the program (actually a shell script) is 'cinit.wait.for.daemon'.
+
+You can use it as the `on` part of a service and add
+
+   - the pidfile,
+   - the process binary
+   - and the process parameters
+
+to `on.params`.
+
+Thus the service could look like:
+----------------------------------------------------------------------
+   svc-broken-daemon/
+      on -> /sbin/cinit.wait.for.daemon
+      on.params:
+         /var/run/apache.pid
+         /usr/packages/apache-2.0.51/bin/httpd
+         -DSSL
+----------------------------------------------------------------------
+(This is not a so good example, because Apache supports non-forking mode).
+
+Be aware: This is just a hack, first try to avoid backgrounding
+and you won't need this hack!
+
+
+Logging
+~~~~~~~
+Currently there's no special logging support.
+When a process writes to stdout, it will be displayed on
+the same stdout cinit is connected to.
+
+In newer versions cinit (perhaps cinit-0.4) will also support logging
+stdout and stderr of a service.
 
 
 Examples
@@ -237,4 +250,4 @@ cinit's homepage.
 
 References
 ----------
-+ [[cconfig]]
++ [[[cconfig]]] http://nico.schotteli.us/papers/linux/cconfig/

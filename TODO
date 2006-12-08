@@ -265,6 +265,25 @@ umount raus
 
 --> cinit-0.3-rc1
 --------------------------------------------------------------------------------
+Helper scripts, rausgenommen aus Der Doku, muessen fuer
+cinit-0.3 ueberprueft werden:
+
+Configure help scripts
+~~~~~~~~~~~~~~~~~~~~~~
+cinit-conf later
+Using prepared scripts
+
+In the bin/ directory of this tarball you'll find at least:
+
+   cinit.add.dependency - add a dependency to a service
+   cinit.add.getty      - add a new getty
+   cinit.create.empty.service - create an empty service
+   cinit.reboot         - reboot in /bin/sh
+   cinit.remove.getty   - remove a getty service
+   cinit.respawn.off    - switch respawing off
+   cinit.respawn.on     - switch respawing on
+   cinit.shutdown       - shutdown in /bin/sh
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
