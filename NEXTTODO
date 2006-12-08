@@ -1,6 +1,4 @@
 - Doc
-   * paths.text
-      - The full description of the path layout of cinit and how to change it can be found in paths.text
    * current-init-problems.text
       - current-init-problems.text explains why cinit does not use nor recommends the use of shell scripts.
    * profiles.text (profile.support)
