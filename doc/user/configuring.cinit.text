@@ -146,6 +146,25 @@ profiles.
 The profile support was added in cinit-0.0.6.
 
 
+Service execution order
+------------------------
+The first service executed is '/etc/cinit/svc/init'.
+If a profile is selected '/etc/cinit/svc/`profilename`' is used
+instead.
+
+Cinit builds a full service dependency tree through the `wants`
+and `needs` of the first service and its dependencies
+(recursively).
+
+After the tree is generated, cinit begins to start the services
+at the end of the tree. These services have no `needs`.
+
+If you manage to create circular dependencies your system will not startup.
+You can verify the correctness your configuration with the script
+`cinit.check.config`.
+
+
+
 Hints
 -----
 
