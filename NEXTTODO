@@ -1,5 +1,4 @@
 - Doc
-   * the conf/ system: conf-system.text
    * paths.text
       - The full description of the path layout of cinit and how to change it can be found in paths.text
    * current-init-problems.text
