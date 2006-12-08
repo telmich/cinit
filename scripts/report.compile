@@ -1,0 +1,14 @@
+#!/bin/sh
+# Nico Schottelius
+# 2006-12-08
+# Report compile success
+# 
+
+echo "cinit compile success report"
+echo "----------------------------"
+"$(dirname $0)/cinit.mkheader"
+echo "----------------------------"
+uname -a
+echo "----------------------------"
+echo -n "Size: "
+ls -l "$(dirname $0)/../src/cinit"
