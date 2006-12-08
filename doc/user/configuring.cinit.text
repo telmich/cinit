@@ -136,6 +136,7 @@ A service with all options used:
       needs/*     -> links to needed services (critical!) before starting
 ----------------------------------------------------------------------
 
+
 Profiles
 --------
 Profiles allow you to define different startup scenarios and select
@@ -240,6 +241,18 @@ the same stdout cinit is connected to.
 In newer versions cinit (perhaps cinit-0.4) will also support logging
 stdout and stderr of a service.
 
+
+How to migrate your old init-system configuration to cinit
+----------------------------------------------------------
+This is highly dependent on your actual system, your system
+configuration and your own ideas.
+
+Cinit is able to replace all other init systems I know about.
+
+So the only question is "How to do it?".
+
+There are some hints on how to migrate to cinit in general and also
+some os specific help in the file 'migrating-init-systems.text',
 
 Examples
 --------
