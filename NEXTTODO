@@ -10,6 +10,12 @@
    * 'daemons.backgrounding'
    * There are some hints on how to migrate to cinit in general and also
    some os specific help in the file 'migrating-init-systems.text',
+- CODECHECK:
+   * what happens with the wants of the last services?
+      - are they added?
+      - are they added at the correct position?
+- scripts
+   * `cinit.check.config` (doc/user/configuring.cinit.text)
 - Doc.next:
    - installing: report!
       -> write report script.

@@ -20,6 +20,18 @@ The basic hierarchy is shown below:
 ----------------------------------------------------------------------
 
 
+The subdirectory 'conf'
+~~~~~~~~~~~~~~~~~~~~~~~
+In this directory are general configurations located.
+See below for the list of files that are located in this
+directory.
+
+
+The subdirectory 'svc'
+~~~~~~~~~~~~~~~~~~~~~~
+This directory contains the services. A service is a directory.
+
+
 Filenams for executable files
 ------------------------------
 When you create something that cinit should execute (like on
@@ -53,30 +65,11 @@ Specify one assignment on each line, containing only "variable=value".
 
 Example:
 ----------------------------------------------------------------------
+[18:00] hydrogenium:% cat /etc/cinit/svc/remote-services/tinydns/on.env
+IP=192.168.42.23
 ----------------------------------------------------------------------
 
-The subdirectory 'conf'
-~~~~~~~~~~~~~~~~~~~~~~~
-In this directory are general configurations located.
-
-. The executable files in this directory are:
-   - panic{.*}
-   - umount{.*}
-
-The subdirectory 'svc'
-~~~~~~~~~~~~~~~~~~~~~~
-This directory contains the services. A service is a directory
-which may contain the following files:
-
-. List of files
-   - on - What to execute when starting the service
-      * on.env - Environment to pass to 'on'
-      * on.params - Parameters to pass to 'on'
-   - off - What to execute when stopping the service
-      * off.env - Environment to pass to 'on'
-      * off.params - Parameters to pass to 'on'
-   - respawn - An empty file that tells cinit to restart the service
-      when it exits
+eof
 
 List of executable files
 ------------------------

@@ -12,3 +12,4 @@ tmpbin
 src/os/current
 src/ipc/current
 src/cinit
+doc/*/*.html
