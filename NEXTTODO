@@ -8,6 +8,8 @@
    * 'dependencies.text'
    * 'os-integration.text'
    * 'daemons.backgrounding'
+   * There are some hints on how to migrate to cinit in general and also
+   some os specific help in the file 'migrating-init-systems.text',
 - Doc.next:
    - installing: report!
       -> write report script.

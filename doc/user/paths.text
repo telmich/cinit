@@ -7,8 +7,8 @@ Nico Schottelius <nico-linux-cinit__@__schottelius.org>
 Configuring cinit - the paths used
 
 
-Introduction
-------------
+Main structure
+---------------
 The base directory under which all configurations are found
 is '/etc/cinit' (changable via conf/cinit_dir).
 
@@ -20,28 +20,40 @@ The basic hierarchy is shown below:
 ----------------------------------------------------------------------
 
 
-General pathnames
-~~~~~~~~~~~~~~~~~~
+Filenams for executable files
+------------------------------
 When you create something that cinit should execute (like on
 starting a service, on stopping a service, on panic, ...), cinit
 will recognize the following extensions:
 
 . cinit executions extensions
-   - 'name' - the file that should be executed
-   - 'name'.params - the parameter to pass to 'name' when executing
-   - 'name'.env - the environment to pass to 'name' when executing
+   -  'name'         - the file that should be executed
+   - `'name'.params` - the parameter to pass to 'name' when executing
+   - `'name'.env`    - the environment to pass to 'name' when executing
 
 
 Name.params
-^^^^^^^^^^^
+~~~~~~~~~~~
 The 'params' file is a simple file containing one argument on each
 line.
 
-Name.env
-^^^^^^^^
-The 'env' file contains one assignment on each line.
-"testvar=testvalue".
+Example:
+----------------------------------------------------------------------
+[17:34] hydrogenium:cinit-0.3pre6% ls -l /etc/cinit/svc/init/on         
+lrwxrwxrwx 1 root root 9 2006-11-16 09:12 /etc/cinit/svc/init/on -> /bin/echo
+[17:34] hydrogenium:cinit-0.3pre6% cat /etc/cinit/svc/init/on.params  
+The initial service has been started. (first parameter)
+Some other useful information. (second parameter)
+----------------------------------------------------------------------
 
+Name.env
+~~~~~~~~
+The 'env' file contains the environment definition.
+Specify one assignment on each line, containing only "variable=value".
+
+Example:
+----------------------------------------------------------------------
+----------------------------------------------------------------------
 
 The subdirectory 'conf'
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -66,3 +78,51 @@ which may contain the following files:
    - respawn - An empty file that tells cinit to restart the service
       when it exits
 
+List of executable files
+------------------------
+This list shows you what files are executable for cinit.
+
+on /  off
+~~~~~~~~~
+The files `on` and `off` are executed if found within a service
+definition. `on` is called when starting the service, `off`
+is called when stoping it.
+
+
+conf/panic
+~~~~~~~~~~
+This file will be executed by cinit if it has to panic.
+Panic situation may occur, when there are heavy problems
+like failing memory allocation in core areas. You can
+change the name of the file in the pre-compilation settings
+in `conf/c_panic`.
+
+If `conf/panic` is missing and cinit has to panic, a builtin
+panic action will be called (see `conf/sulogin`).
+
+
+conf/halt
+~~~~~~~~~
+`conf/halt` will be called when cinit has shutdown all services
+and wants to halt the system.
+
+You can change the name of the file in the pre-compilation settings
+in `conf/c_halt`.
+
+
+conf/poweroff
+~~~~~~~~~~~~~
+`conf/poweroff` will be called when cinit has shutdown all services
+and wants to poweroff the system.
+
+You can change the name of the file in the pre-compilation settings
+in `conf/c_poweroff`.
+
+
+conf/reboot
+~~~~~~~~~~~
+`conf/reboot` will be called when cinit has shutdown all services
+and wants to reboot the system.
+
+You can change the name of the file in the pre-compilation settings
+in `conf/c_reboot`.
