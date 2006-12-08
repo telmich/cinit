@@ -1,5 +1,3 @@
-- Doc.next:
-   - installing: report!
 - Doc
    * the conf/ system: conf-system.text
    * paths.text
@@ -11,6 +9,9 @@
    * 'dependencies.text'
    * 'os-integration.text'
    * 'daemons.backgrounding'
+- Doc.next:
+   - installing: report!
+      -> write report script.
 - Begin documentation
    * Check Makefile
    * Integrate Makefile into main Makefile

@@ -20,6 +20,9 @@ Retrieve the latest source from http://unix.schottelius.org/cinit/.
 Then extract it, change to the source directory, adjust your OS in the
 file "conf/os" and type "make all".
 
+To report success run scripts/report.compile and send the output
+to nico-cinit-report |at| schottelius.org.
+
 Code to install cinit:
 ----------------------------------------------------------------------
 # the program we use to retrieve the source (fetch on FreeBSD)
@@ -31,8 +34,11 @@ url=http://unix.schottelius.org/cinit/cinit-${version}.tar.bz2
 $get "$url"
 # exctract it
 tar xvjf "cinit-${version}.tar.bz2"
-# build it
-cd cinit-${version} && make all
+# build it and report success
+who=nico-cinit-report
+where=schottelius.org
+cd cinit-${version} && make all && \
+./scripts/report.compile | mail -s "cinit: compile report" "${who}@${where}"
 ----------------------------------------------------------------------
 
 Warning: Currently the install target is missing. Simply copy
