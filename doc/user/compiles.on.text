@@ -1,13 +1,19 @@
---------------------------------------------------------------------------------
-compiles.on,
-Nico Schottelius 2005-06-09 (Last Modified: 2005-06-11)
---------------------------------------------------------------------------------
+cinit - known configurations cinit compiles on
+==============================================
+Nico Schottelius <nico-cinit__@__schottelius.org>
+0.1, for cinit 0.3, Initial Version from 2006-12-08
+:Author Initials: NS
 
+
+This document lists all the configuration known to me on that
+cinit compiles. If you compiled cinit with another configuration,
+drop a mail to nico-cinit-report [at] schottelius.org.
+
+The list
+--------
 cinit is known to compile on:
 
-x86-Linux-Debian-3.0-gcc-4-glibc-2.3.2
-x86-Linux-Debian-3.0-gcc-3.4.3-glibc-2.3.5
-ppc-Linux-Gentoo-2004.3-gcc-3.4.3-glibc-2.3.5
-ppc-Linux-Gentoo-2004.3-gcc-3.4.3-uclibc-0.9.27
-
-Please report your configuration, if it's not listed here.
+- x86-Linux-Debian-3.0-gcc-4-glibc-2.3.2
+- x86-Linux-Debian-3.0-gcc-3.4.3-glibc-2.3.5
+- ppc-Linux-Gentoo-2004.3-gcc-3.4.3-glibc-2.3.5
+- ppc-Linux-Gentoo-2004.3-gcc-3.4.3-uclibc-0.9.27
