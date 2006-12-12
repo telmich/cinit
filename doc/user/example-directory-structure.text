@@ -56,3 +56,22 @@ connected to the first console.
 `/etc/cinit/svc/getty/needs/` contains all enabled gettys. This way
 `/etc/cinit/svc/init/needs/` can refer to `/etc/cinit/svc/getty/` only
 but will catch all gettys.
+
+
+init
+~~~~
+`init` is the service everything begins with. You simply put all other
+categories into the `needs` (or if soft-dependencies to `wants`) of this
+service.
+
+
+local-services
+~~~~~~~~~~~~~~
+This directory contains all the services that are only locally reachable.
+This may contain local webserver, a MTA that only accepts mails
+via /usr/sbin/sendmail (like qmail is capable of).
+
+
+local-tuning
+~~~~~~~~~~~~
+
