@@ -1,7 +1,4 @@
 - Doc
-   * current-init-problems.text
-      - current-init-problems.text explains why cinit does not use nor recommends the use of shell scripts.
-   * profiles.text (profile.support)
    * 'example-directory-structure.text'
    * 'dependencies.text'
    * 'os-integration.text'
@@ -17,6 +14,11 @@
 - Doc.next:
    - installing: report!
       -> write report script.
+- Doc later
+   * current-init-problems.text
+      - current-init-problems.text explains why cinit does not use nor recommends the use of shell scripts.
+   * special-services.text
+
 - Begin documentation
    * Check Makefile
    * Integrate Makefile into main Makefile

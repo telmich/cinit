@@ -1,0 +1,58 @@
+cinit - Example directory structure
+===================================
+Nico Schottelius <nico-cinit__@__schottelius.org>
+0.1, for cinit 0.3, Initial Version from 2005-12-12
+:Author Initials: NS
+
+
+This document describes a tested directory hierarchy that
+you could adapt for your setup. But this is no need, you
+are free to design your own layout and/or improve this one.
+
+
+Main idea
+---------
+The main reason for this layout is that all services directly located
+in /etc/cinit/svc/ would create a not-so-easy maintainable chaos.
+
+
+Categories
+----------
+When thinking about grouping some parts together, there came some categories
+to my mind:
+
+- init: This must be there. It is no real choice (well, working with profiles
+  is an alternative)
+- things that are used to 'configure' my local system
+- network connectivity
+- services only locally reachable
+- services remote reachable
+- something that let me login
+
+With these requirements the following categories where created:
+
+
+getty
+~~~~~
+Gettys are those little and nice programs that allow you to login.
+As we normally want to have more than one it seems to be senseful
+to create a category for it.
+
+For the creation of the getty services itself, an extremly simply
+scheme is used: Simply create services with the number of the getty
+that is running. This results in the following setup:
+
+--------------------------------------------------------------------------------
+   /etc/cinit/svc/getty/
+      2/
+      3/
+      4/
+      ...
+--------------------------------------------------------------------------------
+
+The number '1' is skipped, because cinit normally logs to stdout that is
+connected to the first console.
+
+`/etc/cinit/svc/getty/needs/` contains all enabled gettys. This way
+`/etc/cinit/svc/init/needs/` can refer to `/etc/cinit/svc/getty/` only
+but will catch all gettys.
