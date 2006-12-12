@@ -1,0 +1,79 @@
+Currently available init systems and their problems
+===================================================
+Nico Schottelius <nico-cinit__@__schottelius.org>
+0.1, for cinit 0.3, Initial version from 2006-12-11
+:Author Initials: NS
+
+
+This document describes some other init systems, especially
+the "traditional" ones and describes their problems.
+
+
+Introduction
+-------------
+some history, sysv, bsd,
+
+minit, runit, initng, cinit
+
+
+Implementations
+---------------
+List of current implementations as of 2006-12-12.
+
+
+Linux Sys-V-Init
+~~~~~~~~~~~~~~~~
+Debian Sid
+
+/etc/inittab
+
+"First script" /etc/init.d/rcS (specified 
+/etc/init.d/rcS: Bourne shell script text executable
+
+Runlevels: 0-6, different states
+
+--------------------------------------------------------------------------------
+[9:51] hydrogenium:cinit-0.3pre6% /sbin/runlevel   
+N 2
+--------------------------------------------------------------------------------
+
+
+Depending on runlevel, the init calls /etc/init.d/rc $runlevel.
+
+This is manually configured in /etc/inittab
+
+/etc/init.d/rc: Bourne shell script text executable
+
+/etc/init.d/rc
+
+Calls symlinks in /etc/rc?.d. Each runlevel a directory:
+
+--------------------------------------------------------------------------------
+[9:51] hydrogenium:cinit-0.3pre6% ls -ld /etc/rc*.d
+drwxr-xr-x 2 root root 4096 2006-12-01 16:56 /etc/rc0.d
+drwxr-xr-x 2 root root 4096 2006-12-01 16:56 /etc/rc1.d
+drwxr-xr-x 3 root root 4096 2006-12-01 16:56 /etc/rc2.d
+drwxr-xr-x 2 root root 4096 2006-12-01 16:56 /etc/rc3.d
+drwxr-xr-x 2 root root 4096 2006-12-01 16:56 /etc/rc4.d
+drwxr-xr-x 2 root root 4096 2006-12-01 16:56 /etc/rc5.d
+drwxr-xr-x 2 root root 4096 2006-12-01 16:56 /etc/rc6.d
+drwxr-xr-x 2 root root 4096 2006-11-28 23:17 /etc/rcS.d
+--------------------------------------------------------------------------------
+
+
+
+Gentoo Linux
+~~~~~~~~~~~~
+
+BSD init
+~~~~~~~~
+Analyzed on FreeBSD.
+/etc/rc
+/etc/rc.d/ system services
+/usr/local/etc/rc.d/ user installed services
+Scripts may use values from /etc/rc.conf to check whether
+they should be started or not.
+
+
+References
+----------
