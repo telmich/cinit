@@ -1,3 +1,5 @@
+at:
+   no non-forking mode
 fsck:
    returns non-zero if it repaired something.
    You have to wrap it into a shell-script :-(
