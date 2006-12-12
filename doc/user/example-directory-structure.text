@@ -84,7 +84,13 @@ needed by `getty`!), adjust system to hardware time, cleans /tmp
 
 mount
 ~~~~~
-This directory contains
+This directory contains the service to remount the root filesystem
+read-write (`mount/root`) which is dependend on the filesystem
+check (`mount/root/fsck`, also have a look at 'special-services.text').
+It also contains the services that mount the pseudo filesystems
+(`mount/proc` (FreeBSD, Linux) and `mount/sys` (Linux)) and all
+other partitions (`mount/home`, `mount/usr`,...) which again contain
+a dependency to the filesystem check, if necessary.
 
 
 network

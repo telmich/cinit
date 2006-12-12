@@ -9,3 +9,4 @@ fsck:
       [ $? -le 1 ] && exit 0
       exit 1
 
+Non-zero exit in general
