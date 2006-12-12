@@ -23,6 +23,7 @@ to my mind:
 
 - init: This must be there. It is no real choice (well, working with profiles
   is an alternative)
+- we need to mount things
 - things that are used to 'configure' my local system
 - network connectivity
 - services only locally reachable
@@ -69,9 +70,22 @@ local-services
 ~~~~~~~~~~~~~~
 This directory contains all the services that are only locally reachable.
 This may contain local webserver, a MTA that only accepts mails
-via /usr/sbin/sendmail (like qmail is capable of).
+via /usr/sbin/sendmail (like qmail is capable of) or some other local
+only available services.
 
 
 local-tuning
 ~~~~~~~~~~~~
+
+mount
+~~~~~
+
+
+network
+~~~~~~~
+
+
+remote-services
+~~~~~~~~~~~~~~~~
+
 
