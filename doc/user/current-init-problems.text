@@ -154,8 +154,14 @@ Parallel / dependency checking init system with variable boot order
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The boot order may be different each time you boot and is dependent
 on the success or failure of services. This way you can never tell
-exactly how and in which order (if there is any on multiprocessor
-machines, where processes may be truely executed in parallel)
+exactly how and in which order they are executed. On multiprocessor
+machines, where processes may be truely executed in parallel, there
+is no order anymore, but there are n orders on n processors.
+
+To solve this issue, init systems which support parallel execution
+should ship with some testing tools, that simulate a startup.
+
+cinit will ship with such a tool in cinit-0.4.
 
 References
 ----------
