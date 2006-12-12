@@ -1,7 +1,6 @@
 cinit-0.3pre6:
    - Many code cleanups
-   - Added user and cleaned documentation in general
-   - Added general shutdown support (via kill -TERM, -HUP, -USR1)
+   - Added user documentation and cleaned up documentation in general
 
 cinit-0.3pre5:
    - Finished new SIGCHLD handler
