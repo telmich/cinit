@@ -79,6 +79,23 @@ Analyzed on FreeBSD.
 Scripts may use values from /etc/rc.conf to check whether
 they should be started or not.
 
+runit
+~~~~~
+Three stages: Script1, dependencies, Script3
+
+
+Initng
+~~~~~~
+
+
+minit
+~~~~~
+Focus on being small. Needs libowfat.
+Log support through pipe.
+
+
+
+
 
 Problems overview
 -----------------
@@ -87,6 +104,19 @@ Scripts
 ~~~~~~~
 Scripts are slow.
 
+
+Sequential startup
+~~~~~~~~~~~~~~~~~~
+In the 'old' init systems there is no support of parallel execution.
+So if one services hangs at startup, the whole system has to wait
+(for instance a dhcp request). In the worst case this may result in
+a non-booting system. Systems with dependencies can start the gettys
+for login before, in parallel to or even after blocking services are
+started. The fact, that they *are* started means you can interact with
+the system, you can end looping or blocking services.
+
+So sequential startup may not only be the reason for a pretty
+slow system, but also for an unmaintainable one.
 
 Unecessary services
 ~~~~~~~~~~~~~~~~~~~
@@ -100,6 +130,7 @@ user choose what to start (Gentoo).
 
 Nicht entfernte Altlasten ab und zu.
 
+
 No dependencies
 ~~~~~~~~~~~~~~~
 Systems without dependencies may result in a chaos state after booting up.
@@ -110,6 +141,21 @@ Only soft dependencies
 The dependencies are used, but because of soft dependencies, services
 may be started although their dependency is missing.
 
+
+Parallel init system debugging
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In contrast to the old init systems, parallel executing init systems
+are much harder to debug. If the starting init systems does not have
+proper logging / reporting to the user (like cinit-0.2 has), the user
+may never find out, what happened and why.
+
+
+Parallel / dependency checking init system with variable boot order
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The boot order may be different each time you boot and is dependent
+on the success or failure of services. This way you can never tell
+exactly how and in which order (if there is any on multiprocessor
+machines, where processes may be truely executed in parallel)
 
 References
 ----------
