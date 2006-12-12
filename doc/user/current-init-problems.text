@@ -13,7 +13,7 @@ Introduction
 -------------
 some history, sysv, bsd,
 
-minit, runit, initng, cinit
+minit, runit, initng, cinit, upstart
 
 
 Implementations
@@ -62,6 +62,11 @@ drwxr-xr-x 2 root root 4096 2006-11-28 23:17 /etc/rcS.d
 
 
 
+rlmanager: sys-v-init hack
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+rlmanager: one script to be executed, sources
+simply configuration
+
 Gentoo Linux
 ~~~~~~~~~~~~
 
@@ -73,6 +78,37 @@ Analyzed on FreeBSD.
 /usr/local/etc/rc.d/ user installed services
 Scripts may use values from /etc/rc.conf to check whether
 they should be started or not.
+
+
+Problems overview
+-----------------
+
+Scripts
+~~~~~~~
+Scripts are slow.
+
+
+Unecessary services
+~~~~~~~~~~~~~~~~~~~
+Many implementations try to do whatever-is-possible on boot, trying to
+cover every possible and impossible situation.
+
+Portmap without any program that needs it. 
+
+Starting all installed services per default (Debian) vs. let the
+user choose what to start (Gentoo).
+
+Nicht entfernte Altlasten ab und zu.
+
+No dependencies
+~~~~~~~~~~~~~~~
+Systems without dependencies may result in a chaos state after booting up.
+
+
+Only soft dependencies
+~~~~~~~~~~~~~~~~~~~~~~~
+The dependencies are used, but because of soft dependencies, services
+may be started although their dependency is missing.
 
 
 References
