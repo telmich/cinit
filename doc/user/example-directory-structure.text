@@ -76,9 +76,15 @@ only available services.
 
 local-tuning
 ~~~~~~~~~~~~
+This directory is used for local configuration. It contains services,
+that setup the keyboard layout (perhaps called `local-tuning/keyboard-layout`
+needed by `getty`!), adjust system to hardware time, cleans /tmp
+(`local-tuning/tmpclean`), ...
+
 
 mount
 ~~~~~
+This directory contains
 
 
 network
