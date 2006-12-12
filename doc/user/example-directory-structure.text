@@ -58,6 +58,7 @@ connected to the first console.
 `/etc/cinit/svc/init/needs/` can refer to `/etc/cinit/svc/getty/` only
 but will catch all gettys.
 
+FIXME: X11 / gdm / xdm here
 
 init
 ~~~~
@@ -95,9 +96,14 @@ a dependency to the filesystem check, if necessary.
 
 network
 ~~~~~~~
+hostname, dhcp-client, static ip setting (ifconfig), firewalling,
+traffic shaping, adjusting routing, ...
 
 
 remote-services
 ~~~~~~~~~~~~~~~~
+web-server, dns, fileserver (samba), bgpd, smtp part of a MTA,
+identd, etc.
 
+Many daemons, see 'daemons.backgrounding.text'.
 
