@@ -99,9 +99,16 @@ network
 hostname, dhcp-client, static ip setting (ifconfig), firewalling,
 traffic shaping, adjusting routing, ...
 
+Devices directly below `network` or if needed `network/devices/`.
+
+Simply use the device name, perhaps suffixing with method:
+'eth0.static' or 'ath0.master'.
 
 remote-services
 ~~~~~~~~~~~~~~~~
+May depend on network or possibly `need` for `network/loopback`
+and `wants` on `network`.
+
 web-server, dns, fileserver (samba), bgpd, smtp part of a MTA,
 identd, etc.
 

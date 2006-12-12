@@ -1,0 +1,13 @@
+init - Example directory structure
+===================================
+Nico Schottelius <nico-cinit__@__schottelius.org>
+0.1, for cinit 0.3, Initial Version from 2005-12-12
+:Author Initials: NS
+
+
+- ./wants  - services it wants to be started before (but it
+                 will work anyway)
+
+./needs/ - services it needs. If those services fail, this service
+                 won't be started.
+ 
