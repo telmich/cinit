@@ -60,7 +60,7 @@ but will catch all gettys.
 
 If you want to allow users to login via a graphical login screen
 (also known as X11 with xdm/gdm/kdm) you could add this service as
-`getty/gdm` for instance, because gdm is just another getty (just with some
+`getty/gdm` for instance, because gdm is just another getty (just with
 more colours).
 
 
@@ -100,13 +100,22 @@ a dependency to the filesystem check, if necessary.
 
 network
 ~~~~~~~
-hostname, dhcp-client, static ip setting (ifconfig), firewalling,
-traffic shaping, adjusting routing, ...
+The `network` directory should cover all of the network basics.
+This includes setting the hostname (`network/hostname`) configuring
+network devices (`network/eth0.static`, `network.ath0.master`) limiting
+network accesses (`network/firewall`), enable packet forwarding
+(`network/ip-forward`), adjusting the available bandwith
+(`network/traffic-shaping`), ...
 
-Devices directly below `network` or if needed `network/devices/`.
 
-Simply use the device name, perhaps suffixing with method:
-'eth0.static' or 'ath0.master'.
+If there are too many network devices, you could create a subfolder named
+`network/devices/`.
+
+I used to suffix the network devices with the mode they run, so I can
+use different modes in different profiles (setup the wireless card in
+master mode at home, in ad-hoc mode at a friend and in managed mode at
+work).
+
 
 remote-services
 ~~~~~~~~~~~~~~~~
