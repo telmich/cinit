@@ -30,7 +30,7 @@ to my mind:
 - services remote reachable
 - something that let me login
 
-With these requirements the following categories where created:
+With these requirements the following categories (=directories) were created:
 
 
 getty
@@ -58,7 +58,11 @@ connected to the first console.
 `/etc/cinit/svc/init/needs/` can refer to `/etc/cinit/svc/getty/` only
 but will catch all gettys.
 
-FIXME: X11 / gdm / xdm here
+If you want to allow users to login via a graphical login screen
+(also known as X11 with xdm/gdm/kdm) you could add this service as
+`getty/gdm` for instance, because gdm is just another getty (just with some
+more colours).
+
 
 init
 ~~~~
