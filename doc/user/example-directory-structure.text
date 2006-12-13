@@ -119,11 +119,22 @@ work).
 
 remote-services
 ~~~~~~~~~~~~~~~~
-May depend on network or possibly `need` for `network/loopback`
-and `wants` on `network`.
+Remote-services are all services that are reachable from remote hosts.
+This includes ssh (`remote-services/opensshd`), webserver
+(`remote-services/lighttpd` or `remote-services/apache22`).
 
-web-server, dns, fileserver (samba), bgpd, smtp part of a MTA,
-identd, etc.
+Most servers `need` a working network interface, before they can be
+started, but mostly it is enough to have the loopback interface up.
 
-Many daemons, see 'daemons.backgrounding.text'.
+This results in the possible `needs` dependency for `network/loopback`
+and soft dependencies, what we call `wants` on `network`.
 
+Other examples for remote services are
+- dns (`remote-services/dnscache`, `remote-services/tinydns`,
+  `remote-services/bind`)
+- fileserver (`remote-services/smbd`, `remote-services/mmbd`)
+- network infrastructure (`remote-services/bgpd`)
+- many others
+
+Many daemons used for `remote-services` are described in
+'daemons.backgrounding.text'.
