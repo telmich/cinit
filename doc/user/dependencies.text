@@ -52,18 +52,17 @@ The two types
 needs
 ~~~~~
 `Needs` are the 'hard dependencies': If a services fails to start that
-is linked 
-./needs/ - services it needs. If those services fail, this service
-                 won't be started.
- 
+is linked in the `needs` directory, the service will not be started.
+
+
 wants
 ~~~~~
-- ./wants  - services it wants to be started before (but it
-                 will work anyway)
-
+`Wants` are the 'soft dependencies': cinit will try to start the dependencies
+found in `wants` before the service, but the service will also be started,
+indenpendend of success of the dependencies.
 
 
 Circular dependency problem
 ----------------------------
-
-
+If you manage to create circular dependencies cinit will fall into an
+endless loop. Use `cinit.check.config` to verify your configuration.
