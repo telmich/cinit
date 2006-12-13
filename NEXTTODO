@@ -1,5 +1,7 @@
+- upload: create link 'current' so we can link documentation
+  from the website!
+- Include doc into main Makefile, create html documentation on make dist
 - Doc
-   * 'example-directory-structure.text'
    * 'dependencies.text'
    * 'os-integration.text'
    * 'daemons.backgrounding'
@@ -11,6 +13,7 @@
       - are they added at the correct position?
 - scripts
    * `cinit.check.config` (doc/user/configuring.cinit.text)
+      -> circular depedencies!
 - Doc.next:
    - installing: report!
       -> write report script.

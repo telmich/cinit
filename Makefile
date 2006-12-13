@@ -18,6 +18,10 @@ all: sources sizecheck
 sources:
 	$(MAKE) -C src all
 
+.PHONY: documentation
+documentation:
+	$(MAKE) -C doc all
+
 .PHONY: docs
 docs:
 	$(MAKE) -C doc all

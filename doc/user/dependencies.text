@@ -1,13 +1,69 @@
-init - Example directory structure
-===================================
+cinit - Dependencies
+====================
 Nico Schottelius <nico-cinit__@__schottelius.org>
-0.1, for cinit 0.3, Initial Version from 2005-12-12
+0.1, for cinit 0.3, Initial Version from 2005-12-13
 :Author Initials: NS
 
+This document describes the different dependency types of cinit.
 
-- ./wants  - services it wants to be started before (but it
-                 will work anyway)
 
+Dependencies in general
+-----------------------
+Each service may have two types (non-exclusive) types of dependencies:
+The so called `needs` or `wants`. These are directories below the service
+directory and contain symbolic links to the dependencies.
+The name of the link can be freely chosen.
+
+An example:
+
+The service '/etc/cinit/svc/getty/2' needs the service
+'/etc/cinit/svc/local-tuning/keyboard-layout':
+--------------------------------------------------------------------------------
+[21:35] hydrogenium:needs# cd /etc/cinit/svc/getty/2/needs
+[21:35] hydrogenium:needs# ls -l
+insgesamt 0
+lrwxrwxrwx 1 root root 37 2006-10-26 17:51 keyboard-layout -> ../../../local-tuning/keyboard-layout
+[21:35] hydrogenium:needs# cd keyboard-layout/   
+[21:35] hydrogenium:keyboard-layout# pwd -P
+/etc/cinit/svc/local-tuning/keyboard-layout
+--------------------------------------------------------------------------------
+(Warning: This is an incomplete example, it misses at least `mount/root`
+as dependency)
+
+This service could additionally want something else, too. It is also
+possible that a service only `wants` another service or that a service
+has no dependencies.
+
+
+Absolute versus relative links
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cinit does not care whether a link is relative or absolute. And
+as far as I can see it does not make any difference to usability.
+
+In general, it seems to be a little bit 'easier' to use relative links
+when manually configuring cinit ('ln -s ../../../service' versus
+'ln -s /etc/cinit/svc/category/service'), but easier readable when
+analysing them (with `ls -l').
+
+
+The two types
+-------------
+
+needs
+~~~~~
+`Needs` are the 'hard dependencies': If a services fails to start that
+is linked 
 ./needs/ - services it needs. If those services fail, this service
                  won't be started.
  
+wants
+~~~~~
+- ./wants  - services it wants to be started before (but it
+                 will work anyway)
+
+
+
+Circular dependency problem
+----------------------------
+
+
