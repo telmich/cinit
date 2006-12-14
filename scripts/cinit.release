@@ -5,6 +5,7 @@
 # Last Changed: Fr Okt 28 01:24:58 CEST 2005
 
 if [ $# -ne 2 ]; then
+   echo "This is a maintainer-only script to release cinit"
    echo $(basename $0): source-dir version
    exit 1
 fi
@@ -13,7 +14,6 @@ cat << eof
    Erinnerung:
 
    - Version in conf/version angepasst?
-   - make clean && make all && make distclean ausgefuehrt?
    
    Nein? Strg+C bitte...
 eof
@@ -27,16 +27,17 @@ D_HOST=home.schottelius.org
 D_BASE=www/org/schottelius/unix/www/cinit
 D_DIR=${D_BASE}/archives/
 D_SOURCE=${D_BASE}/browse_source/
+LINK=current
 
 if [ ! -d "$DIR" ]; then
    echo "$DIR is not a directory"
    exit 1
 fi
 
-( cd "$DIR" && make clean ) || exit 1
+( cd "$DIR" && make dist ) || exit 1
 
 echo "Creating bzip2 compressed tar"
-tar cj -X $DIR/.exclude -f "$OUT_NAME"  $DIR
+tar cj -X $DIR/.exclude -f "$OUT_NAME" "$DIR"
 chmod 0644 "$OUT_NAME"
 echo "Transfering to $D_HOST"
 scp "$OUT_NAME" "$D_HOST:$D_DIR"
@@ -45,4 +46,5 @@ ssh "$D_HOST" "tar xfj $D_DIR/$OUT_NAME -C $D_SOURCE"
 echo "Correcting paranoid permissions"
 ssh "$D_HOST" "find \"$D_SOURCE/$DIR\" -type f -exec chmod 0644 {} \\;"
 ssh "$D_HOST" "find \"$D_SOURCE/$DIR\" -type d -exec chmod 0755 {} \\;"
+ssh "$D_HOST" "cd \"$D_SOURCE\" && rm -f \"$LINK\" && ln -s \"$DIR\" \"$LINK\""
 echo "Please do not forget to update the website..."

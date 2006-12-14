@@ -5,14 +5,26 @@
 # Don't edit Makefiles, use conf/* for configuration.
 #
 
-# directories and files
-CDIRS=contrib+tools
+# Directories and files
+CDIRS=src doc
 
-# targets
+#
+# Targets
+#
+
+#
+# Warn per default, make sure the user knows what she does
+#
 warn:
 	@cat doc/.buildwarn
 
-all: sources sizecheck
+all: sources documentation sizecheck
+
+install clean dist distclean:
+	@for subdir in $(CDIRS); do \
+		echo "Making $@ in $$subdir"; \
+		(cd $$subdir && $(MAKE) $(MAKEFLAGS) $@); \
+	 done;
 
 .PHONY: sources
 sources:
@@ -20,39 +32,16 @@ sources:
 
 .PHONY: documentation
 documentation:
-	$(MAKE) -C doc all
-
-.PHONY: docs
-docs:
-	$(MAKE) -C doc all
+	$(MAKE) -C doc documentation
 
 sizecheck: sources
 	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l src/cinit > $$FILE; cat $$FILE; \
 	cg-add $$FILE
 
-clean:
-	$(MAKE) -C src clean
-	rm -f tmpbin/*
-
 source-size: clean
 	@echo -n "Source size (in KiB): "
 	@du -s src/ | awk '{ sum+=$$1 } END { print sum }'
 
-cservice: $(SBIN)/cservice
-
-$(SBIN)/cservice util/cservice: $(SBIN) $(CSVC_OBJ)
-	$(LD) $(LDFLAGS) $(CSVC_OBJ) -o $@
-	$(STRIP) $@
-
-ccontrol: $(SBIN)/ccontrol
-
-$(SBIN)/ccontrol util/ccontrol: config.h $(SBIN) $(CCO_OBJ)
-	$(LD) $(LDFLAGS) $(CCO_OBJ) -o $@
-	$(STRIP) $@
-
-install:: install-dir cinit cservice ccontrol
-	@echo '*** Installing cinit ***'
-	./bin/cinit.install.binary
 
 install-miniconf:
 	./bin/cinit.install.miniconf
@@ -70,12 +59,6 @@ config:
 # old
 #DDOC=ddoc
 #SDIRS=bin client conf comm doc generic serv util
-#all install clean::
-#	@for subdir in $(CDIRS); do \
-#	  echo "Making $@ in $$subdir"; \
-#	(cd $$subdir && $(MAKE) $(MAKEFLAGS) $@) \
-#	 || exit 1;\
-#	 done;
 # DO NOT CHANGE THIS.
 #SBIN=sbin
 #CINIT_BIN=$(SBIN)/cinit
@@ -92,4 +75,22 @@ config:
 #	./bin/cdoc-man.sh doc/cinit-doc     > $(DDOC)/cinit.8
 #	./bin/cdoc-man.sh doc/cservice-doc  > $(DDOC)/cservice.8
 #$(CSVC_OBJ) $(OBJ): $(CONFIG_H)
-
+#clean:
+#	$(MAKE) -C src clean
+#	rm -f tmpbin/*
+################################################################################
+#cservice: $(SBIN)/cservice
+#
+#$(SBIN)/cservice util/cservice: $(SBIN) $(CSVC_OBJ)
+#	$(LD) $(LDFLAGS) $(CSVC_OBJ) -o $@
+#	$(STRIP) $@
+#
+#ccontrol: $(SBIN)/ccontrol
+#
+#$(SBIN)/ccontrol util/ccontrol: config.h $(SBIN) $(CCO_OBJ)
+#	$(LD) $(LDFLAGS) $(CCO_OBJ) -o $@
+#	$(STRIP) $@
+#
+#install:: install-dir cinit cservice ccontrol
+#	@echo '*** Installing cinit ***'
+#	./bin/cinit.install.binary

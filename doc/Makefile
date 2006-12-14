@@ -29,25 +29,34 @@ DOCBDOCS = $(DOCS:.text=.docbook)
 
 DOC_ALL  = $(HTMLDOCS) $(DBHTMLDOCS) $(TEXIDOCS) $(MANPDOCS)
 
-html: $(HTMLDOCS)
-htm: $(DBHTMLDOCS)
-info: $(TEXIDOCS)
-man: $(MANPDOCS) 
-documentation: $(DOC_ALL)
-
 #
 # End user targets
 #
 all:
 	@echo "----------- documentation make targets --------------"
-	@echo "documentation:    generate HTMl, Texinfo and manpage"
-	@echo "html:             only generate HTML"
+	@echo "documentation:    generate HTML, Texinfo and manpage"
+	@echo "html:             only generate HTML (via asciidoc/docbook/xsltproc)"
+	@echo "htm:              only generate HTML (via asciidoc)"
 	@echo "info:             only generate Texinfo"
 	@echo "man:              only generate manpage(s)"
 
 install:
 
-# docbook gets .htm, asciidoc directly .html
+#
+# Internal targets
+#
+html: 			$(HTMLDOCS)
+htm:  			$(DBHTMLDOCS)
+info: 			$(TEXIDOCS)
+man:  			$(MANPDOCS) 
+documentation: $(DOC_ALL)
+
+
+#
+# Generic targets
+#
+
+# docbook gets .htm, asciidoc directly .html (or the other way round)
 %.html: %.docbook
 	${XSLTPROC} -o $@ ${XSL} $<
 
@@ -69,11 +78,8 @@ install:
 #
 # Distribution
 #
-allclean:
-	rm -f $(DOC_ALL)
-
 distclean:
-	rm -f $(DOCBDOCS)
+	rm -f $(DOC_ALL)
 
 #
 # Be nice with the users and generate documentation for them

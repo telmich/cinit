@@ -1,3 +1,6 @@
+- make dist
+   o distclean
+   o dist
 - upload: create link 'current' so we can link documentation
   from the website!
 - Include doc into main Makefile, create html documentation on make dist
