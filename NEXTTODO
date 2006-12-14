@@ -2,7 +2,6 @@
   from the website!
 - Include doc into main Makefile, create html documentation on make dist
 - Doc
-   * 'dependencies.text'
    * 'os-integration.text'
    * 'daemons.backgrounding'
    * There are some hints on how to migrate to cinit in general and also
