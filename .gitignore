@@ -13,3 +13,6 @@ src/os/current
 src/ipc/current
 src/cinit
 doc/*/*.html
+doc/*/*.htm
+doc/*/*.man
+doc/*/*.texi
