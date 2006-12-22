@@ -22,25 +22,12 @@ CONFIG_H=include/config.h
 BIN=cinit
 
 #
-# objects for the cinit part
+# All objects depend on headers. More or less. FIXME: use gcc -M
 #
 CINIT_HEADERS=$(shell cat include/listing)
-CINIT_CORE_OBJ=$(shell cat core/objects)
-CINIT_GENERIC_OBJ=$(shell cat generic/objects)
-CINIT_SVC_OBJ=$(shell cat svc/objects)
-
-#
-# The current link may be missing in the first run
-#
-CINIT_IPC_OBJ=$(shell cat ipc/current/objects 2>/dev/null)
-CINIT_OS_OBJ=$(shell  cat os/current/objects  2>/dev/null)
-
-CINIT_OBJ=$(CINIT_CORE_OBJ) $(CINIT_IPC_OBJ) $(CINIT_OS_OBJ)   \
-          $(CINIT_GENERIC_OBJ) $(CINIT_SVC_OBJ)
 
 # NEW
 CINIT_OBJ=$(shell cat object_lists/cinit)
-
 
 #
 # Dependencies
@@ -91,19 +78,6 @@ Makefile: .configured
 
 $(CINIT_OBJ): $(CONFIG_H)
 
-cinit: $(CINIT_OBJ)
-	$(LD) $^ -o $@
-
-
-.PHONY: clean
-clean:
-	rm -f .configured
-	rm -f $(BIN)
-	rm -f ../tmpbin/*
-
-.PHONY: distclean
-distclean:
-	rm -f os/current ipc/current
 
 $(CONFIG_H): ../conf/*
 	../scripts/cinit.mkheader > $(CONFIG_H)
@@ -129,3 +103,28 @@ install-miniconf:
 
 install-dir:
 	./bin/cinit.install.dir
+
+
+################################################################################
+#
+# Build targets
+#
+cinit: $(CINIT_OBJ)
+	$(LD) $^ -o $@
+
+################################################################################
+#
+# Generic targets
+#
+
+.PHONY: dist
+dist: distclean
+
+.PHONY: distclean
+distclean: clean
+	rm -f os/current ipc/current
+
+.PHONY: clean
+clean:
+	rm -f ../tmpbin/*.configured
+	rm -f $(BIN)
