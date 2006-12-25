@@ -4,7 +4,6 @@ cinit, Nico Schottelius, 2005-04-28 [last change: 2005-05-07]
 
 Introduction
 ============
-
 cinit is a fast init system with dependency features and
 profile support. It was orientated on the design off Richard Gooch's
 need [0] and Felix von Leitner's minit[1]. Minit does not support real
@@ -14,9 +13,8 @@ In addition, minit needs libowfat and dietlibc, which may not be found
 on every Unix system.
 
 cinit main features:
-- portability: it should run on every Linux system (and it's quite easy
-  to port it to other Unices)
-- true dependencies
+- portability: it should run on every Unix
+- true dependencies (soft and hard!)
 - parallel execution
 - highly customisable (see conf/*)
 - profile support (specify what services to start depending on the profile)
@@ -24,7 +22,6 @@ cinit main features:
 
 Getting cinit
 =============
-
 This README is part of the source, so you should have it.
 If not, goto the homepage [2] and download the tar archive
 or get the lastest snapshot via git.
@@ -32,14 +29,12 @@ or get the lastest snapshot via git.
 
 Pre-Configuring
 ===============
-
 If you want to fine tune cinit parameters, add different path names,
 change the DESTDIR, ... have a look at conf/*.
 
 
 Installing
 ==========
-
 You can install cinit parallel to any other init-system, it won't
 kill other init's config nor /sbin/init, if it exists.
 
@@ -74,7 +69,6 @@ of your current init system. How to do that depends on your system:
 
 Configuring 
 ===========
-
 You'll have to configure /etc/cinit and add your existing services.
 
 Please read doc/configuring.cinit for details.
@@ -96,8 +90,10 @@ replacement of $your_unix_init.
 
 Author, Contact, Bug reports, etc.
 ==================================
-Nico Schottelius (nico-linux-cinit<<at>>schottelius [[dot]] org) is the
+Nico Schottelius (nico-cinit<<at>>schottelius [[dot]] org) is the
 author. Bug reports should be send to this address.
+
+FIXME: Add mailing list here
 
 The homepage of cinit is [2].
 
