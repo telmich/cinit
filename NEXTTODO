@@ -1,4 +1,3 @@
-- Include doc into main Makefile, create html documentation on make dist
 - Doc
    * 'os-integration.text'
    * 'daemons.backgrounding'

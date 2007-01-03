@@ -32,7 +32,7 @@ DOC_ALL  = $(HTMLDOCS) $(DBHTMLDOCS) $(TEXIDOCS) $(MANPDOCS)
 #
 # End user targets
 #
-all:
+help:
 	@echo "----------- documentation make targets --------------"
 	@echo "documentation:    generate HTML, Texinfo and manpage"
 	@echo "html:             only generate HTML (via asciidoc/docbook/xsltproc)"
