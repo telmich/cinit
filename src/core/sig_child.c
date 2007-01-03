@@ -54,7 +54,7 @@ void sig_child(int tmp)
             }
          }
 
-         /* respawn: restart */
+         /* respawn: restart: FIXME Delay for regular dying services */
          if(svc->status == ST_RESPAWNING) {
             svc_report_status(svc->abs_path,MSG_SVC_RESTART,NULL);
             svc_start(svc);

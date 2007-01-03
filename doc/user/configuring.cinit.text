@@ -164,7 +164,6 @@ You can verify the correctness your configuration with the script
 `cinit.check.config`.
 
 
-
 Hints
 -----
 
@@ -278,6 +277,8 @@ Examples
 Currently there are no example configurations available.
 As soon as they are, you will be able to download them at
 cinit's homepage.
+
+example-co
 
 
 References

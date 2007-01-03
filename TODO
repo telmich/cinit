@@ -6,9 +6,6 @@
 - rename headers/ -> includes/
 - remove client/ from top level
 --------------------------------------------------------------------------------
-- write about shell scripts in system startup
-- write about general behaviour (covering the death)
---------------------------------------------------------------------------------
 Generate automatic asciidoc from conf/*
 --------------------------------------------------------------------------------
 Add handler for ctrl+alt+delete
@@ -16,10 +13,6 @@ Add handler for ctrl+alt+delete
 --------------------------------------------------------------------------------
 pre-compile config: conf/*
 
---------------------------------------------------------------------------------
-panic:
-   read configuratio from defaults/panic*
-   -> write execute_something before!
 --------------------------------------------------------------------------------
 comm:
    tmpnow: search for pid in list,
@@ -30,45 +23,6 @@ Logging / cinit:
 
    Logger: shared memory?
 --------------------------------------------------------------------------------
-Implement full starting logic in server?
---------------------------------------------------------------------------------
-Build full dependency tree at start? And begin from the end?
---------------------------------------------------------------------------------
-comm/*:
-   int read
-   int write
-   --> fuer pipes
-
-run_init_svc
-   muss alle services wissen, die gestartet werden
-
-   start_services_with_deps
-      gibt pointer auf struktur zurueck
-         -> Anzahl Services (array!)
-         -> Service:
-            Name (Pfad)
-            Ergebniss
-         -> beim fehler, die nachricht, strerror?
-         http://www.opengroup.org/onlinepubs/009695399/functions/strerror.html
-
-
-Beim starten werden needs und wants als needs behandelt, weil
-jeder starter _alle_ services zurueckgeben muss.
-
-   Ein Prozess kann maximal 512 abhaengigkeiten haben.
-      -> open files
-
-
-Neues cinit:
-   Wenn service fehlschlaegt, wird eine Struktur zurueckgegeben.
-   
-   Diese enhaelt:
-
-      int success = 
-         enum { SVC_SUCCESS, SVC_FAILED, SVC_NEED_FAILED, ... }
-      
-      char *reason;
-
    Ausgaben nach Beendigung vom Starten des Services.
 
    [ on  ] %s + Ergebnis
@@ -77,27 +31,14 @@ Neues cinit:
    Rekursives herunter/rauffahren
 --------------------------------------------------------------------------------
 - add error handling to cinit.install.binary
-- remove sigio(), create new functions:
-   - one for cleaning up the socket
-   - one for doing the communication (specify two fd's)
-- put some logic around exec_svc:
-   o put waiting code herein -> waiting code to structure!
 - cleanup serv/sig_reboot.c:7:
    o implement os-specific reboot function
 --------------------------------------------------------------------------------
 1. Entfernung mount
-2. kommunikation ueber
-   1. einen fork pro service
-      fork(fork)
-3. Socket wird erst nach einem Signal erstellt
-   -> Konfiguration sollte SIGWHATEVER senden
-4. Vielleicht panicen, wenn init fehlschlaegt?
+   -> Example configuration
+   -> was man alles machen muss
 --------------------------------------------------------------------------------
-Als naechstes:
-
 - add code do implement stopping / restarting with dependency tree
-   o add used_by to the list of services
-   o used_by should be a simple (double?) linked list
 --------------------------------------------------------------------------------
 Documentation:
    - Installing cinit
@@ -105,7 +46,7 @@ Documentation:
       o debian / gentoo
    - Configuring
 --------------------------------------------------------------------------------
-Add "used" by to each service, so we can track which services to shutdown.
+Check whether we also get notified about stopped children, if so, ignore.
 --------------------------------------------------------------------------------
 - perhaps use dnotify?
 - recheck warm reboot
@@ -113,7 +54,6 @@ Add "used" by to each service, so we can track which services to shutdown.
 - print service name or cinit: before _everything_ WE print
 
 TESTING:
-   - does cinit eat zombies?
    - is the reporting ok?
    - does cservice and ccontrol what's expected?
 
@@ -131,35 +71,19 @@ TESTING:
  -------> array durchsuchen, ergebnis nutzen.
  - ueberpruefen von wo aus run_svc() aufgerufen wird
 
-- Fix SIGCHILD problem:
-   - exec_svc wants to waitpid() itself, so SIG_CHILD makes problems
-   - respawn_svc: does that need to act on SIGCHLD if the master process
-   is still running?
-   - kill respawn -> sigchild cleans up, we do not get waitpid perhaps?
-- remove umount code?
-- remove zombies, but keep away from SIGCHILD problems
-- remove mount /etc/cinit/tmp code
-   -> how to replace?
-- fix bug in Makefile: linking happens twice
 - do not kill respawing service, if off exists
 - ccontrol
 - manpages
 - Error codes when shutting down a service?
 - Delay dokumentieren
 - no_kill dokumentieren
-- ddoc zuendefuehren
 
-- remove umount, swapoff?
---> to services?
 
 - on.out, on.err, on.in?
    -> reading/writing from/to files
 
---> Wenn kein ReSPAWN und der Prozess beendet sich nicht,
-    dann haengt init!
 - implement "no_kill" until cinit-0.2 or 0.3?
 
-Doku!!!
 
 --------------------------------------------------------------------------------
 - Source Logic issues
@@ -167,10 +91,6 @@ Doku!!!
    - memset for timespecs?
    - move umount, swapoff and remount to off of init?
       -> cleanup sig_reboot.c
-   - run_svc:
-      o we have many strcat()s, perhaps save length of pathbuf and strncat at
-         pathtmp[strlen(pathbuf)] ?
-   - do we really need swapoff?
 --------------------------------------------------------------------------------
 - Documentation
    - Write manpages (use doc/* as base for that)
@@ -179,50 +99,15 @@ Doku!!!
       o Howto-cinit
       o Howto-cinit-uml
 --------------------------------------------------------------------------------
-Things I did not do and I don't know whether we have to care about:
-
-- Porting
-   - add porting code to other unices?
-   - like openssh guys do?
-
-- close(*>2) before forking / executing
-   -> close fds, clean environment, etc., ...
-   -> do we really need that?
-- logging service!
-   -> write output $somewhere, wait for syslog?
-   -> flush at the end of start-process?
-   -> perhaps pipe logging output to a program?
---------------------------------------------------------------------------------
 [OLD BUGS]
-- remove cinit watcher?
-   -> sig_child -> cycle through list?
-- DOKU: what happens when a service does not terminate....
-   und er als once drin ist
-- MANPAGE!
 - execve() fails -> no sleep!!
-- multiple zombies sometimes - problemservices
-   -> zombies of respawn watchers are not caught!
-   -> sig_chld also therein
-   -> problematic due to wait for child
--doubled cinit instance
-   - nur einmal
-- free() everything before starting child
 - cservice!
    - prozess nur einmal -> WARTET! cinit auch!
 doku:
   cservice einmal starten -> wartet auf ende
   cint ersetzt init bei gentoo
   an error occuerd-> verbose
-  multuicall probleme -> busysbox --> GIBT ES NICHT!!
-  ---> DOKU DAZU! mit links, doppelt links, aus test
-  ---> erklaeren, dass es unproblematisch ist!
 
-11:09 < folken23> telmich: zsb. eine grund angabe warum ein dienst nicht gestartet 
-                  werden konnte. 
-11:09 < folken23> telmich: e.g. file nicht gefunden, service hat nicht 0 
-                  zurueckgeworfen. 
-11:09 < folken23> telmich: oder service allready started. 
---------------------------------------------------------------------------------
 possible BUGS:
 
 [14:44] freelsd:cinit-0.2.2% ./sbin/cservice -e ein
@@ -231,37 +116,8 @@ ein: No such file or directory
 Bad address
 : Service does not exist
 
-cinit-0.2.2:
-USER       PID %CPU %MEM   VSZ  RSS TTY      STAT START   TIME COMMAND
-root         1 96.7  0.0  1580  336 ?        R    18:59   5:49 /sbin/cinit
-root         2  0.0  0.0     0    0 ?        SN   18:59   0:00 [ksoftirqd/0]
-root         3  0.0  0.0     0    0 ?        S    18:59   0:00 [watchdog/0]
-root         4  0.0  0.0     0    0 ?        S<   18:59   0:00 [events/0]
-root         5  0.0  0.0     0    0 ?        S<   18:59   0:00 [khelper]
-root         6  0.0  0.0     0    0 ?        S<   18:59   0:00 [kthread]
-root        10  0.0  0.0     0    0 ?        S<   18:59   0:00  \_ [khubd]
-root        12  0.0  0.0     0    0 ?        S<   18:59   0:00  \_ [kblockd/0]
-root        99  0.0  0.0     0    0 ?        S    18:59   0:00  \_ [pdflush]
-root       100  0.0  0.0     0    0 ?        S    18:59   0:00  \_ [pdflush]
-root       102  0.0  0.0     0    0 ?        S<   18:59   0:00  \_ [aio/0]
-root       727  0.0  0.0     0    0 ?        S<   18:59   0:00  \_ [kseriod]
-root       101  0.0  0.0     0    0 ?        S    18:59   0:00 [kswapd0]
-root       800  0.0  0.0     0    0 ?        S    18:59   0:00 [khpsbpkt]
-root       803  0.0  0.0     0    0 ?        S    18:59   0:00 [pccardd]
-root       838  0.0  0.0     0    0 ?        S    18:59   0:00 [kjournald]
-root      1923  0.0  0.0  1584  200 ?        S    18:59   0:00 /sbin/cinit
-root      1924  0.0  0.3  3624 1936 tty2     Rs   18:59   0:00  \_ -zsh
-root      1969  0.0  0.0  1580  320 tty2     S    19:05   0:00      \_ cservice -e 3
-root      1972  0.0  0.1  2604  828 tty2     R+   19:05   0:00      \_ ps axuwwf
-root      1945  0.0  0.0     0    0 tty2     Z    19:01   0:00 [loadkeys] <defunct>
-cinit: [cprofile:profile]
-cinit should not be started directly, but by your kernel.
-umount raus
 /etc/cinit/specials/... rein
 
-1. Doku auf asciidoc umstellen
-2. den signalhandler code fixen
-3. den tempmount entfernen
 
 --> cinit-0.3-rc1
 --------------------------------------------------------------------------------
@@ -306,6 +162,8 @@ developer
 
 user
 ----
+- do we really need swapoff? remove umount, swapoff!
+   * to services!
 - dependencies with leading '.' (dot) are ignored.
 - about cinit-configuration structure
    * cconfig
@@ -315,3 +173,50 @@ user
       - halt
       - poweroff
       - reboot
+
+--------------------------------------------------------------------------------
+Doc
+---
+Doku!!!
+- MANPAGE!
+
+FAQ
+~~~
+- DOKU: what happens when a service does not terminate....
+   und er als once drin ist
+--> Wenn kein ReSPAWN und der Prozess beendet sich nicht,
+    dann haengt init!
+
+- multuicall probleme -> busysbox --> GIBT ES NICHT!!
+  ---> DOKU DAZU! mit links, doppelt links, aus test
+  ---> erklaeren, dass es unproblematisch ist!
+
+--------------------------------------------------------------------------------
+csvc:
+11:09 < folken23> telmich: oder service allready started. 
+--------------------------------------------------------------------------------
+cinit:
+11:09 < folken23> telmich: zsb. eine grund angabe warum ein dienst nicht gestartet 
+                  werden konnte. 
+11:09 < folken23> telmich: e.g. file nicht gefunden, service hat nicht 0 
+                  zurueckgeworfen. 
+                  ---> errno in execute_sth!
+
+Child handlin
+~~~~~~~~~~~~~g
+- free() everything before starting child
+
+Later
+~~~~~
+
+- close(*>2) before forking / executing
+   -> close fds, clean environment, etc., ...
+   -> do we really need that?
+   -> yep, clean environment!
+- logging service!
+   -> write output $somewhere, wait for syslog?
+   -> flush at the end of start-process?
+   -> perhaps pipe logging output to a program?
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
