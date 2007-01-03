@@ -26,52 +26,53 @@ List of daemons and non-forking parameters
 
 The following daemons / servers are known to avoid backgrounding easily:
 
-      acpid [x86 power management]: -f (undocumentated but works)
-      apache [webserver]:           -DFOREGROUND
-      asterisk [pbx]:               -f
-      bind [dns server/caching]:    -f
-      cardmgr [pcmcia/cardbus]:     -f
-      cron (vixie) [schedular]:     -f
-      cupsd [printer server]:       -f or -F
-      dhclient [dhcp client]:       -d
-      dhcp3 (isc) [dhcp server]:    -f
-      distccd [compile server]:     normal behaviour
-      fam [file alteration monitor]:-f
-      fcron [schedular]:            -f
-      frox [ftp proxy]:             "NoDetach" in config
-      gdm [display manager]:        -nodaemon
-      hybrid [irc server]:          -foreground
-      icecast2 [sound streamer]:    normal behaviour
-      mini-lpd [printer server]:    normal behaviour
-      metalog [log server]:         normal behaviour
-      monotone [vcs]:               normal behaviour
-      mpd [music server]:           --no-daemon
-      nessusd ["security server"]:  normal behaviour
-      ntpd [time server]:           -n
-      oidentd [identd server]:      -i
-      oops [http proxy]:            normal behaviour
-      openssh [ssh server]:         -D
-      openvpn [vpn server]:         normal behaviour
-      pbbuttonsd [power management]:normal behaviour
-      portmap  [portmapper]:        -f
-      proftpd [ftp server]:         -n
-      qmail [mta]:                  normal behaviour
-      rsync ["file server"]:        --no-detach
-      silcd ["secure chat server"]: -F, --foreground
-      slapd [ldap]:                 -d
-      snmpd [snmp daemon]:          -f
-      svnserve [vcs]:               --foreground
-      syslogd [log server]:         -n
-      syslog-ng [log server]:       -F
-      tcpserver [super server]:     normal behaviour
-      udhcpc [dhcp client]:         normal behaviour
-      vsftpd [ftp server]:          normal behaviour (or: config: background=no)
-      xinetd [super server]:        -dontfork
+- acpid [x86 power management]: -f (undocumentated but works)
+- apache [webserver]:           -DFOREGROUND
+- asterisk [pbx]:               -f
+- bind [dns server/caching]:    -f
+- cardmgr [pcmcia/cardbus]:     -f
+- cron (vixie) [schedular]:     -f
+- cupsd [printer server]:       -f or -F
+- dhclient [dhcp client]:       -d
+- dhcp3 (isc) [dhcp server]:    -f
+- distccd [compile server]:     normal behaviour
+- fam [file alteration monitor]:-f
+- fcron [schedular]:            -f
+- frox [ftp proxy]:             "NoDetach" in config
+- gdm [display manager]:        -nodaemon
+- hybrid [irc server]:          -foreground
+- icecast2 [sound streamer]:    normal behaviour
+- mini-lpd [printer server]:    normal behaviour
+- metalog [log server]:         normal behaviour
+- monotone [vcs]:               normal behaviour
+- mpd [music server]:           --no-daemon
+- nessusd ["security server"]:  normal behaviour
+- ntpd [time server]:           -n
+- oidentd [identd server]:      -i
+- oops [http proxy]:            normal behaviour
+- openssh [ssh server]:         -D
+- openvpn [vpn server]:         normal behaviour
+- pbbuttonsd [power management]:normal behaviour
+- portmap  [portmapper]:        -f
+- proftpd [ftp server]:         -n
+- qmail [mta]:                  normal behaviour
+- rsync ["file server"]:        --no-detach
+- silcd ["secure chat server"]: -F, --foreground
+- slapd [ldap]:                 -d
+- snmpd [snmp daemon]:          -f
+- svnserve [vcs]:               --foreground
+- syslogd [log server]:         -n
+- syslog-ng [log server]:       -F
+- tcpserver [super server]:     normal behaviour
+- udhcpc [dhcp client]:         normal behaviour
+- vsftpd [ftp server]:          normal behaviour (or: config: background=no)
+- xinetd [super server]:        -dontfork
 
+
+Problematic daemons
+-------------------
 Those are the daemons that do not offer the possibility (as of release 0.2):
 
-      atd      (no switch, no configuraton option)
-      inetd    (some variants)
-      nscd     (no switch, no configuraton option)
-
-
+- atd      (no switch, no configuraton option)
+- inetd    (some variants)
+- nscd     (no switch, no configuraton option)
