@@ -1,24 +1,28 @@
---------------------------------------------------------------------------------
-daemons backgrounding,
-Nico Schottelius 2005-06-12 (Last Modified: 2005-10-15)
---------------------------------------------------------------------------------
+cinit - Daemons backgrounding
+=============================
+Nico Schottelius <nico-cinit==@==schottelius.org>
+0.1, for cinit 0.3, Initial versinon from 2005-06-12
 
-0. Definition
 
-A daemon is a program which runs in the background, not having a tty
-associated necesserally. Running in background does not mean it has
-to background (fork()) itself, but that you cannot control it directly
-from a shell.
+This document describes the backgrounding process and how to disable it.
 
-1. Daemons and cinit
 
-Respawning daemons is a bit more difficult, as daemons do often fork()
-(go to background, the calling process exits).
 
-This way cinit cannot watch it directly.
+Definition
+-----------
+A daemon is a program which runs in the background.
+Running in the background means you cannot access the process
+directly (like you can press a key in a shell).
 
-The first solution is to check the documentation of your daemon program,
-if it has a switch to disable forking
+
+Daemons and cinit
+------------------
+cinit normally watches system services and restarts them
+(`respawn` flag in the configuration). If the process goes to background,
+cinit cannot control it directly anymore.
+
+List of daemons and non-forking parameters
+-------------------------------------------
 
 The following daemons / servers are known to avoid backgrounding easily:
 
@@ -69,3 +73,5 @@ Those are the daemons that do not offer the possibility (as of release 0.2):
       atd      (no switch, no configuraton option)
       inetd    (some variants)
       nscd     (no switch, no configuraton option)
+
+

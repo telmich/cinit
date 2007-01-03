@@ -6,8 +6,8 @@ Nico Schottelius <nico-cinit__@__schottelius.org>
 
 
 This documentes describes how to configure cinit.
-You should already have cinit installed, otherwise read "cinit - Installing"
-first.
+You should already have cinit installed, otherwise read
+"cinit - Installing" first.
 
 
 General configuration layout
@@ -194,9 +194,10 @@ Daemons are programs that go away to the background (using fork()) after
 start.
 
 The fork-away strategy seems to be some illness introduced by traditional
-init systems, that are dependent on the fact, that a service exits.
+init systems, that are dependent on the fact, that a process exits on
+startup.
 
-Cinit in contrast remembers the process ID (pid) of the services it
+cinit in contrast remembers the process ID (pid) of the services it
 restarts (those with `respawn` enabled).
 
 So when the daemon fork()s away and the parent process exits it looks to
