@@ -1,4 +1,24 @@
 - Doc
+   * main.text -> cleanup / remove / split
+   * config-dirs
+   * FAQ
+   * ideas
+   * meta.dependencies
+      - config/hints/meta depps
+   * optimising
+      - integrate into other
+   * README.text
+      - update
+   * replacing.init
+      - update / integrate
+   * special-services.text
+      - into configuring/hints?
+   * TODO
+      - into paths, if necessary
+   * updating.cinit
+      - update as soon as update is possible?
+   * using.rescue
+      - update as soon as update is possible?
    * 'os-integration.text'
    * 'daemons.backgrounding'
    * There are some hints on how to migrate to cinit in general and also

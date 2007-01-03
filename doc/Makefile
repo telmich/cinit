@@ -12,8 +12,15 @@ XSL=/usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl
 #
 # Asciidoc will be used to generate other formats later
 #
-MANDOCS  = man/cinit.text
-DOCS     = $(MANDOCS)
+MANDOCS  	= man/cinit.text
+USERDOCS  	= user/compiles.on.text user/configuring.cinit.text 				\
+				  user/conf-system.text                                        \
+				  user/cross-compiling.text user/current-init-problems.text 	\
+				  user/daemons.backgrounding.text user/dependencies.text			\
+				  user/example-directory-structure.text 								\
+				  user/installing-cinit.text user/paths.text 						\
+				  user/profiles.text user/README.text 
+DOCS     	= $(MANDOCS) ${USERDOCS)
 
 #
 # Doku
