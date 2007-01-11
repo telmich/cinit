@@ -220,3 +220,87 @@ Later
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
+- Doc
+   * main.text -> cleanup / remove / split
+   * config-dirs
+   * FAQ
+   * ideas
+   * meta.dependencies
+      - config/hints/meta depps
+   * optimising
+      - integrate into other
+   * README.text
+      - update
+   * replacing.init
+      - update / integrate
+   * special-services.text
+      - into configuring/hints?
+   * TODO
+      - into paths, if necessary
+   * updating.cinit
+      - update as soon as update is possible?
+   * using.rescue
+      - update as soon as update is possible?
+   * 'os-integration.text'
+   * 'daemons.backgrounding'
+   * There are some hints on how to migrate to cinit in general and also
+   some os specific help in the file 'migrating-init-systems.text',
+- CODECHECK:
+   * what happens with the wants of the last services?
+      - are they added?
+      - are they added at the correct position?
+- scripts
+   * `cinit.check.config` (doc/user/configuring.cinit.text)
+      -> circular depedencies!
+- Doc.next:
+   - installing: report!
+      -> write report script.
+- Doc later
+   * current-init-problems.text
+      - current-init-problems.text explains why cinit does not use nor recommends the use of shell scripts.
+   * special-services.text
+
+- Begin documentation
+   * Check Makefile
+   * Integrate Makefile into main Makefile
+   * create manpage
+   * Write a small manual
+      - install
+      - configure
+      - boot (different OS)
+   * generate asciidoc!
+- report broken links in needs/wants
+- Doc way:
+   * installing
+   * configuring
+      - testconfig!
+   * booting
+      - different OS / bootloader
+   * debugging
+- Shutdomn code:
+   * begin at init, then shutdown wants/needs, ...
+- check free on dep_del!
+- check that the new wants and need elements are nserted the other way round
+   * we go to next, elements must be put before us!
+- implement do_reboot()
+   * so not only booting with cinit works, but also the shutdown
+- define messages
+   a) human readable
+   b) binary data?
+- replace cinit_ipc_logon with cinit_ipc_init...
+   * delay ipc code -> after start!
+- Remove old code
+   * remove run_svc
+   * remove run_init_svc
+
+Finally:
+- test and release cinit-0.3rc1
+
+- Cleanup object lists
+   object-lists/
+      cinit
+      cservice
+      ccontrol
+      cinit.halt
+      cinit.reboot
+      cinit.shutdown (shell script?!?)
