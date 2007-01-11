@@ -20,5 +20,21 @@ When?
 How / What?
 ------------
 - Stop services in the correct order
-- 
-
+   * reuse the service tree / needs / needed_by!
+   * call off, if existent
+   * if respawning, send SIGTERM?
+      - not if off is existent?
+   * give some variables to off?
+      - $RESPAWN_PID: if respawning
+- send SIGTERM to other apps?
+   * or put that into special? special/post_svc_shutdown
+- call special/{halt,poweroff,reboot}
+- implement timely controlled shutdown:
+   * cinit.shutdown forks (?) itself and waits, then sends a signal
+     to cinit to initiate the shutdown process
+- also implement halt
+   * kill -TERM 1
+- also implement reboot
+   * kill -HUP 1
+- also implement reboot
+   * kill -USR1 1
