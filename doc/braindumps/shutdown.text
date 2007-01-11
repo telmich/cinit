@@ -1,0 +1,24 @@
+cinit - braindumps - shutdown
+=============================
+Nico Schottelius <nico-cinit@@@@schottelius.org>
+v0.1, for cinit-0.3, 2007-01-11
+:Author Initials: NS
+
+Just some braindumps. Do not read.
+
+Introduction
+------------
+Shutting down the system.
+
+When?
+-----
+- reboot
+- halt
+- power off
+- further needed?
+
+How / What?
+------------
+- Stop services in the correct order
+- 
+
