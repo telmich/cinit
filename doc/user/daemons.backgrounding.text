@@ -48,6 +48,7 @@ The following daemons / servers are known to avoid backgrounding easily:
 - mpd [music server]:           --no-daemon
 - nessusd ["security server"]:  normal behaviour
 - ntpd [time server]:           -n
+- nylon [socks proxy]:          -f (prints output to terminal)
 - oidentd [identd server]:      -i
 - oops [http proxy]:            normal behaviour
 - openssh [ssh server]:         -D
