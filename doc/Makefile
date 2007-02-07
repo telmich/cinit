@@ -85,10 +85,11 @@ documentation: $(DOC_ALL)
 #
 # Distribution
 #
-distclean:
+clean distclean:
 	rm -f $(DOC_ALL)
 
 #
 # Be nice with the users and generate documentation for them
 #
 dist: distclean documentation
+
