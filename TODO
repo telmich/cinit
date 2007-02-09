@@ -304,3 +304,18 @@ Finally:
       cinit.halt
       cinit.reboot
       cinit.shutdown (shell script?!?)
+
+TODO.pre7:
+   - Added general shutdown support (via kill -TERM, -HUP, -USR1)
+   do_reboot.c:
+      check cinit_ipc_destroy
+      write cinit_svc_shutdown
+      write sleep_before_kill
+         reads config, sleeps
+
+   Define the following:
+      conf/umount = called before all shutdown procedures
+      conf/reboot,halt,poweroff = called for the respective method
+         -> not returning
+
+
