@@ -1,7 +1,9 @@
+--------------------------------------------------------------------------------
+define coding guidelines
+   -> general, with url?
+--------------------------------------------------------------------------------
 - define how it should work (doc/braindums/big-picture.text)
 - define service status in one document, so repeatition stops!
-
-
 --------------------------------------------------------------------------------
 - rename headers/ -> includes/
 - remove client/ from top level

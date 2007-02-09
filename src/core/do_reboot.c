@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-cinit //@\\ schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit //@\\ schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -63,18 +63,18 @@ void do_reboot(int signal)
    }
 
    /* FIXME: read sleep value from conf/term_kill_sleep */
+   sleep_before_kill();
 
    /* FIXME make SLEEP_KILL an optional configuration statement */
    ts.tv_sec   = SLEEP_KILL; /* defined in conf/sleep_kill */
    ts.tv_nsec  = 0;
    nanosleep(&ts,NULL);
 
-   if( kill(-1,SIGKILL) == -1) {
+   if(kill(-1,SIGKILL) == -1) {
       print_errno(MSG_KILLBILL);
    }
 
    /* execute umount, as defined in conf/umount */
-
    /* execute_sth(CINIT_UMOUNT); */
 
    /* do what we really wanted to do */
