@@ -61,6 +61,7 @@ The following daemons / servers are known to avoid backgrounding easily:
 - silcd ["secure chat server"]: -F, --foreground
 - slapd [ldap]:                 -d
 - snmpd [snmp daemon]:          -f
+- stunnel [ssl wrapper]:        "foreground = yes" in config
 - svnserve [vcs]:               --foreground
 - syslogd [log server]:         -n
 - syslog-ng [log server]:       -F
