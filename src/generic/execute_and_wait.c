@@ -26,7 +26,7 @@ void execute_and_wait(char *svc)
       print_errno(MSG_ERR_FORK);
       return;
    }
-   
+
    /* exec / child */
    if(pid == 0) {
       execute_sth(svc); /* exits itself */

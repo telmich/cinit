@@ -54,6 +54,8 @@ void do_reboot(int signal)
    /* do not listen to client requests anymore */
    cinit_ipc_destroy();
 
+   /* FIXME: ignore signals now! */
+
    /* shutdown all services: take care about the dependency tree */
    cinit_svc_shutdown();
 
@@ -74,8 +76,8 @@ void do_reboot(int signal)
       print_errno(MSG_KILLBILL);
    }
 
-   /* execute umount, as defined in conf/umount */
-   /* execute_sth(CINIT_UMOUNT); */
+   /* Execute umount and wait for its termination */
+   execute_and_wait(CINIT_UMOUNT);
 
    /* do what we really wanted to do */
    switch(signal) {

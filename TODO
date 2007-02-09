@@ -317,7 +317,5 @@ TODO.pre7:
 
    Define the following:
       conf/umount = called before all shutdown procedures
-      conf/reboot,halt,poweroff = called for the respective method
-         -> not returning
 
 
