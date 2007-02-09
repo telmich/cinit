@@ -1,4 +1,5 @@
 generic/execute_sth.o
+generic/execute_and_wait.o
 generic/mini_printf.o
 generic/path_absolute.o
 generic/path_append.o
