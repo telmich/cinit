@@ -1,0 +1,21 @@
+When to place spaces?
+   After and before comments:
+      /* text */
+     o
+Where to put curly braces?
+   functions: at the beginning of the line:
+
+   void func(char *what, int where)
+   {
+
+   }
+
+Header:
+   Put a header into each file, containing:
+      - date of file being put into existence (year is enough)
+      - Name and E-mail of Author
+      - Description of the function
+
+Includes:
+   System includes first,
+   own headers later
