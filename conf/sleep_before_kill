@@ -1,0 +1,7 @@
+sleep_before_kill
+
+The file that specifies how long to sleep after sending SIGTERM, before sending
+SIGKILL to every process. If this file is non-existing the builtin value from
+'sleep_kill'.
+
+The file should be located below conf/
