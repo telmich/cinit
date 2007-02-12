@@ -4,21 +4,38 @@
  *
  *    part of cLinux/cinit
  *
- *    Sleep
+ *    Sleep:
+ *       read configuration,
+ *       fallback to builtin value if not possible,
+ *       sleep.
  *
  */
 
-#include <unistd.h>
+#include <time.h>             /* nanosleep      */
+#include <stdlib.h>           /* strtol()       */
+
+#include "cinit.h"            /* print_errno    */
+#include "messages.h"         /* messages       */
 
 void sleep_before_kill()
 {
-   char *p;
+   char              *content;
+   int               tmp;
+   struct timespec   ts;
 
-   /* don't get fooled by bad pointers */
-   if(str == NULL) return;
+   if(openreadclose(CINIT_SLEEPFILE,&content) == ORC_OK) {
+      errno = 0;
+      tmp   = strtol(content, NULL, 10);
+      if(errno != 0) tmp = SLEEP_KILL;
+      free(content);
+   } else {
+      tmp = SLEEP_KILL;
+   }
 
-   p = str;
-   while ( *p ) p++;
-   
-   write(fd,str,(size_t) (p - str) );
+   ts.tv_sec   = tmp;
+   ts.tv_nsec  = 0;
+ 
+   if(nanosleep(&ts,NULL) == -1) {
+      print_errno(MSG_GEN_SLEEP);
+   }
 }
