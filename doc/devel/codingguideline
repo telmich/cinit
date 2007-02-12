@@ -10,6 +10,10 @@ Where to put curly braces?
 
    }
 
+   Before and after '=', '==', '!='', '>=', '<='
+
+   After ')', ','
+
 Header:
    Put a header into each file, containing:
       - date of file being put into existence (year is enough)
@@ -19,3 +23,9 @@ Header:
 Includes:
    System includes first,
    own headers later
+
+Indent:
+   Three spaces. No tabs.
+
+   Indent variable names, so the names begin all at the same position. Use three spaces
+   to place them.
