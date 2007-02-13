@@ -30,7 +30,6 @@
 void do_reboot(int signal)
 {
    //struct listitem *tmp;
-   struct timespec ts;
    //char **cmd;
    //int   i;
    
@@ -64,13 +63,7 @@ void do_reboot(int signal)
       print_errno(MSG_TERMKILL);
    }
 
-   /* FIXME: read sleep value from conf/term_kill_sleep */
    sleep_before_kill();
-
-   /* FIXME make SLEEP_KILL an optional configuration statement */
-   ts.tv_sec   = SLEEP_KILL; /* defined in conf/sleep_kill */
-   ts.tv_nsec  = 0;
-   nanosleep(&ts,NULL);
 
    if(kill(-1,SIGKILL) == -1) {
       print_errno(MSG_KILLBILL);
