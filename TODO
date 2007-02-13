@@ -310,7 +310,6 @@ Finally:
 TODO.pre7:
    - Added general shutdown support (via kill -TERM, -HUP, -USR1)
    do_reboot.c:
-      check cinit_ipc_destroy
       write cinit_svc_shutdown
       write sleep_before_kill
          reads config, sleeps
@@ -319,3 +318,11 @@ TODO.pre7:
       conf/umount = called before all shutdown procedures
 
 
+   Tests:
+      - test reboot functionality
+         -> kill -X 1
+         -> what happens?
+      - test sleep code (sleep_before_kill())
+
+   Done:
+      check cinit_ipc_destroy
