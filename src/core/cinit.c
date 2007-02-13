@@ -36,27 +36,24 @@ int main(int argc, char **argv)
       return 0;
    }*/
 
-   set_signals(ACT_SERV);
-
    /* Look whether we should start a profile */
    while(argc > 1) {
-      if( !strncmp(PROFILE, argv[argc-1], strlen(PROFILE)) ) {
+      if(!strncmp(PROFILE, argv[argc-1], strlen(PROFILE) ) ) {
          initdir = (char *) malloc(
                               strlen(CINIT_SVCDIR) +
-                              strlen(&argv[argc-1][strlen(PROFILE)]) + 2
-                              );
+                              strlen(&argv[argc-1][strlen(PROFILE)]) + 2);
          if(initdir == NULL) {
             panic();
          }
-         strcpy(initdir,CINIT_SVCDIR);
-         strcat(initdir,SLASH);
-         strcat(initdir,&argv[argc-1][strlen(PROFILE)]);
+         strcpy(initdir, CINIT_SVCDIR);
+         strcat(initdir, SLASH);
+         strcat(initdir, &argv[argc-1][strlen(PROFILE)]);
          break;
       }
       argc--;
    }
 
-   /* FIXME: do we really need three calls? */
+   /* Bootup "logo" */
    mini_printf(MSG_BOOTING,1); mini_printf(initdir,1); mini_printf("\n",1);
 
    if(chdir(initdir) == -1) {
@@ -69,6 +66,9 @@ int main(int argc, char **argv)
       panic();
    }
 
+   /* listen to signals */
+   set_signals(ACT_SERV);
+
    /* pre-calculate service tree */
    gen_svc_tree(initdir);
 
@@ -78,7 +78,7 @@ int main(int argc, char **argv)
    }
 
    /* start tree from the bottom */
-   if(!tree_exec(svc_init)) return 1;
+   if(!tree_exec(svc_init) ) return 1;
 
    mini_printf("=> cinit started.\n",1);
 
