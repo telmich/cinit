@@ -92,7 +92,7 @@ void     sig_terminate(int signal);
 
 /* generic */
 void  execute_sth(char *basename);
-void  execute_and_wait(char *svc);
+int   execute_and_wait(char *svc);
 int   path_append(char *path, char *append);
 int   path_absolute(char *relpath, char *buf, size_t size);
 int   openreadclose(char *filename, char **where);

@@ -14,7 +14,7 @@
 #include "messages.h"      /* MSG_*       */
 #include "cinit.h"         /* print_errno, execute_sth */
 
-void execute_and_wait(char *svc)
+int execute_and_wait(char *svc)
 {
    pid_t pid;
    int status;
@@ -34,4 +34,11 @@ void execute_and_wait(char *svc)
 
    /* wait / parent */
    waitpid(pid,&status,0);
+
+   if(WIFEXITED(status)) {
+      if(WEXITSTATUS(status) == 0) {
+         return 1;
+      }
+   }
+   return 0;
 }
