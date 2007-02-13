@@ -51,7 +51,7 @@ void do_reboot(int signal)
    /* FIXME: pre-shutdown? not senseful, can be implemented outside. */
 
    /* do not listen to client requests anymore */
-   //cinit_ipc_destroy();
+   cinit_ipc_destroy();
 
    /* FIXME: ignore signals now! */
 
