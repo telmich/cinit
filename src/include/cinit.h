@@ -22,10 +22,10 @@ enum {         /* FIXME: there are some default defines somewhere for that */
    FD_ERR=2
 };
 
-enum {         /* returns of openreadclose */
-   ORC_OK,
-   ORC_ERR_NONEXISTENT,
-   ORC_ERR_OPEN,
+enum {                  /* returns of openreadclose   */
+   ORC_OK,              /* everything went fine       */
+   ORC_ERR_NONEXISTENT, /* file does not exist        */
+   ORC_ERR_OPEN,        /* error opening the file     */
    ORC_ERR_READ,
    ORC_ERR_CLOSE,
    ORC_ERR_MEM
@@ -91,13 +91,14 @@ char     **read_file(char *file);
 void     sig_terminate(int signal);
 
 /* generic */
-void execute_sth(char *basename);
-void execute_and_wait(char *svc);
-int path_append(char *path, char *append);
-int path_absolute(char *relpath, char *buf, size_t size);
-int openreadclose(char *filename, char **where);
-char *strip_final_newline(char *str);
-int file_exists(char *filename);
+void  execute_sth(char *basename);
+void  execute_and_wait(char *svc);
+int   path_append(char *path, char *append);
+int   path_absolute(char *relpath, char *buf, size_t size);
+int   openreadclose(char *filename, char **where);
+char  *strip_final_newline(char *str);
+int   file_exists(char *filename);
+void  sleep_before_kill();
 
 /* util */
 int      msg_reboot(char cmd);

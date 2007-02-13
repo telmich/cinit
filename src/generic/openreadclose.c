@@ -29,6 +29,7 @@ int openreadclose(char *filename, char **where)
    mini_printf("\n",1);
    *where   = NULL;
 
+   /* what a wonderful loop */
    while((fd = open(filename,O_RDONLY)) == -1) {
       if(errno == ENOENT)  return ORC_ERR_NONEXISTENT;
       if(errno != EINTR)   return ORC_ERR_OPEN;

@@ -43,8 +43,6 @@ CLIENT=client/msg_svc_on_off.o client/msg_change_status.o client/run_svc.o \
 
 COMMUNICATION=comm/do_change_status.o comm/do_result.o comm/do_svc_name.o
 
-BOTH=generic/set_signals.o generic/mini_printf.o generic/usage.o
-
 OBJ=$(SERV) $(SERV_OS) $(CLIENT) $(BOTH) $(COMMUNICATION)
 
 CSVC_OBJ=util/cservice.o generic/mini_printf.o util/msg_reboot.o \
