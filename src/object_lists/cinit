@@ -14,6 +14,7 @@ generic/print_errno.o
 generic/openreadclose.o
 generic/strip_final_newline.o
 generic/sleep_before_kill.o
+generic/execute_and_wait.o
 ipc/current/cinit_ipc_init.o
 ipc/current/cinit_ipc_listen.o
 ipc/current/cinit_ipc_sclose.o
