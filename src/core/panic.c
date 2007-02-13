@@ -1,14 +1,16 @@
 /***********************************************************************
  *
- *    2005-2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2005-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
  *    Execute something 
  */
 
+#include <unistd.h>        /* execv       */
+
 #include "cinit.h"
-#include <unistd.h>
+#include "messages.h"
 
 void panic(void)
 {
@@ -23,8 +25,10 @@ void panic(void)
    nargv[0] = SULOGIN;
    nargv[1] = NULL;
 
-   execv(SULOGIN,nargv);
+   if(execv(SULOGIN,nargv) == -1) {
+      print_errno(MSG_FATAL_PANIC);
+   }
 
    /* there's nothing todo, if everything fails */
-   _exit(1);
+   _exit(23);
 }

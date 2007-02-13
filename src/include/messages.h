@@ -109,5 +109,6 @@
 /* general errors */
 #define MSG_GETCWD         "Getcwd failed! Your system is most likely broken!"
 #define MSG_GEN_SLEEP      "sleep"
+#define MSG_FATAL_PANIC    MSG_INTRO_FAIL "I tried everything, but even panic() failed: "
 
 #endif   /* _CINIT_MSG_H */
