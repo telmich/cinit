@@ -13,6 +13,7 @@
 
 #include <time.h>             /* nanosleep      */
 #include <stdlib.h>           /* strtol()       */
+#include <errno.h>            /* errno          */
 
 #include "cinit.h"            /* print_errno    */
 #include "messages.h"         /* messages       */
