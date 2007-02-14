@@ -125,4 +125,4 @@ distclean: clean
 .PHONY: clean
 clean:
 	rm -f ../tmpbin/*.configured
-	rm -f $(BIN)
+	rm -f $(BIN) $(CINIT_OBJ)
