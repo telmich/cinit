@@ -24,7 +24,7 @@ int execute_and_wait(char *svc)
    
    if(pid == -1) {
       print_errno(MSG_ERR_FORK);
-      return;
+      return 0;
    }
 
    /* exec / child */

@@ -92,8 +92,8 @@
 
 /* NEW (clean) Service status: Messages to the outside */
 #define MSG_INTRO_OK       "[SUCCESS] "
-#define MSG_INTRO_FAIL     "[FAILED] "
-#define MSG_INTRO_CINIT    "[CINIT] "
+#define MSG_INTRO_FAIL     "[ FAILED] "
+#define MSG_INTRO_CINIT    "[  CINIT] "
 #define MSG_INTRO_RESPAWN  "[RESPAWN] "
 #define MSG_INTRO_SVC      "[SERVICE] "
 

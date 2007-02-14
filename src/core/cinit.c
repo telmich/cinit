@@ -23,10 +23,9 @@ struct dep        *svc_init   = NULL;
 
 int main(int argc, char **argv)
 {
-   char     *initdir;
+   char     *initdir = CINIT_INIT;        /* default init dir        */
 //   pid_t    cpid;
 
-   initdir  = CINIT_INIT;        /* default init dir        */
 
    /* FIXME: RE-ENABLE as SOON AS PRODUCTIVE cpid = getpid();
     * Is this really needed or should we lock() ourselves?
@@ -86,5 +85,6 @@ int main(int argc, char **argv)
    if(!cinit_ipc_listen()) {
       panic();
    }
+
    return 0;
 }

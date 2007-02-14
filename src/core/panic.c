@@ -16,7 +16,7 @@ void panic(void)
 {
    char *nargv[2];
 
-   execute_sth(CINIT_PANIC);
+   if(execute_and_wait(CINIT_PANIC)) _exit(0);
    
    /***********************************************************************
     * THIS SHOULD NOT HAPPEN, fallback to hardcoded sulogin

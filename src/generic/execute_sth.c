@@ -28,7 +28,7 @@ void execute_sth(char *basename)
       _exit(1);
    }
 
-   execve((bav.argv)[0],bav.argv,bav.envp);
+   execve((bav.argv)[0], bav.argv, bav.envp);
    print_errno(basename);
    _exit(1);   /* simply exit non-zero. That's enough for cinit to recognize
                   it as faulty */
