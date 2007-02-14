@@ -1,0 +1,30 @@
+# If you would like to automatically convert a debian system, you could
+# use this script as a start point
+#
+# how it could look like
+#
+
+# create cinit base configuration
+
+# analyse enabled services
+level=$(awk -F: '/^id/ { print $2 }' /etc/inittab)
+rcdir="/etc/rc${level}.d/"
+initdir=/etc/init.d
+
+cd "$rcdir"
+for svc in *; do
+   if [ -d "${debian_map_dir}/${svc}" ]; then
+      echo "Adding $svc"
+   else
+
+   fi
+done
+
+# Also add existing services in /etc/init.d
+for ...
+   if [ ! -e $rcdir/$svc ]
+      if [ -d "${debian_map_dir}/${svc}" ]; then
+         echo "Adding, but not enabling"
+      fi
+   fi
+done
