@@ -316,7 +316,8 @@ TODO.pre7:
 
    Define the following:
       conf/umount = called before all shutdown procedures
-
+   
+   - Segfault, when there is only init
 
    Tests:
       - test reboot functionality
@@ -326,3 +327,8 @@ TODO.pre7:
 
    Done:
       check cinit_ipc_destroy
+
+TODO.pre8:
+   remove old object listings
+   take care of ipc/ and os/
+   merge codingstyle and codingguide
