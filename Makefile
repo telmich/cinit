@@ -55,6 +55,13 @@ config:
 	@./bin/cinit.configure.ipc
 	@touch src/.configured
 
+
+################################################################################
+# Tests
+#
+tests:
+	./scripts/internal/test_on_hosts.sh ./scripts/internal/compile_test.sh
+
 ################################################################################
 # old
 #DDOC=ddoc
