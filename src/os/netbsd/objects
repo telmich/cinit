@@ -1,0 +1,3 @@
+os/current/halt.o
+os/current/poweroff.o
+os/current/reboot.o
