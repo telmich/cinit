@@ -1,3 +1,5 @@
+# just a hack
+
 dir=$(dirname $0)
 
 sys=$(uname -s)
@@ -9,8 +11,11 @@ case $(uname -s) in
       ;;
 esac
 
-cd "${dir}/../../src"
-$make clean
+cd "${dir}/../../"
 echo $sys_small > conf/os
-./bin/cinit.configure.os
+# automatically called by make..
+#./bin/cinit.configure.os
+
+cd "src"
+$make clean
 $make cinit
