@@ -13,6 +13,7 @@ Where to put curly braces?
    Before and after '=', '==', '!='', '>=', '<='
 
    After ')', ','
+   No space before ), so if '))', do not put a space after the first ')'.
 
 Header:
    Put a header into each file, containing:
