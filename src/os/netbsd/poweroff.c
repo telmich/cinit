@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2005-2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2005-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -8,10 +8,11 @@
  *
  */
 
-#include <unistd.h>
-#include <sys/reboot.h>
+#include <unistd.h>           /* reboot */
+#include <sys/reboot.h>       /* reboot */
+#include <stdio.h>            /* NULL   */
 
 void cinit_poweroff(void)
 {
-   reboot(RB_POWEROFF);
+   reboot(RB_HALT|RB_POWERDOWN,NULL);
 }
