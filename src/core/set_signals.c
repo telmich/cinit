@@ -8,7 +8,7 @@
  */
 
 
-#include <signal.h>        /* sigaction      */
+#include <signal.h>        /* sigaction, sigemtpyset  */
 #include <stdio.h>         /* NULL           */
 #include "cinit.h"         /* defines        */
 
@@ -17,12 +17,17 @@ void set_signals(int action)
    struct sigaction sa;
 
    if(action == ACT_SERV) {
-      sa.sa_handler=sig_child;
+      sa.sa_handler  = sig_child;
+      sa.sa_flags    = SA_NOCLDSTOP; 
    } else {
       sa.sa_handler=SIG_DFL;
    }
+   sigemptyset(&sa.sa_mask);
+
    sigaction(SIGCHLD,&sa,NULL);     /* what todo when a child exited    */
 
+   /* reset flags */
+   sa.sa_flags    = 0;
    if(action == ACT_SERV) {
       sa.sa_handler=do_reboot;
    }
