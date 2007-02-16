@@ -21,6 +21,7 @@ void set_signals(int action)
       sa.sa_flags    = SA_NOCLDSTOP; 
    } else {
       sa.sa_handler=SIG_DFL;
+      sa.sa_flags    = 0;
    }
    sigemptyset(&sa.sa_mask);
 
