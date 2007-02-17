@@ -1,3 +1,9 @@
+cinit-0.3pre7:
+   - Many code cleanups
+   - Fixed glibc problem with sigaction (for details view src/core/set_signals.c)
+   - Added general shutdown support (will *NOT* yet stop services,
+     but still stop your system)
+
 cinit-0.3pre6:
    - Many code cleanups
    - Added user documentation and cleaned up documentation in general
