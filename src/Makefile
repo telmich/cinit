@@ -128,3 +128,4 @@ distclean: clean
 clean:
 	rm -f ../tmpbin/*.configured
 	rm -f $(BIN) $(CINIT_OBJ)
+	rm -f test/*.o

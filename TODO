@@ -308,25 +308,17 @@ Finally:
       cinit.shutdown (shell script?!?)
 
 TODO.pre7:
-   - Added general shutdown support (via kill -TERM, -HUP, -USR1)
-   do_reboot.c:
-      write cinit_svc_shutdown
-      write sleep_before_kill
-         reads config, sleeps
-
-   Define the following:
-      conf/umount = called before all shutdown procedures
-   
-
-   Tests:
-      - test reboot functionality
-         -> kill -X 1
-         -> what happens?
-      - test sleep code (sleep_before_kill())
 
    Done:
       check cinit_ipc_destroy
       - Segfault, when there is only init -> problem in glibc2.3.6
+   - Added general shutdown support (via kill -TERM, -HUP, -USR1)
+   -  write sleep_before_kill
+         reads config, sleeps
+   Tests:
+      - test reboot functionality
+         -> kill -X 1
+         -> what happens?
 
 TODO.pre8:
    remove old object listings
@@ -334,6 +326,14 @@ TODO.pre8:
    merge codingstyle and codingguide
    double check all initialisations!
    Use sa.mask in sigaction!
+
+   Document the define of the following:
+      conf/umount = called before all shutdown procedures
+   
+    - test sleep code (sleep_before_kill())
+
+   do_reboot.c:
+      write cinit_svc_shutdown
 
 TODO.pre9:
    include locking via shm, remove test on pid1
