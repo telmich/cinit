@@ -6,7 +6,7 @@ sys=$(uname -s)
 sys_small=$(echo $sys |  tr '[A-Z]' '[a-z]')
 
 case $(uname -s) in
-   NetBSD)
+   NetBSD|OpenBSD)
       make=gmake
       ;;
 esac
