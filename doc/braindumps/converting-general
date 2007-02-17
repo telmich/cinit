@@ -1,0 +1,10 @@
+kern=$(uname -s)
+
+case "${kern}" in
+   $known_kern)
+      $scriptdir/$kern
+   ;;
+   *)
+      echo "Unknown system"
+      ;;
+esac
