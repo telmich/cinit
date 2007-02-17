@@ -27,6 +27,8 @@ int main(int argc, char **argv)
 //   pid_t    cpid;
 
 
+   //set_signals(ACT_SERV);
+
    /* FIXME: RE-ENABLE as SOON AS PRODUCTIVE cpid = getpid();
     * Is this really needed or should we lock() ourselves?
    if(cpid != 1) {
@@ -66,6 +68,7 @@ int main(int argc, char **argv)
    }
 
    /* listen to signals */
+   // MOVE TO UPPER TO TEST SEGFAULT set_signals(ACT_SERV);
    set_signals(ACT_SERV);
 
    /* pre-calculate service tree */
@@ -77,7 +80,8 @@ int main(int argc, char **argv)
    }
 
    /* start tree from the bottom */
-   if(!tree_exec(svc_init) ) return 1;
+   /* FIXME: use panic() instead? */
+   if(!tree_exec(svc_init)) return 1;
 
    mini_printf("=> cinit started.\n",1);
 
