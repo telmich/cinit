@@ -12,4 +12,4 @@ if [ $? -ne 0 ]; then
    exit 1
 fi
 
-ssh "${host}" "./cinit/src/cinit"
+ssh "${host}" "./cinit/src/cinit & (sleep 30; killall -9 cinit)"
