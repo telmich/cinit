@@ -67,4 +67,5 @@ void sig_child(int tmp)
 
    sa.sa_handler = sig_child;
    sigaction(SIGCHLD,&sa,NULL);
+   mini_printf("Finished CHILD catcher\n",1);
 }
