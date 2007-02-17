@@ -1,4 +1,4 @@
-cinit-0.3pre7:
+cinit-0.3pre7: 2007-02-17
    - Many code cleanups
    - Fixed glibc problem with sigaction (for details view src/core/set_signals.c)
    - Added general shutdown support (will *NOT* yet stop services,
