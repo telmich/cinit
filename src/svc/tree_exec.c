@@ -58,7 +58,6 @@ int tree_exec(struct dep *start)
             tmp = tmp->next;
             break;
       }
-
    } while(tmp != NULL);
 
    return 1;

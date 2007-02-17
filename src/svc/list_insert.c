@@ -18,7 +18,7 @@ struct listitem *list_insert(char *path, int status)
 
    tmp = malloc(sizeof(struct listitem));
    if(tmp == NULL) return NULL;
-   memset( tmp, '\0', sizeof(struct listitem));
+   memset(tmp, '\0', sizeof(struct listitem));
 
    if(svc_list == NULL) { /* list is empty, we have to init it */
       svc_list = tmp;
@@ -27,8 +27,8 @@ struct listitem *list_insert(char *path, int status)
    } else {                                  /* list has members,add this one */
       tmp->next            = svc_list;       /* begin after the new element   */
       tmp->prev            = svc_list->prev; /* change to the ex-last         */
-      svc_list->prev->next     = tmp;        /* change last element           */
-      svc_list->prev           = tmp;        /* first refers to previous now  */
+      svc_list->prev->next = tmp;            /* change last element           */
+      svc_list->prev       = tmp;            /* first refers to previous now  */
    }
 
    tmp->abs_path = malloc(strlen(path) + 1);
