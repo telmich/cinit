@@ -6,7 +6,7 @@
 # Don't edit Makefiles, use conf/* for configuration.
 #
 
-include Makefile.tests
+#include Makefile.tests
 
 # Build tools / locations
 CC=../tmpbin/cc
@@ -30,11 +30,6 @@ CINIT_HEADERS=$(shell cat include/listing)
 CINIT_OBJ=$(shell cat object_lists/cinit)
 
 #
-# Dependencies
-#
-$(CINIT_OBJ): $(CINIT_HEADERS)
-
-#
 # Client modules
 #
 CLIENT=client/msg_svc_on_off.o client/msg_change_status.o client/run_svc.o \
@@ -52,16 +47,23 @@ CSVC_OBJ=util/cservice.o generic/mini_printf.o util/msg_reboot.o \
 CCO_OBJ=util/ccontrol.o generic/mini_printf.o util/msg_reboot.o \
          generic/usage.o \
          $(CLIENT) $(COMMUNICATION)
-
-%.o: %.c
-	$(CC) -c -o $@ $<
-
 #
 # End user target
 #
 #all: cinit cservice ccontrol sizecheck docs
 #all: $(BIN)
 all: cinit
+
+
+#
+# Generic
+#
+$(CINIT_OBJ): $(CINIT_HEADERS)
+
+%.o: %.c
+	$(CC) -c -o $@ $<
+
+
 
 #
 # First do configuration, so we include the right variables
