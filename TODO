@@ -332,3 +332,4 @@ TODO.pre8:
    remove old object listings
    take care of ipc/ and os/
    merge codingstyle and codingguide
+   double check all initialisations!
