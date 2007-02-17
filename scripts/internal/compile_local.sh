@@ -9,6 +9,9 @@ case $(uname -s) in
    NetBSD|OpenBSD)
       make=gmake
       ;;
+   *)
+      make=make
+      ;;
 esac
 
 cd "${dir}/../../"
