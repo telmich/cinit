@@ -14,6 +14,7 @@ cat << eof
    Erinnerung:
 
    - Version in conf/version angepasst?
+   - CHANGES angepasst?
    
    Nein? Strg+C bitte...
 eof
