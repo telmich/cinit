@@ -1,7 +1,7 @@
 hier=$(dirname $0)
 
 set -e
-${hier}../cinit.install.standard.dirs
+${hier}/../cinit.install.standard.dirs
 cat > /etc/cinit/svc/init/on << eof
 #!/bin/sh
 echo test1
