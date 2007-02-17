@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-linux-cinit //@\\ schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit //@\\ schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -8,10 +8,10 @@
  *
  */
 
-#include <sys/ipc.h>    /* ftok     */
-#include <sys/msg.h>    /* msgget   */
-#include <stdio.h>      /* perror   */
+#include <sys/ipc.h>    /* ftok           */
+#include <sys/msg.h>    /* msgget         */
 
+#include "cinit.h"      /* print_errno    */
 #include "config.h"
 #include "msgq.h"
 
@@ -26,10 +26,11 @@ int cinit_ipc_listen(void)
       tmp = msgrcv(mq_in,&m_client,(sizeof m_client),0,0);
 
       if(tmp == -1) {
-         perror(MSG_MSGQ_MSGRCV);
+         /* FIXME: EINTR ignore */
+         print_errno(MSG_MSGQ_MSGRCV);
       }
 
-      printf("pid: %d, m_client\n",m_client.pid);
+      //printf("pid: %d, m_client\n",m_client.pid);
 
       /* use pid as the message type 
       m_serv.mtype = (long) m_client.pid;

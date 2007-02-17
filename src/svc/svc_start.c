@@ -29,12 +29,14 @@ void svc_start(struct listitem *li)
     * FIXME: Add logging possibility to here
     * open (0,1,2) to other processes, if specified */
    li->pid = fork();
-
+   
+   /**********************      Error      ************************/
    if(li->pid < 0) {
       svc_report_status(li->abs_path,MSG_SVC_FORK,strerror(errno));
       svc_set_status(li,ST_BAD_ERR);
       return;
    }
+   /**********************      parent     ************************/
    if(li->pid > 0) {
       if(li->status & ST_SH_ONCE)
          li->status = ST_ONCE_RUN;
