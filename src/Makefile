@@ -122,7 +122,7 @@ dist: distclean
 
 .PHONY: distclean
 distclean: clean
-	rm -f os/current ipc/current
+	rm -f os/current ipc/current .configured
 
 .PHONY: clean
 clean:
