@@ -1,7 +1,4 @@
 --------------------------------------------------------------------------------
-define coding guidelines
-   -> general, with url?
---------------------------------------------------------------------------------
 - define how it should work (doc/braindums/big-picture.text)
 - define service status in one document, so repeatition stops!
 --------------------------------------------------------------------------------
@@ -9,21 +6,6 @@ define coding guidelines
 - remove client/ from top level
 --------------------------------------------------------------------------------
 Generate automatic asciidoc from conf/*
---------------------------------------------------------------------------------
-Add handler for ctrl+alt+delete
-   * document in paths
---------------------------------------------------------------------------------
-pre-compile config: conf/*
-
---------------------------------------------------------------------------------
-comm:
-   tmpnow: search for pid in list,
-           save the pid in the list, so we know whether our executer died!
---------------------------------------------------------------------------------
-Logging / cinit:
-   fuer unsere eigenen ausgaben auch multilog?
-
-   Logger: shared memory?
 --------------------------------------------------------------------------------
    Ausgaben nach Beendigung vom Starten des Services.
 
@@ -33,8 +15,6 @@ Logging / cinit:
    Rekursives herunter/rauffahren
 --------------------------------------------------------------------------------
 - add error handling to cinit.install.binary
-- cleanup serv/sig_reboot.c:7:
-   o implement os-specific reboot function
 --------------------------------------------------------------------------------
 1. Entfernung mount
    -> Example configuration
@@ -42,44 +22,16 @@ Logging / cinit:
 --------------------------------------------------------------------------------
 - add code do implement stopping / restarting with dependency tree
 --------------------------------------------------------------------------------
-Documentation:
-   - Installing cinit
-      o compiling cinit from source
-      o debian / gentoo
-   - Configuring
---------------------------------------------------------------------------------
-Check whether we also get notified about stopped children, if so, ignore.
---------------------------------------------------------------------------------
-- perhaps use dnotify?
-- recheck warm reboot
-- fix cservice
 - print service name or cinit: before _everything_ WE print
 
-TESTING:
    - is the reporting ok?
-   - does cservice and ccontrol what's expected?
 
 # cinit.create.empty.service: can only be started from the bin directory
 
-- compile cinit static and other tools dynamically per default
-
 - Fix Switching services off !!
-- Remove RUN_RUN_SVCs, move code to run_svc so one can determine which
-  services failed?
- --> sequentieller ablauf!
- --> parallel ablauf, struct-array mit namen und ergebnis?
- --> for dep in deps/*; do fork(run_svc() ); done
- -----> while(any_is_running) { sleep }
- -------> array durchsuchen, ergebnis nutzen.
- - ueberpruefen von wo aus run_svc() aufgerufen wird
-
-- do not kill respawing service, if off exists
-- ccontrol
-- manpages
 - Error codes when shutting down a service?
 - Delay dokumentieren
 - no_kill dokumentieren
-
 
 - on.out, on.err, on.in?
    -> reading/writing from/to files
@@ -90,38 +42,6 @@ TESTING:
 --------------------------------------------------------------------------------
 - Source Logic issues
    - remove FIXME entries (and what should be fixed, too)
-   - memset for timespecs?
-   - move umount, swapoff and remount to off of init?
-      -> cleanup sig_reboot.c
---------------------------------------------------------------------------------
-- Documentation
-   - Write manpages (use doc/* as base for that)
-   - Check Spell and Grammar in documentation
-   - write howto:
-      o Howto-cinit
-      o Howto-cinit-uml
---------------------------------------------------------------------------------
-[OLD BUGS]
-- execve() fails -> no sleep!!
-- cservice!
-   - prozess nur einmal -> WARTET! cinit auch!
-doku:
-  cservice einmal starten -> wartet auf ende
-  cint ersetzt init bei gentoo
-  an error occuerd-> verbose
-
-possible BUGS:
-
-[14:44] freelsd:cinit-0.2.2% ./sbin/cservice -e ein
-
-ein: No such file or directory
-Bad address
-: Service does not exist
-
-/etc/cinit/specials/... rein
-
-
---> cinit-0.3-rc1
 --------------------------------------------------------------------------------
 Helper scripts, rausgenommen aus Der Doku, muessen fuer
 cinit-0.3 ueberprueft werden:
@@ -147,6 +67,17 @@ In the bin/ directory of this tarball you'll find at least:
 
 Optimisations
 -------------
+   - Installing cinit
+      o compiling cinit from source
+      o debian / gentoo
+   - Configuring
+      * add scripts! see below
+   - define coding guidelines -> general, with url?
+   - Write manpages (use doc/* as base for that)
+   - Check Spell and Grammar in documentation
+   - write howto:
+      o Howto-cinit
+      o Howto-cinit-uml
 
 tree_exec
 ~~~~~~~~~
@@ -177,11 +108,6 @@ user
       - reboot
 
 --------------------------------------------------------------------------------
-Doc
----
-Doku!!!
-- MANPAGE!
-
 FAQ
 ~~~
 - DOKU: what happens when a service does not terminate....
@@ -210,7 +136,6 @@ Child handlin
 
 Later
 ~~~~~
-
 - close(*>2) before forking / executing
    -> close fds, clean environment, etc., ...
    -> do we really need that?
@@ -281,7 +206,6 @@ Later
    * debugging
 - Shutdomn code:
    * begin at init, then shutdown wants/needs, ...
-- check free on dep_del!
 - check that the new wants and need elements are nserted the other way round
    * we go to next, elements must be put before us!
 - implement do_reboot()
@@ -295,9 +219,6 @@ Later
    * remove run_svc
    * remove run_init_svc
 
-Finally:
-- test and release cinit-0.3rc1
-
 - Cleanup object lists
    object-lists/
       cinit
@@ -308,8 +229,6 @@ Finally:
       cinit.shutdown (shell script?!?)
 
 TODO.pre8:
-   remove old object listings
-   take care of ipc/ and os/
    merge codingstyle and codingguide
 
    Document the define of the following:
@@ -319,11 +238,14 @@ TODO.pre8:
 
    do_reboot.c:
       write cinit_svc_shutdown
+      Add handler for ctrl+alt+delete
+         * document in paths
 
    Done:
       Use sa.mask in sigaction!
       double check all initialisations!
       fixed problem in src/Makefile
+      remove old object listings
 TODO.pre9:
    include locking via shm, remove test on pid1
    cleanup bin/
@@ -338,6 +260,9 @@ TODO.pre11:
 TODO.pre12:
    Check and clean doc/
    Remove *TODO*+ROADMAP and leave behin doc/TODO
+
+TODO.pre13:
+   code cservice ccontrol halt reboot shutdown poweroff
    Test, release and prepare for final cinit-0.3
 
 TODO.0.3.1
@@ -345,3 +270,6 @@ TODO.0.3.1
       cinit logs to
          -> shm saver
       services log to
+
+TODO unclear
+   - create migration scripts
