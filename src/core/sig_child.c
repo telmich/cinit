@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2005-2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2005-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -8,11 +8,9 @@
  *
  */
 
-#include <sys/types.h>  /* FIXME: check headers (->Posix!) */
-#include <sys/wait.h>
+#include <sys/wait.h>   /* waitpid           */
 #include <stdio.h>      /* NULL              */
 
-#include <signal.h>     /* sigaction         */
 #include "cinit.h"      /*                   */
 #include "svc.h"        /* list_search_pid   */
 #include "messages.h"   /* messages          */
@@ -30,11 +28,6 @@ void sig_child(int tmp)
     *   * else ignore, but reap away
     */
    struct listitem *svc;
-   struct sigaction sa;
-
-   /* do not interrupt us or anything we might call */
-   sa.sa_handler = SIG_IGN;
-   sigaction(SIGCHLD,&sa,NULL);
 
    while((tmp = waitpid(-1, &tmp, WNOHANG)) > 0) {
       /* check if it's a watched child */
@@ -65,7 +58,5 @@ void sig_child(int tmp)
       }
    }
 
-   sa.sa_handler = sig_child;
-   sigaction(SIGCHLD,&sa,NULL);
    mini_printf("Finished CHILD catcher\n",1);
 }
