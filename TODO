@@ -307,19 +307,6 @@ Finally:
       cinit.reboot
       cinit.shutdown (shell script?!?)
 
-TODO.pre7:
-
-   Done:
-      check cinit_ipc_destroy
-      - Segfault, when there is only init -> problem in glibc2.3.6
-   - Added general shutdown support (via kill -TERM, -HUP, -USR1)
-   -  write sleep_before_kill
-         reads config, sleeps
-   Tests:
-      - test reboot functionality
-         -> kill -X 1
-         -> what happens?
-
 TODO.pre8:
    remove old object listings
    take care of ipc/ and os/

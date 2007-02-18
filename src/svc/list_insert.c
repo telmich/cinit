@@ -1,7 +1,7 @@
 /***********************************************************************
  * 
  *    (c) 2005 Marcus Przyklink (downhill-clinux (at) burningchaos.org)
- *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  * 
  *    part of cLinux/cinit
  * 
@@ -21,9 +21,9 @@ struct listitem *list_insert(char *path, int status)
    memset(tmp, '\0', sizeof(struct listitem));
 
    if(svc_list == NULL) { /* list is empty, we have to init it */
-      svc_list = tmp;
-      svc_list->next     = svc_list;
-      svc_list->prev     = svc_list;
+      svc_list             = tmp;
+      svc_list->next       = svc_list;
+      svc_list->prev       = svc_list;
    } else {                                  /* list has members,add this one */
       tmp->next            = svc_list;       /* begin after the new element   */
       tmp->prev            = svc_list->prev; /* change to the ex-last         */

@@ -1,6 +1,6 @@
 /***********************************************************************
  * 
- *    2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  * 
  *    part of cLinux/cinit
  * 
@@ -18,10 +18,10 @@
  */
 void dep_entry_add(struct dep **deplist, struct dep *new)
 {
-   if(*deplist == NULL) {       /* new list          */
-      *deplist          = new;
-      (*deplist)->prev  = *deplist;
-      (*deplist)->next  = *deplist;
+   if(*deplist == NULL) {                          /* new list          */
+      *deplist                = new;
+      (*deplist)->prev        = *deplist;
+      (*deplist)->next        = *deplist;
    } else {                                        /* already existing  */
       new->next               = *deplist;          /* new-> first       */
       new->prev               = (*deplist)->prev;  /* last <- new       */

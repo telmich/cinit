@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-linux-cinit //@\\ schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-linux-cinit schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -10,7 +10,6 @@
 
 #include <sys/ipc.h>       /* ftok           */
 #include <sys/msg.h>       /* msgget         */
-#include <stdio.h>         /* msgget         */
 
 #include "cinit.h"
 #include "config.h"
@@ -35,12 +34,12 @@ int cinit_ipc_init(void)
    /* to_client */
    k_tmp = ftok(MSGQ_PATHNAME,MSGQ_TO_CLIENT);
    if(k_tmp == -1) {
-      perror(MSG_MSGQ_FTOK);
+      print_errno(MSG_MSGQ_FTOK);
       return 0;
    }
    mq_out = msgget(k_tmp,MSGQ_PERMS | IPC_CREAT);
    if(mq_out == -1) {
-      perror(MSG_MSGQ_MSGGET);
+      print_errno(MSG_MSGQ_MSGGET);
       return 0;
    }
 

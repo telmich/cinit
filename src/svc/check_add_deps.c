@@ -43,6 +43,7 @@ int check_add_deps(struct listitem *svc, int type)
       return 0;
    }
 
+   /* FIXME remove in production */
    mini_printf("CAD::",1);
    mini_printf(svc->abs_path,1);
    mini_printf("\n",1);

@@ -1,17 +1,14 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
  *    check whether file exists and is a file
  */
 
-#include <sys/types.h>     /* FIXME: check headers against posix */
-#include <sys/stat.h>
-#include <unistd.h>
-
 #include <errno.h>         /* errno                   */
+#include <sys/stat.h>      /* stat                    */
 #include "cinit.h"
 
 int file_exists(char *filename)

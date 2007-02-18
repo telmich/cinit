@@ -49,7 +49,7 @@ int            list_delete(char *path);
 int            list_modify(char *path, int new_status, pid_t new_pid);
 struct         listitem *list_search(char *path);
 struct         listitem *list_search_pid(pid_t pid);
-int            list_display_all();
+//int            list_display_all(); /* debug only */
 
 
 /* service */

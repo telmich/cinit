@@ -1,14 +1,14 @@
 /***********************************************************************
  * 
- *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  * 
+ *    OBSOLETED!
+ *
  *    part of cLinux/cinit
  * 
  *    List handling
  */
 
-//#include <stdlib.h>
-//#include <string.h>
 #include "cinit.h"
 #include "messages.h"
 

@@ -1,6 +1,8 @@
 /***********************************************************************
  *
- *    2005-2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2005-2007 Nico Schottelius (nico-cinit at schottelius.org)
+ *
+ *    OBSOLETED? not in use.
  *
  *    part of cLinux/cinit
  *

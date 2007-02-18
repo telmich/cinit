@@ -58,5 +58,6 @@ void sig_child(int tmp)
       }
    }
 
+         /* FIXME remove in production version */
    mini_printf("Finished CHILD catcher\n",1);
 }

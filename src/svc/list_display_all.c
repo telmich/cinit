@@ -1,6 +1,6 @@
 /***********************************************************************
  * 
- *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  * 
  *    part of cLinux/cinit
  * 
@@ -15,7 +15,7 @@ int list_display_all()
 {
    struct listitem *tmp;
 
-   if( svc_list == NULL ) {
+   if(svc_list == NULL) {
       return 0;
    } else {
       tmp = svc_list;

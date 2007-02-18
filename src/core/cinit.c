@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2005-2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2005-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -26,8 +26,6 @@ int main(int argc, char **argv)
    char     *initdir = CINIT_INIT;        /* default init dir        */
 //   pid_t    cpid;
 
-
-   //set_signals(ACT_SERV);
 
    /* FIXME: RE-ENABLE as SOON AS PRODUCTIVE cpid = getpid();
     * Is this really needed or should we lock() ourselves?
@@ -68,7 +66,6 @@ int main(int argc, char **argv)
    }
 
    /* listen to signals */
-   // MOVE TO UPPER TO TEST SEGFAULT set_signals(ACT_SERV);
    set_signals(ACT_SERV);
 
    /* pre-calculate service tree */

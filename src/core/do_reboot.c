@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006-2007 Nico Schottelius (nico-cinit //@\\ schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -87,4 +87,6 @@ void do_reboot(int signal)
          cinit_halt();
          break;
    }
+   /* FIXME: should we exit? */
+   _exit(0);
 }

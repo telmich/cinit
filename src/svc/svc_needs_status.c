@@ -17,10 +17,6 @@ int svc_needs_status(struct listitem *svc)
    int         retval   = SNS_NEEDS_STARTED;
    struct dep  *deps    = svc->needs;
 
-/* DEBUG   mini_printf("sns: ",1);
-   mini_printf(svc->abs_path,1);
-   mini_printf("\n",1); */
-
    if(deps == NULL) return SNS_NEEDS_STARTED;    /* no needs, everything fine */
 
    do {

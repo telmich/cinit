@@ -1,7 +1,6 @@
 core/build_argv.o
 core/cinit.o
 core/panic.o
-core/run_init_svc.o
 core/set_signals.o
 core/do_reboot.o
 core/sig_child.o
@@ -31,9 +30,7 @@ os/current/poweroff.o
 os/current/reboot.o
 svc/gen_svc_tree.o
 svc/list_delete.o
-svc/list_display_all.o
 svc/list_insert.o
-svc/list_modify.o
 svc/list_search.o
 svc/list_search_pid.o
 svc/svc_create.o

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -16,6 +16,7 @@ void execute_sth(char *basename)
    int            tmp;
    struct ba_argv bav;
 
+   /* FIXME remove later */
    mini_printf("ES::",1);
    mini_printf(basename,1);
    mini_printf("\n",1);

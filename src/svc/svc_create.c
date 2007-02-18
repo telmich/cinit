@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2005-2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2005-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -38,6 +38,7 @@ struct listitem *svc_create(char *svc)
          return NULL;
       }
    } else {
+      /* FIXME remove debug */
       mini_printf("respawn: ",1);
       mini_printf(li->abs_path,1);
       mini_printf("\n",1);

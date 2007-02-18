@@ -24,6 +24,7 @@ int openreadclose(char *filename, char **where)
    int         fd;
    char        buf[512];
 
+   /* FIXME remove in production */
    mini_printf("ORC:",1);
    mini_printf(filename,1);
    mini_printf("\n",1);
