@@ -337,7 +337,7 @@ TODO.pre11:
 
 TODO.pre12:
    Check and clean doc/
-   Remove *TODO* and leave behin doc/TODO
+   Remove *TODO*+ROADMAP and leave behin doc/TODO
    Test, release and prepare for final cinit-0.3
 
 TODO.0.3.1

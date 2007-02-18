@@ -1,7 +1,0 @@
-core/build_argv.o
-core/cinit.o
-core/panic.o
-core/run_init_svc.o
-core/set_signals.o
-core/do_reboot.o
-core/sig_child.o

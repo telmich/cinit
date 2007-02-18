@@ -1,9 +1,0 @@
-generic/execute_sth.o
-generic/execute_and_wait.o
-generic/mini_printf.o
-generic/path_absolute.o
-generic/path_append.o
-generic/print_errno.o
-generic/openreadclose.o
-generic/strip_final_newline.o
-generic/sleep_before_kill.o
