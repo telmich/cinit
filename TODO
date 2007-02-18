@@ -311,8 +311,6 @@ TODO.pre8:
    remove old object listings
    take care of ipc/ and os/
    merge codingstyle and codingguide
-   double check all initialisations!
-   Use sa.mask in sigaction!
 
    Document the define of the following:
       conf/umount = called before all shutdown procedures
@@ -322,5 +320,28 @@ TODO.pre8:
    do_reboot.c:
       write cinit_svc_shutdown
 
+   Done:
+      Use sa.mask in sigaction!
+      double check all initialisations!
+      fixed problem in src/Makefile
 TODO.pre9:
    include locking via shm, remove test on pid1
+   cleanup bin/
+
+TODO.pre10:
+   cleanup client/ comm/ contrib+tools/ util/ tmp/
+
+TODO.pre11:
+   cleanup src/
+   finish ipc code so clients can access cinit
+
+TODO.pre12:
+   Check and clean doc/
+   Remove *TODO* and leave behin doc/TODO
+   Test, release and prepare for final cinit-0.3
+
+TODO.0.3.1
+   add log support
+      cinit logs to
+         -> shm saver
+      services log to
