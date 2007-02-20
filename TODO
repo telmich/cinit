@@ -206,8 +206,6 @@ Later
    * begin at init, then shutdown wants/needs, ...
 - check that the new wants and need elements are nserted the other way round
    * we go to next, elements must be put before us!
-- implement do_reboot()
-   * so not only booting with cinit works, but also the shutdown
 - replace cinit_ipc_logon with cinit_ipc_init...
    * delay ipc code -> after start!
 
@@ -232,6 +230,8 @@ TODO.pre8:
       write cinit_svc_shutdown
       Add handler for ctrl+alt+delete
          * document in paths
+      - implement do_reboot()
+         * so not only booting with cinit works, but also the shutdown
 
    Done:
       Use sa.mask in sigaction!
