@@ -29,9 +29,14 @@ How / What?
 - send SIGTERM to other apps?
    * or put that into special? special/post_svc_shutdown
 - call special/{halt,poweroff,reboot}
+   * no, implemented that directly into cinit!
 - implement timely controlled shutdown:
    * cinit.shutdown forks (?) itself and waits, then sends a signal
      to cinit to initiate the shutdown process
+   * create mappers for target OS
+      - Linux
+      - {free,net,open}bsd
+      - others may contribute theirself
 - also implement halt
    * kill -TERM 1
 - also implement reboot

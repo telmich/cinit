@@ -219,12 +219,13 @@ Later
       cinit.shutdown (shell script?!?)
 
 TODO.pre8:
-   merge codingstyle and codingguide
 
    Document the define of the following:
       conf/umount = called before all shutdown procedures
+      --> conf/last?
    
     - test sleep code (sleep_before_kill())
+      -> execute as id compiler, so kill -1 does not kill my session
 
    do_reboot.c:
       write cinit_svc_shutdown
@@ -234,6 +235,7 @@ TODO.pre8:
          * so not only booting with cinit works, but also the shutdown
 
    Done:
+      merge codingstyle and codingguide
       Use sa.mask in sigaction!
       double check all initialisations!
       fixed problem in src/Makefile

@@ -20,7 +20,8 @@ USERDOCS  	= user/compiles.on.text user/configuring.cinit.text 				\
 				  user/example-directory-structure.text                        \
 				  user/installing-cinit.text user/paths.text                   \
 				  user/profiles.text user/README.text
-DOCS     	= $(MANDOCS) $(USERDOCS)
+DEVELDOCS 	= devel/codingguideline.text
+DOCS     	= $(MANDOCS) $(USERDOCS) $(DEVELDOCS)
 
 #
 # Doku
