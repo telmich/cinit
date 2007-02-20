@@ -213,9 +213,6 @@ Later
    b) binary data?
 - replace cinit_ipc_logon with cinit_ipc_init...
    * delay ipc code -> after start!
-- Remove old code
-   * remove run_svc
-   * remove run_init_svc
 
 - Cleanup object lists
    object-lists/
