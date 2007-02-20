@@ -10,10 +10,30 @@ This document describes the coding style used in cinit.
 Indent
 ------
 Indent the code by 3 spaces for each level.
+Indent variable names, so the names begin all at the same position.
+Use three spaces to place them.
 
 
-Unsorted
----------
+Whitespaces
+-----------
+no spaces
+   - within braces and code "(!test)", 
+   - before braces "if(code)"
+
+spaces
+   - after braces "if(test) return 0;"
+   - spaces before and after '=' (a = b);
+
+When to place spaces?
+   After and before comments:
+      /* text */
+     o
+
+   Before and after '=', '==', '!='', '>=', '<='
+
+   After ')', ','
+   No space before ), so if '))', do not put a space after the first ')'.
+
 Linebreaks:
 
 
@@ -26,32 +46,17 @@ if(...) {
 do {
 } while();
 
-no spaces
-   - within braces and code "(!test)", 
-   - before braces "if(code)"
+Where to put curly braces
+-------------------------
 
-spaces
-   - after braces "if(test) return 0;"
-   - spaces before and after '=' (a = b);
+Functions
+~~~~~~~~~
 
-curly braces:
-   functions:
-      int func(int params)
-      {
-         body
-      }
+int func(int params)
+{
+   body
+}
 
-comments:
-   where necessery, do not state the obvious in comments:
-
-      /* this code increments tmp */
-      ++tmp;
-
-
-When to place spaces?
-   After and before comments:
-      /* text */
-     o
 Where to put curly braces?
    functions: at the beginning of the line:
 
@@ -60,23 +65,45 @@ Where to put curly braces?
 
    }
 
-   Before and after '=', '==', '!='', '>=', '<='
+Comments
+---------
+where necessery, do not state the obvious in comments:
 
-   After ')', ','
-   No space before ), so if '))', do not put a space after the first ')'.
+      /* this code increments tmp */
+      ++tmp;
 
-Header:
-   Put a header into each file, containing:
-      - date of file being put into existence (year is enough)
-      - Name and E-mail of Author
-      - Description of the function
+If there is more than one line containing a comment, try to adjust them
+so they look the same in width and position:
 
-Includes:
-   System includes first,
-   own headers later
+------------------------------------------------------------------------------
+   int illuminati                = 23; /* do not want to comment that   */
+   int the_answer_to_everything  = 42; /* 42.                           */ 
 
-Indent:
-   Three spaces. No tabs.
+   [...]
 
-   Indent variable names, so the names begin all at the same position. Use three spaces
-   to place them.
+   while(illuminati < the_answer_to_everything) {  /* only try before them  */
+      overtake_world(&self);                       /* overtake is complex   */ 
+   }
+------------------------------------------------------------------------------
+
+
+Header
+-------
+Put a header into each file, containing:
+   - date of file being put into existence (year is enough)
+   - Name and E-mail of Author
+   - Description of the function
+   - Copyright statement
+
+
+Includes
+~~~~~~~~
+Include system headers first, then place own headers. Comment the includes,
+wherefore you added them.
+
+------------------------------------------------------------------------------
+#include <unistd.h>     /* write          */
+#include "cinit.h>      /* cinit_ipc_*    */
+------------------------------------------------------------------------------
+
+
