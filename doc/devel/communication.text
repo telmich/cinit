@@ -33,6 +33,9 @@ Data
 A message always conists of a predefined structure (see src/headers/comm.h).
 The byte order is host specific (may be little or big endian).
 
+Type
+~~~~
+Messages are binary data.
 
 The messages
 ------------

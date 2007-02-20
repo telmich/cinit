@@ -208,9 +208,6 @@ Later
    * we go to next, elements must be put before us!
 - implement do_reboot()
    * so not only booting with cinit works, but also the shutdown
-- define messages
-   a) human readable
-   b) binary data?
 - replace cinit_ipc_logon with cinit_ipc_init...
    * delay ipc code -> after start!
 
