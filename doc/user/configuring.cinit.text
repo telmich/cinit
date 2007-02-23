@@ -37,6 +37,7 @@ For all executables into this directory apply the same rules as mentioned
 below in "Execution: on and off": Appened .params specifies parameters,
 appended .env specifies environment.
 
+
 conf/last
 ~~~~~~~~~
 This is the last part that will be executed. After it has finished, cinit
@@ -48,6 +49,14 @@ by the off parts of the services. This maybe swapoff (although this is an uneces
 call before poweroff, imho and even if needed this could be handled within the
 off part of the same services that enabled it) or `umount -a` for everything
 manually mounted and not unmounted yet.
+
+
+conf/sleep_before_kill
+~~~~~~~~~~~~~~~~~~~~~~
+This file contains just one line: The number of seconds to sleep after SIGTERM was sent
+to every remaining process before sending SIGKILL to all processes. If this file
+is unreadable or not existent, cinit will fall back to the value compiled in
+(which was specified at build time in conf/sleep_kill).
 
 
 Services
