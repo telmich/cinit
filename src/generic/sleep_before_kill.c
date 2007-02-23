@@ -30,6 +30,7 @@ void sleep_before_kill()
       if(errno != 0) tmp = SLEEP_KILL;
       free(content);
    } else {
+      mini_printf("builtin sleep\n",1);
       tmp = SLEEP_KILL;
    }
 

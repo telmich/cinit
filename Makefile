@@ -37,6 +37,8 @@ documentation:
 sizecheck: sources
 	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l src/cinit > $$FILE; cat $$FILE; \
 	cg-add $$FILE
+	cg-commit $$FILE -m "Size added"
+	#cg-commit $$FILE -m "Size: $$(awk '{ print $5 }' $$FILE)"
 
 source-size: clean
 	@echo -n "Source size (in KiB): "

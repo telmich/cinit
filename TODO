@@ -219,10 +219,16 @@ Later
 
 TODO.pre8:
 
-   Document the define of the following:
-      conf/umount = called before all shutdown procedures
-      --> conf/last?
    
+   - pretty print, reporting is ugly!
+   - check whether successful service is not successful
+   - do not print an error if /etc/cinit/conf/last is non-existent!
+   - ignore msgrcv: Interrupted system call
+Session terminated, killing shell...msgq-destroy: Invalid argument
+msgq-destroy: Invalid argument
+
+
+
     - test sleep code (sleep_before_kill())
       -> execute as id compiler, so kill -1 does not kill my session
 
@@ -239,6 +245,8 @@ TODO.pre8:
       double check all initialisations!
       fixed problem in src/Makefile
       remove old object listings
+      Document the define of the following:
+         conf/umount = called before all shutdown procedures --> conf/last!
 TODO.pre9:
    include locking via shm, remove test on pid1
    cleanup bin/
