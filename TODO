@@ -194,7 +194,6 @@ Later
       - configure
       - boot (different OS)
    * generate asciidoc!
-- report broken links in needs/wants
 - Doc way:
    * installing
    * configuring
@@ -209,7 +208,7 @@ Later
 - replace cinit_ipc_logon with cinit_ipc_init...
    * delay ipc code -> after start!
 
-- Cleanup object lists
+- Cleanup / create object lists
    object-lists/
       cinit
       cservice
@@ -246,6 +245,10 @@ TODO.pre9:
 
 TODO.pre10:
    cleanup client/ comm/ contrib+tools/ util/ tmp/
+   - write cinit.conf.check
+      * report broken links in needs/wants
+      * report circular dependencies
+
 
 TODO.pre11:
    cleanup src/
