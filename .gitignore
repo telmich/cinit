@@ -16,3 +16,4 @@ doc/*/*.html
 doc/*/*.htm
 doc/*/*.man
 doc/*/*.texi
+doc/*/*.docbook
