@@ -69,20 +69,20 @@ void do_reboot(int signal)
       print_errno(MSG_KILLBILL);
    }
 
-   /* Execute umount and wait for its termination */
-   execute_and_wait(CINIT_UMOUNT);
+   /* Execute the last command         */
+   execute_and_wait(CINIT_LAST);
 
-   /* do what we really wanted to do */
+   /* do what we really wanted to do   */
    switch(signal) {
-      case SIGTERM: /* power off */
+      case SIGTERM:  /* power off      */
          LOG(MSG_POWER_OFF);
          cinit_poweroff();
          break;
-      case SIGHUP: /* reboot */
+      case SIGHUP:   /* reboot         */
          LOG(MSG_REBOOT);
          cinit_reboot();
          break;
-      case SIGUSR1: /* halt */
+      case SIGUSR1:  /* halt           */
          LOG(MSG_HALT);
          cinit_halt();
          break;

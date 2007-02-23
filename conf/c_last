@@ -1,6 +1,7 @@
-umount
+last
 
 Name of the file below cinit_dir/c_confdir/ to execute right before
 reboot/halt/poweroff.
 
-It should normally be a shellscript with the OS-specific umount procedure.
+This maybe a shellscript with the OS-specific umount procedure (like umount -a),
+see doc/user/configuring.cinit for more details.
