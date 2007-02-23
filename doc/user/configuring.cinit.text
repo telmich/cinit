@@ -16,6 +16,9 @@ Cinit uses the <<<cconfig>>> configuration syntax, which means that
 the configuration is kept as simple as possible. The following
 sections will show you what that means.
 
+The cinit configuration consists of
+- a special configuration directory
+- and the service definitions.
 
 Paths
 -----
@@ -24,6 +27,12 @@ Normally the configuration is kept below '/etc/cinit'
 
 The full description of the path layout of cinit and how to change it
 can be found in 'paths.text'.
+
+Conf
+----
+The special configuration directory is normally called `conf/`
+(defined at compile-time in `conf/c_confdir`).
+
 
 
 Services
@@ -191,7 +200,7 @@ The service could look like this:
 Daemons
 ~~~~~~~~
 Daemons are programs that go away to the background (using fork()) after
-start.
+start).
 
 The fork-away strategy seems to be some illness introduced by traditional
 init systems, that are dependent on the fact, that a process exits on
