@@ -33,6 +33,21 @@ Conf
 The special configuration directory is normally called `conf/`
 (defined at compile-time in `conf/c_confdir`).
 
+For all executables into this directory apply the same rules as mentioned
+below in "Execution: on and off": Appened .params specifies parameters,
+appended .env specifies environment.
+
+conf/last
+~~~~~~~~~
+This is the last part that will be executed. After it has finished, cinit
+will halt, power-off or reboot your machine.
+
+You can use it for whatever task to accomplish (as most things of cinit), but
+the idea behind it is to use it for cleaning up things that are not covered
+by the off parts of the services. This maybe swapoff (although this is an unecessary
+call before poweroff, imho and even if needed this could be handled within the
+off part of the same services that enabled it) or `umount -a` for everything
+manually mounted and not unmounted yet.
 
 
 Services
