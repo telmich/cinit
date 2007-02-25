@@ -218,19 +218,7 @@ Later
       cinit.shutdown (shell script?!?)
 
 TODO.pre8:
-
-   
-   - pretty print, reporting is ugly!
-   - check whether successful service is not successful
-   - do not print an error if /etc/cinit/conf/last is non-existent!
-   - ignore msgrcv: Interrupted system call
-Session terminated, killing shell...msgq-destroy: Invalid argument
-msgq-destroy: Invalid argument
-
-
-
-    - test sleep code (sleep_before_kill())
-      -> execute as id compiler, so kill -1 does not kill my session
+   - check whether successful service is not successful reported
 
    do_reboot.c:
       write cinit_svc_shutdown
@@ -246,10 +234,20 @@ msgq-destroy: Invalid argument
       fixed problem in src/Makefile
       remove old object listings
       Document the define of the following:
-         conf/umount = called before all shutdown procedures --> conf/last!
+         -> conf/umount = called before all shutdown procedures --> conf/last!
+      test sleep code (sleep_before_kill())
+         -> execute as id compiler, so kill -1 does not kill my session
+
+
 TODO.pre9:
    include locking via shm, remove test on pid1
    cleanup bin/
+
+   - do not print an error if /etc/cinit/conf/last is non-existent!
+   - ignore msgrcv: Interrupted system call
+Session terminated, killing shell...msgq-destroy: Invalid argument
+msgq-destroy: Invalid argument
+   - pretty print, reporting is ugly!
 
 TODO.pre10:
    cleanup client/ comm/ contrib+tools/ util/ tmp/
