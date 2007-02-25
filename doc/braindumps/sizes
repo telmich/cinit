@@ -1,0 +1,6 @@
+sysvinit:
+root         1  0.0  0.0   1944   648 ?        Ss   02:12   0:00 init [2]  
+
+cinit-0.3pre8-glibc-linux:
+compiler 25323  0.0  0.0   1564   392 pts/2    S+   20:22   0:00 ./cinit
+
