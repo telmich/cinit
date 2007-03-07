@@ -35,17 +35,14 @@ void sig_child(int tmp)
       svc = list_search_pid((pid_t) pid);
 
       if(svc != NULL) {
-         printf("rueckgabe: %d, %d, %d\n",WIFEXITED(tmp), WEXITSTATUS(tmp), tmp);
          /* Check, that we are operating on it =. that it is no normal child */
          if(svc->status & ST_ONCE_RUN
          || svc->status & ST_SH_RESPAWN
          || svc->status & ST_RESPAWNING) {
             if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
                svc_success(svc);
-               svc_report_status(svc->abs_path,MSG_SVC_OK,NULL);
             } else {
                svc_fail(svc);
-               svc_report_status(svc->abs_path,MSG_SVC_FAIL,NULL);
             }
          }
 

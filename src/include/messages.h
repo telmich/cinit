@@ -108,8 +108,6 @@
 #define MSG_SVC_NEED_FAIL  MSG_INTRO_FAIL "Needs failed for service"
 #define MSG_SVC_FAIL       MSG_INTRO_FAIL "Service failed!"
 
-/* FIXME: respawn / once */
-#define MSG_SVC_OK         MSG_INTRO_OK   "Service successfully executed."
 
 
 #define MSG_TREE_EXEC      MSG_INTRO_CINIT "Execution of reverse service tree\n"
@@ -121,8 +119,10 @@
 
 /* Service messages */
 #define MSG_SVC_START      "Starting... "
-#define MSG_SVC_RESTART    "Restarting..."
 #define MSG_SVC_STOP       "Stoping... "
+#define MSG_SVC_RESTART    "Restarted."
+#define MSG_SVC_OK_ONCE    "Started once."
+#define MSG_SVC_OK_RESPAWN "Is respawning."
 
 /* Status messages */
 #define MSG_SHUTDOWN_START    MSG_INTRO_STOP    "Beginning the shutdown process..."
