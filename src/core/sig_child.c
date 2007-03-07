@@ -56,7 +56,4 @@ void sig_child(int tmp)
          mini_printf("Cleanup: reparenting\n",1);
       }
    }
-
-         /* FIXME remove in production version */
-   mini_printf("Finished CHILD catcher\n",1);
 }

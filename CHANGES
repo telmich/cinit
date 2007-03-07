@@ -3,6 +3,7 @@ cinit-0.3pre8:
    - Cleaned sigaction-code (fixes segfault on glibc)
    - Cleaned object listings
    - Added notifications at shutdown
+   - Fixed status check
 
 cinit-0.3pre7: 2007-02-17
    - Many code cleanups

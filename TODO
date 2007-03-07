@@ -219,7 +219,6 @@ Later
 
 TODO.pre8:
    - setup VM for testing: qemu/kvm/virtualbox (no commercial bloaty)
-   - check whether successful service is not successful reported
 
    do_reboot.c:
       write cinit_svc_shutdown
@@ -238,6 +237,7 @@ TODO.pre8:
          -> conf/umount = called before all shutdown procedures --> conf/last!
       test sleep code (sleep_before_kill())
          -> execute as id compiler, so kill -1 does not kill my session
+      check whether successful service is not successful reported
 
 
 TODO.pre9:
