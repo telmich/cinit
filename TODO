@@ -218,6 +218,7 @@ Later
       cinit.shutdown (shell script?!?)
 
 TODO.pre8:
+   - setup VM for testing: qemu/kvm/virtualbox (no commercial bloaty)
    - check whether successful service is not successful reported
 
    do_reboot.c:
