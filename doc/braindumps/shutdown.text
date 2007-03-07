@@ -37,9 +37,47 @@ How / What?
       - Linux
       - {free,net,open}bsd
       - others may contribute theirself
-- also implement halt
+- also implement poweroff
    * kill -TERM 1
 - also implement reboot
    * kill -HUP 1
-- also implement reboot
+- also implement halt
    * kill -USR1 1
+
+
+The implementation
+-----------------
+
+- shutdown is initiated
+- disable communication (nobody can influence us anymore)
+- install special signal handler?
+- begin to shutdown services
+   * where to start?
+   * begin shutdown at the end of the tree, viewing/sorting it by the 'needed_by'
+      -> where to begin sort?
+      -> worst implementation: scan all services (easy for now)
+      -> result: list of services, that noone needs :-)
+   * stop those services and step above
+      - stop a service, as soon as noone needs it anymore
+         * check all needed_by links
+   * more or less the inverted gen_svc_tree
+- how to shutdown a service
+   * if existing, call off
+      - if off does not exist:
+         * if respawn: send sigterm to the process
+         * also implement sigkill at this stage?
+            - think we can delay it to the end
+            - otherwise users can use off!
+      - implement environment for off ($cinit_respawn_pid, $cinit_service_name)
+      - do *NOT* care about the return value, we can't do anything for it
+         anymore anyway
+- after all services are shutdown, kill all remaining services
+   * SIGTERM
+   * wait(defined_time_in_seconds)
+   * SIGKILL
+- call the last command
+   * to cleanup the system
+      - umount -a (if needed)
+      - swapoff (if needed)
+      - sync (if needed)
+- switch off
