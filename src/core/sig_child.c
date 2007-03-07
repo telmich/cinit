@@ -27,13 +27,15 @@ void sig_child(int tmp)
     *   * if (once) -> update service status
     *   * else ignore, but reap away
     */
-   struct listitem *svc;
+   pid_t             pid;
+   struct listitem   *svc;
 
-   while((tmp = waitpid(-1, &tmp, WNOHANG)) > 0) {
+   while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
       /* check if it's a watched child */
-      svc = list_search_pid((pid_t) tmp);
+      svc = list_search_pid((pid_t) pid);
 
       if(svc != NULL) {
+         printf("rueckgabe: %d, %d, %d\n",WIFEXITED(tmp), WEXITSTATUS(tmp), tmp);
          /* Check, that we are operating on it =. that it is no normal child */
          if(svc->status & ST_ONCE_RUN
          || svc->status & ST_SH_RESPAWN
