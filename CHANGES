@@ -2,6 +2,7 @@ cinit-0.3pre8:
    - Updated and merged documentation: Codingstyle and Codingguide
    - Cleaned sigaction-code (fixes segfault on glibc)
    - Cleaned object listings
+   - Added notifications at shutdown
 
 cinit-0.3pre7: 2007-02-17
    - Many code cleanups
