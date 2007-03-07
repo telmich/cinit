@@ -51,7 +51,7 @@ void do_reboot(int signal)
     */
 
    /* tell the user what happens */
-   mini_printf(MSG_SHUTDOWN_START,1);
+   LOG(MSG_SHUTDOWN_START);
 
    /* do not listen to client requests anymore */
    cinit_ipc_destroy();
@@ -59,11 +59,11 @@ void do_reboot(int signal)
    /* FIXME: ignore signals now / install new signal-handlers! */
    set_signals(ACT_CLIENT);
 
-   mini_printf(MSG_SHUTDOWN_SVC,1);
+   LOG(MSG_SHUTDOWN_SVC);
    /* shutdown all services: take care about the dependency tree */
    shutdown_services();
 
-   mini_printf(MSG_SHUTDOWN_KILL,1);
+   LOG(MSG_SHUTDOWN_KILL);
    /* now: all services are down, let's kill all other processes */
    if(kill(-1,SIGTERM) == -1) {
       print_errno(MSG_TERMKILL);
@@ -76,6 +76,7 @@ void do_reboot(int signal)
    }
 
    /* Execute the last command         */
+   LOG(MSG_SHUTDOWN_LAST);
    execute_and_wait(CINIT_LAST);
 
    /* do what we really wanted to do   */

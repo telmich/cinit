@@ -60,9 +60,6 @@
 #define MSG_STOP_SVC       "Stoping "
 #define MSG_EXEC_FAILED    "Failed to execute "
 
-#define MSG_POWER_OFF      "Powering off..."
-#define MSG_HALT           "Halting system ..."
-#define MSG_REBOOT         "Rebooting ..."
 #define MSG_RESCUE         "Switching to rescue mode ..."
 #define MSG_UPDATE         "Updating cinit ..."
 #define MSG_HOT_REBOOT     "Hot reboot in progress ..."
@@ -98,14 +95,14 @@
  * /etc/cinit/svc/long/name: FAILED (why it happened)
  */
 
-#define MSG_INTRO_CINIT    "ct/     "
-#define MSG_INTRO_OK       MSG_INTRO_CINIT   "ok:  "
+#define MSG_INTRO_CINIT    "ct/"
 #define MSG_INTRO_SVC      MSG_INTRO_CINIT   "service: "
 #define MSG_INTRO_STOP     MSG_INTRO_CINIT   "stop: "
 
 /* FIXME: remove/append, but no intro! */
 #define MSG_INTRO_FAIL     "FAILED "
 #define MSG_INTRO_RESPAWN  MSG_INTRO_CINIT   "respawn: "
+#define MSG_INTRO_OK       MSG_INTRO_CINIT   "ok:  "
 
 #define MSG_SVC_FORK       "fork() failed"
 #define MSG_SVC_NEED_FAIL  MSG_INTRO_FAIL "Needs failed for service"
@@ -126,9 +123,12 @@
 
 
 /* Status messages */
-#define MSG_SHUTDOWN_START    MSG_INTRO_STOP  "Beginning the shutdown process...\n"
-#define MSG_SHUTDOWN_SVC      MSG_INTRO_STOP  "Shutting down services now...\n"
-#define MSG_SHUTDOWN_KILL     MSG_INTRO_STOP  "Killing remaining processes...\n"
-#define MSG_SHUTDOWN_OFF      MSG_INTRO_STOP  "Killing remaining processes...\n"
+#define MSG_SHUTDOWN_START    MSG_INTRO_STOP    "Beginning the shutdown process..."
+#define MSG_SHUTDOWN_SVC      MSG_INTRO_STOP    "Shutting down services now..."
+#define MSG_SHUTDOWN_KILL     MSG_INTRO_STOP    "Killing remaining processes..."
+#define MSG_SHUTDOWN_LAST     MSG_INTRO_STOP    "Executing final service..."
+#define MSG_POWER_OFF         MSG_INTRO_STOP    "Powering off..."
+#define MSG_HALT              MSG_INTRO_STOP    "Halting system ..."
+#define MSG_REBOOT            MSG_INTRO_STOP    "Rebooting ..."
 
 #endif   /* _CINIT_MSG_H */
