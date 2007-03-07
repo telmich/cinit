@@ -1,5 +1,7 @@
-/* 
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
+/*
+ * (c) 2005-2007 Nico Schottelius (nico-cinit at schottelius.org)
+ *
+ * All messages
  */
 
 #ifndef _CINIT_MSG_H
@@ -56,8 +58,6 @@
 #define LOG_SVC_FAILED     "Service already failed, not starting."
 #define LOG_SVC_NOTEXIST   "Service does not exist"
 
-#define MSG_START_SVC      "Starting "
-#define MSG_STOP_SVC       "Stoping "
 #define MSG_EXEC_FAILED    "Failed to execute "
 
 #define MSG_RESCUE         "Switching to rescue mode ..."
@@ -96,7 +96,7 @@
  */
 
 #define MSG_INTRO_CINIT    "ct/"
-#define MSG_INTRO_SVC      MSG_INTRO_CINIT   "service: "
+#define MSG_INTRO_SVC      MSG_INTRO_CINIT   "service:"
 #define MSG_INTRO_STOP     MSG_INTRO_CINIT   "stop: "
 
 /* FIXME: remove/append, but no intro! */
@@ -111,8 +111,6 @@
 /* FIXME: respawn / once */
 #define MSG_SVC_OK         MSG_INTRO_OK   "Service successfully executed."
 
-#define MSG_SVC_RESTART    MSG_INTRO_RESPAWN "Restarting service."
-#define MSG_SVC_START      "Starting service."
 
 #define MSG_TREE_EXEC      MSG_INTRO_CINIT "Execution of reverse service tree\n"
 
@@ -121,6 +119,10 @@
 #define MSG_GEN_SLEEP      "sleep"
 #define MSG_FATAL_PANIC    MSG_INTRO_CINIT "I tried everything, but even panic() failed: "
 
+/* Service messages */
+#define MSG_SVC_START      "Starting... "
+#define MSG_SVC_RESTART    "Restarting..."
+#define MSG_SVC_STOP       "Stoping... "
 
 /* Status messages */
 #define MSG_SHUTDOWN_START    MSG_INTRO_STOP    "Beginning the shutdown process..."
