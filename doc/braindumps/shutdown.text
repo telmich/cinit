@@ -47,10 +47,11 @@ How / What?
 
 The implementation
 -----------------
-
-- shutdown is initiated
-- disable communication (nobody can influence us anymore)
-- install special signal handler?
+x shutdown is initiated
+x disable communication (nobody can influence us anymore)
+x install special signal handler?
+   - no. we do not care about zombies anymore, we are gone soon anyway
+   - simply reset to the default
 - begin to shutdown services
    * where to start?
    * begin shutdown at the end of the tree, viewing/sorting it by the 'needed_by'

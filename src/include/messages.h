@@ -91,16 +91,29 @@
 #define P_EXEC_FAILED(name) { mini_printf(MSG_EXEC_FAILED,1); mini_printf(name,1); mini_printf("\n",1); }
 
 /* NEW (clean) Service status: Messages to the outside */
-#define MSG_INTRO_OK       "[SUCCESS] "
-#define MSG_INTRO_FAIL     "[ FAILED] "
-#define MSG_INTRO_CINIT    "[  CINIT] "
-#define MSG_INTRO_RESPAWN  "[RESPAWN] "
-#define MSG_INTRO_SVC      "[SERVICE] "
+
+/* services: how they should be printed
+ * /etc/cinit/svc/long/name: started once
+ * /etc/cinit/svc/long/name: is respawning
+ * /etc/cinit/svc/long/name: FAILED (why it happened)
+ */
+
+#define MSG_INTRO_CINIT    "ct/     "
+#define MSG_INTRO_OK       MSG_INTRO_CINIT   "ok:  "
+#define MSG_INTRO_SVC      MSG_INTRO_CINIT   "service: "
+#define MSG_INTRO_STOP     MSG_INTRO_CINIT   "stop: "
+
+/* FIXME: remove/append, but no intro! */
+#define MSG_INTRO_FAIL     "FAILED "
+#define MSG_INTRO_RESPAWN  MSG_INTRO_CINIT   "respawn: "
 
 #define MSG_SVC_FORK       "fork() failed"
 #define MSG_SVC_NEED_FAIL  MSG_INTRO_FAIL "Needs failed for service"
 #define MSG_SVC_FAIL       MSG_INTRO_FAIL "Service failed!"
+
+/* FIXME: respawn / once */
 #define MSG_SVC_OK         MSG_INTRO_OK   "Service successfully executed."
+
 #define MSG_SVC_RESTART    MSG_INTRO_RESPAWN "Restarting service."
 #define MSG_SVC_START      "Starting service."
 
@@ -109,6 +122,13 @@
 /* general errors */
 #define MSG_GETCWD         "Getcwd failed! Your system is most likely broken!"
 #define MSG_GEN_SLEEP      "sleep"
-#define MSG_FATAL_PANIC    MSG_INTRO_FAIL "I tried everything, but even panic() failed: "
+#define MSG_FATAL_PANIC    MSG_INTRO_CINIT "I tried everything, but even panic() failed: "
+
+
+/* Status messages */
+#define MSG_SHUTDOWN_START    MSG_INTRO_STOP  "Beginning the shutdown process...\n"
+#define MSG_SHUTDOWN_SVC      MSG_INTRO_STOP  "Shutting down services now...\n"
+#define MSG_SHUTDOWN_KILL     MSG_INTRO_STOP  "Killing remaining processes...\n"
+#define MSG_SHUTDOWN_OFF      MSG_INTRO_STOP  "Killing remaining processes...\n"
 
 #endif   /* _CINIT_MSG_H */

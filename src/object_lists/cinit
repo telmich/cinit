@@ -37,6 +37,7 @@ svc/svc_create.o
 svc/check_add_deps.o
 svc/dep_entry_add.o
 svc/dep_entry_del.o
+svc/shutdown_services.o
 svc/tree_exec.o
 svc/svc_set_status.o
 svc/svc_should_respawn.o

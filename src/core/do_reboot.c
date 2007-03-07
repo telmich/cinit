@@ -15,9 +15,11 @@
 #include <stdlib.h>
 
 #include "ipc.h"
-#include "cinit.h"
-#include "os.h"
-#include "messages.h"
+
+/* cleaned up own headers */
+#include "cinit.h"               /* set_signals       */
+#include "svc.h"                 /* shutdown_services */
+#include "messages.h"            /* messages          */
 
 /* cleaned headers */
 #include <signal.h>              /* kill()            */
@@ -47,17 +49,21 @@ void do_reboot(int signal)
     * 4. execute /etc/cinit/conf/{halt,reboot,poweroff}
     *    - notify user!
     */
-   
-   /* FIXME: pre-shutdown? not senseful, can be implemented outside. */
+
+   /* tell the user what happens */
+   mini_printf(MSG_SHUTDOWN_START,1);
 
    /* do not listen to client requests anymore */
    cinit_ipc_destroy();
 
-   /* FIXME: ignore signals now! */
+   /* FIXME: ignore signals now / install new signal-handlers! */
+   set_signals(ACT_CLIENT);
 
+   mini_printf(MSG_SHUTDOWN_SVC,1);
    /* shutdown all services: take care about the dependency tree */
-   //cinit_svc_shutdown();
+   shutdown_services();
 
+   mini_printf(MSG_SHUTDOWN_KILL,1);
    /* now: all services are down, let's kill all other processes */
    if(kill(-1,SIGTERM) == -1) {
       print_errno(MSG_TERMKILL);
