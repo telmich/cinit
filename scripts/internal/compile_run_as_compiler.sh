@@ -6,4 +6,6 @@ set -e
 sudo rsync -av "${what_real}/" "$dest"
 sudo chown -R compiler "$dest"
 sudo -u compiler "${dest}/scripts/internal/compile_local.sh"
-sudo -u compiler "${dest}/src/cinit"
+sudo -u compiler "${dest}/src/cinit" &
+sleep 13
+sudo -u compiler "${dest}/scripts/internal/stop_cinit.sh"
