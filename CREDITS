@@ -21,3 +21,5 @@ Marcus Wagner
    * building and maintaining the Debian package
 Peter Portmann
    * testing cinit and documentation, writing cinit.graph.text in C, other coding
+Tonnerre Lombard
+   * NetBSD support (host + hints)
