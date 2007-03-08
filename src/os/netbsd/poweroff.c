@@ -8,6 +8,7 @@
  *
  */
 
+#define _NETBSD_SOURCE        1
 #include <unistd.h>           /* reboot */
 #include <sys/reboot.h>       /* reboot */
 #include <stdio.h>            /* NULL   */
