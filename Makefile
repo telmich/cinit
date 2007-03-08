@@ -21,18 +21,18 @@ warn:
 all: sources documentation sizecheck
 
 install clean dist distclean:
-	@for subdir in $(CDIRS); do \
+	@for subdir in ${CDIRS}; do \
 		echo "Making $@ in $$subdir"; \
-		(cd $$subdir && $(MAKE) $(MAKEFLAGS) $@); \
+		(cd $$subdir && ${MAKE} ${MAKEFLAGS} $@); \
 	 done;
 
 .PHONY: sources
 sources:
-	$(MAKE) -C src all
+	${MAKE} -C src all
 
 .PHONY: documentation
 documentation:
-	$(MAKE) -C doc documentation
+	${MAKE} -C doc documentation
 
 sizecheck: sources
 	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l src/cinit > $$FILE; cat $$FILE; \
