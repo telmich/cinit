@@ -218,15 +218,6 @@ Later
       cinit.shutdown (shell script?!?)
 
 TODO.pre8:
-   - setup VM for testing: qemu/kvm/virtualbox (no commercial bloaty)
-
-   do_reboot.c:
-      write cinit_svc_shutdown
-      Add handler for ctrl+alt+delete
-         * document in paths
-      - implement do_reboot()
-         * so not only booting with cinit works, but also the shutdown
-
    Done:
       merge codingstyle and codingguide
       Use sa.mask in sigaction!
@@ -241,6 +232,15 @@ TODO.pre8:
 
 
 TODO.pre9:
+   - setup VM for testing: qemu/kvm/virtualbox (no commercial bloaty)
+
+   do_reboot.c:
+      write cinit_svc_shutdown
+      Add handler for ctrl+alt+delete
+         * document in paths
+      - implement do_reboot()
+         * so not only booting with cinit works, but also the shutdown
+
    include locking via shm, remove test on pid1
    cleanup bin/
 

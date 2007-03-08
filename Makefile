@@ -62,6 +62,8 @@ config:
 # Tests
 #
 tests:
+	# does not work, due getting killed, due to design :-)
+	#./scripts/internal/compile_run_as_compiler.sh
 	./scripts/internal/test_on_hosts.sh ./scripts/internal/compile_test.sh
 
 ################################################################################
