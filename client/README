@@ -1,2 +1,3 @@
 client/
-   These sources are used by the children which are spawned by cinit.
+   -- OBSOLETED --
+   These sources were used by the children which were spawned by cinit.

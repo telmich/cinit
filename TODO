@@ -2,7 +2,6 @@
 - define how it should work (doc/braindums/big-picture.text)
 - define service status in one document, so repeatition stops!
 --------------------------------------------------------------------------------
-- rename headers/ -> includes/
 - remove client/ from top level
 --------------------------------------------------------------------------------
 Generate automatic asciidoc from conf/*
@@ -97,6 +96,7 @@ user
 ----
 - do we really need swapoff? remove umount, swapoff!
    * to services!
+   -> they have to do it!
 - dependencies with leading '.' (dot) are ignored.
 - about cinit-configuration structure
    * cconfig

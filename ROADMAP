@@ -23,14 +23,14 @@ Versions
 0.3:
 ~~~
    code: Make cinit compile again :) [DONE]
-   code: double check to remove Linux specific source from general tree
+   code: double check to remove Linux specific source from general tree [DONE]
    code: seperate ipc from the rest [DONE]
-   code: fix / check signal handlers
+   code: fix / check signal handlers [DONE]
    code: cleanup makefile
    code: add porting code: add support for any unix in general [DONE]
    code: stabilize code, remove experimenting parts
    code: remove delay support, let off/off.params do that.
-   code: add special directory (/etc/cinit/special?) for os specific binaries
+   code: add special directory (/etc/cinit/special?) for os specific binaries [CANCELED]
       -> halt, poweroff, reboot (NOTHING MORE THEY CAN DO)
       -> SHOULD NOT BE IN THE PATH
    code: move production code to src/
