@@ -2,24 +2,33 @@
 # Nico Schottelius
 # Build release tar
 # Date: Sat Oct 15 21:38:29 CEST 2005
-# Last Changed: Fr Okt 28 01:24:58 CEST 2005
+# Last Changed: ls -l
 
-if [ $# -ne 2 ]; then
-   echo "This is a maintainer-only script to release cinit"
-   echo $(basename $0): source-dir version
-   exit 1
+# only release if I tell it to release
+[ "$1" = "now" ] || exit 23
+
+#if [ $# -ne 2 ]; then
+#   echo "This is a maintainer-only script to release cinit"
+#   echo $(basename $0): source-dir version
+#   exit 1
+#fi
+
+DDIR="$(dirname $0)/../../../"
+DIR="$(dirname $0)/../../"
+VERSION="$(cd "$DIR"; pwd -P | sed 's;.*/cinit-;;')"
+VERSION_CONF="$(head -n1 $(dirname $0)/../../conf/version | sed 's/^"\(.*\)"$/\1/')"
+VERSION_CHANGES="$(head -n1 "$(dirname $0)/../../CHANGES" | sed 's/cinit-\(.*\):$/\1/')"
+
+echo "=> Version directory:    $VERSION"
+echo "=> Version conf/version: $VERSION_CONF"
+echo "=> Version CHANGES:      $VERSION_CHANGES"
+
+if [ "$VERSION" = "$VERSION_CONF" -a "$VERSION" = "$VERSION_CHANGES" ]; then
+   echo "=> Version confirmed."
 fi
 
-cat << eof
-   Erinnerung:
-
-   - Version in conf/version angepasst?
-   - CHANGES angepasst?
-   
-   Nein? Strg+C bitte...
-eof
-read a
-
+echo -n "=> Continue? "
+read yes
 
 DIR=$1
 VERSION=$2
