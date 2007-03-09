@@ -1,0 +1,9 @@
+[19:33] denkbrett:root% cat uml-mount.sh 
+SDIR=$(dirname $0)
+DDIR=$(dirname $0)/root
+sudo mount "$SDIR/Debian-3.0r0.ext2" "$DDIR" -o loop,acl
+
+denkbrett# tar cfj ~nico/projekte/cinit/conf-vm-2007-03-05.tar.bz2 cinit 
+denkbrett# chown -R nico cinit 
+denkbrett# chown nico ../sbin
+
