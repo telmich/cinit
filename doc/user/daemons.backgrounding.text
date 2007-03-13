@@ -51,6 +51,7 @@ The following daemons / servers are known to avoid backgrounding easily:
 - nylon [socks proxy]:          -f (prints output to terminal)
 - oidentd [identd server]:      -i
 - oops [http proxy]:            normal behaviour
+- openpbx [pbx]:                -f
 - openssh [ssh server]:         -D
 - openvpn [vpn server]:         normal behaviour
 - pbbuttonsd [power management]:normal behaviour
