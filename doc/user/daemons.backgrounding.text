@@ -39,6 +39,7 @@ The following daemons / servers are known to avoid backgrounding easily:
 - fam [file alteration monitor]:-f
 - fcron [schedular]:            -f
 - frox [ftp proxy]:             "NoDetach" in config
+- freeradius [radiusd]:         -f
 - gdm [display manager]:        -nodaemon
 - hybrid [irc server]:          -foreground
 - icecast2 [sound streamer]:    normal behaviour
