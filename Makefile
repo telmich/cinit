@@ -18,7 +18,8 @@ CDIRS=src doc
 warn:
 	@cat doc/.buildwarn
 
-all: sources documentation sizecheck
+all: sources documentation
+dev-all: all sizecheck
 
 install clean dist distclean:
 	@for subdir in ${CDIRS}; do \
