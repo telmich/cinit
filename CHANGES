@@ -1,3 +1,5 @@
+cinit-0.3pre9:
+   - 
 cinit-0.3pre8: 2007-04-06
    - Updated and merged documentation: Codingstyle and Codingguide
    - Cleaned sigaction-code (fixes segfault on glibc)

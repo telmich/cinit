@@ -13,8 +13,9 @@
 #   exit 1
 #fi
 
-DDIR="$(dirname $0)/../../../"
-DIR="$(dirname $0)/../../"
+DDIR="$(cd $(dirname $0)/../../../; pwd -P)"
+DIR="$(cd $(dirname $0)/../../; pwd -P)"
+REL_DIR="$(echo $DIR | sed 's;.*/;;')"
 VERSION="$(cd "$DIR"; pwd -P | sed 's;.*/cinit-;;')"
 VERSION_CONF="$(head -n1 $(dirname $0)/../../conf/version | sed 's/^"\(.*\)"$/\1/')"
 VERSION_CHANGES="$(head -n1 "$(dirname $0)/../../CHANGES" | sed 's/cinit-\(.*\):$/\1/')"
@@ -30,9 +31,9 @@ fi
 echo -n "=> Continue? "
 read yes
 
-DIR=$1
-VERSION=$2
-OUT_NAME=cinit-${VERSION}.tar.bz2
+#DIR=$1
+#VERSION=$2
+OUT_NAME="$DDIR/cinit-${VERSION}.tar.bz2"
 D_HOST=home.schottelius.org
 D_BASE=www/org/schottelius/unix/www/cinit
 D_DIR=${D_BASE}/archives/
@@ -47,7 +48,7 @@ fi
 ( cd "$DIR" && make dist ) || exit 1
 
 echo "Creating bzip2 compressed tar"
-tar cj -X $DIR/.exclude -f "$OUT_NAME" "$DIR"
+tar cj -X $DIR/.exclude -C "$DDIR" -f "$OUT_NAME" "$REL_DIR"
 chmod 0644 "$OUT_NAME"
 echo "Transfering to $D_HOST"
 scp "$OUT_NAME" "$D_HOST:$D_DIR"
