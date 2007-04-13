@@ -25,3 +25,27 @@ The second possibility is to sleep a dynamic amount of time.
 
 The next big question: How long to sleep?
 -----------------------------------------
+I think that as long as a service is broken we should not investigate to much
+time into restarting it. So we can define a maximum amount of time to sleep
+(for instance 30 seconds). The minimum amount of time to sleep is zero seconds.
+
+When the service is first started, the sleep time defaults to the minimum
+amount of time. Each time the service is restarted, the sleep time is adjusted:
+
+sleep time (st)  = Maximum sleep time (mst) / Time the process was running (tr)
+
+- If tr is < 1 it is adjusted to 1 and thus st is set to mst.
+- If tr is > mst, st is set to 0.
+
+
+How to force restart of a service?
+----------------------------------
+Use cvsc: 
+
+
+Hom is it implemented?
+----------------------
+Everytime cinit has to respawn a service it has to fork() itself.
+The sleep call is implemented in the fork, so cinit itself does not have
+to care about it. After the sleep time is over or the fork() recieves
+SIGALARM it executes the real service.
