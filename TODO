@@ -217,24 +217,15 @@ Later
       cinit.reboot
       cinit.shutdown (shell script?!?)
 
-TODO.pre8:
-   Done:
-      merge codingstyle and codingguide
-      Use sa.mask in sigaction!
-      double check all initialisations!
-      fixed problem in src/Makefile
-      remove old object listings
-      Document the define of the following:
-         -> conf/umount = called before all shutdown procedures --> conf/last!
-      test sleep code (sleep_before_kill())
-         -> execute as id compiler, so kill -1 does not kill my session
-      check whether successful service is not successful reported
-
 
 TODO.pre9:
    - setup VM for testing: qemu/kvm/virtualbox (no commercial bloaty)
+      -> uml!
+
+   - sleep when respawnig!
 
    do_reboot.c:
+      is ipc closed? -> check!
       write cinit_svc_shutdown
       Add handler for ctrl+alt+delete
          * document in paths
@@ -249,6 +240,16 @@ TODO.pre9:
 Session terminated, killing shell...msgq-destroy: Invalid argument
 msgq-destroy: Invalid argument
    - pretty print, reporting is ugly!
+
+   Done:
+   - pfad korrigieren (home/..../ -> cinit.release)
+   - cg-add nicht aufrufen beim make all!
+ser/nico/oeffentlich/computer/projekte/cinit/cinit-0.3pre8/doc'
+FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l src/cinit > $FILE; cat $FILE; \
+   cg-add $FILE
+-rwx------ 1 nico nico 72601 2007-04-06 17:52 src/cinit
+There is no GIT repository here (.git not found)
+make: *** [sizecheck] Fehler 1
 
 TODO.pre10:
    cleanup client/ comm/ contrib+tools/ util/ tmp/
