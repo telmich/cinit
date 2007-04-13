@@ -1,0 +1,27 @@
+cinit - Respawning and sleeping
+===============================
+Nico Schottelius <nico-cinit__@__schottelius.org>
+0.1, for cinit 0.3, Initial Version from 2007-04-13
+:Author Initials: NS
+
+
+How cinit sleeps, before a service is respawned.
+
+Introduction
+------------
+When a service, that is configured to be respawning, exits cinit restarts it.
+Because services may be broken and thus cinit would try to restart it many
+times in a second, it is necessary to sleep between restarts.
+
+The big question: How to sleep?
+------------------------------------
+The first possibility is to sleep a fixed amount of time between restarts:
+For instance one second. This is not a good solution, because this waits
+one unecessary second if the process just crashed. It may be too less, if
+the service is really broken.
+
+The second possibility is to sleep a dynamic amount of time.
+
+
+The next big question: How long to sleep?
+-----------------------------------------
