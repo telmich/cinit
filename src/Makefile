@@ -112,6 +112,9 @@ install-dir:
 cinit: $(CINIT_OBJ)
 	$(LD) $^ -o $@
 
+uml: cinit
+	cp cinit ../../vm/uml/root/sbin/cinit
+
 ################################################################################
 #
 # Generic targets
