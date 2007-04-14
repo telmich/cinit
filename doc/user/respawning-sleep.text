@@ -40,7 +40,7 @@ sleep time (st)  = Maximum sleep time (mst) / Time the process was running (tr)
 
 How to force restart of a service?
 ----------------------------------
-Use cvsc: 
+Use cvsc (to be implemented).
 
 
 Hom is it implemented?
@@ -48,4 +48,5 @@ Hom is it implemented?
 Everytime cinit has to respawn a service it has to fork() itself.
 The sleep call is implemented in the fork, so cinit itself does not have
 to care about it. After the sleep time is over or the fork() recieves
-SIGALARM it executes the real service.
+SIGALARM it executes the real service. cinit itself records as start time
+the current time plus sleep time.
