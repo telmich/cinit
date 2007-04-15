@@ -7,19 +7,23 @@
  *    Start a service
  */
 
-#include <stdio.h>         /* NULL        */
-#include <unistd.h>        /* fork        */
-#include <string.h>        /* strerror    */
-#include <errno.h>         /* errno       */
-#include <limits.h>        /* PATH_MAX    */
-#include "svc.h"           /* struct *    */
-#include "messages.h"      /* MSG_*       */
-#include "cinit.h"         /* execute_sth */
+#include <stdio.h>         /* NULL              */
+#include <unistd.h>        /* fork              */
+#include <string.h>        /* strerror          */
+#include <errno.h>         /* errno             */
+#include <limits.h>        /* PATH_MAX          */
+#include <time.h>          /* nanosleep()       */
+//#include <sys/time.h>      /* gettimeofday()    */
+
+#include "svc.h"           /* struct *          */
+#include "messages.h"      /* MSG_*             */
+#include "cinit.h"         /* execute_sth       */
 
 //void svc_start(struct listitem *li, int strict)
-void svc_start(struct listitem *li)
+void svc_start(struct listitem *li, int delay)
 {
    char buf[PATH_MAX+1];
+   struct timespec ts;
 
    /* FIXME: All cleanup must go here
     * close(fds);
@@ -38,6 +42,9 @@ void svc_start(struct listitem *li)
    }
    /**********************      parent     ************************/
    if(li->pid > 0) {
+      /* set start time */
+      li->start = time(NULL);
+
       if(li->status & ST_SH_ONCE)
          li->status = ST_ONCE_RUN;
       else
@@ -46,6 +53,17 @@ void svc_start(struct listitem *li)
    }
    
    /********************** Client / fork() ************************/
+   /* sleep, if necesseray */
+   if(delay) {
+      ts.tv_sec   = delay;
+      ts.tv_nsec  = 0;
+
+      /* FIXME: also report value; int2char */
+      svc_report_status(li->abs_path,MSG_SVC_SLEEP,NULL);
+
+      /* do not need to check for errors, because we can continue anyway */
+      nanosleep(&ts,NULL);
+   }
    svc_report_status(li->abs_path,MSG_SVC_START,NULL);
 
    /* length check is done by path_append */
