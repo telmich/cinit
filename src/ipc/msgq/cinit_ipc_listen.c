@@ -10,6 +10,7 @@
 
 #include <sys/ipc.h>    /* ftok           */
 #include <sys/msg.h>    /* msgget         */
+#include <errno.h>      /* errno          */
 
 #include "cinit.h"      /* print_errno    */
 #include "config.h"
@@ -26,8 +27,11 @@ int cinit_ipc_listen(void)
       tmp = msgrcv(mq_in,&m_client,(sizeof m_client),0,0);
 
       if(tmp == -1) {
-         /* FIXME: EINTR ignore */
-         print_errno(MSG_MSGQ_MSGRCV);
+         if(errno != EINTR) {
+            /* FIXME: EINTR ignore */
+            print_errno(MSG_MSGQ_MSGRCV);
+         }
+         continue;
       }
 
       //printf("pid: %d, m_client\n",m_client.pid);
