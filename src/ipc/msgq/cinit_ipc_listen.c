@@ -28,7 +28,6 @@ int cinit_ipc_listen(void)
 
       if(tmp == -1) {
          if(errno != EINTR) {
-            /* FIXME: EINTR ignore */
             print_errno(MSG_MSGQ_MSGRCV);
          }
          continue;

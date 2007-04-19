@@ -54,6 +54,7 @@ void svc_start(struct listitem *li, int delay)
    
    /********************** Client / fork() ************************/
    /* sleep, if necesseray */
+   printf("Delay: %d\n", delay);
    if(delay) {
       ts.tv_sec   = delay;
       ts.tv_nsec  = 0;

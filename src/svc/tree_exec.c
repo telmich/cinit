@@ -39,8 +39,9 @@ int tree_exec(struct dep *start)
    do {
       switch(svc_needs_status(tmp->svc)) {
          case SNS_NEEDS_STARTED:
+            svc_report_status(tmp->svc->abs_path,"Needs sind durch",NULL);
             /* execute service, add dependencies, remowe from list */
-            svc_start(tmp->svc);
+            svc_start(tmp->svc,0);
             if(!dep_needs_wants_add(&tmp,tmp->svc,DEP_NEEDS)) return 0;
             if(!dep_needs_wants_add(&tmp,tmp->svc,DEP_WANTS)) return 0;
             tmp = dep_entry_del(tmp);
@@ -54,6 +55,7 @@ int tree_exec(struct dep *start)
             break;
 
          case SNS_NEEDS_UNFINISHED:
+            svc_report_status(tmp->svc->abs_path,"Needs am abarbeiten",NULL);
             /* continue with the next item */
             tmp = tmp->next;
             break;

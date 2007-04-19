@@ -10,6 +10,7 @@
 
 #include <sys/wait.h>   /* waitpid           */
 #include <stdio.h>      /* NULL              */
+#include <time.h>       /* time()            */
 
 #include "cinit.h"      /*                   */
 #include "svc.h"        /* list_search_pid   */
@@ -28,6 +29,7 @@ void sig_child(int tmp)
     *   * else ignore, but reap away
     */
    pid_t             pid;
+   int               delay;
    struct listitem   *svc;
 
    while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
@@ -49,8 +51,18 @@ void sig_child(int tmp)
          /* respawn: restart: FIXME Delay for regular dying services */
          if(svc->status == ST_RESPAWNING) {
             svc_report_status(svc->abs_path,MSG_SVC_RESTART,NULL);
-            /* FIXME: replace by forking version: svc_restartsvc); */
-            svc_start(svc);
+
+            int test = time(NULL);
+            test++;
+            delay = MAX_DELAY / (time(NULL) - svc->start);
+            printf("sig_child: %d, %d, %d, %d\n",
+                  MAX_DELAY,
+                  (int) time(NULL),
+                  (int) svc->start,
+                  (int) (test - svc->start)
+                  );
+
+            svc_start(svc,delay);
          }
       } else {
          /* FIXME remove in production version */

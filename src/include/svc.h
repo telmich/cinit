@@ -23,6 +23,7 @@ struct listitem {
    char        *abs_path;        /* name of service                           */
    long int    status;           /* current status                            */
    pid_t       pid;              /* pid of service / respawn watcher          */
+   time_t      start;            /* time the process was started last time    */
 
 
    struct   dep      *wanted;    /* list of services that want this service   */
@@ -67,7 +68,7 @@ struct dep        *dep_create(struct listitem *svc);
 void              svc_success(struct listitem *li);
 void              svc_fail(struct listitem *li);
 void              svc_report_status(char *svc, char *msg, char *err);
-void              svc_start(struct listitem *li);
+void              svc_start(struct listitem *li, int delay);
 void              shutdown_services(void);
 
 
