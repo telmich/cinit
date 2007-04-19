@@ -11,7 +11,6 @@
 #include <stdio.h>         /* NULL        */
 #include <string.h>        /* strchr      */
 #include <stdlib.h>        /* alloc       */
-#include "cinit.h"         /* FIXME debug */
 
 char *strip_final_newline(char *str)
 {
@@ -19,13 +18,13 @@ char *strip_final_newline(char *str)
 
    /* don't get fooled by bad pointers */
    if(str == NULL) {
-      mini_printf("SFN: NULL\n",1);
       return NULL;
    }
-
+   
    p = strrchr(str,'\n');
    if(p) {
       if(*(p+1) == '\0') {
+         *p = '\0';   /* DO NOT FORGET TO TERMINATE STRING */
          str = realloc(str,(p-str));
       }
    }
