@@ -113,7 +113,12 @@ cinit: $(CINIT_OBJ)
 	$(LD) $^ -o $@
 
 uml: cinit
+	../../vm/uml/uml-mount.sh
 	cp cinit ../../vm/uml/root/sbin/cinit
+	../../vm/uml/uml-umount.sh
+
+umlstart: uml
+	../../vm/uml/uml-start.sh
 
 ################################################################################
 #
