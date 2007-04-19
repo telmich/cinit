@@ -95,8 +95,10 @@
  * /etc/cinit/svc/long/name: FAILED (why it happened)
  */
 
-#define MSG_INTRO_CINIT    "ct/"
-#define MSG_INTRO_SVC      MSG_INTRO_CINIT   "service:"
+#define MSG_INTRO_CINIT    "cinit:"
+#define MSG_INTRO_SPACE    MSG_INTRO_CINIT " "
+#define MSG_INTRO_SVC      MSG_INTRO_CINIT
+//#define MSG_INTRO_SVC      MSG_INTRO_CINIT   "service:"
 #define MSG_INTRO_STOP     MSG_INTRO_CINIT   "stop: "
 
 /* FIXME: remove/append, but no intro! */
@@ -110,17 +112,18 @@
 
 
 
-#define MSG_TREE_EXEC      MSG_INTRO_CINIT "Execution of reverse service tree\n"
+#define MSG_TREE_EXEC      MSG_INTRO_SPACE "Execution of reverse service tree\n"
 
 /* general errors */
 #define MSG_GETCWD         "Getcwd failed! Your system is most likely broken!"
 #define MSG_GEN_SLEEP      "sleep"
-#define MSG_FATAL_PANIC    MSG_INTRO_CINIT "I tried everything, but even panic() failed: "
+#define MSG_FATAL_PANIC    MSG_INTRO_SPACE "I tried everything, but even panic() failed: "
 
 /* Service messages */
 #define MSG_SVC_START      "Starting... "
 #define MSG_SVC_STOP       "Stoping... "
 #define MSG_SVC_RESTART    "Restarted."
+#define MSG_SVC_SLEEP      "Sleeping before restart"
 #define MSG_SVC_OK_ONCE    "Started once."
 #define MSG_SVC_OK_RESPAWN "Is respawning."
 
