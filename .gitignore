@@ -12,8 +12,9 @@ tmpbin
 src/os/current
 src/ipc/current
 src/cinit
-doc/*/*.html
-doc/*/*.htm
-doc/*/*.man
-doc/*/*.texi
-doc/*/*.docbook
+*.html
+*.htm
+*.man
+*.texi
+*.texi
+*.docbook
