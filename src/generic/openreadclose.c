@@ -24,10 +24,6 @@ int openreadclose(char *filename, char **where)
    int         fd;
    char        buf[512];
 
-   /* FIXME remove in production */
-   mini_printf("ORC:",1);
-   mini_printf(filename,1);
-   mini_printf("\n",1);
    *where   = NULL;
 
    /* what a wonderful loop */
@@ -48,7 +44,7 @@ int openreadclose(char *filename, char **where)
       } else if(tmp == 0) {
          break;
       }
-      
+
       cnt += tmp;
       *where = realloc(*where,cnt + 1);
       if(*where == NULL) return ORC_ERR_MEM;
@@ -56,7 +52,7 @@ int openreadclose(char *filename, char **where)
       /* FIXME check correctness of copied buffer...
        * and get some sleep..soon, very soon! */
       strncpy(&(*where)[cnt-tmp],buf,tmp);
-      mini_printf("ORC: ",1);
+      mini_printf("ORC-inhalt: ",1);
       mini_printf(buf,1);
       mini_printf("\n",1);
    }
