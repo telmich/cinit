@@ -23,6 +23,8 @@ int cinit_ipc_listen(void)
    struct msg_client m_client;
 
    while (1) {
+      mini_printf("Starte ipc loop\n",1);
+
       /* FIXME: change msg structure */
       tmp = msgrcv(mq_in,&m_client,(sizeof m_client),0,0);
 
