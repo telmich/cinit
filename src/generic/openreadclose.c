@@ -52,9 +52,6 @@ int openreadclose(char *filename, char **where)
       /* FIXME check correctness of copied buffer...
        * and get some sleep..soon, very soon! */
       strncpy(&(*where)[cnt-tmp],buf,tmp);
-      mini_printf("ORC-inhalt: ",1);
-      mini_printf(buf,1);
-      mini_printf("\n",1);
    }
    
    while((fd = close(fd)) == -1) {
