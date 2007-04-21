@@ -1,4 +1,4 @@
-cinit-0.3pre9:
+cinit-0.3pre9: 2007-04-21
    - Implemented sleeping before respawn (static delay)
    - Report broken links on execution, but ignore empty services
 
