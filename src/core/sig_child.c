@@ -32,6 +32,7 @@ void sig_child(int tmp)
    pid_t             pid;
    int               delay;
    struct listitem   *svc;
+   struct timeval    now;
 
    while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
       /* check if it's a watched child */
@@ -59,7 +60,13 @@ void sig_child(int tmp)
             svc_report_status(svc->abs_path,MSG_SVC_RESTART,NULL);
             mini_printf("WHILE: IM respawn: nach report status!\n",1);
 
-            delay = MAX_DELAY / (time(NULL) - svc->start);
+            //delay = MAX_DELAY / (time(NULL) - svc->start);
+            if(gettimeofday(&now,NULL) == -1) {
+               print_errno(MSG_GETTIMEOFDAY);;
+               delay = 0;
+            } else {
+               delay = MAX_DELAY / (now.tv_sec - svc->start);
+            }
 
             /* int test = time(NULL);
             test++;

@@ -119,6 +119,7 @@
 #define MSG_GETCWD         "Getcwd failed! Your system is most likely broken!"
 #define MSG_FATAL_PANIC    MSG_INTRO_SPACE "I tried everything, but even panic() failed: "
 #define MSG_ERR_SLEEP      MSG_INTRO_SPACE "Sleep did not succeed"
+#define MSG_GETTIMEOFDAY   MSG_INTRO_SPACE "gettimeofday() failed!"
 
 /* Service messages */
 #define MSG_SVC_START      "Starting... "
