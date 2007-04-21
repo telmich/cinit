@@ -54,17 +54,20 @@ void sig_child(int tmp)
          mini_printf("WHILE: Vorm respawn!\n",1);
          /* respawn: restart: FIXME Delay for regular dying services */
          if(svc->status == ST_RESPAWNING) {
+            mini_printf("WHILE: IM respawn!\n",1);
             svc_report_status(svc->abs_path,MSG_SVC_RESTART,NULL);
+            mini_printf("WHILE: IM respawn: nach report status!\n",1);
 
-            int test = time(NULL);
+            /* int test = time(NULL);
             test++;
             delay = MAX_DELAY / (time(NULL) - svc->start);
+            mini_printf("WHILE: IM respawn / for printf!\n",1);
             printf("sig_child: %d, %d, %d, %d\n",
                   MAX_DELAY,
                   (int) time(NULL),
                   (int) svc->start,
                   (int) (test - svc->start)
-                  );
+                  ); */
 
             mini_printf("WHILE: Vorm SVC_START!\n",1);
             svc_start(svc,delay);
