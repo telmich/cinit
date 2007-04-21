@@ -121,6 +121,10 @@
 #define MSG_ERR_SLEEP      MSG_INTRO_SPACE "Sleep did not succeed"
 #define MSG_GETTIMEOFDAY   MSG_INTRO_SPACE "gettimeofday() failed!"
 
+/* stat() errors */
+#define MSG_NONREGULAR     "Is not a regular file."
+#define MSG_BROKENLINK     "Is a broken link."
+
 /* Service messages */
 #define MSG_SVC_START      "Starting... "
 #define MSG_SVC_STOP       "Stoping... "

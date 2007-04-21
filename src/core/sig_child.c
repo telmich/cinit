@@ -32,7 +32,7 @@ void sig_child(int tmp)
    pid_t             pid;
    int               delay;
    struct listitem   *svc;
-   struct timeval    now;
+//   struct timeval    now;
 
    while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
       /* check if it's a watched child */

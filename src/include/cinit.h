@@ -44,6 +44,7 @@ enum {
    FE_FILE,       /* file exists and is a file     */
    FE_OTHER,      /* file exists, but is no file   */
    FE_NOT,        /* file does not exist           */
+   FE_NOLINK,     /* file is a broken symbolic link*/
    FE_ERR         /* some error occured            */
 };
 

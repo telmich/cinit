@@ -1,5 +1,6 @@
 cinit-0.3pre9:
-   - Implemented sleeping before respawn
+   - Implemented sleeping before respawn (static delay)
+   - Report broken links on execution, but ignore empty services
 
 cinit-0.3pre8: 2007-04-06
    - Updated and merged documentation: Codingstyle and Codingguide

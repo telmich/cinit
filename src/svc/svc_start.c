@@ -76,7 +76,9 @@ void svc_start(struct listitem *li, int delay)
    /* Check for existence */
    li->status = file_exists(buf);
 
-   if(li->status == FE_NOT) _exit(0);  /* nothing there? fine! */
+   if(li->status == FE_NOT) {
+      _exit(0);  /* nothing there? fine! */
+   }
 
    if(li->status == FE_FILE) {
       /* FIXME: reset signals: Is this necessary? Or does fork clean it anyway? */
