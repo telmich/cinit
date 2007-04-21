@@ -61,12 +61,14 @@ void sig_child(int tmp)
             mini_printf("WHILE: IM respawn: nach report status!\n",1);
 
             //delay = MAX_DELAY / (time(NULL) - svc->start);
-            if(gettimeofday(&now,NULL) == -1) {
+            /* if(gettimeofday(&now,NULL) == -1) {
                print_errno(MSG_GETTIMEOFDAY);;
                delay = 0;
             } else {
                delay = MAX_DELAY / (now.tv_sec - svc->start);
-            }
+            } */
+
+            delay = 5;
 
             /* int test = time(NULL);
             test++;
