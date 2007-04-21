@@ -10,7 +10,8 @@
 
 #include <sys/wait.h>   /* waitpid           */
 #include <stdio.h>      /* NULL              */
-#include <time.h>       /* time()            */
+#include <sys/time.h>   /* gettimeofday()    */ /* FIXME: CHECK POSIX */
+#include <time.h>       /* time(),gettime..  */ /* FIXME: CHECK POSIX */
 
 #include "cinit.h"      /*                   */
 #include "svc.h"        /* list_search_pid   */
@@ -58,9 +59,10 @@ void sig_child(int tmp)
             svc_report_status(svc->abs_path,MSG_SVC_RESTART,NULL);
             mini_printf("WHILE: IM respawn: nach report status!\n",1);
 
+            delay = MAX_DELAY / (time(NULL) - svc->start);
+
             /* int test = time(NULL);
             test++;
-            delay = MAX_DELAY / (time(NULL) - svc->start);
             mini_printf("WHILE: IM respawn / for printf!\n",1);
             printf("sig_child: %d, %d, %d, %d\n",
                   MAX_DELAY,
