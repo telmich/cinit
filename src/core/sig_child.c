@@ -36,13 +36,14 @@ void sig_child(int tmp)
       /* check if it's a watched child */
       svc = list_search_pid((pid_t) pid);
 
-      mini_printf("hier drinne?\n",1);
+      mini_printf("WHILE1: hier drinne?\n",1);
 
       if(svc != NULL) {
          /* Check, that we are operating on it =. that it is no normal child */
          if(svc->status & ST_ONCE_RUN
          || svc->status & ST_SH_RESPAWN
          || svc->status & ST_RESPAWNING) {
+            mini_printf("WHILE: svc bekannt!\n",1);
             if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
                svc_success(svc);
             } else {
@@ -50,6 +51,7 @@ void sig_child(int tmp)
             }
          }
 
+         mini_printf("WHILE: Vorm respawn!\n",1);
          /* respawn: restart: FIXME Delay for regular dying services */
          if(svc->status == ST_RESPAWNING) {
             svc_report_status(svc->abs_path,MSG_SVC_RESTART,NULL);
@@ -64,11 +66,14 @@ void sig_child(int tmp)
                   (int) (test - svc->start)
                   );
 
+            mini_printf("WHILE: Vorm SVC_START!\n",1);
             svc_start(svc,delay);
          }
+         mini_printf("WHILE: NACH respawn!\n",1);
       } else {
          /* FIXME remove in production version */
          mini_printf("Cleanup: reparenting\n",1);
       }
+   mini_printf("WHILE2: Ende sigchild\n",1);
    }
 }

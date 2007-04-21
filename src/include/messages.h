@@ -111,13 +111,14 @@
 #define MSG_SVC_FAIL       MSG_INTRO_FAIL "Service failed!"
 
 
+#define MSG_BUILTIN_SLEEP  MSG_INTRO_STOP "Using built-in sleep"
 
 #define MSG_TREE_EXEC      MSG_INTRO_SPACE "Execution of reverse service tree\n"
 
 /* general errors */
 #define MSG_GETCWD         "Getcwd failed! Your system is most likely broken!"
-#define MSG_GEN_SLEEP      "sleep"
 #define MSG_FATAL_PANIC    MSG_INTRO_SPACE "I tried everything, but even panic() failed: "
+#define MSG_ERR_SLEEP      MSG_INTRO_SPACE "Sleep did not succeed"
 
 /* Service messages */
 #define MSG_SVC_START      "Starting... "
@@ -128,7 +129,7 @@
 #define MSG_SVC_OK_RESPAWN "Is respawning."
 
 /* Status messages */
-#define MSG_SHUTDOWN_START    MSG_INTRO_STOP    "Beginning the shutdown process..."
+#define MSG_SHUTDOWN_START    MSG_INTRO_STOP    "\nBeginning the shutdown process..."
 #define MSG_SHUTDOWN_SVC      MSG_INTRO_STOP    "Shutting down services now..."
 #define MSG_SHUTDOWN_KILL     MSG_INTRO_STOP    "Killing remaining processes..."
 #define MSG_SHUTDOWN_LAST     MSG_INTRO_STOP    "Executing final service..."

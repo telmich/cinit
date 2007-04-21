@@ -30,7 +30,7 @@ void sleep_before_kill()
       if(errno != 0) tmp = SLEEP_KILL;
       free(content);
    } else {
-      mini_printf("builtin sleep\n",1);
+      mini_printf(MSG_BUILTIN_SLEEP,1);
       tmp = SLEEP_KILL;
    }
 
@@ -38,6 +38,6 @@ void sleep_before_kill()
    ts.tv_nsec  = 0;
  
    if(nanosleep(&ts,NULL) == -1) {
-      print_errno(MSG_GEN_SLEEP);
+      print_errno(MSG_ERR_SLEEP);
    }
 }
