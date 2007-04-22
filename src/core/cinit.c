@@ -69,7 +69,9 @@ int main(int argc, char **argv)
    set_signals(ACT_SERV);
 
    /* pre-calculate service tree */
-   gen_svc_tree(initdir);
+   if(!gen_svc_tree(initdir)) {
+      panic();
+   }
 
    /* free, if we malloc()ed before */
    if(initdir != CINIT_INIT) {
