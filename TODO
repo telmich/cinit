@@ -219,27 +219,10 @@ Later
 
 
 TODO.pre9:
-   - setup VM for testing: qemu/kvm/virtualbox (no commercial bloaty)
-      -> uml!
-
-   - sleep when respawnig!
-
    do_reboot.c:
-      is ipc closed? -> check!
       write cinit_svc_shutdown
-      Add handler for ctrl+alt+delete
-         * document in paths
       - implement do_reboot()
          * so not only booting with cinit works, but also the shutdown
-
-   include locking via shm, remove test on pid1
-   cleanup bin/
-
-   - do not print an error if /etc/cinit/conf/last is non-existent!
-   - ignore msgrcv: Interrupted system call
-Session terminated, killing shell...msgq-destroy: Invalid argument
-msgq-destroy: Invalid argument
-   - pretty print, reporting is ugly!
 
    Done:
    - pfad korrigieren (home/..../ -> cinit.release)
@@ -250,12 +233,39 @@ FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l src/cinit > $FILE; cat $FILE; \
 -rwx------ 1 nico nico 72601 2007-04-06 17:52 src/cinit
 There is no GIT repository here (.git not found)
 make: *** [sizecheck] Fehler 1
+   - setup VM for testing: qemu/kvm/virtualbox (no commercial bloaty)
+      -> uml!
+   - sleep when respawnig!
+      -> static delay of five seconds
+   do_reboot.c:
+      is ipc closed? -> check! => done!
+   - ignore msgrcv: Interrupted system call
+Session terminated, killing shell...msgq-destroy: Invalid argument
+msgq-destroy: Invalid argument
+   - do not print an error if /etc/cinit/conf/last is non-existent!
+      => print it. Do not not print it, as this can aid debugging.
+   include locking via shm, remove test on pid1
+      => not necessary imho currently
+
 
 TODO.pre10:
+   - find out why gettimeofday() and time() do strange things when called in SIG_CHLD
    cleanup client/ comm/ contrib+tools/ util/ tmp/
    - write cinit.conf.check
       * report broken links in needs/wants
       * report circular dependencies
+   - pretty print, reporting is ugly!
+   Add handler for ctrl+alt+delete
+      * document in paths
+         * check whether there's an os-unspecific way to do that
+   cleanup bin/
+   - write sys-v-init-shutdown-wrapper
+      * shutdown
+      * halt
+      * reboot
+      * poweroff
+
+
 
 
 TODO.pre11:
