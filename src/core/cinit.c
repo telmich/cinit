@@ -79,8 +79,9 @@ int main(int argc, char **argv)
    }
 
    /* start tree from the bottom */
-   /* FIXME: use panic() instead? */
-   if(!tree_exec(svc_init)) return 1;
+   if(!tree_exec(svc_init)) {
+      panic();
+   }
 
    mini_printf("=> cinit started.\n",1);
 
