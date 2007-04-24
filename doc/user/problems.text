@@ -1,0 +1,35 @@
+Problems using cinit
+====================
+Nico Schottelius <nico-cinit__@__schottelius.org>
+0.1, for cinit 0.3, Initial Version from 2007-04-24
+:Author Initials: NS
+
+
+Using a high-speed, true dependency aware, profile supporting
+logical acting and reliable init system like cinit is not
+completly problem free. This document describes some common
+problems you may have and their solutions.
+
+
+Possible problems
+-----------------
+
+Confused users
+~~~~~~~~~~~~~~
+Compared to traditional init systems like sys-v-init or bsd-init
+cinit introduces a complet new boot concept. This does not just
+mean that you have services instead of shell-scripts (which is
+one reason cinit is starting up faster), but also that the boot
+order may be changed dynamically at bootup:, if a service fails.
+And even if no service fails, the boot order may be different
+on each boot, because processes are started in parallel  and
+may return earlier or later on each boot. To coordinate the
+parallel running processes, cinit uses depencies, which are pretty
+easy to understad when configurung, but may need some more
+detailled watching at boot to understand it.
+
+The 'confused users'-problem is perhaps also the biggest
+problem for introducing cinit as a replacement to current
+init systems. 
+
+
