@@ -33,3 +33,23 @@ problem for introducing cinit as a replacement to current
 init systems. 
 
 
+Configuration issues
+~~~~~~~~~~~~~~~~~~~~
+
+Not marking services as respawn
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+When cinit starts, it will wait for every service to exit.
+So if you have a dependency on a service
+that never exits, the whole init process may hang (dependending
+on the dependencies). If you have services that are intendet
+*not* to exit after start, you *have* to mark those with
+`respawn`: Those services are started and watched by cinit
+and will be restarted. This was a design choice to ensure
+that all 'always running' processes *are* restarted.
+
+I did not find any service that should not exit and not
+have a respawn flag. If you really really really have such
+a service and you can prove to me that the respawn flag
+would do harm to your system, I will think about implementing
+a flag that tells cinit not to wait for it, but mark it
+as successfully run after it has been started.
