@@ -36,6 +36,7 @@ The following daemons / servers are known to avoid backgrounding easily:
 - dhclient [dhcp client]:       -d
 - dhcp3 (isc) [dhcp server]:    -f
 - distccd [compile server]:     normal behaviour
+- dovecot [imap/pop3 server]:   -F
 - fam [file alteration monitor]:-f
 - fcron [schedular]:            -f
 - frox [ftp proxy]:             "NoDetach" in config
