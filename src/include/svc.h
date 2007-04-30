@@ -69,7 +69,7 @@ void              svc_success(struct listitem *li);
 void              svc_fail(struct listitem *li);
 void              svc_report_status(char *svc, char *msg, char *err);
 void              svc_start(struct listitem *li, int delay);
-void              shutdown_services(void);
+void              shutdown_services(struct listitem *start);
 
 
 /***********************************************************************
