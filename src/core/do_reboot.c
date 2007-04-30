@@ -50,18 +50,15 @@ void do_reboot(int signal)
     *    - notify user!
     */
 
-   /* tell the user what happens */
-   LOG(MSG_SHUTDOWN_START);
-
    /* do not listen to client requests anymore */
+   /* and tell the user what happens */
+   LOG(MSG_SHUTDOWN_START);
    cinit_ipc_destroy();
+   set_signals(ACT_CLIENT);               /* reset signal handlers */
 
-   /* FIXME: ignore signals now / install new signal-handlers! */
-   set_signals(ACT_CLIENT);
-
-   LOG(MSG_SHUTDOWN_SVC);
    /* shutdown all services: take care about the dependency tree */
-   shutdown_services();
+   LOG(MSG_SHUTDOWN_SVC);
+   shutdown_services(svc_list);
 
    LOG(MSG_SHUTDOWN_KILL);
    /* now: all services are down, let's kill all other processes */
