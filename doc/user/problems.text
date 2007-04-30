@@ -53,3 +53,62 @@ a service and you can prove to me that the respawn flag
 would do harm to your system, I will think about implementing
 a flag that tells cinit not to wait for it, but mark it
 as successfully run after it has been started.
+
+User interaction
+~~~~~~~~~~~~~~~~
+
+User input
+~~~~~~~~~~
+There may be the situation that you have to press a key
+or enter some data when a service starts up (like entering
+the password for your crypto harddisks). With cinit, this
+will look like a mess, because other services may write to
+the same console the service wrote a user prompt.
+
+The best solution for this problem is in my humble
+opinion to create an user-input daemon that serialises
+the requests and displays one after another.
+
+This could look like this: Your daemon wants to ask for
+a passphrase for the SSL-certificate. You add aa needs
+to this daemon to the 'input-daemon'. When you
+start this service, it will contact the input-daemon
+running on another virtual console and displaying a text
+and an input field that is passed back to this service.
+After that the input daemon changes back to the initial
+console or asks for the next input, if there is another
+request available.
+
+This input daemon may also be run on a graphical (X11) display.
+.
+Output to the user
+~~~~~~~~~~~~~~~~~~
+When cinit starts up there may be many messages printed
+out that also may look like printed random order.
+To prevent your endusers from being confused you can create
+some kind of graphical interface  (like a framebuffer
+or X11 display) that reads the output of cinit and converts
+it to flashing images. It could look like this:
+
+----------------------------------------------------------------------
+
+  Your (graphical?) display:
+  -------------------------------------------------------------- 
+  |  /-----------------\                                       |
+  |  | Red border,     |                                               |
+  |  | failed to start |                                       |
+  |  \-----------------/                                       |
+  |                                                            |
+  |  /------                                                   |
+  |  | Green border,                                           |
+  |    image van                                               |
+  |                                                            |
+  |                                                            |
+  |                                                            |
+  |                                                            |
+  |                                                            |
+  |                                                            |
+  -------------------------------------------------------------- 
+
+
+----------------------------------------------------------------------
