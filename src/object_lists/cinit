@@ -29,6 +29,7 @@ os/current/halt.o
 os/current/poweroff.o
 os/current/reboot.o
 svc/gen_svc_tree.o
+svc/gen_halt_tree.o
 svc/list_delete.o
 svc/list_insert.o
 svc/list_search.o
