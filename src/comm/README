@@ -10,7 +10,11 @@ inter process communication mechanism.
       * calls other functions, depending on the command send => switch()
    - read_service(): server function: reads service
 
-   - write_command():   writes a datablock
-      * sends answers to clients
+   - write_answer(): server function: answer?
+      * sends answers to clients => senseful?
 
+
+   TODO:
+      - define information function, that returns various information about
+        a service
 
