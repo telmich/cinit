@@ -11,4 +11,5 @@
 
 send_command(struct s_cmd cmd)
 {
+   /* cinit_ipc_to_server() */
 }
