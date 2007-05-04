@@ -4,11 +4,11 @@
  *
  *    part of cLinux/cinit
  *
- *    A client sends a command to cinit
+ *    cinit reads a command sent by a client.
  */
 
 #include "comm.h"       /* message struct definition */
 
-send_command(struct s_cmd cmd)
+read_command(struct s_cmd cmd)
 {
 }
