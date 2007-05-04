@@ -1,5 +1,16 @@
 All abstracted communication functions. Do not depend on the underlying
 inter process communication mechanism.
 
-   - read_command():    reads a datablock
+   - send_command(): client function: sends a command to cinit
+   - send_service(): client function: send the service name to operate on
+
+   - read_command(): server function: reads beginning of a command
+      * Extracts the command
+      * reads client identification (=pid)
+      * calls other functions, depending on the command send => switch()
+   - read_service(): server function: reads service
+
    - write_command():   writes a datablock
+      * sends answers to clients
+
+
