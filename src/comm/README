@@ -1,0 +1,5 @@
+All abstracted communication functions. Do not depend on the underlying
+inter process communication mechanism.
+
+   - read_command():    reads a datablock
+   - write_command():   writes a datablock
