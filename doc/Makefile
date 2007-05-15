@@ -3,7 +3,7 @@
 # Nico Schottelius, Fri Jan 13 12:13:08 CET 2006
 #
 
-ASCIIDOC=asciidoc
+ASCIIDOC=a2x
 DOCBOOKTOTEXI=docbook2x-texi
 DOCBOOKTOMAN=docbook2x-man
 XSLTPROC=xsltproc
@@ -20,7 +20,7 @@ USERDOCS  	= user/compiles.on.text user/configuring.cinit.text 				\
 				  user/example-directory-structure.text                        \
 				  user/installing-cinit.text user/paths.text                   \
 				  user/profiles.text user/README.text
-#DEVELDOCS 	= devel/codingguideline.text
+DEVELDOCS 	= devel/codingguideline.text
 DOCS     	= $(MANDOCS) $(USERDOCS) $(DEVELDOCS)
 
 #
@@ -29,7 +29,7 @@ DOCS     	= $(MANDOCS) $(USERDOCS) $(DEVELDOCS)
 HTMLDOCS = $(DOCS:.text=.html)
 DBHTMLDOCS = $(DOCS:.text=.htm)
 
-TEXIDOCS = $(DOCS:.text=.texi)
+#TEXIDOCS = $(DOCS:.text=.texi)
 
 MANPDOCS = $(MANDOCS:.text=.man)
 
