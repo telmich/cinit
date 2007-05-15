@@ -2,3 +2,9 @@
    * cinit-0.3 client
 - create some boot profiles
 - cinit.install.standard.dirs.argv
+check needs:
+   really started, after started or after finished starting?
+wants:
+   are they checked?
+
+implement commands!
