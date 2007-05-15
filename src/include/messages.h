@@ -1,7 +1,10 @@
-/*
- * (c) 2005-2007 Nico Schottelius (nico-cinit at schottelius.org)
+/***********************************************************************
  *
- * All messages
+ *    2005-2007 Nico Schottelius (nico-cinit (at) schottelius.org)
+ *
+ *    part of cLinux/cinit
+ *
+ *    All messages
  */
 
 #ifndef _CINIT_MSG_H

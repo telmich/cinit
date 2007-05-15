@@ -8,6 +8,8 @@
  *
  */
 
+#include <stdio.h>      /* printf()       */
+
 #include <sys/ipc.h>    /* ftok           */
 #include <sys/msg.h>    /* msgget         */
 #include <errno.h>      /* errno          */
@@ -15,18 +17,22 @@
 #include "cinit.h"      /* print_errno    */
 #include "config.h"
 #include "msgq.h"
+#include "comm.h"       /* the cmd struct */
 
 int cinit_ipc_listen(void)
 {
    int tmp;
 
-   struct msg_client m_client;
+   //struct msg_client m_client;
+
+   struct s_cmd cmd;
 
    while (1) {
-      mini_printf("Starte ipc loop\n",1);
+      mini_printf("IPC loop\n",1);
 
       /* FIXME: change msg structure */
-      tmp = msgrcv(mq_in,&m_client,(sizeof m_client),0,0);
+      //tmp = msgrcv(mq_in,&m_client,(sizeof m_client),0,0);
+      tmp = msgrcv(mq_in,&cmd,(sizeof cmd),0,0);
 
       if(tmp == -1) {
          if(errno != EINTR) {
@@ -34,8 +40,10 @@ int cinit_ipc_listen(void)
          }
          continue;
       }
+      
+      printf("pid: %d, cmd: %c\n",cmd.pid,cmd.cmd);
 
-      //printf("pid: %d, m_client\n",m_client.pid);
+      /* read_command() */
 
       /* use pid as the message type 
       m_serv.mtype = (long) m_client.pid;

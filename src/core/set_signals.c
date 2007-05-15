@@ -11,6 +11,7 @@
 #include <signal.h>        /* sigaction, sigemtpyset  */
 #include <stdio.h>         /* NULL                    */
 #include "cinit.h"         /* defines                 */
+#include "reboot.h"        /* reboot related          */
 
 void set_signals(int action)
 {

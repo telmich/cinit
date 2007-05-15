@@ -77,7 +77,6 @@ int   do_change_status(char *svc, char *status, pid_t *pid, int sock2, int actio
 char  do_result(int sock2, char *value);
 
 /* core functions */
-void     do_reboot(int signal);
 void     panic(void);
 void     sig_child(int signal);
 
@@ -102,12 +101,7 @@ int   file_exists(char *filename);
 void  sleep_before_kill();
 
 /* util */
-int      msg_reboot(char cmd);
+//int      msg_reboot(char cmd);
 void     print_errno(char *text);
-
-/* os-functions */
-void cinit_reboot(void);
-void cinit_halt(void);
-void cinit_poweroff(void);
 
 #endif   /* _CINIT_H */

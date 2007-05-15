@@ -20,6 +20,7 @@
 #include "cinit.h"               /* set_signals       */
 #include "svc.h"                 /* shutdown_services */
 #include "messages.h"            /* messages          */
+#include "reboot.h"              /* cinit_poweroff&co */
 
 /* cleaned headers */
 #include <signal.h>              /* kill()            */

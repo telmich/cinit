@@ -9,7 +9,12 @@
 
 
 /* Arguments:
+   
+   -e: enable
+   -d: disable
 
+
+*/
 int main(int argc, char **argv)
 {
 
