@@ -3,7 +3,8 @@
 # Nico Schottelius, Fri Jan 13 12:13:08 CET 2006
 #
 
-ASCIIDOC=a2x
+A2X=a2x
+ASCIIDOC=asciidoc
 DOCBOOKTOTEXI=docbook2x-texi
 DOCBOOKTOMAN=docbook2x-man
 XSLTPROC=xsltproc
@@ -46,7 +47,8 @@ help:
 	@echo "html:             only generate HTML (via asciidoc/docbook/xsltproc)"
 	@echo "htm:              only generate HTML (via asciidoc)"
 	@echo "info:             only generate Texinfo"
-	@echo "man:              only generate manpage(s)"
+	@echo "man:              only generate manpages"
+	@echo "pdf:              only generate pdfs (requires: fop)"
 
 install:
 
@@ -80,8 +82,14 @@ documentation: $(DOC_ALL)
 %.mandocbook: %.text
 	${ASCIIDOC} -b docbook -d manpage -o $@ $<
 
-%.man: %.mandocbook
-	${DOCBOOKTOMAN} --to-stdout $< > $@
+#%.man: %.mandocbook
+#	${DOCBOOKTOMAN} --to-stdout $< > $@
+
+%.man: %.text
+	${A2X} -f manpage $<
+
+%.pdf: %.text
+	${A2X} -f pdf $<
 
 #
 # Distribution
