@@ -24,7 +24,7 @@ dev-all: all sizecheck
 install clean dist distclean:
 	@for subdir in ${CDIRS}; do \
 		echo "Making $@ in $$subdir"; \
-		(cd $$subdir && ${MAKE} ${MAKEFLAGS} $@); \
+		(cd $$subdir && ${MAKE} ${MAKEFLAGS} $@) || break; \
 	 done;
 
 .PHONY: sources

@@ -94,9 +94,11 @@ $(SBIN)/ccontrol util/ccontrol: config.h $(SBIN) $(CCO_OBJ)
 	$(LD) $(LDFLAGS) $(CCO_OBJ) -o $@
 	$(STRIP) $@
 
-install: install-dir cinit cservice ccontrol
+#install: install-dir cinit cservice ccontrol
+install: cinit
 	@echo '*** Installing cinit ***'
-	./bin/cinit.install.binary
+	cp cinit /sbin/cinit
+#	./bin/cinit.install.binary
 
 install-miniconf:
 	./bin/cinit.install.miniconf
