@@ -219,10 +219,6 @@ Later
 
 
 TODO.pre9:
-   do_reboot.c:
-      write cinit_svc_shutdown
-      - implement do_reboot()
-         * so not only booting with cinit works, but also the shutdown
 
    Done:
    - pfad korrigieren (home/..../ -> cinit.release)
@@ -249,7 +245,12 @@ msgq-destroy: Invalid argument
 
 
 TODO.pre10:
+   do_reboot.c:
+      write cinit_svc_shutdown
+      - implement do_reboot()
+         * so not only booting with cinit works, but also the shutdown
    - find out why gettimeofday() and time() do strange things when called in SIG_CHLD
+      => bug opened in glibc, got to code testprogram
    cleanup client/ comm/ contrib+tools/ util/ tmp/
    - write cinit.conf.check
       * report broken links in needs/wants
@@ -266,8 +267,6 @@ TODO.pre10:
       * poweroff
 
 
-
-
 TODO.pre11:
    cleanup src/
    finish ipc code so clients can access cinit
@@ -277,7 +276,8 @@ TODO.pre12:
    Remove *TODO*+ROADMAP and leave behin doc/TODO
 
 TODO.pre13:
-   code cservice ccontrol halt reboot shutdown poweroff
+   code cmd=(cservice ccontrol halt reboot shutdown poweroff)
+      => halt/r/... also with kill ...
    Test, release and prepare for final cinit-0.3
 
 TODO.0.3.1
