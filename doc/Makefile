@@ -52,7 +52,7 @@ help:
 	@echo "pdf:              only generate pdfs (requires: fop)"
 
 install: $(DOC_ALL)
-	@echo Copy man/*.[0-9] to the correct manpaths
+	@echo "===> Copy " man/*.[0-9] "to the correct manpaths"
 
 #
 # Internal targets
