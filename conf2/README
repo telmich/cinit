@@ -18,3 +18,16 @@ conf/programs/
 
 conf/built-options/
    like --... in ./configure
+
+conf/install/
+   <name>
+   options/
+      destdir (prefixed before everything)
+      prefix  (standard prefix)
+         bin     (relative to prefix, if not beginning with a /)
+         sbin    (relative to prefix, if not beginning with a /)
+         lib     (relative to prefix, if not beginning with a /)
+   targets/
+      cinit/
+         built-target (link to conf/targets/cinit)
+         destination (relative to 
