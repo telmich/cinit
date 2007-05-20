@@ -264,6 +264,19 @@ TODO.pre10:
       * halt
       * reboot
       * poweroff
+   
+   install:
+      make install => does not overwrite critical targets
+         * cinit
+         * *.kill (see client/*)
+         * cmd
+      make force-install => overwrites /sbin/{halt,poweroff,reboot}?
+         => with script that wraps cmd
+      make install-template:
+         * creates categories
+      make install-miniconf:
+         * creates categories
+         * creates one service starting a shell (depending on the OS!)
 
    Done:
    cleanup client/ comm/ contrib+tools/ util/ tmp/
