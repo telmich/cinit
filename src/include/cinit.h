@@ -62,7 +62,7 @@ enum {
 #define CINIT_LAST      CINIT_CONFDIR SLASH C_LAST
 #define CINIT_SLEEPFILE CINIT_CONFDIR SLASH SLEEP_BEFORE_KILL
 
-/* actions for i/o handlers (see comm/do_*) */
+/* needed by set_signals */
 #define ACT_SERV     0
 #define ACT_CLIENT   1
 

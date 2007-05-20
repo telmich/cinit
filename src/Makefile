@@ -19,7 +19,7 @@ SBIN=../sbin
 # directories and files
 CONFIG_H=include/config.h
 
-BIN=cinit
+BIN=cinit halt.kill
 
 #
 # All objects depend on headers. More or less. FIXME: use gcc -M
@@ -51,8 +51,7 @@ CCO_OBJ=util/ccontrol.o generic/mini_printf.o util/msg_reboot.o \
 # End user target
 #
 #all: cinit cservice ccontrol sizecheck docs
-#all: $(BIN)
-all: cinit
+all: $(BIN)
 
 
 #
