@@ -29,16 +29,14 @@ Versions
    code: cleanup makefile
    code: add porting code: add support for any unix in general [DONE]
    code: stabilize code, remove experimenting parts
-   code: remove delay support, let off/off.params do that.
-   code: add special directory (/etc/cinit/special?) for os specific binaries [CANCELED]
-      -> halt, poweroff, reboot (NOTHING MORE THEY CAN DO)
-      -> SHOULD NOT BE IN THE PATH
-   code: move production code to src/
+   code: remove delay support, let off/off.params do that. [DONE]
+   code: add special directory (/etc/cinit/conf?) for non-services [DONE]
+   code: move production code to src/ [DONE]
    end user doc: add warning for special binaries and hint for r/o only
                  amiga alike systems
 
    doc: begin to merge old documents into new structure and move them
-        to the doc/ancient directory
+        to the doc/ancient directory [DONE]
 
 0.3.1:
    devel doc: how to write merging scripts
