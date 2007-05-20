@@ -114,6 +114,9 @@ install-dir:
 cinit: $(CINIT_OBJ)
 	$(LD) $^ -o $@
 
+halt.kill: client/halt.kill.o generic/print_errno.o generic/mini_printf.o
+	$(LD) $^ -o $@
+
 uml: cinit
 	../../vm/uml/uml-mount.sh
 	cp cinit ../../vm/uml/root/sbin/cinit
@@ -138,4 +141,4 @@ distclean: clean
 clean:
 	rm -f ../tmpbin/*.configured
 	rm -f $(BIN) $(CINIT_OBJ)
-	rm -f test/*.o
+	rm -f client/*.o test/*.o

@@ -145,4 +145,10 @@
 #define MSG_HALT              MSG_INTRO_STOP    "Halting system ..."
 #define MSG_REBOOT            MSG_INTRO_STOP    "Rebooting ..."
 
+/* client messages */
+#define MSG_HALT_KILL         "halt.kill"
+#define MSG_REBOOT_KILL       "reboot.kill"
+#define MSG_POWEROFF_KILL     "poweroff.kill"
+
+
 #endif   /* _CINIT_MSG_H */
