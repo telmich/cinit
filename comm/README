@@ -1,6 +1,0 @@
--- OBSOLETED --
-   -> This code is not in use in cinit-0.3 anymore!
-
-comm/
-   The communication part of cinit.
-   The functions are used in client and in server code.
