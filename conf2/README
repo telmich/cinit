@@ -6,6 +6,9 @@ conf/targets:
    targets to make available in Makefile and their dependencies
 
    abstract the build-process somehow, so one can create build-targets?
+
+   c-programs/ (includes cc / ld)
+      cinit (link to conf/object_listings cinit?)
 conf/object_listings
    lists of dependencies:
       conf/object_listings/cinit contains all objects needed for cinit
