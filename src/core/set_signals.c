@@ -12,6 +12,7 @@
 #include <stdio.h>         /* NULL                    */
 #include "cinit.h"         /* defines                 */
 #include "reboot.h"        /* reboot related          */
+#include "signals.h"       /* reboot related          */
 
 void set_signals(int action)
 {
@@ -33,7 +34,7 @@ void set_signals(int action)
    if(action == ACT_SERV) {
       sa.sa_handler = do_reboot;
    }
-   sigaction(SIGHUP,  &sa, NULL);   /* reboot    */
-   sigaction(SIGTERM, &sa, NULL);   /* poweroff  */
-   sigaction(SIGUSR1, &sa, NULL);   /* halt      */
+   sigaction(SIG_CINIT_HALT,     &sa, NULL);   /* halt      */
+   sigaction(SIG_CINIT_POWEROFF, &sa, NULL);   /* poweroff  */
+   sigaction(SIG_CINIT_REBOOT,   &sa, NULL);   /* reboot    */
 }

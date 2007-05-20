@@ -7,7 +7,7 @@
  *    Halt the system through a kill call
  */
 
-#include <sys/types.h>     /* kill()            */
+#include <sys/types.h>     /* kill() NEEDED?    */
 #include <signal.h>        /* kill()            */
 
 #include "messages.h"      /* MSG_*             */
