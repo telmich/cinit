@@ -1,3 +1,4 @@
+- write manpages for (halt/reboot/poweroff).kill
 - create cmd!
    * cinit-0.3 client
 - create some boot profiles
