@@ -19,3 +19,5 @@ src/cinit
 *.texi
 *.docbook
 src/halt.kill
+src/poweroff.kill
+src/reboot.kill

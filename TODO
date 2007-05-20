@@ -264,6 +264,9 @@ TODO.pre10:
       * halt
       * reboot
       * poweroff
+   - write manpages for
+      - *.kill
+      - cmd
    
    install:
       make install => does not overwrite critical targets

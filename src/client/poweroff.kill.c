@@ -4,7 +4,7 @@
  *
  *    part of cLinux/cinit
  *
- *    Halt the system through a kill call
+ *    Reboot the system through a kill call
  */
 
 #include <signal.h>        /* kill()            */
@@ -15,8 +15,8 @@
 
 int main()
 {
-   if(kill(1,SIG_CINIT_HALT) == -1) {
-      print_errno(MSG_HALT_KILL);
+   if(kill(1,SIG_CINIT_POWEROFF) == -1) {
+      print_errno(MSG_POWEROFF_KILL);
       return 1;
    }
 

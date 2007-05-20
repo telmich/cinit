@@ -19,7 +19,7 @@ SBIN=../sbin
 # directories and files
 CONFIG_H=include/config.h
 
-BIN=cinit halt.kill
+BIN=cinit halt.kill poweroff.kill reboot.kill
 
 #
 # All objects depend on headers. More or less. FIXME: use gcc -M
@@ -32,12 +32,6 @@ CINIT_OBJ=$(shell cat object_lists/cinit)
 #
 # Client modules
 #
-CLIENT=client/msg_svc_on_off.o client/msg_change_status.o client/run_svc.o \
-       client/exec_svc.o client/respawn_svc.o client/run_run_svcs.o \
-       client/connect_sock.o client/begin_msg.o client/sig_terminate.o
-
-COMMUNICATION=comm/do_change_status.o comm/do_result.o comm/do_svc_name.o
-
 OBJ=$(SERV) $(SERV_OS) $(CLIENT) $(BOTH) $(COMMUNICATION)
 
 CSVC_OBJ=util/cservice.o generic/mini_printf.o util/msg_reboot.o \
@@ -114,6 +108,12 @@ cinit: $(CINIT_OBJ)
 	$(LD) $^ -o $@
 
 halt.kill: client/halt.kill.o generic/print_errno.o generic/mini_printf.o
+	$(LD) $^ -o $@
+
+poweroff.kill: client/poweroff.kill.o generic/print_errno.o generic/mini_printf.o
+	$(LD) $^ -o $@
+
+reboot.kill: client/reboot.kill.o generic/print_errno.o generic/mini_printf.o
 	$(LD) $^ -o $@
 
 uml: cinit
