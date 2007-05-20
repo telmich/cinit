@@ -1,3 +1,6 @@
+cinit-0.3pre10:
+   - fixed make install target
+
 cinit-0.3pre9: 2007-05-15
    - Implemented sleeping before respawn (static delay)
    - Report broken links on execution, but ignore empty services
