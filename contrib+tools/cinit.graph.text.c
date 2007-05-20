@@ -39,11 +39,11 @@
 #define MAX_CHAR   4096
 
 /***********************************************************************
- * cinit.gaph.text - textual representation of the cinit directory
+ * cinit.graph.text - textual representation of the cinit directory
  */
 
-#define CSERVICE_BANNER    "cinit.gaph.text - textual representatio of the cinitdirectory\n\n"
-#define USAGE_TEXT         "\n\nUsage:\n\ncinit.gaph.text <path>\n"  \
+#define CSERVICE_BANNER    "cinit.graph.text - textual representatio of the cinit directory\n\n"
+#define USAGE_TEXT         "\n\nUsage:\n\ncinit.graph.text <path>\n"  \
    "\tpath\t- cinit installationpath\n"
 
 typedef int EACH_ENTRY(const char *, const struct stat *, int);
