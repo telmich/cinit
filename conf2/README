@@ -1,0 +1,17 @@
+Migrate conf/ to general conf/-buildsystem (write documentation for it).
+
+gpm2 may be an example for this!
+
+conf/targets:
+   targets to make available in Makefile and their dependencies
+
+   abstract the build-process somehow, so one can create build-targets?
+conf/object_listings
+   lists of dependencies:
+      conf/object_listings/cinit contains all objects needed for cinit
+
+conf/programs/
+   like cc, ld, install, ...
+
+conf/built-options/
+   like --... in ./configure
