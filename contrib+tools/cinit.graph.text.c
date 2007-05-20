@@ -29,7 +29,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "cinit.h"
+//#include "cinit.h"
 #include "error.h"
 
 #define FTW_F 1   /* file isn't a directory */

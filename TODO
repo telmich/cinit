@@ -251,7 +251,6 @@ TODO.pre10:
          * so not only booting with cinit works, but also the shutdown
    - find out why gettimeofday() and time() do strange things when called in SIG_CHLD
       => bug opened in glibc, got to code testprogram
-   cleanup client/ comm/ contrib+tools/ util/ tmp/
    - write cinit.conf.check
       * report broken links in needs/wants
       * report circular dependencies
@@ -266,6 +265,8 @@ TODO.pre10:
       * reboot
       * poweroff
 
+   Done:
+   cleanup client/ comm/ contrib+tools/ util/ tmp/
 
 TODO.pre11:
    cleanup src/

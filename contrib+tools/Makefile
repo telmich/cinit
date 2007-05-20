@@ -42,7 +42,7 @@ bindir = $(prefix)/bin
 
 CLIENT=cinit.graph.text.o 
 
-COMMUNICATION=error.o ../generic/usage.o ../generic/mini_printf.o
+COMMUNICATION=error.o usage.o mini_printf.o
 
 OBJ=$(CLIENT) $(COMMUNICATION)
 
