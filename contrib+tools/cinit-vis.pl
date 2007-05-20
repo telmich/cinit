@@ -12,7 +12,7 @@ use warnings;
 # Variables for location and output
 #
 # cinit-directory
-my $path = "/etc/cinit/";
+my $path = "/etc/cinit/svc/";
 # started profile
 my $starting_point = "init";
 # the spaces for each level (integer: amount of spaces)
