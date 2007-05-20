@@ -1,5 +1,9 @@
 include/cinit.h
+include/comm.h
 include/config.h
 include/ipc.h
 include/messages.h
 include/os.h
+include/reboot.h
+include/signals.h
+include/svc.h
