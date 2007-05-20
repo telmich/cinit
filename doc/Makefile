@@ -13,7 +13,7 @@ XSL=/usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl
 #
 # Asciidoc will be used to generate other formats later
 #
-MANDOCS  	= man/cinit.text
+MANDOCS  	= man/cinit.text man/halt.kill.text
 USERDOCS  	= user/compiles.on.text user/configuring.cinit.text 				\
 				  user/conf-system.text                                        \
 				  user/cross-compiling.text user/current-init-problems.text    \
@@ -96,6 +96,7 @@ documentation: $(DOC_ALL)
 #
 clean distclean:
 	rm -f $(DOC_ALL)
+	rm -f man/*.texi man/*.xml man/*.[0-9]
 
 #
 # Be nice with the users and generate documentation for them
