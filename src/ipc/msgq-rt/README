@@ -1,0 +1,2 @@
+This implementation uses the new realtime inferface of
+posix instead of the old one functions.
