@@ -83,9 +83,9 @@ $(SBIN)/ccontrol util/ccontrol: config.h $(SBIN) $(CCO_OBJ)
 	$(STRIP) $@
 
 #install: install-dir cinit cservice ccontrol
-install: cinit
+install: $(BIN)
 	@echo '*** Installing cinit ***'
-	cp cinit /sbin/cinit
+	cp $^ /sbin
 #	./bin/cinit.install.binary
 
 install-miniconf:

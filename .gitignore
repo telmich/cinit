@@ -21,3 +21,5 @@ src/cinit
 src/halt.kill
 src/poweroff.kill
 src/reboot.kill
+doc/man/*.[0-9]
+doc/man/*.xml

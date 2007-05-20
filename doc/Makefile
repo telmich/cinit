@@ -13,7 +13,8 @@ XSL=/usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl
 #
 # Asciidoc will be used to generate other formats later
 #
-MANDOCS  	= man/cinit.text man/halt.kill.text
+MANDOCS  	= man/cinit.text man/halt.kill.text man/poweroff.kill.text		\
+				  man/reboot.kill.text
 USERDOCS  	= user/compiles.on.text user/configuring.cinit.text 				\
 				  user/conf-system.text                                        \
 				  user/cross-compiling.text user/current-init-problems.text    \
@@ -50,7 +51,8 @@ help:
 	@echo "man:              only generate manpages"
 	@echo "pdf:              only generate pdfs (requires: fop)"
 
-install:
+install: $(DOC_ALL)
+	@echo Copy man/*.[0-9] to the correct manpaths
 
 #
 # Internal targets

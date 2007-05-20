@@ -1,0 +1,47 @@
+poweroff.kill(8)
+================
+Nico Schottelius <nico-cinit__@__schottelius.org>
+
+
+NAME
+----
+poweroff.kill - Halts and powers off systems running cinit through a kill call
+
+SYNOPSIS
+--------
+'poweroff.kill'
+
+
+DESCRIPTION
+-----------
+You normally poweroff your system through 'cmd'. If cmd is unavailable or
+the IPC system has problem there is still the possibilty to poweroff
+it through a signal. See 'src/include/signals.h' for more details which
+signals are used.
+
+OPTIONS
+-------
+
+none::
+   No options are used, If you execute poweroff.kill, your system will be
+   powered off.
+
+
+AUTHOR
+------
+Nico Schottelius <mailto:nico-cinit__@__schottelius.org>
+
+
+RESOURCES
+---------
+Main web site: http://unix.schottelius.org/cinit/[]
+
+SEE ALSO
+---------
+cmd(8), halt.kill(8), reboot.kill(8)
+
+
+COPYING
+-------
+Copyright \(C) 2007 Nico Schottelius. Free use of this software is
+granted under the terms of the GNU General Public License (GPL).
