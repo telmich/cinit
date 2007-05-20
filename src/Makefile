@@ -26,21 +26,16 @@ BIN=cinit halt.kill poweroff.kill reboot.kill
 #
 CINIT_HEADERS=$(shell cat include/listing)
 
-# NEW
 CINIT_OBJ=$(shell cat object_lists/cinit)
+HALTKILL_OBJ=$(shell cat object_lists/halt.kill)
+POWEROFFKILL_OBJ=$(shell cat object_lists/poweroff.kill)
+REBOOTKILL_OBJ=$(shell cat object_lists/reboot.kill)
 
 #
 # Client modules
 #
-OBJ=$(SERV) $(SERV_OS) $(CLIENT) $(BOTH) $(COMMUNICATION)
+OBJ=$(CINIT_OBJ) $(HALTKILL_OBJ) $(POWEROFFKILL_OBJ) $(REBOOTKILL_OBJ)
 
-CSVC_OBJ=util/cservice.o generic/mini_printf.o util/msg_reboot.o \
-         generic/usage.o \
-         $(CLIENT) $(COMMUNICATION)
-
-CCO_OBJ=util/ccontrol.o generic/mini_printf.o util/msg_reboot.o \
-         generic/usage.o \
-         $(CLIENT) $(COMMUNICATION)
 #
 # End user target
 #
@@ -51,7 +46,7 @@ all: $(BIN)
 #
 # Generic
 #
-$(CINIT_OBJ): $(CINIT_HEADERS)
+$(OBJ): $(CINIT_HEADERS)
 
 %.o: %.c
 	$(CC) -c -o $@ $<
@@ -107,13 +102,13 @@ install-dir:
 cinit: $(CINIT_OBJ)
 	$(LD) $^ -o $@
 
-halt.kill: client/halt.kill.o generic/print_errno.o generic/mini_printf.o
+halt.kill: $(HALTKILL_OBJ)
 	$(LD) $^ -o $@
 
-poweroff.kill: client/poweroff.kill.o generic/print_errno.o generic/mini_printf.o
+poweroff.kill: $(POWEROFFKILL_OBJ)
 	$(LD) $^ -o $@
 
-reboot.kill: client/reboot.kill.o generic/print_errno.o generic/mini_printf.o
+reboot.kill: $(REBOOTKILL_OBJ)
 	$(LD) $^ -o $@
 
 uml: cinit
