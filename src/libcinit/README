@@ -1,1 +1,15 @@
 Build a small library that can be used by different applications, that provides:
+
+   Constants / Macros:
+      CINIT_HALT
+      CINIT_REBOOT
+      CINIT_POWEROFF
+
+      CINIT_SVC_NORMAL
+      CINIT_SVC_NEEDS
+      CINIT_SVC_ONLY
+      CINIT_SVC_WANTS
+
+   Functions:
+      void cinit_halt(int how);
+      int cinit_svc_start(char *svc, int how);

@@ -249,6 +249,7 @@ TODO.pre10:
       write cinit_svc_shutdown
       - implement do_reboot()
          * so not only booting with cinit works, but also the shutdown
+   - write libcinit for use in cmd()
    - find out why gettimeofday() and time() do strange things when called in SIG_CHLD
       => bug opened in glibc, got to code testprogram
    - write cinit.conf.check
@@ -287,6 +288,8 @@ TODO.pre10:
 TODO.pre11:
    cleanup src/
    finish ipc code so clients can access cinit
+   implement CMD_INFO (see comm.h)
+
 
 TODO.pre12:
    Check and clean doc/

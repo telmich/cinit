@@ -52,6 +52,7 @@
 */
 
 #define C_USAGE(error) usage(USAGE_TEXT,error)
+#define LOG(a,b)     mini_printf(a,1); minit_printf(b,1);
 
 #include <unistd.h>        /* getopt         */
 
@@ -72,8 +73,8 @@ int main(int argc, char **argv)
          break;
 
          case 'h':   /* halt */
-         //   LOG(MSG_HALT);
-         //   msg_reboot(CMD_HALT);
+            mini_printf(",1);
+//            libcinit_halt();
             break;
 
          case 'r':   /* reboot */

@@ -19,7 +19,7 @@ SBIN=../sbin
 # directories and files
 CONFIG_H=include/config.h
 
-BIN=cinit halt.kill poweroff.kill reboot.kill
+BIN=cinit halt.kill poweroff.kill reboot.kill cmd
 
 #
 # All objects depend on headers. More or less. FIXME: use gcc -M
@@ -30,6 +30,7 @@ CINIT_OBJ=$(shell cat object_lists/cinit)
 HALTKILL_OBJ=$(shell cat object_lists/halt.kill)
 POWEROFFKILL_OBJ=$(shell cat object_lists/poweroff.kill)
 REBOOTKILL_OBJ=$(shell cat object_lists/reboot.kill)
+CMD_OBJ=$(shell cat object_lists/cmd)
 
 #
 # Client modules
@@ -109,6 +110,9 @@ poweroff.kill: $(POWEROFFKILL_OBJ)
 	$(LD) $^ -o $@
 
 reboot.kill: $(REBOOTKILL_OBJ)
+	$(LD) $^ -o $@
+
+cmd: $(CMD_OBJ)
 	$(LD) $^ -o $@
 
 uml: cinit
