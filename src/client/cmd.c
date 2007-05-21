@@ -7,13 +7,35 @@
  *    cmd - the cinit client program - sends commands to cinit
  */
 
-#define USAGE_TEXT "cmd - cinit management\n\n" \
+/*
+-e:  enable service (including dependencies)
+-eo: enable only the service without dependencies
+-en: enable service and what it needs, but not its wants
+
+-d:  disable service (including needs)
+-do: disable only the service without dependencies
+-dw: disable service and needs, but not the wants
+
+-h: halt
+-p: poweroff
+-r: reboot
+
+*/
+
+/* #define USAGE_TEXT "cmd - cinit management\n\n" \
    "Usage:\n\ncmd -[phurs]\n"  \
+   "   -s   - Service operation\n\n" \
+   "        start:   Start service\n" \
+   "        start:   Start service\n" \
+   "\t-s\t- (service)            Power off the system\n" \
+   "\t-s\t- (service)            Power off the system\n" \
    "\t-p\t- (power off)          Power off the system\n" \
    "\t-h\t- (halt)               Halt the system \n" \
    "\t-u\t- (update)             Reboot (warm) and update cinit\n" \
    "\t-r\t- (reboot)             Reboot the system\n" \
    "\t-s\t- (single user/rescue) Rescue mode\n\n" \
+
+*/
 
 /* Arguments:
    
@@ -28,54 +50,58 @@
    
 
 */
-int main(int argc, char **argv)
-{
-
-
 
 #define C_USAGE(error) usage(USAGE_TEXT,error)
+
+#include <unistd.h>        /* getopt         */
+
+#define OPTIONS            "deohpr"
 
 /***********************************************************************
  * ccontrol: control cinit
  */
 int main(int argc, char **argv)
 {
+   int opt;
+
+   while((opt = getopt(argc,argv,OPTIONS)) != -1) {
+      switch(opt) {
+         case 'p':   /* power off */
+         //   LOG(MSG_POWER_OFF);
+         //   msg_reboot(CMD_POWEROFF);
+         break;
+
+         case 'h':   /* halt */
+         //   LOG(MSG_HALT);
+         //   msg_reboot(CMD_HALT);
+            break;
+
+         case 'r':   /* reboot */
+        //    LOG(MSG_REBOOT);
+         //   msg_reboot(CMD_REBOOT);
+            break;
+
+         default:
+         //   C_USAGE(MSG_ERR_BAD_ARGS);
+            break;
+      }
+   }
+
    /* argv */
-   if(argc != 2)              C_USAGE(MSG_ERR_LESS_ARGS);
+/*   if(argc != 2)              C_USAGE(MSG_ERR_LESS_ARGS);
    if(argv[1][0] != '-')      C_USAGE(MSG_ERR_BAD_ARGS);
-
-   switch(argv[1][1]) {
-      case 'p':   /* power off */
-         LOG(MSG_POWER_OFF);
-         msg_reboot(CMD_POWEROFF);
-         break;
-
-      case 'h':   /* halt */
-         LOG(MSG_HALT);
-         msg_reboot(CMD_HALT);
-         break;
-
-      case 'r':   /* reboot */
-         LOG(MSG_REBOOT);
-         msg_reboot(CMD_REBOOT);
-         break;
-
-      case 's':   /* rescue */
+*/
+   return 0;
+}
+/*
+      case 's':
          LOG(MSG_RESCUE);
          msg_reboot(CMD_RESCUE);
          break;
 
-      case 'u':   /* update */
+      case 'u':
          LOG(MSG_UPDATE);
          msg_reboot(CMD_UPDATE);
          break;
 
-      default:
-         C_USAGE(MSG_ERR_BAD_ARGS);
-         break;
-   }
-   return 0;
-}
-/* cinit-0.2 return codes implemented - nothing changed*/
-
-}
+*/
