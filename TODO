@@ -245,6 +245,10 @@ msgq-destroy: Invalid argument
 
 
 TODO.pre10:
+   IPC:
+      * check msqg-code
+      * documentate the ipc functions: update devel/ipc.text
+
    do_reboot.c:
       write cinit_svc_shutdown
       - implement do_reboot()
