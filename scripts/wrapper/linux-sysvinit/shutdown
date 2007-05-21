@@ -1,0 +1,4 @@
+#!/bin/sh
+# Nico Schottelius (nico-cinit /at/ schottelius.org)
+# 2007-05-21
+# Behave as being shutdown from Linux' sysvinit
