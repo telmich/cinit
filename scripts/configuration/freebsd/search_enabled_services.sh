@@ -8,3 +8,5 @@
 #     - /usr/local/etc/rc.d/
 #  Output list of services to stdout
 #
+# Options:
+# -r <alternate root directory>
