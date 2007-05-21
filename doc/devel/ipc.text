@@ -83,6 +83,35 @@ Current IPC configuration
    int cinit_ipc_listen(void);   -> begin to listen for messages
    int cinit_ipc_send(void *data)   -> send data to a client
 
+Abstraction layer: cinit_ipc_*
+------------------------------
+You can choose or even reimplement ipc code for cinit. You only have to create
+a directory below src/ipc/ and create the following necessary functions:
+
+int cinit_ipc_init(void);
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Initialise the IPC functions in cinit.
+
+
+int cinit_ipc_listen(void);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Never ending looping function that listens for commands and passes the
+retrieved command to read_command().
+
+other
+~~~~~~
+int cinit_ipc_sclose(void);      /* fork of cinit come from outside! */
+int cinit_ipc_ssend(void *data); /* send to a client from the server */
+void cinit_ipc_destroy(void);    /* destroy ipc handler in cinit     */
+
+/*****************************************************************************
+ * Functions: in clients
+  */
+  int cinit_ipc_logon(void);       /* logon to init  (client init)     */
+  int cinit_ipc_connect(void);     /* connect to init                  */
+  int cinit_ipc_csend(void *data); /* send to the server from a client */
+
+
 --------------------------------------------------------------------------------
 TO SORT:
 

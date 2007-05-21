@@ -248,6 +248,7 @@ TODO.pre10:
    IPC:
       * check msqg-code
       * documentate the ipc functions: update devel/ipc.text
+      * check cinit_read_command() (devel/ipc.h)
 
    do_reboot.c:
       write cinit_svc_shutdown

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006-2007 Nico Schottelius (nico-linux-cinit schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -11,9 +11,8 @@
 #include <sys/ipc.h>       /* ftok           */
 #include <sys/msg.h>       /* msgget         */
 
-#include "cinit.h"
-#include "config.h"
-#include "msgq.h"
+#include "cinit.h"         /* print_errno    */
+#include "msgq.h"          /* message queue  */
 
 int cinit_ipc_init(void)
 {

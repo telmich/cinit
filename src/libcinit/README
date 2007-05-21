@@ -1,10 +1,12 @@
 Build a small library that can be used by different applications, that provides:
 
    Constants / Macros:
+      for cinit_halt:
       CINIT_HALT
       CINIT_REBOOT
       CINIT_POWEROFF
-
+      
+      for cinit_svc_start/stop:
       CINIT_SVC_NORMAL
       CINIT_SVC_NEEDS
       CINIT_SVC_ONLY
@@ -13,3 +15,8 @@ Build a small library that can be used by different applications, that provides:
    Functions:
       void cinit_halt(int how);
       int cinit_svc_start(char *svc, int how);
+      int cinit_svc_stop(char *svc, int how);
+      int cinit_svc_stop(char *svc, int how);
+
+This lib must then include:
+   - choosen ipc functions
