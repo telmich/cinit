@@ -73,8 +73,8 @@ int main(int argc, char **argv)
          break;
 
          case 'h':   /* halt */
-            mini_printf(",1);
-//            libcinit_halt();
+//            mini_printf(",1);
+//            cinit_halt();
             break;
 
          case 'r':   /* reboot */

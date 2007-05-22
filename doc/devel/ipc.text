@@ -104,6 +104,10 @@ int cinit_ipc_sclose(void);      /* fork of cinit come from outside! */
 int cinit_ipc_ssend(void *data); /* send to a client from the server */
 void cinit_ipc_destroy(void);    /* destroy ipc handler in cinit     */
 
+
+cinit_get_data(int ident, int size, void *data) => read size bytes from client
+with ident
+
 /*****************************************************************************
  * Functions: in clients
   */

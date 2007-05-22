@@ -1,5 +1,8 @@
 - create cmd!
    * cinit-0.3 client
+      * check ipc code in cinit
+      * check that cinit reads a command
+         core/cinit.c is ok
 - create some boot profiles
 - cinit.install.standard.dirs.argv
 check needs:

@@ -30,8 +30,6 @@ int cinit_ipc_listen(void)
    while (1) {
       mini_printf("IPC loop\n",1);
 
-      /* FIXME: change msg structure */
-      //tmp = msgrcv(mq_in,&m_client,(sizeof m_client),0,0);
       tmp = msgrcv(mq_in,&cmd,(sizeof cmd),0,0);
 
       if(tmp == -1) {
@@ -43,7 +41,7 @@ int cinit_ipc_listen(void)
       
       printf("pid: %d, cmd: %c\n",cmd.pid,cmd.cmd);
 
-      /* read_command() */
+      read_command(cmd);
 
       /* use pid as the message type 
       m_serv.mtype = (long) m_client.pid;

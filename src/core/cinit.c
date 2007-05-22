@@ -49,7 +49,7 @@ int main(int argc, char **argv)
          strcat(initdir, &argv[argc-1][strlen(PROFILE)]);
          break;
       }
-      argc--;
+      --argc;
    }
 
    /* Bootup "logo" */

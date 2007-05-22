@@ -11,10 +11,12 @@
 #include "comm.h"       /* message struct definition */
 #include "reboot.h"     /* reboot abstraction layer  */
 
-int read_command(struct s_cmd cmd)
+void read_command(struct s_cmd cmd)
 {
    switch(cmd.cmd) {
       case CMD_SVC_START:
+         nextbytes= ...
+         data
       break;
 
       case CMD_SVC_START_ONLY:
