@@ -1,9 +1,15 @@
-/* 
- * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
+/***********************************************************************
+ *
+ *    2005-2007 Nico Schottelius (nico-cinit at schottelius.org)
+ *
+ *    part of cLinux/cinit
+ *
+ *    internal header
  */
 
-#ifndef _CINIT_H
-#define _CINIT_H
+
+#ifndef _CINIT_INTERN_H
+#define _CINIT_INTERN_H
 
 /* includes */
 #include <sys/types.h>  /* pid_t */
