@@ -9,6 +9,8 @@
  *    List handling
  */
 
+#error "NOT IN USE"
+
 #include "cinit.h"
 #include "messages.h"
 

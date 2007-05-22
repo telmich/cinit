@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-cinit schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -12,7 +12,7 @@
 #include <sys/msg.h>             /* msgget            */
 
 #include "config.h"
-#include "cinit.h"               /* print_errno       */
+#include "intern.h"              /* print_errno       */
 #include "msgq.h"
 
 int cinit_ipc_logon(void)

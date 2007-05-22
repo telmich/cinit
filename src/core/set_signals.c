@@ -10,7 +10,7 @@
 
 #include <signal.h>        /* sigaction, sigemtpyset  */
 #include <stdio.h>         /* NULL                    */
-#include "cinit.h"         /* defines                 */
+#include "intern.h"        /* defines                 */
 #include "reboot.h"        /* reboot related          */
 #include "signals.h"       /* reboot related          */
 

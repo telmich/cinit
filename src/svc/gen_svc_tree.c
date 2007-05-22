@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -8,7 +8,7 @@
  */
 
 #include <stdlib.h>
-#include "cinit.h"
+#include "intern.h"     /* functions   */
 #include "svc.h"
 
 struct listitem *gen_svc_tree(char *svc)

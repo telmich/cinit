@@ -1,13 +1,13 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
  *    Tell the world what happened to the service
  */
 
-#include "cinit.h"         /* mini_printf    */
+#include "intern.h"        /* mini_printf    */
 #include "messages.h"      /* MSG_INTRO_SVC  */
 
 void svc_report_status(char *svc, char *msg, char *err)

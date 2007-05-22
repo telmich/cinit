@@ -10,7 +10,7 @@
 #include <string.h>                 /* strlen               */
 #include <limits.h>                 /* PATH_MAX             */
 
-#include "cinit.h"                  /* mini_printf, PD_ERR  */
+#include "intern.h"                 /* mini_printf, PD_ERR  */
 
 int path_append(char *path, char *append)
 {

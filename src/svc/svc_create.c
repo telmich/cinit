@@ -14,7 +14,7 @@
 #include <limits.h>     /* PATH_MAX       */
 #include <errno.h>      /* errno          */
 #include "svc.h"        /* listitem       */
-#include "cinit.h"      /* path_append    */
+#include "intern.h"     /* path_append    */
 
 /* checking for existence is done before! */
 /* FIXME: check heedars for conformance with POSIX */

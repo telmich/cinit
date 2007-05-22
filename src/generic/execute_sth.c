@@ -8,7 +8,7 @@
  */
 
 #include <unistd.h>              /* _exit                */
-#include "cinit.h"
+#include "intern.h"
 #include "build_argv.h"
 
 void execute_sth(char *basename)

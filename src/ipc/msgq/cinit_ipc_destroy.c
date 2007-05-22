@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-cinit schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -12,7 +12,7 @@
 #include <stdio.h>         /* NULL           */
 
 #include "msgq.h"          /* mq_in, mq_out  */
-#include "cinit.h"         /* print_errno    */
+#include "intern.h"        /* print_errno    */
 
 void cinit_ipc_destroy(void)
 {

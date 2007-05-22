@@ -9,7 +9,7 @@
 
 #include <unistd.h>        /* execv       */
 
-#include "cinit.h"
+#include "intern.h"
 #include "messages.h"
 
 void panic(void)

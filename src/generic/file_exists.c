@@ -10,7 +10,7 @@
 #include <errno.h>         /* errno                   */
 #include <sys/stat.h>      /* stat                    */
 #include <stdio.h>         /* NULL                    */
-#include "cinit.h"         /* print_errno()           */
+#include "intern.h"        /* print_errno()           */
 #include "svc.h"           /* svc_report_status()     */
 #include "messages.h"      /* messages..              */
 

@@ -9,8 +9,8 @@
  *
  */
 
-#include <unistd.h>
-#include "cinit.h"
+#include <unistd.h>        /* _exit()     */
+#include "intern.h"        /* mini_printf */
 
 void usage(char *banner, char *text)
 {

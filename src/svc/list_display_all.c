@@ -8,7 +8,7 @@
  */
 
 #include <stdio.h>         /* NULL     */
-#include "cinit.h"
+#include "intern.h"
 #include "svc.h"
 
 int list_display_all()

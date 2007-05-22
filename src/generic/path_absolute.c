@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -9,8 +9,8 @@
 
 #include <unistd.h>                 /* chdir(),getcwd       */
 #include <limits.h>                 /* PATH_MAX             */
-#include "cinit.h"                  /* print_errno          */
-#include "messages.h"               /* print_errno          */
+#include "intern.h"                 /* print_errno          */
+#include "messages.h"               /* messages             */
 
 int path_absolute(char *relpath, char *newpath, size_t size)
 {

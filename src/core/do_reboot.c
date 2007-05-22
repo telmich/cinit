@@ -17,7 +17,7 @@
 #include "ipc.h"
 
 /* cleaned up own headers */
-#include "cinit.h"               /* set_signals       */
+#include "intern.h"              /* set_signals       */
 #include "svc.h"                 /* shutdown_services */
 #include "messages.h"            /* messages          */
 #include "reboot.h"              /* cinit_poweroff&co */

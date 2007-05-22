@@ -26,7 +26,7 @@
 #include <string.h>                 /* strchr            */
 #include <sys/stat.h>               /* stat()            */
 
-#include "cinit.h"
+#include "intern.h"
 #include "build_argv.h"
 
  /*

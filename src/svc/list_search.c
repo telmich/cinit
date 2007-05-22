@@ -1,7 +1,7 @@
 /***********************************************************************
  * 
  *    (c) 2005 Marcus Przyklink (downhill-clinux (at) burningchaos.org)
- *    2006 Nico Schottelius (nico-linux-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  * 
  *    part of cLinux/cinit
  * 
@@ -10,7 +10,7 @@
 
 #include <stdio.h>         /* NULL              */
 #include <string.h>        /* strcmp            */
-#include "cinit.h"
+#include "intern.h"
 #include "svc.h"
 
 /* search for an entry by path, reverse: from end to the beginning */

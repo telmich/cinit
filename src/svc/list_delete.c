@@ -9,7 +9,7 @@
  */
 
 #include <stdlib.h>     /* free        */
-#include "cinit.h"      /* list_search */
+#include "intern.h"     /* list_search */
 #include "svc.h"        /* listitem    */
 
 /* ... */

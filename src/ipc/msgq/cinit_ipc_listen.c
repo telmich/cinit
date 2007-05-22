@@ -14,7 +14,7 @@
 #include <sys/msg.h>    /* msgget         */
 #include <errno.h>      /* errno          */
 
-#include "cinit.h"      /* print_errno    */
+#include "intern.h"     /* print_errno    */
 #include "config.h"
 #include "msgq.h"
 #include "comm.h"       /* the cmd struct */
@@ -41,7 +41,7 @@ int cinit_ipc_listen(void)
       
       printf("pid: %d, cmd: %c\n",cmd.pid,cmd.cmd);
 
-      read_command(cmd);
+      //read_command(cmd);
 
       /* use pid as the message type 
       m_serv.mtype = (long) m_client.pid;

@@ -14,7 +14,7 @@
 #include <errno.h>         /* errno             */
 #include <stdio.h>         /* NULL              */
 #include <fcntl.h>         /* open              */
-#include "cinit.h"
+#include "intern.h"        /* ORC_*             */
 
 int openreadclose(char *filename, char **where)
 {

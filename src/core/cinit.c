@@ -13,7 +13,7 @@
 #include <stdio.h>            /* perror                  */
 #include <stdlib.h>           /* malloc                  */
 
-#include "cinit.h"            /* general things          */
+#include "intern.h"            /* general things          */
 #include "messages.h"         /* messages                */
 #include "ipc.h"              /* general ipc methods     */
 #include "svc.h"              /* gen_svc_tree            */

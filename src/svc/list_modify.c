@@ -10,6 +10,8 @@
  *    List handling
  */
 
+#error "NOT IN USE"
+
 #include <stdlib.h>
 #include <string.h>
 #include "cinit.h"

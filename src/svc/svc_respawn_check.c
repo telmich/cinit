@@ -9,6 +9,8 @@
  *    Check whether service is existent
  */
 
+#error "NOT IN USE"
+
 #include <stdio.h>      /* NULL        */
 #include <limits.h>     /* PATH_MAX    */
 #include "svc.h"

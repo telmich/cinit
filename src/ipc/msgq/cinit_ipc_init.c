@@ -11,7 +11,7 @@
 #include <sys/ipc.h>       /* ftok           */
 #include <sys/msg.h>       /* msgget         */
 
-#include "cinit.h"         /* print_errno    */
+#include "intern.h"        /* print_errno    */
 #include "msgq.h"          /* message queue  */
 
 int cinit_ipc_init(void)

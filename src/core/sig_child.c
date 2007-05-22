@@ -13,7 +13,7 @@
 #include <sys/time.h>   /* gettimeofday()    */ /* FIXME: CHECK POSIX */
 #include <time.h>       /* time(),gettime..  */ /* FIXME: CHECK POSIX */
 
-#include "cinit.h"      /*                   */
+#include "intern.h"     /* mini_printf       */
 #include "svc.h"        /* list_search_pid   */
 #include "messages.h"   /* messages          */
 

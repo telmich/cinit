@@ -12,7 +12,7 @@
 #include <sys/wait.h>      /* waitpid     */
 #include <unistd.h>        /* fork        */
 #include "messages.h"      /* MSG_*       */
-#include "cinit.h"         /* print_errno, execute_sth */
+#include "intern.h"        /* print_errno, execute_sth */
 
 int execute_and_wait(char *svc)
 {

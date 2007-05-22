@@ -11,7 +11,7 @@
 
 #include <stdio.h>         /* NULL        */
 #include "svc.h"           /* structs     */
-#include "cinit.h"         /* structs     */
+#include "intern.h"        /* structs     */
 
 struct dep *gen_halt_list(struct listitem *svc_tree)
 {

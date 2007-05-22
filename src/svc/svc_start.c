@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -17,7 +17,7 @@
 
 #include "svc.h"           /* struct *          */
 #include "messages.h"      /* MSG_*             */
-#include "cinit.h"         /* execute_sth       */
+#include "intern.h"        /* execute_sth       */
 
 //void svc_start(struct listitem *li, int strict)
 void svc_start(struct listitem *li, int delay)

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -8,7 +8,7 @@
  */
 
 #include <stdio.h>               /* NULL        */
-#include "cinit.h"               /* mini_printf */
+#include "intern.h"              /* mini_printf */
 #include "svc.h"                 /* svc_init    */
 #include "messages.h"            /* messages    */
 

@@ -11,7 +11,7 @@
 #include <string.h>                 /* strerror             */
 #include <errno.h>                  /* errno                */
 
-#include "cinit.h"                  /* mini_printf, PD_ERR  */
+#include "intern.h"                 /* mini_printf, PD_ERR  */
 
 void print_errno(char *msg)
 { 
