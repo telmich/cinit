@@ -1,0 +1,21 @@
+cinit - Problems occured and solutions used
+===========================================
+Nico Schottelius <nico-cinit__@__schottelius.org>
+0.1, for cinit 0.3, Initial version from 2007-05-28
+:Author Initials: NS
+
+This documentes describes real problems people had with
+cinit and their appropriate solutions.
+
+
+Hibernate
+---------
+uses /sbin/runlevel, which should *not* respond with 0 or 6
+as the second number. As cinit does not have /sbin/runlevel,
+because cinit does not have any runlevels, you could hardcode
+it to values hibernate accepts:
+
+----------------------------------------------------------------------
+#!/bin/sh
+echo N 2
+----------------------------------------------------------------------
