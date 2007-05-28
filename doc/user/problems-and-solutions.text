@@ -5,7 +5,19 @@ Nico Schottelius <nico-cinit__@__schottelius.org>
 :Author Initials: NS
 
 This documentes describes real problems people had with
-cinit and their appropriate solutions.
+cinit and their appropriate solutions. Feel free to add
+your problems and solutions here.
+
+
+Introduction
+------------
+
+
+Adding problems and solutions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Simply add your problem and solution and sign your paragraph
+with your name. Then send the diff -u to the cinit mailinglist
+or setup a git-repository so I can pull the changes.
 
 
 Hibernate
