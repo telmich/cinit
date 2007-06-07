@@ -8,11 +8,12 @@
  *
  */
 
-#include <sys/types.h>     /* pid_t       */
-#include <sys/wait.h>      /* waitpid     */
-#include <unistd.h>        /* fork        */
-#include "messages.h"      /* MSG_*       */
-#include "intern.h"        /* print_errno, execute_sth */
+#include <sys/types.h>     /* pid_t                      */
+#include <sys/wait.h>      /* waitpid                    */
+#include <unistd.h>        /* fork                       */
+
+#include "messages.h"      /* MSG_*                      */
+#include "intern.h"        /* print_errno, execute_sth   */
 
 int execute_and_wait(char *svc)
 {

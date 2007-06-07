@@ -73,7 +73,7 @@
 #ifdef DEBUG
 # define D_PRINTF(x)  ( printf("[%s:%d]: %s\n",__FILE__,__LINE__,x) )
 #else 
-# define D_PRINTF(x)  if(0)
+# define D_PRINTF(x)  if(0) {}
 #endif
 
 /* macros */

@@ -44,9 +44,9 @@ int check_add_deps(struct listitem *svc, int type)
    }
 
    /* FIXME remove in production */
-   mini_printf("CAD::",1);
-   mini_printf(svc->abs_path,1);
-   mini_printf("\n",1);
+   D_PRINTF("CAD::");
+   D_PRINTF(svc->abs_path);
+   D_PRINTF("\n");
 
    /* Create path */
    strcpy(buf,svc->abs_path);

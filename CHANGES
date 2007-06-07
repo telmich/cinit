@@ -1,7 +1,8 @@
 cinit-0.3pre10:
-   - fixed make install target
-   - added halt.kill, poweroff.kill and reboot.kill (including manpages!)
-   - fixed invalid comparision in core/cinit.c
+   - Fixed make install target
+   - Added halt.kill, poweroff.kill and reboot.kill (including manpages!)
+   - Fixed invalid comparision in core/cinit.c
+   - Updated documentation
 
 cinit-0.3pre9: 2007-05-15
    - Implemented sleeping before respawn (static delay)

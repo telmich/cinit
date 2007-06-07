@@ -1,6 +1,6 @@
 /***********************************************************************
  * 
- *    2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  * 
  *    part of cLinux/cinit
  * 
@@ -12,8 +12,9 @@
  *    after a service has sucessfully been executed.
  */
 
-#include <stdio.h>         /* NULL     */
-#include "svc.h"
+#include <stdio.h>         /* NULL        */
+
+#include "svc.h"           /* struct *dep */
 
 /*
  * list: pointer to the list

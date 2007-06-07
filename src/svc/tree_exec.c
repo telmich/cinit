@@ -8,6 +8,7 @@
  */
 
 #include <stdio.h>               /* NULL        */
+
 #include "intern.h"              /* mini_printf */
 #include "svc.h"                 /* svc_init    */
 #include "messages.h"            /* messages    */

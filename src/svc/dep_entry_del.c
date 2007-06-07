@@ -7,9 +7,10 @@
  *    List handling: Add a new item to a (non-)empty list
  */
 
-#include <stdio.h>         /* NULL     */
-#include <stdlib.h>        /* free()   */
-#include "svc.h"
+#include <stdio.h>         /* NULL           */
+#include <stdlib.h>        /* free()         */
+
+#include "svc.h"           /* struct *dep    */
 
 /*
  * tmp:  pointer to data to remove (must not be NULL)

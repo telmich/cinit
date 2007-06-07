@@ -8,8 +8,10 @@
  */
 
 #include <unistd.h>              /* _exit                */
+
 #include "intern.h"
 #include "build_argv.h"
+#include "messages.h"            /* D_PRINTF             */
 
 void execute_sth(char *basename)
 {
@@ -17,9 +19,9 @@ void execute_sth(char *basename)
    struct ba_argv bav;
 
    /* FIXME remove later */
-   mini_printf("ES::",1);
-   mini_printf(basename,1);
-   mini_printf("\n",1);
+   D_PRINTF("ES::");
+   D_PRINTF(basename);
+   D_PRINTF("\n");
 
    tmp = cinit_build_argv(basename,&bav);
    if((tmp = cinit_build_argv(basename,&bav)) != BA_OK) {

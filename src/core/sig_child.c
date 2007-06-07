@@ -15,7 +15,7 @@
 
 #include "intern.h"     /* mini_printf       */
 #include "svc.h"        /* list_search_pid   */
-#include "messages.h"   /* messages          */
+#include "messages.h"   /* messages/D_PRINTF */
 
 /***********************************************************************
  * sig_child: (c)collect the children
@@ -56,9 +56,9 @@ void sig_child(int tmp)
          //mini_printf("WHILE: Vorm respawn!\n",1);
          /* respawn: restart: FIXME Delay for regular dying services */
          if(svc->status == ST_RESPAWNING) {
-            mini_printf("WHILE: IM respawn!\n",1);
+            D_PRINTF("WHILE: IM respawn!\n");
             svc_report_status(svc->abs_path,MSG_SVC_RESTART,NULL);
-            mini_printf("WHILE: IM respawn: nach report status!\n",1);
+            D_PRINTF("WHILE: IM respawn: nach report status!\n");
 
             //delay = MAX_DELAY / (time(NULL) - svc->start);
             /* if(gettimeofday(&now,NULL) == -1) {
@@ -72,7 +72,7 @@ void sig_child(int tmp)
 
             /* int test = time(NULL);
             test++;
-            mini_printf("WHILE: IM respawn / for printf!\n",1);
+            D_PRINTF("WHILE: IM respawn / for printf!\n");
             printf("sig_child: %d, %d, %d, %d\n",
                   MAX_DELAY,
                   (int) time(NULL),
@@ -86,7 +86,7 @@ void sig_child(int tmp)
          //mini_printf("WHILE: NACH respawn!\n",1);
       } else {
          /* FIXME remove in production version */
-         mini_printf("Cleanup: reparenting\n",1);
+         D_PRINTF("Cleanup: reparenting\n");
       }
    //mini_printf("WHILE2: Ende sigchild\n",1);
    }

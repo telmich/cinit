@@ -83,7 +83,7 @@ int main(int argc, char **argv)
       panic();
    }
 
-   mini_printf("=> cinit started.\n",1);
+   D_PRINTF("=> cinit started.\n");
 
    /* listen for incomming messages: should never return */
    if(!cinit_ipc_listen()) {

@@ -1,6 +1,6 @@
 /***********************************************************************
  *
- *    2005-2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2005-2007 Nico Schottelius (nico-cinit at schottelius.org)
  *
  *    part of cLinux/cinit
  *
@@ -8,9 +8,8 @@
  */
 
 #include <stdio.h>      /* NULL                    */
-#include "svc.h"        /* service information     */
 
-// DEBUG #include "cinit.h"        /* service information     */
+#include "svc.h"        /* service information     */
 
 int svc_needs_status(struct listitem *svc)
 {

@@ -13,8 +13,10 @@
 #include <sys/stat.h>   /* stat           */
 #include <limits.h>     /* PATH_MAX       */
 #include <errno.h>      /* errno          */
+
 #include "svc.h"        /* listitem       */
 #include "intern.h"     /* path_append    */
+#include "messages.h"   /* D_PRINTF       */
 
 /* checking for existence is done before! */
 /* FIXME: check heedars for conformance with POSIX */
@@ -39,9 +41,10 @@ struct listitem *svc_create(char *svc)
       }
    } else {
       /* FIXME remove debug */
-      mini_printf("respawn: ",1);
-      mini_printf(li->abs_path,1);
-      mini_printf("\n",1);
+      D_PRINTF("respawn: ");
+      D_PRINTF(li->abs_path);
+      D_PRINTF("\n");
+
       svc_set_status(li,ST_SH_RESPAWN);
    }
 

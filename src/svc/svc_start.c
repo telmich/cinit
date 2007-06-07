@@ -32,7 +32,7 @@ void svc_start(struct listitem *li, int delay)
     *
     * FIXME: Add logging possibility to here
     * open (0,1,2) to other processes, if specified */
-   mini_printf("VORM Fork()\n",1);
+   D_PRINTF("VORM Fork()\n");
    li->pid = fork();
    
    /**********************      Error      ************************/
@@ -43,7 +43,7 @@ void svc_start(struct listitem *li, int delay)
    }
    /**********************      parent     ************************/
    if(li->pid > 0) {
-      mini_printf("ELTERN\n",1);
+      D_PRINTF("ELTERN\n");
       /* set start time */
       li->start = time(NULL);
 

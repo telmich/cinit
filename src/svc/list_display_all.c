@@ -8,7 +8,8 @@
  */
 
 #include <stdio.h>         /* NULL     */
-#include "intern.h"
+
+#include "messages.h"      /* D_PRINTF */
 #include "svc.h"
 
 int list_display_all()
@@ -22,9 +23,10 @@ int list_display_all()
    }
 
    do {
-      mini_printf("Service: ",1);
-      mini_printf(tmp->abs_path,1);
-      mini_printf("\n",1);
+      D_PRINTF("Service: ");
+      D_PRINTF(tmp->abs_path);
+      D_PRINTF("\n");
+
       tmp = tmp->prev;
    } while(tmp != svc_list);
    

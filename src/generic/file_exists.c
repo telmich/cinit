@@ -10,6 +10,7 @@
 #include <errno.h>         /* errno                   */
 #include <sys/stat.h>      /* stat                    */
 #include <stdio.h>         /* NULL                    */
+
 #include "intern.h"        /* print_errno()           */
 #include "svc.h"           /* svc_report_status()     */
 #include "messages.h"      /* messages..              */
@@ -18,9 +19,9 @@ int file_exists(char *filename)
 {
    struct stat buf;
 
-   mini_printf("FE: ",1);
-   mini_printf(filename,1);
-   mini_printf("\n",1);
+   D_PRINTF("FE: ");
+   D_PRINTF(filename);
+   D_PRINTF("\n");
    
    /* check:
     * - is it a link? if so, is it broken? report!
