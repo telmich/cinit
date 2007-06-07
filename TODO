@@ -245,6 +245,12 @@ msgq-destroy: Invalid argument
 
 
 TODO.pre10:
+   Remove some debugging, re-introduce DEBUG() macro..
+   Fix doc:
+
+   http://linux.schottelius.org/cinit/browse_source/current/doc/user/config-dirs
+   conf/c_halt
+
    IPC:
       * check msqg-code
       * documentate the ipc functions: update devel/ipc.text
