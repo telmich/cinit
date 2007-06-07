@@ -74,7 +74,7 @@ int main(int argc, char **argv)
    }
 
    /* free, if we malloc()ed before */
-   if(initdir != CINIT_INIT) {
+   if(strcmp(initdir,CINIT_INIT)) {
       free(initdir);
    }
 
