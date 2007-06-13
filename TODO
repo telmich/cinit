@@ -245,8 +245,18 @@ msgq-destroy: Invalid argument
 
 
 TODO.pre10:
+   Done:
+   cleanup client/ comm/ contrib+tools/ util/ tmp/
+   Debugging cinit-configuration:
+      ls -lR /etc/cinit
+      or: cinit.read....
+
+TODO.pre11:
    Remove some debugging, re-introduce DEBUG() macro..
    Fix doc:
+   
+   make dist should cleanup cc / ld to sane values?
+      or do I experiement in tmp/*?
 
    http://linux.schottelius.org/cinit/browse_source/current/doc/user/config-dirs
    conf/c_halt
@@ -293,11 +303,7 @@ TODO.pre10:
          * creates categories
          * creates one service starting a shell (depending on the OS!)
 
-   Done:
-   cleanup client/ comm/ contrib+tools/ util/ tmp/
-
-TODO.pre11:
-   cleanup src/
+      cleanup src/
    finish ipc code so clients can access cinit
    implement CMD_INFO (see comm.h)
 
