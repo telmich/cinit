@@ -16,8 +16,8 @@
 
 #define MSG_DP    ": "
 
-/* Messages to the outside */
-#define MSG_BIND           "bind"
+/* OLD Messages to the outside */
+//#define MSG_BIND           "bind"
 #define MSG_CONNECT        "connect"
 #define MSG_FCNTL          "fcntl"
 #define MSG_KILLBILL       "sigkill"
@@ -71,6 +71,7 @@
 
 /* DEBUG */
 #ifdef DEBUG
+# include <stdio.h>
 # define D_PRINTF(x)  ( printf("[%s:%d]: %s\n",__FILE__,__LINE__,x) )
 #else 
 # define D_PRINTF(x)  if(0) {}
