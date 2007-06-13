@@ -31,6 +31,11 @@ void execute_sth(char *basename)
       _exit(1);
    }
 
+   /* tell the user what we execute */
+   mini_printf(MSG_INTRO_EXEC,1);
+   mini_printf((bav.argv)[0],1);
+   mini_printf("\n",1);
+
    execve((bav.argv)[0], bav.argv, bav.envp);
    print_errno(basename);
    _exit(1);   /* simply exit non-zero. That's enough for cinit to recognize
