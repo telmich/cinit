@@ -306,13 +306,20 @@ So the only question is "How to do it?".
 There are some hints on how to migrate to cinit in general and also
 some os specific help in the file 'migrating-init-systems.text',
 
+
+Debugging the configuration
+----------------------------
+Use `ls -lR /etc/cinit` or one of the tools found in contrib+tools/.
+
+
 Examples
 --------
-Currently there are no example configurations available.
-As soon as they are, you will be able to download them at
-cinit's homepage.
+Currently there are some example configurations available
+at http://unix.schottelius.org/cinit/samples/cinit-0.3/, sorted
+by host on which they are created.
 
---> configuration.example.text
+In near future, there will also be a file name configuration.example.text,
+which will lead you to a sample configuration.
 
 
 References
