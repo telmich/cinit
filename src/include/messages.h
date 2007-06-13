@@ -18,12 +18,10 @@
 
 /* OLD Messages to the outside */
 //#define MSG_BIND           "bind"
-#define MSG_CONNECT        "connect"
-#define MSG_FCNTL          "fcntl"
-#define MSG_KILLBILL       "sigkill"
-#define MSG_LISTEN         "listen"
-#define MSG_SOCKET         "socket"
-#define MSG_TERMKILL       "sigterm"
+//#define MSG_CONNECT        "connect"
+//#define MSG_FCNTL          "fcntl"
+//#define MSG_LISTEN         "listen"
+//#define MSG_SOCKET         "socket"
 #define MSG_USAGE_1        ": fast executing, small and simple init "
 #define MSG_USAGE_2        "with support for profiles\n"
 #define MSG_USAGE_3        "\nError: cinit must be started as PID 1.\n"
@@ -104,6 +102,7 @@
 #define MSG_INTRO_SVC      MSG_INTRO_CINIT
 //#define MSG_INTRO_SVC      MSG_INTRO_CINIT   "service:"
 #define MSG_INTRO_STOP     MSG_INTRO_CINIT   "stop: "
+#define MSG_INTRO_EXEC     MSG_INTRO_CINIT   "exec: "
 
 /* FIXME: remove/append, but no intro! */
 #define MSG_INTRO_FAIL     "FAILED "
@@ -124,6 +123,9 @@
 #define MSG_FATAL_PANIC    MSG_INTRO_SPACE "I tried everything, but even panic() failed: "
 #define MSG_ERR_SLEEP      MSG_INTRO_SPACE "Sleep did not succeed"
 #define MSG_GETTIMEOFDAY   MSG_INTRO_SPACE "gettimeofday() failed!"
+
+/* execution */
+//#define MSG_EXECUTING      MSG_INTRO_EXEC 
 
 /* stat() errors */
 #define MSG_NONREGULAR     "Is not a regular file."
@@ -151,5 +153,9 @@
 #define MSG_REBOOT_KILL       "reboot.kill"
 #define MSG_POWEROFF_KILL     "poweroff.kill"
 
+
+/* reboot */
+#define MSG_TERMKILL       MSG_INTRO_FAIL "SIGTERM"
+#define MSG_KILLBILL       MSG_INTRO_FAIL "SIGKILL"
 
 #endif   /* _CINIT_MSG_H */
