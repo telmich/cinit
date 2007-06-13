@@ -2,6 +2,7 @@ cinit-0.3pre10:
    - Fixed make install target
    - Added halt.kill, poweroff.kill and reboot.kill (including manpages!)
    - Fixed invalid comparision in core/cinit.c
+   - Be verbose: Print what we execute
    - Updated documentation
 
 cinit-0.3pre9: 2007-05-15
