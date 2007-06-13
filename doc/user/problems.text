@@ -95,7 +95,7 @@ it to flashing images. It could look like this:
   Your (graphical?) display:
   -------------------------------------------------------------- 
   |  /-----------------\                                       |
-  |  | Red border,     |                                               |
+  |  | Red border,     |                                       |
   |  | failed to start |                                       |
   |  \-----------------/                                       |
   |                                                            |
