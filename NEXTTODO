@@ -16,6 +16,9 @@ implement commands!
 - update cinit: howto?
 - chdir to / after startup
 
+
+merge svc_need_status to svc_status
+
 cinit-communication:
    as in ceof? or binary?
 
@@ -26,4 +29,8 @@ cinit-communication:
    cinit_enable_service(char *name,int options);
    cinit_disable_service(char *name, int options);
    int cinit_service_status(char *name);
+   cinit_halt()
+
+   cinit_get_failed_needs(char *name, int *cnt);
+
 

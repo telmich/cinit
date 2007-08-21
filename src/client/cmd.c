@@ -21,7 +21,13 @@
 enum CMD_ARGS {
    CMD_HPR,
    CMD_ENABLE,
-   CMD_DISABLE
+   CMD_DISABLE,
+   CMD_STATUS
+};
+
+enum CMD_OPTS {
+   CMD_NO_WANTS = 0x1,
+   CMD_NO_NEEDS = 0x2
 };
 
 /***********************************************************************
@@ -54,32 +60,24 @@ int main(int argc, char **argv)
          /********************************************/
          case 'e':   /* enable service */
                what = CMD_ENABLE;
-               tmp  = SIG_CINIT_REBOOT;
          break;
 
          case 'd':   /* disable service */
                what = CMD_DISABLE;
-               tmp  = SIG_CINIT_REBOOT;
          break;
 
          case 'n':   /* exclude needs */
-               tmp  = SIG_CINIT_HALT;
+               tmp  |= CMD_NO_NEEDS;
          break;
 
          case 'w':   /* exclude wants */
-               tmp  = SIG_CINIT_HALT;
+               tmp  |= CMD_NO_WANTS;
          break;
 
 
          /********************************************/
          case 's':   /* get status */
-            //tmp = cinit_get_svc_status(optarg);
-            switch(tmp) {
-               case ST_SH_ONCE:
-               break;
-               case ST_NEED_FAILD:
-               break;
-            }
+            what = CMD_STATUS;
          break;
 
          default:
@@ -92,6 +90,15 @@ int main(int argc, char **argv)
          if(kill(1,tmp) == -1) {
             print_errno(MSG_KILL);
             return 1;
+         }
+      break;
+      case CMD_STATUS:
+         //tmp = cinit_get_svc_status(optarg);
+         switch(tmp) {
+            case ST_SH_ONCE:
+            break;
+            case ST_NEED_FAILD:
+            break;
          }
       break;
    }
