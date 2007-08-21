@@ -26,6 +26,8 @@
    "   -p: poweroff\n"                          \
    "   -r: reboot\n"
 
-#define CMD_OPTIONS "ednwphr"
+#define CMD_OPTIONS "e:d:hnprs:w"
+
+#define MSG_KILL  "kill()"
 
 #endif

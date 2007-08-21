@@ -1,1 +1,3 @@
 client/cmd.o
+generic/print_errno.o
+generic/mini_printf.o
