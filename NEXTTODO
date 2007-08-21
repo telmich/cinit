@@ -12,3 +12,18 @@ wants:
 
 implement commands!
 - fix devel/codingguideline.text!
+
+- update cinit: howto?
+- chdir to / after startup
+
+cinit-communication:
+   as in ceof? or binary?
+
+   send_to_cinit(CMD)
+   read_from_cinit(CMD)
+
+   /* client functions */
+   cinit_enable_service(char *name,int options);
+   cinit_disable_service(char *name, int options);
+   int cinit_service_status(char *name);
+
