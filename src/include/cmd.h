@@ -20,7 +20,12 @@
    "        Skip wants when en/disabling\n"     \
    "   -w: without wants\n"                     \
    "        Skip needs when en/disabling\n"     \
+   "   -s: get status\n"                        \
+   "        of specified service\n"             \
    "   -h: halt\n"                              \
    "   -p: poweroff\n"                          \
    "   -r: reboot\n"
+
+#define CMD_OPTIONS "ednwphr"
+
 #endif

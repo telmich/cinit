@@ -26,3 +26,4 @@ doc/man/*.xml
 src/cmd
 .*.swp
 .exclude
+src/.configured
