@@ -1,3 +1,6 @@
+cinit-0.3pre11:
+   - Added cmd: cinit management
+
 cinit-0.3pre10:
    - Fixed make install target
    - Added halt.kill, poweroff.kill and reboot.kill (including manpages!)
