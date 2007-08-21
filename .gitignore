@@ -24,3 +24,5 @@ src/reboot.kill
 doc/man/*.[0-9]
 doc/man/*.xml
 src/cmd
+.*.swp
+.exclude
