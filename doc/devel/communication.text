@@ -31,6 +31,13 @@ cinit will begin listening to messages directly after its start.
 Data
 ~~~~~
 A message always conists of a predefined structure (see src/headers/comm.h).
+Can't use a structure, were missing the point that we cannot transfer dynamic
+length strings. Thus the protocol consists of:
+
+   client(int) => cinit
+   cinit(ini) => client
+   => after that follows command specific data
+
 The byte order is host specific (may be little or big endian).
 
 Type
