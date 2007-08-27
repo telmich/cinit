@@ -5,6 +5,7 @@
 
 #ifndef CINIT_IPC_HEADER
 #define CINIT_IPC_HEADER
+/* FIXME: add _cinit_ to it, we may be in client namespace now! */
 
 #include <comm.h>                         /* structures              */
 

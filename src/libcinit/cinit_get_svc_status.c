@@ -15,7 +15,9 @@
 
 int cinit_get_svc_status(char *name)
 {
-   long int tmp
+   /* fixme: s32 int! */
+   long int tmp;
+
    int offset = 0;
    char *p, *answer;
 

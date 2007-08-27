@@ -115,7 +115,8 @@ enum svc_status {
    ST_NEED_FAILD  = 0x20,    /* this service is not started, need failed  */
    ST_IN_LIST     = 0x40,    /* this service is being started (= in list) */
    ST_BAD_ERR     = 0x80,    /* some kind of error that SHOULD NOT happen */
-   ST_ONCE_RUN    = 0x100    /* the once process is currently running     */
+   ST_ONCE_RUN    = 0x100,   /* the once process is currently running     */
+   ST_NOT_EXIST   = 0x200    /* there's no such service in our database   */
 };
 
 /***********************************************************************

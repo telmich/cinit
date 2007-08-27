@@ -120,6 +120,8 @@ This function works recursively, thus also killing those services, that
 
 Question: What's the status of service XYZ?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Code, length of service name, the service name (without \0).
+int, int, char[];
 
 
 
