@@ -1,3 +1,11 @@
+IPC:
+   msgrcv() wants a struct
+      -> create struct with enough space for everything...
+      char data[PATH_MAX] => limits.h!
+      http://www.opengroup.org/onlinepubs/009695399/basedefs/limits.h.html
+      int32_t options
+
+--------------------------------------------------------------------------------
 - create cmd!
    * cinit-0.3 client
       * check ipc code in cinit

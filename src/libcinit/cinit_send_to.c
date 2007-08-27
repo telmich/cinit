@@ -8,10 +8,15 @@
  */
 
 
-#include ""       /* include global header */
+#include "ipc.h"        /* IPC                     */
+#include "cinit.h"      /* struct cinit_message    */
 
 /* gets a bunch of bytes and returns the answer from cinit */
-char *cinit_send_to(char *data, int len)
+char *cinit_send_to(struct cinit_message *data, int len)
 {
+   if(!cinit_ipc_logon())        return NULL;
+   if(!cinit_ipc_connect())      return NULL;
+   if(!cinit_ipc_csend(data))    return NULL;
+
    return 1;
 }

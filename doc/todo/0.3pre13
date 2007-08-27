@@ -1,1 +1,3 @@
 - create libcinit.a/so and link against it
+- global symbol to track the connection to cinit in the client
+   => cinit_ipc_cinit() - initalise ipc in the client (only once)

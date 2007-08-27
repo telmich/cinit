@@ -11,7 +11,15 @@
 #define CINIT_EXTERNAL_HEADER
 
 /* includes */
-#include <stdint.h>     /* required for functions */
+#include <stdint.h>     /* required for functions  */
+#include <limits.h>     /* PATH_MAX                */
+
+/* structs */
+struct cinit_message {
+   long int mtype;
+   char     data[PATH_MAX];
+   int32_t  options;
+};
 
 /* codes for messages */
 enum {
