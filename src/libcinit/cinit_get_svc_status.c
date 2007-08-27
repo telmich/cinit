@@ -15,7 +15,7 @@
 
 int cinit_get_svc_status(char *name)
 {
-   int tmp
+   long int tmp
    int offset = 0;
    char *p, *answer;
 
