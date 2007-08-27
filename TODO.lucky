@@ -1,0 +1,16 @@
+18:18 <Lucky_> hey, ich hatte gerade ein wenig lust mich mit cinit zu befassen, hier also mein 
+               kleiner bug-report: in src/include fehlt cinit.h, (alles auf das aktuelle 
+               tarball bezogen), ich hab's aus pre9 genommen, hatte ich noch da, da git nicht 
+               wollte(Cannot get remote repository information.), ausserdem hast du _ statt - 
+               in doc/man/cinit.text verwendet bei der email, das mag docbook nicht, die 
+               beiden zeilen habe ich korrigiert, danch ging schon mal make all und auch make 
+               ins
+18:35 <Lucky_> und warum installiert er die man pages nicht mit?
+07:20 <Lucky_> so, kleiner zwischenbericht, das argv problem bei lvm gibt es mit pre10 nicht 
+               mehr, d.h. dass man auch kein shell-skript mehr braucht um lvm/luks-devices zu 
+               mounten :)
+07:20 <Lucky_> soweit sieht eig. alles gut aus
+07:21 <Lucky_> wenn das so bleibt, dann werd' ich dauerhaft auf cinit umsteigen :)
+07:21 <Lucky_> und wenn sich die gelegenheit bietet, dann stell ich cinit auch mal in der 
+               info-ag von unserer schule vor :)
+
