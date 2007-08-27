@@ -33,4 +33,15 @@ cinit-communication:
 
    cinit_get_failed_needs(char *name, int *cnt);
 
+   cinit_
+
+--------------------------------------------------------------------------------
+Define way, how ipc works cleanly!
+
+- cinit_ipc_listen() must listen for a single host byte integer and call
+  cinit_read_cmd(), which will use cinit_ipc_sread() to retrieve more bytes
+- cinit_ip_logon() must do everything necessary to write to cinit
+
+
+
 
