@@ -13,6 +13,9 @@
 
 #include "cinit.h"      /* header for clients   */
 
+/* returns either the status (>0)
+ * or -1 on memory error
+ */
 int cinit_get_svc_status(char *name)
 {
    /* fixme: s32 int! */
@@ -40,9 +43,7 @@ int cinit_get_svc_status(char *name)
 
    answer = cinit_send_to(p);
    if(answer) {
-      offset = 0;
-      strncpy((char *) &tmp, &answer[offset], sizeof(tmp));
-
+      strncpy((char *) &tmp, answer, sizeof(tmp));
       free(answer);
    } else {
       tmp = -1;
