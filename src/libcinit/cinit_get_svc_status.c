@@ -10,45 +10,47 @@
 
 #include <stdlib.h>     /* malloc               */
 #include <string.h>     /* str*                 */
+#include <stdint.h>     /* integers             */
 
 #include "cinit.h"      /* header for clients   */
 
 /* returns either the status (>0)
  * or -1 on memory error
  */
-int cinit_get_svc_status(char *name)
+int32_t cinit_get_svc_status(char *name)
 {
    /* fixme: s32 int! */
-   long int tmp;
+   int tmp;
+   int32_t res;
 
-   int offset = 0;
+   int offset = 0, len = strlen(name);
+
    char *p, *answer;
 
-   p = malloc(strlen(name) + 2 * sizeof(tmp));
+   p = malloc(len + 2 * sizeof(tmp));
    if(!p) return -1;
 
    /* code */
    tmp = CINIT_MSG_GET_STATUS;
-   strncpy(p,(char *) &tmp[offset],sizeof(tmp));
+   strncpy(p,(char *) &tmp, sizeof(tmp));
    offset += sizeof(tmp);
 
    /* length */
-   tmp = strlen(name);
-   strncpy(p,(char *) &tmp[offset],sizeof(tmp));
-   offset += sizeof(tmp);
+   strncpy(&p[offset],(char *) &len, sizeof(len));
+   offset += sizeof(len);
 
    /* data */
-   tmp = strlen(name);
-   strncpy(p, (char *) name, tmp);
+   strncpy(p, (char *) name, len);
 
-   answer = cinit_send_to(p);
+   answer = cinit_send_to(p,len);
+
    if(answer) {
-      strncpy((char *) &tmp, answer, sizeof(tmp));
+      strncpy((char *) &res, answer, sizeof(res));
       free(answer);
    } else {
-      tmp = -1;
+      res = -1;
    }
 
    free(name);
-   return tmp;
+   return res;
 }

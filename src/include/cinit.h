@@ -10,6 +10,9 @@
 #ifndef CINIT_EXTERNAL_HEADER
 #define CINIT_EXTERNAL_HEADER
 
+/* includes */
+#include <stdint.h>     /* required for functions */
+
 /* codes for messages */
 enum {
    /* questions */
@@ -22,7 +25,7 @@ enum {
 };
 
 /* functions */
-int cinit_get_svc_status(char *);
+int32_t cinit_get_svc_status(char *);
 char *cinit_send_to(char *, int);
 
 
