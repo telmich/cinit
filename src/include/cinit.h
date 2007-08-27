@@ -21,5 +21,9 @@ enum {
    CINIT_MSG_SVC_UNKNOWN
 };
 
+/* functions */
+int cinit_get_svc_status(char *);
+char *cinit_send_to(char *, int);
+
 
 #endif

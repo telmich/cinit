@@ -1,3 +1,4 @@
 client/cmd.o
 generic/print_errno.o
 generic/mini_printf.o
+libcinit/cinit_get_svc_status.o

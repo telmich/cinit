@@ -9,11 +9,14 @@
 
 #include <unistd.h>        /* getopt            */
 #include <signal.h>        /* signals           */
+#include <stdio.h>         /* printf()          */
 
 #include "cmd.h"           /* own header        */
 #include "signals.h"       /* which signal      */
 #include "svc.h"           /* service related   */
 #include "intern.h"        /* print_errno()     */
+
+#include "cinit.h"         /* cinit external    */
 
 #define C_USAGE(error) usage(USAGE_TEXT,error)
 #define LOG(a,b)     mini_printf(a,1); minit_printf(b,1);
@@ -93,13 +96,14 @@ int main(int argc, char **argv)
          }
       break;
       case CMD_STATUS:
-         //tmp = cinit_get_svc_status(optarg);
-         switch(tmp) {
+         tmp = cinit_get_svc_status(optarg);
+         printf("Status is: %d\n",tmp);
+         /*switch(tmp) {
             case ST_SH_ONCE:
             break;
             case ST_NEED_FAILD:
             break;
-         }
+         }*/
       break;
    }
 
