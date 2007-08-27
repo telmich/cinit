@@ -28,6 +28,12 @@ Order
 The client always initiates the communication.
 cinit will begin listening to messages directly after its start.
 
+
+Numbers
+~~~~~~~
+Can be found in include/cinit.h.
+
+
 Data
 ~~~~~
 A message always conists of a predefined structure (see src/headers/comm.h).
@@ -110,6 +116,11 @@ services that want to have this service.
 
 This function works recursively, thus also killing those services, that
 'need' or 'want' the service that 'need' or 'want' the current service.
+
+
+Question: What's the status of service XYZ?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 
 Question: Could you change the status? [CMD_CHG_STAT]
