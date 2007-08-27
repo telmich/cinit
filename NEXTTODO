@@ -22,8 +22,8 @@ merge svc_need_status to svc_status
 cinit-communication:
    as in ceof? or binary?
 
-   send_to_cinit(CMD)
-   read_from_cinit(CMD)
+   cinit_send_to(data)
+   cinit_read_from(data)
 
    /* client functions */
    cinit_enable_service(char *name,int options);
