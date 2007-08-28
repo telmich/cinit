@@ -21,29 +21,28 @@
 
 int cinit_ipc_listen(void)
 {
-   int tmp;
-
-   //struct msg_client m_client;
-
-   struct s_cmd cmd;
+   int                  tmp;
+   struct msgq_client   msg;
 
    while (1) {
       mini_printf("IPC loop\n",1);
 
-      tmp = msgrcv(mq_in,&cmd,(sizeof cmd),0,0);
+      tmp = msgrcv(mq_in, &msg,(sizeof msg), 0, 0);
 
       if(tmp == -1) {
          if(errno != EINTR) {
             print_errno(MSG_MSGQ_MSGRCV);
          }
          continue;
+      } else {
+
       }
-      
-      printf("pid: %d, cmd: %c\n",cmd.pid,cmd.cmd);
 
-      //read_command(cmd);
+      printf("pid: %d, cmd: %d\n",msg.pid,msg.msg.cmd);
 
-      /* use pid as the message type 
+
+      /*
+       * send back: use pid as the message type 
       m_serv.mtype = (long) m_client.pid;
       strcpy(m_serv.text,"Alles ok\n");
 
