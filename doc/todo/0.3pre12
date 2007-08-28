@@ -8,5 +8,10 @@ vllt. sogar "make install-test" in die cinit 0.3er branch aufnehmen?
 
 vlg Lucky
 --------------------------------------------------------------------------------
+
 Use http://www.opengroup.org/onlinepubs/009695399/basedefs/stdint.h.html
 
+--------------------------------------------------------------------------------
+
+cleanup ipc!
+where to call !cinit_ipc_logon and !cinit_ipc_connect?

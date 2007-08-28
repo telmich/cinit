@@ -1,3 +1,9 @@
 - create libcinit.a/so and link against it
 - global symbol to track the connection to cinit in the client
    => cinit_ipc_cinit() - initalise ipc in the client (only once)
+- cleanup headers:
+   seems to make more sense, to have more than one exposed header.
+   cinit.h gets to fast too big. so splitoff to:
+   <cinit/cinit.h>   /* main  */
+   <cinit/types.h>   /* ...   */
+

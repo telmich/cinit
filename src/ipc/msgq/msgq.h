@@ -7,7 +7,8 @@
 #define CINIT_IPC_HEADER
 /* FIXME: add _cinit_ to it, we may be in client namespace now! */
 
-#include <comm.h>                         /* structures              */
+//#include <comm.h>                         /* structures              */
+#include <cinit.h>                         /* structures              */
 
 /***********************************************************************
  * configuration
@@ -32,13 +33,15 @@ int mq_out;                   /* output   */
 struct msgq_client {
     long mtype;
     pid_t pid;
-    struct msg_client msg;
+    struct cinit_question msg;
+    //struct msg_client msg;
 };
 
 /* messages _from_ the server _to_ the client */
 struct msgq_server_short {
     long mtype;
-    struct asw_sstatus answer;
+    struct cinit_answer msg;
+    //struct asw_sstatus answer;
 };
 
 /***********************************************************************

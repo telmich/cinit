@@ -14,11 +14,21 @@
 #include <stdint.h>     /* required for functions  */
 #include <limits.h>     /* PATH_MAX                */
 
-/* structs */
-struct cinit_message {
-   long int mtype;
+/*
+ * structures: independent of the ipc code!
+ */
+
+/* messages from the client */
+struct cinit_question {
+   int32_t  cmd;
    char     data[PATH_MAX];
    int32_t  options;
+};
+
+/* messages from cinit */
+struct cinit_answer {
+   int32_t  options;
+//   char     data[PATH_MAX];
 };
 
 /* codes for messages */
@@ -34,7 +44,8 @@ enum {
 
 /* functions */
 int32_t cinit_get_svc_status(char *);
-char *cinit_send_to(char *, int);
+//char *cinit_send_to(char *, int);
+int cinit_send_to(struct cinit_question *, struct cinit_answer *);
 
 
 #endif

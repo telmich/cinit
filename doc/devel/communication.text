@@ -46,6 +46,9 @@ length strings. Thus the protocol consists of:
 
 The byte order is host specific (may be little or big endian).
 
+STRUCTURE WITH STATIC SIZE. MSGRCV!
+IPC LAYER CREATES TRANSPORT!
+
 Type
 ~~~~
 Messages are binary data.
