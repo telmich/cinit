@@ -21,6 +21,8 @@ int cinit_ipc_csend(struct cinit_question *data)
 {
    struct msgq_client msg;
 
+   msg.pid = __cinit_cpid;
+
    /* copy structure into the msgq-structure */
    memcpy(&(msg.msg),data, sizeof(msg.msg));
 

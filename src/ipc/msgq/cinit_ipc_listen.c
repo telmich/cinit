@@ -40,7 +40,6 @@ int cinit_ipc_listen(void)
 
       printf("pid: %d, cmd: %d\n",msg.pid,msg.msg.cmd);
 
-
       /*
        * send back: use pid as the message type 
       m_serv.mtype = (long) m_client.pid;

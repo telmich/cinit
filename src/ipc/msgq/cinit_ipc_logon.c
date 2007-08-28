@@ -10,10 +10,11 @@
 
 #include <sys/ipc.h>             /* ftok              */
 #include <sys/msg.h>             /* msgget            */
+#include <unistd.h>              /* getpid()          */
 
 #include "config.h"
 #include "intern.h"              /* print_errno       */
-#include "msgq.h"
+#include "msgq.h"                /* msgq constants    */
 
 int cinit_ipc_logon(void)
 {
@@ -36,6 +37,9 @@ int cinit_ipc_logon(void)
       print_errno(MSG_MSGQ_MSGGET);
       return 0;
    }
+
+   /* we use the pid as identifier, so initialise it here */
+   __cinit_cpid = getpid();
  
    return 1;
 }

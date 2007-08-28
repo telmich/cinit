@@ -20,10 +20,11 @@
 #define MSGQ_PERMS         0660           /* queue permissions       */
 
 /***********************************************************************
- * global variables
+ * global variables: FIXME: rename, we're in client namespace!
  */
 int mq_in;                    /* input    */
 int mq_out;                   /* output   */
+pid_t __cinit_cpid;           /* our (p)id*/
 
 /***********************************************************************
  * structures
