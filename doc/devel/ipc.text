@@ -113,7 +113,7 @@ with ident
   */
   int cinit_ipc_logon(void);       /* logon to init  (client init)     */
   int cinit_ipc_connect(void);     /* connect to init                  */
-  int cinit_ipc_csend(void *data); /* send to the server from a client */
+  int cinit_ipc_csend(struct cinit_message *data); /* send to the server from a client */
 
 
 --------------------------------------------------------------------------------
