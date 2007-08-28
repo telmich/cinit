@@ -19,38 +19,14 @@
  */
 int32_t cinit_get_svc_status(char *name)
 {
-   /* fixme: s32 int! */
-   int tmp;
-   int32_t res;
+   struct cinit_question ask;
+   struct cinit_answer   answer;
 
-   int offset = 0, len = strlen(name);
+   ask.cmd = CINIT_MSG_GET_STATUS;
+   strcpy((ask.data), name);
+   ask.options = 0;
 
-   char *p, *answer;
+   cinit_send_to(&ask, &answer);
 
-   p = malloc(len + 2 * sizeof(tmp));
-   if(!p) return -1;
-
-   /* code */
-   tmp = CINIT_MSG_GET_STATUS;
-   strncpy(p,(char *) &tmp, sizeof(tmp));
-   offset += sizeof(tmp);
-
-   /* length */
-   strncpy(&p[offset],(char *) &len, sizeof(len));
-   offset += sizeof(len);
-
-   /* data */
-   strncpy(p, (char *) name, len);
-
-   answer = cinit_send_to(p,len);
-
-   if(answer) {
-      strncpy((char *) &res, answer, sizeof(res));
-      free(answer);
-   } else {
-      res = -1;
-   }
-
-   free(name);
-   return res;
+   return 1;
 }

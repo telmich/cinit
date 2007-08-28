@@ -39,7 +39,7 @@ enum CMD_OPTS {
 int main(int argc, char **argv)
 {
    int opt, tmp, what;
-   //char **list;
+   char *svc;
 
    tmp = 0;
 
@@ -81,12 +81,14 @@ int main(int argc, char **argv)
          /********************************************/
          case 's':   /* get status */
             what = CMD_STATUS;
+            svc  = optarg;
          break;
 
          default:
             break;
       }
    }
+   printf("read args\n");
 
    switch(what) {
       case CMD_HPR:
@@ -96,7 +98,8 @@ int main(int argc, char **argv)
          }
       break;
       case CMD_STATUS:
-         tmp = cinit_get_svc_status(optarg);
+         printf("get status\n");
+         tmp = cinit_get_svc_status(svc);
          printf("Status is: %d\n",tmp);
          /*switch(tmp) {
             case ST_SH_ONCE:

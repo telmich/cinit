@@ -1,4 +1,11 @@
-- finish cmd in general, perhaps only including one command.
+- Fix cmd:
+[19:54] denkbrett:src# ./cmd -s /etc/cinit/svc/mount/root 
+read args
+get status
+msgsnd,csend: Invalid argument
+Status is: 1
+[19:54] denkbrett:src# 
+
 - begin to write documentation about client functions
 - cleanup communication:
    put parts of comm.h into cinit.h => global exposure
@@ -12,3 +19,4 @@ Done:
 - cleanup ipc:
    merge cinit_ipc_logon() and cinit_ipc_connect()?
    => already done!
+- finish cmd in general, perhaps only including one command.
