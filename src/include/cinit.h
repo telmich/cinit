@@ -46,9 +46,9 @@ enum {
 };
 
 /* functions */
-int32_t cinit_get_svc_status(char *);
-//char *cinit_send_to(char *, int);
-int cinit_send_to(struct cinit_question *, struct cinit_answer *);
+int32_t  cinit_get_svc_status(char *);
+char    *cinit_get_version(void);
+int      cinit_send_to(struct cinit_question *, struct cinit_answer *);
 
 
 #endif

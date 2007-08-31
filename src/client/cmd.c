@@ -84,6 +84,11 @@ int main(int argc, char **argv)
             svc  = optarg;
          break;
 
+         case 'v':   /* get version */
+            svc = cinit_get_version();
+            printf("Version of cinit: %s\n",svc);
+         break;
+
          default:
             break;
       }

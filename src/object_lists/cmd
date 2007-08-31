@@ -2,6 +2,7 @@ client/cmd.o
 generic/print_errno.o
 generic/mini_printf.o
 libcinit/cinit_get_svc_status.o
+libcinit/cinit_get_version.o
 libcinit/cinit_send_to.o
 ipc/current/cinit_ipc_logon.o
 ipc/current/cinit_ipc_csend.o
