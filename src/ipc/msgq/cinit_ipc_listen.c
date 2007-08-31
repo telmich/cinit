@@ -22,13 +22,12 @@
 int cinit_ipc_listen(void)
 {
    int                  tmp;
-   struct msgq_client   msg;
+   struct msgq_client   qsn;
+   struct msgq_server   asr;
 
    while (1) {
-      mini_printf("IPC loop\n",1);
-
-      msg.mtype = 1; /* listen only to mtype = 1, == init */
-      tmp = msgrcv(mq_in, &msg,(sizeof msg), 0, 0);
+      qsn.mtype = 1; /* listen only to mtype = 1, == init */
+      tmp = msgrcv(mq_in, &qsn,(sizeof qsn), 0, 0);
 
       if(tmp == -1) {
          if(errno != EINTR) {
@@ -37,12 +36,16 @@ int cinit_ipc_listen(void)
          continue;
       }
 
-      printf("pid: %d, cmd: %d\n",msg.pid,msg.msg.cmd);
+      printf("pid: %d, cmd: %d\n",qsn.pid,qsn.msg.cmd);
+
+      if(!read_command(qsn.msg,&(asr.msg))) {
+         printf("read command failed\n");
+      }
 
       /* answer something for now */
-      msg.mtype = msg.msg.pid;
-      if(msgsnd(mq_out,&msg, sizeof(msg), 0) == -1) {
-         print_errno("msgsend");
+      asr.mtype = qsn.pid;
+      if(msgsnd(mq_out, &asr, sizeof(asr), 0) == -1) {
+         print_errno("msgsend/answer");
       }
 
       /*

@@ -27,19 +27,22 @@ struct cinit_question {
 
 /* messages from cinit */
 struct cinit_answer {
+   int32_t  ret;
    int32_t  options;
-//   char     data[PATH_MAX];
+   char     data[PATH_MAX];
 };
 
 /* codes for messages */
 enum {
    /* questions */
-   CINIT_MSG_QUESTIONS=1000,
-   CINIT_MSG_GET_STATUS,
+   CINIT_MSG_QUESTIONS=1000,  /* begin questions at 1000    */
+   CINIT_MSG_GET_STATUS,      /* status of a service        */
+   CINIT_MSG_GET_VERSION,     /* version of cinit           */
    
    /* answers */
-   CINIT_MSG_ANSWERS=2000,
-   CINIT_MSG_SVC_UNKNOWN
+   CINIT_MSG_ANSWERS=2000,    /* begin answers at 2000      */
+   CINIT_MSG_OK,              /* general ok value           */
+   CINIT_MSG_SVC_UNKNOWN      /* Services is not known      */
 };
 
 /* functions */

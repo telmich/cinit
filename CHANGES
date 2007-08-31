@@ -1,5 +1,7 @@
 cinit-0.3pre11:
-   - Added cmd: cinit management
+   - Added basic communication: 
+      * client binary "cmd": cinit management
+   - Updated *.kill to new includes
 
 cinit-0.3pre10:
    - Fixed make install target

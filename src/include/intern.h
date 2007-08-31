@@ -12,8 +12,9 @@
 #define _CINIT_INTERN_H
 
 /* includes */
-#include <sys/types.h>  /* pid_t */
-#include "config.h"     /* paths, socket options, etc. */
+#include <sys/types.h>  /* pid_t                            */
+#include "config.h"     /* paths, socket options, etc.      */
+#include "cinit.h"      /* structures: answer / question    */
 
 /***********************************************************************
  * Defines
@@ -96,6 +97,9 @@ pid_t    respawn_svc(char *abspath);
 char     **read_file(char *file);
 void     sig_terminate(int signal);
 
+/* communication */
+int read_command(struct cinit_question, struct cinit_answer *);
+
 /* generic */
 void  execute_sth(char *basename);
 int   execute_and_wait(char *svc);
@@ -107,7 +111,6 @@ int   file_exists(char *filename);
 void  sleep_before_kill();
 
 /* util */
-//int      msg_reboot(char cmd);
 void     print_errno(char *text);
 
 #endif   /* _CINIT_H */

@@ -10,7 +10,7 @@
 #include <signal.h>        /* kill()            */
 
 #include "messages.h"      /* MSG_*             */
-#include "cinit.h"         /* print_errno()     */
+#include "intern.h"        /* print_errno()     */
 #include "signals.h"       /* signals mapping   */
 
 int main()

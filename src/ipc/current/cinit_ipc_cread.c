@@ -19,7 +19,7 @@
 
 int cinit_ipc_cread(struct cinit_answer *buf)
 {
-   struct msgq_server_short msg;
+   struct msgq_server msg;
 
    if(msgrcv(mq_in, &msg, sizeof(msg), __cinit_cpid, 0) < 0) {
       print_errno("msgrcv,cread");
