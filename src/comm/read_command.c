@@ -11,12 +11,12 @@
 #include "comm.h"       /* message struct definition */
 #include "reboot.h"     /* reboot abstraction layer  */
 
-void read_command(struct s_cmd cmd)
+#include "cinit.h"      /* structures                 */
+
+int read_command(struct cinit_question qsn, struct cinit_answer *asr)
 {
-   switch(cmd.cmd) {
+   switch(qsn.cmd) {
       case CMD_SVC_START:
-         nextbytes= ...
-         data
       break;
 
       case CMD_SVC_START_ONLY:
@@ -31,20 +31,7 @@ void read_command(struct s_cmd cmd)
       case CMD_SVC_STOP_ONLY:
       break;
 
-      case CMD_SVC_STOP_WANTS
-      break;
-
-      /* halt/shutdown/poweroff */
-      case CMD_HALT:
-         cinit_do_halt();
-      break;
-
-      case CMD_REBOOT:
-         cinit_do_halt();
-      break;
-
-      case CMD_POWEROFF:
-         cinit_do_poweroff();
+      case CMD_SVC_STOP_WANTS:
       break;
 
       /* return error to client */
