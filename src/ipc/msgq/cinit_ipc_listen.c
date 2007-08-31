@@ -27,6 +27,7 @@ int cinit_ipc_listen(void)
    while (1) {
       mini_printf("IPC loop\n",1);
 
+      msg.mtype = 1; /* listen only to mtype = 1, == init */
       tmp = msgrcv(mq_in, &msg,(sizeof msg), 0, 0);
 
       if(tmp == -1) {
@@ -34,13 +35,18 @@ int cinit_ipc_listen(void)
             print_errno(MSG_MSGQ_MSGRCV);
          }
          continue;
-      } else {
-
       }
 
       printf("pid: %d, cmd: %d\n",msg.pid,msg.msg.cmd);
 
       /*
+
+      switch(msg.cmd) {
+         case CINIT_MSG_GET_STATUS:
+         break;
+
+      }
+
        * send back: use pid as the message type 
       m_serv.mtype = (long) m_client.pid;
       strcpy(m_serv.text,"Alles ok\n");
