@@ -13,7 +13,7 @@
 #include <stdio.h>            /* perror                  */
 #include <stdlib.h>           /* malloc                  */
 
-#include "intern.h"            /* general things          */
+#include "intern.h"           /* general things          */
 #include "messages.h"         /* messages                */
 #include "ipc.h"              /* general ipc methods     */
 #include "svc.h"              /* gen_svc_tree            */
@@ -78,6 +78,15 @@ int main(int argc, char **argv)
       free(initdir);
    }
 
+   /* change to /, so applications have that as cwd, too
+    * Is that really seneful? Does that help any application?
+    * If not, just for looking nice, that's not a reason to
+    * enable it.
+   if(chdir(SLASH) == -1) {
+      print_errno(SLASH);
+      panic();
+   } */
+
    /* start tree from the bottom */
    if(!tree_exec(svc_init)) {
       panic();
@@ -85,6 +94,7 @@ int main(int argc, char **argv)
 
    D_PRINTF("=> cinit started.\n");
 
+   mini_printf(MSG_BOOTING,1); mini_printf(initdir,1); mini_printf("\n",1);
    /* listen for incomming messages: should never return */
    if(!cinit_ipc_listen()) {
       panic();

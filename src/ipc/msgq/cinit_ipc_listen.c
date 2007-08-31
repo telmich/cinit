@@ -39,6 +39,12 @@ int cinit_ipc_listen(void)
 
       printf("pid: %d, cmd: %d\n",msg.pid,msg.msg.cmd);
 
+      /* answer something for now */
+      msg.mtype = msg.msg.pid;
+      if(msgsnd(mq_out,&msg, sizeof(msg), 0) == -1) {
+         print_errno("msgsend");
+      }
+
       /*
 
       switch(msg.cmd) {
