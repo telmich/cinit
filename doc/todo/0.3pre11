@@ -1,11 +1,3 @@
-- Fix cmd:
-[19:54] denkbrett:src# ./cmd -s /etc/cinit/svc/mount/root 
-read args
-get status
-msgsnd,csend: Invalid argument
-Status is: 1
-[19:54] denkbrett:src# 
-
 - begin to write documentation about client functions
 - cleanup communication:
    put parts of comm.h into cinit.h => global exposure
@@ -13,6 +5,8 @@ Status is: 1
 - Fix this problem:
 [18:51] denkbrett:src# LANG=C cp cinit /sbin/cinit 
 cp: cannot create regular file `/sbin/cinit': Text file busy
+   => mv & cp!
+      => documentation!
 
 
 Done:
