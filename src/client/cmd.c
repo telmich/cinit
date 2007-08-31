@@ -10,6 +10,7 @@
 #include <unistd.h>        /* getopt            */
 #include <signal.h>        /* signals           */
 #include <stdio.h>         /* printf()          */
+#include <stdlib.h>        /* free()            */
 
 #include "cmd.h"           /* own header        */
 #include "signals.h"       /* which signal      */
@@ -86,7 +87,14 @@ int main(int argc, char **argv)
 
          case 'v':   /* get version */
             svc = cinit_get_version();
-            printf("Version of cinit: %s\n",svc);
+            if(svc) {
+               printf("Version of cinit: %s\n",svc);
+               free(svc);
+               return 0;
+            } else {
+               printf("Cannot get version of cinit!\n");
+               return 1;
+            }
          break;
 
          default:

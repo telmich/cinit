@@ -7,19 +7,23 @@
  *    Retrieves version of cinit
  */
 
+#include <stdlib.h>     /* malloc               */
+#include <string.h>     /* str*                 */
 
 #include "cinit.h"      /* header for clients   */
 
-/* returns either the status (>0)
- * or -1 on memory error
- */
-int32_t cinit_get_svc_status(char *name)
+char *cinit_get_version()
 {
    struct cinit_question ask;
    struct cinit_answer   answer;
+   char *ret;
 
    ask.cmd = CINIT_MSG_GET_VERSION;
    cinit_send_to(&ask, &answer);
+   
+   ret = malloc(strlen(answer.data) +1);
+   if(!ret) return ret;
+   strcpy(ret,answer.data);
 
-   return 1;
+   return ret;
 }
