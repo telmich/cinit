@@ -84,10 +84,16 @@ $(SBIN)/ccontrol util/ccontrol: config.h $(SBIN) $(CCO_OBJ)
 	$(STRIP) $@
 
 #install: install-dir cinit cservice ccontrol
-install: $(BIN)
+install: install-cinit install-utilities
+
+install-utilities: $(BIN)
+	@echo '*** Installing utilities ***'
+	install $^ /sbin
+install-cinit: cinit
 	@echo '*** Installing cinit ***'
-	cp $^ /sbin
-#	./bin/cinit.install.binary
+	@echo "Need to delete cinit before reinstalling it (text file busy problem)"
+	rm -f /sbin/cinit
+	install $^ /sbin
 
 install-miniconf:
 	./bin/cinit.install.miniconf
@@ -115,9 +121,9 @@ reboot.kill: $(REBOOTKILL_OBJ)
 cmd: $(CMD_OBJ)
 	$(LD) $^ -o $@
 
-uml: cinit
+uml: cinit cmd
 	../../vm/uml/uml-mount.sh
-	cp cinit ../../vm/uml/root/sbin/cinit
+	cp cinit cmd ../../vm/uml/root/sbin/
 	../../vm/uml/uml-umount.sh
 
 umlstart: uml

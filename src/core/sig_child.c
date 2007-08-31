@@ -38,8 +38,6 @@ void sig_child(int tmp)
       /* check if it's a watched child */
       svc = list_search_pid((pid_t) pid);
 
-      //mini_printf("WHILE1: hier drinne?\n",1);
-
       if(svc != NULL) {
          /* Check, that we are operating on it =. that it is no normal child */
          if(svc->status & ST_ONCE_RUN
