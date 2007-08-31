@@ -35,14 +35,12 @@ struct msgq_client {
     long mtype;
     pid_t pid;
     struct cinit_question msg;
-    //struct msg_client msg;
 };
 
 /* messages _from_ the server _to_ the client */
-struct msgq_server_short {
+struct msgq_server {
     long mtype;
     struct cinit_answer msg;
-    //struct asw_sstatus answer;
 };
 
 /***********************************************************************
