@@ -1,3 +1,6 @@
+cinit-0.3pre12:
+   - Added DESTDIR support
+
 cinit-0.3pre11: 2007-09-01
    - Added basic communication: 
       * client binary "cmd" with argument -v returns cinit-version
