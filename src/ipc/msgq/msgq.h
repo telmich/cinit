@@ -35,7 +35,7 @@ pid_t __cinit_cpid;           /* our (p)id*/
  */
 struct msgq_wrapper {
     pid_t pid;
-    struct cinit_question msg;
+    struct cinit_question qsn;
 };
 
 /* messages _from_ the client _to_ the server */
@@ -47,7 +47,7 @@ struct msgq_client {
 /* messages _from_ the server _to_ the client */
 struct msgq_server {
     long mtype;
-    struct cinit_answer msg;
+    struct cinit_answer asr;
 };
 
 /***********************************************************************

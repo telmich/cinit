@@ -87,6 +87,7 @@ int main(int argc, char **argv)
 
          case 'v':   /* get version */
             svc = cinit_get_version();
+            printf("ja?\n");
             if(svc) {
                printf("Version of cinit: %s\n",svc);
                free(svc);
@@ -101,15 +102,8 @@ int main(int argc, char **argv)
             break;
       }
    }
-   printf("read args\n");
 
    switch(what) {
-      case CMD_HPR:
-         if(kill(1,tmp) == -1) {
-            print_errno(MSG_KILL);
-            return 1;
-         }
-      break;
       case CMD_STATUS:
          printf("get status\n");
          tmp = cinit_get_svc_status(svc);

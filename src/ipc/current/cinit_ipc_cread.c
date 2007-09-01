@@ -17,16 +17,25 @@
 #include "intern.h"              /* print_errno       */
 #include "msgq.h"                /* __cinit_cpid      */
 
+   #include <stdio.h>
 int cinit_ipc_cread(struct cinit_answer *buf)
 {
    struct msgq_server msg;
 
-   if(msgrcv(mq_in, &msg, sizeof(msg), __cinit_cpid, 0) < 0) {
+   printf("cread: %p\n",buf);
+
+   if(msgrcv(mq_in, &msg, sizeof(msg.msg), __cinit_cpid, 0) == -1) {
       print_errno("msgrcv,cread");
       return 0;
    }
+   printf("ergebnins bekommen: %s\n", msg.msg.data);
 
-   memcpy(buf, &(msg.msg), sizeof(*buf));
+
+   memcpy(buf, &(msg.msg), sizeof(struct cinit_answer));
+//   memcpy(buf, &(msg.msg), sizeof(*buf));
+   printf("ergebnins bekommen: %s\n", msg.msg.data);
+   printf("ergebnins bekommen (buf): %s\n", buf->data);
+   printf("cread-ende: %p\n",buf);
 
    return 1;
 }

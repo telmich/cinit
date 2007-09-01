@@ -19,10 +19,6 @@ int file_exists(char *filename)
 {
    struct stat buf;
 
-   D_PRINTF("FE: ");
-   D_PRINTF(filename);
-   D_PRINTF("\n");
-   
    /* check:
     * - is it a link? if so, is it broken? report!
     * - is it non existent? -> return non-existent
@@ -39,8 +35,6 @@ int file_exists(char *filename)
       }
    } else {
       if(S_ISLNK(buf.st_mode)) {                   /* is a link */
-         mini_printf("ist nen link\n",1);
-         
          /* check link destination */
          if(stat(filename,&buf) == -1) {           /* do real stat(): */
             if(errno == ENOENT) {

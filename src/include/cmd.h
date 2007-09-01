@@ -11,7 +11,7 @@
 #define CINIT_CMD_HEADER
 
 #define CMD_USAGE "cmd - cinit management\n\n"  \
-   "Usage:\n\ncmd -[ednwphr]\n"                 \
+   "Usage:\n\ncmd -[ed nw v]\n"                 \
    "   -e: enable service\n"                    \
    "        including dependencies\n"           \
    "   -d: disable service\n"                   \
@@ -22,11 +22,11 @@
    "        Skip needs when en/disabling\n"     \
    "   -s: get status\n"                        \
    "        of specified service\n"             \
-   "   -h: halt\n"                              \
-   "   -p: poweroff\n"                          \
-   "   -r: reboot\n"
+   "   -v: get version\n"                       \
+   "        of cinit\n"                         \
+   ""
 
-#define CMD_OPTIONS "e:d:hnprs:w"
+#define CMD_OPTIONS "e:d:hnprs:vw"
 
 #define MSG_KILL  "kill()"
 

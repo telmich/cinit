@@ -18,11 +18,6 @@ void execute_sth(char *basename)
    int            tmp;
    struct ba_argv bav;
 
-   /* FIXME remove later */
-   D_PRINTF("ES::");
-   D_PRINTF(basename);
-   D_PRINTF("\n");
-
    tmp = cinit_build_argv(basename,&bav);
    if((tmp = cinit_build_argv(basename,&bav)) != BA_OK) {
       if(tmp != BA_E_MEM) { /* do not print something on memory errors */
