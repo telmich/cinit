@@ -6,8 +6,6 @@
 # Don't edit Makefiles, use conf/* for configuration.
 #
 
-#include Makefile.tests
-
 ################################################################################
 #
 # Build tools / locations
@@ -19,6 +17,7 @@ LD=../tmpbin/ld
 LDFLAGS=
 STRIP=../tmpbin/strip
 SBIN=../sbin
+DESTDIR=
 
 ################################################################################
 #
@@ -89,12 +88,12 @@ install: install-cinit install-utilities
 
 install-utilities: ${BIN}
 	@echo '*** Installing utilities ***'
-	install $^ /sbin
+	install $^ ${DESTDIR}/sbin
 install-cinit: cinit
 	@echo '*** Installing cinit ***'
 	@echo "Need to delete cinit before reinstalling it {text file busy problem}"
-	rm -f /sbin/cinit
-	install $^ /sbin
+	rm -f ${DESTDIR}/sbin/cinit
+	install $^ ${DESTDIR}/sbin
 
 # FIXME: target broken
 install-miniconf:
