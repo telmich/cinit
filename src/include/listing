@@ -1,5 +1,4 @@
 include/intern.h
-include/comm.h
 include/config.h
 include/ipc.h
 include/messages.h

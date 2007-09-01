@@ -49,3 +49,4 @@ svc/svc_report_status.o
 svc/svc_start.o
 svc/svc_fail.o
 comm/read_command.o
+comm/answer_svc_status.o
