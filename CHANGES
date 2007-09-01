@@ -1,7 +1,7 @@
-cinit-0.3pre11:
+cinit-0.3pre11: 2007-09-01
    - Added basic communication: 
-      * client binary "cmd" with argument -v
-   - Updated *.kill to new includes
+      * client binary "cmd" with argument -v returns cinit-version
+   - Updated {halt,reboot,poweroff}.kill
 
 cinit-0.3pre10:
    - Fixed make install target
