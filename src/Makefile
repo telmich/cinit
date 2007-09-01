@@ -86,14 +86,18 @@ ${CONFIG_H}: ../conf/*
 #install: install-dir cinit cservice ccontrol
 install: install-cinit install-utilities
 
-install-utilities: ${BIN}
+install-sbin:
+	install -d ${DESTDIR}/sbin
+
+install-utilities: install-sbin ${BIN}
 	@echo '*** Installing utilities ***'
-	install $^ ${DESTDIR}/sbin
-install-cinit: cinit
+	install ${BIN} ${DESTDIR}/sbin
+
+install-cinit: install-sbin cinit
 	@echo '*** Installing cinit ***'
 	@echo "Need to delete cinit before reinstalling it {text file busy problem}"
 	rm -f ${DESTDIR}/sbin/cinit
-	install $^ ${DESTDIR}/sbin
+	install cinit ${DESTDIR}/sbin
 
 # FIXME: target broken
 install-miniconf:
