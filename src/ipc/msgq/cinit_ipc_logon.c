@@ -29,7 +29,7 @@ int cinit_ipc_logon(void)
       return 0;
    }
 
-   /* neue queue */
+   /* FIXME: do not create new queue => cinit should have created them! */
    mq_in    = msgget(k_in,0666 | IPC_CREAT);
    mq_out   = msgget(k_out,0666 | IPC_CREAT);
 
@@ -39,6 +39,7 @@ int cinit_ipc_logon(void)
    }
 
    /* we use the pid as identifier, so initialise it here */
+   /* FIXME: check whether posix includes transfer of pid anyway */
    __cinit_cpid = getpid();
  
    return 1;

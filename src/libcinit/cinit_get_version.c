@@ -8,7 +8,7 @@
  */
 
 #include <stdlib.h>     /* malloc               */
-#include <string.h>     /* str*                 */
+#include <string.h>     /* str*, memset         */
 #include <stdio.h>      /* NULL                 */
 
 #include "cinit.h"      /* header for clients   */
@@ -19,12 +19,10 @@ char *cinit_get_version()
    struct cinit_answer   answer;
    char *ret;
 
-   ask.cmd     = CINIT_MSG_GET_VERSION;
-   ask.data[0] = '\0';
-   ask.options = 0;
+   memset(&ask,'\0',sizeof(ask));
+   ask.cmd = CINIT_MSG_GET_VERSION;
 
    if(!cinit_send_to(&ask, &answer)) return NULL;
-   printf("ans: %s\n",answer.data);
    
    ret = malloc(strlen(answer.data) +1);
    if(!ret) return NULL;

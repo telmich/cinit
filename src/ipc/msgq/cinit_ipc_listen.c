@@ -16,7 +16,7 @@
 
 #include "intern.h"     /* print_errno    */
 #include "config.h"
-#include "msgq.h"
+#include "msgq.h"       /* structs        */
 #include "comm.h"       /* the cmd struct */
 
 int cinit_ipc_listen(void)
@@ -39,11 +39,13 @@ int cinit_ipc_listen(void)
       printf("pid: %d, cmd: %d\n",qsn.w.pid, qsn.w.qsn.cmd);
 
       if(!read_command(qsn.w.qsn, &(asr.asr))) {
+         /* FIXME: msg */
          printf("read command failed\n");
       }
 
       /* answer something for now */
       asr.mtype = qsn.w.pid;
+      /* FIXME: do different things on differen errnos ... */
       if(msgsnd(mq_out, &asr, sizeof(asr.asr), 0) == -1) {
          print_errno("msgsend/answer");
       }

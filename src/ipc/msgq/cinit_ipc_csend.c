@@ -8,14 +8,14 @@
  *
  */
 
-#include <sys/ipc.h>             /* ftok              */
-#include <sys/msg.h>             /* msgget            */
+/* FIXME: cleanup headers */
+#include <sys/ipc.h>          /* ftok              */
+#include <sys/msg.h>          /* msgget            */
 
-#include <string.h>              /* memcpy()          */
-
+#include <string.h>           /* memcpy()          */
 #include "config.h"
-#include "intern.h"              /* print_errno       */
-#include "msgq.h"
+#include "intern.h"           /* print_errno       */
+#include "msgq.h"             /* structure         */
 
 int cinit_ipc_csend(struct cinit_question *qsn)
 {
@@ -28,6 +28,7 @@ int cinit_ipc_csend(struct cinit_question *qsn)
    memcpy(&(msg.w.qsn), qsn, sizeof(msg.w.qsn));
 
    if(msgsnd(mq_out, &msg, sizeof(msg.w), 0) == -1) {
+      /* FIXME: msg */
       print_errno("msgsnd,csend");
       return 0;
    }
