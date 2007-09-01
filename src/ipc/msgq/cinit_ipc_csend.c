@@ -21,13 +21,13 @@ int cinit_ipc_csend(struct cinit_question *data)
 {
    struct msgq_client msg;
 
-   msg.pid     = __cinit_cpid;
    msg.mtype   = 1;              /* cinit = 1 */
+   msg.w.pid     = __cinit_cpid;
 
    /* copy structure into the msgq-structure */
-   memcpy(&(msg.msg),data, sizeof(msg.msg));
+   memcpy(&(msg.w.msg), data, sizeof(msg.w.msg));
 
-   if(msgsnd(mq_out,&msg,sizeof(msg),0) < 0) {
+   if(msgsnd(mq_out, &msg, sizeof(msg.w), 0) == -1) {
       print_errno("msgsnd,csend");
       return 0;
    }

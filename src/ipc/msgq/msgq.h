@@ -30,11 +30,18 @@ pid_t __cinit_cpid;           /* our (p)id*/
  * structures
  */
 
+/* wrapper needed: msgsnd wants size of everything,
+ * everything = struct|array after mtype
+ */
+struct msgq_wrapper {
+    pid_t pid;
+    struct cinit_question msg;
+};
+
 /* messages _from_ the client _to_ the server */
 struct msgq_client {
     long mtype;
-    pid_t pid;
-    struct cinit_question msg;
+    struct msgq_wrapper w;
 };
 
 /* messages _from_ the server _to_ the client */
