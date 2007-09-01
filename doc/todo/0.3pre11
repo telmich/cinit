@@ -1,16 +1,10 @@
-- begin to write documentation about client functions
-- cleanup communication:
-   put parts of comm.h into cinit.h => global exposure
-   or define new structure in cinit.h?
-- Fix this problem:
-[18:51] denkbrett:src# LANG=C cp cinit /sbin/cinit 
-cp: cannot create regular file `/sbin/cinit': Text file busy
-   => mv & cp!
-      => documentation!
-
-
 Done:
 - cleanup ipc:
    merge cinit_ipc_logon() and cinit_ipc_connect()?
    => already done!
 - finish cmd in general, perhaps only including one command.
+[18:51] denkbrett:src# LANG=C cp cinit /sbin/cinit 
+cp: cannot create regular file `/sbin/cinit': Text file busy
+   => mv & cp!
+      => documentation!
+

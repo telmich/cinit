@@ -1,4 +1,15 @@
 
+- begin to write documentation about client functions
+- cleanup communication:
+   put parts of comm.h into cinit.h => global exposure
+   or define new structure in cinit.h?
+- there seems to be a race condition in the execution of the
+  dependency tree: it happens that services that depend on
+  mounted /proc, have needs on mount/proc are still exited
+  before /proc is mounted.
+  problem of cinit or of mount, exiting too early?
+  guess the first one, so fix it :-)
+
 --------------------------------------------------------------------------------
 Add
 Hallo,

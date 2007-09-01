@@ -1,16 +1,4 @@
-IPC:
-   msgrcv() wants a struct
-      -> create struct with enough space for everything...
-      char data[PATH_MAX] => limits.h!
-      http://www.opengroup.org/onlinepubs/009695399/basedefs/limits.h.html
-      int32_t options
-
 --------------------------------------------------------------------------------
-- create cmd!
-   * cinit-0.3 client
-      * check ipc code in cinit
-      * check that cinit reads a command
-         core/cinit.c is ok
 - create some boot profiles
 - cinit.install.standard.dirs.argv
 check needs:
@@ -20,36 +8,9 @@ wants:
 
 implement commands!
 - fix devel/codingguideline.text!
-
-- update cinit: howto?
 - chdir to / after startup
-
 
 merge svc_need_status to svc_status
 
 cinit-communication:
-   as in ceof? or binary?
-
-   cinit_send_to(data)
-   cinit_read_from(data)
-
-   /* client functions */
-   cinit_enable_service(char *name,int options);
-   cinit_disable_service(char *name, int options);
-   int cinit_service_status(char *name);
-   cinit_halt()
-
    cinit_get_failed_needs(char *name, int *cnt);
-
-   cinit_
-
---------------------------------------------------------------------------------
-Define way, how ipc works cleanly!
-
-- cinit_ipc_listen() must listen for a single host byte integer and call
-  cinit_read_cmd(), which will use cinit_ipc_sread() to retrieve more bytes
-- cinit_ip_logon() must do everything necessary to write to cinit
-
-
-
-
