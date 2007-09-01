@@ -1,4 +1,4 @@
-
+- remove manual pid support, use the one supplied by msgctl()
 - begin to write documentation about client functions
 - cleanup communication:
    put parts of comm.h into cinit.h => global exposure
@@ -9,6 +9,8 @@
   before /proc is mounted.
   problem of cinit or of mount, exiting too early?
   guess the first one, so fix it :-)
+- check svc path in cmd: if it's relative, add /etc/cinit/svc to it
+- add update for git => so cloning does not fail!
 
 --------------------------------------------------------------------------------
 Add
@@ -24,5 +26,9 @@ Use http://www.opengroup.org/onlinepubs/009695399/basedefs/stdint.h.html
 
 --------------------------------------------------------------------------------
 
+cinit-ipc_listen()
+
+Done:
+
 cleanup ipc!
-where to call !cinit_ipc_logon and !cinit_ipc_connect?
+   where to call !cinit_ipc_logon and !cinit_ipc_connect?
