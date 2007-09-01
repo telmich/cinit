@@ -19,7 +19,10 @@ char *cinit_get_version()
    struct cinit_answer   answer;
    char *ret;
 
-   ask.cmd = CINIT_MSG_GET_VERSION;
+   ask.cmd     = CINIT_MSG_GET_VERSION;
+   ask.data[0] = '\0';
+   ask.options = 0;
+
    if(!cinit_send_to(&ask, &answer)) return NULL;
    printf("ans: %s\n",answer.data);
    
