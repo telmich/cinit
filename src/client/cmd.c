@@ -23,7 +23,6 @@
 #define LOG(a,b)     mini_printf(a,1); minit_printf(b,1);
 
 enum CMD_ARGS {
-   CMD_HPR,
    CMD_ENABLE,
    CMD_DISABLE,
    CMD_STATUS
@@ -44,40 +43,24 @@ int main(int argc, char **argv)
 
    tmp = 0;
 
+   /* FIXME: change e/d: make it a must to specify
+    * -d w(ants) excluded)
+    * -e n(eeds excluded)
+    * -d i(nclude everything)
+    */
+
    while((opt = getopt(argc,argv,CMD_OPTIONS)) != -1) {
       switch(opt) {
-         case 'h':   /* halt */
-               what = CMD_HPR;
-               tmp  = SIG_CINIT_HALT;
-         break;
-
-         case 'p':   /* power off */
-               what = CMD_HPR;
-               tmp  = SIG_CINIT_POWEROFF;
-         break;
-         
-         case 'r':   /* reboot */
-               what = CMD_HPR;
-               tmp  = SIG_CINIT_REBOOT;
-         break;
-
          /********************************************/
          case 'e':   /* enable service */
                what = CMD_ENABLE;
+               svc = optarg;
          break;
 
          case 'd':   /* disable service */
                what = CMD_DISABLE;
+               svc = optarg;
          break;
-
-         case 'n':   /* exclude needs */
-               tmp  |= CMD_NO_NEEDS;
-         break;
-
-         case 'w':   /* exclude wants */
-               tmp  |= CMD_NO_WANTS;
-         break;
-
 
          /********************************************/
          case 's':   /* get status */
@@ -85,9 +68,8 @@ int main(int argc, char **argv)
             svc  = optarg;
          break;
 
-         case 'v':   /* get version */
+         case 'v':   /* get version of cinit */
             svc = cinit_get_version();
-            printf("ja?\n");
             if(svc) {
                printf("Version of cinit: %s\n",svc);
                free(svc);
@@ -98,8 +80,7 @@ int main(int argc, char **argv)
             }
          break;
 
-         default:
-            break;
+         /* FIXME: add -V: version of cmd */
       }
    }
 
