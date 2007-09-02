@@ -15,7 +15,6 @@
 #include <errno.h>      /* errno          */
 
 #include "intern.h"     /* print_errno    */
-//#include "config.h"
 #include "msgq.h"       /* structs        */
 
 int cinit_ipc_listen(void)
@@ -46,8 +45,9 @@ int cinit_ipc_listen(void)
       printf("pid: %d, cmd: %d\n",qsn.w.pid, qsn.w.qsn.cmd);
 
       if(!read_command(qsn.w.qsn, &(asr.asr))) {
-         /* FIXME: msg */
+         /* FIXME: msg; mini_printf! */
          printf("read command failed\n");
+         
       }
 
       /* answer something for now */

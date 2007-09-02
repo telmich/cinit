@@ -9,9 +9,7 @@
  */
 
 #include <string.h>     /* strncpy                    */
-
 #include "config.h"     /* VERSION                    */
-#include "comm.h"       /* message struct definition  - OLD?*/
 #include "cinit.h"      /* structures                 */
 
 int read_command(struct cinit_question qsn, struct cinit_answer *asr)
@@ -22,22 +20,9 @@ int read_command(struct cinit_question qsn, struct cinit_answer *asr)
          strncpy(asr->data,VERSION,PATH_MAX);
       break;
 
-      case CMD_SVC_START:
-      break;
-
-      case CMD_SVC_START_ONLY:
-      break;
-
-      case CMD_SVC_START_NEEDS:
-      break;
-
-      case CMD_SVC_STOP:
-      break;
-
-      case CMD_SVC_STOP_ONLY:
-      break;
-
-      case CMD_SVC_STOP_WANTS:
+      case CINIT_MSG_GET_STATUS:
+         if(!answer_svc_status(qsn.data, asr)) return 0;
+         /* FIXME: handle return 0 in parten */
       break;
 
       /* return error to client */

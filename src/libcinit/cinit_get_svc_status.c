@@ -8,10 +8,8 @@
  */
 
 
-#include <stdlib.h>     /* malloc               */
 #include <string.h>     /* str*                 */
 #include <stdint.h>     /* integers             */
-
 #include "cinit.h"      /* header for clients   */
 
 /* returns either the status (>0)
