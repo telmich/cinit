@@ -6,7 +6,7 @@ Timeline
 ---------
    * ~ End of October 2006:   Reunderstand the code, manifest changes   [DONE]
    * ~ Mid of November 2006:  Have a compile-able cinit                 [DONE]
-   * ~ End of November 2006:  Have a testsystem booting cinit
+   * ~ End of November 2006:  Have a testsystem booting cinit           [DONE]
    * ~ Mid of December 2006:  Have production stable cinit
                                  - Begin with migration scripts
                                  - publish installable pre-releases
