@@ -1,0 +1,27 @@
+16:13 < KillerFox> telmich: hast du eigentlich schon hooks in cinit?
+20:07 < KillerFox> Vapier führt mal wieder Selbstgespräche.
+23:39 < telmich> KillerFox: wozu?
+23:42 < KillerFox> telmich: es wäre durchaus interessant, um z.B. sterbende Prozesse wieder zu 
+                   starten und so.
+23:42 < KillerFox> oder einen Hinweis per Mail zu verschicken.
+23:43 < telmich> ahh, du meinst so benachrichtigungen von cinit an $prozess?
+23:43 < KillerFox> jein
+23:43 < KillerFox> du machst z.B. /etc/cinit/hooks/
+23:43 < KillerFox> darin gibts dann Scripte die bei bestimmten Ereignise aufgerufen werden.
+23:43 < KillerFox> z.B. wenn ein Prozess stirbt
+23:44 < KillerFox> du kannst dir natürlich auch überlegen, es auf Prozessebene herunter zu 
+                   hacken
+23:44 < telmich> ja, eher letzeres
+23:44 < KillerFox> so könnte man auch ein paar nette Sachen machen. z.B. Aufräumarbeiten 
+                   nachdem ein Prozess beendet wurde oder so
+23:45 < KillerFox> telmich: ich finde beides Sinnvoller
+23:45 < KillerFox> telmich: globale und lokale Hooks
+23:45 < KillerFox> lokale überschreiben globale oder so
+23:45 < telmich> oder laufen beide
+23:45 < KillerFox> oder man kaskadiert sie.
+23:45 < KillerFox> genau
+23:46 < KillerFox> sinnvolle hooks: pre-start, start, post-start, pre-stop, stop, post-stop, 
+                   crash
+23:46 < KillerFox> oder sowas
+23:47 < KillerFox> vielleicht fallen dir noch mehr ein.
+
