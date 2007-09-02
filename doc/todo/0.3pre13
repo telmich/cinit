@@ -6,4 +6,4 @@
    cinit.h gets to fast too big. so splitoff to:
    <cinit/cinit.h>   /* main  */
    <cinit/types.h>   /* ...   */
-
+- map status numbers to messages
