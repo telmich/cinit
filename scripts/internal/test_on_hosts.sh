@@ -1,7 +1,7 @@
 #!/bin/sh
 # yah
 
-hosts="penrose.bsdprojects.net bot.unixkiste.org suckz.eu jiffies.forkbomb.ch"
+hosts="penrose.bsdprojects.net jiffies.forkbomb.ch ddna044.netstream.ch"
 
 set -e
 

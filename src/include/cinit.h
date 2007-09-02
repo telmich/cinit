@@ -42,6 +42,7 @@ enum {
    /* answers */
    CINIT_MSG_ANSWERS=2000,    /* begin answers at 2000      */
    CINIT_MSG_OK,              /* general ok value           */
+   CINIT_MSG_ERR,             /* general error value        */
    CINIT_MSG_SVC_UNKNOWN      /* Services is not known      */
 };
 

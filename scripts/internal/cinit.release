@@ -13,8 +13,6 @@
 #   exit 1
 #fi
 
-set -x
-
 # paths
 DIR="$(cd $(dirname $0)/../../; pwd -P)"
 DDIR="$(cd $(dirname $0)/../../../; pwd -P)"
@@ -23,7 +21,7 @@ RDIR=$(basename "$DIR")
 # version
 VERSION="$(cd "$DIR"; pwd -P | sed 's;.*/cinit-;;')"
 VERSION_CONF="$(head -n1 $(dirname $0)/../../conf/version | sed 's/^"\(.*\)"$/\1/')"
-VERSION_CHANGES="$(head -n1 "$(dirname $0)/../../CHANGES" | sed 's/cinit-\(.*\):$/\1/')"
+VERSION_CHANGES="$(head -n1 "$(dirname $0)/../../CHANGES" | sed 's/cinit-\(.*\):.*/\1/')"
 OUT_NAME="cinit-${VERSION}.tar.bz2"
 
 # remote
