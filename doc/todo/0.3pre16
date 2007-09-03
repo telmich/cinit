@@ -1,0 +1,7 @@
+- check porting code:
+   * advise users to set conf/os
+   * add uname -r | tr ... as make osconfig
+- check that all parts of cinit compile at least under:
+   * linux, linux on 64bit
+   * FreeBSD
+   * NetBSD
