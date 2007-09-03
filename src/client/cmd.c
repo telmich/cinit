@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 {
    int opt, tmp, what;
    int32_t status;
-   char *svc;
+   char *svc, *p = NULL;
 
    tmp = 0;
 
@@ -58,9 +58,35 @@ int main(int argc, char **argv)
          case 's':   /* get status */
             what = CMD_STATUS;
             svc  = optarg;
+
+            /* relative path, add the cinit path in front of it */
+            if(strcmp(svc,SLASH,strlen(SLASH))) {
+               p = malloc(strlen(CINIT_DIR) + strlen(SLASH) + strlen(svc) + 1);
+               if(!p) {
+                  /* bad error */
+                  return 1;
+               }
+               strcpy(p,CINIT_DIR);
+               strcat(p,SLASH);
+               strcat(svc);
+               svc = p;
+            }
+
             status = cinit_get_svc_status(svc);
-            printf("Status of %s is: %d\n",svc, status);
-            return 0;
+            if(status < 0) {
+               printf("Communication error\n");
+               return 1;
+            } else {
+               switch(status) {
+                  case CINIT_MSG_SVC_UNKNOWN:
+                     printf("Unknown service %s!\n",svc);
+                  break;
+                  case CINIT_MSG_OK:
+                     printf("Status of %s is: %d\n",svc, status);
+               return 0;
+            }
+            if(p) free(p);
+
          break;
 
          case 'v':   /* get version of cinit */
