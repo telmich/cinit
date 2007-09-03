@@ -1,3 +1,4 @@
+Wished release date: 27. September
 - check porting code:
    * advise users to set conf/os
    * add uname -r | tr ... as make osconfig
