@@ -24,4 +24,14 @@
                    crash
 23:46 < KillerFox> oder sowas
 23:47 < KillerFox> vielleicht fallen dir noch mehr ein.
+23:48 < KillerFox> die Kommunikation könnte man dann wahlweise über Parameter oder 
+                   Umgebungsvariablen lösen
+23:48 < KillerFox> um z.B. mitzuteilen welcher Prozess gestoppt wurde
+23:49 < KillerFox> z.B. wenn man in pre-stop je nach Bedingung den Stop-Vorgang abbrechen will.
+23:49 < telmich> via ${ipc} => kommt darauf an, was implementiert ist; zZ ist es ja msgq
+23:50 < telmich> ahh, so
+23:50 < telmich> das waere noch recht trivial ueber pipes
+23:50 < KillerFox> fifos/sockets, was auch immer.
+23:50 < KillerFox> das müsste man dann mit einer Bibliothek lösen oder so
+23:50 < telmich> ja, die ist auch im aufbau in libcinit/
 

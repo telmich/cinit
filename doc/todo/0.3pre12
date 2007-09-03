@@ -1,3 +1,5 @@
+Wished release date: 6/7. September
+
 - remove manual pid support, use the one supplied by msgctl()
 - there seems to be a race condition in the execution of the
   dependency tree: it happens that services that depend on

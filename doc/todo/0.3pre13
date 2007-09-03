@@ -1,3 +1,5 @@
+Wished released date: 10./11. September
+
 - add get_svc_pid()
 - create libcinit.a/so and link against it
 - global symbol to track the connection to cinit in the client
