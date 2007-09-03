@@ -59,14 +59,21 @@ int main(int argc, char **argv)
             what = CMD_STATUS;
             svc  = optarg;
 
-            /* relative path, add the cinit path in front of it */
-            if(strcmp(svc,SLASH,strlen(SLASH))) {
-               p = malloc(strlen(CINIT_DIR) + strlen(SLASH) + strlen(svc) + 1);
+            /* relative path, add the cinit svc path in front of it */
+            if(strncmp(svc,SLASH,strlen(SLASH))) {
+               p = malloc(strlen(CINIT_DIR)
+                        + strlen(SLASH)
+                        + strlen(SVCDIR) 
+                        + strlen(SLASH)
+                        + strlen(svc)
+                        + 1);
                if(!p) {
                   /* bad error */
                   return 1;
                }
                strcpy(p,CINIT_DIR);
+               strcat(p,SLASH);
+               strcat(p,SVCDIR);
                strcat(p,SLASH);
                strcat(svc);
                svc = p;
