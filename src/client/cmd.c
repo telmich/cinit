@@ -11,6 +11,7 @@
 #include <signal.h>        /* signals           */
 #include <stdio.h>         /* printf()          */
 #include <stdlib.h>        /* free()            */
+#include <string.h>        /* strncmp           */
 
 #include <stdint.h>        /* integers          */
 
@@ -29,7 +30,7 @@
  */
 int main(int argc, char **argv)
 {
-   int opt, tmp, what;
+   int opt, tmp;
    int32_t status;
    char *svc, *p = NULL;
 
@@ -45,18 +46,15 @@ int main(int argc, char **argv)
       switch(opt) {
          /********************************************/
          case 'e':   /* enable service */
-               what = CMD_ENABLE;
                svc = optarg;
          break;
 
          case 'd':   /* disable service */
-               what = CMD_DISABLE;
                svc = optarg;
          break;
 
          /********************************************/
          case 's':   /* get status */
-            what = CMD_STATUS;
             svc  = optarg;
 
             /* relative path, add the cinit svc path in front of it */
@@ -69,30 +67,39 @@ int main(int argc, char **argv)
                         + 1);
                if(!p) {
                   /* bad error */
-                  return 1;
+                  return 2;
                }
                strcpy(p,CINIT_DIR);
                strcat(p,SLASH);
                strcat(p,SVCDIR);
                strcat(p,SLASH);
-               strcat(svc);
+               strcat(p,svc);
                svc = p;
             }
 
             status = cinit_get_svc_status(svc);
             if(status < 0) {
                printf("Communication error\n");
-               return 1;
+               tmp = 1;
             } else {
                switch(status) {
                   case CINIT_MSG_SVC_UNKNOWN:
                      printf("Unknown service %s!\n",svc);
+                     tmp = 1;
                   break;
                   case CINIT_MSG_OK:
                      printf("Status of %s is: %d\n",svc, status);
-               return 0;
+                     tmp = 0;
+                  break;
+                  /* should not happen */
+                  default:
+                     printf("Unknown status returned for %s: %d\n",svc, status);
+                     tmp = 3;
+                  break;
+               }
             }
             if(p) free(p);
+            return tmp;
 
          break;
 
