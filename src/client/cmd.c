@@ -84,7 +84,7 @@ int main(int argc, char **argv)
             } else {
                switch(status) {
                   case CINIT_MSG_SVC_UNKNOWN:
-                     printf("Unknown service %s!\n",svc);
+                     printf("Unknown service: %s\n",svc);
                      tmp = 1;
                   break;
                   case CINIT_MSG_OK:

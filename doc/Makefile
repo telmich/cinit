@@ -14,7 +14,7 @@ XSL=/usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl
 # Asciidoc will be used to generate other formats later
 #
 MANDOCS  	= man/cinit.text man/halt.kill.text man/poweroff.kill.text		\
-				  man/reboot.kill.text
+				  man/reboot.kill.text man/cmd.text
 USERDOCS  	= user/compiles.on.text user/configuring.cinit.text 				\
 				  user/conf-system.text                                        \
 				  user/cross-compiling.text user/current-init-problems.text    \

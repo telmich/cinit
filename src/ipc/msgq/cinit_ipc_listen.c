@@ -40,7 +40,7 @@ int cinit_ipc_listen(void)
          continue;
       }
 
-      printf("pid direkt: %d (%d)\n",msq.msg_lrpid, msq.msg_lspid);
+      printf("pid direkt: self: %d (peer: %d)\n",msq.msg_lrpid, msq.msg_lspid);
 
       printf("pid: %d, cmd: %d\n",qsn.w.pid, qsn.w.qsn.cmd);
 
@@ -48,6 +48,7 @@ int cinit_ipc_listen(void)
          /* FIXME: msg; mini_printf! */
          printf("read command failed\n");
          
+         asr.asr.ret = CINIT_MSG_ERR;
       }
 
       /* answer something for now */
