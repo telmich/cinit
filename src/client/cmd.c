@@ -116,6 +116,11 @@ int main(int argc, char **argv)
          break;
 
          /* FIXME: add -V: version of cmd */
+
+         default:
+            printf("Unimplemented option :-)\n");
+            return 1;
+         break;
       }
    }
 

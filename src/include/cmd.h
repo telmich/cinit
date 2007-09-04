@@ -26,7 +26,7 @@
    "        of cinit\n"                         \
    ""
 
-#define CMD_OPTIONS "e:d:hnprs:vw"
+#define CMD_OPTIONS "e:d:p:s:vV"
 
 #define MSG_KILL  "kill()"
 
