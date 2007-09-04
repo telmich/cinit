@@ -1,0 +1,81 @@
+cmd(8)
+======
+Nico Schottelius <nico-cinit--@--schottelius.org>
+
+
+NAME
+----
+cmd - cinit management and information tool
+
+
+SYNOPSIS
+--------
+'cmd' [-ed (i|w|n)] [-(p|s) <service>] [-v]
+
+
+DESCRIPTION
+-----------
+cmd adds the management possibility to cinit(8). You can retrieve
+several information from cinit and change services.
+
+OPTIONS
+-------
+-d::
+   Disable service (see below for required parameters)
+   (NOT YET IMPLEMENTED)
+
+-e::
+   Enable service
+   - i: Included all needs and wants
+   - n: Exclude needs
+   - w: Exclude wants
+   (NOT YET IMPLEMENTED)
+
+-p::
+   Retrieve last process id (pid) for the specific service. For respawn
+   services this is the pid of the running service. For services that are
+   started only once it is the pid it had when running.
+   (NOT YET IMPLEMENTED)
+
+-s::
+   Retrieve status of a service. Warning: Do not add trailing slash.
+   Path can be specified absolute (/etc/cinit/svc/mount/root) or
+   relative (mount/root).
+
+-v::
+   Get version of cinit.
+
+
+
+EXAMPLES
+--------
+Get version::
+   [8:44] denkbrett:src# cmd -v
+
+   Version of cinit: 0.3pre12
+
+Get status::
+   [8:37] denkbrett:src# ./cmd -s mount/root               
+
+   Status of /etc/cinit/svc/mount/root is: 2001
+
+
+BUGS
+----
+Not everything is implemented.
+
+
+AUTHOR
+------
+Nico Schottelius <mailto:nico-cinit--@--schottelius.org[]>
+
+
+RESOURCES
+---------
+Main web site: http://unix.schottelius.org/cinit/[]
+
+
+COPYING
+-------
+Copyright \(C) 2007 Nico Schottelius. Free use of this software is
+granted under the terms of the GNU General Public License Version 3 (GPLv3).
