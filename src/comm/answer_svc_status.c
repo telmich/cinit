@@ -18,7 +18,7 @@ int answer_svc_status(char *svc, struct cinit_answer *asr)
 
    tmp = list_search(svc);
    if(!tmp) {
-      asr->ret = CINIT_MSG_SVC_UNKNOWN
+      asr->ret = CINIT_MSG_SVC_UNKNOWN;
    } else {
       asr->ret       = CINIT_MSG_OK;
       asr->options   = tmp->status;
