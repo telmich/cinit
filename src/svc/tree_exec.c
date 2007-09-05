@@ -15,8 +15,8 @@
 
 /* some thoughts...
  *
- * - we already generated the tree, we now need to start it from
- *   the ends
+ * - we already generated the tree, now we need to start it from
+ *   the endings
  *
  * - after starting the first service we have to care about SIG_CHILD
  *   to record changes
@@ -55,8 +55,9 @@ int tree_exec(struct dep *start)
             tmp = dep_entry_del(tmp);
             break;
 
+         /* We never enter this path! */
          case SNS_NEEDS_UNFINISHED:
-            svc_report_status(tmp->svc->abs_path,"Needs am abarbeiten",NULL);
+            svc_report_status(tmp->svc->abs_path,"NEEDS AM ABARBEITEN",NULL);
             /* continue with the next item */
             tmp = tmp->next;
             break;

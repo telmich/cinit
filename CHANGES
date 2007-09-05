@@ -3,6 +3,8 @@ cinit-0.3pre12:
    - Added support to get service status via cmd: cmd -s <service>
       * also supports relative paths to CINIT_DIR ("/etc/cinit")
    - Fixed git clone problem: hooks are needed for dumb git
+   - Fixed bug: We did not wait for services to finsh, which we depend on being
+     ran once.
 
 cinit-0.3pre11: 2007-09-01
    - Added basic communication: 

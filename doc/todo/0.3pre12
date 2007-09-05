@@ -1,13 +1,5 @@
 Wished release date: 6/7. September
 
-- remove manual pid support, use the one supplied by msgctl()
-- there seems to be a race condition in the execution of the
-  dependency tree: it happens that services that depend on
-  mounted /proc, have needs on mount/proc are still exited
-  before /proc is mounted.
-  problem of cinit or of mount, exiting too early?
-  guess the first one, so fix it :-)
-
 --------------------------------------------------------------------------------
 Done:
 - begin to write documentation about client functions
@@ -37,3 +29,13 @@ vlg Lucky
 Use http://www.opengroup.org/onlinepubs/009695399/basedefs/stdint.h.html
    => partly implemented
 
+- remove manual pid support, use the one supplied by msgctl()
+   => ok.
+- there seems to be a race condition in the execution of the
+  dependency tree: it happens that services that depend on
+  mounted /proc, have needs on mount/proc are still exited
+  before /proc is mounted.
+  problem of cinit or of mount, exiting too early?
+  guess the first one, so fix it :-)
+
+   => missing check in svc_needs_status.c

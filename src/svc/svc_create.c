@@ -40,11 +40,6 @@ struct listitem *svc_create(char *svc)
          return NULL;
       }
    } else {
-      /* FIXME remove debug */
-      D_PRINTF("respawn: ");
-      D_PRINTF(li->abs_path);
-      D_PRINTF("\n");
-
       svc_set_status(li,ST_SH_RESPAWN);
    }
 

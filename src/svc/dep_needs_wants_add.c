@@ -13,7 +13,6 @@
  */
 
 #include <stdio.h>         /* NULL        */
-
 #include "svc.h"           /* struct *dep */
 
 /*
