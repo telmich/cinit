@@ -20,7 +20,8 @@ int svc_needs_status(struct listitem *svc)
    do {
       /* worst case: need failed */
       if((deps->svc->status & ST_NEED_FAILD) ||
-         (deps->svc->status & ST_ONCE_FAIL)) {
+         (deps->svc->status & ST_ONCE_FAIL)  ||
+         (deps->svc->status & ST_BAD_ERR)    ){
             retval = SNS_NEEDS_FAILED;
             break;
       }
