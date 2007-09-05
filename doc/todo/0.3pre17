@@ -1,5 +1,11 @@
 Wished release date: 3. October
 
+"Code quality assurance release"
+
 - Fix bugs all outstanding bugs.
 - Give cinit some time, write some documentation and make pre17 the last pre of the 0.3
   serie.
+- Give the code out to other developers, request explicit strong critics
+   => So even
+      "This could be in theory, if Mars is behind Pluto on Sunday evening" bugs
+      are out.
