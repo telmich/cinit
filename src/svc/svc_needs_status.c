@@ -8,7 +8,6 @@
  */
 
 #include <stdio.h>      /* NULL                    */
-
 #include "svc.h"        /* service information     */
 
 int svc_needs_status(struct listitem *svc)
@@ -26,8 +25,9 @@ int svc_needs_status(struct listitem *svc)
             break;
       }
       /* services are being started */
-      if((deps->svc->status & ST_SH_ONCE) ||
-         (deps->svc->status & ST_SH_RESPAWN)) {
+      if((deps->svc->status & ST_SH_ONCE)    ||
+         (deps->svc->status & ST_SH_RESPAWN) ||
+         (deps->svc->status & ST_ONCE_RUN)   ){
             retval = SNS_NEEDS_UNFINISHED;
       }
       deps = deps->next;
