@@ -10,7 +10,6 @@
 
 #include <stdio.h>      /* printf()       */
 
-#include <sys/ipc.h>    /* ftok           */
 #include <sys/msg.h>    /* msgget         */
 #include <errno.h>      /* errno          */
 
@@ -26,7 +25,7 @@ int cinit_ipc_listen(void)
 
    while (1) {
       qsn.mtype = 1; /* listen only to mtype = 1, == init */
-      tmp = msgrcv(mq_in, &qsn, sizeof (qsn.qsn), 0, 0);
+      tmp = msgrcv(__cinit_mq_in, &qsn, sizeof (qsn.qsn), 0, 0);
 
       if(tmp == -1) {
          if(errno != EINTR) {
@@ -35,26 +34,25 @@ int cinit_ipc_listen(void)
          continue;
       }
 
-      if(msgctl(mq_in, IPC_STAT, &msq) == -1) {
+      if(msgctl(__cinit_mq_in, IPC_STAT, &msq) == -1) {
+         /* FIXME: do MSG_ */
          print_errno("msgctl");
          continue;
       }
 
       printf("pid direkt: self: %d (peer: %d)\n",msq.msg_lrpid, msq.msg_lspid);
 
-      if(!read_command(qsn.w.qsn, &(asr.asr))) {
+      if(!read_command(qsn.qsn, &(asr.asr))) {
          /* FIXME: msg; mini_printf! */
          printf("read command failed\n");
          
          asr.asr.ret = CINIT_MSG_ERR;
       }
 
-      /* answer something for now */
-      asr.mtype = msq.msg_lspid;
-
-      /* FIXME: do different things on differen errnos ... */
       
-      if(msgsnd(mq_out, &asr, sizeof(asr.asr), 0) == -1) {
+      asr.mtype = msq.msg_lspid;
+      if(msgsnd(__cinit_mq_out, &asr, sizeof(asr.asr), 0) == -1) {
+         /* FIXME: do different things on differen errnos ... */
          print_errno("msgsend/answer");
       }
    }

@@ -16,10 +16,10 @@
 
 void cinit_ipc_destroy(void)
 {
-   if(msgctl(mq_in,IPC_RMID,NULL) == -1) {
+   if(msgctl(__cinit_mq_in, IPC_RMID, NULL) == -1) {
       print_errno(MSG_MSGQ_DESTROY);         /* print warning, continue */
    }
-   if(msgctl(mq_out,IPC_RMID,NULL) == -1) {
+   if(msgctl(__cinit_mq_out, IPC_RMID, NULL) == -1) {
       print_errno(MSG_MSGQ_DESTROY);         /* print warning, continue */
    }
 }

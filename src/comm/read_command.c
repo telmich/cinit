@@ -11,6 +11,7 @@
 #include <string.h>     /* strncpy                    */
 #include "config.h"     /* VERSION                    */
 #include "cinit.h"      /* structures                 */
+#include "intern.h"     /* answer_svc_status()        */
 
 int read_command(struct cinit_question qsn, struct cinit_answer *asr)
 {
@@ -25,8 +26,9 @@ int read_command(struct cinit_question qsn, struct cinit_answer *asr)
          /* FIXME: handle return 0 in parten */
       break;
 
-      /* return error to client */
+      /* Unknown command */
       default:
+         return 0;
       break;
    }
 

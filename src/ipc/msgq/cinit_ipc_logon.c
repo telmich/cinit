@@ -12,7 +12,6 @@
 #include <sys/msg.h>             /* msgget            */
 #include <unistd.h>              /* getpid()          */
 
-#include "config.h"
 #include "intern.h"              /* print_errno       */
 #include "msgq.h"                /* msgq constants    */
 
@@ -30,17 +29,13 @@ int cinit_ipc_logon(void)
    }
 
    /* FIXME: do not create new queue => cinit should have created them! */
-   mq_in    = msgget(k_in,0666 | IPC_CREAT);
-   mq_out   = msgget(k_out,0666 | IPC_CREAT);
+   __cinit_mq_in    = msgget(k_in,0666 | IPC_CREAT);
+   __cinit_mq_out   = msgget(k_out,0666 | IPC_CREAT);
 
-   if(mq_in == -1 || mq_out == -1) {
+   if(__cinit_mq_in == -1 || __cinit_mq_out == -1) {
       print_errno(MSG_MSGQ_MSGGET);
       return 0;
    }
-
-   /* we use the pid as identifier, so initialise it here */
-   /* FIXME: check whether posix includes transfer of pid anyway */
-   __cinit_cpid = getpid();
  
    return 1;
 }

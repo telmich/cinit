@@ -22,8 +22,8 @@
 /***********************************************************************
  * global variables: FIXME: rename, we're in client namespace!
  */
-int mq_in;                    /* input    */
-int mq_out;                   /* output   */
+int               __cinit_mq_in;    /* input    */
+int               __cinit_mq_out;   /* output   */
 
 /***********************************************************************
  * structures

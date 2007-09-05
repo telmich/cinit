@@ -8,26 +8,31 @@
  *
  */
 
-/* FIXME: cleanup headers */
-#include <sys/ipc.h>             /* ftok              */
 #include <sys/msg.h>             /* msgget            */
-
 #include <string.h>              /* memcpy()          */
 
 #include "intern.h"              /* print_errno       */
-#include "msgq.h"                /* __cinit_cpid      */
+#include "msgq.h"                /* msq specific      */
 
-   #include <stdio.h>
 int cinit_ipc_cread(struct cinit_answer *buf)
 {
-   struct msgq_server msg;
+   struct msgq_server asr;
+   struct msqid_ds    msq;
 
-   if(msgrcv(mq_in, &msg, sizeof(msg.asr), __cinit_cpid, 0) == -1) {
+   /* retrieve local pid */
+   if(msgctl(__cinit_mq_in, IPC_STAT, &msq) == -1) {
+      print_errno("msgctl");
+      return 0;
+   }
+   
+   asr.mtype = msq.msg_lrpid;
+
+   if(msgrcv(__cinit_mq_in, &asr, sizeof(asr.asr), asr.mtype, 0) == -1) {
       /* FIXME: msg* */
       print_errno("msgrcv,cread");
       return 0;
    }
-   memcpy(buf, &(msg.asr), sizeof(*buf));
+   memcpy(buf, &(asr.asr), sizeof(*buf));
 
    return 1;
 }

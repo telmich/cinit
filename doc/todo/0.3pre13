@@ -3,6 +3,7 @@ Wished released date: 10./11. September
 - add get_svc_pid()
 - cleanup cmd: add real usage, add -h for help
 - cleanup msgq.h: namespace!
+- cleanup cinit_ipc_logon()!
 - create libcinit.a/so and link against it
 - global symbol to track the connection to cinit in the client
    => cinit_ipc_cinit() - initalise ipc in the client (only once)
@@ -12,3 +13,5 @@ Wished released date: 10./11. September
    <cinit/cinit.h>   /* main  */
    <cinit/types.h>   /* ...   */
 - map status numbers to messages
+
+Done:
