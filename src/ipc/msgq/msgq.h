@@ -24,24 +24,15 @@
  */
 int mq_in;                    /* input    */
 int mq_out;                   /* output   */
-pid_t __cinit_cpid;           /* our (p)id*/
 
 /***********************************************************************
  * structures
  */
 
-/* wrapper needed: msgsnd wants size of everything,
- * everything = struct|array after mtype
- */
-struct msgq_wrapper {
-    pid_t pid;
-    struct cinit_question qsn;
-};
-
 /* messages _from_ the client _to_ the server */
 struct msgq_client {
     long mtype;
-    struct msgq_wrapper w;
+    struct cinit_question qsn;
 };
 
 /* messages _from_ the server _to_ the client */

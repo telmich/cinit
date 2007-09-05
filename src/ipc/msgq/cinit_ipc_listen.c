@@ -26,7 +26,7 @@ int cinit_ipc_listen(void)
 
    while (1) {
       qsn.mtype = 1; /* listen only to mtype = 1, == init */
-      tmp = msgrcv(mq_in, &qsn, sizeof (qsn.w), 0, 0);
+      tmp = msgrcv(mq_in, &qsn, sizeof (qsn.qsn), 0, 0);
 
       if(tmp == -1) {
          if(errno != EINTR) {
@@ -42,8 +42,6 @@ int cinit_ipc_listen(void)
 
       printf("pid direkt: self: %d (peer: %d)\n",msq.msg_lrpid, msq.msg_lspid);
 
-      printf("pid: %d, cmd: %d\n",qsn.w.pid, qsn.w.qsn.cmd);
-
       if(!read_command(qsn.w.qsn, &(asr.asr))) {
          /* FIXME: msg; mini_printf! */
          printf("read command failed\n");
@@ -52,8 +50,10 @@ int cinit_ipc_listen(void)
       }
 
       /* answer something for now */
-      asr.mtype = qsn.w.pid;
+      asr.mtype = msq.msg_lspid;
+
       /* FIXME: do different things on differen errnos ... */
+      
       if(msgsnd(mq_out, &asr, sizeof(asr.asr), 0) == -1) {
          print_errno("msgsend/answer");
       }
