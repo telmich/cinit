@@ -47,6 +47,8 @@ struct msgq_server {
 
 #define MSG_MSGQ_FTOK         "ftok"
 #define MSG_MSGQ_MSGGET       "msgget"
+#define MSG_MSGQ_MSGCTL       "msgctl"
+#define MSG_MSGQ_MSGSEND      "msgsend"
 #define MSG_MSGQ_MSGRCV       "msgrcv"
 #define MSG_MSGQ_DESTROY      "msgq-destroy"
 

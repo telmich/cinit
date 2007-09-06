@@ -21,10 +21,10 @@ int cinit_ipc_cread(struct cinit_answer *buf)
    struct msgq_server asr;
 
    asr.mtype = getpid();
+   printf("mtype, getpid: %ld, %d\n",asr.mtype, getpid());
 
    if(msgrcv(__cinit_mq_in, &asr, sizeof(asr.asr), asr.mtype, 0) == -1) {
-      /* FIXME: msg* */
-      print_errno("msgrcv,cread");
+      print_errno(MSG_MSGQ_MSGRCV);
       return 0;
    }
    memcpy(buf, &(asr.asr), sizeof(*buf));

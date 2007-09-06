@@ -10,7 +10,6 @@
 
 #include <sys/msg.h>       /* msgget         */
 #include <stdio.h>         /* NULL           */
-
 #include "msgq.h"          /* mq_in, mq_out  */
 #include "intern.h"        /* print_errno    */
 

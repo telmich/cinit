@@ -24,6 +24,7 @@ int cinit_ipc_listen(void)
    struct msqid_ds      msq;
 
    while (1) {
+      printf("Listening...\n");
       qsn.mtype = 1; /* listen only to mtype = 1, == init */
       tmp = msgrcv(__cinit_mq_in, &qsn, sizeof (qsn.qsn), 0, 0);
 
@@ -35,8 +36,7 @@ int cinit_ipc_listen(void)
       }
 
       if(msgctl(__cinit_mq_in, IPC_STAT, &msq) == -1) {
-         /* FIXME: do MSG_ */
-         print_errno("msgctl");
+         print_errno(MSG_MSGQ_MSGCTL);
          continue;
       }
 

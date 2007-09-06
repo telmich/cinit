@@ -10,7 +10,6 @@
 
 #include <sys/msg.h>          /* msgget            */
 #include <string.h>           /* memcpy()          */
-
 #include "intern.h"           /* print_errno       */
 #include "msgq.h"             /* structure         */
 
@@ -24,8 +23,7 @@ int cinit_ipc_csend(struct cinit_question *qsn)
    memcpy(&(msg.qsn), qsn, sizeof(msg.qsn));
 
    if(msgsnd(__cinit_mq_out, &msg, sizeof(msg), 0) == -1) {
-      /* FIXME: msg */
-      print_errno("msgsnd,csend");
+      print_errno(MSG_MSGQ_MSGSEND);
       return 0;
    }
 

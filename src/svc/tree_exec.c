@@ -8,7 +8,6 @@
  */
 
 #include <stdio.h>               /* NULL        */
-
 #include "intern.h"              /* mini_printf */
 #include "svc.h"                 /* svc_init    */
 #include "messages.h"            /* messages    */
@@ -39,8 +38,8 @@ int tree_exec(struct dep *start)
     */
    do {
       switch(svc_needs_status(tmp->svc)) {
-//         printf("checking %s... \n",tmp->svc->abs_path);
          case SNS_NEEDS_STARTED:
+            /* FIXME: MSG_* */
             svc_report_status(tmp->svc->abs_path,"Finished needs.", NULL);
             /* execute service, add dependencies, remowe from list */
             svc_start(tmp->svc,0);
@@ -56,19 +55,10 @@ int tree_exec(struct dep *start)
             tmp = dep_entry_del(tmp);
             break;
 
-         /* We never enter this path! */
          case SNS_NEEDS_UNFINISHED:
-//            svc_report_status(tmp->svc->abs_path,"NEEDS AM ABARBEITEN",NULL);
-            /* continue with the next item */
-            tmp = tmp->next;
+            tmp = tmp->next; /* continue with the next item */
             break;
       }
-      /* BUG: FIXME
-      if(tmp == tmp->next) {
-         printf("last service, %s\n",tmp->svc->abs_path);
-         break;
-      } */
-         
    } while(tmp != NULL);
 
    return 1;
