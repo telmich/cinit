@@ -13,5 +13,6 @@ Wished released date: 10./11. September
    <cinit/cinit.h>   /* main  */
    <cinit/types.h>   /* ...   */
 - map status numbers to messages
+- pre12 seems to have an IPC problem: Fix it.
 
 Done:
