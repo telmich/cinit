@@ -54,15 +54,16 @@ void svc_start(struct listitem *li, int delay)
    
    /********************** Client / fork() ************************/
    /* sleep, if necesseray */
-   printf("Delay: %d\n", delay);
    if(delay) {
       ts.tv_sec   = delay;
       ts.tv_nsec  = 0;
 
       /* FIXME: also report value; int2char */
+      printf("Delay: %d\n", delay);
       svc_report_status(li->abs_path,MSG_SVC_SLEEP,NULL);
 
       /* do not need to check for errors, because we can continue anyway */
+      /* WRONG: FIXME: look whether to sleep again */
       nanosleep(&ts,NULL);
    }
    svc_report_status(li->abs_path,MSG_SVC_START,NULL);
@@ -85,6 +86,7 @@ void svc_start(struct listitem *li, int delay)
       /* and now, fire it up */
       execute_sth(buf);
    } else {
+      /* FIXME: report? */
       /* either no file or an error */
       _exit(1);
    }

@@ -18,6 +18,7 @@ LDFLAGS=
 STRIP=../tmpbin/strip
 SBIN=../sbin
 DESTDIR=
+#DESTDIR=/home/user/nico/emu/dst
 
 ################################################################################
 #

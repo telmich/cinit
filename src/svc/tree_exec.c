@@ -39,8 +39,9 @@ int tree_exec(struct dep *start)
     */
    do {
       switch(svc_needs_status(tmp->svc)) {
+//         printf("checking %s... \n",tmp->svc->abs_path);
          case SNS_NEEDS_STARTED:
-            svc_report_status(tmp->svc->abs_path,"Needs sind durch",NULL);
+            svc_report_status(tmp->svc->abs_path,"Finished needs.", NULL);
             /* execute service, add dependencies, remowe from list */
             svc_start(tmp->svc,0);
             if(!dep_needs_wants_add(&tmp,tmp->svc,DEP_NEEDS)) return 0;
@@ -57,11 +58,17 @@ int tree_exec(struct dep *start)
 
          /* We never enter this path! */
          case SNS_NEEDS_UNFINISHED:
-            svc_report_status(tmp->svc->abs_path,"NEEDS AM ABARBEITEN",NULL);
+//            svc_report_status(tmp->svc->abs_path,"NEEDS AM ABARBEITEN",NULL);
             /* continue with the next item */
             tmp = tmp->next;
             break;
       }
+      /* BUG: FIXME
+      if(tmp == tmp->next) {
+         printf("last service, %s\n",tmp->svc->abs_path);
+         break;
+      } */
+         
    } while(tmp != NULL);
 
    return 1;

@@ -29,6 +29,7 @@ int svc_needs_status(struct listitem *svc)
       if((deps->svc->status & ST_SH_ONCE)    ||
          (deps->svc->status & ST_SH_RESPAWN) ||
          (deps->svc->status & ST_ONCE_RUN)   ){
+  //          printf("%s (%ld) waits for %s (%ld)\n",svc->abs_path, svc->status, deps->svc->abs_path, deps->svc->status);
             retval = SNS_NEEDS_UNFINISHED;
       }
       deps = deps->next;
