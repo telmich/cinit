@@ -92,8 +92,6 @@ int main(int argc, char **argv)
       panic();
    }
 
-   D_PRINTF("=> cinit started.\n");
-
    mini_printf(MSG_BOOTING,1); mini_printf(initdir,1); mini_printf("\n",1);
    /* listen for incomming messages: should never return */
    if(!cinit_ipc_listen()) {

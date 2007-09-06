@@ -22,7 +22,7 @@ int cinit_ipc_csend(struct cinit_question *qsn)
    /* copy question structure into the msgq-structure */
    memcpy(&(msg.qsn), qsn, sizeof(msg.qsn));
 
-   if(msgsnd(__cinit_mq_out, &msg, sizeof(msg), 0) == -1) {
+   if(msgsnd(__cinit_mq_out, &msg, sizeof(msg.qsn), 0) == -1) {
       print_errno(MSG_MSGQ_MSGSEND);
       return 0;
    }

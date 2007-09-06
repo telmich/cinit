@@ -11,8 +11,6 @@
 #include <sys/msg.h>             /* msg*              */
 #include <string.h>              /* memcpy()          */
 #include <unistd.h>              /* getpid()          */
-#include <stdio.h>
-
 #include "intern.h"              /* print_errno       */
 #include "msgq.h"                /* msq specific      */
 
@@ -20,10 +18,7 @@ int cinit_ipc_cread(struct cinit_answer *buf)
 {
    struct msgq_server asr;
 
-   asr.mtype = getpid();
-   printf("mtype, getpid: %ld, %d\n",asr.mtype, getpid());
-
-   if(msgrcv(__cinit_mq_in, &asr, sizeof(asr.asr), asr.mtype, 0) == -1) {
+   if(msgrcv(__cinit_mq_in, &asr, sizeof(asr.asr), getpid(), 0) == -1) {
       print_errno(MSG_MSGQ_MSGRCV);
       return 0;
    }
