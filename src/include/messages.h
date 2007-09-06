@@ -16,12 +16,6 @@
 
 #define MSG_DP    ": "
 
-/* OLD Messages to the outside */
-//#define MSG_BIND           "bind"
-//#define MSG_CONNECT        "connect"
-//#define MSG_FCNTL          "fcntl"
-//#define MSG_LISTEN         "listen"
-//#define MSG_SOCKET         "socket"
 #define MSG_USAGE_1        ": fast executing, small and simple init "
 #define MSG_USAGE_2        "with support for profiles\n"
 #define MSG_USAGE_3        "\nError: cinit must be started as PID 1.\n"
@@ -41,22 +35,22 @@
 #define MSG_ERR_ADD_SVC    "Adding service failed"
 #define MSG_CMD_UNKNOWN    "Unknown command"
 
-#define MSG_ERR_DEPS       "Too many dependencies"
-#define MSG_ERR_ACCEPT     "accept"
-#define MSG_ERR_WAITPID    "waitpid"
-#define MSG_ERR_POLL       "poll"
-#define MSG_ERR_MODIFY     "modify list failed"
-#define MSG_ERR_COMM       "Communication failed"
+//#define MSG_ERR_DEPS       "Too many dependencies"
+//#define MSG_ERR_ACCEPT     "accept"
+//#define MSG_ERR_WAITPID    "waitpid"
+//#define MSG_ERR_POLL       "poll"
+//#define MSG_ERR_MODIFY     "modify list failed"
+//#define MSG_ERR_COMM       "Communication failed"
 
-#define MSG_ERR_LESS_ARGS  "Too less arguments!"
-#define MSG_ERR_BAD_ARGS   "Wrong arguments / parameter"
-#define MSG_ERR_ARGS_LEN   "Wrong parameter length"
+//#define MSG_ERR_LESS_ARGS  "Too less arguments!"
+//#define MSG_ERR_BAD_ARGS   "Wrong arguments / parameter"
+//#define MSG_ERR_ARGS_LEN   "Wrong parameter length"
 
 #define LOG_SVC_STOPED     "Service stoped"
 #define LOG_SVC_ONCE       "Started once"
 #define LOG_SVC_RESPAWN    "Respawns now"
-#define LOG_NEED_FAIL      "One or more need failed"
-#define LOG_SVC_FAILED     "Service already failed, not starting."
+//#define LOG_NEED_FAIL      "One or more need failed"
+//#define LOG_SVC_FAILED     "Service already failed, not starting."
 #define LOG_SVC_NOTEXIST   "Service does not exist"
 
 #define MSG_EXEC_FAILED    "Failed to execute "
@@ -100,7 +94,6 @@
 #define MSG_INTRO_CINIT    "cinit:"
 #define MSG_INTRO_SPACE    MSG_INTRO_CINIT " "
 #define MSG_INTRO_SVC      MSG_INTRO_CINIT
-//#define MSG_INTRO_SVC      MSG_INTRO_CINIT   "service:"
 #define MSG_INTRO_STOP     MSG_INTRO_CINIT   "stop: "
 #define MSG_INTRO_EXEC     MSG_INTRO_CINIT   "exec: "
 
