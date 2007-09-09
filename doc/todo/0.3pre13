@@ -1,5 +1,11 @@
 Wished released date: 10./11. September
 
+- move logic out of the child handler:
+   time() and co. are problematic in a child handler!
+
+   introduce global list of services to execute
+      => perhaps reuse already existing dependency-list?
+
 - add get_svc_pid()
 - cleanup cmd: add real usage, add -h for help
 - cleanup msgq.h: namespace!
