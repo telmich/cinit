@@ -23,6 +23,8 @@ pid_t cinit_svc_get_pid(char *name)
    strcpy((qsn.data), name);
    qsn.options = 0;
 
+#error "return pid!!!"
+
    if(!cinit_send_to(&qsn, &asr)) return -1;
 
    return asr.ret;
