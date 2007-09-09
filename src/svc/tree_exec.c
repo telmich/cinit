@@ -66,18 +66,16 @@ int tree_exec(struct dep *start)
             hack = tmp->svc->needs;
             do {
                // get needs
-               printf("%s waits for %s",tmp->svc->abs_path,hack->svc->abs_path);
+//               printf("%s waits for %s",tmp->svc->abs_path,hack->svc->abs_path);
                // display status of needs
-               printf("%s: %ld\n",hack->svc->abs_path,hack->svc->status);
+ //              printf("%s: %ld\n",hack->svc->abs_path,hack->svc->status);
                hack = hack->next;
             } while(hack != tmp->svc->needs);
 
             tmp = tmp->next; /* continue with the next item */
-               printf("SLEEP-1\n");
             ts.tv_sec = 2;
             ts.tv_nsec = 0;
             nanosleep(&ts,NULL);
-               printf("SLEEP-2\n");
             break;
       }
       /* this case may happen: when something is still running 
