@@ -40,7 +40,13 @@ void sig_child(int tmp)
 
       if(svc != NULL) {
          /* Check, that we are operating on it =. that it is no normal child */
+         /* Also check for ST_SH_* to catch race conditions, where
+          * status is not yet updated => does that make sense or is
+          * the status overwritten after we return out of here?
+          */
          if(svc->status & ST_ONCE_RUN
+ //        || svc->status & ST_SH_ONCE
+//         || svc->status & ST_SH_RESPAWN
          || svc->status & ST_RESPAWNING) {
             printf("CHILD: %s bekannt!\n",svc->abs_path);
             if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
@@ -50,7 +56,6 @@ void sig_child(int tmp)
             }
          }
          // may not happen, svc_start sets it to ST_RESPAWNING!
-         //|| svc->status & ST_SH_RESPAWN
 
          //mini_printf("WHILE: Vorm respawn!\n",1);
          /* respawn: restart: FIXME Delay for regular dying services */

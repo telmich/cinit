@@ -25,6 +25,15 @@ void svc_start(struct listitem *li, int delay)
    char buf[PATH_MAX+1];
    struct timespec ts;
 
+   /* first update status, so we don't run into a race condition! */
+   if(li->status & ST_SH_ONCE)
+      li->status = ST_ONCE_RUN;
+   else
+      li->status = ST_RESPAWNING;
+
+   /* set start time */
+   li->start = time(NULL);
+
    /* FIXME: All cleanup must go here
     * close(fds);
     * reset signals
@@ -34,22 +43,15 @@ void svc_start(struct listitem *li, int delay)
     * open (0,1,2) to other processes, if specified */
    li->pid = fork();
    
+   /**********************      parent     ************************/
+   if(li->pid > 0) {
+      return;
+   }
+
    /**********************      Error      ************************/
    if(li->pid < 0) {
       svc_report_status(li->abs_path,MSG_SVC_FORK,strerror(errno));
       svc_set_status(li,ST_BAD_ERR);
-      return;
-   }
-   /**********************      parent     ************************/
-   if(li->pid > 0) {
-      if(li->status & ST_SH_ONCE)
-         li->status = ST_ONCE_RUN;
-      else
-         li->status = ST_RESPAWNING;
-
-      /* set start time */
-      li->start = time(NULL);
-
       return;
    }
    
@@ -84,7 +86,7 @@ void svc_start(struct listitem *li, int delay)
       /* probably a problem: we exit too fast, cinit does not
        * yet have us in the process list. is that possible?
        * => catch with sleep */
-      sleep(2);
+      //sleep(2);
       _exit(0);  /* nothing there? fine! */
    }
 
