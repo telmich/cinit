@@ -26,7 +26,7 @@ Versions
    code: double check to remove Linux specific source from general tree [DONE]
    code: seperate ipc from the rest [DONE]
    code: fix / check signal handlers [DONE]
-   code: cleanup makefile
+   code: cleanup makefile [DONE]
    code: add porting code: add support for any unix in general [DONE]
    code: stabilize code, remove experimenting parts
    code: remove delay support, let off/off.params do that. [DONE]
@@ -81,7 +81,7 @@ Versions
    tools: writing cinit-config (graphical (dialog based?) configuration tool)
    code: add porting code: add support for openbsd
 
-   code: add reverse dependency chain (or earlier?)
+   code: add reverse dependency chain (or earlier?) [DONE]
    code: better support for external tools
    o neustarten
       o mit herunterfahren
