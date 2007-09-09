@@ -42,13 +42,14 @@ void svc_start(struct listitem *li, int delay)
    }
    /**********************      parent     ************************/
    if(li->pid > 0) {
-      /* set start time */
-      li->start = time(NULL);
-
       if(li->status & ST_SH_ONCE)
          li->status = ST_ONCE_RUN;
       else
          li->status = ST_RESPAWNING;
+
+      /* set start time */
+      li->start = time(NULL);
+
       return;
    }
    
@@ -80,6 +81,10 @@ void svc_start(struct listitem *li, int delay)
       printf("********************\n");
       printf("WO/EXE: %s\n",li->abs_path);
       printf("********************\n");
+      /* probably a problem: we exit too fast, cinit does not
+       * yet have us in the process list. is that possible?
+       * => catch with sleep */
+      sleep(2);
       _exit(0);  /* nothing there? fine! */
    }
 
