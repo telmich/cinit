@@ -23,7 +23,6 @@
 #include "cinit.h"         /* cinit external    */
 
 #define C_USAGE(error) usage(USAGE_TEXT,error)
-#define LOG(a,b)     mini_printf(a,1); minit_printf(b,1);
 
 /***********************************************************************
  * cmd: main
@@ -32,6 +31,7 @@ int main(int argc, char **argv)
 {
    int opt, tmp;
    int32_t status;
+   pid_t pid;
    char *svc, *p = NULL;
 
    tmp = 0;
@@ -54,6 +54,7 @@ int main(int argc, char **argv)
          break;
 
          /********************************************/
+         case 'p':   /* get pid */
          case 's':   /* get status */
             svc  = optarg;
 
@@ -77,27 +78,39 @@ int main(int argc, char **argv)
                svc = p;
             }
 
-            status = cinit_get_svc_status(svc);
-            if(status < 0) {
-               printf("Communication error\n");
-               tmp = 1;
-            } else {
-               switch(status) {
-                  case CINIT_MSG_SVC_UNKNOWN:
-                     printf("Unknown service: %s\n",svc);
-                     tmp = 1;
-                  break;
-                  case CINIT_MSG_OK:
-                     printf("Status of %s is: %d\n",svc, status);
-                     tmp = 0;
-                  break;
-                  /* should not happen */
-                  default:
-                     printf("Unknown status returned for %s: %d\n",svc, status);
-                     tmp = 3;
-                  break;
+            if(opt == 's') {
+               status = cinit_get_svc_status(svc);
+               if(status < 0) {
+                  printf("Communication error\n");
+                  tmp = 1;
+               } else {
+                  switch(status) {
+                     case CINIT_MSG_SVC_UNKNOWN:
+                        printf("Unknown service: %s\n",svc);
+                        tmp = 1;
+                     break;
+                     case CINIT_MSG_OK:
+                        printf("Status of %s is: %d\n",svc, status);
+                        tmp = 0;
+                     break;
+                     /* should not happen */
+                     default:
+                        printf("Unknown status returned for %s: %d\n",svc, status);
+                        tmp = 3;
+                     break;
+                  }
+               } 
+            } else { /* -p */
+               pid = cinit_svc_get_pid(svc);
+               if(pid == 0) {
+                  printf("Unknown service: %s\n",svc);
+                  tmp = 1;
+               } else {
+                  printf("PID of %s: %d\n",svc, pid);
+                  tmp = 0;
                }
             }
+
             if(p) free(p);
             return tmp;
 

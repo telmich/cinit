@@ -50,3 +50,4 @@ svc/svc_start.o
 svc/svc_fail.o
 comm/read_command.o
 comm/answer_svc_status.o
+comm/answer_svc_pid.o

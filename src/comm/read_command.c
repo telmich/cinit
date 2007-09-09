@@ -23,10 +23,13 @@ int read_command(struct cinit_question qsn, struct cinit_answer *asr)
 
       case CINIT_MSG_GET_STATUS:
          if(!answer_svc_status(qsn.data, asr)) return 0;
-         /* FIXME: handle return 0 in parten */
       break;
 
-      /* Unknown command */
+      case CINIT_MSG_GET_PID:
+         if(!answer_svc_pid(qsn.data, asr)) return 0;
+      break;
+
+      /* Unknown command: should not happen :-) */
       default:
          return 0;
       break;

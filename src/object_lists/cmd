@@ -8,3 +8,4 @@ ipc/current/cinit_ipc_logon.o
 ipc/current/cinit_ipc_csend.o
 ipc/current/cinit_ipc_cread.o
 ipc/current/cinit_ipc_logoff.o
+libcinit/cinit_svc_get_pid.o

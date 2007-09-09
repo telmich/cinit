@@ -13,6 +13,7 @@
 /* includes */
 #include <stdint.h>     /* required for functions  */
 #include <limits.h>     /* PATH_MAX                */
+#include <sys/types.h>  /* pid_t                   */
 
 /*
  * structures: independent of the ipc code!
@@ -37,6 +38,7 @@ enum {
    /* questions */
    CINIT_MSG_QUESTIONS=1000,  /* begin questions at 1000    */
    CINIT_MSG_GET_STATUS,      /* status of a service        */
+   CINIT_MSG_GET_PID,         /* get pid of a service       */
    CINIT_MSG_GET_VERSION,     /* version of cinit           */
    
    /* answers */
@@ -47,6 +49,7 @@ enum {
 };
 
 /* functions */
+pid_t    cinit_svc_get_pid(char *);
 int32_t  cinit_get_svc_status(char *);
 char    *cinit_get_version(void);
 int      cinit_send_to(struct cinit_question *, struct cinit_answer *);
