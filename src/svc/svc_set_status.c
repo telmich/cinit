@@ -12,5 +12,7 @@
 /* checking for existence is done before! */
 int svc_set_status(struct listitem *li, int status)
 {
+   /* FIXME: also set time? */
+
    return (li->status = status);
 }

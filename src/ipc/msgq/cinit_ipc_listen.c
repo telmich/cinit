@@ -24,8 +24,7 @@ int cinit_ipc_listen(void)
    struct msqid_ds      msq;
 
    while (1) {
-      printf("Listening...\n");
-      qsn.mtype = 1; /* listen only to mtype = 1, == init */
+      printf("IPC: Listening...\n");
       tmp = msgrcv(__cinit_mq_in, &qsn, sizeof (qsn.qsn), 0, 0);
 
       if(tmp == -1) {

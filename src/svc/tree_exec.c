@@ -7,6 +7,9 @@
  *    Start the service tree we created
  */
 
+
+#include <time.h>               /* NULL        */
+
 #include <stdio.h>               /* NULL        */
 #include "intern.h"              /* mini_printf */
 #include "svc.h"                 /* svc_init    */
@@ -29,6 +32,8 @@
 int tree_exec(struct dep *start)
 {
    struct dep *tmp = start;
+            struct dep *hack;
+   struct timespec ts;
 
    mini_printf(MSG_TREE_EXEC,1);
 
@@ -56,9 +61,31 @@ int tree_exec(struct dep *start)
             break;
 
          case SNS_NEEDS_UNFINISHED:
+            /* FIXME: continue here! */
+         
+            hack = tmp->svc->needs;
+            do {
+               // get needs
+               printf("%s waits for %s",tmp->svc->abs_path,hack->svc->abs_path);
+               // display status of needs
+               printf("%s: %ld\n",hack->svc->abs_path,hack->svc->status);
+               hack = hack->next;
+            } while(hack != tmp->svc->needs);
+
             tmp = tmp->next; /* continue with the next item */
+               printf("SLEEP-1\n");
+            ts.tv_sec = 2;
+            ts.tv_nsec = 0;
+            nanosleep(&ts,NULL);
+               printf("SLEEP-2\n");
             break;
       }
+      /* this case may happen: when something is still running 
+       * => so do not escape!
+      if(tmp == tmp->next) {
+         printf("BUUUUUUUUUUUUUG, exit\n");
+         break;
+      } */
    } while(tmp != NULL);
 
    return 1;

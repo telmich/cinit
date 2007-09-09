@@ -88,11 +88,29 @@ int main(int argc, char **argv)
    } */
 
    /* start tree from the bottom */
+   printf("tree exec\n");
    if(!tree_exec(svc_init)) {
       panic();
    }
 
-   mini_printf(MSG_BOOTING,1); mini_printf(initdir,1); mini_printf("\n",1);
+   printf("============> POST tree exec\n");
+
+
+   //while(1) {
+      /* check dependency list */
+      // reuse tree_exec()?
+      // if(dep) { svc_start() .. ?
+      //
+
+      /* read a message */
+  //    if(!cinit_ipc_sread(struct cinit_question *buf)) {
+  //       report_read_problem...;
+  //    }
+  //
+  //    read_command(qsn, asr);
+  // }
+
+   /* OLD: */
    /* listen for incomming messages: should never return */
    if(!cinit_ipc_listen()) {
       panic();

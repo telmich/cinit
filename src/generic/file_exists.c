@@ -26,7 +26,8 @@ int file_exists(char *filename)
     */
    if(lstat(filename,&buf) == -1) {                /* lstat fails? */
       if(errno == ENOENT) {
-         mini_printf("NIX DA: ok.\n",1);
+         /* FIXME: remove later */
+         printf("%s is not existing! => ok, most likely\n",filename);
          return FE_NOT;
       } else {
          mini_printf("anderer fehler.\n",1);
@@ -41,6 +42,7 @@ int file_exists(char *filename)
                svc_report_status(filename,MSG_BROKENLINK,NULL);
                return FE_NOLINK;
             } else {
+               /* FIXME: MSG_*, ?? */
                mini_printf("anderer fehler.\n",1);
                print_errno(filename);
                return FE_ERR;

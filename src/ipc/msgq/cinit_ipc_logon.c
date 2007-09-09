@@ -23,7 +23,7 @@ int cinit_ipc_logon(void)
       print_errno(MSG_MSGQ_FTOK);
       return 0;
    }
-   __cinit_mq_in  = msgget(k_tmp, 0);
+   __cinit_mq_in = msgget(k_tmp, 0);
    if(__cinit_mq_in == -1) {
       print_errno(MSG_MSGQ_MSGGET);
       return 0;
@@ -34,7 +34,7 @@ int cinit_ipc_logon(void)
       print_errno(MSG_MSGQ_FTOK);
       return 0;
    }
-   __cinit_mq_out   = msgget(k_tmp, 0);
+   __cinit_mq_out = msgget(k_tmp, 0);
    if(__cinit_mq_out == -1) {
       print_errno(MSG_MSGQ_MSGGET);
       return 0;

@@ -76,6 +76,10 @@ void svc_start(struct listitem *li, int delay)
    li->status = file_exists(buf);
 
    if(li->status == FE_NOT) {
+      /* FIXME: remove later */
+      printf("********************\n");
+      printf("WO/EXE: %s\n",li->abs_path);
+      printf("********************\n");
       _exit(0);  /* nothing there? fine! */
    }
 

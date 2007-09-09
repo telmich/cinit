@@ -29,7 +29,6 @@ int cinit_ipc_init(void)
       return 0;
    }
 
-   /* to_client */
    k_tmp = ftok(MSGQ_PATHNAME, MSGQ_TO_CLIENT);
    if(k_tmp == -1) {
       print_errno(MSG_MSGQ_FTOK);
