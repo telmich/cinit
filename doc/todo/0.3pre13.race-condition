@@ -1,0 +1,12 @@
+09:49 < telmich> is it possible, that if I fork() and call _exit(0) in the child, that the 
+                 _exit(0) is executed earlier than the fork() call returns in the parent?
+09:49 < telmich> I'm having some race condition in cinit, where the pid is not yet updated in 
+                 the service structure, and the child exited before and thus cinit does not 
+                 update the service
+09:49 < telmich> as being run
+09:51 < telmich> rexy_: currently I'm thinking about implementing a lock before starting the 
+                 fork()
+09:51 < telmich> rexy_: thus cinit will react differently, if the starting function is still 
+                 running
+09:51 < telmich> rexy_: but I'm somehow confused, that fork() allows such race condition
+
