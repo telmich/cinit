@@ -18,10 +18,10 @@
 
 int cinit_ipc_listen(void)
 {
-   int                  tmp;
-   struct msgq_client   qsn;
-   struct msgq_server   asr;
-   struct msqid_ds      msq;
+   int                        tmp;
+   struct cinit_msgq_client   qsn;
+   struct cinit_msgq_server   asr;
+   struct msqid_ds            msq;
 
    while (1) {
       printf("IPC: Listening...\n");
@@ -29,13 +29,13 @@ int cinit_ipc_listen(void)
 
       if(tmp == -1) {
          if(errno != EINTR) {
-            print_errno(MSG_MSGQ_MSGRCV);
+            print_errno(__CINIT_MSG_MSGQ_MSGRCV);
          }
          continue;
       }
 
       if(msgctl(__cinit_mq_in, IPC_STAT, &msq) == -1) {
-         print_errno(MSG_MSGQ_MSGCTL);
+         print_errno(__CINIT_MSG_MSGQ_MSGCTL);
          continue;
       }
 

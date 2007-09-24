@@ -16,9 +16,9 @@
 void cinit_ipc_destroy(void)
 {
    if(msgctl(__cinit_mq_in, IPC_RMID, NULL) == -1) {
-      print_errno(MSG_MSGQ_DESTROY);         /* print warning, continue */
+      print_errno(__CINIT_MSG_MSGQ_DESTROY);         /* print warning, continue */
    }
    if(msgctl(__cinit_mq_out, IPC_RMID, NULL) == -1) {
-      print_errno(MSG_MSGQ_DESTROY);         /* print warning, continue */
+      print_errno(__CINIT_MSG_MSGQ_DESTROY);         /* print warning, continue */
    }
 }
