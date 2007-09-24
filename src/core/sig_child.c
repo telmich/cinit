@@ -45,8 +45,6 @@ void sig_child(int tmp)
           * the status overwritten after we return out of here?
           */
          if(svc->status & ST_ONCE_RUN
- //        || svc->status & ST_SH_ONCE
-//         || svc->status & ST_SH_RESPAWN
          || svc->status & ST_RESPAWNING) {
             printf("CHILD: %s bekannt!\n",svc->abs_path);
             if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
