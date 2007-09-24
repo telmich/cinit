@@ -19,11 +19,16 @@
 #include "messages.h"      /* MSG_*             */
 #include "intern.h"        /* execute_sth       */
 
+extern int svc_lock;
+
 //void svc_start(struct listitem *li, int strict)
 void svc_start(struct listitem *li, int delay)
 {
    char buf[PATH_MAX+1];
    struct timespec ts;
+
+   /* set global lock to avoid race condition */
+   svc_lock = 1;
 
    /* first update status before forking ! */
    if(li->status & ST_SH_ONCE)
@@ -45,6 +50,8 @@ void svc_start(struct listitem *li, int delay)
    
    /**********************      parent     ************************/
    if(li->pid > 0) {
+      svc_lock = 0;
+      printf("%s is at %d\n",li->abs_path, li->pid);
       return;
    }
 

@@ -17,6 +17,8 @@
 #include "svc.h"        /* list_search_pid   */
 #include "messages.h"   /* messages/D_PRINTF */
 
+extern int svc_lock;
+
 /***********************************************************************
  * sig_child: (c)collect the children
  */
@@ -32,6 +34,11 @@ void sig_child(int tmp)
    pid_t             pid;
    int               delay;
    struct listitem   *svc;
+
+
+   /* wait until the lock is reset */
+   if(svc_lock) return;
+
 //   struct timeval    now;
 
    while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
@@ -44,17 +51,16 @@ void sig_child(int tmp)
           * status is not yet updated => does that make sense or is
           * the status overwritten after we return out of here?
           */
+         printf("CHILD: %s (%ld) (%d) bekannt!\n",svc->abs_path, svc->status, pid);
+
          if(svc->status & ST_ONCE_RUN
          || svc->status & ST_RESPAWNING) {
-            printf("CHILD: %s bekannt!\n",svc->abs_path);
             if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
                svc_success(svc);
             } else {
                svc_fail(svc);
             }
          }
-         // may not happen, svc_start sets it to ST_RESPAWNING!
-
          //mini_printf("WHILE: Vorm respawn!\n",1);
          /* respawn: restart: FIXME Delay for regular dying services */
          if(svc->status == ST_RESPAWNING) {

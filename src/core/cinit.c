@@ -20,6 +20,7 @@
 
 struct listitem   *svc_list   = NULL;
 struct dep        *svc_init   = NULL;
+int    svc_lock               = 0;     /* globally lock services */
 
 int main(int argc, char **argv)
 {
