@@ -1,23 +1,26 @@
-/* 
- * (c) 2006 Nico Schottelius (nico-linux-cinit //@\\ schottelius.org)
- * part of cinit
+/***********************************************************************
+ *
+ *    2006-2007 Nico Schottelius (nico-cinit //@\\ schottelius.org)
+ *
+ *    part of cLinux/cinit
+ *
+ *    header of message queuing interface
+ *
  */
 
-#ifndef CINIT_IPC_HEADER
-#define CINIT_IPC_HEADER
-/* FIXME: add _cinit_ to it, we may be in client namespace now! */
+#ifndef __CINIT_IPC_HEADER
+#define __CINIT_IPC_HEADER
 
-//#include <comm.h>                         /* structures              */
 #include <cinit.h>                         /* structures              */
 
 /***********************************************************************
  * configuration
  */
 
-#define MSGQ_PATHNAME      "/bin/sh"      /* should be on every *nix */
-#define MSGQ_TO_SERVER     'i'            /* also for ftok           */
-#define MSGQ_TO_CLIENT     'o'            /* also for ftok           */
-#define MSGQ_PERMS         0660           /* queue permissions       */
+#define __CINIT_MSGQ_PATHNAME      "/bin/sh"      /* should be on every *nix */
+#define __CINIT_MSGQ_TO_SERVER     'i'            /* also for ftok           */
+#define __CINIT_MSGQ_TO_CLIENT     'o'            /* also for ftok           */
+#define __CINIT_MSGQ_PERMS         0660           /* queue permissions       */
 
 /***********************************************************************
  * global variables: FIXME: rename, we're in client namespace!
@@ -30,13 +33,13 @@ int               __cinit_mq_out;   /* output   */
  */
 
 /* messages _from_ the client _to_ the server */
-struct msgq_client {
+struct cinit_msgq_client {
     long mtype;
     struct cinit_question qsn;
 };
 
 /* messages _from_ the server _to_ the client */
-struct msgq_server {
+struct cinit_msgq_server {
     long mtype;
     struct cinit_answer asr;
 };
@@ -45,11 +48,11 @@ struct msgq_server {
  * Messages
  */
 
-#define MSG_MSGQ_FTOK         "ftok"
-#define MSG_MSGQ_MSGGET       "msgget"
-#define MSG_MSGQ_MSGCTL       "msgctl"
-#define MSG_MSGQ_MSGSEND      "msgsend"
-#define MSG_MSGQ_MSGRCV       "msgrcv"
-#define MSG_MSGQ_DESTROY      "msgq-destroy"
+#define __CINIT_MSG_MSGQ_FTOK         "ftok"
+#define __CINIT_MSG_MSGQ_MSGGET       "msgget"
+#define __CINIT_MSG_MSGQ_MSGCTL       "msgctl"
+#define __CINIT_MSG_MSGQ_MSGSEND      "msgsend"
+#define __CINIT_MSG_MSGQ_MSGRCV       "msgrcv"
+#define __CINIT_MSG_MSGQ_DESTROY      "msgq-destroy"
 
 #endif
