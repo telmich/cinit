@@ -14,6 +14,7 @@
 #include <string.h>        /* strncmp           */
 
 #include <stdint.h>        /* integers          */
+#include <limits.h>        /* PATH_MAX          */
 
 #include "cmd.h"           /* own header        */
 #include "signals.h"       /* which signal      */
@@ -29,10 +30,11 @@
  */
 int main(int argc, char **argv)
 {
-   int opt, tmp, cnt;
-   int32_t status;
-   pid_t pid;
-   char *svc, *p = NULL;
+   int      opt, tmp, cnt;
+   int32_t  status;
+   pid_t    pid;
+   char     *svc, *p = NULL;
+   char     buf[PATH_MAX];
 
    cnt = tmp = 0;
 
@@ -45,6 +47,16 @@ int main(int argc, char **argv)
    while((opt = getopt(argc,argv,CMD_OPTIONS)) != -1) {
       ++cnt; 
       switch(opt) {
+         /********************************************/
+         case 'h':   /* help */
+            printf(CMD_USAGE);
+            return 0;
+         break;
+
+         case 'V':   /* version */
+            printf("%s\n",CMD_VERSION);
+            return 0;
+         break;
          /********************************************/
          case 'e':   /* enable service */
                svc = optarg;
@@ -60,6 +72,7 @@ int main(int argc, char **argv)
             svc  = optarg;
 
             /* relative path, add the cinit svc path in front of it */
+            /* FIXME: use buf! */
             if(strncmp(svc,SLASH,strlen(SLASH))) {
                p = malloc(strlen(CINIT_DIR)
                         + strlen(SLASH)
@@ -118,10 +131,9 @@ int main(int argc, char **argv)
          break;
 
          case 'v':   /* get version of cinit */
-            svc = cinit_get_version();
-            if(svc) {
-               printf("Version of cinit: %s\n",svc);
-               free(svc);
+            tmp = cinit_get_version(buf);
+            if(tmp) {
+               printf("Version of cinit: %s\n", buf);
                return 0;
             } else {
                printf("Cannot get version of cinit!\n");

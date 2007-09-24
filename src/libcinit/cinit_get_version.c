@@ -13,20 +13,21 @@
 
 #include "cinit.h"      /* header for clients   */
 
-char *cinit_get_version()
+int cinit_get_version(char *buf)
 {
    struct cinit_question ask;
-   struct cinit_answer   answer;
-   char *ret;
+   struct cinit_answer   asr;
 
-   memset(&ask,'\0',sizeof(ask));
+   memset(&ask, '\0', sizeof(ask));
+   memset(&asr, '\0', sizeof(asr));
    ask.cmd = CINIT_MSG_GET_VERSION;
 
-   if(!cinit_send_to(&ask, &answer)) return NULL;
-   
-   ret = malloc(strlen(answer.data) +1);
-   if(!ret) return NULL;
-   strcpy(ret,answer.data);
+   if(!cinit_send_to(&ask, &asr))   return 0;
 
-   return ret;
+   if(asr.ret != CINIT_MSG_OK)      return 0;
+   
+   /* buf is always big enough to save the version string */
+   strcpy(buf, asr.data);
+
+   return 1;
 }

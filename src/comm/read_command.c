@@ -8,8 +8,6 @@
  *
  */
 
-#include <string.h>     /* strncpy                    */
-#include "config.h"     /* VERSION                    */
 #include "cinit.h"      /* structures                 */
 #include "intern.h"     /* answer_svc_status()        */
 
@@ -17,8 +15,7 @@ int read_command(struct cinit_question qsn, struct cinit_answer *asr)
 {
    switch(qsn.cmd) {
       case CINIT_MSG_GET_VERSION:
-         asr->ret = CINIT_MSG_OK;
-         strncpy(asr->data,VERSION,PATH_MAX);
+         if(!answer_version(asr)) return 0;
       break;
 
       case CINIT_MSG_GET_STATUS:
