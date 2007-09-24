@@ -78,9 +78,10 @@ int tree_exec(struct dep *start)
             nanosleep(&ts,NULL);
             break;
       }
-      /* this case may happen: when something is still running 
-       * => so do not escape!
-      if(tmp == tmp->next) {
+      /* This case happens, if it's the last service waiting for something */
+      /* if(tmp == tmp->next) {
+       
+         nanosleep()?
          printf("BUUUUUUUUUUUUUG, exit\n");
          break;
       } */

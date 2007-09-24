@@ -25,7 +25,7 @@ void svc_start(struct listitem *li, int delay)
    char buf[PATH_MAX+1];
    struct timespec ts;
 
-   /* first update status, so we don't run into a race condition! */
+   /* first update status before forking ! */
    if(li->status & ST_SH_ONCE)
       li->status = ST_ONCE_RUN;
    else
