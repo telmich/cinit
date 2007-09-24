@@ -1,3 +1,5 @@
+cinit-0.3pre13: 2007-09-2x:
+
 cinit-0.3pre12: 2007-09-06
    - Added DESTDIR support
    - Added support to get service status via cmd: cmd -s <service>
