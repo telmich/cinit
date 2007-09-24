@@ -29,6 +29,26 @@ enum cinit_svc_status {
    CINIT_ST_NOT_EXIST   = 0x200    /* there's no such service in our database   */
 };
 
+struct cinit_svc_msg {
+   int code;
+   char *msg;
+};
+
+struct cinit_svc_msg cinit_svc_msg_codes {
+   { CINIT_ST_SH_ONCE,     "Service should be started once"       },
+   { CINIT_ST_SH_RESPAWN,  "Service should respawn"               },
+   { CINIT_ST_ONCE_OK,     "Service successfully started once"    },
+   { CINIT_ST_ONCE_FAIL,   "Service failed to start once"         },
+   { CINIT_ST_RESPAWNING,  "Service is respawning"                },
+   { CINIT_ST_NEED_FAILD,  "One ore more needs failed"            },
+   { CINIT_ST_IN_LIST,     "Service is in starter list"           },
+   { CINIT_ST_BAD_ERR,     "Some strange error happened"          },
+   { CINIT_ST_ONCE_RUN,    "Service is currently running once"    },
+   { CINIT_ST_NOT_EXIST,   "This service does not exist"          }
+};
+
+
+
 /***********************************************************************
  * Possibilities the needs of a service may have
  */
