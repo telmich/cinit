@@ -16,6 +16,7 @@
 //#include <sys/time.h>      /* gettimeofday()    */
 
 #include "svc.h"           /* struct *          */
+#include "svc-intern.h"    /* struct *          */
 #include "messages.h"      /* MSG_*             */
 #include "intern.h"        /* execute_sth       */
 
@@ -31,10 +32,10 @@ void svc_start(struct listitem *li, int delay)
    svc_lock = 1;
 
    /* first update status before forking ! */
-   if(li->status & ST_SH_ONCE)
-      li->status = ST_ONCE_RUN;
+   if(li->status & CINIT_ST_SH_ONCE)
+      li->status = CINIT_ST_ONCE_RUN;
    else
-      li->status = ST_RESPAWNING;
+      li->status = CINIT_ST_RESPAWNING;
 
    /* set start time */
    li->start = time(NULL);
@@ -58,7 +59,7 @@ void svc_start(struct listitem *li, int delay)
    /**********************      Error      ************************/
    if(li->pid < 0) {
       svc_report_status(li->abs_path,MSG_SVC_FORK,strerror(errno));
-      svc_set_status(li,ST_BAD_ERR);
+      svc_set_status(li,CINIT_ST_BAD_ERR);
       return;
    }
    

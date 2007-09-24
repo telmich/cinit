@@ -10,15 +10,16 @@
 #include <stdio.h>      /* NULL */
 
 #include "svc.h"        /* listitem, svc_report_status */
+#include "svc-intern.h" /* listitem, svc_report_status */
 #include "messages.h"   /* messages */
 
 void svc_success(struct listitem *li)
 {
-   if(li->status & ST_ONCE_RUN) {
+   if(li->status & CINIT_ST_ONCE_RUN) {
       svc_report_status(li->abs_path,MSG_SVC_OK_ONCE,NULL);
-      li->status = ST_ONCE_OK;
+      li->status = CINIT_ST_ONCE_OK;
    } else {
       svc_report_status(li->abs_path,MSG_SVC_OK_RESPAWN,NULL);
-      li->status = ST_RESPAWNING;
+      li->status = CINIT_ST_RESPAWNING;
    }
 }

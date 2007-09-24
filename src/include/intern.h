@@ -74,23 +74,18 @@ enum {
 #define ACT_CLIENT   1
 
 /* functions (used by server and client) */
-int   run_svc(char *rpath);
 void  mini_printf(char *str, int fd);
 void  set_signals(int action);
-void  usage(char *banner, char *stext);
-
-int   do_svc_name(int sock2, char *svc, int action);
-int   do_change_status(char *svc, char *status, pid_t *pid, int sock2, int action);
-char  do_result(int sock2, char *value);
+//void  usage(char *banner, char *stext);
 
 /* core functions */
 void     panic(void);
 void     sig_child(int signal);
 
 /* client / message functions */
-int      msg_svc_on_off(char *svc, char action);
-int      msg_change_status(char *svc, char status, pid_t pid);
-int      begin_msg(char cmd);
+//int      msg_svc_on_off(char *svc, char action);
+//int      msg_change_status(char *svc, char status, pid_t pid);
+//int      begin_msg(char cmd);
 
 /* client functions */
 pid_t    respawn_svc(char *abspath);
@@ -116,4 +111,4 @@ void  sleep_before_kill();
 /* util */
 void     print_errno(char *text);
 
-#endif   /* _CINIT_H */
+#endif   /* INTERN */

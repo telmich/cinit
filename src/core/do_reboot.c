@@ -18,7 +18,7 @@
 
 /* cleaned up own headers */
 #include "intern.h"              /* set_signals       */
-#include "svc.h"                 /* shutdown_services */
+#include "svc-intern.h"          /* shutdown_services */
 #include "messages.h"            /* messages          */
 #include "reboot.h"              /* cinit_poweroff&co */
 

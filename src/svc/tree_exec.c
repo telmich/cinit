@@ -12,8 +12,9 @@
 
 #include <stdio.h>               /* NULL        */
 #include "intern.h"              /* mini_printf */
-#include "svc.h"                 /* svc_init    */
 #include "messages.h"            /* messages    */
+#include "svc.h"                 /* svc_init    */
+#include "svc-intern.h"          /* svc_init    */
 
 /* some thoughts...
  *
@@ -43,7 +44,7 @@ int tree_exec(struct dep *start)
     */
    do {
       switch(svc_needs_status(tmp->svc)) {
-         case SNS_NEEDS_STARTED:
+         case CINIT_SNS_NEEDS_STARTED:
             /* FIXME: MSG_* */
             svc_report_status(tmp->svc->abs_path,"Finished needs.", NULL);
             /* execute service, add dependencies, remowe from list */
@@ -53,14 +54,14 @@ int tree_exec(struct dep *start)
             tmp = dep_entry_del(tmp);
             break;
 
-         case SNS_NEEDS_FAILED:
+         case CINIT_SNS_NEEDS_FAILED:
             /* mark service as NEED_FAILD and delete from list */
             svc_report_status(tmp->svc->abs_path,MSG_SVC_NEED_FAIL,NULL);
-            svc_set_status(tmp->svc,ST_NEED_FAILD);
+            svc_set_status(tmp->svc,CINIT_ST_NEED_FAILD);
             tmp = dep_entry_del(tmp);
             break;
 
-         case SNS_NEEDS_UNFINISHED:
+         case CINIT_SNS_NEEDS_UNFINISHED:
             /* FIXME: continue here! */
          
             hack = tmp->svc->needs;

@@ -12,7 +12,7 @@
 #include <stdio.h>         /* NULL                    */
 
 #include "intern.h"        /* print_errno()           */
-#include "svc.h"           /* svc_report_status()     */
+#include "svc-intern.h"    /* svc_report_status()     */
 #include "messages.h"      /* messages..              */
 
 int file_exists(char *filename)

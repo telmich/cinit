@@ -1,6 +1,6 @@
 /***********************************************************************
  * 
- *    2006 Nico Schottelius (nico-cinit at schottelius.org)
+ *    2006-2007 Nico Schottelius (nico-cinit at schottelius.org)
  * 
  *    part of cLinux/cinit
  * 
@@ -9,8 +9,7 @@
 
 #include <stdio.h>         /* NULL           */
 #include <stdlib.h>        /* free()         */
-
-#include "svc.h"           /* struct *dep    */
+#include "svc-intern.h"    /* struct *dep    */
 
 /*
  * tmp:  pointer to data to remove (must not be NULL)

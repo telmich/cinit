@@ -8,7 +8,7 @@
  */
 
 #include <stdio.h>         /* NULL     */
-#include "svc.h"           /* types    */
+#include "svc-intern.h"    /* types    */
 
 /*
  * list: pointer to the list

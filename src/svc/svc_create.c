@@ -14,7 +14,8 @@
 #include <limits.h>     /* PATH_MAX       */
 #include <errno.h>      /* errno          */
 
-#include "svc.h"        /* listitem       */
+#include "svc.h"        /* constants      */
+#include "svc-intern.h" /* listitem       */
 #include "intern.h"     /* path_append    */
 #include "messages.h"   /* D_PRINTF       */
 
@@ -35,12 +36,12 @@ struct listitem *svc_create(char *svc)
 
    if(stat(buf,&statbuf) == -1) {
       if(errno == ENOENT) {
-         svc_set_status(li,ST_SH_ONCE);
+         svc_set_status(li,CINIT_ST_SH_ONCE);
       } else {
          return NULL;
       }
    } else {
-      svc_set_status(li,ST_SH_RESPAWN);
+      svc_set_status(li,CINIT_ST_SH_RESPAWN);
    }
 
    return li;

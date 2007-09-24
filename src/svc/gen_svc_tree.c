@@ -10,7 +10,8 @@
 #include <stdlib.h>
 
 #include "intern.h"     /* functions   */
-#include "svc.h"
+#include "svc.h"        /* constants   */
+#include "svc-intern.h" /* functions   */
 
 struct listitem *gen_svc_tree(char *svc)
 {
@@ -34,7 +35,7 @@ struct listitem *gen_svc_tree(char *svc)
 
       /* Mark it as being in the startup list, so it does not
        * get added again in a dep_needs_wants_add call */
-      li->status |= ST_IN_LIST;
+      li->status |= CINIT_ST_IN_LIST;
    }
 
    return li;

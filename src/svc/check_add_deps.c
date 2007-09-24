@@ -26,7 +26,7 @@
 
 #include "intern.h"        /* mini_printf       */
 #include "messages.h"
-#include "svc.h"
+#include "svc-intern.h"
 
 int check_add_deps(struct listitem *svc, int type)
 {

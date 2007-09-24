@@ -10,7 +10,7 @@
 
 #include <stdlib.h>        /* malloc               */
 #include <string.h>        /* bzero / memset       */
-#include "svc.h"           /* the list pointer     */
+#include "svc-intern.h"    /* the list pointer     */
 
 struct listitem *list_insert(char *path, int status)
 {

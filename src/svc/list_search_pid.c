@@ -10,8 +10,7 @@
 
 #include <stdio.h>      /* NULL              */
 #include <sys/types.h>  /* pid_t             */
-
-#include "svc.h"        /* struct listitem   */
+#include "svc-intern.h" /* struct listitem   */
 
 struct listitem *list_search_pid(pid_t pid)
 {

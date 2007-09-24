@@ -10,7 +10,7 @@
 
 #include <stdlib.h>     /* free        */
 #include "intern.h"     /* list_search */
-#include "svc.h"        /* listitem    */
+#include "svc-intern.h" /* listitem    */
 
 /* ... */
 int list_delete(char *path)

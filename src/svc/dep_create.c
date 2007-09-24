@@ -9,7 +9,7 @@
 
 #include <stdio.h>         /* NULL              */
 #include <stdlib.h>        /* malloc()          */
-#include "svc.h"           /* structs           */
+#include "svc-intern.h"    /* structs           */
 
 /* search for an entry by path, reverse: from end to the beginning */
 struct dep *dep_create(struct listitem *svc)

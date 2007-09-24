@@ -14,6 +14,7 @@
 #include <time.h>       /* time(),gettime..  */ /* FIXME: CHECK POSIX */
 
 #include "intern.h"     /* mini_printf       */
+#include "svc-intern.h" /* list_search_pid   */
 #include "svc.h"        /* list_search_pid   */
 #include "messages.h"   /* messages/D_PRINTF */
 
@@ -53,8 +54,8 @@ void sig_child(int tmp)
           */
          printf("CHILD: %s (%ld) (%d) bekannt!\n",svc->abs_path, svc->status, pid);
 
-         if(svc->status & ST_ONCE_RUN
-         || svc->status & ST_RESPAWNING) {
+         if(svc->status & CINIT_ST_ONCE_RUN
+         || svc->status & CINIT_ST_RESPAWNING) {
             if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
                svc_success(svc);
             } else {
@@ -63,7 +64,7 @@ void sig_child(int tmp)
          }
          //mini_printf("WHILE: Vorm respawn!\n",1);
          /* respawn: restart: FIXME Delay for regular dying services */
-         if(svc->status == ST_RESPAWNING) {
+         if(svc->status == CINIT_ST_RESPAWNING) {
             svc_report_status(svc->abs_path,MSG_SVC_RESTART,NULL);
 
             //delay = MAX_DELAY / (time(NULL) - svc->start);

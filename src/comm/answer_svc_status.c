@@ -9,7 +9,7 @@
  */
 
 #include <string.h>     /* strncpy                    */
-#include "svc.h"        /* VERSION                    */
+#include "svc-intern.h" /* VERSION                    */
 #include "cinit.h"      /* structure: cinit_answer    */
 
 int answer_svc_status(char *svc, struct cinit_answer *asr)

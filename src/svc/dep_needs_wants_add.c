@@ -13,7 +13,8 @@
  */
 
 #include <stdio.h>         /* NULL        */
-#include "svc.h"           /* struct *dep */
+#include "svc-intern.h"    /* struct *dep */
+#include "svc.h"          /* struct *dep */
 
 /*
  * list: pointer to the list
@@ -39,12 +40,12 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc, int type)
           *    - should be respawned (both VIRGIN services!)
           *    - and which are not already in the list!
           */
-         if(((tmp->svc->status   & ST_SH_ONCE)     ||
-            (tmp->svc->status    & ST_SH_RESPAWN)) &&
-            !(tmp->svc->status   & ST_IN_LIST)) {
+         if(((tmp->svc->status   & CINIT_ST_SH_ONCE)     ||
+            (tmp->svc->status    & CINIT_ST_SH_RESPAWN)) &&
+            !(tmp->svc->status   & CINIT_ST_IN_LIST)) {
                new = dep_create(tmp->svc);
                if(!new) return 0;
-               tmp->svc->status |= ST_IN_LIST;
+               tmp->svc->status |= CINIT_ST_IN_LIST;
                dep_entry_add(list,new);
             }
          /* FIXME: Clearify if we should go forward or backwards?

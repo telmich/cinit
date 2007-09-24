@@ -8,7 +8,8 @@
  *    version of 'tree_exec()'
  */
 
-#include "svc.h"     /* struct      */
+#include "svc-intern.h"    /* struct      */
+
 void shutdown_services(struct listitem *svc)
 {
    while(0) {

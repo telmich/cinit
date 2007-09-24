@@ -10,7 +10,7 @@
 
 #include <stdio.h>         /* NULL              */
 #include <string.h>        /* strcmp            */
-#include "svc.h"           /* struct listitem   */
+#include "svc-intern.h"    /* struct listitem   */
 
 /* search for an entry by path, reverse: from end to the beginning */
 struct listitem *list_search(char *path)

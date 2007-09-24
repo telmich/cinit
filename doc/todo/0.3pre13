@@ -17,19 +17,19 @@ Wished released date: 10./11. September
 
       if it is not, we should start something.
 
-- create libcinit.a/so and link against it
 - global symbol to track the connection to cinit in the client
    => cinit_ipc_cinit() - initalise ipc in the client (only once)
-- cleanup headers:
-   seems to make more sense, to have more than one exposed header.
-   cinit.h gets to fast too big. so splitoff to:
-   <cinit/cinit.h>   /* main  */
-   <cinit/types.h>   /* ...   */
 - map status numbers to messages
-- pre12 seems to have an IPC problem: Fix it.
 
 Done:
 - add get_svc_pid()
 - cleanup msgq.h: namespace!
 - cleanup cmd: add real usage, add -h for help
 - cleanup cinit_ipc_logon()! [already done before]
+- cleanup headers: ==> not yet needed.
+   seems to make more sense, to have more than one exposed header.
+   cinit.h gets to fast too big. so splitoff to:
+   <cinit/cinit.h>   /* main  */
+   <cinit/types.h>   /* ...   */
+- create libcinit.a/so and link against it => not need right now.
+- pre12 seems to have an IPC problem: Fix it. ==> problem with not finishing cinit startup

@@ -16,7 +16,7 @@
 #include "intern.h"           /* general things          */
 #include "messages.h"         /* messages                */
 #include "ipc.h"              /* general ipc methods     */
-#include "svc.h"              /* gen_svc_tree            */
+#include "svc-intern.h"       /* gen_svc_tree            */
 
 struct listitem   *svc_list   = NULL;
 struct dep        *svc_init   = NULL;
