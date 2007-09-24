@@ -7,8 +7,8 @@
  *    Header file for external programs (in theory)
  */
 
-#ifndef CINIT_EXTERNAL_HEADER
-#define CINIT_EXTERNAL_HEADER
+#ifndef __CINIT_EXTERNAL_HEADER
+#define __CINIT_EXTERNAL_HEADER
 
 /* includes */
 #include <stdint.h>     /* required for functions  */
@@ -53,6 +53,5 @@ pid_t    cinit_svc_get_pid(char *);
 int32_t  cinit_get_svc_status(char *);
 int      cinit_get_version(char *);
 int      cinit_send_to(struct cinit_question *, struct cinit_answer *);
-
 
 #endif
