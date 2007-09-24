@@ -29,20 +29,21 @@
  */
 int main(int argc, char **argv)
 {
-   int opt, tmp;
+   int opt, tmp, cnt;
    int32_t status;
    pid_t pid;
    char *svc, *p = NULL;
 
-   tmp = 0;
+   cnt = tmp = 0;
 
-   /* FIXME: change e/d: make it a must to specify
+   /*
     * -d w(ants) excluded)
     * -e n(eeds excluded)
     * -d i(nclude everything)
     */
 
    while((opt = getopt(argc,argv,CMD_OPTIONS)) != -1) {
+      ++cnt; 
       switch(opt) {
          /********************************************/
          case 'e':   /* enable service */
@@ -135,6 +136,11 @@ int main(int argc, char **argv)
             return 1;
          break;
       }
+   }
+   
+   if(!cnt) {
+      printf(CMD_USAGE);
+      return 1;
    }
 
    return 0;

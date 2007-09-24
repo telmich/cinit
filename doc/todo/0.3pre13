@@ -17,9 +17,7 @@ Wished released date: 10./11. September
 
       if it is not, we should start something.
 
-- add get_svc_pid()
 - cleanup cmd: add real usage, add -h for help
-- cleanup msgq.h: namespace!
 - cleanup cinit_ipc_logon()!
 - create libcinit.a/so and link against it
 - global symbol to track the connection to cinit in the client
@@ -33,3 +31,5 @@ Wished released date: 10./11. September
 - pre12 seems to have an IPC problem: Fix it.
 
 Done:
+- add get_svc_pid()
+- cleanup msgq.h: namespace!
