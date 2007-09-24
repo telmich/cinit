@@ -1,4 +1,5 @@
 cinit-0.3pre13: 2007-09-2x:
+   - Added -V (get cmd version), -h (help), -p (get pid) to cmd
 
 cinit-0.3pre12: 2007-09-06
    - Added DESTDIR support
