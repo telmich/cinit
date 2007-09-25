@@ -1,8 +1,9 @@
-cinit-0.3pre13: 2007-09-2x:
+cinit-0.3pre13: 2007-09-26
    - Added -V (get cmd version), -h (help), -p (get pid) to cmd
    - Cleaned up namemsage in msgq.h
    - Added global service lock
    - Splitted of svc.h to svc.h, svc-intern.h and svc-messages.h
+   - Prepared logic splitoff from cinit_ipc_listen()
 
 cinit-0.3pre12: 2007-09-06
    - Added DESTDIR support

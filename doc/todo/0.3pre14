@@ -1,6 +1,11 @@
 Wished release date: 13. September
 - add support for shutting down services on halt
 - cleanup msgq/cinit_ipc_listen.c
+- add minimal test-suite:
+   cmd -s /etc/cinit/svc/init
+   cmd -p /etc/cinit/svc/init
+   cmd -v
+   cmd -V
 - move logic out of the child handler:
    => use the new while()-loop in core/cinit.c!
 
