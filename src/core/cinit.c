@@ -92,31 +92,14 @@ int main(int argc, char **argv)
    }
 
    while(1) {
-      // old
-      //cinit_ipc_listen();
-      
-      /* got message?
-       *    read message and create answer
-       * being interrupted?
-       *    don't care
-       * got error?
-       *    report
-       */
       cinit_ipc_listen();
-
+      
       /* check dependency list: perhaps we need to restart something */
+      /* implement in cinit-0.3pre14/5 */
 
       // tree_exec(svc_init);
       // reuse tree_exec()?
       // if(dep) { svc_start() .. ?
-      //
-
-      /* read a message */
-  //    if(!cinit_ipc_sread(struct cinit_question *buf)) {
-  //       report_read_problem...;
-  //    }
-  //
-  //    read_command(qsn, asr);
    }
 
    /* OLD:

@@ -17,43 +17,47 @@
 #include "msgq.h"       /* structs        */
 
 int cinit_ipc_listen(void)
+//int cinit_ipc_listen(struct question *cqsn)
 {
    int                        tmp;
    struct cinit_msgq_client   qsn;
    struct cinit_msgq_server   asr;
    struct msqid_ds            msq;
 
-   while (1) {
-      printf("IPC: Listening...\n");
-      tmp = msgrcv(__cinit_mq_in, &qsn, sizeof (qsn.qsn), 0, 0);
+   /* FIXME: remove debug */
+   printf("MSGQ-IPC: Listening...\n");
 
-      if(tmp == -1) {
-         if(errno != EINTR) {
-            print_errno(__CINIT_MSG_MSGQ_MSGRCV);
-         }
-         continue;
+   tmp = msgrcv(__cinit_mq_in, &qsn, sizeof (qsn.qsn), 0, 0);
+
+   /* message system problem */
+   if(tmp == -1) {
+      if(errno != EINTR) {
+         print_errno(__CINIT_MSG_MSGQ_MSGRCV);
       }
-
-      if(msgctl(__cinit_mq_in, IPC_STAT, &msq) == -1) {
-         print_errno(__CINIT_MSG_MSGQ_MSGCTL);
-         continue;
-      }
-
-      printf("pid direkt: self: %d (peer: %d)\n",msq.msg_lrpid, msq.msg_lspid);
-
-      if(!read_command(qsn.qsn, &(asr.asr))) {
-         /* FIXME: msg; mini_printf! */
-         printf("read command failed\n");
-         
-         asr.asr.ret = CINIT_MSG_ERR;
-      }
-
       
-      asr.mtype = msq.msg_lspid;
-      if(msgsnd(__cinit_mq_out, &asr, sizeof(asr.asr), 0) == -1) {
-         /* FIXME: do different things on differen errnos ... */
-         print_errno("msgsend/answer");
-      }
+      return -1;
+   }
+
+   /* retrieve pid */
+   if(msgctl(__cinit_mq_in, IPC_STAT, &msq) == -1) {
+      print_errno(__CINIT_MSG_MSGQ_MSGCTL);
+      return -1;
+   }
+
+   // debug code
+   //printf("pid direkt: self: %d (peer: %d)\n",msq.msg_lrpid, msq.msg_lspid);
+
+   if(!read_command(qsn.qsn, &(asr.asr))) {
+      /* FIXME: mini_print */
+      printf("read command failed\n");
+      
+      asr.asr.ret = CINIT_MSG_ERR;
+   }
+      
+   asr.mtype = msq.msg_lspid;
+   if(msgsnd(__cinit_mq_out, &asr, sizeof(asr.asr), 0) == -1) {
+      /* FIXME: do different things on differen errnos ... */
+      print_errno("msgsend/answer");
    }
 
    return 1;
