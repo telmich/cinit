@@ -1,26 +1,5 @@
 Wished released date: 10./11. September
 
-- move logic out of the child handler:
-   time() and co. are problematic in a child handler!
-
-   introduce global list of services to execute
-      => perhaps reuse already existing dependency-list?
-
-   tree_exec(): check whether adding something to the dep list hurts
-      => don't think so.
-   expand / change ipc handler:
-      make it return the message
-      move while() loop to core/cinit.c
-      
-      in the while loop, the global dependency list should
-      be empty.
-
-      if it is not, we should start something.
-
-   => chance cinit_ipc_listen() to use without while() loop
-      => export logic to core/cinit.c
-- map status numbers to messages
-
 --------------------------------------------------------------------------------
 Done:
 - add get_svc_pid()

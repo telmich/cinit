@@ -17,7 +17,6 @@
 #include "msgq.h"       /* structs        */
 
 int cinit_ipc_listen(void)
-//int cinit_ipc_listen(struct question *cqsn)
 {
    int                        tmp;
    struct cinit_msgq_client   qsn;
