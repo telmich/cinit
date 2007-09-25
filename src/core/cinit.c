@@ -20,16 +20,16 @@
 
 struct listitem   *svc_list   = NULL;
 struct dep        *svc_init   = NULL;
-int    svc_lock               = 0;     /* globally lock services */
+int    svc_lock               = 0;    /* global svc-lock */
 
 int main(int argc, char **argv)
 {
    char     *initdir = CINIT_INIT;        /* default init dir        */
-//   pid_t    cpid;
 
 
-   /* FIXME: RE-ENABLE as SOON AS PRODUCTIVE cpid = getpid();
-    * Is this really needed or should we lock() ourselves?
+   /* Is this really needed?
+   pid_t    cpid;
+
    if(cpid != 1) {
       mini_printf(CINIT_VERSION,2);
       mini_printf(MSG_USAGE,2);
@@ -39,9 +39,8 @@ int main(int argc, char **argv)
    /* Look whether we should start a profile */
    while(argc > 1) {
       if(!strncmp(PROFILE, argv[argc-1], strlen(PROFILE) ) ) {
-         initdir = (char *) malloc(
-                              strlen(CINIT_SVCDIR) +
-                              strlen(&argv[argc-1][strlen(PROFILE)]) + 2);
+         initdir = malloc(strlen(CINIT_SVCDIR) +
+                          strlen(&argv[argc-1][strlen(PROFILE)]) + 2);
          if(initdir == NULL) {
             panic();
          }
@@ -88,17 +87,26 @@ int main(int argc, char **argv)
       panic();
    } */
 
-   /* start tree from the bottom */
-   printf("tree exec\n");
    if(!tree_exec(svc_init)) {
       panic();
    }
 
-   printf("============> POST tree exec\n");
+   while(1) {
+      // old
+      //cinit_ipc_listen();
+      
+      /* got message?
+       *    read message and create answer
+       * being interrupted?
+       *    don't care
+       * got error?
+       *    report
+       */
+      cinit_ipc_listen();
 
+      /* check dependency list: perhaps we need to restart something */
 
-   //while(1) {
-      /* check dependency list */
+      // tree_exec(svc_init);
       // reuse tree_exec()?
       // if(dep) { svc_start() .. ?
       //
@@ -109,13 +117,13 @@ int main(int argc, char **argv)
   //    }
   //
   //    read_command(qsn, asr);
-  // }
-
-   /* OLD: */
-   /* listen for incomming messages: should never return */
-   if(!cinit_ipc_listen()) {
-      panic();
    }
 
+   /* OLD:
+   if(!cinit_ipc_listen()) {
+      panic();
+   } */
+
+   /* never reached */
    return 0;
 }
