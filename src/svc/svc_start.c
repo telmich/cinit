@@ -47,6 +47,14 @@ void svc_start(struct listitem *li, int delay)
     *
     * FIXME: Add logging possibility to here
     * open (0,1,2) to other processes, if specified */
+
+   /* BUG:
+    *    the following child may return _before_ 
+    *    the fork returns in the parent.
+    *    Thus this pid may not be registered.
+    *
+    *    And that's the reason why we need the global svc_lock!
+    */
    li->pid = fork();
    
    /**********************      parent     ************************/
