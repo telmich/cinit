@@ -4,6 +4,8 @@ cinit-0.3pre13: 2007-09-26
    - Added global service lock
    - Splitted of svc.h to svc.h, svc-intern.h and svc-messages.h
    - Prepared logic splitoff from cinit_ipc_listen()
+   - Fixed bug: fork() has a general race condition
+      (see src/test/fork-latency.c) through use of global lock
 
 cinit-0.3pre12: 2007-09-06
    - Added DESTDIR support
