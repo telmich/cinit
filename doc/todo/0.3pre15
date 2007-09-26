@@ -1,2 +1,17 @@
 Wished release date: 20. September
 - Add support for starting/stoping services via cmd
+- create some boot profiles
+- cinit.install.standard.dirs.argv
+- code check:
+   * check needs:
+      really started, after started or after finished starting?
+   * wants:
+      are they checked?
+
+- fix devel/codingguideline.text!
+
+- perhaps merge svc_need_status to svc_status
+
+cinit-communication:
+   cinit_get_failed_needs(char *name, int *cnt);
+
