@@ -28,6 +28,10 @@ Wished release date: 13. September
    => chance cinit_ipc_listen() to use without while() loop
       => export logic to core/cinit.c
 - map status numbers to messages
-
+- Cleanup doc/user/NEW_using_cinit_freebsd
+   => make a real document!
+- change to GPLv3?
+   => ask Markus (cinit), Killerfox (cconfig) and Peter (cconfig)
+- write / update manpage for cmd!
 --------------------------------------------------------------------------------
 Done:
