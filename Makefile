@@ -68,41 +68,13 @@ tests:
 	./scripts/internal/test_on_hosts.sh ./scripts/internal/compile_test.sh
 
 ################################################################################
-# old
-#DDOC=ddoc
-#SDIRS=bin client conf comm doc generic serv util
-# DO NOT CHANGE THIS.
-#SBIN=sbin
-#CINIT_BIN=$(SBIN)/cinit
+# 
+# Developer targets
 #
-#%.o: %.c
-#	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
-#$(DDOC):
-#	mkdir $(DDOC)
-#
-#$(SBIN):
-#	mkdir $(SBIN)
-#
-#docs: $(DDOC) bin/cdoc-man.sh
-#	./bin/cdoc-man.sh doc/cinit-doc     > $(DDOC)/cinit.8
-#	./bin/cdoc-man.sh doc/cservice-doc  > $(DDOC)/cservice.8
-#$(CSVC_OBJ) $(OBJ): $(CONFIG_H)
-#clean:
-#	$(MAKE) -C src clean
-#	rm -f tmpbin/*
-################################################################################
-#cservice: $(SBIN)/cservice
-#
-#$(SBIN)/cservice util/cservice: $(SBIN) $(CSVC_OBJ)
-#	$(LD) $(LDFLAGS) $(CSVC_OBJ) -o $@
-#	$(STRIP) $@
-#
-#ccontrol: $(SBIN)/ccontrol
-#
-#$(SBIN)/ccontrol util/ccontrol: config.h $(SBIN) $(CCO_OBJ)
-#	$(LD) $(LDFLAGS) $(CCO_OBJ) -o $@
-#	$(STRIP) $@
-#
-#install:: install-dir cinit cservice ccontrol
-#	@echo '*** Installing cinit ***'
-#	./bin/cinit.install.binary
+
+release: ./scripts/internal/cinit.release
+	./scripts/internal/cinit.release
+
+scripts/internal/cinit.release: ./scripts/internal/test-cmd.sh
+	./scripts/internal/test-cmd.sh
+
