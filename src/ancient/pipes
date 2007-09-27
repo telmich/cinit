@@ -1,0 +1,17 @@
+   /* create pipes */
+   if(pipe(pfd) == -1) {
+      perror(MSG_ERR_PIPE);
+      panic();
+   }
+  /* our life is polling a socket */
+   plist.fd = sock;
+   plist.events = POLLIN | POLLPRI;
+   while(1) {
+      if(poll(&plist, 1, -1) != -1) {
+         if( (plist.revents & POLLIN)  == POLLIN ||
+             (plist.revents & POLLPRI) == POLLPRI) {
+            sigio(sock);
+         }
+      }
+   }
+

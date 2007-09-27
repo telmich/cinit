@@ -1,0 +1,12 @@
+0. Definition Nachrichten
+0.1 Definition returncodes und co...
+
+
+1. execute_sth: finish, so we can use it for panic
+
+2. MSGQ:
+   beidseitig implemenntieren
+   ipc header integrieren
+   Dokumentieren
+   
+   conf/* von msgq saeubern
