@@ -73,7 +73,7 @@ tests:
 #
 
 release: ./scripts/internal/cinit.release
-	./scripts/internal/cinit.release
+	./scripts/internal/cinit.release now
 
 scripts/internal/cinit.release: ./scripts/internal/test-cmd.sh
 	./scripts/internal/test-cmd.sh
