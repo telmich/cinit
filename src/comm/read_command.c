@@ -15,15 +15,20 @@ int read_command(struct cinit_question qsn, struct cinit_answer *asr)
 {
    switch(qsn.cmd) {
       case CINIT_MSG_GET_VERSION:
-         if(!answer_version(asr)) return 0;
+         if(!answer_version(asr))               return 0;
       break;
 
       case CINIT_MSG_GET_STATUS:
-         if(!answer_svc_status(qsn.data, asr)) return 0;
+         if(!answer_svc_status(qsn.data, asr))  return 0;
       break;
 
       case CINIT_MSG_GET_PID:
-         if(!answer_svc_pid(qsn.data, asr)) return 0;
+         if(!answer_svc_pid(qsn.data, asr))     return 0;
+      break;
+
+      /* FIXME: stopped here */
+      case CINIT_MSG_SVC_STOP:
+         //if(!answer_svc_pid(qsn.data, asr))     return 0;
       break;
 
       /* Unknown command: should not happen :-) */

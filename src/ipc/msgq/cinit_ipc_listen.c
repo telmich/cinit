@@ -10,7 +10,7 @@
 
 #include <stdio.h>      /* printf()       */
 
-#include <sys/msg.h>    /* msgget         */
+#include <sys/msg.h>    /* msg*           */
 #include <errno.h>      /* errno          */
 
 #include "intern.h"     /* print_errno    */
@@ -23,9 +23,6 @@ int cinit_ipc_listen(void)
    struct cinit_msgq_server   asr;
    struct msqid_ds            msq;
 
-   /* FIXME: remove debug */
-   printf("MSGQ-IPC: Listening...\n");
-
    tmp = msgrcv(__cinit_mq_in, &qsn, sizeof (qsn.qsn), 0, 0);
 
    /* message system problem */
@@ -33,7 +30,6 @@ int cinit_ipc_listen(void)
       if(errno != EINTR) {
          print_errno(__CINIT_MSG_MSGQ_MSGRCV);
       }
-      
       return -1;
    }
 
@@ -42,9 +38,6 @@ int cinit_ipc_listen(void)
       print_errno(__CINIT_MSG_MSGQ_MSGCTL);
       return -1;
    }
-
-   // debug code
-   //printf("pid direkt: self: %d (peer: %d)\n",msq.msg_lrpid, msq.msg_lspid);
 
    if(!read_command(qsn.qsn, &(asr.asr))) {
       /* FIXME: mini_print */

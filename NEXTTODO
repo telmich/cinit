@@ -1,19 +1,34 @@
-- svc_stop()
-   => stops an existing service
-- svc_stop_deps() => takes care about dependencies
 - svc_stop_wait()
    => calls svc_stop() and waits until the process
       is finished
          => pay attention for child handler!
          => wait for that specific PID!
          => use global lock?
-- svc_stop_ipc(char *svc)
+- svc_stop_ipc(char *svc, int method)
    => is called by the IPC methods
    => checks whether the service exists
    => returns the status of the service (NOT_EXISTS or
       the new one)
    => calls svc_stop_wait(), which returns
+   => method =
+      o including needed_by
+      o including wanted_by
+      o including needed_by and wanted_by
+      o only the service
+
 - cinit blocking while shutting down
    => not good!
    => only needed when being in ipc!
    => otherwise tree_stop() catches that again.
+- 
+- Documentate off exit codes:
+   * 0: successfully stopped
+   * 1: internal error: service status unknown
+   * 2: ...?
+
+Done for pre14:
+- svc_stop()
+   => stops an existing service
+   => sets status
+   => calls "off"
+- svc_stop_deps() => takes care about dependencies

@@ -144,6 +144,7 @@ int main(int argc, char **argv)
          /* FIXME: add -V: version of cmd */
 
          default:
+            /* FIXME: add usage */
             printf("Unimplemented option :-)\n");
             return 1;
          break;
