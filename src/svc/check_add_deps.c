@@ -38,22 +38,17 @@ int check_add_deps(struct listitem *svc, int type)
    DIR               *d_tmp;
 
    /* remember where we started */
-   if(!getcwd(oldpath,PATH_MAX+1)) {
+   if(!getcwd(oldpath, PATH_MAX+1)) {
       print_errno(MSG_GETCWD);
       return 0;
    }
 
-   /* FIXME remove in production */
-   D_PRINTF("CAD::");
-   D_PRINTF(svc->abs_path);
-   D_PRINTF("\n");
-
    /* Create path */
    strcpy(buf,svc->abs_path);
    if(type == DEP_NEEDS) {
-      if(!path_append(buf,C_NEEDS)) return 0;
+      if(!path_append(buf, C_NEEDS)) return 0;
    } else {
-      if(!path_append(buf,C_WANTS)) return 0;
+      if(!path_append(buf, C_WANTS)) return 0;
    }
 
    d_tmp = opendir(buf);
@@ -70,12 +65,12 @@ int check_add_deps(struct listitem *svc, int type)
       return 0;
    }
 
-   while((tdirent=readdir(d_tmp))!=NULL) {
+   while((tdirent = readdir(d_tmp)) != NULL) {
       if(*(tdirent->d_name) == '.') continue; /* ignore .* */
 
       /* skip non-working directories / broken links
        * path_absolute reports errors on failure */
-      if(!path_absolute(tdirent->d_name,buf,PATH_MAX+1)) continue;
+      if(!path_absolute(tdirent->d_name, buf, PATH_MAX+1)) continue;
 
       /* 1. create the service we depend on
        * 2. initialize its dependencies
@@ -103,19 +98,19 @@ int check_add_deps(struct listitem *svc, int type)
       if(!deps) return 0;
 
       if(type == DEP_NEEDS) {
-         dep_entry_add(&(new_svc->needed),deps);
+         dep_entry_add(&(new_svc->needed_by), deps);
 
          /* second link */
          deps  = dep_create(new_svc);
          if(!deps) return 0;
-         dep_entry_add(&(svc->needs),deps);
+         dep_entry_add(&(svc->needs), deps);
       } else {
-         dep_entry_add(&(new_svc->wanted),deps);
+         dep_entry_add(&(new_svc->wanted_by), deps);
 
          /* second link */
          deps  = dep_create(new_svc);
          if(!deps) return 0;
-         dep_entry_add(&(svc->wants),deps);
+         dep_entry_add(&(svc->wants), deps);
       }
    }
    if(chdir(oldpath) == -1) {

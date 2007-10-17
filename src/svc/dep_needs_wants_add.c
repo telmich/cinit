@@ -14,7 +14,7 @@
 
 #include <stdio.h>         /* NULL        */
 #include "svc-intern.h"    /* struct *dep */
-#include "svc.h"          /* struct *dep */
+#include "svc.h"           /* struct *dep */
 
 /*
  * list: pointer to the list
@@ -26,9 +26,9 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc, int type)
    struct dep *tmp, *new, *end;
 
    if(type == DEP_NEEDS) {
-      end = svc->needed;
+      end = svc->needed_by;
    } else {
-      end = svc->wanted;
+      end = svc->wanted_by;
    }
 
    /* Place to the first dependency of this service */
@@ -41,12 +41,12 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc, int type)
           *    - and which are not already in the list!
           */
          if(((tmp->svc->status   & CINIT_ST_SH_ONCE)     ||
-            (tmp->svc->status    & CINIT_ST_SH_RESPAWN)) &&
+             (tmp->svc->status   & CINIT_ST_SH_RESPAWN)) &&
             !(tmp->svc->status   & CINIT_ST_IN_LIST)) {
                new = dep_create(tmp->svc);
                if(!new) return 0;
                tmp->svc->status |= CINIT_ST_IN_LIST;
-               dep_entry_add(list,new);
+               dep_entry_add(list, new);
             }
          /* FIXME: Clearify if we should go forward or backwards?
           * this decision will influence starting order
