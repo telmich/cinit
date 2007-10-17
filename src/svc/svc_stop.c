@@ -18,8 +18,6 @@
 #include "messages.h"      /* MSG_*             */
 #include "intern.h"        /* execute_sth       */
 
-extern int svc_lock;
-
 /*
  * respawn:
  *    - disable respawning: set status to ST_RESPAWN_STOP
