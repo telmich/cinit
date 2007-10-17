@@ -85,10 +85,10 @@ void svc_start(struct listitem *li, int delay)
       /* WRONG: FIXME: look whether to sleep again */
       nanosleep(&ts,NULL);
    }
-   svc_report_status(li->abs_path,MSG_SVC_START,NULL);
+   svc_report_status(li->abs_path, MSG_SVC_START, NULL);
 
    /* length check is done by path_append */
-   strcpy(buf,li->abs_path);
+   strcpy(buf, li->abs_path);
    if(!path_append(buf,C_ON)) return;
 
    /* Check for existence */

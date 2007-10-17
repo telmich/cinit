@@ -26,7 +26,8 @@ enum cinit_svc_status {
    CINIT_ST_IN_LIST     = 0x40,    /* this service is being started (= in list) */
    CINIT_ST_BAD_ERR     = 0x80,    /* some kind of error that SHOULD NOT happen */
    CINIT_ST_ONCE_RUN    = 0x100,   /* the once process is currently running     */
-   CINIT_ST_NOT_EXIST   = 0x200    /* there's no such service in our database   */
+   CINIT_ST_NOT_EXIST   = 0x200,   /* there's no such service in our database   */
+   CINIT_ST_STOPPING    = 0x400    /* service was running, is being stopped     */
 };
 
 /***********************************************************************
@@ -36,5 +37,14 @@ enum cinit_svc_needs_status {
    CINIT_SNS_NEEDS_STARTED = 1,  /* all needs are started. We may start, too  */
    CINIT_SNS_NEEDS_FAILED,       /* one ore more needs failed                 */
    CINIT_SNS_NEEDS_UNFINISHED    /* one ore more needs are not yet started    */
+};
+/***********************************************************************
+ * How to start/stop a service
+ */
+enum cinit_svc_start_stop_options {
+   CINIT_SSSO_COMPLETE     = 0x0,   /* with all dependencies   */
+   CINIT_SSSO_WO_NEEDS     = 0x1,   /* without needs           */
+   CINIT_SSSO_WO_WANTS     = 0x2,   /* without wants           */
+   CINIT_SSSO_WO_BOTH      = 0x4    /* without both            */
 };
 #endif   /* _CINIT_SVC_H */

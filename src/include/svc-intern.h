@@ -26,8 +26,8 @@ struct listitem {
    time_t      start;            /* time the process was started last time    */
 
 
-   struct   dep      *wanted;    /* list of services that want this service   */
-   struct   dep      *needed;    /* list of services that need this service   */
+   struct   dep      *wanted_by; /* list of services that want this service   */
+   struct   dep      *needed_by; /* list of services that need this service   */
 
    struct   dep      *wants;     /* list of services that this service wants  */
    struct   dep      *needs;     /* list of services that this service needs  */
@@ -66,8 +66,11 @@ struct dep        *dep_create(struct listitem *svc);
 void              svc_success(struct listitem *li);
 void              svc_fail(struct listitem *li);
 void              svc_report_status(char *svc, char *msg, char *err);
-void              svc_start(struct listitem *li, int delay);
 void              shutdown_services(struct listitem *start);
+
+void              svc_start(struct listitem *,     int);
+void              svc_stop(struct listitem *);
+void              svc_stop_deps(struct listitem *, int);
 
 
 
