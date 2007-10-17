@@ -40,12 +40,16 @@ enum {
    CINIT_MSG_GET_STATUS,      /* status of a service        */
    CINIT_MSG_GET_PID,         /* get pid of a service       */
    CINIT_MSG_GET_VERSION,     /* version of cinit           */
+   CINIT_MSG_SVC_STOP,        /* service: stop              */
+   CINIT_MSG_SVC_START        /* service: start             */
    
    /* answers */
    CINIT_MSG_ANSWERS=2000,    /* begin answers at 2000      */
    CINIT_MSG_OK,              /* general ok value           */
    CINIT_MSG_ERR,             /* general error value        */
-   CINIT_MSG_SVC_UNKNOWN      /* Services is not known      */
+   CINIT_MSG_SVC_UNKNOWN,     /* Services is not known      */
+   CINIT_MSG_SVC_STOPPED,     /* service: stop              */
+   CINIT_MSG_SVC_STARTED      /* service: start             */
 };
 
 struct cinit_msg_msg {
