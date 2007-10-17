@@ -46,8 +46,10 @@ svc/dep_needs_wants_add.o
 svc/dep_create.o
 svc/svc_success.o
 svc/svc_report_status.o
-svc/svc_start.o
 svc/svc_fail.o
+svc/svc_start.o
+svc/svc_stop.o
+svc/svc_stop_deps.o
 comm/read_command.o
 comm/answer_svc_status.o
 comm/answer_svc_pid.o
