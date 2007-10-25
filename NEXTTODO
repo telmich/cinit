@@ -1,10 +1,14 @@
+- Fix cmd
+- Add service start/stop to cmd
+-> then continue in cinit itself.
+--------------------------------------------------------------------------------
 - svc_stop_wait()
    => calls svc_stop() and waits until the process
       is finished
          => pay attention for child handler!
          => wait for that specific PID!
          => use global lock?
-- svc_stop_ipc(char *svc, int method)
+- answer_svc_stop(char *svc, int method)
    => is called by the IPC methods
    => checks whether the service exists
    => returns the status of the service (NOT_EXISTS or
