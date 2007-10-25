@@ -1,4 +1,3 @@
-- Fix cmd
 - Add service start/stop to cmd
 -> then continue in cinit itself.
 --------------------------------------------------------------------------------

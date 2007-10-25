@@ -41,7 +41,7 @@ enum {
    CINIT_MSG_GET_PID,         /* get pid of a service       */
    CINIT_MSG_GET_VERSION,     /* version of cinit           */
    CINIT_MSG_SVC_STOP,        /* service: stop              */
-   CINIT_MSG_SVC_START        /* service: start             */
+   CINIT_MSG_SVC_START,       /* service: start             */
    
    /* answers */
    CINIT_MSG_ANSWERS=2000,    /* begin answers at 2000      */
