@@ -39,8 +39,8 @@ int main(int argc, char **argv)
    cnt = tmp = 0;
 
    /*
-    * -d w(ants) excluded)
-    * -e n(eeds excluded)
+    * -d w(ants)  excluded)
+    * -e n(eeds   excluded)
     * -d i(nclude everything)
     */
 
