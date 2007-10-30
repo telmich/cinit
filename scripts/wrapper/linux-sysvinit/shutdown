@@ -3,7 +3,33 @@
 # 2007-05-21
 # Behave as being shutdown from Linux' sysvinit
 
-# parse options, display usage
+# Always needed variables / functions
+_0_short=${0##*/}
+
+_eecho()
+{
+   echo "${_0_short}" "$@" >&2
+}
+
+_eexit()
+{
+   _eecho "$@"
+   exit 1
+}
+
+# Program specific variables
+
+time_t=0       # -t sec
+warn_only_k=0  # -k
+reboot=0       # -r
+halt=0         # -h
+poweroff=0     # -P
+cancel=0       # -c
+time=-1        # [time]
+message=""     # [warning-message]
+
+# unimplemented: -a, -H, -f, -F
+# deprecated and thus not implemented: -n
 
 # all the functions
 
@@ -34,5 +60,20 @@ cinit_usage
 
 }
 
-# the main part
-usage
+if [ "$#" -lt 1 ]; then
+   usage
+fi
+
+# getopt!
+while [ "$#" -gt 1 ]; do
+   arg="$1"; shift
+
+   case "${arg}" in
+      -a|-F|-f|-H|-n)
+         _exit "Sorry, ${arg} is not implemented."
+      ;;
+      -t)
+         if [ "$#" -lt 1 ]; then
+            _eexit "-t needs the time argument"
+   esac
+done
