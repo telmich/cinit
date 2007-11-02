@@ -5,10 +5,26 @@
 
 # Always needed variables / functions
 _0_short=${0##*/}
+_o_seperator=":"
+_oecho_seperator=":"
+_eecho_seperator=">"
 
+# ok-exit/echo
+_oecho()
+{
+   echo "${_0_short}${_oecho_seperator}" "$@"
+}
+
+_oexit()
+{
+   _oecho "$@"
+   exit 0
+}
+
+# error-exit/echo
 _eecho()
 {
-   echo "${_0_short}" "$@" >&2
+   echo "${_0_short}${_oecho_seperator}" "$@" >&2
 }
 
 _eexit()
@@ -21,15 +37,33 @@ _eexit()
 
 time_t=0       # -t sec
 warn_only_k=0  # -k
-reboot=0       # -r
-halt=0         # -h
-poweroff=0     # -P
-cancel=0       # -c
+reboot_r=0     # -r
+halt_h=0       # -h
+poweroff_P=0   # -P
+cancel_c=0     # -c
 time=-1        # [time]
 message=""     # [warning-message]
+cmd=""         # what to execute internally
+
+version="0.1"
+version_date="2007-10-30"
+
+message_intro="The system is going down for"
+message_reboot="reboot"
+message_halt="halt"
+message_poweroff="poweroff"
 
 # unimplemented: -a, -H, -f, -F
 # deprecated and thus not implemented: -n
+
+# traping signals
+trap_signals()
+{
+   _oexit "Aborted shutdown"
+}
+
+# signals to abort on
+trap trap_signals INT HUP TERM
 
 # all the functions
 
@@ -38,7 +72,7 @@ usage()
 
 cat << cinit_usage
 
-*** cinit linux-sysvinit shutdown wrapper ***
+*** cinit linux-sysvinit shutdown wrapper (Version ${version} ${version_date}) ***
 
 Usage   shutdown [-akrhHPfnc] [-t secs] time [warning message]
         -a:      use /etc/shutdown.allow
@@ -54,10 +88,19 @@ Usage   shutdown [-akrhHPfnc] [-t secs] time [warning message]
         -t secs: delay between warning and kill signal.
         ** the "time" argument is mandatory! (try "now") **
 
-You can also call "cmd" directly instead of using this wrapper.
+You can also call "cinit.{halt|reboot|poweroff}" directly
+(instead of using this wrapper).
 
 cinit_usage
 
+exit 0
+
+}
+
+warn()
+{
+   ( echo ""; echo "$@"; echo "" ) | wall
+   ( echo ""; echo "$@"; echo "" )
 }
 
 if [ "$#" -lt 1 ]; then
@@ -65,15 +108,73 @@ if [ "$#" -lt 1 ]; then
 fi
 
 # getopt!
-while [ "$#" -gt 1 ]; do
+while [ "$#" -ge 1 ]; do
    arg="$1"; shift
 
    case "${arg}" in
-      -a|-F|-f|-H|-n)
-         _exit "Sorry, ${arg} is not implemented."
+      -a|-F|-f|-n)
+         _oexit "Sorry, ${arg} is not implemented."
       ;;
       -t)
          if [ "$#" -lt 1 ]; then
             _eexit "-t needs the time argument"
+         fi
+         time_t="$1"; shift
+      ;;
+      -k)
+         warn_only_k=1
+         cmd=true
+      ;;
+      -r)
+         reboot_r=1
+         cmd=cinit.reboot
+         message_what="${message_reboot}"
+      ;;
+      -h|-H)
+         halt_h=1
+         cmd=cinit.halt
+         message_what="${message_halt}"
+      ;;
+      -P)
+         poweroff_P=1
+         cmd=cinit.poweroff
+         message_what="${message_poweroff}"
+      ;;
+      -c)
+         cancel_c=1
+      ;;
+      *)
+         # time unset?
+         if [ "${time}" = -1 ]; then
+            time="${arg}"
+            [ "${time}" = "now" ] && time=0
+         elif [ -z "${message}" ]; then
+            message="${arg}"
+         else
+            _eexit "Already specified time and message"
+         fi
+      ;;
    esac
 done
+
+
+if [ -z "${time}" ]; then
+   usage
+fi
+
+if [ -z "${cmd}" ]; then
+   _eexit "You need to specify one of -h, -P, -H, -r."
+fi
+
+if [ "${message}" ]; then
+   warn "${message}"
+fi
+
+
+while [ "${time}" -gt 0 ]; do
+   warn "${message_intro} ${message_what} in ${time} minute(s)."
+   sleep 60
+   time=$((${time}-1))
+done
+
+warn "${message_intro} ${message_what} now."
