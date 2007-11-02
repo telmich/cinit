@@ -62,9 +62,6 @@ trap_signals()
    _oexit "Aborted shutdown"
 }
 
-# signals to abort on
-trap trap_signals INT HUP TERM
-
 # all the functions
 
 usage()
@@ -141,7 +138,10 @@ while [ "$#" -ge 1 ]; do
          message_what="${message_poweroff}"
       ;;
       -c)
-         cancel_c=1
+         _oecho "Warning: BROKEN option"
+         # FIXME: also kills ourselves!
+         ( killall -TERM shutdown )
+         exit 0
       ;;
       *)
          # time unset?
@@ -170,6 +170,8 @@ if [ "${message}" ]; then
    warn "${message}"
 fi
 
+# signals to abort on
+trap trap_signals INT HUP TERM
 
 while [ "${time}" -gt 0 ]; do
    warn "${message_intro} ${message_what} in ${time} minute(s)."
