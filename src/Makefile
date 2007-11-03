@@ -25,7 +25,7 @@ DESTDIR=
 # All objects / binaries
 #    depend on headers. More or less. FIXME: use gcc -M
 #
-BIN=halt.kill poweroff.kill reboot.kill cmd
+BIN=cinit.halt cinit.poweroff cinit.reboot cmd
 CINIT=cinit
 ALLBIN=${BIN} ${CINIT}
 
@@ -117,13 +117,13 @@ install-dir:
 cinit: ${CINIT_OBJ}
 	${LD} $^ -o $@
 
-halt.kill: ${HALTKILL_OBJ}
+cinit.halt: ${HALTKILL_OBJ}
 	${LD} $^ -o $@
 
-poweroff.kill: ${POWEROFFKILL_OBJ}
+cinit.poweroff: ${POWEROFFKILL_OBJ}
 	${LD} $^ -o $@
 
-reboot.kill: ${REBOOTKILL_OBJ}
+cinit.reboot: ${REBOOTKILL_OBJ}
 	${LD} $^ -o $@
 
 cmd: ${CMD_OBJ}
@@ -147,14 +147,15 @@ umlstart: uml
 # Clenaup targets
 #
 
+.PHONY: clean
 .PHONY: dist
+.PHONY: distclean
+
 dist: distclean
 
-.PHONY: distclean
 distclean: clean
 	rm -f os/current ipc/current .configured
 
-.PHONY: clean
 clean:
 	rm -f ../tmpbin/*.configured
 	rm -f ${BIN} ${CINIT_OBJ} ${CINIT}
