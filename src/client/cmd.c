@@ -33,8 +33,7 @@ int main(int argc, char **argv)
    int      opt, tmp, cnt;
    int32_t  status;
    pid_t    pid;
-   char     *svc, *p = NULL;
-   char     buf[PATH_MAX];
+   char     buf[PATH_MAX+1];
 
    cnt = tmp = 0;
 
@@ -54,75 +53,52 @@ int main(int argc, char **argv)
          break;
          /********************************************/
          case 'e':   /* enable service */
-               svc = optarg;
+               if(!path_absolute(optarg, buf, PATH_MAX+1)) return 3;
          break;
 
          case 'd':   /* disable service */
-               svc = optarg;
+               if(!path_absolute(optarg, buf, PATH_MAX+1)) return 3;
          break;
 
          /********************************************/
          case 'p':   /* get pid */
-         case 's':   /* get status */
-            svc  = optarg;
-
-            /* relative path, add the cinit svc path in front of it */
-            /* FIXME: use buf! */
-            if(strncmp(svc,SLASH,strlen(SLASH))) {
-               p = malloc(strlen(CINIT_DIR)
-                        + strlen(SLASH)
-                        + strlen(SVCDIR) 
-                        + strlen(SLASH)
-                        + strlen(svc)
-                        + 1);
-               if(!p) {
-                  /* bad error */
-                  return 2;
-               }
-               strcpy(p,CINIT_DIR);
-               strcat(p,SLASH);
-               strcat(p,SVCDIR);
-               strcat(p,SLASH);
-               strcat(p,svc);
-               svc = p;
+            if(!path_absolute(optarg, buf, PATH_MAX+1)) return 3;
+            pid = cinit_svc_get_pid(buf);
+            if(pid == 0) {
+               printf("Unknown service: %s\n",buf);
+               tmp = 1;
+            } else {
+               printf("PID of %s: %d\n",buf, pid);
+               tmp = 0;
             }
-
-            if(opt == 's') {
-               status = cinit_get_svc_status(svc);
-               if(status < 0) {
-                  printf("Communication error\n");
-                  tmp = 1;
-               } else {
-                  switch(status) {
-                     case CINIT_MSG_SVC_UNKNOWN:
-                        printf("Unknown service: %s\n",svc);
-                        tmp = 1;
-                     break;
-                     case CINIT_MSG_OK:
-                        printf("Status of %s is: %d\n",svc, status);
-                        tmp = 0;
-                     break;
-                     /* should not happen */
-                     default:
-                        printf("Unknown status returned for %s: %d\n",svc, status);
-                        tmp = 3;
-                     break;
-                  }
-               } 
-            } else { /* -p */
-               pid = cinit_svc_get_pid(svc);
-               if(pid == 0) {
-                  printf("Unknown service: %s\n",svc);
-                  tmp = 1;
-               } else {
-                  printf("PID of %s: %d\n",svc, pid);
-                  tmp = 0;
-               }
-            }
-
-            if(p) free(p);
             return tmp;
+         break;
 
+         /********************************************/
+         case 's':   /* get status */
+            if(!path_absolute(optarg, buf, PATH_MAX+1)) return 3;
+            status = cinit_get_svc_status(buf);
+            if(status < 0) {
+               printf("Communication error\n");
+               tmp = 1;
+            } else {
+               switch(status) {
+                  case CINIT_MSG_SVC_UNKNOWN:
+                     printf("Unknown service: %s\n",buf);
+                     tmp = 1;
+                  break;
+                  case CINIT_MSG_OK:
+                     printf("Status of %s is: %d\n",buf, status);
+                     tmp = 0;
+                  break;
+                  /* should not happen */
+                  default:
+                     printf("Unknown status returned for %s: %d\n",buf, status);
+                     tmp = 3;
+                  break;
+               }
+            } 
+            return tmp;
          break;
          /********************************************/
          case 'v':   /* get version of cinit */
