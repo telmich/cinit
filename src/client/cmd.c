@@ -52,11 +52,6 @@ int main(int argc, char **argv)
             printf(CMD_USAGE);
             return 0;
          break;
-
-         case 'V':   /* version */
-            printf("%s\n",CMD_VERSION);
-            return 0;
-         break;
          /********************************************/
          case 'e':   /* enable service */
                svc = optarg;
@@ -129,7 +124,7 @@ int main(int argc, char **argv)
             return tmp;
 
          break;
-
+         /********************************************/
          case 'v':   /* get version of cinit */
             tmp = cinit_get_version(buf);
             if(tmp) {
@@ -140,14 +135,17 @@ int main(int argc, char **argv)
                return 1;
             }
          break;
-
-         /* FIXME: add -V: version of cmd */
-
+         /********************************************/
+         case 'V':   /* version */
+            printf("Version of cmd: %s\n",CMD_VERSION);
+            return 0;
+         break;
+         /********************************************/
          default:
-            /* FIXME: add usage */
             printf("Unimplemented option :-)\n");
             return 1;
          break;
+         /********************************************/
       }
    }
    
