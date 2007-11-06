@@ -35,6 +35,6 @@
 #define CMD_OPTIONS "e:d:hp:s:vV"
 
 #define MSG_KILL     "kill()"
-#define CMD_VERSION  "cmd 0.1"
+#define CMD_VERSION  "0.2"
 
 #endif
