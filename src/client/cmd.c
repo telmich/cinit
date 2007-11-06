@@ -142,7 +142,7 @@ int main(int argc, char **argv)
          break;
          /********************************************/
          default:
-            printf("Unimplemented option :-)\n");
+            printf("Unimplemented option or missing parameter! Try -h ;-)\n");
             return 1;
          break;
          /********************************************/
