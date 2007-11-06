@@ -44,6 +44,9 @@ cancel_c=0     # -c
 time=-1        # [time]
 message=""     # [warning-message]
 cmd=""         # what to execute internally
+pidfile="/var/run/cinit.shutdown"
+pid=""
+runs=""
 
 version="0.1"
 version_date="2007-10-30"
@@ -138,10 +141,7 @@ while [ "$#" -ge 1 ]; do
          message_what="${message_poweroff}"
       ;;
       -c)
-         _oecho "Warning: BROKEN option"
-         # FIXME: also kills ourselves!
-         ( killall -TERM shutdown )
-         exit 0
+         cancel_c=1
       ;;
       *)
          # time unset?
@@ -157,6 +157,20 @@ while [ "$#" -ge 1 ]; do
    esac
 done
 
+if [ -f "${pidfile}" ]; then
+   pid=$(cat "${pidfile}")
+   runs=$(kill -CONT "${pid}" >/dev/null 2>&1 && echo yes)
+fi
+
+# do cancel or abort or locking
+if [ "${cancel_c}" -eq 1 ]; then
+   if [ "${runs}" ]; then
+      kill -TERM "${pid}"
+      _oexit "Terminated running shutdown at \"${pid}\"."
+   else
+      _eexit "Cannot abort shutdown, not running."
+   fi
+fi
 
 if [ -z "${time}" ]; then
    usage
@@ -165,6 +179,16 @@ fi
 if [ -z "${cmd}" ]; then
    _eexit "You need to specify one of -h, -P, -H, -r."
 fi
+
+# add lock
+if [ "${pid}" ]; then
+   if [ "${runs}" ]; then
+      _eexit "Shutdown already running."
+   else
+      _oecho "Overwriting stale pidfile"
+   fi
+fi
+echo $$ > "${pidfile}"
 
 if [ "${message}" ]; then
    warn "${message}"
@@ -180,3 +204,4 @@ while [ "${time}" -gt 0 ]; do
 done
 
 warn "${message_intro} ${message_what} now."
+"${cmd}"
