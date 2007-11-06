@@ -1,6 +1,8 @@
 cinit-0.3pre14::
    - Added test-suite for cmd
    - Added support to shutdown services in cinit and cmd
+   - Added linux-sysvinit wrapper for shutdown (See
+     scripts/wrapper/linux-sysvinit/shutdown)
 
 cinit-0.3pre13: 2007-09-26
    - Added -V (get cmd version), -h (help), -p (get pid) to cmd
