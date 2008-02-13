@@ -5,6 +5,8 @@
  *    part of cLinux/cinit
  *
  *    Stop a service
+ *
+ *    Status: Written, looks finished, but untested.
  */
 
 #include <stdio.h>         /* NULL              */
@@ -31,10 +33,11 @@
 
 void svc_stop(struct listitem *li)
 {
-
    char buf[PATH_MAX+1];
 
    svc_set_status(li, CINIT_ST_STOPPING);
+
+   li->pid = fork();
 
    /**********************      Error      ************************/
    if(li->pid < 0) {

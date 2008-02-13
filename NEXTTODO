@@ -35,3 +35,6 @@ Done for pre14:
    => sets status
    => calls "off"
 - svc_stop_deps() => takes care about dependencies
+
+- Add comment about path_absolute in manpage of cmd => requires the directory
+  to be there.
