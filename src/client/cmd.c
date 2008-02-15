@@ -25,15 +25,28 @@
 
 #define C_USAGE(error) usage(USAGE_TEXT,error)
 
+enum {
+   NOTHING,
+   ENABLE,
+   DISABLE,
+   PID,
+   STATUS
+} whattodo;
+
 /***********************************************************************
  * cmd: main
  */
 int main(int argc, char **argv)
 {
    int      opt, tmp, cnt;
-   int32_t  status;
-   pid_t    pid;
    char     buf[PATH_MAX+1];
+   union {
+      int32_t  status;
+      pid_t    pid;
+   } u;
+
+   char     flag = 'i';
+   int      what = NOTHING;
 
    cnt = tmp = 0;
 
@@ -43,63 +56,23 @@ int main(int argc, char **argv)
     * -d i(nclude everything)
     */
 
-   while((opt = getopt(argc,argv,CMD_OPTIONS)) != -1) {
-      ++cnt; 
+/* check for
+ * d|e:
+ *    check for flags
+ * p|s:
+ *    continue with service
+ * h|v|V: print and exit
+ */
+   while((opt = getopt(argc, argv, CMD_OPTIONS)) != -1) {
       switch(opt) {
+         /********************************************/
+         /* Non-Continuing parameters */
          /********************************************/
          case 'h':   /* help */
             printf(CMD_USAGE);
             return 0;
          break;
-         /********************************************/
-         case 'e':   /* enable service */
-               if(!path_absolute(optarg, buf, PATH_MAX+1)) return 3;
-         break;
 
-         case 'd':   /* disable service */
-               if(!path_absolute(optarg, buf, PATH_MAX+1)) return 3;
-         break;
-
-         /********************************************/
-         case 'p':   /* get pid */
-            if(!path_absolute(optarg, buf, PATH_MAX+1)) return 3;
-            pid = cinit_svc_get_pid(buf);
-            if(pid == 0) {
-               printf("Unknown service: %s\n",buf);
-               tmp = 1;
-            } else {
-               printf("PID of %s: %d\n",buf, pid);
-               tmp = 0;
-            }
-            return tmp;
-         break;
-
-         /********************************************/
-         case 's':   /* get status */
-            if(!path_absolute(optarg, buf, PATH_MAX+1)) return 3;
-            status = cinit_get_svc_status(buf);
-            if(status < 0) {
-               printf("Communication error\n");
-               tmp = 1;
-            } else {
-               switch(status) {
-                  case CINIT_MSG_SVC_UNKNOWN:
-                     printf("Unknown service: %s\n",buf);
-                     tmp = 1;
-                  break;
-                  case CINIT_MSG_OK:
-                     printf("Status of %s is: %d\n",buf, status);
-                     tmp = 0;
-                  break;
-                  /* should not happen */
-                  default:
-                     printf("Unknown status returned for %s: %d\n",buf, status);
-                     tmp = 3;
-                  break;
-               }
-            } 
-            return tmp;
-         break;
          /********************************************/
          case 'v':   /* get version of cinit */
             tmp = cinit_get_version(buf);
@@ -107,28 +80,103 @@ int main(int argc, char **argv)
                printf("Version of cinit: %s\n", buf);
                return 0;
             } else {
-               printf("Cannot get version of cinit!\n");
-               return 1;
+               fprintf(stderr, "Cannot get version of cinit!\n");
+               return 2;
             }
          break;
+
          /********************************************/
          case 'V':   /* version */
-            printf("Version of cmd: %s\n",CMD_VERSION);
+            printf("Version of cmd: %s\n", CMD_VERSION);
             return 0;
          break;
+
          /********************************************/
-         default:
-            printf("Unimplemented option or missing parameter! Try -h ;-)\n");
-            return 1;
+         /* Continuing parameters */
+         /********************************************/
+         case 'e':   /* enable service */
+            what = ENABLE;
+            flag = optarg ? optarg[0] : 'i';
+         break;
+
+         case 'd':   /* disable service */
+            what = DISABLE;
+            flag = optarg ? optarg[0] : 'i';
+         break;
+
+         /********************************************/
+         case 'p':   /* get pid */
+            what = PID;
+         break;
+
+         /********************************************/
+         case 's':   /* get status */
+            what = STATUS;
          break;
          /********************************************/
+
+         default:
+            fprintf(stderr,"Sorry, I did not understand what you want. Try -h, please.\n");
+            return 1;
+         break;
       }
    }
-   
-   if(!cnt) {
-      printf(CMD_USAGE);
+
+   if(what == NOTHING) {
+      fprintf(stderr,"That is not much you request from me. Try -h for help.\n");
       return 1;
    }
+   
+   if(!path_absolute(argv[optind], buf, PATH_MAX+1)) return 1;
 
-   return 0;
+   switch(what) {
+      case ENABLE:
+      case DISABLE:
+      break;
+
+      case PID:
+         u.pid = cinit_svc_get_pid(buf);
+         switch(u.pid) {
+            case -1:
+               fprintf(stderr, "Communication error\n");
+               what = 2;
+            break;
+            case 0:
+               printf("Unknown service: %s\n", buf);
+               what = 1;
+            break;
+            default:
+               printf("PID of %s: %d\n",buf, u.pid);
+               what = 0;
+            break;
+         }
+      break;
+   
+      case STATUS:
+         u.status = cinit_get_svc_status(buf);
+         if(u.status < 0) {
+            fprintf(stderr, "Communication error\n");
+            what = 2;
+         } else {
+            switch(u.status) {
+               case CINIT_MSG_OK:
+                  printf("Status of %s is: %d\n", buf, u.status);
+                  what = 0;
+               break;
+
+               case CINIT_MSG_SVC_UNKNOWN:
+                  printf("Unknown service: %s\n", buf);
+                  what = 1;
+               break;
+
+               default: /* should not happen */
+                  printf("Unknown status returned for %s: %d\n", buf, u.status);
+                  what = 2;
+               break;
+            }
+         } 
+      break;
+   }
+
+   return what;
 }

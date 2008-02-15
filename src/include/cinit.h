@@ -21,15 +21,15 @@
 
 /* messages from the client */
 struct cinit_question {
-   int32_t  cmd;
+   uint32_t  cmd;
    char     data[PATH_MAX];
-   int32_t  options;
+   uint32_t  options;
 };
 
 /* messages from cinit */
 struct cinit_answer {
-   int32_t  ret;
-   int32_t  options;
+   uint32_t  ret;
+   uint32_t  options;
    char     data[PATH_MAX];
 };
 

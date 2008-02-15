@@ -1,11 +1,4 @@
-/***********************************************************************
- *
- *    2007 Nico Schottelius (nico-cinit at schottelius.org)
- *
- *    part of cLinux/cinit
- *
  *    Disables a service
- */
 
 
 #include <string.h>     /* str*                 */
@@ -15,7 +8,7 @@
 /* returns either the status (>0)
  * or -1 on memory error
  */
-int32_t cinit_get_svc_status(char *name)
+uint32_t cinit_get_svc_status(char *name, uint32_t *status)
 {
    struct cinit_question qsn;
    struct cinit_answer   asr;
@@ -25,6 +18,8 @@ int32_t cinit_get_svc_status(char *name)
    qsn.options = 0;
 
    if(!cinit_send_to(&qsn, &asr)) return -1;
+
+   *status = asr.options;
 
    return asr.ret;
 }
