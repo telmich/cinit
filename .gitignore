@@ -27,3 +27,6 @@ src/cmd
 .*.swp
 .exclude
 src/.configured
+src/cinit.halt
+src/cinit.poweroff
+src/cinit.reboot
