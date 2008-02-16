@@ -29,22 +29,25 @@
 #include <limits.h>     /* PATH_MAX                */
 #include <sys/types.h>  /* pid_t                   */
 
+/* limits */
+#define CINIT_DATA_LEN (PATH_MAX+1)
+
 /*
  * structures: independent of the ipc code!
  */
 
 /* messages from the client */
 struct cinit_question {
-   uint32_t  cmd;
-   char     data[PATH_MAX];
-   uint32_t  options;
+   uint32_t cmd;
+   char     data[CINIT_DATA_LEN];
+   uint32_t options;
 };
 
 /* messages from cinit */
 struct cinit_answer {
-   uint32_t  ret;
-   uint32_t  options;
-   char     data[PATH_MAX];
+   uint32_t ret;
+   uint32_t options;
+   char     data[CINIT_DATA_LEN];
 };
 
 /* codes for messages */
@@ -77,8 +80,9 @@ struct cinit_msg_msg {
 
 /* functions */
 pid_t    cinit_svc_get_pid(char *);
-int32_t  cinit_get_svc_status(char *);
+uint32_t cinit_get_svc_status(char *);
 int      cinit_get_version(char *);
 int      cinit_send_to(struct cinit_question *, struct cinit_answer *);
+void     cinit_cp_data(char data[], char *src);
 
 #endif

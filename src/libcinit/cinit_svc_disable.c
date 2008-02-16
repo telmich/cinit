@@ -1,25 +1,66 @@
+/*******************************************************************************
+ *
+ * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ *
+ * This file is part of cinit.
+
+ * cinit is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * cinit is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
+
+ *
  *    Disables a service
+ *
+ */
 
 
 #include <string.h>     /* str*                 */
 #include <stdint.h>     /* integers             */
 #include "cinit.h"      /* header for clients   */
 
-/* returns either the status (>0)
- * or -1 on memory error
+/*
+ * to cinit:
+ *    disable + flags
+ * from cinit:
+ *    status
+ *       unknown service
+ *       disabled the service
+ *
+ *       disabled the service and needs
+ *       disabled the service and wants
+ *       disabled the service and needs and wants
+ *
+ *       if it is one of the last three it follows
+ *       uint32_t num: how many services stopped
+ *          num times
+ *
+ *          uint32_t len (excluding \0)
+ *          char name[]
  */
-uint32_t cinit_get_svc_status(char *name, uint32_t *status)
+
+uint32_t cinit_svc_disable(char *name, uint_32t *status, char ***names)
 {
    struct cinit_question qsn;
    struct cinit_answer   asr;
 
-   qsn.cmd = CINIT_MSG_GET_STATUS;
-   strcpy((qsn.data), name);
+   qsn.cmd = CINIT_MSG_SVC_STOP;
+   cinit_cp_data((qsn.data), name);
    qsn.options = 0;
 
    if(!cinit_send_to(&qsn, &asr)) return -1;
 
-   *status = asr.options;
+   /* iterate over result */
+
+//   *status = asr.options;
 
    return asr.ret;
 }

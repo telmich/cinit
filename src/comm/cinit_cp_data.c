@@ -25,7 +25,7 @@
 #include <string.h>     /* strncpy                    */
 #include "cinit.h"      /* CINIT_DATA_LEN             */
 
-void cp_data(char data[], char *src)
+void cinit_cp_data(char data[], char *src)
 {
    strncpy(data, src, CINIT_DATA_LEN);
 }
