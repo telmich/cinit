@@ -54,3 +54,4 @@ comm/read_command.o
 comm/answer_svc_status.o
 comm/answer_svc_pid.o
 comm/answer_version.o
+comm/cinit_cp_data.o

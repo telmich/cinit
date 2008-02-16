@@ -39,4 +39,4 @@ int answer_svc_status(char *svc, struct cinit_answer *asr)
    }
 
    return 1;
-
+}
