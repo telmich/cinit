@@ -45,6 +45,9 @@ OPTIONS
 -v::
    Get version of cinit.
 
+-V::
+   Get version of cmd.
+
 
 
 EXAMPLES
@@ -59,6 +62,10 @@ Get status::
 
    Status of /etc/cinit/svc/mount/root is: 2001
 
+
+EXIT STATUS
+-----------
+Cmd returns 0 on success, 1 on user errors, 2 on communication errors.
 
 BUGS
 ----
