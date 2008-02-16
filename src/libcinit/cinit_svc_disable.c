@@ -23,7 +23,6 @@
  */
 
 
-#include <string.h>     /* str*                 */
 #include <stdint.h>     /* integers             */
 #include "cinit.h"      /* header for clients   */
 

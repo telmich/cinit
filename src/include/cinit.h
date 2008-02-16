@@ -80,7 +80,7 @@ struct cinit_msg_msg {
 
 /* functions */
 pid_t    cinit_svc_get_pid(char *);
-uint32_t cinit_get_svc_status(char *);
+uint32_t cinit_get_svc_status(char *, uint32_t *);
 int      cinit_get_version(char *);
 int      cinit_send_to(struct cinit_question *, struct cinit_answer *);
 void     cinit_cp_data(char data[], char *src);

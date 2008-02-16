@@ -26,15 +26,17 @@
 #define __CINIT_SVC_INTERN_H
 
 /* includes */
-#include <sys/types.h>  /* pid_t */
-#include "config.h"     /* paths, socket options, etc. */
+#include <sys/types.h>  /* pid_t                         */
+#include <stdint.h>     /* int types                     */
+#include "config.h"     /* paths, socket options, etc.   */
+#include "cinit.h"      /* LEN                           */
 
 /* service list */
 struct listitem {
    struct      listitem *prev;   /* previous item                             */
    struct      listitem *next;   /* next item                                 */
 
-   char        *abs_path;        /* name of service                           */
+   char        abs_path[CINIT_DATA_LEN];  /* name of service                  */
    uint32_t    status;           /* current status                            */
    pid_t       pid;              /* pid of service / respawn watcher          */
    time_t      start;            /* time the process was started last time    */
@@ -59,7 +61,7 @@ extern struct  dep      *svc_init;  /* the services to start            */
 extern struct  listitem *svc_list;  /* the list of services             */
 
 /* list functions */
-struct         listitem *list_insert(char *path, uint_32t status);
+struct         listitem *list_insert(char *path, uint32_t status);
 int            list_delete(char *path);
 int            list_modify(char *path, int new_status, pid_t new_pid);
 struct         listitem *list_search(char *path);

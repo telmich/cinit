@@ -3,6 +3,7 @@ cinit-0.3pre14::
    - Added support to shutdown services in cinit and cmd
    - Added linux-sysvinit wrapper for shutdown (See
      scripts/wrapper/linux-sysvinit/shutdown)
+   - Rewrote most parts of cmd (to make it more beautiful)
    - Changed license to GPL 3.0
 
 cinit-0.3pre13: 2007-09-26

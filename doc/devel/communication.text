@@ -15,6 +15,7 @@ and other programs that want to talk to cinit. It does NOT
 describe the communication method, but only the messages sent
 (for the communication method read "ipc.text").
 
+
 Document status
 ~~~~~~~~~~~~~~~
 This document is still being written, it is not finished.

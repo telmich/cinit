@@ -66,7 +66,7 @@ void sig_child(int tmp)
           * status is not yet updated => does that make sense or is
           * the status overwritten after we return out of here?
           */
-         printf("CHILD: %s (%ld) (%d) bekannt!\n",svc->abs_path, svc->status, pid);
+         printf("CHILD: %s (%u) (%d) bekannt!\n",svc->abs_path, svc->status, pid);
 
          if(svc->status & CINIT_ST_ONCE_RUN
          || svc->status & CINIT_ST_RESPAWNING) {

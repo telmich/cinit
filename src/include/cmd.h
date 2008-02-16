@@ -45,7 +45,7 @@
    "        of cmd\n"                           \
    ""
 
-#define CMD_OPTIONS "e::d::hp:s:vV"
+#define CMD_OPTIONS "e::d::hpsvV"
 
 #define MSG_KILL     "kill()"
 #define CMD_VERSION  "0.2"

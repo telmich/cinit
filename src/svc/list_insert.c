@@ -8,11 +8,12 @@
  *    List handling
  */
 
+#include <stdint.h>        /* uint32_t             */
 #include <stdlib.h>        /* malloc               */
 #include <string.h>        /* bzero / memset       */
 #include "svc-intern.h"    /* the list pointer     */
 
-struct listitem *list_insert(char *path, int status)
+struct listitem *list_insert(char *path, uint32_t status)
 {
    struct listitem *tmp;
 
@@ -31,10 +32,8 @@ struct listitem *list_insert(char *path, int status)
       svc_list->prev       = tmp;            /* first refers to previous now  */
    }
 
-   tmp->abs_path = malloc(strlen(path) + 1);
-   if(tmp->abs_path == NULL) return NULL;
+   cinit_cp_data(tmp->abs_path, path);
 
-   strcpy(tmp->abs_path,path);
    tmp->status = status;
    tmp->pid    = 0;
    
