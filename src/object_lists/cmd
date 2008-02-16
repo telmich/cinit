@@ -1,4 +1,5 @@
 client/cmd.o
+comm/cinit_cp_data.o
 generic/print_errno.o
 generic/path_absolute.o
 generic/mini_printf.o

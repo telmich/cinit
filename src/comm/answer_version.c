@@ -22,14 +22,13 @@
  *
  */
 
-#include <string.h>     /* strncpy                    */
 #include "config.h"     /* VERSION                    */
 #include "cinit.h"      /* structure: cinit_answer    */
 
 int answer_version(struct cinit_answer *asr)
 {
    asr->ret = CINIT_MSG_OK;
-   strncpy(asr->data, VERSION, PATH_MAX);
+   cinit_cp_data(asr->data, VERSION);
 
    return 1;
 }
