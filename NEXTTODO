@@ -4,6 +4,9 @@
    cinit_svc_disable.c
 
 - remove malloc for paths
+   use
+
+- cleanly define functions for cmd
 
 --------------------------------------------------------------------------------
 - svc_stop_wait()
