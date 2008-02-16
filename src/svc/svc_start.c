@@ -19,13 +19,14 @@
 #include "svc-intern.h"    /* struct *          */
 #include "messages.h"      /* MSG_*             */
 #include "intern.h"        /* execute_sth       */
+#include "cinit.h"         /* CINIT_DATA_LEN    */
 
 extern int svc_lock;
 
 //void svc_start(struct listitem *li, int strict)
 void svc_start(struct listitem *li, int delay)
 {
-   char buf[PATH_MAX+1];
+   char buf[CINIT_DATA_LEN];
    struct timespec ts;
 
    /* set global lock to avoid race condition */
@@ -60,14 +61,14 @@ void svc_start(struct listitem *li, int delay)
    /**********************      parent     ************************/
    if(li->pid > 0) {
       svc_lock = 0;
-      printf("%s is at %d\n",li->abs_path, li->pid);
+      printf("%s is at %d\n", li->abs_path, li->pid);
       return;
    }
 
    /**********************      Error      ************************/
    if(li->pid < 0) {
-      svc_report_status(li->abs_path,MSG_SVC_FORK,strerror(errno));
-      svc_set_status(li,CINIT_ST_BAD_ERR);
+      svc_report_status(li->abs_path, MSG_SVC_FORK, strerror(errno));
+      svc_set_status(li, CINIT_ST_BAD_ERR);
       return;
    }
    
@@ -79,17 +80,16 @@ void svc_start(struct listitem *li, int delay)
 
       /* FIXME: also report value; int2char */
       printf("Delay: %d\n", delay);
-      svc_report_status(li->abs_path,MSG_SVC_SLEEP,NULL);
+      svc_report_status(li->abs_path, MSG_SVC_SLEEP, NULL);
 
       /* do not need to check for errors, because we can continue anyway */
       /* WRONG: FIXME: look whether to sleep again */
-      nanosleep(&ts,NULL);
+      nanosleep(&ts, NULL);
    }
    svc_report_status(li->abs_path, MSG_SVC_START, NULL);
 
-   /* length check is done by path_append */
-   strcpy(buf, li->abs_path);
-   if(!path_append(buf,C_ON)) return;
+   cinit_cp_data(buf, li->abs_path);
+   if(!path_append(buf, C_ON)) return;
 
    /* Check for existence */
    li->status = file_exists(buf);
