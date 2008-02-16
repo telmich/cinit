@@ -1,47 +1,56 @@
-/***********************************************************************
+/*******************************************************************************
  *
- *    2005-2007 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
  *
- *    part of cLinux/cinit
+ * This file is part of cinit.
+
+ * cinit is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * cinit is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
+
  *
  *    Check whether service is existent
  */
 
 #include <stdio.h>      /* NULL           */
-#include <string.h>     /* strcpy         */
-#include <unistd.h>     /* stat           */
 #include <sys/stat.h>   /* stat           */
-#include <limits.h>     /* PATH_MAX       */
 #include <errno.h>      /* errno          */
 
 #include "svc.h"        /* constants      */
 #include "svc-intern.h" /* listitem       */
 #include "intern.h"     /* path_append    */
-#include "messages.h"   /* D_PRINTF       */
+#include "cinit.h"      /* CINIT_DATA_LEN */
 
 /* checking for existence is done before! */
-/* FIXME: check heedars for conformance with POSIX */
 struct listitem *svc_create(char *svc)
 {
-   char              buf[PATH_MAX+1];
+   char              buf[CINIT_DATA_LEN];
    struct stat       statbuf;
    struct listitem   *li;
    
-   li = list_insert(svc,-1);
+   li = list_insert(svc, -1);
    if(!li) return NULL;
 
-   /* FIXME: add two path length checks? svc and svc+strlen(C_RESPAWN)? */
-   strcpy(buf,svc);
-   if(!path_append(buf,C_RESPAWN)) return NULL;
+   cinit_cp_data(buf, svc);
+   if(!path_append(buf, C_RESPAWN)) return NULL;
 
-   if(stat(buf,&statbuf) == -1) {
+   if(stat(buf, &statbuf) == -1) {
       if(errno == ENOENT) {
-         svc_set_status(li,CINIT_ST_SH_ONCE);
+         svc_set_status(li, CINIT_ST_SH_ONCE);
       } else {
          return NULL;
       }
    } else {
-      svc_set_status(li,CINIT_ST_SH_RESPAWN);
+      svc_set_status(li, CINIT_ST_SH_RESPAWN);
    }
 
    return li;
