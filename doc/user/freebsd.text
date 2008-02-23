@@ -1,0 +1,21 @@
+11:33 < mux> from sys/kern/init_main.c:
+11:33 < telmich> mux: that's true; I just tried with linux and I tell the
+                 bootloader, who tells the kernel then
+11:33 < mux> static char init_path[MAXPATHLEN] =
+11:33 < mux> #ifdef  INIT_PATH __XSTRING(INIT_PATH);
+11:33 < mux> #else
+"/sbin/init:/sbin/oinit:/sbin/init.bak:/rescue/init:/stand/sysinstall";
+11:33 < mux> #endif
+11:33 < mux> but you give a loader tunable
+11:34 < mux>         if ((var = getenv("init_path")) != NULL) {
+11:34 < mux>                 strlcpy(init_path, var, sizeof(init_path));
+11:34 < mux>                 freeenv(var);
+11:34 < mux>         }
+11:34 < mux> here you are
+11:34 < telmich> ahh, that's good
+11:34  * telmich has to try cinit on freebsd the next days :-)
+12:34 < mux> (s/you give/you can give/)
+11:35 < mux> so, simply init_path)="/sbin/cinit" in /boot/loader.conf should do
+             it
+11:35 < mux> minus the typo
+
