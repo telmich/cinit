@@ -117,6 +117,19 @@ with ident
 
 
 --------------------------------------------------------------------------------
+Messages:
+
+   struct cinit_question qsn;
+   struct cinit_answer   asr;
+
+question:
+
+answer:
+
+int cinit_send_to(struct cinit_question *data, struct cinit_answer *res)
+   -> return 0 on ipc errors
+
+--------------------------------------------------------------------------------
 TO SORT:
 
 1. message queues

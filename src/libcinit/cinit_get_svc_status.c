@@ -26,19 +26,15 @@
 #include <stdint.h>     /* integers             */
 #include "cinit.h"      /* header for clients   */
 
-/* returns either the status (>0)
- * or -1 on memory error
- */
 uint32_t cinit_get_svc_status(char *name, uint32_t *status)
 {
    struct cinit_question qsn;
    struct cinit_answer   asr;
 
-   qsn.cmd = CINIT_MSG_GET_STATUS;
+   cinit_prepare_comm(&qsn, &asr, CINIT_QSN_GET_STATUS);
    cinit_cp_data((qsn.data), name);
-   qsn.options = 0;
 
-   if(!cinit_send_to(&qsn, &asr)) return -1;
+   if(!cinit_send_to(&qsn, &asr)) return CINIT_ASW_IPC_ERROR;
 
    *status = asr.options;
 

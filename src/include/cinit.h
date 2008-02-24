@@ -50,23 +50,32 @@ struct cinit_answer {
    char     data[CINIT_DATA_LEN];
 };
 
-/* codes for messages */
-enum {
-   /* questions */
-   CINIT_MSG_QUESTIONS=1000,  /* begin questions at 1000    */
-   CINIT_MSG_GET_STATUS,      /* status of a service        */
-   CINIT_MSG_GET_PID,         /* get pid of a service       */
-   CINIT_MSG_GET_VERSION,     /* version of cinit           */
-   CINIT_MSG_SVC_STOP,        /* service: stop              */
-   CINIT_MSG_SVC_START,       /* service: start             */
-   
-   /* answers */
-   CINIT_MSG_ANSWERS=2000,    /* begin answers at 2000      */
-   CINIT_MSG_OK,              /* general ok value           */
-   CINIT_MSG_ERR,             /* general error value        */
-   CINIT_MSG_SVC_UNKNOWN,     /* Services is not known      */
-   CINIT_MSG_SVC_STOPPED,     /* service: stop              */
-   CINIT_MSG_SVC_STARTED      /* service: start             */
+/***********************************************************************
+ * codes for messages
+ */
+enum { /* questions */
+   CINIT_QSN_GET_STATUS    = 0x01,     /* status of a service        */
+   CINIT_QSN_GET_PID       = 0x02,     /* get pid of a service       */
+   CINIT_QSN_GET_VERSION   = 0x04,     /* version of cinit           */
+   CINIT_QSN_SVC_STOP      = 0x08,     /* service: stop              */
+   CINIT_QSN_SVC_START     = 0x10,     /* service: start             */
+   CINIT_QSN_SVC_NEEDS     = 0x20,     /* include needs              */
+   CINIT_QSN_SVC_WANTS     = 0x40,     /* include wants              */
+   CINIT_QSN_SVC_LIST      = 0x80,     /* list services              */
+
+   CINIT_QSN_QUESTION_END  = 0xffff    /* last message               */
+};
+
+enum { /* answers */
+   CINIT_ASW_IPC_ERROR     = 0x00,     /* bad error                  */
+   CINIT_ASW_OK            = 0x01,     /* general ok value           */
+   CINIT_ASW_SVC_UNKNOWN   = 0x04,     /* Services is not known      */
+   CINIT_ASW_SVC_STOPPED   = 0x08,     /* service: stop              */
+   CINIT_ASW_SVC_STARTED   = 0x08,     /* service: start             */
+   CINIT_ASW_SVC_NEEDS     = 0x10,     /* included needs             */
+   CINIT_ASW_SVC_WANTS     = 0x20,     /* included wants             */
+
+   CINIT_ASW_ANSWER_END    = 0xffff    /* last message               */
 };
 
 struct cinit_msg_msg {
@@ -79,10 +88,17 @@ struct cinit_msg_msg {
 //}
 
 /* functions */
-pid_t    cinit_svc_get_pid(char *);
-uint32_t cinit_get_svc_status(char *, uint32_t *);
-int      cinit_get_version(char *);
 int      cinit_send_to(struct cinit_question *, struct cinit_answer *);
 void     cinit_cp_data(char data[], char *src);
+
+void     cinit_prepare_comm(struct cinit_question *qsn,
+                            struct cinit_answer   *asr,
+                            uint32_t cmd);
+
+uint32_t cinit_get_version(char *);
+uint32_t cinit_get_svc_status(char *, uint32_t *);
+uint32_t cinit_svc_disable(char *svc, uint32_t flag);
+uint32_t cinit_svc_enable(char *svc, uint32_t flag);
+uint32_t cinit_svc_get_pid(char *, pid_t *status);
 
 #endif

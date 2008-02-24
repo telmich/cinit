@@ -1,10 +1,25 @@
-/***********************************************************************
+/*******************************************************************************
  *
- *    2007 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
  *
- *    part of cLinux/cinit
+ * This file is part of cinit.
+
+ * cinit is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * cinit is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
+
  *
  *    cmd - the cinit client program - sends commands to cinit
+ *
  */
 
 #include <unistd.h>        /* getopt            */
@@ -24,6 +39,10 @@
 #include "cinit.h"         /* cinit external    */
 
 #define C_USAGE(error) usage(USAGE_TEXT,error)
+#define MSG_IPC_ERROR      "An IPC error occured while connecting to cinit. " \
+                           "Is cinit running?\n"
+#define MSG_UNKNOWN_SVC    "Unknown service: %s\n"
+#define MSG_UNKNOWN_RET    "Unknown return code: %d\n"
 
 enum {
    NOTHING,
@@ -38,17 +57,18 @@ enum {
  */
 int main(int argc, char **argv)
 {
-   int      opt, tmp, cnt;
-   char     buf[PATH_MAX+1];
+   char     buf[CINIT_DATA_LEN];
+   int      opt;
+   uint32_t ret;
+
    union {
-      int32_t  status;
+      uint32_t  status;
       pid_t    pid;
    } u;
 
+
    char     flag = 'i';
    int      what = NOTHING;
-
-   cnt = tmp = 0;
 
    /*
     * -d w(ants)  excluded)
@@ -75,14 +95,23 @@ int main(int argc, char **argv)
 
          /********************************************/
          case 'v':   /* get version of cinit */
-            tmp = cinit_get_version(buf);
-            if(tmp) {
-               printf("Version of cinit: %s\n", buf);
-               return 0;
-            } else {
-               fprintf(stderr, "Cannot get version of cinit!\n");
-               return 2;
+            ret = cinit_get_version(buf);
+            switch(ret) {
+               case CINIT_ASW_OK:
+                  printf("Version of cinit: %s\n", buf);
+                  return 0;
+               break;
+               case CINIT_ASW_IPC_ERROR:
+                  fprintf(stderr, MSG_IPC_ERROR);
+                  what = 2;
+               break;
+
+               default: /* should not happen */
+                  printf(MSG_UNKNOWN_RET, ret);
+                  what = 3;
+               break;
             }
+            return what;
          break;
 
          /********************************************/
@@ -123,58 +152,73 @@ int main(int argc, char **argv)
    }
 
    if(what == NOTHING) {
-      fprintf(stderr,"That is not much you request from me. Try -h for help.\n");
+      fprintf(stderr, "That is not much you request from me. Try -h for help.\n");
       return 1;
    }
    
-   if(!path_absolute(argv[optind], buf, PATH_MAX+1)) return 1;
+   if(!path_absolute(argv[optind], buf, CINIT_DATA_LEN)) return 1;
 
    switch(what) {
       case ENABLE:
+         if(!cinit_svc_disable(buf, flag)) {
+            fprintf(stderr, MSG_IPC_ERROR);
+            return 2;
+         }
       case DISABLE:
+         if(!cinit_svc_enable(buf, flag)) {
+            fprintf(stderr, MSG_IPC_ERROR);
+            return 2;
+         }
       break;
 
       case PID:
-         u.pid = cinit_svc_get_pid(buf);
-         switch(u.pid) {
-            case -1:
-               fprintf(stderr, "Communication error\n");
-               what = 2;
-            break;
-            case 0:
-               printf("Unknown service: %s\n", buf);
-               what = 1;
-            break;
-            default:
+         ret = cinit_svc_get_pid(buf, &(u.pid));
+         switch(ret) {
+            case CINIT_ASW_OK:
                printf("PID of %s: %d\n",buf, u.pid);
                what = 0;
+            break;
+
+            case CINIT_ASW_SVC_UNKNOWN:
+               printf(MSG_UNKNOWN_SVC, buf);
+               what = 1;
+            break;
+
+            case CINIT_ASW_IPC_ERROR:
+               fprintf(stderr, MSG_IPC_ERROR);
+               what = 2;
+            break;
+
+            default: /* should not happen */
+               printf(MSG_UNKNOWN_RET, ret);
+               what = 3;
             break;
          }
       break;
    
       case STATUS:
-         u.status = cinit_get_svc_status(buf);
-         if(u.status < 0) {
-            fprintf(stderr, "Communication error\n");
-            what = 2;
-         } else {
-            switch(u.status) {
-               case CINIT_MSG_OK:
-                  printf("Status of %s is: %d\n", buf, u.status);
-                  what = 0;
-               break;
+         ret = cinit_get_svc_status(buf, &(u.status));
+         switch(ret) {
+            case CINIT_ASW_OK:
+               printf("Status of %s is: %d\n", buf, u.status);
+               what = 0;
+            break;
 
-               case CINIT_MSG_SVC_UNKNOWN:
-                  printf("Unknown service: %s\n", buf);
-                  what = 1;
-               break;
+            case CINIT_ASW_SVC_UNKNOWN:
+               printf("Unknown service: %s\n", buf);
+               what = 1;
+            break;
 
-               default: /* should not happen */
-                  printf("Unknown status returned for %s: %d\n", buf, u.status);
-                  what = 2;
-               break;
-            }
-         } 
+            case CINIT_ASW_IPC_ERROR:
+               fprintf(stderr, MSG_IPC_ERROR);
+               what = 2;
+            break;
+
+            default: /* should not happen */
+               printf(MSG_UNKNOWN_RET, ret);
+               what = 3;
+            break;
+         }
       break;
    }
 
