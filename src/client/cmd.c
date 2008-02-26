@@ -160,11 +160,15 @@ int main(int argc, char **argv)
 
    switch(what) {
       case ENABLE:
+      case DISABLE:
+         /* fill flag */
+
+         /* set function pointer */
+
          if(!cinit_svc_disable(buf, flag)) {
             fprintf(stderr, MSG_IPC_ERROR);
             return 2;
          }
-      case DISABLE:
          if(!cinit_svc_enable(buf, flag)) {
             fprintf(stderr, MSG_IPC_ERROR);
             return 2;

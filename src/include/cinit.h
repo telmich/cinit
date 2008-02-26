@@ -39,14 +39,14 @@
 /* messages from the client */
 struct cinit_question {
    uint32_t cmd;
+   uint32_t opt;
    char     data[CINIT_DATA_LEN];
-   uint32_t options;
 };
 
 /* messages from cinit */
 struct cinit_answer {
    uint32_t ret;
-   uint32_t options;
+   uint32_t opt;
    char     data[CINIT_DATA_LEN];
 };
 
@@ -72,8 +72,9 @@ enum { /* answers */
    CINIT_ASW_SVC_UNKNOWN   = 0x04,     /* Services is not known      */
    CINIT_ASW_SVC_STOPPED   = 0x08,     /* service: stop              */
    CINIT_ASW_SVC_STARTED   = 0x08,     /* service: start             */
-   CINIT_ASW_SVC_NEEDS     = 0x10,     /* included needs             */
+   CINIT_ASW_SVC_ERR       = 0x10,     /* included needs             */
    CINIT_ASW_SVC_WANTS     = 0x20,     /* included wants             */
+   CINIT_ASW_SVC_NEEDS     = 0x30,     /* included needs             */
 
    CINIT_ASW_ANSWER_END    = 0xffff    /* last message               */
 };

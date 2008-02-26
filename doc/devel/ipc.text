@@ -130,6 +130,21 @@ int cinit_send_to(struct cinit_question *data, struct cinit_answer *res)
    -> return 0 on ipc errors
 
 --------------------------------------------------------------------------------
+enable / disable services:
+
+   - send svc
+   - send flags
+
+   - recv return:
+      CINIT_ASW_SVC_STOPPED: successfully stopped the service
+      
+      CINIT_ASW_SVC_ERR: failed to stop the service
+         CINIT_ASW_SVC_WANTS: wants failed
+         CINIT_ASW_SVC_NEEDS: needs failed
+      opt contains number of failed services
+      retriev them from cinit after that
+
+--------------------------------------------------------------------------------
 TO SORT:
 
 1. message queues
