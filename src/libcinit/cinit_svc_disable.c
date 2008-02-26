@@ -46,20 +46,23 @@
  *          char name[]
  */
 
-uint32_t cinit_svc_disable(char *name, uint_32t *status, char ***names)
+uint32_t cinit_svc_disable(char *svc, uint32_t flag)
 {
    struct cinit_question qsn;
    struct cinit_answer   asr;
 
-   qsn.cmd = CINIT_MSG_SVC_STOP;
-   cinit_cp_data((qsn.data), name);
-   qsn.options = 0;
+   cinit_prepare_comm(&qsn, &asr, CINIT_QSN_SVC_STOP);
+   cinit_cp_data((qsn.data), svc);
 
-   if(!cinit_send_to(&qsn, &asr)) return -1;
+   qsn.opt = flag;
 
-   /* iterate over result */
+   if(!cinit_send_to(&qsn, &asr)) return CINIT_ASW_IPC_ERROR;
 
-//   *status = asr.options;
+   /* add logic to display started services here
+    * or:
+    * add logic to start dependend services in here:
+    * want to start a -> cinit returns needs b
+    */
 
-   return asr.ret;
+   return CINIT_ASW_IPC_ERROR;
 }
