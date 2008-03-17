@@ -1,5 +1,12 @@
 Wished release date: 20. September
 - Add support for starting/stoping services via cmd
+   - add support for additional information (like which services stopped
+     when having dependencies)
+   - if cinit has to stop / start others, how to report?
+   - add strings to cinit internally to a buffer?
+      -> or struct cinit_answer + status
+
+
 - create some boot profiles
 - cinit.install.standard.dirs.argv
 - code check:

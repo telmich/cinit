@@ -14,3 +14,4 @@ libcinit/cinit_svc_get_pid.o
 libcinit/cinit_prepare_comm.o
 libcinit/cinit_svc_enable.o
 libcinit/cinit_svc_disable.o
+libcinit/cinit_flag_to_uint32_t.o

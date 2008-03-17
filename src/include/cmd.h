@@ -25,13 +25,13 @@
 #define CINIT_CMD_HEADER
 
 #define CMD_USAGE "cmd - cinit management\n\n"  \
-   "cmd -[ed (nw)] -[ps] [service] -[hvV]\n\n"   \
-   "   -e: enable service\n"                    \
-   "       n: without needs\n"                  \
-   "           Skip wants when en/disabling\n"  \
-   "       w: without wants\n"                  \
-   "           Skip needs when en/disabling\n\n"\
+   "cmd -[de [nw]] -[ps] [service] -[hvV]\n\n"   \
    "   -d: disable service\n"                   \
+   "       n: without needs\n"                  \
+   "           Skip needs when en/disabling\n\n"\
+   "       w: without wants\n"                  \
+   "           Skip wants when en/disabling\n"  \
+   "   -e: enable service\n"                    \
    "        see above\n"                        \
    "   -h: get help\n"                          \
    "        this messages"                      \

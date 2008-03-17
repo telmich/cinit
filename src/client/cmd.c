@@ -58,7 +58,9 @@ enum {
 int main(int argc, char **argv)
 {
    char     buf[CINIT_DATA_LEN];
+   char     *flag = NULL;
    int      opt;
+   int      what = NOTHING;
    uint32_t ret;
 
    union {
@@ -66,9 +68,6 @@ int main(int argc, char **argv)
       pid_t    pid;
    } u;
 
-
-   char     flag = 'i';
-   int      what = NOTHING;
 
    /*
     * -d w(ants)  excluded)
@@ -125,12 +124,12 @@ int main(int argc, char **argv)
          /********************************************/
          case 'e':   /* enable service */
             what = ENABLE;
-            flag = optarg ? optarg[0] : 'i';
+            flag = optarg;
          break;
 
          case 'd':   /* disable service */
             what = DISABLE;
-            flag = optarg ? optarg[0] : 'i';
+            flag = optarg;
          break;
 
          /********************************************/
@@ -162,17 +161,18 @@ int main(int argc, char **argv)
       case ENABLE:
       case DISABLE:
          /* fill flag */
+         u.status |= cinit_flag_to_uint32_t(flag);
 
-         /* set function pointer */
-
-         if(!cinit_svc_disable(buf, flag)) {
+         if(!(u.status = cinit_svc_disable(buf, flag))) {
             fprintf(stderr, MSG_IPC_ERROR);
             return 2;
          }
-         if(!cinit_svc_enable(buf, flag)) {
+
+   /*      if(!cinit_svc_enable(buf, flag)) {
             fprintf(stderr, MSG_IPC_ERROR);
             return 2;
          }
+         */
       break;
 
       case PID:

@@ -58,11 +58,7 @@ uint32_t cinit_svc_disable(char *svc, uint32_t flag)
 
    if(!cinit_send_to(&qsn, &asr)) return CINIT_ASW_IPC_ERROR;
 
-   /* add logic to display started services here
-    * or:
-    * add logic to start dependend services in here:
-    * want to start a -> cinit returns needs b
-    */
+   /* FIXME: 0.3pre15: add retrieval of services */
 
-   return CINIT_ASW_IPC_ERROR;
+   return asr.ret;
 }

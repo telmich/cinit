@@ -59,8 +59,8 @@ enum { /* questions */
    CINIT_QSN_GET_VERSION   = 0x04,     /* version of cinit           */
    CINIT_QSN_SVC_STOP      = 0x08,     /* service: stop              */
    CINIT_QSN_SVC_START     = 0x10,     /* service: start             */
-   CINIT_QSN_SVC_NEEDS     = 0x20,     /* include needs              */
-   CINIT_QSN_SVC_WANTS     = 0x40,     /* include wants              */
+   CINIT_QSN_SVC_NEEDS     = 0x20,     /* in/exclude needs           */
+   CINIT_QSN_SVC_WANTS     = 0x40,     /* in/exclude wants           */
    CINIT_QSN_SVC_LIST      = 0x80,     /* list services              */
 
    CINIT_QSN_QUESTION_END  = 0xffff    /* last message               */
@@ -72,11 +72,16 @@ enum { /* answers */
    CINIT_ASW_SVC_UNKNOWN   = 0x04,     /* Services is not known      */
    CINIT_ASW_SVC_STOPPED   = 0x08,     /* service: stop              */
    CINIT_ASW_SVC_STARTED   = 0x08,     /* service: start             */
-   CINIT_ASW_SVC_ERR       = 0x10,     /* included needs             */
-   CINIT_ASW_SVC_WANTS     = 0x20,     /* included wants             */
-   CINIT_ASW_SVC_NEEDS     = 0x30,     /* included needs             */
+   CINIT_ASW_SVC_ERR       = 0x10,     /* in/excluded needs          */
+   CINIT_ASW_SVC_WANTS     = 0x20,     /* in/excluded wants          */
+   CINIT_ASW_SVC_NEEDS     = 0x30,     /* in/excluded needs          */
 
    CINIT_ASW_ANSWER_END    = 0xffff    /* last message               */
+};
+
+enum cinit_svc_flags {
+   CINIT_CMD_SVC_WANTS = 'w',
+   CINIT_CMD_SVC_NEEDS = 'n'
 };
 
 struct cinit_msg_msg {
