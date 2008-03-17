@@ -24,6 +24,7 @@
 
 
 #include <stdint.h>     /* integers             */
+
 #include "cinit.h"      /* header for clients   */
 
 /*
@@ -51,7 +52,7 @@ uint32_t cinit_svc_disable(char *svc, uint32_t flag)
    struct cinit_question qsn;
    struct cinit_answer   asr;
 
-   cinit_prepare_comm(&qsn, &asr, CINIT_QSN_SVC_STOP);
+   cinit_prepare_comm(&qsn, &asr, CINIT_QSN_SVC_DISABLE);
    cinit_cp_data((qsn.data), svc);
 
    qsn.opt = flag;

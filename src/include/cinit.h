@@ -57,8 +57,8 @@ enum { /* questions */
    CINIT_QSN_GET_STATUS    = 0x01,     /* status of a service        */
    CINIT_QSN_GET_PID       = 0x02,     /* get pid of a service       */
    CINIT_QSN_GET_VERSION   = 0x04,     /* version of cinit           */
-   CINIT_QSN_SVC_STOP      = 0x08,     /* service: stop              */
-   CINIT_QSN_SVC_START     = 0x10,     /* service: start             */
+   CINIT_QSN_SVC_DISABLE   = 0x08,     /* service: stop              */
+   CINIT_QSN_SVC_ENABLE    = 0x10,     /* service: start             */
    CINIT_QSN_SVC_NEEDS     = 0x20,     /* in/exclude needs           */
    CINIT_QSN_SVC_WANTS     = 0x40,     /* in/exclude wants           */
    CINIT_QSN_SVC_LIST      = 0x80,     /* list services              */
@@ -70,11 +70,12 @@ enum { /* answers */
    CINIT_ASW_IPC_ERROR     = 0x00,     /* bad error                  */
    CINIT_ASW_OK            = 0x01,     /* general ok value           */
    CINIT_ASW_SVC_UNKNOWN   = 0x04,     /* Services is not known      */
-   CINIT_ASW_SVC_STOPPED   = 0x08,     /* service: stop              */
-   CINIT_ASW_SVC_STARTED   = 0x08,     /* service: start             */
-   CINIT_ASW_SVC_ERR       = 0x10,     /* in/excluded needs          */
-   CINIT_ASW_SVC_WANTS     = 0x20,     /* in/excluded wants          */
-   CINIT_ASW_SVC_NEEDS     = 0x30,     /* in/excluded needs          */
+   CINIT_ASW_SVC_DISABLED  = 0x08,     /* service: stop              */
+   CINIT_ASW_SVC_ENABLED   = 0x10,     /* service: start             */
+   CINIT_ASW_SVC_ERR       = 0x20,     /* in/excluded needs          */
+   CINIT_ASW_SVC_WANTS     = 0x40,     /* in/excluded wants          */
+   CINIT_ASW_SVC_NEEDS     = 0x80,     /* in/excluded needs          */
+   CINIT_ASW_ERR_INTERN    = 0x100,    /* cinit internal error       */
 
    CINIT_ASW_ANSWER_END    = 0xffff    /* last message               */
 };
@@ -101,6 +102,7 @@ void     cinit_prepare_comm(struct cinit_question *qsn,
                             struct cinit_answer   *asr,
                             uint32_t cmd);
 
+uint32_t cinit_flag_to_uint32_t(char *);
 uint32_t cinit_get_version(char *);
 uint32_t cinit_get_svc_status(char *, uint32_t *);
 uint32_t cinit_svc_disable(char *svc, uint32_t flag);

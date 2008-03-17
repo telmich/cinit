@@ -27,7 +27,7 @@
 
 int answer_version(struct cinit_answer *asr)
 {
-   asr->ret = CINIT_MSG_OK;
+   asr->ret = CINIT_ASW_OK;
    cinit_cp_data(asr->data, VERSION);
 
    return 1;

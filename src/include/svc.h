@@ -41,7 +41,8 @@ enum cinit_svc_status {
    CINIT_ST_BAD_ERR     = 0x80,    /* some kind of error that SHOULD NOT happen */
    CINIT_ST_ONCE_RUN    = 0x100,   /* the once process is currently running     */
    CINIT_ST_NOT_EXIST   = 0x200,   /* there's no such service in our database   */
-   CINIT_ST_STOPPING    = 0x400    /* service was running, is being stopped     */
+   CINIT_ST_STOPPING    = 0x400,   /* service was running, is being stopped     */
+   CINIT_ST_STOPPED     = 0x800    /* service is stopped                        */
 };
 
 /***********************************************************************

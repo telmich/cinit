@@ -1,6 +1,7 @@
 cinit-0.3pre14::
    - Added test-suite for cmd
    - Added support to shutdown services in cinit and cmd
+     (without needs and wants)
    - Added linux-sysvinit wrapper for shutdown (See
      scripts/wrapper/linux-sysvinit/shutdown)
    - Rewrote most parts of cmd (to make it more beautiful)

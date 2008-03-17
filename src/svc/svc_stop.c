@@ -37,6 +37,7 @@
 #include <string.h>        /* strerror          */
 #include <errno.h>         /* errno             */
 #include <limits.h>        /* PATH_MAX          */
+#include <sys/wait.h>      /* waitpid           */
 
 #include "svc.h"           /* struct *          */
 #include "svc-intern.h"    /* struct *          */
@@ -48,6 +49,7 @@
 void svc_stop(struct listitem *li)
 {
    char buf[CINIT_DATA_LEN];
+   int status;
 
    svc_set_status(li, CINIT_ST_STOPPING);
 
@@ -60,6 +62,10 @@ void svc_stop(struct listitem *li)
       return;
    }
    
+   /********************** Parent / fork() ************************/
+   /* FIXME: 0.3pre15: look at the status / return value */
+   waitpid(li->pid, &status, 0);
+
    /********************** Client / fork() ************************/
    svc_report_status(li->abs_path, MSG_SVC_STOP, NULL);
 

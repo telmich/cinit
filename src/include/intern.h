@@ -111,6 +111,7 @@ int read_command(struct cinit_question, struct cinit_answer *);
 int answer_svc_status(char *, struct cinit_answer *);
 int answer_svc_pid(char *, struct cinit_answer *);
 int answer_version(struct cinit_answer *);
+int answer_svc_disable(char *, struct cinit_answer *);
 
 /* generic */
 void  execute_sth(char *basename);

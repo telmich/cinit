@@ -163,7 +163,7 @@ int main(int argc, char **argv)
          /* fill flag */
          u.status |= cinit_flag_to_uint32_t(flag);
 
-         if(!(u.status = cinit_svc_disable(buf, flag))) {
+         if(!(u.status = cinit_svc_disable(buf, u.status))) {
             fprintf(stderr, MSG_IPC_ERROR);
             return 2;
          }

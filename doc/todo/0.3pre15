@@ -6,6 +6,7 @@ Wished release date: 20. September
    - add strings to cinit internally to a buffer?
       -> or struct cinit_answer + status
 
+- add support to enable services
 
 - create some boot profiles
 - cinit.install.standard.dirs.argv

@@ -28,22 +28,26 @@
 int read_command(struct cinit_question qsn, struct cinit_answer *asr)
 {
    switch(qsn.cmd) {
-      case CINIT_MSG_GET_VERSION:
+      case CINIT_QSN_GET_VERSION:
          if(!answer_version(asr))               return 0;
       break;
 
-      case CINIT_MSG_GET_STATUS:
+      case CINIT_QSN_GET_STATUS:
          if(!answer_svc_status(qsn.data, asr))  return 0;
       break;
 
-      case CINIT_MSG_GET_PID:
+      case CINIT_QSN_GET_PID:
          if(!answer_svc_pid(qsn.data, asr))     return 0;
       break;
 
-      /* FIXME: stopped here */
-      case CINIT_MSG_SVC_STOP:
-         //if(!answer_svc_pid(qsn.data, asr))     return 0;
+      case CINIT_QSN_SVC_DISABLE:
+         if(!answer_svc_disable(qsn.data, asr)) return 0;
       break;
+
+      /* FIXME: stopped here
+      case CINIT_MSG_SVC_ENABLE:
+         if(!answer_svc_enable(qsn.data, asr))     return 0;
+      break; */
 
       /* Unknown command: should not happen :-) */
       default:

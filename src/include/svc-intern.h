@@ -74,7 +74,7 @@ int               check_add_deps(struct listitem *svc, int type);
 void              dep_entry_add(struct dep **list, struct dep *new);
 struct dep       *dep_entry_del(struct dep *del);
 int               tree_exec(struct dep *start);
-int               svc_set_status(struct listitem *li, int status);
+uint32_t          svc_set_status(struct listitem *li, uint32_t status);
 int               svc_should_respawn(struct listitem *li);
 int               svc_needs_status(struct listitem *li);
 int               dep_needs_wants_add(struct dep **list, struct listitem *svc, int type);
@@ -87,6 +87,7 @@ void              shutdown_services(struct listitem *start);
 void              svc_start(struct listitem *,     int);
 void              svc_stop(struct listitem *);
 void              svc_stop_deps(struct listitem *, int);
+uint32_t          svc_disable(struct listitem *);
 
 
 

@@ -31,10 +31,10 @@ int answer_svc_pid(char *svc, struct cinit_answer *asr)
 
    tmp = list_search(svc);
    if(!tmp) {
-      asr->ret = CINIT_MSG_SVC_UNKNOWN;
+      asr->ret = CINIT_ASW_SVC_UNKNOWN;
    } else {
-      asr->ret       = CINIT_MSG_OK;
-      asr->options   = tmp->pid;
+      asr->ret = CINIT_ASW_OK;
+      asr->opt = tmp->pid;
    }
 
    return 1;
