@@ -1,0 +1,19 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install service: mount /proc
+# Date: 2005-08-07
+# 
+
+. $(dirname $0)/cinit.read-conf
+
+set -e
+
+# - mount /proc
+"$INSTALL_PROG"      "$INSTALL_DIRECTORY" "${DESTDIR}/${CINIT_DIR}/mount/proc"
+ln -sf /bin/mount    "${DESTDIR}/${CINIT_DIR}/mount/proc/$C_ON"
+echo proc        >   "${DESTDIR}/${CINIT_DIR}/mount/proc/${C_ON}${C_PARAMS}"
+echo -t         >>   "${DESTDIR}/${CINIT_DIR}/mount/proc/${C_ON}${C_PARAMS}"
+echo proc       >>   "${DESTDIR}/${CINIT_DIR}/mount/proc/${C_ON}${C_PARAMS}"
+echo /proc      >>   "${DESTDIR}/${CINIT_DIR}/mount/proc/${C_ON}${C_PARAMS}"
+
+exit 0

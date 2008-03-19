@@ -1,0 +1,25 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: create gettys
+
+# init variables
+. $(dirname $0)/cinit.read-conf
+
+BASEDIR=$DESTDIR/$CINIT_DIR/$GETTY_DIR
+NUMBER=$(cd $BASEDIR && ls | awk '/^((0[xX])[0-9a-fA-F]+)|([0-9]+)$/ { print }' | tail -n 1)
+
+if [ ! "$NUMBER" ]; then
+   echo "There is no getty to remove."
+   exit 1
+fi
+
+DDIR=$BASEDIR/$NUMBER
+
+echo "Removing getty number $NUMBER located in $DDIR ..."
+read -p "Are you sure [y/N]? " yes
+
+if [ "$yes" = "y" ]; then
+   rm -r "$DDIR"
+else
+   echo "Aborted."
+fi

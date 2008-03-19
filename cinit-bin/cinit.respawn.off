@@ -1,0 +1,24 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: switch respawning off
+# 2005-05-24
+
+set -e
+
+# init variables
+. $(dirname $0)/cinit.read-conf
+
+if [ $# -lt 1 ]; then
+   echo "`basename $0`: service-name(s)"
+   echo "   The respawning mark will be removed from services"
+   exit 1
+fi
+
+BASEDIR=$DESTDIR/$CINIT_DIR
+
+for svc in $@; do
+   echo -n "Removing respawning mark from $svc ..."
+   rm -f "${BASEDIR}/${svc}/${C_RESPAWN}"
+   echo "finished."
+done
+

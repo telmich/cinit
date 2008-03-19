@@ -1,0 +1,75 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: create gettys
+# Date: 2005-05-24 (Last changed: 2005-08-07)
+#
+
+set -e
+
+# init variables
+. $(dirname $0)/cinit.read-conf
+
+BASEDIR=$DESTDIR/$CINIT_DIR/$GETTY_DIR
+LAST_NUMBER=$(cd $BASEDIR && ls | awk '/^((0[xX])[0-9a-fA-F]+)|([0-9]+)$/ { print }' | sort -n | tail -n 1)
+
+[ ! "$LAST_NUMBER" ] && LAST_NUMBER=0
+
+NUMBER=$(echo $LAST_NUMBER + 1 | bc)
+
+[ ! "$NUMBER" ] && NUMBER=1
+
+DDIR=$BASEDIR/$NUMBER
+
+#echo "Creating getty number $NUMBER in $DDIR ..."
+
+if [ "$USE_THIS_GETTY" ]; then
+   GETTYS="$USE_THIS_GETTY"
+else
+   GETTYS=`echo /sbin/*getty*`
+fi
+
+for getty in $GETTYS; do
+   case $getty in
+      */fgetty|*/mingetty)
+         mygetty=$getty
+         params="/dev/tty${NUMBER}"
+      ;;
+      */agetty|*/getty)
+         mygetty=$getty
+         params="38400 tty${NUMBER} linux"
+      ;;
+      */mgetty)
+         mygetty=$getty
+         params="38400 tty${NUMBER}"
+      ;;
+      *)
+         echo "Unknown Getty type $getty"
+         echo "Please report standard parameters to me."
+   esac
+
+   [ "$mygetty" ] && break
+done
+
+# check input
+if [ ! "$mygetty" ]; then
+   read -p "Getty to use [$mygetty]: " rgetty
+fi
+if [ ! "$params" ]; then
+   read -p "Parameters to pass [$params]: " rparams
+fi
+if [ ! "$params" -o ! "$mygetty" ]; then
+   echo "Sorry, either getty or parameters are not supplied."
+   exit 23
+fi
+
+echo -n "Creating $mygetty ($params) in $DDIR ... "
+"$INSTALL_PROG" "$INSTALL_DIRECTORY" "$DDIR"
+ln -s "$mygetty" "$DDIR/$C_ON"
+
+for param in $params; do
+   echo $param >> "$DDIR/${C_ON}${C_PARAMS}"
+done
+
+touch "$DDIR/$C_RESPAWN"
+
+echo "finished."

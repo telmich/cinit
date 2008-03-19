@@ -1,0 +1,20 @@
+#!/bin/sh
+# Nico Schottelius, 2006-07-28
+# 
+# cinit: configure the ipc method to use
+# 
+
+HIER=$(dirname $0)
+DDIR=$HIER/../src/ipc
+DFILE=${DDIR}/current
+IPC_METHOD=$(head -n 1 "$HIER/../conf/ipc_method")
+
+echo "Configure: IPC: Using \"$IPC_METHOD\" as IPC method"
+
+# always remove link before, as ln seems to be broken
+# Doing ln -sf src/ipc/$method current twice, will create the file
+# "current" _BELOW_ src/ipc/$method and not overwrite the link
+# src/ipc/current
+
+rm -f "${DFILE}"
+ln -sf "${IPC_METHOD}" "${DFILE}"

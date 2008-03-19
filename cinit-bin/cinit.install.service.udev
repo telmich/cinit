@@ -1,0 +1,64 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install udev
+# Date: 2005-10-15
+# Comment: DO NOT RSYNC TO THE WRONG SIDE!
+# 
+
+. $(dirname $0)/cinit.read-conf
+
+set -e
+
+if [ $# -ne 0 ]; then
+  echo "$(basename $0) (no args)"
+  exit 1
+fi
+
+BIN_UDEVSEND=$($(dirname $0)/cinit.path-find udevsend)
+BIN_UDEVSTART=$($(dirname $0)/cinit.path-find udevstart)
+BIN_SYSCTL=$($(dirname $0)/cinit.path-find sysctl)
+BIN_MOUNT=$($(dirname $0)/cinit.path-find mount)
+SERVICE="local-tuning/udev"
+
+if [ -z "$BIN_UDEVSEND" -o -z "$BIN_UDEVSTART" -o -z "$BIN_SYSCTL" -o -z "$BIN_MOUNT" ]; then
+   echo "Did not find a binary."
+   exit 1
+fi
+
+if [ -d  "${DESTDIR}/${CINIT_DIR}/${SERVICE}" ]; then
+   echo "Service ${SERVICE} already exists."
+   exit 1
+fi
+
+echo "Installing ${SERVICE} to ${DESTDIR}/${CINIT_DIR}/ ..."
+
+# 0. general udev
+"$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
+                          "${DESTDIR}${CINIT_DIR}/${SERVICE}"
+# 1. udevmount
+"$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
+                          "${DESTDIR}${CINIT_DIR}/mount/udev"
+ln -sf "$BIN_MOUNT"       "${DESTDIR}${CINIT_DIR}/mount/udev/$C_ON"
+echo "udev"             > "${DESTDIR}${CINIT_DIR}/mount/udev/$C_ON$C_PARAMS"
+echo "-t"              >> "${DESTDIR}${CINIT_DIR}/mount/udev/$C_ON$C_PARAMS"
+echo "tmpfs"           >> "${DESTDIR}${CINIT_DIR}/mount/udev/$C_ON$C_PARAMS"
+echo "/dev"            >> "${DESTDIR}${CINIT_DIR}/mount/udev/$C_ON$C_PARAMS"
+
+# 2. udevstart
+"$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
+                          "${DESTDIR}${CINIT_DIR}/${SERVICE}/udevstart"
+ln -sf "$BIN_UDEVSTART"   "${DESTDIR}${CINIT_DIR}/${SERVICE}/udevstart/$C_ON"
+
+# dependencies
+$(dirname $0)/cinit.add.dependency ${SERVICE}/udevstart needs mount/sys
+$(dirname $0)/cinit.add.dependency ${SERVICE}/udevstart needs mount/udev
+
+# 3. udev to hotplug
+"$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
+                          "${DESTDIR}/${CINIT_DIR}/${SERVICE}/hotplug"
+ln -sf "$BIN_SYSCTL"      "${DESTDIR}/${CINIT_DIR}/${SERVICE}/hotplug/$C_ON"
+echo "$BIN_UDEVSEND"    > "${DESTDIR}${CINIT_DIR}/${SERVICE}/hotplug/$C_ON$C_PARAMS"
+
+$(dirname $0)/cinit.add.dependency ${SERVICE}/hotplug needs mount/proc
+
+exit 0

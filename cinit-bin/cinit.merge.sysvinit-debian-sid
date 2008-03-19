@@ -1,0 +1,137 @@
+#!/bin/sh
+# Nico Schottelius
+# Date: Sun Oct 16 16:57:03 CEST 2005
+# cLinux/cinit
+# Automagically convert Debian-Sysv-Iinit
+# THIS IS NOT CLEAN.
+# THIS IS NOT EVEN INTENTED TO BE CLEAN.
+# This is just a small hack, because my girlfriend wants her notebook back.
+
+echo "***> $(basename $0): converting Debian-Sys-V-Init"
+
+# read standard values, may be overwritten from outside
+. $(dirname $0)/cinit.read-conf
+
+echo "***> Finding standard config ..."
+# variables, which can be set from the outside
+ROOT_DEV=${ROOT_DEV:-$(awk '$2 ~ /^\/$/ { print $1 }' /etc/fstab)}
+ROOT_FSCK=${ROOT_FSCK:-$(awk '$2 ~ /^\/$/ { print $6 }' /etc/fstab)}
+ROOT_FS=${ROOT_FS:-$(awk '$2 ~ /^\/$/ { print $3 }' /etc/fstab)}
+RUNLEVEL=${RUNLEVEL:-$(runlevel | awk '{ print $2 }')}
+
+echo "***> Detecting keymap (this may take some time)"
+
+if [ -z "$C_KEYMAP" ]; then
+   echo "Please set the variable C_KEYMAP to your keymap."
+   echo "It is impossible to detect reliable your keymap in Debian."
+   exit 1
+fi
+
+
+echo "***> Configuration"
+echo "Hostname      (\$HOSTNAME):            $HOSTNAME"
+echo "Keymap        (\$C_KEYMAP):            $C_KEYMAP"
+echo "Root device   (\$ROOT_DEV):            $ROOT_DEV"
+echo "Root fsck     (\$ROOT_FSCK):           $ROOT_FSCK"
+echo "Root FS       (\$ROOT_FS):             $ROOT_FS"
+echo "Runlevel      (\$RUNLEVEL):            $RUNLEVEL"
+echo "Destdir:      (\$DESTDIR):             $DESTDIR"
+echo "Config-Dir:   (\$CINIT_DIR):           $CINIT_DIR"
+read -p "Is this correct (Y/n) " correct
+
+if [ "$correct" != "y" -a "$correct" != "Y" ]; then
+   echo "***> Abort."
+   exit 1
+fi
+
+if [ -d "${DESTDIR}${CINIT_DIR}" ]; then
+   echo "ERROR: Configuration already exists at ${DESTDIR}${CINIT_DIR}."
+   exit 1
+fi
+
+echo "***> Installing standard structure and dependencies"
+set -e
+$(dirname $0)/cinit.install.config-dir
+$(dirname $0)/cinit.install.standard.dirs
+$(dirname $0)/cinit.install.standard.init.deps
+
+echo "***> Adding mount / r/w"
+$(dirname $0)/cinit.install.service.mount-root
+
+if [ "$ROOT_FSCK" = "1" ]; then
+   echo "***> Adding fsck for $ROOT_DEV ..."
+   $(dirname $0)/cinit.install.fsck root "$ROOT_DEV" "$ROOT_FS"
+   echo "***> Adding dependency"
+   $(dirname $0)/cinit.add.dependency mount/root needs fsck/root
+else
+   echo "***> Skipping fsck for $ROOT_DEV ..."
+fi
+
+echo "***> Setting up standard mounts ..."
+$(dirname $0)/cinit.install.service.hostname.generic "$HOSTNAME"
+
+echo "***> Setting up hostname: $HOSTNAME"
+$(dirname $0)/cinit.install.service.hostname.generic "$HOSTNAME"
+
+echo "***> Setting up keymap"
+$(dirname $0)/cinit.install.service.keymap.c_keymap
+
+echo "***> Creating getties (tty1-8)"
+for i in `seq 1 8`; do
+   $(dirname $0)/cinit.add.getty
+
+   # each getty needs:
+   # - root r/w
+   $(dirname $0)/cinit.add.dependency getty/$i needs mount/root
+   # - hostname
+   $(dirname $0)/cinit.add.dependency getty/$i needs network/hostname
+done
+
+echo "***> Enabling getties (tty2-8)"
+for i in `seq 2 8`; do
+   # add getties to getty/
+   $(dirname $0)/cinit.add.dependency getty wants getty/$i
+done
+
+#
+# Convert services: check /etc/rcS.d and /etc/rcX.d
+#
+echo "***> Converting services ..."
+for script in $(cd /etc/rcS.d/; ls S*; cd /etc/rc${RUNLEVEL}.d/; ls S*); do
+   echo -n "$script: "
+   case $script in
+         # SCRIPTS READY
+         *ntpdate)
+            $(dirname $0)/cinit.install.service.ntpdate.debian
+            $(dirname $0)/cinit.add.dependency local-tuning/ntpdate needs network
+         ;;
+         *udev*)
+            $(dirname $0)/cinit.install.service.udev
+         
+         # SCRIPTS NEVER READY
+      *glibc.sh|*module-init-tools|*modutils|*procps.sh|*hotplug-net|*bootmisc.sh|*nviboot|*screen-cleanup|*x11-common|*sudo|*makedev|*rmnologin)
+         echo "Ignoring (useless)."
+         ;;
+
+         # SCRIPTS NOT YET READY
+      *mountvirtfs|*checkroot.sh|*ifupdown-clean|*checkfs.sh|*mountall.sh|*ifupdown|*hostname*|*mountnfs.sh|*alsa|*rsync|*ssh|*fam|*cron|*gdm)
+         echo "converting planned later."
+         ;;
+
+         # SCRIPTS LATER TO DO
+      *bootlogd|*keymap.sh|*hwclock*|*discover|*pppd-dns|*dns-clean|*networking|*portmap|*console-screen.sh|*urandom|*klogd|*apmd|*dbus-1|*exim4|*pcmcia|*nfs-common|*stop-bootlogd)
+         echo "unsupported currently (FIXME PLEASE)."
+         ;;
+      *sysklogd|*ppp|*inetd|*lpd|*aumix|*atd)
+         echo "unsupported (choose a better alternative)."
+         ;;
+      *initrd-tools.sh|*libdevmapper*|*hotplug)
+         echo "Ignoring (general or bloated script)."
+         ;;
+      *)
+         echo "Ignoring (unknown)"
+         ;;
+   esac
+done
+
+echo "***> Finished."

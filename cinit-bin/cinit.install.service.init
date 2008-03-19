@@ -1,0 +1,15 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install service: init
+# Date: 2005-08-07
+# 
+
+. $(dirname $0)/cinit.read-conf
+
+set -e
+
+ln -sf /bin/echo  "${DESTDIR}/${CINIT_DIR}/${C_INIT}/$C_ON"
+echo '*** cinit initial service successfully started ***' \
+   > "${DESTDIR}/${CINIT_DIR}/${C_INIT}/${C_ON}${C_PARAMS}"
+
+exit 0
