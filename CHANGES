@@ -1,3 +1,5 @@
+cinit-0.3pre15:
+   -
 cinit-0.3pre14: 2008-03-17
    - Added test-suite for cmd
    - Added support to shutdown services in cinit and cmd
