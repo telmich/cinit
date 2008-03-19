@@ -1,1 +1,4 @@
 This is an example for a cinit-conf configuration.
+
+The first line of a file contains the configuration value,
+the rest of the file may contain a description.
