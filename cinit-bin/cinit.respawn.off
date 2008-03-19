@@ -6,7 +6,7 @@
 set -e
 
 # init variables
-. $(dirname $0)/cinit.read-conf
+. $(dirname $0)/cinit-conf.read-conf
 
 if [ $# -lt 1 ]; then
    echo "`basename $0`: service-name(s)"
