@@ -1,0 +1,4 @@
+
+
+If set, cinit-conf will prepend destdir to all operations.
+Useful for configuring cinit which runs on another system.
