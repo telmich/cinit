@@ -1,11 +1,29 @@
 #!/bin/sh
-# Nico Schottelius
+# 
+# 2008      Nico Schottelius (nico-cinit-conf at schottelius.org)
+# 
+# This file is part of cinit-conf.
+#
+# cinit-conf is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# cinit-conf is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with cinit-conf. If not, see <http://www.gnu.org/licenses/>.
+#
 # cinit: create dependency: service a needs or wants service b
+#
 
-# init variables
-. $(dirname $0)/cinit.read-conf
 
-BASEDIR=$DESTDIR/$CINIT_DIR
+# initialise cinit-conf framework
+hier="${0%/*}"; set -e
+. "${hier}/cinit-conf.read-conf"
 
 if [ $# -ne 3 ]; then
    echo "`basename $0`: service_A [wants|needs] service_B"
@@ -17,23 +35,23 @@ if [ $# -ne 3 ]; then
    exit 23
 fi
 
-SVC_A=$1
-DEP=$2
-SVC_B=$3
+SVC_A="$1"
+DEP="$2"
+SVC_B="$3"
 
 # adding 'wishes' for x-mas and requires for 'the mass' and 'tv'
 case $DEP in
    wishes|wants) DEP=$C_WANTS ;;
    needs|requires) DEP=$C_NEEDS ;;
-   *) echo "Did not I say \"want\" or \"need\"? You _must_ use those terms."
+   *) echo "Use \"want\" or \"need\" as type of dependency."
 esac
 
-# FIXME: could someone PLEASE simply that?
+# FIXME: could someone PLEASE simplify that?
 SLASHES=$(echo $SVC_A | sed -e 's,/$,,' -e 's,[^/],,g' -e 's,/,../,g' -e 's,^,../../,')
 DEST_NAME=$(echo $SVC_B | sed -e 's,/$,,' -e 's,/,-,g')
 
 SOURCE="${SLASHES}${SVC_B}"
-DEP_DIR="${BASEDIR}/${SVC_A}/${DEP}"
+DEP_DIR="${CINIT_DIR}/${SVC_A}/${DEP}"
 
 if [ ! -d "$DEP_DIR" ]; then
    echo "$DEP_DIR does not exist, creating..."
