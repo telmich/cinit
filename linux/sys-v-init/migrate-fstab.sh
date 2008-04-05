@@ -18,10 +18,9 @@
 # along with cinit-conf. If not, see <http://www.gnu.org/licenses/>.
 #
 
-hier="${0%/*}"
+# read root
 
-CONFDIR="$("${hier}/cinit-conf.get-confdir")"
+# read swap
 
-DESTDIR="$(head -n1 "${CONFDIR}/destdir")"
-CINIT_DIR="${DESTDIR}/$(head -n1 "${CONFDIR}/cinit_dir")"
-
+# FIXME: read others: later
+echo "Warning: Only configuring / and swap, ignoring other devices for now"

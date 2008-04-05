@@ -22,14 +22,12 @@
 
 
 # initialise cinit-conf framework
-hier="${0%/*}"; set -e
-. "${hier}/cinit-conf.read-conf"
+hier="${0%/*}"; set -e; . "${hier}/cinit-conf.read-conf"
 
 if [ $# -ne 3 ]; then
    echo "`basename $0`: service_A [wants|needs] service_B"
    echo ""
    echo "   Service A needs or wants Service B."
-   echo "   Use relative paths, not absolute."
    echo "   You must specify whether to use wants or needs."
    echo ""
    exit 23
@@ -40,11 +38,14 @@ DEP="$2"
 SVC_B="$3"
 
 # adding 'wishes' for x-mas and requires for 'the mass' and 'tv'
-case $DEP in
+case "${DEP}" in
    wishes|wants) DEP=$C_WANTS ;;
    needs|requires) DEP=$C_NEEDS ;;
    *) echo "Use \"want\" or \"need\" as type of dependency."
 esac
+
+SVC_A_ABS=$(cd "${SVC_A}" && pwd -P)
+SVC_B_ABS=$(cd "${SVC_A}" && pwd -P)
 
 # FIXME: could someone PLEASE simplify that?
 SLASHES=$(echo $SVC_A | sed -e 's,/$,,' -e 's,[^/],,g' -e 's,/,../,g' -e 's,^,../../,')
@@ -64,6 +65,6 @@ fi
 
 DEST="${DEP_DIR}/${DEST_NAME}"
 
-echo -n "Linking $SOURCE to $DEST ... "
-ln -sf "$SOURCE" "$DEST"
+echo -n "Linking ${SOURCE} to ${DEST} ... "
+ln -sf "${SOURCE}" "${DEST}"
 echo "finished."

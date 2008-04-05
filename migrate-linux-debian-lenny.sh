@@ -18,10 +18,17 @@
 # along with cinit-conf. If not, see <http://www.gnu.org/licenses/>.
 #
 
-hier="${0%/*}"
+bd= "${0%/*}"
+export bd
 
-CONFDIR="$("${hier}/cinit-conf.get-confdir")"
+echo "Trying to configure cinit for your Debian Linux"
 
-DESTDIR="$(head -n1 "${CONFDIR}/destdir")"
-CINIT_DIR="${DESTDIR}/$(head -n1 "${CONFDIR}/cinit_dir")"
+# migrate /etc/fstab to mounts
 
+"$bd/linux/sys-v-init/migrate-fstab.sh"
+
+# migrate getties
+
+# migrate network
+
+# migrate services
