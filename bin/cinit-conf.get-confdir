@@ -25,8 +25,8 @@
 hier="${0%/*}"
 
 # try environment first
-if [ "$CINIT_CONF_DIR" ]; then
-   CONFDIR=$CINIT_CONF_DIR
+if [ "$CINIT_CONF_CONF_DIR" ]; then
+   CONFDIR=$CINIT_CONF_CONF_DIR
 elif [ -d "${hier}/../conf/" ]; then
    CONFDIR="${hier}/../conf/"
 elif [ -d "/etc/cinit-conf/" ]; then
