@@ -23,5 +23,8 @@ hier="${0%/*}"
 CONFDIR="$("${hier}/cinit-conf.get-confdir")"
 
 DESTDIR="$(head -n1 "${CONFDIR}/destdir")"
-CINIT_DIR="${DESTDIR}/$(head -n1 "${CONFDIR}/cinit_dir")"
+CINITDIR="${DESTDIR}/$(head -n1 "${CONFDIR}/cinitdir")"
+CINITCONFDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/confdir")"
+SVCDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/svcdir")"
+GETTYDIR="${SVCDIR}/$(head -n1 "${CONFDIR}/gettydir")"
 
