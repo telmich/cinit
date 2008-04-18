@@ -28,3 +28,10 @@ CINITCONFDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/confdir")"
 SVCDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/svcdir")"
 GETTYDIR="${SVCDIR}/$(head -n1 "${CONFDIR}/gettydir")"
 
+
+INSTALL_PROG="$(head -n1 "${CONFDIR}/install_prog")"
+INSTALL_DIRECTORY="$(head -n1 "${CONFDIR}/install_prog_dir")"
+
+C_ON="$(head -n1 "${CONFDIR}/con")"
+C_PARAMS="$(head -n1 "${CONFDIR}/cparams")"
+C_RESPAWN="$(head -n1 "${CONFDIR}/crespawn")"

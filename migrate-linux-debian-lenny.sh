@@ -18,7 +18,7 @@
 # along with cinit-conf. If not, see <http://www.gnu.org/licenses/>.
 #
 
-bd= "${0%/*}"
+bd="${0%/*}"
 export bd
 
 echo "Trying to configure cinit for your Debian Linux"
@@ -27,7 +27,7 @@ echo "Trying to configure cinit for your Debian Linux"
 
 "$bd/linux/sys-v-init/migrate-fstab.sh"
 
-# migrate getties
+# migrate / create 6 getties
 
 # migrate network
 
