@@ -10,7 +10,7 @@ set -e
 . "$(dirname $0)/cinit-conf.read-conf"
 
 BASEDIR=$GETTYDIR
-LAST_NUMBER=$(cd $BASEDIR && ls | awk '/^((0[xX])[0-9a-fA-F]+)|([0-9]+)$/ { print }' | sort -n | tail -n 1)
+LAST_NUMBER=$(cd "$BASEDIR" && ls | awk '/^((0[xX])[0-9a-fA-F]+)|([0-9]+)$/ { print }' | sort -n | tail -n 1)
 
 [ ! "$LAST_NUMBER" ] && LAST_NUMBER=0
 
