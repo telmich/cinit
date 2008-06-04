@@ -28,4 +28,13 @@
 #define SIG_CINIT_POWEROFF    SIGTERM
 #define SIG_CINIT_REBOOT      SIGHUP
 
+enum {
+   SIGSTAGE_REBOOT,
+   SIGSTAGE_DAEMON,
+   SIGSTAGE_CLIENT
+};
+
+/* signals to stage mapping */
+struct sign
+
 #endif
