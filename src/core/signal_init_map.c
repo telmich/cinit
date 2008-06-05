@@ -25,7 +25,7 @@
 #include <signal.h>
 #include "signals.h"
 
-void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END], int cinit_signals[SIGCINIT_END];)
+void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END], int cinit_signals[SIGCINIT_END])
 {
    /* First map signals to index */
    cinit_signals[SIGCINIT_HALT]     = SIGUSR1;
@@ -34,10 +34,12 @@ void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END], int
    cinit_signals[SIGCINIT_CHILD]    = SIGCHILD;
 
    /* Then add the actions for daemon */
-   sigstages[SIGSTAGE_DAEMON][SIGCINIT_HALT].sa_handler  = do_reboot;
+   sigstages[SIGSTAGE_DAEMON][SIGCINIT_HALT].sa_handler     = do_reboot;
+   sigstages[SIGSTAGE_DAEMON][SIGCINIT_POWEROFF].sa_handler = do_reboot;
+   sigstages[SIGSTAGE_DAEMON][SIGCINIT_REBOOT].sa_handler   = do_reboot;
 
-   sigstages[SIGSTAGE_DAEMON][SIGCINIT_CHILD].sa_handler  = sig_child;
-   sigstages[SIGSTAGE_DAEMON][SIGCINIT_CHILD].sa_flags    = SA_NOCLDSTOP;
+   sigstages[SIGSTAGE_DAEMON][SIGCINIT_CHILD].sa_handler    = sig_child;
+   sigstages[SIGSTAGE_DAEMON][SIGCINIT_CHILD].sa_flags      = SA_NOCLDSTOP;
 
    /* Then add the actions for client (=fork> */
    sigstages[SIGSTAGE_CLIENT][SIGCINIT_HALT].sa_handler     = SIG_DFL;

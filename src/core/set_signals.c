@@ -47,7 +47,7 @@ void set_signals(int stage)
 //      sa.sa_handler  =  SIG_DFL;
 //   }
 
-   sigaction(SIGCHLD,&sa,NULL);     /* what todo when a child exited    */
+//   sigaction(SIGCHLD,&sa,NULL);     /* what todo when a child exited    */
 
    sa.sa_flags = 0;                 /* reset flags */
    if(action == ACT_SERV) {

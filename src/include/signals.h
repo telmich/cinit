@@ -50,11 +50,12 @@ struct cinit_signal_map {
    struct sigaction sigstages;
 };
 
-extern struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END];
 
-void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END]);
+void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END], int cinit_signals[SIGCINIT_END]);
 void  set_signals(int stage);
 
-int cinit_signals[SIGCINIT_END]; /* maps signal codes to index */
+/* global vars */
+extern int cinit_signals[SIGCINIT_END]; /* maps signal codes to index */
+extern struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END];
 
 #endif

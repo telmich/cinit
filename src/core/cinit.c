@@ -38,7 +38,10 @@
 struct listitem   *svc_list   = NULL;
 struct dep        *svc_init   = NULL;
 int    svc_lock               = 0;    /* global svc-lock */
+
 struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END];
+int    cinit_global_signals[SIGCINIT_END];
+
 
 int main(int argc, char **argv)
 {
@@ -83,7 +86,7 @@ int main(int argc, char **argv)
       panic();
    }
 
-   signal_init_map(sigstages);
+   signal_init_map(sigstages, cinit_global_signals);
    /* listen to signals */
    set_signals(SIGSTAGE_DAEMON);
 
