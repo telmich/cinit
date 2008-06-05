@@ -2,6 +2,7 @@ core/build_argv.o
 core/cinit.o
 core/panic.o
 core/set_signals.o
+core/signal_init_map.o
 core/do_reboot.o
 core/sig_child.o
 generic/execute_sth.o
