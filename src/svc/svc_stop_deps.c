@@ -34,6 +34,9 @@ void svc_stop_deps(struct listitem *li, int how)
 {
    struct dep *tmp;
 
+   /* don't continue if already being stopped */
+   if(li->status & CINIT_ST_STOPPING) return;
+
    /* shutdown depending services first: needed_by */
    tmp = li->needed_by;
    do {
