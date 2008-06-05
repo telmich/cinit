@@ -35,6 +35,7 @@
 #include "svc-intern.h"          /* shutdown_services */
 #include "messages.h"            /* messages          */
 #include "reboot.h"              /* cinit_poweroff&co */
+#include "signals.h"             /* signal handling   */
 
 /* cleaned headers */
 #include <signal.h>              /* kill()            */
@@ -69,7 +70,7 @@ void do_reboot(int signal)
    /* and tell the user what happens */
    LOG(MSG_SHUTDOWN_START);
    cinit_ipc_destroy();
-   set_signals(ACT_CLIENT);               /* reset signal handlers */
+   set_signals(SIGSTAGE_REBOOT);
 
    /* shutdown all services: take care about the dependency tree */
    LOG(MSG_SHUTDOWN_SVC);

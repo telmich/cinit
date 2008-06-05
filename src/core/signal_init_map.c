@@ -54,5 +54,4 @@ void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END], int
    sigstages[SIGSTAGE_REBOOT][SIGCINIT_POWEROFF].sa_handler = SIG_IGN;
    sigstages[SIGSTAGE_REBOOT][SIGCINIT_REBOOT].sa_handler   = SIG_IGN;
    sigstages[SIGSTAGE_REBOOT][SIGCINIT_CHILD].sa_handler    = SIG_IGN;
-
 }
