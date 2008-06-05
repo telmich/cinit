@@ -30,7 +30,8 @@ os/current/poweroff.o
 os/current/reboot.o
 svc/gen_svc_tree.o
 svc/gen_halt_tree.o
-svc/list_delete.o
+svc/list_delete_byname.o
+svc/list_delete_bypointer.o
 svc/list_insert.o
 svc/list_search.o
 svc/list_search_pid.o
