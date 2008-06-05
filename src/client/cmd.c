@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,21 +23,21 @@
  *
  */
 
-#include <unistd.h>        /* getopt            */
-#include <signal.h>        /* signals           */
-#include <stdio.h>         /* printf()          */
-#include <stdlib.h>        /* free()            */
-#include <string.h>        /* strncmp           */
+#include <unistd.h>             /* getopt */
+#include <signal.h>             /* signals */
+#include <stdio.h>              /* printf() */
+#include <stdlib.h>             /* free() */
+#include <string.h>             /* strncmp */
 
-#include <stdint.h>        /* integers          */
-#include <limits.h>        /* PATH_MAX          */
+#include <stdint.h>             /* integers */
+#include <limits.h>             /* PATH_MAX */
 
-#include "cmd.h"           /* own header        */
-#include "signals.h"       /* which signal      */
-#include "svc.h"           /* service related   */
-#include "intern.h"        /* print_errno()     */
+#include "cmd.h"                /* own header */
+#include "signals.h"            /* which signal */
+#include "svc.h"                /* service related */
+#include "intern.h"             /* print_errno() */
 
-#include "cinit.h"         /* cinit external    */
+#include "cinit.h"              /* cinit external */
 
 #define C_USAGE(error) usage(USAGE_TEXT,error)
 #define MSG_IPC_ERROR      "An IPC error occured while connecting to cinit. " \
@@ -57,17 +58,16 @@ enum {
  */
 int main(int argc, char **argv)
 {
-   char     buf[CINIT_DATA_LEN];
-   char     *flag = NULL;
-   int      opt;
-   int      what = NOTHING;
+   char buf[CINIT_DATA_LEN];
+   char *flag = NULL;
+   int opt;
+   int what = NOTHING;
    uint32_t ret;
 
    union {
-      uint32_t  status;
-      pid_t    pid;
+      uint32_t status;
+      pid_t pid;
    } u;
-
 
    /*
     * -d w(ants)  excluded)
@@ -83,84 +83,97 @@ int main(int argc, char **argv)
  * h|v|V: print and exit
  */
    while((opt = getopt(argc, argv, CMD_OPTIONS)) != -1) {
-      switch(opt) {
-         /********************************************/
-         /* Non-Continuing parameters */
-         /********************************************/
-         case 'h':   /* help */
-            printf(CMD_USAGE);
-            return 0;
-         break;
+      switch (opt) {
 
          /********************************************/
-         case 'v':   /* get version of cinit */
+            /*
+             * Non-Continuing parameters 
+             */
+
+         /********************************************/
+         case 'h':             /* help */
+            printf(CMD_USAGE);
+            return 0;
+            break;
+
+         /********************************************/
+         case 'v':             /* get version of cinit */
             ret = cinit_get_version(buf);
-            switch(ret) {
+            switch (ret) {
                case CINIT_ASW_OK:
                   printf("Version of cinit: %s\n", buf);
                   return 0;
-               break;
+                  break;
                case CINIT_ASW_IPC_ERROR:
                   fprintf(stderr, MSG_IPC_ERROR);
                   what = 2;
-               break;
+                  break;
 
-               default: /* should not happen */
+               default:        /* should not happen */
                   printf(MSG_UNKNOWN_RET, ret);
                   what = 3;
-               break;
+                  break;
             }
             return what;
-         break;
+            break;
 
          /********************************************/
-         case 'V':   /* version */
+         case 'V':             /* version */
             printf("Version of cmd: %s\n", CMD_VERSION);
             return 0;
-         break;
+            break;
 
          /********************************************/
-         /* Continuing parameters */
+            /*
+             * Continuing parameters 
+             */
+
          /********************************************/
-         case 'e':   /* enable service */
+         case 'e':             /* enable service */
             what = ENABLE;
             flag = optarg;
-         break;
+            break;
 
-         case 'd':   /* disable service */
+         case 'd':             /* disable service */
             what = DISABLE;
             flag = optarg;
-         break;
+            break;
 
          /********************************************/
-         case 'p':   /* get pid */
+         case 'p':             /* get pid */
             what = PID;
-         break;
+            break;
 
          /********************************************/
-         case 's':   /* get status */
+         case 's':             /* get status */
             what = STATUS;
-         break;
+            break;
+
          /********************************************/
 
          default:
-            fprintf(stderr,"Sorry, I did not understand what you want. Try -h, please.\n");
+            fprintf(stderr,
+                    "Sorry, I did not understand what you want. Try -h, please.\n");
             return 1;
-         break;
+            break;
       }
    }
 
    if(what == NOTHING) {
-      fprintf(stderr, "That is not much you request from me. Try -h for help.\n");
+      fprintf(stderr,
+              "That is not much you request from me. Try -h for help.\n");
       return 1;
    }
-   
-   if(!path_absolute(argv[optind], buf, CINIT_DATA_LEN)) return 1;
 
-   switch(what) {
+   if(!path_absolute(argv[optind], buf, CINIT_DATA_LEN))
+      return 1;
+
+   switch (what) {
       case ENABLE:
       case DISABLE:
-         /* fill flag */
+         /*
+          * fill flag 
+          */
          u.status |= cinit_flag_to_uint32_t(flag);
 
          if(!(u.status = cinit_svc_disable(buf, u.status))) {
@@ -168,62 +181,61 @@ int main(int argc, char **argv)
             return 2;
          }
 
-   /*      if(!cinit_svc_enable(buf, flag)) {
-            fprintf(stderr, MSG_IPC_ERROR);
-            return 2;
-         }
-         */
-      break;
+         /*
+          * if(!cinit_svc_enable(buf, flag)) { fprintf(stderr, MSG_IPC_ERROR);
+          * return 2; } 
+          */
+         break;
 
       case PID:
          ret = cinit_svc_get_pid(buf, &(u.pid));
-         switch(ret) {
+         switch (ret) {
             case CINIT_ASW_OK:
-               printf("PID of %s: %d\n",buf, u.pid);
+               printf("PID of %s: %d\n", buf, u.pid);
                what = 0;
-            break;
+               break;
 
             case CINIT_ASW_SVC_UNKNOWN:
                printf(MSG_UNKNOWN_SVC, buf);
                what = 1;
-            break;
+               break;
 
             case CINIT_ASW_IPC_ERROR:
                fprintf(stderr, MSG_IPC_ERROR);
                what = 2;
-            break;
+               break;
 
-            default: /* should not happen */
+            default:           /* should not happen */
                printf(MSG_UNKNOWN_RET, ret);
                what = 3;
-            break;
+               break;
          }
-      break;
-   
+         break;
+
       case STATUS:
          ret = cinit_get_svc_status(buf, &(u.status));
-         switch(ret) {
+         switch (ret) {
             case CINIT_ASW_OK:
                printf("Status of %s is: %d\n", buf, u.status);
                what = 0;
-            break;
+               break;
 
             case CINIT_ASW_SVC_UNKNOWN:
                printf("Unknown service: %s\n", buf);
                what = 1;
-            break;
+               break;
 
             case CINIT_ASW_IPC_ERROR:
                fprintf(stderr, MSG_IPC_ERROR);
                what = 2;
-            break;
+               break;
 
-            default: /* should not happen */
+            default:           /* should not happen */
                printf(MSG_UNKNOWN_RET, ret);
                what = 3;
-            break;
+               break;
          }
-      break;
+         break;
    }
 
    return what;

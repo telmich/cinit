@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2005      Marcus Przyklink (downhill-clinux (at) burningchaos.org)
@@ -22,9 +23,9 @@
  *    List handling
  */
 
-#include <stdlib.h>     /* free        */
-#include "intern.h"     /* list_search */
-#include "svc-intern.h" /* listitem    */
+#include <stdlib.h>             /* free */
+#include "intern.h"             /* list_search */
+#include "svc-intern.h"         /* listitem */
 
 /* ... */
 int list_delete_byname(char *path)

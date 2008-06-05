@@ -1,3 +1,4 @@
+
 /* 
  * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
  * write result of action
@@ -13,21 +14,22 @@
 /* one handler for read and write! */
 char do_result(int nsock, char *value)
 {
-   ssize_t (*fpoint)(int,void* ,size_t);
+   ssize_t(*fpoint) (int, void *, size_t);
    char buf;
 
-   if(value == NULL) {  /* client */
+   if(value == NULL) {          /* client */
       value = &buf;
       fpoint = read;
    } else {
-      fpoint = ( ssize_t (*)(int, void*, size_t) ) write;
+      fpoint = (ssize_t(*)(int, void *, size_t)) write;
    }
 
-   if(fpoint(nsock,value,1) == -1) {  /* result */
+   if(fpoint(nsock, value, 1) == -1) {  /* result */
       perror(MSG_ERR_IO);
       return RT_ERR_COMM;
    }
 
    return *value;
 }
+
 /* returns cinit-0.2-style return codes */

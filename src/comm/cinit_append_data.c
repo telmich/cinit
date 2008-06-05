@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2008      Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,8 +23,8 @@
  *
  */
 
-#include <string.h>     /* strncpy                    */
-#include "cinit.h"      /* CINIT_DATA_LEN             */
+#include <string.h>             /* strncpy */
+#include "cinit.h"              /* CINIT_DATA_LEN */
 
 void cinit_append_data(char data[], char *src)
 {

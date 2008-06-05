@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2008     Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,8 +23,8 @@
  *
  */
 
-#include "svc-intern.h" /* list_search                */
-#include "cinit.h"      /* structure: cinit_answer    */
+#include "svc-intern.h"         /* list_search */
+#include "cinit.h"              /* structure: cinit_answer */
 
 int answer_svc_disable(char *svc, struct cinit_answer *asr)
 {
@@ -31,7 +32,7 @@ int answer_svc_disable(char *svc, struct cinit_answer *asr)
 
    tmp = list_search(svc);
    if(!tmp) {
-      asr->ret  = CINIT_ASW_SVC_UNKNOWN;
+      asr->ret = CINIT_ASW_SVC_UNKNOWN;
    } else {
       asr->ret = svc_disable(tmp);
       asr->opt = 0;

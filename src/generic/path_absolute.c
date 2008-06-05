@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2006-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,16 +23,16 @@
  *
  */
 
-#include <unistd.h>                 /* chdir(),getcwd       */
-#include <limits.h>                 /* PATH_MAX             */
-#include "intern.h"                 /* print_errno          */
-#include "messages.h"               /* messages             */
+#include <unistd.h>             /* chdir(),getcwd */
+#include <limits.h>             /* PATH_MAX */
+#include "intern.h"             /* print_errno */
+#include "messages.h"           /* messages */
 
 int path_absolute(char *relpath, char *newpath, size_t size)
 {
-   char oldpath[PATH_MAX+1];
+   char oldpath[PATH_MAX + 1];
 
-   if(!getcwd(oldpath,PATH_MAX+1)) {
+   if(!getcwd(oldpath, PATH_MAX + 1)) {
       print_errno(MSG_GETCWD);
       return 0;
    }

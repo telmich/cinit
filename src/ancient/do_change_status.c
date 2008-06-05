@@ -1,3 +1,4 @@
+
 /* 
  * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
  * change status of a service
@@ -28,43 +29,44 @@
  *    action = ACT_READ
  *    return: read service lenght
  */
- 
-int do_change_status(char *svc, char *status, pid_t *pid, int sock2, int action)
+
+int do_change_status(char *svc, char *status, pid_t * pid, int sock2,
+                     int action)
 {
    int tmp;
-   ssize_t (*fpoint)(int,void* ,size_t);
 
+   ssize_t(*fpoint) (int, void *, size_t);
 
    if(action == ACT_SERV) {
       fpoint = read;
-   } else  {
-      fpoint = ( ssize_t (*)(int, void*, size_t) ) write;
+   } else {
+      fpoint = (ssize_t(*)(int, void *, size_t)) write;
       tmp = strlen(svc);
    }
-   
-   if(fpoint(sock2,&tmp,sizeof(tmp)) == -1) {  /* length */
+
+   if(fpoint(sock2, &tmp, sizeof(tmp)) == -1) { /* length */
       perror(MSG_ERR_IO);
-      return 0;                 
+      return 0;
    }
 
    if(tmp > PATH_MAX) {
       return 0;
    }
 
-   if(fpoint(sock2,svc,tmp) == -1) {           /* write service name */
-      perror(MSG_ERR_IO);
-      return 0;                 
-   }
-
-   if(fpoint(sock2,status,sizeof(*status)) == -1) {   /* status */
-      perror(MSG_ERR_IO);
-      return 0;                 
-   }
-
-   if(fpoint(sock2,pid,sizeof(*pid)) == -1) {            /* PID */
+   if(fpoint(sock2, svc, tmp) == -1) {  /* write service name */
       perror(MSG_ERR_IO);
       return 0;
    }
-   
+
+   if(fpoint(sock2, status, sizeof(*status)) == -1) {   /* status */
+      perror(MSG_ERR_IO);
+      return 0;
+   }
+
+   if(fpoint(sock2, pid, sizeof(*pid)) == -1) { /* PID */
+      perror(MSG_ERR_IO);
+      return 0;
+   }
+
    return tmp;
 }

@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2008      Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,17 +23,17 @@
  *
  */
 
-#include ""       /* include global header */
+#include ""                     /* include global header */
 int cinit_halt(int how)
 {
-   switch(how) {
-      case 'p':   /* power off */
-      break;
+   switch (how) {
+      case 'p':                /* power off */
+         break;
 
       default:
          break;
-      }
    }
+}
 
-   return 1;
+return 1;
 }

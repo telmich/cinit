@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -31,21 +32,19 @@
  *    - mark service as off or delete it?
  */
 
+#include <stdio.h>              /* NULL */
+#include <unistd.h>             /* fork */
+#include <string.h>             /* strerror */
+#include <errno.h>              /* errno */
+#include <limits.h>             /* PATH_MAX */
+#include <sys/wait.h>           /* waitpid */
 
-#include <stdio.h>         /* NULL              */
-#include <unistd.h>        /* fork              */
-#include <string.h>        /* strerror          */
-#include <errno.h>         /* errno             */
-#include <limits.h>        /* PATH_MAX          */
-#include <sys/wait.h>      /* waitpid           */
-
-#include "svc.h"           /* struct *          */
-#include "svc-intern.h"    /* struct *          */
-#include "messages.h"      /* MSG_*             */
-#include "intern.h"        /* execute_sth       */
-#include "cinit.h"         /* CINIT_DATA_LEN    */
-#include "signals.h"       /* signal handling   */
-
+#include "svc.h"                /* struct * */
+#include "svc-intern.h"         /* struct * */
+#include "messages.h"           /* MSG_* */
+#include "intern.h"             /* execute_sth */
+#include "cinit.h"              /* CINIT_DATA_LEN */
+#include "signals.h"            /* signal handling */
 
 void svc_stop(struct listitem *li)
 {
@@ -62,18 +61,23 @@ void svc_stop(struct listitem *li)
       svc_set_status(li, CINIT_ST_BAD_ERR);
       return;
    }
-   
+
    /********************** Parent / fork() ************************/
-   /* FIXME: 0.3pre15: look at the status / return value */
+   /*
+    * FIXME: 0.3pre15: look at the status / return value 
+    */
    waitpid(li->pid, &status, 0);
 
    /********************** Client / fork() ************************/
    svc_report_status(li->abs_path, MSG_SVC_STOP, NULL);
 
    cinit_cp_data(buf, li->abs_path);
-   if(!path_append(buf, C_OFF))  _exit(1);
+   if(!path_append(buf, C_OFF))
+      _exit(1);
 
-   /* Check for existence */
+   /*
+    * Check for existence 
+    */
    li->status = file_exists(buf);
 
    if(li->status == FE_NOT) {
@@ -81,14 +85,22 @@ void svc_stop(struct listitem *li)
    }
 
    if(li->status == FE_FILE) {
-      /* FIXME: reset signals: Is this necessary? Or does fork clean it anyway? */
+      /*
+       * FIXME: reset signals: Is this necessary? Or does fork clean it anyway? 
+       */
       set_signals(SIGSTAGE_CLIENT);
 
-      /* and now, fire it up */
+      /*
+       * and now, fire it up 
+       */
       execute_sth(buf);
    } else {
-      /* FIXME: report? */
-      /* either no file or an error */
+      /*
+       * FIXME: report? 
+       */
+      /*
+       * either no file or an error 
+       */
       _exit(1);
    }
 }

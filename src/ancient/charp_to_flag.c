@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2008      Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,18 +23,20 @@
  *
  */
 
-#include <string.h>     /* strchr      */
-#include <stdio.h>      /* NULL        */
+#include <string.h>             /* strchr */
+#include <stdio.h>              /* NULL */
 
-#include "cinit.h"      /* cinit       */
+#include "cinit.h"              /* cinit */
 
 uint32_t charp_to_flag(char *str)
 {
    uint32_t ret = 0;
 
    if(str != NULL) {
-      if(strchr(str, CINIT_CMD_SVC_WANTS) != NULL) ret |= CINIT_QSN_SVC_WANTS;
-      if(strchr(str, CINIT_CMD_SVC_NEEDS) != NULL) ret |= CINIT_QSN_SVC_NEEDS;
+      if(strchr(str, CINIT_CMD_SVC_WANTS) != NULL)
+         ret |= CINIT_QSN_SVC_WANTS;
+      if(strchr(str, CINIT_CMD_SVC_NEEDS) != NULL)
+         ret |= CINIT_QSN_SVC_NEEDS;
    }
 
    return ret;

@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,8 +23,8 @@
  *
  */
 
-#include "svc-intern.h" /* VERSION                    */
-#include "cinit.h"      /* structure: cinit_answer    */
+#include "svc-intern.h"         /* VERSION */
+#include "cinit.h"              /* structure: cinit_answer */
 
 int answer_svc_pid(char *svc, struct cinit_answer *asr)
 {

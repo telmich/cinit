@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,16 +23,15 @@
  *
  */
 
+#include <stdio.h>              /* NULL */
+#include <string.h>             /* strchr */
+#include <stdint.h>             /* integers */
 
-#include <stdio.h>      /* NULL                 */
-#include <string.h>     /* strchr               */
-#include <stdint.h>     /* integers             */
-
-#include "cinit.h"      /* constants            */
+#include "cinit.h"              /* constants */
 
 uint32_t cinit_flag_to_uint32_t(char *flag)
 {
-   uint32_t ret = 0; /* no flags */
+   uint32_t ret = 0;            /* no flags */
 
    if(flag != NULL) {
       if(strchr(flag, CINIT_CMD_SVC_NEEDS)) {

@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2006-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,8 +23,8 @@
  *    version of 'tree_exec()'
  */
 
-#include "svc-intern.h"    /* struct      */
-#include "svc.h"           /* defines     */
+#include "svc-intern.h"         /* struct */
+#include "svc.h"                /* defines */
 
 void shutdown_services(struct listitem *svc)
 {

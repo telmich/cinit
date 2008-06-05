@@ -14,34 +14,40 @@ int main()
 
    a = 1001;
    b = strlen(c);
-   c2 = malloc(b+1);
-   if(!c2) return 40;
+   c2 = malloc(b + 1);
+   if(!c2)
+      return 40;
 
    e = sizeof(a) + sizeof(b) + b;
 
-   printf("e=%d (b=%d)\n",e,b);
+   printf("e=%d (b=%d)\n", e, b);
 
    data = malloc(e);
-   if(!data) return 20;
+   if(!data)
+      return 20;
 
-   /* in */
-   strcpy(data,(char *) &a);
+   /*
+    * in 
+    */
+   strcpy(data, (char *) &a);
    e = sizeof(a);
-   strcpy(&data[e],(char *) &b);
+   strcpy(&data[e], (char *) &b);
    e += sizeof(b);
-   strcpy(&data[e],c);
+   strcpy(&data[e], c);
 
-   /* out */
-   strncpy((char *) &a2,data,sizeof(a2));
-   printf("a2=%d\n",a2);
+   /*
+    * out 
+    */
+   strncpy((char *) &a2, data, sizeof(a2));
+   printf("a2=%d\n", a2);
    e = sizeof(a2);
 
-   strncpy((char *) &b2,&data[e],sizeof(b2));
-   printf("b2=%d\n",b2);
+   strncpy((char *) &b2, &data[e], sizeof(b2));
+   printf("b2=%d\n", b2);
    e += sizeof(b2);
 
-   strncpy(c2,&data[e],b2);
-   printf("c2=%s\n",c2);
+   strncpy(c2, &data[e], b2);
+   printf("c2=%s\n", c2);
 
    return 0;
 }

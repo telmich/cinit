@@ -1,3 +1,4 @@
+
 /* 
  * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
  * try to start a service
@@ -21,18 +22,23 @@
 int do_svc_name(int sock2, char *svc, int action)
 {
    int tmp;
-   ssize_t (*fpoint)(int,void* ,size_t);
-   
-   /* set pointers */
+
+   ssize_t(*fpoint) (int, void *, size_t);
+
+   /*
+    * set pointers 
+    */
    if(action == ACT_CLIENT) {
-      fpoint = ( ssize_t (*)(int, void*, size_t) ) write;
+      fpoint = (ssize_t(*)(int, void *, size_t)) write;
       tmp = strlen(svc);
    } else {
       fpoint = read;
    }
 
-   /* read / write lenght */
-   if( fpoint(sock2,&tmp,sizeof(tmp)) == -1) {
+   /*
+    * read / write lenght 
+    */
+   if(fpoint(sock2, &tmp, sizeof(tmp)) == -1) {
       perror(MSG_ERR_IO);
       return 0;
    }
@@ -41,8 +47,10 @@ int do_svc_name(int sock2, char *svc, int action)
       return 0;
    }
 
-   /* write/read service name */
-   if( fpoint(sock2,svc,tmp) == -1) {
+   /*
+    * write/read service name 
+    */
+   if(fpoint(sock2, svc, tmp) == -1) {
       perror(MSG_ERR_IO);
       return 0;
    }

@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2005      Marcus Przyklink (downhill-clinux (at) burningchaos.org)
@@ -29,8 +30,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cinit.h"
-#include "comm.h"    /* for ST_OFF */
-#include "svc.h"    /* for ST_OFF */
+#include "comm.h"               /* for ST_OFF */
+#include "svc.h"                /* for ST_OFF */
 
 /* change pid and status of a process */
 int list_modify(char *path, int new_status, pid_t new_pid)
@@ -42,12 +43,14 @@ int list_modify(char *path, int new_status, pid_t new_pid)
       return 0;
    }
 
-   /* delete objects, which are killed */
+   /*
+    * delete objects, which are killed 
+    */
    if(new_status == ST_OFF) {
       return list_delete(path);
    } else {
       tmp->status = new_status;
-      tmp->pid    = new_pid;
+      tmp->pid = new_pid;
    }
 
    return 1;

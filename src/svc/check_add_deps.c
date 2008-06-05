@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -33,36 +34,41 @@
 #include <stdio.h>
 #include <errno.h>
 
+#include <limits.h>             /* PATH_MAX */
+#include <stdlib.h>             /* malloc */
+#include <string.h>             /* strcpy */
 
-#include <limits.h>        /* PATH_MAX          */
-#include <stdlib.h>        /* malloc            */
-#include <string.h>        /* strcpy            */
-
-#include "intern.h"        /* mini_printf       */
+#include "intern.h"             /* mini_printf */
 #include "messages.h"
 #include "svc-intern.h"
 
 int check_add_deps(struct listitem *svc, int type)
 {
-   char              buf[PATH_MAX+1];
-   char              oldpath[PATH_MAX+1];
-   struct dirent     *tdirent;
-   struct dep        *deps = NULL;
-   struct listitem   *new_svc;
-   DIR               *d_tmp;
+   char buf[PATH_MAX + 1];
+   char oldpath[PATH_MAX + 1];
+   struct dirent *tdirent;
+   struct dep *deps = NULL;
+   struct listitem *new_svc;
+   DIR *d_tmp;
 
-   /* remember where we started */
-   if(!getcwd(oldpath, PATH_MAX+1)) {
+   /*
+    * remember where we started 
+    */
+   if(!getcwd(oldpath, PATH_MAX + 1)) {
       print_errno(MSG_GETCWD);
       return 0;
    }
 
-   /* Create path */
-   strcpy(buf,svc->abs_path);
+   /*
+    * Create path 
+    */
+   strcpy(buf, svc->abs_path);
    if(type == DEP_NEEDS) {
-      if(!path_append(buf, C_NEEDS)) return 0;
+      if(!path_append(buf, C_NEEDS))
+         return 0;
    } else {
-      if(!path_append(buf, C_WANTS)) return 0;
+      if(!path_append(buf, C_WANTS))
+         return 0;
    }
 
    d_tmp = opendir(buf);
@@ -71,59 +77,70 @@ int check_add_deps(struct listitem *svc, int type)
          print_errno(buf);
          return 0;
       }
-      return 1;   /* it's fine when there's no dependencies  */
+      return 1;                 /* it's fine when there's no dependencies */
    }
 
-   if(chdir(buf) == -1) { /* change to needs or wants */
+   if(chdir(buf) == -1) {       /* change to needs or wants */
       print_errno(buf);
       return 0;
    }
 
    while((tdirent = readdir(d_tmp)) != NULL) {
-      if(*(tdirent->d_name) == '.') continue; /* ignore .* */
+      if(*(tdirent->d_name) == '.')
+         continue;              /* ignore .* */
 
-      /* skip non-working directories / broken links
-       * path_absolute reports errors on failure */
-      if(!path_absolute(tdirent->d_name, buf, PATH_MAX+1)) continue;
-
-      /* 1. create the service we depend on
-       * 2. initialize its dependencies
+      /*
+       * skip non-working directories / broken links path_absolute reports
+       * errors on failure 
        */
-      if(!(new_svc = gen_svc_tree(buf))) return 0;
+      if(!path_absolute(tdirent->d_name, buf, PATH_MAX + 1))
+         continue;
 
-      /* We need ALL dependencies, as we are called only once
-       * per service; no need to test that first!
-       *
-       * And the other service CANNOT know anything about us yet,
-       * so we always add us to its list.
+      /*
+       * 1. create the service we depend on 2. initialize its dependencies 
        */
+      if(!(new_svc = gen_svc_tree(buf)))
+         return 0;
 
-      /* Dependencies:
-       * - a.needs b; add b to the list of dependencies.
-       * - a.needs b; add a to the list of needed by b.
-       *
-       * 1. check whether the dependency already exists
-       * 2. otherwise add it
-       * 3. do it once for needs, once for needed_by
+      /*
+       * We need ALL dependencies, as we are called only once per service; no
+       * need to test that first! And the other service CANNOT know anything
+       * about us yet, so we always add us to its list. 
        */
 
-      /* create a dependency entry containing us */
-      deps  = dep_create(svc);
-      if(!deps) return 0;
+      /*
+       * Dependencies: - a.needs b; add b to the list of dependencies. -
+       * a.needs b; add a to the list of needed by b. 1. check whether the
+       * dependency already exists 2. otherwise add it 3. do it once for needs, 
+       * once for needed_by 
+       */
+
+      /*
+       * create a dependency entry containing us 
+       */
+      deps = dep_create(svc);
+      if(!deps)
+         return 0;
 
       if(type == DEP_NEEDS) {
          dep_entry_add(&(new_svc->needed_by), deps);
 
-         /* second link */
-         deps  = dep_create(new_svc);
-         if(!deps) return 0;
+         /*
+          * second link 
+          */
+         deps = dep_create(new_svc);
+         if(!deps)
+            return 0;
          dep_entry_add(&(svc->needs), deps);
       } else {
          dep_entry_add(&(new_svc->wanted_by), deps);
 
-         /* second link */
-         deps  = dep_create(new_svc);
-         if(!deps) return 0;
+         /*
+          * second link 
+          */
+         deps = dep_create(new_svc);
+         if(!deps)
+            return 0;
          dep_entry_add(&(svc->wants), deps);
       }
    }

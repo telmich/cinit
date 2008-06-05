@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -21,15 +22,16 @@
  *    Retrieves version of cinit
  */
 
-#include "cinit.h"      /* header for clients   */
+#include "cinit.h"              /* header for clients */
 
 uint32_t cinit_get_version(char *buf)
 {
    struct cinit_question qsn;
-   struct cinit_answer   asr;
+   struct cinit_answer asr;
 
    cinit_prepare_comm(&qsn, &asr, CINIT_QSN_GET_VERSION);
-   if(!cinit_send_to(&qsn, &asr)) return CINIT_ASW_IPC_ERROR;
+   if(!cinit_send_to(&qsn, &asr))
+      return CINIT_ASW_IPC_ERROR;
    cinit_cp_data(buf, asr.data);
 
    return asr.ret;

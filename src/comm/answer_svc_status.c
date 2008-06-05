@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,9 +23,9 @@
  *
  */
 
-#include <string.h>     /* strncpy                    */
-#include "svc-intern.h" /* VERSION                    */
-#include "cinit.h"      /* structure: cinit_answer    */
+#include <string.h>             /* strncpy */
+#include "svc-intern.h"         /* VERSION */
+#include "cinit.h"              /* structure: cinit_answer */
 
 int answer_svc_status(char *svc, struct cinit_answer *asr)
 {

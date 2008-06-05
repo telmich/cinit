@@ -22,33 +22,33 @@ int main()
    int pfd[2];
    int tmp;
 
-   strcpy(cmd.buf,"/which/service/to/disable");
+   strcpy(cmd.buf, "/which/service/to/disable");
    cmd.cmd = 42;
 
-   if(pipe(pfd) == -1) return 1;
+   if(pipe(pfd) == -1)
+      return 1;
    nocmd.cmd = 42;
-   nocmd.buf = malloc(strlen(PATH)+1);
-   strcpy(nocmd.buf,PATH);
-
+   nocmd.buf = malloc(strlen(PATH) + 1);
+   strcpy(nocmd.buf, PATH);
 
    if(fork() > 1) {
-      tmp = write(pfd[1],&cmd,sizeof(cmd));
-      printf("PA: tmp=%d\n",tmp);
+      tmp = write(pfd[1], &cmd, sizeof(cmd));
+      printf("PA: tmp=%d\n", tmp);
 
-      tmp = write(pfd[1],&nocmd,sizeof(nocmd));
-      printf("PA: tmp2=%d\n",tmp);
+      tmp = write(pfd[1], &nocmd, sizeof(nocmd));
+      printf("PA: tmp2=%d\n", tmp);
    } else {
-      strcpy(cmd.buf,"");
+      strcpy(cmd.buf, "");
       cmd.cmd = 0;
-      
-      tmp = read(pfd[0],&cmd,sizeof(cmd));
-      printf("CH: tmp = %d, cmd = %d, buf = %s\n",tmp,cmd.cmd,cmd.buf);
+
+      tmp = read(pfd[0], &cmd, sizeof(cmd));
+      printf("CH: tmp = %d, cmd = %d, buf = %s\n", tmp, cmd.cmd, cmd.buf);
 
       free(nocmd.buf);
       nocmd.cmd = 0;
-      
-      tmp = read(pfd[0],&nocmd,sizeof(nocmd));
-      printf("CH: tmp = %d, cmd = %d, buf = %s\n",tmp,nocmd.cmd,nocmd.buf);
+
+      tmp = read(pfd[0], &nocmd, sizeof(nocmd));
+      printf("CH: tmp = %d, cmd = %d, buf = %s\n", tmp, nocmd.cmd, nocmd.buf);
    }
 
    return 0;

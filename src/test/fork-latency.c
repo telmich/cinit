@@ -1,3 +1,4 @@
+
 /*************
  *
  * A very small program to show that the child() of a fork()
@@ -44,16 +45,15 @@
  *    SA_NOCLDSTOP, if no child changed status
  */
 
+#include <unistd.h>             /* fork() */
+#include <signal.h>             /* sigaction, sigemtpyset */
+#include <sys/wait.h>           /* waitpid */
+#include <stdio.h>              /* printf, NULL */
 
-#include <unistd.h>        /* fork()                     */
-#include <signal.h>        /* sigaction, sigemtpyset     */
-#include <sys/wait.h>      /* waitpid                    */
-#include <stdio.h>         /* printf, NULL               */
-
-#define MAX 500            /* number of forks            */
+#define MAX 500                 /* number of forks */
 
 pid_t list[MAX];
-int      i=MAX;
+int i = MAX;
 
 void sig_child(int status)
 {
@@ -62,11 +62,12 @@ void sig_child(int status)
    pid_t pid;
 
    while((pid = waitpid(-1, &status, WNOHANG)) > 0) {
-      if(pid == -1) return; /* ignore errors */
+      if(pid == -1)
+         return;                /* ignore errors */
 
       found = 0;
       // no need to search the whole list, use o = i instead
-      //for(o = 0; o < MAX; o++) {
+      // for(o = 0; o < MAX; o++) {
       for(o = i; o < MAX; o++) {
          if(list[o] == pid) {
             found = 1;
@@ -84,21 +85,26 @@ void sig_child(int status)
 int main()
 {
    struct sigaction sa;
+
    sigemptyset(&sa.sa_mask);
 
    sa.sa_flags = 0;
-   sa.sa_handler  = sig_child;
-   sa.sa_flags    = SA_NOCLDSTOP;
-   sigaction(SIGCHLD,&sa,NULL);
+   sa.sa_handler = sig_child;
+   sa.sa_flags = SA_NOCLDSTOP;
+   sigaction(SIGCHLD, &sa, NULL);
 
-   for(i=MAX-1; i >= 0; i--) list[i] = 0;
+   for(i = MAX - 1; i >= 0; i--)
+      list[i] = 0;
 
-   i=MAX;
-   
-   for(i = MAX-1;i >= 0; i--) {
+   i = MAX;
+
+   for(i = MAX - 1; i >= 0; i--) {
       list[i] = fork();
 
-      /* child exists immediately */
-      if(list[i] == 0) return 0;
+      /*
+       * child exists immediately 
+       */
+      if(list[i] == 0)
+         return 0;
    }
 }

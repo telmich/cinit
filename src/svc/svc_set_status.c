@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -28,7 +29,9 @@
 /* checking for existence is done before! */
 uint32_t svc_set_status(struct listitem *li, uint32_t status)
 {
-   /* FIXME: also set time? */
+   /*
+    * FIXME: also set time? 
+    */
 
    return (li->status = status);
 }

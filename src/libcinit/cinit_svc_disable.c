@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,10 +23,9 @@
  *
  */
 
+#include <stdint.h>             /* integers */
 
-#include <stdint.h>     /* integers             */
-
-#include "cinit.h"      /* header for clients   */
+#include "cinit.h"              /* header for clients */
 
 /*
  * to cinit:
@@ -50,16 +50,19 @@
 uint32_t cinit_svc_disable(char *svc, uint32_t flag)
 {
    struct cinit_question qsn;
-   struct cinit_answer   asr;
+   struct cinit_answer asr;
 
    cinit_prepare_comm(&qsn, &asr, CINIT_QSN_SVC_DISABLE);
    cinit_cp_data((qsn.data), svc);
 
    qsn.opt = flag;
 
-   if(!cinit_send_to(&qsn, &asr)) return CINIT_ASW_IPC_ERROR;
+   if(!cinit_send_to(&qsn, &asr))
+      return CINIT_ASW_IPC_ERROR;
 
-   /* FIXME: 0.3pre15: add retrieval of services */
+   /*
+    * FIXME: 0.3pre15: add retrieval of services 
+    */
 
    return asr.ret;
 }

@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,26 +23,26 @@
  *
  */
 
-#include <stdint.h>     /* integers             */
-#include "cinit.h"      /* header for clients   */
+#include <stdint.h>             /* integers */
+#include "cinit.h"              /* header for clients */
 
 uint32_t cinit_svc_enable(char *svc, uint32_t flag)
 {
    struct cinit_question qsn;
-   struct cinit_answer   asr;
+   struct cinit_answer asr;
 
    cinit_prepare_comm(&qsn, &asr, CINIT_QSN_SVC_START);
    cinit_cp_data((qsn.data), svc);
 
    qsn.opt = flag;
 
-   if(!cinit_send_to(&qsn, &asr)) return CINIT_ASW_IPC_ERROR;
+   if(!cinit_send_to(&qsn, &asr))
+      return CINIT_ASW_IPC_ERROR;
 
-   /* add logic to display started services here
-    * or:
-    * add logic to start dependend services in here:
-    * want to start a -> cinit returns needs b
-    */ 
+   /*
+    * add logic to display started services here or: add logic to start
+    * dependend services in here: want to start a -> cinit returns needs b 
+    */
 
    return CINIT_ASW_IPC_ERROR;
 }

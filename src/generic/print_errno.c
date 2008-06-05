@@ -1,3 +1,4 @@
+
 /***********************************************************************
  *
  *    stolen from tcpserver_blocker
@@ -8,13 +9,13 @@
  *    Print the error found in errno
  */
 
-#include <string.h>                 /* strerror             */
-#include <errno.h>                  /* errno                */
+#include <string.h>             /* strerror */
+#include <errno.h>              /* errno */
 
-#include "intern.h"                 /* mini_printf, PD_ERR  */
+#include "intern.h"             /* mini_printf, PD_ERR */
 
 void print_errno(char *msg)
-{ 
+{
    if(msg) {
       mini_printf(msg, FD_ERR);
       mini_printf(": ", FD_ERR);

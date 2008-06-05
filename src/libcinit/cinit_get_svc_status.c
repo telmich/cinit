@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,19 +23,19 @@
  *
  */
 
+#include <stdint.h>             /* integers */
+#include "cinit.h"              /* header for clients */
 
-#include <stdint.h>     /* integers             */
-#include "cinit.h"      /* header for clients   */
-
-uint32_t cinit_get_svc_status(char *name, uint32_t *status)
+uint32_t cinit_get_svc_status(char *name, uint32_t * status)
 {
    struct cinit_question qsn;
-   struct cinit_answer   asr;
+   struct cinit_answer asr;
 
    cinit_prepare_comm(&qsn, &asr, CINIT_QSN_GET_STATUS);
    cinit_cp_data((qsn.data), name);
 
-   if(!cinit_send_to(&qsn, &asr)) return CINIT_ASW_IPC_ERROR;
+   if(!cinit_send_to(&qsn, &asr))
+      return CINIT_ASW_IPC_ERROR;
 
    *status = asr.options;
 

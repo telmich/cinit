@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -21,12 +22,13 @@
  *    Prepares the communication
  */
 
-#include <string.h>     /* str*, memset         */
-#include <stdint.h>     /* uint32_t             */
+#include <string.h>             /* str*, memset */
+#include <stdint.h>             /* uint32_t */
 
-#include "cinit.h"      /* header for clients   */
+#include "cinit.h"              /* header for clients */
 
-void cinit_prepare_comm(struct cinit_question *qsn, struct cinit_answer   *asr, uint32_t cmd)
+void cinit_prepare_comm(struct cinit_question *qsn, struct cinit_answer *asr,
+                        uint32_t cmd)
 {
    memset(qsn, '\0', sizeof(struct cinit_question));
    memset(asr, '\0', sizeof(struct cinit_answer));

@@ -7,9 +7,9 @@ int main()
    char *data;
    char *file = "test_openreadclose.c";
 
-   openreadclose(file,&data);
+   openreadclose(file, &data);
 
-   printf("%s\n",data);
+   printf("%s\n", data);
 
    return 1;
 

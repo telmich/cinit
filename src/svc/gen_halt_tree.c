@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -23,36 +24,41 @@
  *    wanted or needed by any other service).
  */
 
-#include <stdio.h>         /* NULL        */
+#include <stdio.h>              /* NULL */
 
-#include "svc-intern.h"    /* structs     */
-#include "intern.h"        /* structs     */
+#include "svc-intern.h"         /* structs */
+#include "intern.h"             /* structs */
 
 struct dep *gen_halt_list(struct listitem *svc_tree)
 {
-   struct dep        *list = NULL, *new = NULL;
-   struct listitem   *tmp;
+   struct dep *list = NULL, *new = NULL;
+   struct listitem *tmp;
 
-   /* no tree? nothing to shutdown. */
+   /*
+    * no tree? nothing to shutdown. 
+    */
    if(!svc_tree) {
       return NULL;
    }
 
-   /* find all services that do not depend on other services:
-    * - empty wants? (currently ignore them)
-    * - empty needs!
+   /*
+    * find all services that do not depend on other services: - empty wants?
+    * (currently ignore them) - empty needs! 
     */
    tmp = svc_tree;
    do {
       if(tmp->needs == NULL) {
-         /* create new dependency */
+         /*
+          * create new dependency 
+          */
          new = dep_create(tmp);
-         if(!new) return NULL;
+         if(!new)
+            return NULL;
 
-         dep_entry_add(&list,new);
+         dep_entry_add(&list, new);
       }
       tmp = tmp->next;
    } while(tmp != svc_tree);
-   
+
    return list;
 }

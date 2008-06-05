@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -21,27 +22,29 @@
  *    Check whether service is existent
  */
 
-#include <stdio.h>      /* NULL           */
-#include <sys/stat.h>   /* stat           */
-#include <errno.h>      /* errno          */
+#include <stdio.h>              /* NULL */
+#include <sys/stat.h>           /* stat */
+#include <errno.h>              /* errno */
 
-#include "svc.h"        /* constants      */
-#include "svc-intern.h" /* listitem       */
-#include "intern.h"     /* path_append    */
-#include "cinit.h"      /* CINIT_DATA_LEN */
+#include "svc.h"                /* constants */
+#include "svc-intern.h"         /* listitem */
+#include "intern.h"             /* path_append */
+#include "cinit.h"              /* CINIT_DATA_LEN */
 
 /* checking for existence is done before! */
 struct listitem *svc_create(char *svc)
 {
-   char              buf[CINIT_DATA_LEN];
-   struct stat       statbuf;
-   struct listitem   *li;
-   
+   char buf[CINIT_DATA_LEN];
+   struct stat statbuf;
+   struct listitem *li;
+
    li = list_insert(svc, -1);
-   if(!li) return NULL;
+   if(!li)
+      return NULL;
 
    cinit_cp_data(buf, svc);
-   if(!path_append(buf, C_RESPAWN)) return NULL;
+   if(!path_append(buf, C_RESPAWN))
+      return NULL;
 
    if(stat(buf, &statbuf) == -1) {
       if(errno == ENOENT) {

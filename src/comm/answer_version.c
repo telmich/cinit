@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2008      Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,8 +23,8 @@
  *
  */
 
-#include "config.h"     /* VERSION                    */
-#include "cinit.h"      /* structure: cinit_answer    */
+#include "config.h"             /* VERSION */
+#include "cinit.h"              /* structure: cinit_answer */
 
 int answer_version(struct cinit_answer *asr)
 {

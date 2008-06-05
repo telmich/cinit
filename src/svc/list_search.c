@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2005      Marcus Przyklink      (downhill-clinux (at) burningchaos.org)
@@ -22,16 +23,16 @@
  *    List handling
  */
 
-#include <stdio.h>         /* NULL              */
-#include <string.h>        /* strcmp            */
-#include "svc-intern.h"    /* struct listitem   */
+#include <stdio.h>              /* NULL */
+#include <string.h>             /* strcmp */
+#include "svc-intern.h"         /* struct listitem */
 
 /* search for an entry by path, reverse: from end to the beginning */
 struct listitem *list_search(char *path)
 {
    struct listitem *tmp;
 
-   if(svc_list == NULL) { /* think positive */
+   if(svc_list == NULL) {       /* think positive */
       return NULL;
    } else {
       tmp = svc_list;
@@ -43,6 +44,6 @@ struct listitem *list_search(char *path)
       }
       tmp = tmp->prev;
    } while(tmp != svc_list);
-   
+
    return NULL;
 }

@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -22,7 +23,7 @@
  *
  */
 
-#include "cinit.h"      /* structure: cinit_answer    */
+#include "cinit.h"              /* structure: cinit_answer */
 
 int answer_svc_stop(char *svc, struct cinit_answer *asr)
 {
@@ -32,7 +33,7 @@ int answer_svc_stop(char *svc, struct cinit_answer *asr)
    if(!tmp) {
       asr->ret = CINIT_MSG_SVC_UNKNOWN;
    } else {
-      asr->ret       = CINIT_MSG_OK;
+      asr->ret = CINIT_MSG_OK;
       svc_stop(tmp);
    }
 
