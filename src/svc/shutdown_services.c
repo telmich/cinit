@@ -26,6 +26,17 @@
 
 void shutdown_services(struct listitem *svc)
 {
+
+   /*
+    * The shutdown procedure:
+    *
+    * - take the list of running services
+    * - begin at the first (could be any) service and
+    *    - shutdown all services that depend on that service
+    *    --> recursive
+    * - take the next service (if there is still one ;-)
+    */
+
    while(0) {
       svc++;
    }
