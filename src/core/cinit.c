@@ -26,15 +26,19 @@
 #include <string.h>           /* str(ncmp,len,cpy,cat)   */
 #include <stdio.h>            /* perror                  */
 #include <stdlib.h>           /* malloc                  */
+#include <signal.h>           /* struct sigaction        */
 
 #include "intern.h"           /* general things          */
 #include "messages.h"         /* messages                */
 #include "ipc.h"              /* general ipc methods     */
 #include "svc-intern.h"       /* gen_svc_tree            */
+#include "signals.h"          /* signals used by cinit   */
 
+/* global variables */
 struct listitem   *svc_list   = NULL;
 struct dep        *svc_init   = NULL;
 int    svc_lock               = 0;    /* global svc-lock */
+struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END];
 
 int main(int argc, char **argv)
 {
@@ -79,8 +83,9 @@ int main(int argc, char **argv)
       panic();
    }
 
+   signal_init_map(sigstages);
    /* listen to signals */
-   set_signals(ACT_SERV);
+   set_signals(SIGSTAGE_DAEMON);
 
    /* pre-calculate service tree */
    if(!gen_svc_tree(initdir)) {
