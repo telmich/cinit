@@ -52,9 +52,7 @@ struct cinit_signal_map {
 
 extern struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END];
 
-extern struct cinit_signal_map csm[SIGSTAGE_END][SIGCINIT_END];
-
-void signal_init_map(struct cinit_signal_map csm[SIGSTAGE_END][SIGCINIT_END]);
+void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END]);
 void  set_signals(int stage);
 
 int cinit_signals[SIGCINIT_END]; /* maps signal codes to index */
