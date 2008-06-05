@@ -27,14 +27,26 @@
 #define SIG_CINIT_HALT        SIGUSR1
 #define SIG_CINIT_POWEROFF    SIGTERM
 #define SIG_CINIT_REBOOT      SIGHUP
+#define SIG_CINIT_CHILD       SIGCHLD
 
 enum {
    SIGSTAGE_REBOOT,
    SIGSTAGE_DAEMON,
-   SIGSTAGE_CLIENT
+   SIGSTAGE_CLIENT,
+   SIGSTAGE_END
 };
 
-/* signals to stage mapping */
-struct sign
+enum {
+   SIGCINIT_HALT,
+   SIGCINIT_POWEROFF,
+   SIGCINIT_REBOOT,
+   SIGCINIT_CHILD,
+   SIGCINIT_END
+};
+
+#include <signal.h>
+extern struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END];
+
+void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END]);
 
 #endif

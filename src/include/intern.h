@@ -85,7 +85,6 @@ enum {
 
 /* functions (used by server and client) */
 void  mini_printf(char *str, int fd);
-void  set_signals(int action);
 //void  usage(char *banner, char *stext);
 
 /* core functions */
