@@ -55,7 +55,7 @@ void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END], int
 void  set_signals(int stage);
 
 /* global vars */
-extern int cinit_signals[SIGCINIT_END]; /* maps signal codes to index */
+extern int cinit_global_signals[SIGCINIT_END]; /* maps signal codes to index */
 extern struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END];
 
 #endif

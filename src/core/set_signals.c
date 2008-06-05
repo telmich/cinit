@@ -37,7 +37,7 @@ void set_signals(int stage)
    for(i=0; i<SIGCINIT_END; i++) {
       //sigemptyset(&sa.sa_mask);        /* no other signals should be blocked */
       //sa.sa_flags = 0;
-      sigaction(cinit_signals[i],&sigstages[stage][i],NULL);     /* what todo when a child exited    */
+      sigaction(cinit_global_signals[i],&sigstages[stage][i],NULL);     /* what todo when a child exited    */
    }
     
 

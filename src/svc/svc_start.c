@@ -20,6 +20,7 @@
 #include "messages.h"      /* MSG_*             */
 #include "intern.h"        /* execute_sth       */
 #include "cinit.h"         /* CINIT_DATA_LEN    */
+#include "signals.h"       /* signal handling   */
 
 extern int svc_lock;
 
@@ -107,8 +108,7 @@ void svc_start(struct listitem *li, int delay)
    }
 
    if(li->status == FE_FILE) {
-      /* FIXME: reset signals: Is this necessary? Or does fork clean it anyway? */
-      set_signals(ACT_CLIENT);
+      set_signals(SIGSTAGE_CLIENT);
 
       /* and now, fire it up */
       execute_sth(buf);
