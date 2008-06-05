@@ -25,7 +25,30 @@
 #include <signal.h>
 #include "signals.h"
 
-void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END])
+void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END], int cinit_signals[SIGCINIT_END];)
 {
-   sigstages[SIGSTAGE_DAEMON][SIGCINIT_HALT].sa_handler = do_reboot;
+   /* First map signals to index */
+   cinit_signals[SIGCINIT_HALT]     = SIGUSR1;
+   cinit_signals[SIGCINIT_POWEROFF] = SIGTERM;
+   cinit_signals[SIGCINIT_REBOOT]   = SIGHUP;
+   cinit_signals[SIGCINIT_CHILD]    = SIGCHILD;
+
+   /* Then add the actions for daemon */
+   sigstages[SIGSTAGE_DAEMON][SIGCINIT_HALT].sa_handler  = do_reboot;
+
+   sigstages[SIGSTAGE_DAEMON][SIGCINIT_CHILD].sa_handler  = sig_child;
+   sigstages[SIGSTAGE_DAEMON][SIGCINIT_CHILD].sa_flags    = SA_NOCLDSTOP;
+
+   /* Then add the actions for client (=fork> */
+   sigstages[SIGSTAGE_CLIENT][SIGCINIT_HALT].sa_handler     = SIG_DFL;
+   sigstages[SIGSTAGE_CLIENT][SIGCINIT_POWEROFF].sa_handler = SIG_DFL;
+   sigstages[SIGSTAGE_CLIENT][SIGCINIT_REBOOT].sa_handler   = SIG_DFL;
+   sigstages[SIGSTAGE_CLIENT][SIGCINIT_CHILD].sa_handler    = SIG_DFL;
+
+   /* Then add the actions for shutdown */
+   sigstages[SIGSTAGE_REBOOT][SIGCINIT_HALT].sa_handler     = SIG_IGN;
+   sigstages[SIGSTAGE_REBOOT][SIGCINIT_POWEROFF].sa_handler = SIG_IGN;
+   sigstages[SIGSTAGE_REBOOT][SIGCINIT_REBOOT].sa_handler   = SIG_IGN;
+   sigstages[SIGSTAGE_REBOOT][SIGCINIT_CHILD].sa_handler    = SIG_IGN;
+
 }

@@ -18,7 +18,7 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
- *    Reboot
+ *    Reboot: includes shutdown and poweroff
  */
 
 #include <sys/types.h>

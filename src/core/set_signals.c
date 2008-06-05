@@ -18,29 +18,34 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
- *    Define signal handlers
+ *    Set signal handlers
  */
 
 
 #include <signal.h>        /* sigaction, sigemtpyset  */
 #include <stdio.h>         /* NULL                    */
+
 #include "intern.h"        /* defines                 */
 #include "reboot.h"        /* reboot related          */
 #include "signals.h"       /* reboot related          */
 
-void set_signals(int action)
+void set_signals(int stage)
 {
    struct sigaction sa;
-   
-   sigemptyset(&sa.sa_mask);        /* no other signals should be blocked */
-   sa.sa_flags = 0;
 
-   if(action == ACT_SERV) {
-      sa.sa_handler  = sig_child;
-      sa.sa_flags    = SA_NOCLDSTOP; 
-   } else {
-      sa.sa_handler  =  SIG_DFL;
+   for(i=0; i<SIGCINIT_END; i++) {
+      //sigemptyset(&sa.sa_mask);        /* no other signals should be blocked */
+      //sa.sa_flags = 0;
+      sigaction(cinit_signals[i],&sigstages[stage][i],NULL);     /* what todo when a child exited    */
    }
+    
+
+//   if(action == ACT_SERV) {
+//      sa.sa_handler  = sig_child;
+//      sa.sa_flags    = SA_NOCLDSTOP; 
+//   } else {
+//      sa.sa_handler  =  SIG_DFL;
+//   }
 
    sigaction(SIGCHLD,&sa,NULL);     /* what todo when a child exited    */
 

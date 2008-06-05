@@ -1,3 +1,6 @@
+Implement shutdown
+   -> cleanup set-signals to ignore everything
+--------------------------------------------------------------------------------
 - Add service start/stop to cmd
 -> then continue in cinit itself.
 
