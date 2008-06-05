@@ -2,6 +2,7 @@ Implement shutdown:
 
    - Make sure list of currently running processes exists
    - write function that iterates through the list
+   - write svc_stop_recurs()
    
 --------------------------------------------------------------------------------
 - Add service start/stop to cmd

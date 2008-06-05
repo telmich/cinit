@@ -47,7 +47,6 @@ int main(int argc, char **argv)
 {
    char     *initdir = CINIT_INIT;        /* default init dir        */
 
-
    /* Is this really needed?
    pid_t    cpid;
 
