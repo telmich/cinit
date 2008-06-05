@@ -23,11 +23,10 @@
  */
 
 #include "svc-intern.h"    /* struct      */
-#include "svc"             /* defines     */
+#include "svc.h"           /* defines     */
 
 void shutdown_services(struct listitem *svc)
 {
-
    /*
     * The shutdown procedure:
     *
@@ -41,16 +40,8 @@ void shutdown_services(struct listitem *svc)
    while(svc) {
       svc_stop_deps(svc, CINIT_SSSO_COMPLETE);
       svc = svc->next;
+      list_delete_bypointer(svc->prev);
    }
-
-//   while(we_are_wanted_or_needed) {
-//      shutdown_services(next_wants_or_needs_us);
-//   }
-
-//   shutdown_services(svc) 
-   
-   /* begin at svc, iterate until a service without dependencies is found,
-    * continue stopping through wanted-by / needed-by / wants / needs */
 
    return;
 }
