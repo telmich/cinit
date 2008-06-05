@@ -27,7 +27,7 @@
 #include "svc-intern.h" /* listitem    */
 
 /* ... */
-int list_delete(char *path)
+int list_delete_byname(char *path)
 {
    struct listitem *tmp;
 

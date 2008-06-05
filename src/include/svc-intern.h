@@ -62,7 +62,8 @@ extern struct  listitem *svc_list;  /* the list of services             */
 
 /* list functions */
 struct         listitem *list_insert(char *path, uint32_t status);
-int            list_delete(char *path);
+int            list_delete_byname(char *path);
+int            list_delete_bypointer(struct  listitem *);
 int            list_modify(char *path, int new_status, pid_t new_pid);
 struct         listitem *list_search(char *path);
 struct         listitem *list_search_pid(pid_t pid);

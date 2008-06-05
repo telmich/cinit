@@ -26,21 +26,16 @@
 #include "intern.h"     /* list_search */
 #include "svc-intern.h" /* listitem    */
 
-/* ... */
-int list_delete(char *path)
+int list_delete_bypointer(struct listitem *li)
 {
-   struct listitem *tmp;
-
-   tmp = list_search(path);
-
-   if(tmp == NULL) {
+   if(li == NULL) {
       return 0;
    }
 
-   tmp->next->prev = tmp->prev;
-   tmp->prev->next = tmp->next;
+   li->next->prev = li->prev;
+   li->prev->next = li->next;
 
-   free(tmp);
+   free(li);
 
    return 1;
 }
