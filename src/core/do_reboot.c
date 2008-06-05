@@ -83,16 +83,17 @@ void do_reboot(int signal)
    LOG(MSG_SHUTDOWN_SVC);
    shutdown_services(svc_list);
 
-   LOG(MSG_SHUTDOWN_KILL);
    /*
     * now: all services are down, let's kill all other processes 
     */
+   LOG(MSG_SHUTDOWN_TERM);
    if(kill(-1, SIGTERM) == -1) {
       print_errno(MSG_TERMKILL);
    }
 
    sleep_before_kill();
 
+   LOG(MSG_SHUTDOWN_KILL);
    if(kill(-1, SIGKILL) == -1) {
       print_errno(MSG_KILLBILL);
    }
