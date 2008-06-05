@@ -23,6 +23,7 @@
  */
 
 #include "svc-intern.h"    /* struct      */
+#include "svc"             /* defines     */
 
 void shutdown_services(struct listitem *svc)
 {
@@ -37,8 +38,9 @@ void shutdown_services(struct listitem *svc)
     * - take the next service (if there is still one ;-)
     */
 
-   while(0) {
-      svc++;
+   while(svc) {
+      svc_stop_deps(svc, CINIT_SSSO_COMPLETE);
+      svc = svc->next;
    }
 
 //   while(we_are_wanted_or_needed) {
