@@ -67,6 +67,17 @@ tests:
 	#./scripts/internal/compile_run_as_compiler.sh
 	./scripts/internal/test_on_hosts.sh ./scripts/internal/compile_test.sh
 
+DEBIAN=lenny
+UMLDIR=test/uml
+
+uml-install-debian:
+	mkdir -p test/uml
+	sudo /usr/sbin/debootstrap $(DEBIAN) $(UMLDIR)
+	me=$$(whoami); sudo chown -R $$me $(UMLDIR)
+
+uml-run:
+	dir=$$(cd $(UMLDIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs init=
+
 ################################################################################
 # 
 # Developer targets
