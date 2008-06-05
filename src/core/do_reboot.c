@@ -19,58 +19,23 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
- *    Reboot: includes shutdown and poweroff
+ *    Reboot: includes shutdown, reboot and poweroff
  */
 
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
-
-#include "ipc.h"
-
-/* cleaned up own headers */
-#include "intern.h"             /* set_signals */
-#include "svc-intern.h"         /* shutdown_services */
-#include "messages.h"           /* messages */
-#include "reboot.h"             /* cinit_poweroff&co */
-#include "signals.h"            /* signal handling */
-
-/* cleaned headers */
 #include <signal.h>             /* kill() */
+#include <unistd.h>             /* exit */
 
-/***********************************************************************
- * sig_reboot
- * Shutdown the system 
- */
+#include "signals.h"            /* signal handling */
+#include "reboot.h"             /* cinit_poweroff&co */
+#include "messages.h"           /* messages */
+#include "svc-intern.h"         /* shutdown_services */
+#include "intern.h"             /* many functions */
+#include "ipc.h"                /* disable ipc */
 
 void do_reboot(int signal)
 {
-   // struct listitem *tmp;
-   // char **cmd;
-   // int i;
-
-   /*
-    * New code:
-    * 0. close user ipc
-    *    - notify user!
-    *    - do not allow user interupt anymore
-    * 1. shutdown services
-    *    - notify user!
-    * 2. kill -TERM all processes
-    *    - notify user!
-    * 3. kill -KILL all processes
-    *    - notify user!
-    * 4. execute /etc/cinit/conf/{halt,reboot,poweroff}
-    *    - notify user!
-    */
-
    /*
     * do not listen to client requests anymore 
-    */
-   /*
     * and tell the user what happens 
     */
    LOG(MSG_SHUTDOWN_START);
