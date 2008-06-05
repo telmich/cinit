@@ -1,0 +1,67 @@
+#!/bin/sh
+# Nico Schottelius (nico-linux at schottelius.org)
+# indents like kr with a little bit more beauty look
+# 13-May-2004
+# written for the monotone project, adapted for all my projects
+# 
+# Copying: GPLv3
+
+if [ $# -lt 1 ]; then
+   echo "$0: <files to indent>"
+   exit 1
+fi
+
+opts=""
+opts="${opts} -bap"     # --blank-lines-after-procedures
+opts="${opts} -bbb"     # --blank-lines-before-block-comments
+opts="${opts} -bad"     # --blank-lines-after-declarations
+opts="${opts} -bbo"     # --break-before-boolean-operator
+opts="${opts} -br"      # --braces-on-if-line
+opts="${opts} -brs"     # --braces-on-struct-decl-line
+opts="${opts} -cdb"     # --comment-delimiters-on-blank-lines
+opts="${opts} -cbi0"    # --case-brace-indentation
+opts="${opts} -cdw"     # --cuddle-do-while
+opts="${opts} -ce"      # --cuddle-else, see -br
+opts="${opts} -ci0"     # --continuation-indentation (see -lp)
+opts="${opts} -cli3"    # --case-indentation
+opts="${opts} -cp33"    # --else-endif-columnn
+opts="${opts} -cs"      # --space-after-cast
+opts="${opts} -d0"      # --line-comments-indentationn
+opts="${opts} -di0"     # --declaration-indentation
+opts="${opts} -fca"     # --format-all-comments
+opts="${opts} -hnl"     # --honour-newlines
+opts="${opts} -i3"      # --indent-level
+opts="${opts} -ip0"     # --parameter-indentation
+opts="${opts} -l80"     # --line-length
+opts="${opts} -lc80"    # --line-length
+opts="${opts} -lp"      # --continue-at-parentheses
+opts="${opts} -lps"     # --leave-preprocessor-space
+opts="${opts} -nbc"     # --no-blank-lines-after-commas
+opts="${opts} -nbfda"   # --dont-break-function-decl-args
+opts="${opts} -nbfde"   # NOT --break-function-decl-args
+opts="${opts} -nfc1"    # --dont-format-first-column-comments
+opts="${opts} -npcs"    # --no-space-after-function-call-names
+opts="${opts} -nprs"    # --no-space-after-parentheses
+opts="${opts} -npsl"    # --dont-break-procedure-type
+opts="${opts} -nsaf"    # --no-space-after-for
+opts="${opts} -nsai"    # --no-space-after-if
+opts="${opts} -nsaw"    # --no-space-after-while
+opts="${opts} -npsl"    # --dont-break-procedure-type
+opts="${opts} -nut"     # --no-tabs
+opts="${opts} -nv"      # --no-verbosity
+opts="${opts} -npro"    # --ignore-profile
+opts="${opts} -pi0"     # --paren-indentationn
+opts="${opts} -ppi3"    # preprocessor indent
+opts="${opts} -sbi0"    # --struct-brace-indentation
+opts="${opts} -sc"      # --start-left-side-of-comments
+opts="${opts} -sob"     # --swallow-optional-blank-lines
+opts="${opts} -ss"      # --space-special-semicolon
+
+
+
+for file in "$@"; do 
+   indent $opts "$file"
+done
+   # old:
+#   -ad \
+#   -ts3 -nut -sc -ce -cdw -cli0 -nbc lp -ppi3 -di1 -c33 -cd33 -ncdb -ci3 -cp33 -cs -d0 -di0 -l75 -nfc1 -nfca -hnl -ip0 -nprs -saf -sai -saw -nsob -nss -npsl "$file"
