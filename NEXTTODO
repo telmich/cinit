@@ -1,5 +1,8 @@
-Implement shutdown
-   -> cleanup set-signals to ignore everything
+Implement shutdown:
+
+   - Make sure list of currently running processes exists
+   - write function that iterates through the list
+   
 --------------------------------------------------------------------------------
 - Add service start/stop to cmd
 -> then continue in cinit itself.

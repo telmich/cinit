@@ -40,10 +40,6 @@ void shutdown_services(struct listitem *svc)
    while(0) {
       svc++;
    }
-   /* stop services in the correct order:
-    * - begin at a random process, and walk the tree up to the wanted_by and needed_by
-    * - switch to next service, as soon as this tree is finished
-    */
 
 //   while(we_are_wanted_or_needed) {
 //      shutdown_services(next_wants_or_needs_us);

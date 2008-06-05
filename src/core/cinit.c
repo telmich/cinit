@@ -86,8 +86,8 @@ int main(int argc, char **argv)
       panic();
    }
 
-   signal_init_map(sigstages, cinit_global_signals);
    /* listen to signals */
+   signal_init_map(sigstages, cinit_global_signals);
    set_signals(SIGSTAGE_DAEMON);
 
    /* pre-calculate service tree */
@@ -96,7 +96,7 @@ int main(int argc, char **argv)
    }
 
    /* free, if we malloc()ed before */
-   if(strcmp(initdir,CINIT_INIT)) {
+   if(strcmp(initdir, CINIT_INIT)) {
       free(initdir);
    }
 
@@ -123,11 +123,6 @@ int main(int argc, char **argv)
       // reuse tree_exec()?
       // if(dep) { svc_start() .. ?
    }
-
-   /* OLD:
-   if(!cinit_ipc_listen()) {
-      panic();
-   } */
 
    /* never reached */
    return 0;
