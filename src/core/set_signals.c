@@ -25,22 +25,22 @@
 #include <signal.h>        /* sigaction, sigemtpyset  */
 #include <stdio.h>         /* NULL                    */
 
-#include "intern.h"        /* defines                 */
-#include "reboot.h"        /* reboot related          */
+//#include "intern.h"        /* defines                 */
+//#include "reboot.h"        /* reboot related          */
 #include "signals.h"       /* reboot related          */
 
 void set_signals(int stage)
 {
-//   struct sigaction sa;
    int i;
 
    for(i=0; i<SIGCINIT_END; i++) {
-      //sigemptyset(&sa.sa_mask);        /* no other signals should be blocked */
-      //sa.sa_flags = 0;
       sigaction(cinit_global_signals[i],&sigstages[stage][i],NULL);     /* what todo when a child exited    */
    }
     
 
+//   struct sigaction sa;
+      //sigemptyset(&sa.sa_mask);        /* no other signals should be blocked */
+      //sa.sa_flags = 0;
 //   if(action == ACT_SERV) {
 //      sa.sa_handler  = sig_child;
 //      sa.sa_flags    = SA_NOCLDSTOP; 
