@@ -31,7 +31,8 @@
 
 void set_signals(int stage)
 {
-   struct sigaction sa;
+//   struct sigaction sa;
+   int i;
 
    for(i=0; i<SIGCINIT_END; i++) {
       //sigemptyset(&sa.sa_mask);        /* no other signals should be blocked */
@@ -49,11 +50,11 @@ void set_signals(int stage)
 
 //   sigaction(SIGCHLD,&sa,NULL);     /* what todo when a child exited    */
 
-   sa.sa_flags = 0;                 /* reset flags */
-   if(action == ACT_SERV) {
-      sa.sa_handler = do_reboot;
-   }
-   sigaction(SIG_CINIT_HALT,     &sa, NULL);   /* halt      */
-   sigaction(SIG_CINIT_POWEROFF, &sa, NULL);   /* poweroff  */
-   sigaction(SIG_CINIT_REBOOT,   &sa, NULL);   /* reboot    */
+//   sa.sa_flags = 0;                 /* reset flags */
+//   if(action == ACT_SERV) {
+//      sa.sa_handler = do_reboot;
+//   }
+//   sigaction(SIG_CINIT_HALT,     &sa, NULL);   /* halt      */
+//   sigaction(SIG_CINIT_POWEROFF, &sa, NULL);   /* poweroff  */
+//   sigaction(SIG_CINIT_REBOOT,   &sa, NULL);   /* reboot    */
 }

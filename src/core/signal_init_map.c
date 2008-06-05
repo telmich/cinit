@@ -24,6 +24,8 @@
 
 #include <signal.h>
 #include "signals.h"
+#include "reboot.h"
+#include "intern.h"
 
 void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END], int cinit_signals[SIGCINIT_END])
 {
@@ -31,7 +33,7 @@ void signal_init_map(struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END], int
    cinit_signals[SIGCINIT_HALT]     = SIGUSR1;
    cinit_signals[SIGCINIT_POWEROFF] = SIGTERM;
    cinit_signals[SIGCINIT_REBOOT]   = SIGHUP;
-   cinit_signals[SIGCINIT_CHILD]    = SIGCHILD;
+   cinit_signals[SIGCINIT_CHILD]    = SIGCHLD;
 
    /* Then add the actions for daemon */
    sigstages[SIGSTAGE_DAEMON][SIGCINIT_HALT].sa_handler     = do_reboot;
