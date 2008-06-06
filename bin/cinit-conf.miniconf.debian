@@ -42,7 +42,7 @@ fi
 
 echo "***> Installing standard structure and dependencies"
 set -e
-$(dirname $0)/cinit.install.config-dir
+$(dirname $0)/cinit-conf.install.basedirs
 $(dirname $0)/cinit.install.standard.dirs
 $(dirname $0)/cinit.install.standard.init.deps
 
