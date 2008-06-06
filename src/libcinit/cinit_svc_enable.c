@@ -31,7 +31,7 @@ uint32_t cinit_svc_enable(char *svc, uint32_t flag)
    struct cinit_question qsn;
    struct cinit_answer asr;
 
-   cinit_prepare_comm(&qsn, &asr, CINIT_QSN_SVC_START);
+   cinit_prepare_comm(&qsn, &asr, CINIT_QSN_SVC_ENABLE);
    cinit_cp_data((qsn.data), svc);
 
    qsn.opt = flag;

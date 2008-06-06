@@ -24,11 +24,11 @@
  */
 
 #include <stdlib.h>             /* free */
-#include "intern.h"             /* list_search */
 #include "svc-intern.h"         /* listitem */
 
 int list_delete_bypointer(struct listitem *li)
 {
+   /* FIXME: add warning? this case should not happen */
    if(li == NULL) {
       return 0;
    }

@@ -37,7 +37,7 @@ uint32_t cinit_get_svc_status(char *name, uint32_t * status)
    if(!cinit_send_to(&qsn, &asr))
       return CINIT_ASW_IPC_ERROR;
 
-   *status = asr.options;
+   *status = asr.opt;
 
    return asr.ret;
 }
