@@ -71,11 +71,13 @@ DEBIAN=lenny
 UMLDIR=test/uml
 
 uml-install-debian:
-	mkdir -p test/uml
+	mkdir -p $(UMLDIR)
 	sudo /usr/sbin/debootstrap $(DEBIAN) $(UMLDIR)
 	me=$$(whoami); sudo chown -R $$me $(UMLDIR)
 
+# only install binaries, no need to test documentation
 uml-install-cinit:
+	dir=$$(cd $(UMLDIR); pwd -P); make -C src DESTDIR=$$dir install 
 
 uml-run:
 	dir=$$(cd $(UMLDIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs init=/sbin/cinit
