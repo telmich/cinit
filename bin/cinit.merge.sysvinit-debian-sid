@@ -6,11 +6,13 @@
 # THIS IS NOT CLEAN.
 # THIS IS NOT EVEN INTENTED TO BE CLEAN.
 # This is just a small hack, because my girlfriend wants her notebook back.
+# -- She's not my girlfriend anymore, but now I want to test cinit-0.3pre15 on
+#    my notebook
 
 echo "***> $(basename $0): converting Debian-Sys-V-Init"
 
 # read standard values, may be overwritten from outside
-. $(dirname $0)/cinit.read-conf
+. $(dirname $0)/cinit-conf.read-conf
 
 echo "***> Finding standard config ..."
 # variables, which can be set from the outside
