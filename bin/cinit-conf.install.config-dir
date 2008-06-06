@@ -4,9 +4,9 @@
 # Date: - (Last Modified: 2005-08-06)
 # 
 
-. $(dirname $0)/cinit.read-conf
+. $(dirname $0)/cinit-conf.read-conf
 
-"$INSTALL_PROG" "$INSTALL_DIRECTORY" "$DESTDIR/$CINIT_DIR/$C_TMP"
-"$INSTALL_PROG" "$INSTALL_DIRECTORY" "$DESTDIR/$CINIT_DIR/$C_INIT"
+"$INSTALL_PROG" "$INSTALL_DIRECTORY" "${DESTDIR}${CINITCONFDIR}"
+"$INSTALL_PROG" "$INSTALL_DIRECTORY" "${DESTDIR}${SVCDIR}"
 
 exit 0
