@@ -173,4 +173,4 @@ distclean: clean
 clean:
 	rm -f ../tmpbin/*.configured
 	rm -f ${BIN} ${CINIT_OBJ} ${CINIT}
-	rm -f client/*.o test/*.o
+	find . -name \*.o -exec rm {} \;
