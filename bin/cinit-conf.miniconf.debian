@@ -21,14 +21,6 @@ ROOT_FSCK=${ROOT_FSCK:-$(awk '$2 ~ /^\/$/ { print $6 }' /etc/fstab)}
 ROOT_FS=${ROOT_FS:-$(awk '$2 ~ /^\/$/ { print $3 }' /etc/fstab)}
 RUNLEVEL=${RUNLEVEL:-$(runlevel | awk '{ print $2 }')}
 
-echo "***> Detecting keymap (this may take some time)"
-
-if [ -z "$C_KEYMAP" ]; then
-   echo "Please set the variable C_KEYMAP to your keymap."
-   echo "It is impossible to detect reliable your keymap in Debian."
-   exit 1
-fi
-
 
 echo "***> Configuration"
 echo "Hostname      (\$HOSTNAME):            $HOSTNAME"
