@@ -26,7 +26,7 @@
 #include <stdint.h>             /* integers */
 #include "cinit.h"              /* header for clients */
 
-uint32_t cinit_get_svc_status(char *name, uint32_t * status)
+uint32_t cinit_svc_get_status(char *name, uint32_t * status)
 {
    struct cinit_question qsn;
    struct cinit_answer asr;
