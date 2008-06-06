@@ -75,8 +75,10 @@ uml-install-debian:
 	sudo /usr/sbin/debootstrap $(DEBIAN) $(UMLDIR)
 	me=$$(whoami); sudo chown -R $$me $(UMLDIR)
 
+uml-install-cinit:
+
 uml-run:
-	dir=$$(cd $(UMLDIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs init=
+	dir=$$(cd $(UMLDIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs init=/sbin/cinit
 
 ################################################################################
 # 
