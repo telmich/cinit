@@ -22,6 +22,8 @@ ROOT_FS=${ROOT_FS:-$(awk '$2 ~ /^\/$/ { print $3 }' /etc/fstab)}
 RUNLEVEL=${RUNLEVEL:-$(runlevel | awk '{ print $2 }')}
 
 
+DESTDIR="$1"
+
 echo "***> Configuration"
 echo "Hostname      (\$HOSTNAME):            $HOSTNAME"
 echo "Keymap        (\$C_KEYMAP):            $C_KEYMAP"
@@ -32,11 +34,6 @@ echo "Runlevel      (\$RUNLEVEL):            $RUNLEVEL"
 echo "Destdir:      (\$DESTDIR):             $DESTDIR"
 echo "Config-Dir:   (\$CINIT_DIR):           $CINIT_DIR"
 read -p "Is this correct (Y/n) " correct
-
-if [ "$correct" != "y" -a "$correct" != "Y" ]; then
-   echo "***> Abort."
-   exit 1
-fi
 
 if [ -d "${DESTDIR}${CINIT_DIR}" ]; then
    echo "ERROR: Configuration already exists at ${DESTDIR}${CINIT_DIR}."
