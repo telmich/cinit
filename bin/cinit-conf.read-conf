@@ -24,8 +24,11 @@ CONFDIR="$("${hier}/cinit-conf.get-confdir")"
 
 DESTDIR="$(head -n1 "${CONFDIR}/destdir")"
 CINITDIR="${DESTDIR}/$(head -n1 "${CONFDIR}/cinitdir")"
+
 CINITCONFDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/confdir")"
 SVCDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/svcdir")"
+
+SERVICE_CATEGORIES="$(head -n1 "${CONFDIR}/service_categories")"
 GETTYDIR="${SVCDIR}/$(head -n1 "${CONFDIR}/gettydir")"
 
 
