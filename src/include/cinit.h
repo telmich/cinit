@@ -104,9 +104,9 @@ void     cinit_prepare_comm(struct cinit_question *qsn,
 
 uint32_t cinit_flag_to_uint32_t(char *);
 uint32_t cinit_get_version(char *);
-uint32_t cinit_get_svc_status(char *, uint32_t *);
 uint32_t cinit_svc_disable(char *svc, uint32_t flag);
 uint32_t cinit_svc_enable(char *svc, uint32_t flag);
 uint32_t cinit_svc_get_pid(char *, pid_t *status);
+uint32_t cinit_svc_get_status(char *, uint32_t *);
 
 #endif

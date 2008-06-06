@@ -36,5 +36,6 @@ int cinit_send_to(struct cinit_question *data, struct cinit_answer *res)
       return 0;
    if(!cinit_ipc_logoff())
       return 0;
+
    return 1;
 }

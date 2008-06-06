@@ -213,7 +213,7 @@ int main(int argc, char **argv)
          break;
 
       case STATUS:
-         ret = cinit_get_svc_status(buf, &(u.status));
+         ret = cinit_svc_get_status(buf, &(u.status));
          switch (ret) {
             case CINIT_ASW_OK:
                printf("Status of %s is: %d\n", buf, u.status);

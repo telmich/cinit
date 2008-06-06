@@ -15,7 +15,7 @@
 
 int cinit_ipc_csend(struct cinit_question *qsn)
 {
-   struct msgq_client msg;
+   struct cinit_msgq_client msg;
 
    msg.mtype      = 1;              /* cinit = 1 */
 
@@ -23,7 +23,7 @@ int cinit_ipc_csend(struct cinit_question *qsn)
    memcpy(&(msg.qsn), qsn, sizeof(msg.qsn));
 
    if(msgsnd(__cinit_mq_out, &msg, sizeof(msg.qsn), 0) == -1) {
-      print_errno(MSG_MSGQ_MSGSEND);
+      print_errno(__CINIT_MSG_MSGQ_MSGSEND);
       return 0;
    }
 

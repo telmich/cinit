@@ -16,10 +16,10 @@
 
 int cinit_ipc_cread(struct cinit_answer *buf)
 {
-   struct msgq_server asr;
+   struct cinit_msgq_server asr;
 
    if(msgrcv(__cinit_mq_in, &asr, sizeof(asr.asr), getpid(), 0) == -1) {
-      print_errno(MSG_MSGQ_MSGRCV);
+      print_errno(__CINIT_MSG_MSGQ_MSGRCV);
       return 0;
    }
    memcpy(buf, &(asr.asr), sizeof(*buf));
