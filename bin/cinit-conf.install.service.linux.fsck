@@ -24,9 +24,8 @@ if [ ! -f "$FSCK" ]; then
    exit 1
 fi
 
-if [ ! -e "$DEVICE" ]; then
-   echo "Missing $DEVICE abort."
-   exit 1
+if [ ! -e "${DESTDIR}${DEVICE}" ]; then
+   echo "Warning: ${DESTDIR}${DEVICE} does not exist."
 fi
 
 svcdir="${CINITDIR}/fsck/${NAME}"
