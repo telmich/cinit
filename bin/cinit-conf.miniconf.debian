@@ -16,9 +16,9 @@ echo "***> $(basename $0): converting Debian-Sys-V-Init"
 
 echo "***> Finding standard config ..."
 # variables, which can be set from the outside
-: ${ROOT_DEV:=$(awk '$2 ~ /^\/$/ { print $1 }' /etc/fstab)}
-: ${ROOT_FSCK:=$(awk '$2 ~ /^\/$/ { print $6 }' /etc/fstab)}
-: ${ROOT_FS:=$(awk '$2 ~ /^\/$/ { print $3 }' /etc/fstab)}
+: ${ROOT_DEV:=$(awk '$2 ~ /^\/$/ { print $1 }' ${DESTDIR}/etc/fstab)}
+: ${ROOT_FSCK:=$(awk '$2 ~ /^\/$/ { print $6 }' ${DESTDIR}/etc/fstab)}
+: ${ROOT_FS:=$(awk '$2 ~ /^\/$/ { print $3 }' ${DESTDIR}/etc/fstab)}
 : ${HOSTNAME:=$(hostname)}
 
 
