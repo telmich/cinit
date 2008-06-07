@@ -4,7 +4,7 @@
 # Date: 2005-10-15
 # 
 
-. $(dirname $0)/cinit.read-conf
+. $(dirname $0)/cinit-conf.read-conf
 
 set -e
 
@@ -17,7 +17,7 @@ NAME=$1
 DEVICE=$2
 FS_TYPE=$3
 
-FSCK=/sbin/fsck.$FS_TYPE
+FSCK="/sbin/fsck.${FS_TYPE}"
 
 if [ ! -f "$FSCK" ]; then
    echo "Missing $FSCK, abort."
@@ -29,8 +29,14 @@ if [ ! -e "$DEVICE" ]; then
    exit 1
 fi
 
-"$INSTALL_PROG"      "$INSTALL_DIRECTORY" "${DESTDIR}/${CINIT_DIR}/fsck/$NAME"
-ln -sf  "$FSCK"      "${DESTDIR}/${CINIT_DIR}/fsck/$NAME/$C_ON"
-echo "$DEVICE"   >   "${DESTDIR}/${CINIT_DIR}/fsck/$NAME/$C_ON$C_PARAMS"
+svcdir="${CINITDIR}/fsck/${NAME}"
+if [ ! -e "$svcdir" ]; then
+   echo "Error: $svcdir already exists"
+   exit 1
+fi
+
+"$INSTALL_PROG"      "$INSTALL_DIRECTORY" "${svcdir}"
+ln -sf  "${FSCK}"    "${svcdir}/$C_ON"
+echo "$DEVICE"   >   "${svcdir}/$C_ON$C_PARAMS"
 
 exit 0
