@@ -55,7 +55,7 @@ if [ "$ROOT_FSCK" = "1" ]; then
    echo "***> Adding dependency"
    $(dirname $0)/cinit.add.dependency mount/root needs fsck/root
 else
-   echo "***> Skipping fsck for $ROOT_DEV ..."
+   echo "***> Skipping fsck for $ROOT_DEV (\$ROOT_FSCK is not 1 in fstab)..."
 fi
 
 echo "***> Setting up standard mounts ..."
