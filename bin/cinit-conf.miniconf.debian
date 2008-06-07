@@ -19,7 +19,6 @@ echo "***> Finding standard config ..."
 : ${ROOT_DEV:=$(awk '$2 ~ /^\/$/ { print $1 }' /etc/fstab)}
 : ${ROOT_FSCK:=$(awk '$2 ~ /^\/$/ { print $6 }' /etc/fstab)}
 : ${ROOT_FS:=$(awk '$2 ~ /^\/$/ { print $3 }' /etc/fstab)}
-: ${RUNLEVEL:=$(runlevel | awk '{ print $2 }')}
 
 
 DESTDIR="$1"
@@ -30,7 +29,6 @@ echo "Hostname      (\$HOSTNAME):            $HOSTNAME"
 echo "Root device   (\$ROOT_DEV):            $ROOT_DEV"
 echo "Root fsck     (\$ROOT_FSCK):           $ROOT_FSCK"
 echo "Root FS       (\$ROOT_FS):             $ROOT_FS"
-echo "Runlevel      (\$RUNLEVEL):            $RUNLEVEL"
 echo "Destdir:      (\$DESTDIR):             $DESTDIR"
 echo "Config-Dir:   (\$CINIT_DIR):           $CINIT_DIR"
 read -p "Is this correct (Y/n) " correct
