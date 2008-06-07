@@ -26,7 +26,7 @@ DESTDIR="$1"
 
 echo "***> Configuration"
 echo "Hostname      (\$HOSTNAME):            $HOSTNAME"
-echo "Keymap        (\$C_KEYMAP):            $C_KEYMAP"
+#echo "Keymap        (\$C_KEYMAP):            $C_KEYMAP"
 echo "Root device   (\$ROOT_DEV):            $ROOT_DEV"
 echo "Root fsck     (\$ROOT_FSCK):           $ROOT_FSCK"
 echo "Root FS       (\$ROOT_FS):             $ROOT_FS"
@@ -44,10 +44,10 @@ echo "***> Installing standard structure and dependencies"
 set -e
 $(dirname $0)/cinit-conf.install.dirs.base
 $(dirname $0)/cinit-conf.install.dirs.svc-categories
+$(dirname $0)/cinit-conf.install.standard.init.deps
 
 exit 0
 # FIXME: Stopped here
-$(dirname $0)/cinit.install.standard.init.deps
 
 echo "***> Adding mount / r/w"
 $(dirname $0)/cinit.install.service.mount-root
