@@ -20,21 +20,21 @@
 
 hier="${0%/*}"
 
-CONFDIR="$("${hier}/cinit-conf.get-confdir")"
+: ${CONFDIR:="$("${hier}/cinit-conf.get-confdir")"}
 
-DESTDIR="$(head -n1 "${CONFDIR}/destdir")"
-CINITDIR="${DESTDIR}/$(head -n1 "${CONFDIR}/cinitdir")"
+: ${DESTDIR="$(head -n1 "${CONFDIR}/destdir")"}
+: ${CINITDIR="${DESTDIR}/$(head -n1 "${CONFDIR}/cinitdir")"}
 
-CINITCONFDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/confdir")"
-SVCDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/svcdir")"
+: ${CINITCONFDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/confdir")"}
+: ${SVCDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/svcdir")"}
 
-SERVICE_CATEGORIES="$(head -n1 "${CONFDIR}/service_categories")"
-GETTYDIR="${SVCDIR}/$(head -n1 "${CONFDIR}/gettydir")"
+: ${SERVICE_CATEGORIES="$(head -n1 "${CONFDIR}/service_categories")"}
+: ${GETTYDIR="${SVCDIR}/$(head -n1 "${CONFDIR}/gettydir")"}
 
 
-INSTALL_PROG="$(head -n1 "${CONFDIR}/install_prog")"
-INSTALL_DIRECTORY="$(head -n1 "${CONFDIR}/install_prog_dir")"
+: ${INSTALL_PROG="$(head -n1 "${CONFDIR}/install_prog")"}
+: ${INSTALL_DIRECTORY="$(head -n1 "${CONFDIR}/install_prog_dir")"}
 
-C_ON="$(head -n1 "${CONFDIR}/con")"
-C_PARAMS="$(head -n1 "${CONFDIR}/cparams")"
-C_RESPAWN="$(head -n1 "${CONFDIR}/crespawn")"
+: ${C_ON="$(head -n1 "${CONFDIR}/con")"}
+: ${C_PARAMS="$(head -n1 "${CONFDIR}/cparams")"}
+: ${C_RESPAWN="$(head -n1 "${CONFDIR}/crespawn")"}
