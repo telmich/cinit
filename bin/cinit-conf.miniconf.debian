@@ -46,11 +46,11 @@ $(dirname $0)/cinit-conf.install.dirs.base
 $(dirname $0)/cinit-conf.install.dirs.svc-categories
 $(dirname $0)/cinit-conf.install.standard.init.deps
 
+echo "***> Adding mount / r/w"
+$(dirname $0)/cinit-conf.install.service.mount-root
+
 exit 0
 # FIXME: Stopped here
-
-echo "***> Adding mount / r/w"
-$(dirname $0)/cinit.install.service.mount-root
 
 if [ "$ROOT_FSCK" = "1" ]; then
    echo "***> Adding fsck for $ROOT_DEV ..."
