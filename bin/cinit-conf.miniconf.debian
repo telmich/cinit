@@ -46,17 +46,17 @@ $(dirname $0)/cinit-conf.install.standard.init.deps
 echo "***> Adding mount / r/w"
 $(dirname $0)/cinit-conf.install.service.mount-root
 
-exit 0
-# FIXME: Stopped here
-
 if [ "$ROOT_FSCK" = "1" ]; then
    echo "***> Adding fsck for $ROOT_DEV ..."
-   $(dirname $0)/cinit.install.fsck root "$ROOT_DEV" "$ROOT_FS"
+   $(dirname $0)/cinit-conf.install.service.linux.fsck root "$ROOT_DEV" "$ROOT_FS"
    echo "***> Adding dependency"
-   $(dirname $0)/cinit.add.dependency mount/root needs fsck/root
+   $(dirname $0)/cinit-conf.add.dependency mount/root needs fsck/root
 else
    echo "***> Skipping fsck for $ROOT_DEV (\$ROOT_FSCK is not 1 in fstab)..."
 fi
+
+exit 0
+# FIXME: Stopped here
 
 echo "***> Setting up standard mounts ..."
 $(dirname $0)/cinit.install.service.hostname.generic "$HOSTNAME"
