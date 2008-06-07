@@ -43,7 +43,10 @@ fi
 echo "***> Installing standard structure and dependencies"
 set -e
 $(dirname $0)/cinit-conf.install.basedirs
-$(dirname $0)/cinit.install.standard.dirs
+$(dirname $0)/cinit-conf.install.dirs.svc-categories
+
+exit 0
+# FIXME: Stopped here
 $(dirname $0)/cinit.install.standard.init.deps
 
 echo "***> Adding mount / r/w"
