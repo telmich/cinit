@@ -19,22 +19,21 @@ echo "***> Finding standard config ..."
 : ${ROOT_DEV:=$(awk '$2 ~ /^\/$/ { print $1 }' /etc/fstab)}
 : ${ROOT_FSCK:=$(awk '$2 ~ /^\/$/ { print $6 }' /etc/fstab)}
 : ${ROOT_FS:=$(awk '$2 ~ /^\/$/ { print $3 }' /etc/fstab)}
+: ${HOSTNAME:=$(hostname)}
 
-
-DESTDIR="$1"
 
 echo "***> Configuration"
+echo "Destdir:      (\$DESTDIR):             $DESTDIR"
 echo "Hostname      (\$HOSTNAME):            $HOSTNAME"
 #echo "Keymap        (\$C_KEYMAP):            $C_KEYMAP"
 echo "Root device   (\$ROOT_DEV):            $ROOT_DEV"
 echo "Root fsck     (\$ROOT_FSCK):           $ROOT_FSCK"
 echo "Root FS       (\$ROOT_FS):             $ROOT_FS"
-echo "Destdir:      (\$DESTDIR):             $DESTDIR"
-echo "Config-Dir:   (\$CINIT_DIR):           $CINIT_DIR"
+echo "Config-Dir:   (\$CINITDIR):            $CINITDIR"
 read -p "Is this correct (Y/n) " correct
 
-if [ -d "${DESTDIR}${CINIT_DIR}" ]; then
-   echo "ERROR: Configuration already exists at ${DESTDIR}${CINIT_DIR}."
+if [ -d "${CINITDIR}" ]; then
+   echo "ERROR: Configuration already exists at ${CINITDIR}."
    exit 1
 fi
 
