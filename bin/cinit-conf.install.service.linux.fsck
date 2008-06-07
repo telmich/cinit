@@ -28,14 +28,13 @@ if [ ! -e "${DESTDIR}${DEVICE}" ]; then
    echo "Warning: ${DESTDIR}${DEVICE} does not exist."
 fi
 
-svcdir="${CINITDIR}/fsck/${NAME}"
-if [ ! -e "$svcdir" ]; then
+svcdir="${SVCDIR}/fsck/${NAME}"
+if [ -e "$svcdir" ]; then
    echo "Error: $svcdir already exists"
    exit 1
 fi
 
+set -e
 "$INSTALL_PROG"      "$INSTALL_DIRECTORY" "${svcdir}"
 ln -sf  "${FSCK}"    "${svcdir}/$C_ON"
 echo "$DEVICE"   >   "${svcdir}/$C_ON$C_PARAMS"
-
-exit 0
