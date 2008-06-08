@@ -33,7 +33,7 @@ echo "Config-Dir:   (\$CINITDIR):            $CINITDIR"
 read -p "Is this correct (Y/n) " correct
 
 if [ -d "${CINITDIR}" ]; then
-   echo "ERROR: Configuration already exists at ${CINITDIR}."
+   echo "ERROR: Configuration directory exists already at ${CINITDIR}."
    exit 1
 fi
 
