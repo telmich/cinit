@@ -39,8 +39,8 @@ SVC_B="$3"
 
 # adding 'wishes' for x-mas and requires for 'the mass' and 'tv'
 case "${DEP}" in
-   wishes|wants) DEP=$C_WANTS ;;
-   needs|requires) DEP=$C_NEEDS ;;
+   wishes|wants) DEP="$C_WANTS" ;;
+   needs|requires) DEP="$C_NEEDS" ;;
    *) echo "Use \"want\" or \"need\" as type of dependency."
 esac
 
@@ -52,7 +52,7 @@ SLASHES=$(echo $SVC_A | sed -e 's,/$,,' -e 's,[^/],,g' -e 's,/,../,g' -e 's,^,..
 DEST_NAME=$(echo $SVC_B | sed -e 's,/$,,' -e 's,/,-,g')
 
 SOURCE="${SLASHES}${SVC_B}"
-DEP_DIR="${CINIT_DIR}/${SVC_A}/${DEP}"
+DEP_DIR="${R_CINIT_DIR}/${SVC_A}/${DEP}"
 
 if [ ! -d "$DEP_DIR" ]; then
    echo "$DEP_DIR does not exist, creating..."
