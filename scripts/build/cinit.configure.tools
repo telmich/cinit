@@ -1,0 +1,24 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: setups scripts for compiling and linking
+# 
+
+HIER=$(dirname $0)
+DDIR=$HIER/../tmpbin/
+CC=$(head -n 1 "$HIER/../conf/cc")
+CFLAGS=$(head -n 1 "$HIER/../conf/cflags")
+LD=$(head -n 1 "$HIER/../conf/ld")
+LDFLAGS=$(head -n 1 "$HIER/../conf/ldflags")
+STRIP=$(head -n 1 "$HIER/../conf/strip")
+
+echo "Configure: CC:  Creating cc, ld and strip ..."
+
+mkdir -p "$DDIR"
+cd "$DDIR"
+
+echo "$CC $CFLAGS \"\$@\""    > cc
+echo "$LD $LDFLAGS \"\$@\""   > ld
+echo "$STRIP \"\$@\""         > strip
+
+# set correct permissions
+chmod 0700 *

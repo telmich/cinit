@@ -1,0 +1,8 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: touch a file to mark everything configured
+# 2006-08-27
+# 
+
+echo "Configure: MK:  Marking directory as configured"
+touch .configured
