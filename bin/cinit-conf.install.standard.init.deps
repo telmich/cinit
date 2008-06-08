@@ -4,9 +4,10 @@
 # Date: 2005-10-11
 # 
 
+set -e
+
 . $(dirname $0)/cinit-conf.read-conf
 
-set -e
 $(dirname $0)/cinit-conf.add.dependency init wants getty
 $(dirname $0)/cinit-conf.add.dependency init wants local-services
 $(dirname $0)/cinit-conf.add.dependency init wants local-tuning

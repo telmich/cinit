@@ -4,6 +4,8 @@
 # Date: 2005-10-15
 # 
 
+set -e
+
 . $(dirname $0)/cinit-conf.read-conf
 
 if [ $# -ne 1 ]; then
@@ -11,12 +13,10 @@ if [ $# -ne 1 ]; then
   exit 1
 fi
 
-set -e
-
 HOSTNAME="$1"
 : ${HOSTNAME_BIN:=/bin/hostname}
 
 "$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
-                          "${SVCDIR}/network/hostname"
-ln -sf "$HOSTNAME_BIN"    "${SVCDIR}/network/hostname/$C_ON"
-echo "$HOSTNAME"        > "${SVCDIR}/network/hostname/$C_ON$C_PARAMS"
+                          "${R_SVC_DIR}/network/hostname"
+ln -sf "$HOSTNAME_BIN"    "${R_SVC_DIR}/network/hostname/$C_ON"
+echo "$HOSTNAME"        > "${R_SVC_DIR}/network/hostname/$C_ON$C_PARAMS"

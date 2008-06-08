@@ -4,9 +4,9 @@
 # Date: 2005-10-15
 # 
 
-. $(dirname $0)/cinit-conf.read-conf
-
 set -e
+
+. $(dirname $0)/cinit-conf.read-conf
 
 if [ $# -ne 3 ]; then
   echo "$(basename $0): name device filesystem-type"
@@ -28,7 +28,7 @@ if [ ! -e "${DESTDIR}${DEVICE}" ]; then
    echo "Warning: ${DESTDIR}${DEVICE} does not exist."
 fi
 
-svcdir="${SVCDIR}/fsck/${NAME}"
+svcdir="${R_SVC_DIR}/fsck/${NAME}"
 if [ -e "$svcdir" ]; then
    echo "Error: $svcdir already exists"
    exit 1

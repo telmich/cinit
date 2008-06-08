@@ -7,5 +7,5 @@
 . $(dirname $0)/cinit-conf.read-conf
 
 for svc in $SERVICE_CATEGORIES; do
-   "$INSTALL_PROG" "$INSTALL_DIRECTORY" "${SVCDIR}/${svc}"
+   "$INSTALL_PROG" "$INSTALL_DIRECTORY" "${R_SVC_DIR}/${svc}"
 done
