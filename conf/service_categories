@@ -1,0 +1,7 @@
+getty init local-tuning local-services mount network remote-services
+
+List of directories normally created below /etc/cinit/svc/ as
+'pseudo-services'.
+
+Btw, 'init' is the first service and has always to be there, but it does not really
+fit into here, because it's a real one, compraed to the pseudo services.
