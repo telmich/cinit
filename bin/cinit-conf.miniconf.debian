@@ -16,6 +16,11 @@ echo "***> $(basename $0): converting Debian-Sys-V-Init"
 # read standard values, may be overwritten from outside
 . $(dirname $0)/cinit-conf.read-conf
 
+if [ -d "${CINITDIR}" ]; then
+   echo "ERROR: Configuration directory exists already at ${CINITDIR}."
+   exit 1
+fi
+
 echo "***> Finding standard config ..."
 # variables, which can be set from the outside
 : ${ROOT_DEV:=$(awk '$2 ~ /^\/$/ { print $1 }' ${DESTDIR}/etc/fstab)}
@@ -33,11 +38,6 @@ echo "Root fsck     (\$ROOT_FSCK):           $ROOT_FSCK"
 echo "Root FS       (\$ROOT_FS):             $ROOT_FS"
 echo "Config-Dir:   (\$CINITDIR):            $CINITDIR"
 read -p "Is this correct (Y/n) " correct
-
-if [ -d "${CINITDIR}" ]; then
-   echo "ERROR: Configuration directory exists already at ${CINITDIR}."
-   exit 1
-fi
 
 echo "***> Installing standard structure and dependencies"
 set -e
