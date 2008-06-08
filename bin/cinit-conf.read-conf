@@ -33,7 +33,7 @@ for conf in ${CONFDIR}/*; do
    #   eval $NAME=\"$(head -n 1 $conf)\"
    #   eval export $NAME
    #fi
-   eval echo $NAME = \$$NAME
+#   eval echo $NAME = \$$NAME
 done
 
 # comment out: generated automatically now
