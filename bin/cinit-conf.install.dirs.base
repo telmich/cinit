@@ -6,10 +6,9 @@
 
 . $(dirname $0)/cinit-conf.read-conf
 
-"$INSTALL_PROG" "$INSTALL_DIRECTORY" "${CINITCONFDIR}"
-"$INSTALL_PROG" "$INSTALL_DIRECTORY" "${SVCDIR}"
+set -e
+"$INSTALL_PROG" "$INSTALL_DIRECTORY" "${R_CINITCONF_DIR}"
+"$INSTALL_PROG" "$INSTALL_DIRECTORY" "${R_SVC_DIR}"
 
 # init must be there. always.
-"$INSTALL_PROG" "$INSTALL_DIRECTORY" "${SVCDIR}/init"
-
-exit 0
+"$INSTALL_PROG" "$INSTALL_DIRECTORY" "${R_SVC_DIR}/init"
