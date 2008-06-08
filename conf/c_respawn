@@ -1,0 +1,3 @@
+respawn
+
+If this file exists in a service directory, cinit will respawn the service.

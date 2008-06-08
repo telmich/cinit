@@ -1,4 +1,3 @@
 /etc/cinit
 
-If set, cinit-conf will prepend destdir to all operations.
-Useful for configuring cinit which runs on another system.
+This is where all configuration for cinit will be stored.
