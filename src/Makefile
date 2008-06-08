@@ -83,10 +83,10 @@ ${OBJ}: ${CINIT_HEADERS}
 Makefile: .configured
 
 .configured: ../conf/*
-	@../bin/cinit.configure.os
-	@../bin/cinit.configure.tools
-	@../bin/cinit.configure.ipc
-	@../bin/cinit.configure.mark
+	@../scripts/build/cinit.configure.os
+	@../scripts/build/cinit.configure.tools
+	@../scripts/build/cinit.configure.ipc
+	@../scripts/build/cinit.configure.mark
 
 ${CINIT_OBJ}: ${CONFIG_H}
 

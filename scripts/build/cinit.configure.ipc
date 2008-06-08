@@ -5,9 +5,9 @@
 # 
 
 HIER=$(dirname $0)
-DDIR=$HIER/../src/ipc
+DDIR=$HIER/../../src/ipc
 DFILE=${DDIR}/current
-IPC_METHOD=$(head -n 1 "$HIER/../conf/ipc_method")
+IPC_METHOD=$(head -n 1 "$HIER/../../conf/ipc_method")
 
 echo "Configure: IPC: Using \"$IPC_METHOD\" as IPC method"
 
