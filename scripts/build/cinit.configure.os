@@ -3,9 +3,9 @@
 # cinit: setups symlinks for the os
 # 
 
-DDIR=$(dirname $0)/../src/os
+DDIR=$(dirname $0)/../../src/os
 DFILE="$DDIR/current"
-OSCONFIG=$(dirname $0)/../conf/os
+OSCONFIG=$(dirname $0)/../../conf/os
 
 OS=$(head -n 1 "$OSCONFIG")
 
