@@ -23,7 +23,7 @@ hier="${0%/*}"
 : ${CONFDIR:="$("${hier}/cinit-conf.get-confdir")"}
 
 : ${DESTDIR="$(head -n1 "${CONFDIR}/destdir")"}
-: ${CINITDIR="${DESTDIR}/$(head -n1 "${CONFDIR}/cinitdir")"}
+: ${CINITDIR="${DESTDIR}/$(head -n1 "${CONFDIR}/cinit_dir")"}
 
 : ${CINITCONFDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/confdir")"}
 : ${SVCDIR="${CINITDIR}/$(head -n1 "${CONFDIR}/svcdir")"}
@@ -33,8 +33,8 @@ hier="${0%/*}"
 
 
 : ${INSTALL_PROG="$(head -n1 "${CONFDIR}/install_prog")"}
-: ${INSTALL_DIRECTORY="$(head -n1 "${CONFDIR}/install_prog_dir")"}
+: ${INSTALL_DIRECTORY="$(head -n1 "${CONFDIR}/install_directory")"}
 
-: ${C_ON="$(head -n1 "${CONFDIR}/con")"}
-: ${C_PARAMS="$(head -n1 "${CONFDIR}/cparams")"}
-: ${C_RESPAWN="$(head -n1 "${CONFDIR}/crespawn")"}
+: ${C_ON="$(head -n1 "${CONFDIR}/c_on")"}
+: ${C_PARAMS="$(head -n1 "${CONFDIR}/c_params")"}
+: ${C_RESPAWN="$(head -n1 "${CONFDIR}/c_respawn")"}
