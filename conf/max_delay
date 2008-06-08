@@ -1,0 +1,4 @@
+30
+
+Maximum number of seconds to sleep between retrying to start it
+(respawn only).

@@ -1,0 +1,3 @@
+tmp
+
+The name of the temporary directory, where we'll mount tmpfs to create the socket

@@ -1,0 +1,14 @@
+linux
+
+Select the operating system compiling for.
+
+Current possibilities:
+
+   - linux
+
+
+Currently Planned possibilities:
+
+   - freebsd
+   - openbsd
+   - netbsd

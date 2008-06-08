@@ -1,0 +1,3 @@
+strip -R .comment -R .note
+
+Strip out unecessary parts of the binaries.

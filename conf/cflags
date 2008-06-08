@@ -1,0 +1,6 @@
+-pipe -W -Wall -Werror -Iinclude -g -D_XOPEN_SOURCE=600 -D_USE_POSIX
+
+Standard flags to pass to (g)cc.
+
+-D_XOPEN_SOURCE=600 must be used on glibc to select the right standard.
+-D_USE_POSIX is needed for sigemptyset on glibc

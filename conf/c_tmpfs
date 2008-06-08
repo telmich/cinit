@@ -1,0 +1,4 @@
+tmpfs
+
+The name of the filesystem to use to mount a memory filesystem.
+On Linux this is "tmpfs".

@@ -1,0 +1,9 @@
+cprofile:
+
+The argument should be passed to cinit to recognize that
+a profile will follow. "cprofile:" is the standard, as
+the Linux kernel eats everything in the form 'var=parm'.
+The old (pre cinit-0.1) option "cprofile=" should therefore
+NOT be used.
+
+Under Linux you tell it the bootloader like grub or LILO.

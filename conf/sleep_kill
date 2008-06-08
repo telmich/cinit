@@ -1,0 +1,8 @@
+2
+
+Seconds to sleep after sending SIGTERM, before sending SIGKILL to every
+process. 5 is a good working value, but makes me tired. Testing with
+2 currently.
+
+Note: This does NOT affect terminating services, they are shutdown by
+their own 'off' functions.

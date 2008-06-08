@@ -1,0 +1,5 @@
+panic
+
+Name of the file below cinit_dir/c_confdir/ to execute on panic.
+This name .params (normally panic.params) will be passed as parameters/
+argumunts to panic.
