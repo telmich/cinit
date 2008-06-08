@@ -9,6 +9,8 @@
 # -- She's not my girlfriend anymore, but now I want to test cinit-0.3pre15 on
 #    my notebook
 
+set -x
+
 echo "***> $(basename $0): converting Debian-Sys-V-Init"
 
 # read standard values, may be overwritten from outside
@@ -69,17 +71,17 @@ for i in `seq 1 8`; do
    $(dirname $0)/cinit.add.dependency getty/$i needs network/hostname
 done
 
+echo "***> Enabling getties (tty2-8)"
+for i in `seq 2 8`; do
+   # add getties to getty/
+   $(dirname $0)/cinit-conf.add.dependency getty wants getty/$i
+done
+
 exit 0
 # FIXME: Stopped here
 
 echo "***> Setting up standard mounts ..."
 $(dirname $0)/cinit.install.service.hostname.generic "$HOSTNAME"
-
-echo "***> Enabling getties (tty2-8)"
-for i in `seq 2 8`; do
-   # add getties to getty/
-   $(dirname $0)/cinit.add.dependency getty wants getty/$i
-done
 
 #
 # Convert services: check /etc/rcS.d and /etc/rcX.d
