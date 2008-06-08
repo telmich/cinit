@@ -55,21 +55,12 @@ else
    echo "***> Skipping fsck for $ROOT_DEV (\$ROOT_FSCK is not 1 in fstab)..."
 fi
 
-exit 0
-# FIXME: Stopped here
-
-echo "***> Setting up standard mounts ..."
-$(dirname $0)/cinit.install.service.hostname.generic "$HOSTNAME"
-
 echo "***> Setting up hostname: $HOSTNAME"
-$(dirname $0)/cinit.install.service.hostname.generic "$HOSTNAME"
-
-echo "***> Setting up keymap"
-$(dirname $0)/cinit.install.service.keymap.c_keymap
+$(dirname $0)/cinit-conf.install.service.linux.hostname "$HOSTNAME"
 
 echo "***> Creating getties (tty1-8)"
 for i in `seq 1 8`; do
-   $(dirname $0)/cinit.add.getty
+   $(dirname $0)/cinit-conf.getty.add
 
    # each getty needs:
    # - root r/w
@@ -77,6 +68,12 @@ for i in `seq 1 8`; do
    # - hostname
    $(dirname $0)/cinit.add.dependency getty/$i needs network/hostname
 done
+
+exit 0
+# FIXME: Stopped here
+
+echo "***> Setting up standard mounts ..."
+$(dirname $0)/cinit.install.service.hostname.generic "$HOSTNAME"
 
 echo "***> Enabling getties (tty2-8)"
 for i in `seq 2 8`; do
