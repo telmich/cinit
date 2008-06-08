@@ -93,3 +93,8 @@ release: ./scripts/internal/cinit.release
 scripts/internal/cinit.release: ./scripts/internal/test-cmd.sh
 	./scripts/internal/test-cmd.sh
 
+cinitconfconfdir=../cinit-conf/conf
+sync-conf:
+	 rsync --delete -av ./conf/ $(cinitconfconfdir)
+	 cd $(cinitconfconfdir); git add .; git commit -m "sync with cinit/conf"
+
