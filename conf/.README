@@ -1,4 +1,7 @@
-This is an example for a cinit-conf configuration.
+This is an example for a cinit and cinit-conf configuration.
 
 The first line of a file contains the configuration value,
 the rest of the file may contain a description.
+
+The conf/ directory is shared by cinit and cinit-conf and may contain files that
+are only relevant for one of the two projects.
