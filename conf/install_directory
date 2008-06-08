@@ -1,3 +1,3 @@
 -d
 
-Parameter to install_prog to create directories.
+Parameter to pass to install_prog to create directories.
