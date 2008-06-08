@@ -9,15 +9,13 @@
 # -- She's not my girlfriend anymore, but now I want to test cinit-0.3pre15 on
 #    my notebook
 
-set -x
-
 echo "***> $(basename $0): converting Debian-Sys-V-Init"
 
 # read standard values, may be overwritten from outside
 . $(dirname $0)/cinit-conf.read-conf
 
-if [ -d "${CINITDIR}" ]; then
-   echo "ERROR: Configuration directory exists already at ${CINITDIR}."
+if [ -d "${CINIT_DIR}" ]; then
+   echo "ERROR: Configuration directory exists already at ${CINIT_DIR}."
    exit 1
 fi
 
@@ -36,9 +34,10 @@ echo "Hostname      (\$HOSTNAME):            $HOSTNAME"
 echo "Root device   (\$ROOT_DEV):            $ROOT_DEV"
 echo "Root fsck     (\$ROOT_FSCK):           $ROOT_FSCK"
 echo "Root FS       (\$ROOT_FS):             $ROOT_FS"
-echo "Config-Dir:   (\$CINITDIR):            $CINITDIR"
+echo "Config-Dir:   (\$CINIT_DIR):            $CINIT_DIR"
 read -p "Is this correct (Y/n) " correct
 
+set -x
 echo "***> Installing standard structure and dependencies"
 set -e
 $(dirname $0)/cinit-conf.install.dirs.base
