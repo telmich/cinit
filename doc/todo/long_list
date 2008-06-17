@@ -1,0 +1,7 @@
+Code
+----
+
+Performance
+~~~~~~~~~~~
+
+- Perhaps replace malloc for path with static buffer?

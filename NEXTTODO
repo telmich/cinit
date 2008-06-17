@@ -1,13 +1,6 @@
 --------------------------------------------------------------------------------
-- Add service start/stop to cmd
--> then continue in cinit itself.
-
+- Add service start/stop to cinit
    cinit_svc_disable.c
-
-- remove malloc for paths
-   use
-
-- cleanly define functions for cmd
 
 --------------------------------------------------------------------------------
 - svc_stop_wait()
