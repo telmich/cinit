@@ -1,5 +1,7 @@
-All abstracted communication functions. Do not depend on the underlying
-inter process communication mechanism.
+This directory contains the server (aka cinit) part of the communication process.
+
+All the communication functions do not depend on the underlying
+inter process communication mechanism. Use the following functions:
 
    - send_command(): client function: sends a command to cinit
    - send_service(): client function: send the service name to operate on
