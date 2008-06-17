@@ -48,8 +48,6 @@ cinit-communication:
 - map status numbers to messages
 - Cleanup doc/user/NEW_using_cinit_freebsd
    => make a real document!
-- change to GPLv3?
-   => ask Markus (cinit), Killerfox (cconfig) and Peter (cconfig)
 - write / update manpage for cmd!
 - add sleep() support after service exited.
 
@@ -60,3 +58,5 @@ Done:
    cmd -p /etc/cinit/svc/init
    cmd -v
    cmd -V
+- change to GPLv3?
+   => ask Markus (cinit), Killerfox (cconfig) and Peter (cconfig)
