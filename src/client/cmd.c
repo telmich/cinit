@@ -178,15 +178,29 @@ int main(int argc, char **argv)
 
          u.status |= cinit_flag_to_uint32_t(flag);
 
-         if(!(u.status = fp(buf, u.status))) {
-            fprintf(stderr, MSG_IPC_ERROR);
-            return 2;
-         }
+         ret = fp(buf, u.status);
 
-         /*
-          * if(!cinit_svc_enable(buf, flag)) { fprintf(stderr, MSG_IPC_ERROR);
-          * return 2; } 
-          */
+         switch (ret) {
+            case CINIT_ASW_OK:
+               printf("Set status of %s.\n", buf);
+               what = 0;
+               break;
+
+            case CINIT_ASW_SVC_UNKNOWN:
+               printf(MSG_UNKNOWN_SVC, buf);
+               what = 1;
+               break;
+
+            case CINIT_ASW_IPC_ERROR:
+               fprintf(stderr, MSG_IPC_ERROR);
+               what = 2;
+               break;
+
+            default:           /* should not happen */
+               printf(MSG_UNKNOWN_RET, ret);
+               what = 3;
+               break;
+         }
          break;
 
       case PID:
