@@ -65,7 +65,8 @@ Get status::
 
 EXIT STATUS
 -----------
-Cmd returns 0 on success, 1 on user errors, 2 on communication errors.
+Cmd returns 0 on success, 1 on user errors, 2 on communication errors and
+3 on unknown reason errors.
 
 BUGS
 ----

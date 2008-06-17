@@ -63,6 +63,8 @@ int main(int argc, char **argv)
    int opt;
    int what = NOTHING;
    uint32_t ret;
+   uint32_t (*fp)(char *, uint32_t) = NULL;   /* to select enable or disable */
+
 
    union {
       uint32_t status;
@@ -75,13 +77,13 @@ int main(int argc, char **argv)
     * -d i(nclude everything)
     */
 
-/* check for
- * d|e:
- *    check for flags
- * p|s:
- *    continue with service
- * h|v|V: print and exit
- */
+   /* check for
+    * d|e:
+    *    check for flags
+    * p|s:
+    *    continue with service
+    * h|v|V: print and exit
+    */
    while((opt = getopt(argc, argv, CMD_OPTIONS)) != -1) {
       switch (opt) {
 
@@ -170,13 +172,13 @@ int main(int argc, char **argv)
 
    switch (what) {
       case ENABLE:
+         fp = cinit_svc_enable;
       case DISABLE:
-         /*
-          * fill flag 
-          */
+         if(!fp) fp = cinit_svc_disable;
+
          u.status |= cinit_flag_to_uint32_t(flag);
 
-         if(!(u.status = cinit_svc_disable(buf, u.status))) {
+         if(!(u.status = fp(buf, u.status))) {
             fprintf(stderr, MSG_IPC_ERROR);
             return 2;
          }
