@@ -12,3 +12,37 @@ Nico Schottelius 2005-06-14 (Last Modified: 2005-06-14)
 
 If you omit 4, you'll see how cinit will fail without having its base
 directory.
+
+
+
+--------------------------------------------------------------------------------
+Using a raw (x86) hd image:
+Access partition 1 via losetup:
+
+sudo losetup -o 32256 /dev/loop0 "$hierabs/debian-hd.img"
+linux ubd0=/dev/loop0 init=/sbin/cinit "$@"
+
+Offset was taken from fdisk:
+
+[19:22] denkbrett:emu# fdisk -l -u /dev/sda 
+
+Disk /dev/sda: 80.0 GB, 80026361856 bytes
+255 heads, 63 sectors/track, 9729 cylinders, total 156301488 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Disk identifier: 0x1669c708
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1              63    19535039     9767488+  83  Linux
+/dev/sda2        19535040    23438834     1951897+  82  Linux swap / Solaris
+/dev/sda3        23438835   156296384    66428775   83  Linux
+
+===> 63*512bytes spaeter beginnt sda1
+
+[19:23] denkbrett:~% echo 512\*63 |bc -l
+32256
+
+Results in losetup -o 32256 /dev/loop0 ./debian-hd.img     
+
+Scripts from the nsbin project (lo-*) can be used.
+It can be found at http://unix.schottelius.org/cgi-bin/gitweb.cgi.
+--------------------------------------------------------------------------------
