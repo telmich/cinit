@@ -26,6 +26,10 @@
 #include "svc-intern.h"         /* list_search */
 #include "cinit.h"              /* structure: cinit_answer */
 
+
+/**
+ * Returns the answer to the disable request to the client.
+ */
 int answer_svc_disable(char *svc, struct cinit_answer *asr)
 {
    struct listitem *tmp;
