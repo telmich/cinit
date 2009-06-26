@@ -107,6 +107,13 @@ void sig_child(int tmp)
 
             svc_start(svc, delay);
          }
+         if(svc->status == CINIT_ST_STOPPING) {
+            if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
+               svc_set_status(svc, CINIT_ST_STOPPED);
+            } else {
+               svc_set_status(svc, CINIT_ST_STOP_FAIL);
+            }
+         }
       }
    }
 }
