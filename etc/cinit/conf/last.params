@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "This is the last command executed"
+exit 0

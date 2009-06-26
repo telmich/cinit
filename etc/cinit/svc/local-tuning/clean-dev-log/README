@@ -1,0 +1,5 @@
+Remove /dev/log from previous run, so syslog* (syslog-ng,metalog,syslogd)
+can start.
+
+We're directly needed by the syslog variants,  so if they are
+not started, we are not started.

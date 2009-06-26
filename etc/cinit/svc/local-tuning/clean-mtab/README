@@ -1,0 +1,1 @@
+Remove the /etc/mtab, so it's in a clean state.

@@ -1,0 +1,17 @@
+#!/bin/sh
+# Wrapper for fsck that returns 1 on success...
+# Nico Schottelius
+# 2007-05-25
+# for cLinux/cinit
+
+fsck=/sbin/fsck.jfs
+dev="$1"
+
+"$fsck" "$dev"
+
+# return of 1 == repaired successful
+if [ $? -gt 1 ]; then
+   exit 1
+fi
+
+exit 0
