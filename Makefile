@@ -69,6 +69,7 @@ tests:
 
 DEBIAN=lenny
 UMLDIR=test/uml
+CONFDIR=etc/cinit/
 
 uml-install-debian:
 	mkdir -p $(UMLDIR)
@@ -76,11 +77,26 @@ uml-install-debian:
 	me=$$(whoami); sudo chown -R $$me $(UMLDIR)
 
 # only install binaries, no need to test documentation
+uml-install-config:
+	rsync -av --delete ./$(CONFDIR) $(UMLDIR)/$(CONFDIR)
+
 uml-install-cinit:
 	dir=$$(cd $(UMLDIR); pwd -P); make -C src DESTDIR=$$dir install 
 
-uml-run:
+uml-run: uml-install-config
 	dir=$$(cd $(UMLDIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs init=/sbin/cinit
+
+uml-run-sysv:
+	dir=$$(cd $(UMLDIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs
+
+# debian-etch
+de-install:
+	rsync -av --delete ./ root@de:cinit
+	rsync -av --delete ./etc/cinit/ root@de:/etc/cinit
+	ssh root@de '(cd cinit; make clean install)'
+
+de-run:
+	ssh root@de reboot
 
 ################################################################################
 # 
