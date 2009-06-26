@@ -4,7 +4,7 @@
 # 2007-05-25
 # for cLinux/cinit
 
-fsck=/sbin/fsck.jfs
+fsck=/sbin/fsck
 dev="$1"
 
 "$fsck" "$dev"
