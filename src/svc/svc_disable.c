@@ -1,7 +1,7 @@
 
 /*******************************************************************************
  *
- * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -19,21 +19,88 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
- *    Disable a service without dependencies
+ *    Stop a service
+ *
+ *    Status: Written, looks finished, but untested.
+ *
+ * respawn:
+ *    - disable respawning: set status to ST_RESPAWN_STOP
+ *    - send term signal? no => can be done in "off"
+ *       => set environment CINIT_SVC_PID
+ * once and respawn:
+ *    - look for 'off' binary, execute if present
+ *    - mark service as off or delete it?
  */
 
-#include <stdint.h>
+#include <stdio.h>              /* NULL */
+#include <unistd.h>             /* fork */
+#include <string.h>             /* strerror */
+#include <errno.h>              /* errno */
+#include <limits.h>             /* PATH_MAX */
+#include <sys/wait.h>           /* waitpid */
 
-#include "svc-intern.h"
-#include "svc.h"
-#include "cinit.h"
+#include "svc.h"                /* struct * */
+#include "svc-intern.h"         /* struct * */
+#include "messages.h"           /* MSG_* */
+#include "intern.h"             /* execute_sth */
+#include "cinit.h"              /* CINIT_DATA_LEN */
+#include "signals.h"            /* signal handling */
 
-/* checking for existence is done before! */
-uint32_t svc_disable(struct listitem *li)
+void svc_stop(struct listitem *li)
 {
-   svc_set_status(li, CINIT_ST_STOPPING);
-   svc_stop(li);
-   svc_set_status(li, CINIT_ST_STOPPED);
+   char buf[CINIT_DATA_LEN];
+   int status;
 
-   return CINIT_ASW_SVC_DISABLED;
+   svc_set_status(li, CINIT_ST_STOPPING);
+
+   li->pid = fork();
+
+   /**********************      Error      ************************/
+   if(li->pid < 0) {
+      svc_report_status(li->abs_path, MSG_SVC_FORK, strerror(errno));
+      svc_set_status(li, CINIT_ST_BAD_ERR);
+      return;
+   }
+
+   /********************** Parent / fork() ************************/
+   /*
+    * FIXME: 0.3pre15: look at the status / return value 
+    */
+   waitpid(li->pid, &status, 0);
+
+   /********************** Client / fork() ************************/
+   svc_report_status(li->abs_path, MSG_SVC_STOP, NULL);
+
+   cinit_cp_data(buf, li->abs_path);
+   if(!path_append(buf, C_OFF))
+      _exit(1);
+
+   /*
+    * Check for existence 
+    */
+   li->status = file_exists(buf);
+
+   if(li->status == FE_NOT) {
+      _exit(0);
+   }
+
+   if(li->status == FE_FILE) {
+      /*
+       * FIXME: reset signals: Is this necessary? Or does fork clean it anyway? 
+       */
+      set_signals(SIGSTAGE_CLIENT);
+
+      /*
+       * and now, fire it up 
+       */
+      execute_sth(buf);
+   } else {
+      /*
+       * FIXME: report? 
+       */
+      /*
+       * either no file or an error 
+       */
+      _exit(1);
+   }
 }
