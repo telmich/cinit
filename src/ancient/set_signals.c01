@@ -1,0 +1,40 @@
+/* 
+ * (c) 2005 Nico Schottelius (nico-linux at schottelius.org)
+ * cinit.c
+ * part of cLinux/cinit
+ */
+
+#include <signal.h>
+#include <stdio.h>
+#include "cinit.h"
+
+void set_signals(int action)
+{
+   struct sigaction sa;
+
+   D_PRINTF("Signale setzen");
+
+   if(action == ACT_SERV) {
+      sa.sa_handler=SIG_IGN;
+   } else {
+      sa.sa_handler=SIG_DFL;
+   }
+   sigaction(SIGINT,&sa,NULL);      /* ignore ctr+c and ctr+alt+del     */
+
+   /* what todo when a child exited, cleaning dead processes */
+   if(action == ACT_SERV) {
+      sa.sa_handler=sig_child;
+//      SA_NOCLDSTOP
+   }
+   sigaction(SIGCHLD,&sa,NULL);
+
+   /* signal handlers to do special things with: reboot */
+   if(action == ACT_SERV) {
+      sa.sa_handler=sig_reboot;
+   }
+   sigaction(SIGUSR1,&sa,NULL);     /* halt */
+   sigaction(SIGUSR2,&sa,NULL);     /* rescue */
+   sigaction(SIGTERM,&sa,NULL);     /* poweroff */
+   sigaction(SIGHUP,&sa,NULL);      /* reboot */
+
+}

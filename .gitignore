@@ -1,6 +1,5 @@
 *.o
 *.a
-*0?
 MT
 ddoc
 contrib+tools/cinit.graph.text
