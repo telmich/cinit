@@ -1,4 +1,3 @@
-
 /*******************************************************************************
  *
  * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
@@ -19,7 +18,7 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
- *    Return stop status
+ *    Disable a service (with or without dependencies)
  *
  */
 
@@ -31,10 +30,13 @@ int answer_svc_stop(char *svc, struct cinit_answer *asr)
 
    tmp = list_search(svc);
    if(!tmp) {
-      asr->ret = CINIT_MSG_SVC_UNKNOWN;
+      asr->ret = CINIT_ASW_SVC_UNKNOWN;
    } else {
-      asr->ret = CINIT_MSG_OK;
-      svc_stop(tmp);
+      if(tmp->status & (CINIT_ST_RESPAWNING | CINIT_ST_ONCE_RUN)) {
+         asr->ret = svc_disable(tmp);
+      } else { /* not running, nothing todo */
+         asr->ret = CINIT_ASW_OK;
+      }
    }
 
    return 1;
