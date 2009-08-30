@@ -35,13 +35,12 @@
 #include "svc-intern.h"         /* gen_svc_tree */
 #include "signals.h"            /* signals used by cinit */
 
-/* global variables */
-struct listitem *svc_list = NULL;
-struct dep *svc_init = NULL;
-int svc_lock = 0;               /* global svc-lock */
+struct listitem  *svc_list = NULL;
+struct dep       *svc_init = NULL;
+int               svc_lock = 0;      /* global svc-lock */
 
-struct sigaction sigstages[SIGSTAGE_END][SIGCINIT_END];
-int cinit_global_signals[SIGCINIT_END];
+struct sigaction  sigstages[SIGSTAGE_END][SIGCINIT_END];
+int               cinit_global_signals[SIGCINIT_END];
 
 int main(int argc, char **argv)
 {
@@ -54,9 +53,10 @@ int main(int argc, char **argv)
     * return 0; }
     */
 
-   /*
-    * Look whether we should start a profile 
-    */
+   /* Bootup "logo" */
+   mini_printf(MSG_BOOTING, 1); mini_printf(initdir, 1); mini_printf("\n", 1);
+
+   /* Should we start a profile? */
    while(argc > 1) {
       if(!strncmp(PROFILE, argv[argc - 1], strlen(PROFILE))) {
          initdir = malloc(strlen(CINIT_SVCDIR) +
@@ -72,56 +72,36 @@ int main(int argc, char **argv)
       --argc;
    }
 
-   /*
-    * Bootup "logo" 
-    */
-   mini_printf(MSG_BOOTING, 1);
-   mini_printf(initdir, 1);
-   mini_printf("\n", 1);
-
+   /* no configuration? - panic! */
    if(chdir(initdir) == -1) {
       print_errno(initdir);
       panic();
    }
 
-   /*
-    * initialize ipc method 
-    */
-   if(!cinit_ipc_init()) {
-      panic();
-   }
+   /* initialize communication (IPC) */
+   if(!cinit_ipc_init()) panic();
 
-   /*
-    * listen to signals 
-    */
+   /* Init signal handler */
    signal_init_map(sigstages, cinit_global_signals);
    set_signals(SIGSTAGE_DAEMON);
 
-   /*
-    * pre-calculate service tree 
-    */
-   if(!gen_svc_tree(initdir)) {
-      panic();
-   }
+   /* build service dependency tree */
+   if(!gen_svc_tree(initdir)) panic();
 
-   /*
-    * free, if we malloc()ed before 
-    */
-   if(strcmp(initdir, CINIT_INIT)) {
-      free(initdir);
-   }
+   /* unused now, free if allocated */
+   if(strcmp(initdir, CINIT_INIT)) free(initdir);
 
-   /*
+   /* FIXME: what todo?
     * change to /, so applications have that as cwd, too Is that really
     * seneful? Does that help any application? If not, just for looking nice,
     * that's not a reason to enable it. if(chdir(SLASH) == -1) {
     * print_errno(SLASH); panic(); } 
     */
 
-   if(!tree_exec(svc_init)) {
-      panic();
-   }
+   /* the main startup routine */
+   if(!tree_exec(svc_init)) panic();
 
+   /* listen to commands after startup */
    while(1) {
       cinit_ipc_listen();
 
@@ -137,8 +117,5 @@ int main(int argc, char **argv)
       // if(dep) { svc_start() .. ?
    }
 
-   /*
-    * never reached 
-    */
    return 0;
 }
