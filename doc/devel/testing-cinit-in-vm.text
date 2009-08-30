@@ -1,0 +1,11 @@
+
+m = manually
+a = automated
+
+m Install OS of your choice into KVM, including make, gcc, ssh and rsync
+m Startup VM
+a Transfer data to VM
+a Compile cinit on VM
+a Install cinit and configuration on VM
+m Configure bootloader to add cinit as alternative choice
+m Reboot and start cinit
