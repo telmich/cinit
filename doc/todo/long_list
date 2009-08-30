@@ -5,3 +5,17 @@ Performance
 ~~~~~~~~~~~
 
 - Perhaps replace malloc for path with static buffer?
+
+Compatibility
+~~~~~~~~~~~~~
+- create migration scripts
+
+Usage
+~~~~~
+- Aid in debugging cinit-configuration (check without reboot)
+- Integrate into OS package system
+
+Other
+~~~~~
+- add log support to shm
+- Check and clean doc/: Remove *TODO*+ROADMAP and leave behin doc/TODO (or ditz)

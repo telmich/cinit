@@ -49,9 +49,6 @@ In the bin/ directory of this tarball you'll find at least:
 
 Optimisations
 -------------
-   - Installing cinit
-      o compiling cinit from source
-      o debian / gentoo
    - Configuring
       * add scripts! see below
    - define coding guidelines -> general, with url?
@@ -227,13 +224,6 @@ msgq-destroy: Invalid argument
       => not necessary imho currently
 
 
-TODO.pre10:
-   Done:
-   cleanup client/ comm/ contrib+tools/ util/ tmp/
-   Debugging cinit-configuration:
-      ls -lR /etc/cinit
-      or: cinit.read....
-
 TODO.pre11:
    Remove some debugging, re-introduce DEBUG() macro..
    Fix doc:
@@ -285,26 +275,3 @@ TODO.pre11:
       make install-miniconf:
          * creates categories
          * creates one service starting a shell (depending on the OS!)
-
-      cleanup src/
-   finish ipc code so clients can access cinit
-   implement CMD_INFO (see comm.h)
-
-
-TODO.pre12:
-   Check and clean doc/
-   Remove *TODO*+ROADMAP and leave behin doc/TODO
-
-TODO.pre13:
-   code cmd=(cservice ccontrol halt reboot shutdown poweroff)
-      => halt/r/... also with kill ...
-   Test, release and prepare for final cinit-0.3
-
-TODO.0.3.1
-   add log support
-      cinit logs to
-         -> shm saver
-      services log to
-
-TODO unclear
-   - create migration scripts
