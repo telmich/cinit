@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2007-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -63,7 +62,7 @@ int main(int argc, char **argv)
    int opt;
    int what = NOTHING;
    uint32_t ret;
-   uint32_t (*fp)(char *, uint32_t) = NULL;   /* to select enable or disable */
+   uint32_t (*fp)(char *, uint32_t);   /* to select enable or disable */
 
 
    union {
@@ -87,13 +86,14 @@ int main(int argc, char **argv)
    while((opt = getopt(argc, argv, CMD_OPTIONS)) != -1) {
       switch (opt) {
 
-         /********************************************/
-            /*
-             * Non-Continuing parameters 
-             */
+         /********************************************
+         * Non-continuing parameters 
+         */
 
-         /********************************************/
-         case 'h':             /* help */
+         /********************************************
+         * help
+         */
+         case 'h':
             printf(CMD_USAGE);
             return 0;
             break;
@@ -170,6 +170,7 @@ int main(int argc, char **argv)
    if(!path_absolute(argv[optind], buf, CINIT_DATA_LEN))
       return 1;
 
+   fp = NULL;
    switch (what) {
       case ENABLE:
          fp = cinit_svc_enable;
