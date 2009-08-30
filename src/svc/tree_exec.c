@@ -79,7 +79,8 @@ int tree_exec(struct dep *start)
             /*
              * mark service as NEED_FAILD and delete from list 
              */
-            svc_report_status(tmp->svc->abs_path, MSG_SVC_NEED_FAIL, NULL);
+            /* FIXME: reporting moved to svc_needs_status.c */
+            //svc_report_status(tmp->svc->abs_path, MSG_SVC_NEED_FAIL, NULL);
             svc_set_status(tmp->svc, CINIT_ST_NEED_FAILD);
             tmp = dep_entry_del(tmp);
             break;

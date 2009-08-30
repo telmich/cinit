@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2007-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -46,10 +45,9 @@
 #include "cinit.h"              /* CINIT_DATA_LEN */
 #include "signals.h"            /* signal handling */
 
-void svc_stop(struct listitem *li)
+uint32_t svc_disable(struct listitem *li)
 {
    char buf[CINIT_DATA_LEN];
-   int status;
 
    svc_set_status(li, CINIT_ST_STOPPING);
 
@@ -59,14 +57,14 @@ void svc_stop(struct listitem *li)
    if(li->pid < 0) {
       svc_report_status(li->abs_path, MSG_SVC_FORK, strerror(errno));
       svc_set_status(li, CINIT_ST_BAD_ERR);
-      return;
+      return CINIT_ASW_ERR_INTERN;
    }
 
    /********************** Parent / fork() ************************/
-   /*
-    * FIXME: 0.3pre15: look at the status / return value 
-    */
-   waitpid(li->pid, &status, 0);
+   if(li->pid > 0) {
+      svc_set_status(li, CINIT_ST_STOPPING);
+      return CINIT_ASW_OK;
+   }
 
    /********************** Client / fork() ************************/
    svc_report_status(li->abs_path, MSG_SVC_STOP, NULL);
@@ -103,4 +101,5 @@ void svc_stop(struct listitem *li)
        */
       _exit(1);
    }
+   return CINIT_ASW_OK;
 }

@@ -86,7 +86,6 @@ void              svc_report_status(char *svc, char *msg, char *err);
 void              shutdown_services(struct listitem *start);
 
 void              svc_start(struct listitem *,     int);
-void              svc_stop(struct listitem *);
 void              svc_stop_deps(struct listitem *, int);
 uint32_t          svc_disable(struct listitem *);
 

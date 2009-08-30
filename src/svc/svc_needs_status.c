@@ -41,6 +41,7 @@ int svc_needs_status(struct listitem *svc)
       if((deps->svc->status & CINIT_ST_NEED_FAILD) ||
          (deps->svc->status & CINIT_ST_ONCE_FAIL) ||
          (deps->svc->status & CINIT_ST_BAD_ERR)) {
+         printf("%s not started, because %s failed.\n", svc->abs_path, deps->svc->abs_path);
          retval = CINIT_SNS_NEEDS_FAILED;
          break;
       }

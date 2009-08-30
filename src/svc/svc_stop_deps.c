@@ -63,5 +63,5 @@ void svc_stop_deps(struct listitem *li, int how)
       tmp = tmp->next;
    } while(tmp != li->wanted_by);
 
-   svc_stop(li);
+   svc_disable(li);
 }
