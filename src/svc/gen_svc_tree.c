@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2006-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2006-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -19,7 +18,7 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
- *    Pre calculate the service tree
+ *    Pre calculate the service tree (recursive calling)
  */
 
 #include <stdlib.h>
@@ -33,30 +32,20 @@ struct listitem *gen_svc_tree(char *svc)
    struct listitem *li;
    struct dep *deps;
 
-   /*
-    * only do something if the service is not already known 
-    */
-   if((li = list_search(svc)))
-      return li;
+   /* only do something if the service is not already known */
+   if((li = list_search(svc))) return li;
 
-   /*
-    * create a template, so other instances won't try to recreate us 
-    */
-   if(!(li = svc_create(svc)))
-      return NULL;
+   /* create a template, so other instances won't try to recreate us */
+   if(!(li = svc_create(svc))) return NULL;
 
-   if(!check_add_deps(li, DEP_NEEDS))
-      return NULL;
-   if(!check_add_deps(li, DEP_WANTS))
-      return NULL;
+   /* add dependencies */
+   if(!check_add_deps(li, DEP_NEEDS)) return NULL;
+   if(!check_add_deps(li, DEP_WANTS)) return NULL;
 
-   /*
-    * no dependencies? then you are a start service 
-    */
+   /* If it has no dependencies, then the service is a start service. */
    if(!li->wants && !li->needs) {
       deps = dep_create(li);
-      if(!deps)
-         return NULL;
+      if(!deps) return NULL;
       dep_entry_add(&svc_init, deps);
 
       /*

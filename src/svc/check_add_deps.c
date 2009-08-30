@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2005-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -19,7 +18,7 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
- *    Pre calculate the service tree
+ *    Add dependencies to a service
  */
 
 /* FIXME: clean headers, check:

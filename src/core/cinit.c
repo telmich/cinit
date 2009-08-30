@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2005-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -35,9 +34,9 @@
 #include "svc-intern.h"         /* gen_svc_tree */
 #include "signals.h"            /* signals used by cinit */
 
-struct listitem  *svc_list = NULL;
-struct dep       *svc_init = NULL;
-int               svc_lock = 0;      /* global svc-lock */
+struct listitem  *svc_list = NULL;  /* services in a dependency tree    */
+struct dep       *svc_init = NULL;  /* the first services to be started */
+int               svc_lock = 0;     /* FIXME */
 
 struct sigaction  sigstages[SIGSTAGE_END][SIGCINIT_END];
 int               cinit_global_signals[SIGCINIT_END];
