@@ -35,18 +35,16 @@ void panic(void)
       _exit(0);
 
    /***********************************************************************
-    * THIS SHOULD NOT HAPPEN, fallback to hardcoded sulogin
-    * (conf/sulogin)
+    * In case nothing helps, try to execute something that is always there.
+    * (conf/c_desaster)
     */
-   nargv[0] = SULOGIN;
+   nargv[0] = C_DESASTER;
    nargv[1] = NULL;
 
-   if(execv(SULOGIN, nargv) == -1) {
+   if(execv(nargv[0], nargv) == -1) {
       print_errno(MSG_FATAL_PANIC);
    }
 
-   /*
-    * there's nothing todo, if everything fails 
-    */
-   _exit(23);
+   /* We tried everything possible, die now. */
+   _exit(1);
 }

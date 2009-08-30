@@ -1,0 +1,5 @@
+/bin/sh
+
+The path to a program, that we execute if nothing
+else helps. We'll execute it, if the standard panic
+action fails (as specified in cinit_dir/c_confdir/panic).
