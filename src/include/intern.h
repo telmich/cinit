@@ -1,6 +1,6 @@
 /*******************************************************************************
  *
- * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2005-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -18,7 +18,8 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
- *    internal header
+ *    internal stuff only :-)
+ *
  */
 
 

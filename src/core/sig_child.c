@@ -32,7 +32,6 @@
 #include "svc.h"                 /* list_search_pid */
 #include "messages.h"            /* messages/D_PRINTF */
 
-extern int svc_lock;
 
 /***********************************************************************
  * sig_child: (c)collect the children
@@ -45,11 +44,10 @@ void sig_child(int tmp)
     * -> update service status * else ignore, but reap away 
     */
    pid_t pid;
-   int success;
+   int success = 1; /* dummy */
    struct listitem *svc;
 
    /* wait until the lock is reset */ /* FIXME: remove! */
-   if(svc_lock) return;
 
    while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
       /* check if process was a service */
@@ -57,7 +55,7 @@ void sig_child(int tmp)
 
       if(!svc) continue; /* ignore crap that was uncaught by others */
 
-      success = (WIFEXITED(tmp) && !WEXITSTATUS(tmp)) & 1 : 0;
+      //success = (WIFEXITED(tmp) && !WEXITSTATUS(tmp)) & 1 : 0;
 
       /*
        * Also check for ST_SH_* to catch race conditions, where status is
@@ -96,7 +94,7 @@ void sig_child(int tmp)
           * MAX_DELAY / (now.tv_sec - svc->start); } 
           */
 
-         delay = 5;
+         //delay = 5;
 
          /*
           * int test = time(NULL); test++; D_PRINTF("WHILE: IM respawn / for 
@@ -104,7 +102,7 @@ void sig_child(int tmp)
           * (int) time(NULL), (int) svc->start, (int) (test - svc->start) ); 
           */
 
-         svc_start(svc, delay);
+//         svc_start(svc, delay);
       }
       if(svc->status == CINIT_ST_STOPPING) {
          if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
