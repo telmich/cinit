@@ -21,25 +21,18 @@
  *    Add dependencies to a service
  */
 
-/* FIXME: clean headers, check:
- * getcwd */
-#include <unistd.h>
+#include <unistd.h>              /* getcwd      */
 
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <dirent.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <errno.h>
+#include <dirent.h>              /* DIR         */
+#include <errno.h>               /* errno       */
 
-#include <limits.h>             /* PATH_MAX */
-#include <stdlib.h>             /* malloc */
-#include <string.h>             /* strcpy */
+#include <limits.h>              /* PATH_MAX    */
+#include <stdlib.h>              /* malloc      */
+#include <string.h>              /* strcpy      */
 
-#include "intern.h"             /* mini_printf */
-#include "messages.h"
-#include "svc-intern.h"
+#include "intern.h"              /* mini_printf */
+#include "messages.h"            /* MSG_*       */
+#include "svc-intern.h"          /* DEP_*       */
 
 int check_add_deps(struct listitem *svc, int type)
 {
@@ -50,24 +43,18 @@ int check_add_deps(struct listitem *svc, int type)
    struct listitem *new_svc;
    DIR *d_tmp;
 
-   /*
-    * remember where we started 
-    */
+   /* remember where we started */
    if(!getcwd(oldpath, PATH_MAX + 1)) {
       print_errno(MSG_GETCWD);
       return 0;
    }
 
-   /*
-    * Create path 
-    */
-   strcpy(buf, svc->abs_path);
+   /* Create path */
+   strncpy(buf, svc->abs_path, PATH_MAX+1);
    if(type == DEP_NEEDS) {
-      if(!path_append(buf, C_NEEDS))
-         return 0;
+      if(!path_append(buf, C_NEEDS)) return 0;
    } else {
-      if(!path_append(buf, C_WANTS))
-         return 0;
+      if(!path_append(buf, C_WANTS)) return 0;
    }
 
    d_tmp = opendir(buf);
@@ -85,21 +72,16 @@ int check_add_deps(struct listitem *svc, int type)
    }
 
    while((tdirent = readdir(d_tmp)) != NULL) {
-      if(*(tdirent->d_name) == '.')
-         continue;              /* ignore .* */
+      if(*(tdirent->d_name) == '.') continue;              /* ignore .* */
 
       /*
        * skip non-working directories / broken links path_absolute reports
        * errors on failure 
        */
-      if(!path_absolute(tdirent->d_name, buf, PATH_MAX + 1))
-         continue;
+      if(!path_absolute(tdirent->d_name, buf, PATH_MAX + 1)) continue;
 
-      /*
-       * 1. create the service we depend on 2. initialize its dependencies 
-       */
-      if(!(new_svc = gen_svc_tree(buf)))
-         return 0;
+      /* 1. create the service we depend on 2. initialize its dependencies */
+      if(!(new_svc = gen_svc_tree(buf))) return 0;
 
       /*
        * We need ALL dependencies, as we are called only once per service; no
@@ -114,32 +96,25 @@ int check_add_deps(struct listitem *svc, int type)
        * once for needed_by 
        */
 
-      /*
-       * create a dependency entry containing us 
-       */
+      /* create a dependency entry containing us */
       deps = dep_create(svc);
-      if(!deps)
-         return 0;
+      if(!deps) return 0;
 
       if(type == DEP_NEEDS) {
+         /* add us to the other service */
          dep_entry_add(&(new_svc->needed_by), deps);
 
-         /*
-          * second link 
-          */
+         /* add other service to us */
          deps = dep_create(new_svc);
-         if(!deps)
-            return 0;
+         if(!deps) return 0;
          dep_entry_add(&(svc->needs), deps);
       } else {
+         /* add us to the other service */
          dep_entry_add(&(new_svc->wanted_by), deps);
 
-         /*
-          * second link 
-          */
+         /* add other service to us */
          deps = dep_create(new_svc);
-         if(!deps)
-            return 0;
+         if(!deps) return 0;
          dep_entry_add(&(svc->wants), deps);
       }
    }

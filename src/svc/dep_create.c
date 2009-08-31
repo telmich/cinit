@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2006-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2006-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -32,8 +31,7 @@ struct dep *dep_create(struct listitem *svc)
    struct dep *entry;
 
    entry = malloc(sizeof(struct dep));
-   if(!entry)
-      return NULL;
+   if(!entry) return NULL;
    entry->svc = svc;
 
    return entry;
