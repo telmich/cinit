@@ -1,8 +1,7 @@
-
 /*******************************************************************************
  *
  * 2005      Marcus Przyklink      (downhill-clinux (at) burningchaos.org)
- * 2006-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2006-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -32,11 +31,9 @@ struct listitem *list_search(char *path)
 {
    struct listitem *tmp;
 
-   if(svc_list == NULL) {       /* think positive */
-      return NULL;
-   } else {
-      tmp = svc_list;
-   }
+   if(svc_list == NULL) return NULL;
+   
+   tmp = svc_list;
 
    do {
       if(!strcmp(path, tmp->abs_path)) {

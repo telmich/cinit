@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2005-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -19,7 +18,7 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
- *    Check whether service is existent
+ *    Create a service, checking for existence is done before.
  */
 
 #include <stdio.h>              /* NULL */
@@ -31,7 +30,6 @@
 #include "intern.h"             /* path_append */
 #include "cinit.h"              /* CINIT_DATA_LEN */
 
-/* checking for existence is done before! */
 struct listitem *svc_create(char *svc)
 {
    char buf[CINIT_DATA_LEN];
@@ -39,12 +37,10 @@ struct listitem *svc_create(char *svc)
    struct listitem *li;
 
    li = list_insert(svc, -1);
-   if(!li)
-      return NULL;
+   if(!li) return NULL;
 
    cinit_cp_data(buf, svc);
-   if(!path_append(buf, C_RESPAWN))
-      return NULL;
+   if(!path_append(buf, C_RESPAWN)) return NULL;
 
    if(stat(buf, &statbuf) == -1) {
       if(errno == ENOENT) {
