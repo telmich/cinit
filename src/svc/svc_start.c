@@ -43,9 +43,6 @@ void svc_start(struct listitem *li, int delay)
    char buf[CINIT_DATA_LEN];
    struct timespec ts;
 
-   /* set global lock to avoid race condition */ /* FIXME: remove */
-   svc_lock = 1;
-
    /*
     * first update status before forking ! 
     */
@@ -74,7 +71,6 @@ void svc_start(struct listitem *li, int delay)
 
    /**********************      parent     ************************/
    if(li->pid > 0) {
-      svc_lock = 0;
       printf("%s is at %d\n", li->abs_path, li->pid);
       return;
    }
