@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2005-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -19,19 +18,19 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
- *    The child handler
+ *    The child handler (may *not* exec other functions!)
  *
  */
 
-#include <sys/wait.h>           /* waitpid */
-#include <stdio.h>              /* NULL */
-#include <sys/time.h>   /* gettimeofday()    */ /* FIXME: CHECK POSIX */
-#include <time.h>       /* time(),gettime..  */ /* FIXME: CHECK POSIX */
+#include <sys/wait.h>            /* waitpid */
+#include <stdio.h>               /* NULL */
+#include <sys/time.h>            /* gettimeofday()    */ /* FIXME: CHECK POSIX */
+#include <time.h>                /* time(),gettime..  */ /* FIXME: CHECK POSIX */
 
-#include "intern.h"             /* mini_printf */
-#include "svc-intern.h"         /* list_search_pid */
-#include "svc.h"                /* list_search_pid */
-#include "messages.h"           /* messages/D_PRINTF */
+#include "intern.h"              /* mini_printf */
+#include "svc-intern.h"          /* list_search_pid */
+#include "svc.h"                 /* list_search_pid */
+#include "messages.h"            /* messages/D_PRINTF */
 
 extern int svc_lock;
 
@@ -46,73 +45,72 @@ void sig_child(int tmp)
     * -> update service status * else ignore, but reap away 
     */
    pid_t pid;
-   int delay;
+   int success;
    struct listitem *svc;
 
-   /*
-    * wait until the lock is reset 
-    */
-   if(svc_lock)
-      return;
-
-//   struct timeval    now;
+   /* wait until the lock is reset */ /* FIXME: remove! */
+   if(svc_lock) return;
 
    while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
-      /*
-       * check if it's a watched child 
-       */
+      /* check if process was a service */
       svc = list_search_pid((pid_t) pid);
 
-      if(svc != NULL) {
-         /*
-          * Check, that we are operating on it =. that it is no normal child 
-          */
-         /*
-          * Also check for ST_SH_* to catch race conditions, where status is
-          * not yet updated => does that make sense or is the status
-          * overwritten after we return out of here? 
-          */
-         printf("CHILD: %s (%u) (%d) bekannt!\n", svc->abs_path, svc->status,
-                pid);
+      if(!svc) continue; /* ignore crap that was uncaught by others */
 
-         if(svc->status & CINIT_ST_ONCE_RUN
-            || svc->status & CINIT_ST_RESPAWNING) {
-            if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
-               svc_success(svc);
-            } else {
-               svc_fail(svc);
-            }
+      success = (WIFEXITED(tmp) && !WEXITSTATUS(tmp)) & 1 : 0;
+
+      /*
+       * Also check for ST_SH_* to catch race conditions, where status is
+       * not yet updated => does that make sense or is the status
+       * overwritten after we return out of here? 
+       */
+
+      /************************************************************************
+       * Status translation table
+       */
+
+      /* should have been started once */
+      if(svc->status & CINIT_ST_SH_ONCE)
+         svc->status = success ? CINIT_ST_ONCE_OK : CINIT_ST_ONCE_FAIL;
+
+      if(svc->status & CINIT_ST_ONCE_RUN) 
+
+      if(svc->status & CINIT_ST_ONCE_RUN
+         || svc->status & CINIT_ST_RESPAWNING) {
+         if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
+            svc_success(svc);
+         } else {
+            svc_fail(svc);
          }
-         // mini_printf("WHILE: Vorm respawn!\n",1);
+      }
+      /*
+       * respawn: restart: FIXME Delay for regular dying services 
+       */
+      if(svc->status == CINIT_ST_RESPAWNING) {
+         svc_report_status(svc->abs_path, MSG_SVC_RESTART, NULL);
+
+         // delay = MAX_DELAY / (time(NULL) - svc->start);
          /*
-          * respawn: restart: FIXME Delay for regular dying services 
+          * if(gettimeofday(&now,NULL) == -1) {
+          * print_errno(MSG_GETTIMEOFDAY);; delay = 0; } else { delay =
+          * MAX_DELAY / (now.tv_sec - svc->start); } 
           */
-         if(svc->status == CINIT_ST_RESPAWNING) {
-            svc_report_status(svc->abs_path, MSG_SVC_RESTART, NULL);
 
-            // delay = MAX_DELAY / (time(NULL) - svc->start);
-            /*
-             * if(gettimeofday(&now,NULL) == -1) {
-             * print_errno(MSG_GETTIMEOFDAY);; delay = 0; } else { delay =
-             * MAX_DELAY / (now.tv_sec - svc->start); } 
-             */
+         delay = 5;
 
-            delay = 5;
+         /*
+          * int test = time(NULL); test++; D_PRINTF("WHILE: IM respawn / for 
+          * printf!\n"); printf("sig_child: %d, %d, %d, %d\n", MAX_DELAY,
+          * (int) time(NULL), (int) svc->start, (int) (test - svc->start) ); 
+          */
 
-            /*
-             * int test = time(NULL); test++; D_PRINTF("WHILE: IM respawn / for 
-             * printf!\n"); printf("sig_child: %d, %d, %d, %d\n", MAX_DELAY,
-             * (int) time(NULL), (int) svc->start, (int) (test - svc->start) ); 
-             */
-
-            svc_start(svc, delay);
-         }
-         if(svc->status == CINIT_ST_STOPPING) {
-            if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
-               svc_set_status(svc, CINIT_ST_STOPPED);
-            } else {
-               svc_set_status(svc, CINIT_ST_STOP_FAIL);
-            }
+         svc_start(svc, delay);
+      }
+      if(svc->status == CINIT_ST_STOPPING) {
+         if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
+            svc_set_status(svc, CINIT_ST_STOPPED);
+         } else {
+            svc_set_status(svc, CINIT_ST_STOP_FAIL);
          }
       }
    }
