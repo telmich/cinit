@@ -1,6 +1,6 @@
 /*******************************************************************************
  *
- * 2006-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2006-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -19,8 +19,8 @@
 
  *
  *    Internal service specifics
+ *
  */ 
-
 
 #ifndef __CINIT_SVC_INTERN_H
 #define __CINIT_SVC_INTERN_H
@@ -31,7 +31,7 @@
 #include "config.h"     /* paths, socket options, etc.   */
 #include "cinit.h"      /* LEN                           */
 
-/* service list */
+/* service tree item */
 struct listitem {
    struct      listitem *prev;   /* previous item                             */
    struct      listitem *next;   /* next item                                 */
@@ -42,11 +42,13 @@ struct listitem {
    time_t      start;            /* time the process was started last time    */
 
 
-   struct   dep      *wanted_by; /* list of services that want this service   */
-   struct   dep      *needed_by; /* list of services that need this service   */
+   struct      dep      *wanted_by; /* list of services that want this service   */
+   struct      dep      *needed_by; /* list of services that need this service   */
 
-   struct   dep      *wants;     /* list of services that this service wants  */
-   struct   dep      *needs;     /* list of services that this service needs  */
+   struct      dep      *wants;     /* list of services that this service wants  */
+   struct      dep      *needs;     /* list of services that this service needs  */
+
+   struct      listitem *changed;   /* list of changed services                  */
 };
 
 /* list of dependencies */
