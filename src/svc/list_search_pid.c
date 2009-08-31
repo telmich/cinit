@@ -1,8 +1,7 @@
-
 /*******************************************************************************
  *
  * 2005      Marcus Przyklink (downhill-clinux (at) burningchaos.org)
- * 2006-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2006-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -19,28 +18,26 @@
  * You should have received a copy of the GNU General Public License
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
- * 
+ *
  *    List handling: Search by pid
+ *
  */
 
 #include <stdio.h>              /* NULL */
 #include <sys/types.h>          /* pid_t */
 #include "svc-intern.h"         /* struct listitem */
 
-struct listitem *list_search_pid(pid_t pid)
+inline struct listitem *list_search_pid(pid_t pid)
 {
    struct listitem *tmp;
 
-   if(svc_list == NULL) {
-      return NULL;
-   } else {
-      tmp = svc_list;
-   }
+   if(svc_list == NULL) return NULL;
+
+   tmp = svc_list;
 
    do {
-      if(pid == tmp->pid) {
-         return tmp;
-      }
+      if(pid == tmp->pid) return tmp; /* found service */
+
       tmp = tmp->prev;
    } while(tmp != svc_list);
 
