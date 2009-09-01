@@ -55,6 +55,9 @@ void sig_child(int tmp)
 
       if(!svc) continue; /* ignore crap that was uncaught by others */
 
+      svc->changed = changelist.changed;
+      changelist.changed = svc;
+
       //success = (WIFEXITED(tmp) && !WEXITSTATUS(tmp)) & 1 : 0;
 
       /*

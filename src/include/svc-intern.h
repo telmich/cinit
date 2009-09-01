@@ -61,6 +61,7 @@ struct dep {
 /* variables */
 extern struct  dep      *svc_init;  /* the services to start            */
 extern struct  listitem *svc_list;  /* the list of services             */
+extern struct listitem  changelist; /* core/cinit.c                     */
 
 /* list functions */
 struct         listitem *list_insert(char *path, uint32_t status);

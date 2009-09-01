@@ -36,6 +36,7 @@
 
 struct listitem  *svc_list = NULL;  /* services in a dependency tree    */
 struct dep       *svc_init = NULL;  /* the first services to be started */
+struct listitem  changelist;        /* list of changed services         */
 
 struct sigaction  sigstages[SIGSTAGE_END][SIGCINIT_END];
 int               cinit_global_signals[SIGCINIT_END];
