@@ -39,7 +39,7 @@
  * also because I'm clearing the pid, after I found it (list[o] = 0).
  *
 
-This code is weired:
+This code is weired (using return intead of exit, see below):
 
 [20:38] ikn:test% ./fork-latency > D
 [20:38] ikn:test% cat D
@@ -52,6 +52,18 @@ MAX=2
 (12264) found
 (12265) found
 [20:38] ikn:test% 
+
+
+With _exit:
+
+[21:17] ikn:test% ./fork-latency > E
+[21:17] ikn:test% cat E             
+MAX=2
+[1] Forked 15388
+[0] Forked 15389
+(15388) found
+(15389) found
+
 
  */
 
@@ -122,7 +134,10 @@ int main()
    for(i = MAX - 1; i >= 0; i--) {
       list[i] = fork();
       /* child exists immediately */
-      if(list[i] == 0) return 0;
+      if(list[i] == 0) _exit(0);
+      
+      /* this causes a different behaviour */
+      /* if(list[i] == 0) return 0; */
       
       printf("[%d] Forked %d\n", i, list[i]);
 
