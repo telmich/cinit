@@ -5,43 +5,39 @@
  *
  * Nico Schottelius, Copying: GPLv3, 20070925
  *
- * I run it this way: ./fork-latency | grep "child exited" | sort | uniq | wc -l
- *    => Number of children that exited before we recorded them!
+ * I run it this way:
+ 
+ * % ./fork-latency | grep "Unknown child exited" | sort | uniq | wc -l
+ *       => Number of children that exited before we recorded them! (should be 0)
  *
- * Or: ./fork-latency | grep "found" | sort | uniq | wc -l
+ * % ./fork-latency | grep "found" | sort | uniq | wc -l
  *    => children, which exited after fork() returned.
+ *
+ * % ./fork-latency | grep "found" | wc -l
+ *    => should equal MAX (see sourcecode)
+ *
+ * % ./fork-latency | wc -l
+ *    => should also equal MAX (see sourcecode)
  *
  * Some interesting facts:
  *
- *    - Very often the children exit before fork() returns:
+ *    - With MAX=5000 I get: 
  *
- *    [8:58] denkbrett:test% ./fork-latency | grep "found" | sort | uniq | wc -l
- *    2
+ *    [20:02] ikn:test% ./fork-latency | grep "found" | wc -l              
+ *    731705
+ *    [20:03] ikn:test% ./fork-latency |  wc -l                            
+ *    734683
  *
- *    - It looks like waitpid() returns more than once the same pid (MAX=500):
- *
- *    [9:01] denkbrett:test% ./fork-latency | grep "child exited before fork" | wc -l
- *    8435
- *
- *    [9:02] denkbrett:test% ./fork-latency | grep "found" | wc -l
- *    111
- *
- *    [9:02] denkbrett:test% ./fork-latency | grep "found" > TMP  
- *    [9:03] denkbrett:test% head TMP 
- *    (475) found
- *    (475) found
- *    (475) found
- *    (374) found
- *    (374) found
- *    (374) found
- *    (374) found
- *    (373) found
- *    (374) found
- *    (374) found
+ * [20:04] ikn:test% ./fork-latency | sort | head -n 4
+ * 1339) found
+ * 1339) found
+ * 1339) found
+ * 1339) found
  *
  *
- *    Imho waitpid() should return 0, because we specified WNOHANG and
- *    SA_NOCLDSTOP, if no child changed status
+ * I'm wondering, why even with WNOHANG I get to check pids twice,
+ * also because I'm clearing the pid, after I found it (list[o] = 0).
+ *
  */
 
 #include <unistd.h>             /* fork() */
