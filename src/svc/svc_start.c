@@ -35,25 +35,20 @@
 #include "cinit.h"              /* CINIT_DATA_LEN */
 #include "signals.h"            /* signal handling */
 
-extern int svc_lock;
-
 //void svc_start(struct listitem *li, int strict)
-void svc_start(struct listitem *li, int delay)
+void svc_start(struct listitem *li)
 {
    char buf[CINIT_DATA_LEN];
    struct timespec ts;
+   int delay = 0; /* FIXME: to be calculated by waitpid status, if respawing */
 
-   /*
-    * first update status before forking ! 
-    */
+   /* first update status before forking !  */
    if(li->status & CINIT_ST_SH_ONCE)
       li->status = CINIT_ST_ONCE_RUN;
    else
       li->status = CINIT_ST_RESPAWNING;
 
-   /*
-    * set start time 
-    */
+   /* set start time */
    li->start = time(NULL);
 
    /*
