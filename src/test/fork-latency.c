@@ -38,6 +38,21 @@
  * I'm wondering, why even with WNOHANG I get to check pids twice,
  * also because I'm clearing the pid, after I found it (list[o] = 0).
  *
+
+This code is weired:
+
+[20:38] ikn:test% ./fork-latency > D
+[20:38] ikn:test% cat D
+MAX=2
+MAX=2
+[1] Forked 12264
+MAX=2
+[1] Forked 12264
+[0] Forked 12265
+(12264) found
+(12265) found
+[20:38] ikn:test% 
+
  */
 
 #include <unistd.h>             /* fork() */
@@ -101,6 +116,8 @@ int main()
    sigaction(SIGCHLD, &sa, NULL);
 
    i = MAX;
+
+   printf("MAX=%d\n", i);
 
    for(i = MAX - 1; i >= 0; i--) {
       list[i] = fork();
