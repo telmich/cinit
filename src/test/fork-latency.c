@@ -103,6 +103,7 @@ int main()
    i = MAX;
 
    for(i = MAX - 1; i >= 0; i--) {
+      printf("Forking %d\n", i);
       list[i] = fork();
 
       /* child exists immediately */
