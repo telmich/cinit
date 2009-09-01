@@ -45,7 +45,7 @@
 #include <sys/wait.h>           /* waitpid */
 #include <stdio.h>              /* printf, NULL */
 
-#define MAX 5000             /* number of forks */
+#define MAX 2                /* number of forks */
 
 pid_t list[MAX];
 int i;
@@ -103,12 +103,12 @@ int main()
    i = MAX;
 
    for(i = MAX - 1; i >= 0; i--) {
-      printf("Forking %d\n", i);
       list[i] = fork();
-
       /* child exists immediately */
       if(list[i] == 0) return 0;
       
+      printf("[%d] Forked %d\n", i, list[i]);
+
       /* parent code */
       if(got_sig) reap_child();
    }
