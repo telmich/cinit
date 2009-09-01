@@ -63,14 +63,11 @@ int tree_exec(struct dep *start)
              * FIXME: MSG_* 
              */
             svc_report_status(tmp->svc->abs_path, "Finished needs.", NULL);
-            /*
-             * execute service, add dependencies, remowe from list 
-             */
-            svc_start(tmp->svc, 0);
-            if(!dep_needs_wants_add(&tmp, tmp->svc, DEP_NEEDS))
-               return 0;
-            if(!dep_needs_wants_add(&tmp, tmp->svc, DEP_WANTS))
-               return 0;
+
+            /* execute service, add dependencies, remove from list */
+            svc_start(tmp->svc);
+            if(!dep_needs_wants_add(&tmp, tmp->svc, DEP_NEEDS)) return 0;
+            if(!dep_needs_wants_add(&tmp, tmp->svc, DEP_WANTS)) return 0;
             tmp = dep_entry_del(tmp);
             break;
 

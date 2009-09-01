@@ -38,6 +38,7 @@ struct listitem {
 
    char        abs_path[CINIT_DATA_LEN];  /* name of service                  */
    uint32_t    status;           /* current status                            */
+   int         waitpid;          /* result of last waitpid call               */
    pid_t       pid;              /* pid of service / respawn watcher          */
    time_t      start;            /* time the process was started last time    */
 
@@ -88,7 +89,7 @@ void              svc_fail(struct listitem *li);
 void              svc_report_status(char *svc, char *msg, char *err);
 void              shutdown_services(struct listitem *start);
 
-void              svc_start(struct listitem *,     int);
+void              svc_start(struct listitem *);
 void              svc_stop_deps(struct listitem *, int);
 uint32_t          svc_disable(struct listitem *);
 
