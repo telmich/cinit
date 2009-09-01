@@ -65,35 +65,6 @@ int svc_changed()
             mini_printf("BUG: Status was not allowed to exit", 2);
          break;
       }
-
-      /*
-       * respawn: restart: FIXME Delay for regular dying services 
-      if(svc->status == CINIT_ST_RESPAWNING) {
-         svc_report_status(svc->abs_path, MSG_SVC_RESTART, NULL);
-
-         // delay = MAX_DELAY / (time(NULL) - svc->start);
-          * if(gettimeofday(&now,NULL) == -1) {
-          * print_errno(MSG_GETTIMEOFDAY);; delay = 0; } else { delay =
-          * MAX_DELAY / (now.tv_sec - svc->start); } 
-          */
-
-         //delay = 5;
-
-         /*
-          * int test = time(NULL); test++; D_PRINTF("WHILE: IM respawn / for 
-          * printf!\n"); printf("sig_child: %d, %d, %d, %d\n", MAX_DELAY,
-          * (int) time(NULL), (int) svc->start, (int) (test - svc->start) ); 
-          */
-
-//         svc_start(svc, delay);
-/*      }
-      if(svc->status == CINIT_ST_STOPPING) {
-         if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
-            svc_set_status(svc, CINIT_ST_STOPPED);
-         } else {
-            svc_set_status(svc, CINIT_ST_STOP_FAIL);
-         }
-      } */
    }
 
    return changes;
