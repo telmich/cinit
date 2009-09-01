@@ -44,7 +44,6 @@ void sig_child(int tmp)
     * -> update service status * else ignore, but reap away 
     */
    pid_t pid;
-   int success = 1; /* dummy */
    struct listitem *svc;
 
    /* wait until the lock is reset */ /* FIXME: remove! */
@@ -55,8 +54,10 @@ void sig_child(int tmp)
 
       if(!svc) continue; /* ignore crap that was uncaught by others */
 
-      svc->changed = changelist.changed;
-      changelist.changed = svc;
+      /* FIXME: reset pid so it does not get catched again? */
+      svc->waitpid = tmp;
+      svc->changed = changelist.changed;  /* save end of list     */
+      changelist.changed = svc;           /* insert as first item */
 
       //success = (WIFEXITED(tmp) && !WEXITSTATUS(tmp)) & 1 : 0;
 
@@ -71,7 +72,7 @@ void sig_child(int tmp)
        */
 
       /* should have been started once */
-      if(svc->status & CINIT_ST_SH_ONCE)
+/*      if(svc->status & CINIT_ST_SH_ONCE)
          svc->status = success ? CINIT_ST_ONCE_OK : CINIT_ST_ONCE_FAIL;
 
       if(svc->status & CINIT_ST_ONCE_RUN) 
@@ -83,12 +84,16 @@ void sig_child(int tmp)
          } else {
             svc_fail(svc);
          }
-      }
+      } 
+
+*/
       /*
        * respawn: restart: FIXME Delay for regular dying services 
        */
+/*
       if(svc->status == CINIT_ST_RESPAWNING) {
          svc_report_status(svc->abs_path, MSG_SVC_RESTART, NULL);
+*/
 
          // delay = MAX_DELAY / (time(NULL) - svc->start);
          /*
@@ -106,6 +111,7 @@ void sig_child(int tmp)
           */
 
 //         svc_start(svc, delay);
+/*
       }
       if(svc->status == CINIT_ST_STOPPING) {
          if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
@@ -114,5 +120,6 @@ void sig_child(int tmp)
             svc_set_status(svc, CINIT_ST_STOP_FAIL);
          }
       }
+*/
    }
 }
