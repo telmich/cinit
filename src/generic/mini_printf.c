@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2005-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -29,15 +28,10 @@ void mini_printf(char *str, int fd)
 {
    char *p;
 
-   /*
-    * don't get fooled by bad pointers 
-    */
-   if(str == NULL)
-      return;
+   if(str == NULL) return;
 
    p = str;
-   while(*p)
-      p++;
+   while(*p) p++;
 
    write(fd, str, (size_t) (p - str));
 }
