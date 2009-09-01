@@ -22,16 +22,10 @@
  *
  */
 
-#include <sys/wait.h>            /* waitpid */
-#include <stdio.h>               /* NULL */
-#include <sys/time.h>            /* gettimeofday()    */ /* FIXME: CHECK POSIX */
-#include <time.h>                /* time(),gettime..  */ /* FIXME: CHECK POSIX */
+#include <sys/wait.h>            /* waitpid           */
 
-#include "intern.h"              /* mini_printf */
-#include "svc-intern.h"          /* list_search_pid */
-#include "svc.h"                 /* list_search_pid */
-#include "messages.h"            /* messages/D_PRINTF */
-
+#include "intern.h"              /* mini_printf       */
+#include "svc-intern.h"          /* list_search_pid   */
 
 /***********************************************************************
  * sig_child: (c)collect the children
@@ -46,80 +40,15 @@ void sig_child(int tmp)
    pid_t pid;
    struct listitem *svc;
 
-   /* wait until the lock is reset */ /* FIXME: remove! */
-
    while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
       /* check if process was a service */
-      svc = list_search_pid((pid_t) pid);
+      svc = list_search_pid(pid);
 
-      if(!svc) continue; /* ignore crap that was uncaught by others */
+      if(!svc) continue; /* ignore crap that was not caught by others */
 
-      /* FIXME: reset pid so it does not get catched again? */
+      svc->pid     = 0;
       svc->waitpid = tmp;
       svc->changed = changelist.changed;  /* save end of list     */
       changelist.changed = svc;           /* insert as first item */
-
-      //success = (WIFEXITED(tmp) && !WEXITSTATUS(tmp)) & 1 : 0;
-
-      /*
-       * Also check for ST_SH_* to catch race conditions, where status is
-       * not yet updated => does that make sense or is the status
-       * overwritten after we return out of here? 
-       */
-
-      /************************************************************************
-       * Status translation table
-       */
-
-      /* should have been started once */
-/*      if(svc->status & CINIT_ST_SH_ONCE)
-         svc->status = success ? CINIT_ST_ONCE_OK : CINIT_ST_ONCE_FAIL;
-
-      if(svc->status & CINIT_ST_ONCE_RUN) 
-
-      if(svc->status & CINIT_ST_ONCE_RUN
-         || svc->status & CINIT_ST_RESPAWNING) {
-         if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
-            svc_success(svc);
-         } else {
-            svc_fail(svc);
-         }
-      } 
-
-*/
-      /*
-       * respawn: restart: FIXME Delay for regular dying services 
-       */
-/*
-      if(svc->status == CINIT_ST_RESPAWNING) {
-         svc_report_status(svc->abs_path, MSG_SVC_RESTART, NULL);
-*/
-
-         // delay = MAX_DELAY / (time(NULL) - svc->start);
-         /*
-          * if(gettimeofday(&now,NULL) == -1) {
-          * print_errno(MSG_GETTIMEOFDAY);; delay = 0; } else { delay =
-          * MAX_DELAY / (now.tv_sec - svc->start); } 
-          */
-
-         //delay = 5;
-
-         /*
-          * int test = time(NULL); test++; D_PRINTF("WHILE: IM respawn / for 
-          * printf!\n"); printf("sig_child: %d, %d, %d, %d\n", MAX_DELAY,
-          * (int) time(NULL), (int) svc->start, (int) (test - svc->start) ); 
-          */
-
-//         svc_start(svc, delay);
-/*
-      }
-      if(svc->status == CINIT_ST_STOPPING) {
-         if(WIFEXITED(tmp) && !WEXITSTATUS(tmp)) {
-            svc_set_status(svc, CINIT_ST_STOPPED);
-         } else {
-            svc_set_status(svc, CINIT_ST_STOP_FAIL);
-         }
-      }
-*/
    }
 }
