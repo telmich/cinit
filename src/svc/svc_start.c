@@ -43,10 +43,8 @@ void svc_start(struct listitem *li)
    int delay = 0; /* FIXME: to be calculated by waitpid status, if respawing */
 
    /* first update status before forking !  */
-   if(li->status & CINIT_ST_SH_ONCE)
-      li->status = CINIT_ST_ONCE_RUN;
-   else
-      li->status = CINIT_ST_RESPAWNING;
+   if(li->status & CINIT_ST_SH_ONCE)   li->status = CINIT_ST_ONCE_RUN;
+   else                                li->status = CINIT_ST_RESPAWNING;
 
    /* set start time */
    li->start = time(NULL);
