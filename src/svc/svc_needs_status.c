@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2005-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2005-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -20,6 +19,7 @@
 
  *
  *    Return status of the needs of this service
+ *
  */
 
 #include <stdio.h>              /* NULL */

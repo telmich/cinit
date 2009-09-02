@@ -52,6 +52,18 @@ int svc_status_changed()
       /************************************************************************
        * Status translation table
        */
+
+      /* the two startup situations */
+      if(svc->status & CINIT_ST_SH_ONCE) {
+         if(success) {
+            svc->status |= CINIT_ST_ONCE_OK;
+         } else {
+            svc->status |= CINIT_ST_ONCE_FAIL;
+         }
+      }
+      if(svc->status & CINIT_ST_SH_RESPAN) {
+
+      }
       switch(svc->status) {
          case CINIT_ST_ONCE_RUN:
             svc->status = success ? CINIT_ST_ONCE_OK : CINIT_ST_ONCE_FAIL;
