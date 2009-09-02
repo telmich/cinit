@@ -42,11 +42,8 @@ int svc_changed()
    int changes = 0;
    struct listitem *svc;
 
-   while(changelist.changed) {
-      /* get next element and unset the changed attribute */
-      svc = changelist.changed;
-      changelist.changed = svc->changed;
-      svc->changed = NULL;
+   while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
+      svc = list_search_pid(pid);
 
       success = (WIFEXITED(svc->waitpid) && !WEXITSTATUS(svc->waitpid)) ? 1 : 0;
 
