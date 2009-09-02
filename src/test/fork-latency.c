@@ -72,7 +72,7 @@ MAX=2
 #include <sys/wait.h>           /* waitpid */
 #include <stdio.h>              /* printf, NULL */
 
-#define MAX 2                /* number of forks */
+#define MAX 20000            /* number of forks */
 
 pid_t list[MAX];
 int i;
@@ -89,6 +89,8 @@ void reap_child()
    int found;
    int status;
    pid_t pid;
+
+   got_sig = 0;
 
    /* WNOHANG is evil: it makes us call the loop MORE THAN ONCE
     * PER DEAD CHILD! -> registering a dead child via signal
@@ -112,8 +114,6 @@ void reap_child()
          printf("(%d) Unknown child exited\n", pid);
       }
    }
-
-   got_sig = 0;
 }
 
 int main()
