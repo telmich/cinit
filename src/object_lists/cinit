@@ -36,7 +36,7 @@ svc/list_insert.o
 svc/list_search.o
 svc/list_search_pid.o
 svc/svc_create.o
-svc/svc_changed.o
+svc/svc_status_changed.o
 svc/svc_disable.o
 svc/check_add_deps.o
 svc/dep_entry_add.o

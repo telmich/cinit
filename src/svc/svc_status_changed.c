@@ -39,8 +39,9 @@
 int svc_status_changed()
 {
    int success;
-   int changes = 0;
+   int tmp = 0;
    struct listitem *svc;
+   pid_t pid;
 
    while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
       svc = list_search_pid(pid);
@@ -64,5 +65,5 @@ int svc_status_changed()
       }
    }
 
-   return changes;
+   return tmp;
 }
