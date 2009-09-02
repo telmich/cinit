@@ -30,5 +30,5 @@
 void sig_child(int tmp)
 {
    tmp = 2; /* FIXME: how to tell stupid gcc that tmp is a must? */
-   svc_exited = 1; /* FIXME: catch possible race conditions in svc_changed() */
+   svc_exited = 1; /* FIXME: catch possible race conditions in svc_status_changed() */
 }

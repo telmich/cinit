@@ -36,7 +36,7 @@
 /***********************************************************************
  * sig_child: (c)collect the children
  */
-int svc_changed()
+int svc_status_changed()
 {
    int success;
    int changes = 0;

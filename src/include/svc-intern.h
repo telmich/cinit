@@ -92,7 +92,7 @@ void              shutdown_services(struct listitem *start);
 void              svc_start(struct listitem *);
 void              svc_stop_deps(struct listitem *, int);
 uint32_t          svc_disable(struct listitem *);
-
+int               svc_status_changed();
 
 
 /***********************************************************************

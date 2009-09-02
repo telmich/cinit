@@ -36,7 +36,7 @@
 
 struct listitem  *svc_list = NULL;  /* services in a dependency tree    */
 struct dep       *svc_init = NULL;  /* the first services to be started */
-struct listitem  changelist;        /* list of changed services         */
+int               svc_exited;       /* did some service exit?           */
 
 struct sigaction  sigstages[SIGSTAGE_END][SIGCINIT_END];
 int               cinit_global_signals[SIGCINIT_END];
@@ -102,7 +102,11 @@ int main(int argc, char **argv)
 
    /* listen to commands after startup */
    while(1) {
+      /* listen until we get a message or get interrupted */
       cinit_ipc_listen();
+
+      /* react on service changes (=process exited) */
+      if(svc_exited) svc_status_changed();
 
       /*
        * check dependency list: perhaps we need to restart something 
