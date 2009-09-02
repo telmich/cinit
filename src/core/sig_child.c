@@ -22,33 +22,13 @@
  *
  */
 
-#include <sys/wait.h>            /* waitpid           */
-
-#include "intern.h"              /* mini_printf       */
-#include "svc-intern.h"          /* list_search_pid   */
+#include "svc-intern.h"          /* marking */
 
 /***********************************************************************
  * sig_child: (c)collect the children
  */
 void sig_child(int tmp)
 {
-   /*
-    * New code: - search for pid in service list * if (respawn) -> start new -
-    * insert delay? if exit code is non-zero? if uptime too less? * if (once)
-    * -> update service status * else ignore, but reap away 
-    */
-   pid_t pid;
-   struct listitem *svc;
-
-   while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
-      /* check if process was a service */
-      svc = list_search_pid(pid);
-
-      if(!svc) continue; /* ignore crap that was not caught by others */
-
-      svc->pid     = 0;
-      svc->waitpid = tmp;
-      svc->changed = changelist.changed;  /* save end of list     */
-      changelist.changed = svc;           /* insert as first item */
-   }
+   tmp = 2; /* FIXME: how to tell stupid gcc that tmp is a must? */
+   svc_exited = 1; /* FIXME: catch possible race conditions in svc_changed() */
 }
