@@ -46,7 +46,7 @@ struct listitem *gen_svc_tree(char *svc)
    if(!li->wants && !li->needs) {
       deps = dep_create(li);
       if(!deps) return NULL;
-      dep_entry_add(&svc_init, deps);
+      dep_entry_add(&deps_pending, deps);
 
       /*
        * Mark it as being in the startup list, so it does not get added again

@@ -35,7 +35,7 @@
 #include "signals.h"            /* signals used by cinit */
 
 struct listitem  *svc_list = NULL;  /* services in a dependency tree    */
-struct dep       *svc_init = NULL;  /* the first services to be started */
+struct dep       *deps_pending = NULL;  /* the first services to be started */
 int               svc_exited;       /* did some service exit?           */
 
 struct sigaction  sigstages[SIGSTAGE_END][SIGCINIT_END];
@@ -98,15 +98,18 @@ int main(int argc, char **argv)
     */
 
    /* the main startup routine */
-   if(!tree_exec(svc_init)) panic();
+   if(!tree_exec(deps_pending)) panic();
 
    /* listen to commands after startup */
    while(1) {
+      /* react on service changes (=process exited) */
+      if(svc_exited) svc_status_changed(deps_pending);
+
+      /* handle the changes */
+      if(deps_pending) svc_handle_pending(deps_pending);
+
       /* listen until we get a message or get interrupted */
       cinit_ipc_listen();
-
-      /* react on service changes (=process exited) */
-      if(svc_exited) svc_status_changed();
 
       /*
        * check dependency list: perhaps we need to restart something 
@@ -115,7 +118,7 @@ int main(int argc, char **argv)
        * implement in cinit-0.3pre14/5 
        */
 
-      // tree_exec(svc_init);
+      // tree_exec(deps_pending);
       // reuse tree_exec()?
       // if(dep) { svc_start() .. ?
    }

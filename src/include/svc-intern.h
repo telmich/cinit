@@ -60,7 +60,7 @@ struct dep {
 };
 
 /* variables */
-extern struct  dep      *svc_init;     /* the services to start            */
+extern struct  dep      *deps_pending; /* the services to handle           */
 extern struct  listitem *svc_list;     /* the list of services             */
 extern int               svc_exited;   /* mark change                      */
 
@@ -93,6 +93,7 @@ void              svc_start(struct listitem *);
 void              svc_stop_deps(struct listitem *, int);
 uint32_t          svc_disable(struct listitem *);
 int               svc_status_changed();
+int               svc_handle_pending(struct dep *pending);
 
 
 /***********************************************************************
