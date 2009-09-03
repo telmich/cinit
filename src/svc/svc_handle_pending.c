@@ -18,7 +18,8 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
- *    Start the service tree we created
+ *    Handle pending services
+ *
  */
 
 #include <time.h>               /* NULL */
@@ -29,23 +30,15 @@
 #include "svc.h"                /* svc_init */
 #include "svc-intern.h"         /* svc_init */
 
-/* some thoughts...
- *
- * - we already generated the tree, now we need to start it from
- *   the endings
- *
- * - after starting the first service we have to care about SIG_CHILD
- *   to record changes
- *
- * - we execute all services in parallel without problems, because of
- *   SIG_CHILD notification
- * 
- * - After successfully starting the service we start the services that
- *   need or want that service
+/***********************************************************************
+ * go through the pending list and exit at the end.
+ * we will be called again after something changed:
+ * svc_status_changed() is triggered by the death of one or more children
+ * and sets up changes
  */
-int tree_exec(struct dep *start)
+int svc_handle_pending(struct dep *pending)
 {
-   struct dep *tmp = start;
+   struct dep *tmp = pending;
    struct dep *hack;
    struct timespec ts;
 

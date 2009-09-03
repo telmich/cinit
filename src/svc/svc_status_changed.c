@@ -34,7 +34,7 @@
 
 
 /***********************************************************************
- * sig_child: (c)collect the children
+ * register changes from our children
  */
 int svc_status_changed()
 {
@@ -46,6 +46,8 @@ int svc_status_changed()
    while((pid = waitpid(-1, &tmp, WNOHANG)) > 0) {
       svc = list_search_pid(pid);
 
+      if(!svc) continue; /* ignore stuff from our lazy children */
+
       success = (WIFEXITED(svc->waitpid) && !WEXITSTATUS(svc->waitpid)) ? 1 : 0;
 
 
@@ -53,7 +55,7 @@ int svc_status_changed()
        * Status translation table
        */
 
-      /* the two startup situations */
+      /* the two startup situations
       if(svc->status & CINIT_ST_SH_ONCE) {
          if(success) {
             svc->status |= CINIT_ST_ONCE_OK;
@@ -61,7 +63,7 @@ int svc_status_changed()
             svc->status |= CINIT_ST_ONCE_FAIL;
          }
       }
-      if(svc->status & CINIT_ST_SH_RESPAN) {
+      if(svc->status & CINIT_ST_SH_RESPAWN) {
 
       }
       switch(svc->status) {
@@ -69,12 +71,11 @@ int svc_status_changed()
             svc->status = success ? CINIT_ST_ONCE_OK : CINIT_ST_ONCE_FAIL;
          break;
          case CINIT_ST_RESPAWNING:
-//            svc_start(svc, svc->
          break;
          default:
             mini_printf("BUG: Status was not allowed to exit", 2);
          break;
-      }
+      } */
    }
 
    return tmp;

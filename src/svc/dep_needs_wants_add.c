@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2006-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2006-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -61,11 +60,11 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc, int type)
              (tmp->svc->status & CINIT_ST_SH_RESPAWN)) &&
             !(tmp->svc->status & CINIT_ST_IN_LIST)) {
             new = dep_create(tmp->svc);
-            if(!new)
-               return 0;
+            if(!new) return 0;
             tmp->svc->status |= CINIT_ST_IN_LIST;
             dep_entry_add(list, new);
          }
+
          /*
           * FIXME: Clearify if we should go forward or backwards? this decision 
           * will influence starting order and may thereby add a minimal mount
@@ -73,6 +72,7 @@ int dep_needs_wants_add(struct dep **list, struct listitem *svc, int type)
           * which way is better, because it heavily depends on the other
           * services. If you know better, provide me with a patch ;-) 
           */
+
          tmp = tmp->next;
       } while(tmp != end);
    }
