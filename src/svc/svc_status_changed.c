@@ -25,7 +25,7 @@
 #include <sys/wait.h>            /* Macros for waitpid   */
 #include <stdio.h>               /* NULL                 */
 //#include <sys/time.h>            /* gettimeofday()    */ /* FIXME: CHECK POSIX */
-//#include <time.h>                /* time(),gettime..  */ /* FIXME: CHECK POSIX */
+#include <time.h>                /* time()               */
 
 #include "svc-intern.h"          /* listem               */
 #include "svc.h"                 /* service status       */
@@ -49,33 +49,26 @@ int svc_status_changed()
       if(!svc) continue; /* ignore stuff from our lazy children */
 
       success = (WIFEXITED(svc->waitpid) && !WEXITSTATUS(svc->waitpid)) ? 1 : 0;
+      svc->exited = time(NULL);
 
 
       /************************************************************************
-       * Status translation table
+       * Update status using a "status translation table"
        */
 
-      /* the two startup situations
-      if(svc->status & CINIT_ST_SH_ONCE) {
+      /* once running service exited */
+      if(svc->status & CINIT_ST_ONCE_RUN) {
          if(success) {
-            svc->status |= CINIT_ST_ONCE_OK;
+            svc->status = CINIT_ST_ONCE_OK;
          } else {
-            svc->status |= CINIT_ST_ONCE_FAIL;
+            svc->status = CINIT_ST_ONCE_FAIL;
          }
       }
-      if(svc->status & CINIT_ST_SH_RESPAWN) {
+      /* respawing service died */
+      else if(svc->status & CINIT_ST_RESPAWNING) {
+         svc->status = CINIT_ST_SH_RESPAWN;
 
       }
-      switch(svc->status) {
-         case CINIT_ST_ONCE_RUN:
-            svc->status = success ? CINIT_ST_ONCE_OK : CINIT_ST_ONCE_FAIL;
-         break;
-         case CINIT_ST_RESPAWNING:
-         break;
-         default:
-            mini_printf("BUG: Status was not allowed to exit", 2);
-         break;
-      } */
    }
 
    return tmp;

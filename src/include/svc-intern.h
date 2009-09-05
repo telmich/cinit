@@ -41,6 +41,7 @@ struct listitem {
    int         waitpid;          /* result of last waitpid call               */
    pid_t       pid;              /* pid of service / respawn watcher          */
    time_t      start;            /* time the process was started last time    */
+   time_t      exited;           /* time the process exited                   */
 
 
    struct      dep      *wanted_by; /* list of services that want this service   */
