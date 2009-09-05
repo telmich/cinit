@@ -51,7 +51,6 @@ int svc_status_changed()
       success = (WIFEXITED(svc->waitpid) && !WEXITSTATUS(svc->waitpid)) ? 1 : 0;
       svc->exited = time(NULL);
 
-
       /************************************************************************
        * Update status using a "status translation table"
        */
@@ -67,7 +66,6 @@ int svc_status_changed()
       /* respawing service died */
       else if(svc->status & CINIT_ST_RESPAWNING) {
          svc->status = CINIT_ST_SH_RESPAWN;
-
       }
    }
 

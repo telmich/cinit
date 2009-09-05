@@ -1,7 +1,6 @@
-
 /*******************************************************************************
  *
- * 2007-2008 Nico Schottelius (nico-cinit at schottelius.org)
+ * 2007-2009 Nico Schottelius (nico-cinit at schottelius.org)
  *
  * This file is part of cinit.
 
@@ -19,6 +18,7 @@
  * along with cinit.  If not, see <http://www.gnu.org/licenses/>.
 
  *
+      FIXME: not needed anymore! -> change to svc_status_changed()
  *    Stop a service, taking care about its dependencies
  */
 
@@ -38,8 +38,7 @@ void svc_stop_deps(struct listitem *li, int how)
    /*
     * don't continue if already being stopped 
     */
-   if(li->status & CINIT_ST_STOPPING)
-      return;
+   if(li->status & CINIT_ST_SH_STOP) return;
 
    /*
     * shutdown depending services first: needed_by 

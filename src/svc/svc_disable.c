@@ -49,7 +49,7 @@ uint32_t svc_disable(struct listitem *li)
 {
    char buf[CINIT_DATA_LEN];
 
-   svc_set_status(li, CINIT_ST_STOPPING);
+   svc_set_status(li, CINIT_ST_SH_STOP);
 
    li->pid = fork();
 
@@ -62,7 +62,8 @@ uint32_t svc_disable(struct listitem *li)
 
    /********************** Parent / fork() ************************/
    if(li->pid > 0) {
-      svc_set_status(li, CINIT_ST_STOPPING);
+      /* FIXME: why duplicate? */
+      svc_set_status(li, CINIT_ST_SH_STOP);
       return CINIT_ASW_OK;
    }
 
@@ -70,8 +71,7 @@ uint32_t svc_disable(struct listitem *li)
    svc_report_status(li->abs_path, MSG_SVC_STOP, NULL);
 
    cinit_cp_data(buf, li->abs_path);
-   if(!path_append(buf, C_OFF))
-      _exit(1);
+   if(!path_append(buf, C_OFF)) _exit(1);
 
    /*
     * Check for existence 
@@ -101,5 +101,7 @@ uint32_t svc_disable(struct listitem *li)
        */
       _exit(1);
    }
+
+   /* FIXME: we will never return ... */
    return CINIT_ASW_OK;
 }
