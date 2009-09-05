@@ -44,13 +44,15 @@ int svc_handle_pending(struct dep *pending)
 
    mini_printf(MSG_TREE_EXEC, 1);
 
-   /*
-    * the main starting loop: All services in this list should be started, but
-    * it is possible that dependent services are in the list. In this case
-    * simply skip the current service 
-    */
-   do {
-      switch (svc_needs_status(tmp->svc)) {
+   /* apply changes to changed services */
+   while(tmp != NULL) {
+      /* to be started */
+      if(tmp->svc->status & (CINIT_ST_SH_ONCE | CINIT_ST_SH_RESPAWN)) {
+         svc_start(tmp->svc);
+         tmp = dep_entry_del(tmp);
+      }
+
+      switch(svc_needs_status(tmp->svc)) {
          case CINIT_SNS_NEEDS_STARTED:
             /*
              * FIXME: MSG_* 
@@ -102,7 +104,7 @@ int svc_handle_pending(struct dep *pending)
        * 
        * nanosleep()? printf("BUUUUUUUUUUUUUG, exit\n"); break; } 
        */
-   } while(tmp != NULL);
+   }
 
    return 1;
 }
