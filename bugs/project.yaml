@@ -10,6 +10,8 @@ components:
   name: user interface
 - !ditz.rubyforge.org,2008-03-06/component 
   name: portability
+- !ditz.rubyforge.org,2008-03-06/component 
+  name: documentation
 releases: 
 - !ditz.rubyforge.org,2008-03-06/release 
   name: "0.3"
