@@ -1,18 +1,5 @@
-- doc/user/paths.text
-   * finish
-   * add examples
-- add cross-compilation howto
-Cross-compiling
-^^^^^^^^^^^^^^^
-conf/os to destination os
-conf/cc
-conf/ld
-conf/cflags
-conf/ldflags
-
 caveats
 -------
-
 - cinit will sleep after respawing if ...
 
    a) the service did not terminate normally (!WIFEXITED(status))
