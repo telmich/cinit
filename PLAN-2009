@@ -1,3 +1,9 @@
 1. get the situation
 2. fix the problems
 3. release 0.3
+--------------------------------------------------------------------------------
+1.
+   - SIGCHLD not handled carefully
+   - service status changing not supported
+   - shutdown needs to be checked
+   - documentation is a mess
