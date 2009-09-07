@@ -10,5 +10,13 @@ components:
   name: user interface
 - !ditz.rubyforge.org,2008-03-06/component 
   name: portability
-releases: []
-
+releases: 
+- !ditz.rubyforge.org,2008-03-06/release 
+  name: "0.3"
+  status: :unreleased
+  release_time: 
+  log_events: 
+  - - 2009-09-07 06:28:02.974644 Z
+    - Nico Schottelius <nico@ikn.schottelius.org>
+    - created
+    - The first cleaned up version
