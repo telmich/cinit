@@ -98,13 +98,17 @@ de-install:
 de-run:
 	ssh root@de reboot
 
-UBUNTUHOST=cinit@192.168.122.108
+UBUNTUHOST=cinit@192.168.122.2
 UBUNTUCONF=./etc/cinit-ubuntu
-UBUNTUINSTALL="cd cinit && make clean && sudo make install && sudo reboot"
-ubuntu-test:
+UBUNTUINSTALL="cd cinit && make clean && sudo make install"
+UBUNTUTEST="sudo reboot"
+ubuntu-install:
 	rsync -av --delete ./ $(UBUNTUHOST):cinit
 #	rsync -av --delete ./$(UBUNTUCONF) $(UBUNTUHOST):/etc/cinit
 	ssh "$(UBUNTUHOST)" $(UBUNTUINSTALL)
+
+ubuntu-test: ubuntu-install
+	ssh "$(UBUNTUHOST)" $(UBUNTUTEST)
 
 ################################################################################
 # 
