@@ -4,14 +4,11 @@
 # Date: Sat Oct 15 21:38:29 CEST 2005
 # Last Changed: ls -l
 
-# only release if I tell it to release
-[ "$1" = "now" ] || exit 23
-
-#if [ $# -ne 2 ]; then
-#   echo "This is a maintainer-only script to release cinit"
-#   echo $(basename $0): source-dir version
-#   exit 1
-#fi
+if [ $# -ne 1 ]; then
+   echo "This is a maintainer-only script to release cinit"
+   echo $(basename $0): version
+   exit 1
+fi
 
 # paths
 DIR="$(cd $(dirname $0)/../../; pwd -P)"
@@ -19,9 +16,10 @@ DDIR="$(cd $(dirname $0)/../../../; pwd -P)"
 RDIR=$(basename "$DIR")
 
 # version
-VERSION="$(cd "$DIR"; pwd -P | sed 's;.*/cinit-;;')"
 VERSION_CONF="$(head -n1 $(dirname $0)/../../conf/version | sed 's/^"\(.*\)"$/\1/')"
-VERSION_CHANGES="$(head -n1 "$(dirname $0)/../../CHANGES" | sed 's/cinit-\(.*\):.*/\1/')"
+VERSION_ARGV="$1"
+VERSION_GIT="$(git describe)"
+
 OUT_NAME="cinit-${VERSION}.tar.bz2"
 
 # remote
@@ -31,11 +29,11 @@ D_DIR=${D_BASE}/archives/
 D_SOURCE=${D_BASE}/browse_source/
 LINK=current
 
-echo "=> Version directory:    $VERSION"
+echo "=> Version commandline:  $VERSION_ARGV"
 echo "=> Version conf/version: $VERSION_CONF"
-echo "=> Version CHANGES:      $VERSION_CHANGES"
+echo "=> Version git:          $VERSION_GIT"
 
-if [ "$VERSION" = "$VERSION_CONF" -a "$VERSION" = "$VERSION_CHANGES" ]; then
+if [ "$VERSION_ARGV" = "$VERSION_CONF" -a "$VERSION_ARGV" = "$VERSION_GIT" ]; then
    echo "=> Version confirmed."
 else
    echo "*** VERSION MISMATCH ***"
@@ -53,20 +51,40 @@ fi
 # do the work!
 ( cd "$DIR" && make dist ) || exit 1
 
+git archive 
+
+echo "Please do not forget to update the website..."
+
+################################################################################
+# Unused, but interesting
+
+# make sure the examples are not executed anymore
+exit 0
+
+# match cinit-$version as directory name
+VERSION_DIR="$(cd "$DIR"; pwd -P | sed 's;.*/cinit-;;')"
+
+# grep version string from CHANGES file (often used, obsoleted here)
+VERSION_CHANGES="$(head -n1 "$(dirname $0)/../../CHANGES" | sed 's/cinit-\(.*\):.*/\1/')"
+
+# Correct umask 077 results
+echo "Correcting paranoid permissions"
+ssh "$D_HOST" "find \"$D_SOURCE/$RDIR\" -type f -exec chmod 0644 {} \\;"
+ssh "$D_HOST" "find \"$D_SOURCE/$RDIR\" -type d -exec chmod 0755 {} \\;"
+ssh "$D_HOST" "cd \"$D_SOURCE\" && rm -f \"$LINK\" && ln -s \"$RDIR\" \"$LINK\""
+
+# Create archive
 echo "Creating bzip2 compressed tar"
 cd $DDIR
 tar cj -X $DIR/.exclude -f "$OUT_NAME" "$RDIR"
 chmod 0644 "$OUT_NAME"
 
+# Transfer to a remote host
 echo "Transfering to $D_HOST"
 scp "$OUT_NAME" "$D_HOST:$D_DIR"
 
 echo "Extracting to $D_SOURCE"
 ssh "$D_HOST" "tar xfj $D_DIR/$OUT_NAME -C $D_SOURCE"
 
-echo "Correcting paranoid permissions"
-ssh "$D_HOST" "find \"$D_SOURCE/$RDIR\" -type f -exec chmod 0644 {} \\;"
-ssh "$D_HOST" "find \"$D_SOURCE/$RDIR\" -type d -exec chmod 0755 {} \\;"
-ssh "$D_HOST" "cd \"$D_SOURCE\" && rm -f \"$LINK\" && ln -s \"$RDIR\" \"$LINK\""
 
-echo "Please do not forget to update the website..."
+
