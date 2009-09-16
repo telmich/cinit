@@ -1,2 +1,3 @@
-Released:
+Released: 2009-09-16
 Changes:
+   * Changed child handling (no function calls in sig_child handler anymore)
