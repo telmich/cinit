@@ -11,23 +11,14 @@ if [ $# -ne 1 ]; then
 fi
 
 # paths
-DIR="$(cd $(dirname $0)/../../; pwd -P)"
-DDIR="$(cd $(dirname $0)/../../../; pwd -P)"
-RDIR=$(basename "$DIR")
+D_BASE="/home/users/nico/privat/computer/net/netzseiten/www.nico.schottelius.org/src/software/cinit"
+D_DIR=${D_BASE}/archives/
+D_SOURCE=${D_BASE}/browse_source/
 
-# version
+# versions to check
 VERSION_CONF="$(head -n1 $(dirname $0)/../../conf/version | sed 's/^"\(.*\)"$/\1/')"
 VERSION_ARGV="$1"
 VERSION_GIT="$(git describe)"
-
-OUT_NAME="cinit-${VERSION}.tar.bz2"
-
-# remote
-D_HOST=home.schottelius.org
-D_BASE=www/org/schottelius/unix/www/cinit
-D_DIR=${D_BASE}/archives/
-D_SOURCE=${D_BASE}/browse_source/
-LINK=current
 
 echo "=> Version commandline:  $VERSION_ARGV"
 echo "=> Version conf/version: $VERSION_CONF"
@@ -40,18 +31,17 @@ else
    exit 42
 fi
 
-echo -n "=> Continue? "
+# Finally, accept the right version
+VERSION="$VERSION_GIT"
+NAME="cinit-${VERSION}"
+TARNAME="cinit-${VERSION}.tar.bz2"
+TARPATH="$D_DIR/$TARNAME"
+
+echo -n "=> Continue to release $NAME? "
 read yes
 
-if [ ! -d "$DIR" ]; then
-   echo "$DIR is not a directory"
-   exit 1
-fi
-
-# do the work!
-( cd "$DIR" && make dist ) || exit 1
-
-git archive 
+git archive $VERSION --prefix="${NAME}/" --output="${TARPATH}"
+( cd "$D_SOURCE" && tar xv "$TARPATH" )
 
 echo "Please do not forget to update the website..."
 
