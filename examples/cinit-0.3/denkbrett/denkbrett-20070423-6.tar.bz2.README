@@ -1,0 +1,3 @@
+Added respawn to the rescue-shell and the gettys.
+Also added TERM=linux so agetty can pass that to
+the shell.

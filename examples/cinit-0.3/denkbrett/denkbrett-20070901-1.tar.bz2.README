@@ -1,0 +1,7 @@
+- Added needs:
+   unicode / console: /proc
+   udev: /proc
+   syslog-ng: mount/root
+
+- fixed mount/root/fsck: missed "then"
+

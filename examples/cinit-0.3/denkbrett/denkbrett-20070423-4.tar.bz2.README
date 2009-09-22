@@ -1,0 +1,2 @@
+Added needs /proc to getty/1 and 2.
+Now we can login through getty!

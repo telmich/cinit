@@ -1,0 +1,3 @@
+Added two more getties: getty/3 and getty/4 and added
+them to init/needs. And yes, this configuration is in
+use on my production system :-)

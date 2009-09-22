@@ -1,0 +1,3 @@
+DIR=~nico/projekte/cinit/configs/denkbrett/
+rsync -av ./ "$DIR"
+chown nico "$DIR"/*

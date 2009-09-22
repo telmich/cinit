@@ -1,0 +1,2 @@
+Add TERM=linux to console-unicode and also depend it on udev so
+devices are existing.

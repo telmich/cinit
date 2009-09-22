@@ -1,0 +1,2 @@
+chmod a+r *
+rsync -av ./ nico@home.schottelius.org:unix/cinit/samples/cinit-0.3/denkbrett/

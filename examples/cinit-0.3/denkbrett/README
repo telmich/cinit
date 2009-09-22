@@ -1,0 +1,5 @@
+This directory contains configuration examples from
+'denkbrett' which is Nico Schottelius' main notebook.
+
+It's a x86 Linux notebook, so x86 and Linux specific
+services will be loaded (like acpid, udev).
