@@ -7,3 +7,6 @@
    - service status changing not supported
    - shutdown needs to be checked
    - documentation is a mess
+--------------------------------------------------------------------------------
+2. began to cleanup child handler
+   - test on linux and freebsd
