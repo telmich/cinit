@@ -20,6 +20,7 @@
 # cinit: create dependency: service a needs or wants service b
 #
 
+set -x
 
 # initialise cinit-conf framework
 hier="${0%/*}"; set -e; . "${hier}/cinit-conf.read-conf"
@@ -44,15 +45,64 @@ case "${DEP}" in
    *) echo "Use \"want\" or \"need\" as type of dependency."
 esac
 
-SVC_A_ABS=$(cd "${SVC_A}" && pwd -P)
-SVC_B_ABS=$(cd "${SVC_A}" && pwd -P)
+# First of all create absolute paths
+# if SVC_X beginning matches R_CINIT_DIR it is absolute
+# else it is relative to R_CINIT_DIR
+echo "${SVC_A}" | grep "^${R_SVC_DIR}" >/dev/null || SVC_A="${R_SVC_DIR}/${SVC_A}"
+echo "${SVC_B}" | grep "^${R_SVC_DIR}" >/dev/null || SVC_B="${R_SVC_DIR}/${SVC_B}"
 
+SVC_A_ABS=$(cd "${SVC_A}" && pwd -P)
+SVC_B_ABS=$(cd "${SVC_B}" && pwd -P)
+
+SVC_A_REL="${SVC_A_ABS##*/}"
+SVC_B_REL="${SVC_B_ABS##*/}"
+
+set +e
+match=""
+count="0"
+svc_stripped="$(echo $SVC_A_ABS | sed -e 's;/$;;' -e 's;/[^/]*$;;')"
+while [ "$svc_stripped" ]; do
+   match="$(echo ${SVC_B_ABS} | grep "^${svc_stripped}")"
+   count=$(($count+1))
+   if [ "$match" ]; then
+      relpath=""
+      while [ "$count" -gt 0 ]; do
+         source="../${source}"
+         count=$(($count-1))
+      done
+      source="${source}${SVC_B_REL}"
+
+      break
+   fi
+   svc_stripped="$(echo $svc_stripped | sed -e 's;/$;;' -e 's;/[^/]*$;;')"
+done
+
+# nothing in common? link absolute
+if [ ! "$match" ]; then
+   source="${SVC_B_ABS}"
+fi
+
+# Then find out the level of subdirs, excluding destdir!
 # FIXME: could someone PLEASE simplify that?
-SLASHES=$(echo $SVC_A | sed -e 's,/$,,' -e 's,[^/],,g' -e 's,/,../,g' -e 's,^,../../,')
-DEST_NAME=$(echo $SVC_B | sed -e 's,/$,,' -e 's,/,-,g')
+#SLASHES=$(echo $SVC_A | sed -e 's,/$,,' -e 's,[^/],,g' -e 's,/,../,g' -e 's,^,../../,')
+
+# find common anchor and link after that:
+# /destdir/etc/cinit/svc/svca/b/
+# /destdir/etc/cinit/svc/svca/c/
+# results in ../c/
+# Thus: 
+# while unmatched
+# remove /* (one level, shortest match)
+# 
+
+
+# 1. remove destdir, if present 2. remove everything but the slashes 3. replace them with ../
+# 
+SLASHES=$(echo $SVC_A | sed -e "s;^$DESTDIR;;" -e 's,/$,,' -e 's,[^/],,g' -e 's,/,../,g' -e 's,^,../../,')
+DEST_NAME=$(echo $SVC_A | sed -e 's,/$,,' -e 's,/,-,g')
 
 SOURCE="${SLASHES}${SVC_B}"
-DEP_DIR="${R_CINIT_DIR}/${SVC_A}/${DEP}"
+DEP_DIR="${SVC_A}/${DEP}"
 
 if [ ! -d "$DEP_DIR" ]; then
    echo "$DEP_DIR does not exist, creating..."
@@ -65,6 +115,6 @@ fi
 
 DEST="${DEP_DIR}/${DEST_NAME}"
 
-echo -n "Linking ${SOURCE} to ${DEST} ... "
-ln -sf "${SOURCE}" "${DEST}"
+echo -n "Linking ${source} to ${DEST} ... "
+ln -sf "${source}" "${DEST}"
 echo "finished."
