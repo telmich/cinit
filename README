@@ -90,10 +90,11 @@ replacement of $your_unix_init.
 
 Author, Contact, Bug reports, etc.
 ==================================
-Nico Schottelius (nico-cinit<<at>>schottelius [[dot]] org) is the
-author. Bug reports should be send to this address.
+The cinit mailing list can be found at [3].
+Bug reports, questions, patches, etc. should be send to the mailing
+list.
 
-FIXME: Add mailing list here
+Nico Schottelius (nico-cinit<<at>>schottelius [[dot]] org) is the author.
 
 The homepage of cinit is [2].
 
@@ -101,6 +102,7 @@ The homepage of cinit is [2].
 References:
 ===========
 
-[0]: need:  http://www.atnf.csiro.au/people/rgooch/linux/boot-scripts/
-[1]: minit: http://www.fefe.de/minit/
-[2]: cinit: http://linux.schottelius.org/cinit/
+[0]: need:     http://www.atnf.csiro.au/people/rgooch/linux/boot-scripts/
+[1]: minit:    http://www.fefe.de/minit/
+[2]: cinit:    http://www.nico.schottelius.org/software/cinit/
+[3]: cinit-ml: http://l.schottelius.org/mailman/listinfo/cinit
