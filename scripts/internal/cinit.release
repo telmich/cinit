@@ -41,7 +41,7 @@ echo -n "=> Continue to release $NAME? "
 read yes
 
 git archive $VERSION --prefix="${NAME}/" --output="${TARPATH}"
-( cd "$D_SOURCE" && tar xv "$TARPATH" )
+( cd "$D_SOURCE" && tar xvf "$TARPATH" )
 
 echo "Please do not forget to update the website..."
 
