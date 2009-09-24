@@ -1,0 +1,42 @@
+#!/bin/sh
+# 
+# 2005-2008 Nico Schottelius (nico-cinit-conf at schottelius.org)
+# 
+# This file is part of cinit-conf.
+#
+# cinit-conf is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# cinit-conf is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with cinit-conf. If not, see <http://www.gnu.org/licenses/>.
+#
+
+# cinit: read configuration into variables
+# Date: 2005-05-24 (Last Changed: 2005-08-08)
+#
+
+hier="${0%/*}"
+
+# try environment first
+if [ "$CINIT_CONF_CONF_DIR" ]; then
+   CONFDIR=$CINIT_CONF_CONF_DIR
+elif [ -d "${hier}/../conf/" ]; then
+   CONFDIR="${hier}/../conf/"
+elif [ -d "/etc/cinit-conf/" ]; then
+   CONFDIR="/etc/cinit-conf/"
+else
+   echo 'Did not find cinit-conf configuration!'      >&2
+   echo "Please set the variable CINIT_CONF_CONF_DIR" >&2
+   exit 1
+fi
+
+CONFDIR=$(cd "${CONFDIR}" && pwd -P)
+
+echo $CONFDIR

@@ -1,0 +1,11 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install standard sub-configuration directories
+# Date: 2005-08-07
+# 
+
+. $(dirname $0)/cinit-conf.read-conf
+
+for svc in $SERVICE_CATEGORIES; do
+   "$INSTALL_PROG" "$INSTALL_DIRECTORY" "${R_SVC_DIR}/${svc}"
+done

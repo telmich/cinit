@@ -1,0 +1,20 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install service: cleanup mtab
+# Date: 2005-08-07
+# 
+
+. $(dirname $0)/cinit.read-conf
+
+set -e
+
+# - mount /proc
+"$INSTALL_PROG" "$INSTALL_DIRECTORY" \
+   "${DESTDIR}/${CINIT_DIR}/local-tuning/cleanup-mtab"
+echo '#!/bin/sh'       > "${DESTDIR}/${CINIT_DIR}/local-tuning/cleanup-mtab/$C_ON"
+echo 'rm -f /etc/mtab' >>"${DESTDIR}/${CINIT_DIR}/local-tuning/cleanup-mtab/$C_ON"
+echo 'ln -s /proc/mounts /etc/mtab' \
+   >> "${DESTDIR}/${CINIT_DIR}/local-tuning/cleanup-mtab/$C_ON"
+chmod 0700 "${DESTDIR}/${CINIT_DIR}/local-tuning/cleanup-mtab/$C_ON"
+
+exit 0

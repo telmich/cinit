@@ -1,0 +1,47 @@
+cinit-conf - helps to configure cinit
+=====================================
+Nico Schottelius <nico-cinit-conf__@__schottelius.org>
+0.0.1, Initial version written on 20080418 in the Bus to Gossau
+
+cinit-conf aims to be a suite to help to configure cinit and
+migrate systems to cinit.
+
+Introduction
+------------
+`cinit` is a fast init system with dependency features and
+profile support. As `cinit` is not widely known and it is quite
+different in its approach compared to traditional init systems,
+the configuration is also quite different.
+
+To make life easier for people to migrate to and manage `cinit`,
+this project was started.
+
+If you use `cinit-conf`, please send feedback to me using `report_success.sh`.
+
+
+What can it do?
+~~~~~~~~~~~~~~~
+.In its current state, `cinit-conf` can
+- add getties on Linux (bin/cinit-conf.getty.add)
+- find its configuration directory (bin/cinit-conf.get-confdir)
+
+
+What should it can do?
+~~~~~~~~~~~~~~~~~~~~~~
+Much more ;-)
+
+.Also known as features planned, but not implemented.
+- Migrate complete installations
+- Provide a big toolset to be used by humans and in scripts
+- Make your life easier, because you are able to use `cinit`
+
+
+Wherefore can I use it?
+~~~~~~~~~~~~~~~~~~~~~~~
+Currenty only to add a getty, but more features will follow soon.
+
+
+How to use
+----------
+Execute ./bin/cinit-conf.getty.add.
+

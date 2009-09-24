@@ -1,0 +1,15 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: add standard sub-configuration directories to init wants
+# Date: 2005-10-11
+# 
+
+set -e
+
+. $(dirname $0)/cinit-conf.read-conf
+
+$(dirname $0)/cinit-conf.add.dependency init wants getty
+$(dirname $0)/cinit-conf.add.dependency init wants local-services
+$(dirname $0)/cinit-conf.add.dependency init wants local-tuning
+$(dirname $0)/cinit-conf.add.dependency init wants mount
+$(dirname $0)/cinit-conf.add.dependency init wants network

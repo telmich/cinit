@@ -1,0 +1,40 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install service: init
+# Date: 2005-10-15
+# 
+
+set -e
+
+. $(dirname $0)/cinit-conf.read-conf
+
+if [ $# -ne 3 ]; then
+  echo "$(basename $0): name device filesystem-type"
+  exit 1
+fi
+
+NAME=$1
+DEVICE=$2
+FS_TYPE=$3
+
+FSCK="/sbin/fsck.${FS_TYPE}"
+
+if [ ! -f "$FSCK" ]; then
+   echo "Missing $FSCK, abort."
+   exit 1
+fi
+
+if [ ! -e "${DESTDIR}${DEVICE}" ]; then
+   echo "Warning: ${DESTDIR}${DEVICE} does not exist."
+fi
+
+svcdir="${R_SVC_DIR}/fsck/${NAME}"
+if [ -e "$svcdir" ]; then
+   echo "Error: $svcdir already exists"
+   exit 1
+fi
+
+set -e
+"$INSTALL_PROG"      "$INSTALL_DIRECTORY" "${svcdir}"
+ln -sf  "${FSCK}"    "${svcdir}/$C_ON"
+echo "$DEVICE"   >   "${svcdir}/$C_ON$C_PARAMS"

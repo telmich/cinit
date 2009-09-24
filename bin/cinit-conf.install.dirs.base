@@ -1,0 +1,14 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install needed directories
+# Date: - (Last Modified: 2005-08-06)
+# 
+
+. $(dirname $0)/cinit-conf.read-conf
+
+set -e
+"$INSTALL_PROG" "$INSTALL_DIRECTORY" "${R_CINITCONF_DIR}"
+"$INSTALL_PROG" "$INSTALL_DIRECTORY" "${R_SVC_DIR}"
+
+# init must be there. always.
+"$INSTALL_PROG" "$INSTALL_DIRECTORY" "${R_SVC_DIR}/init"

@@ -1,0 +1,53 @@
+#!/bin/sh
+# 
+# 2008      Nico Schottelius (nico-cinit-conf at schottelius.org)
+# 
+# This file is part of cinit-conf.
+#
+# cinit-conf is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# cinit-conf is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with cinit-conf. If not, see <http://www.gnu.org/licenses/>.
+#
+
+hier="${0%/*}"
+
+: ${CONFDIR:="$("${hier}/cinit-conf.get-confdir")"}
+
+# read general values and overwrite specific ones later
+for conf in ${CONFDIR}/*; do
+   NAME="$(basename $conf | tr a-z A-Z)"
+   # short version
+   eval : \${$NAME:=$(head -n1 "${conf}")}
+
+   # long version
+   #if eval test -z \$$NAME; then
+   #   eval $NAME=\"$(head -n 1 $conf)\"
+   #   eval export $NAME
+   #fi
+#   eval echo $NAME = \$$NAME
+done
+
+# comment out: generated automatically now
+#: ${DESTDIR="$(head -n1 "${CONFDIR}/destdir")"}
+#: ${SERVICE_CATEGORIES="$(head -n1 "${CONFDIR}/service_categories")"}
+#: ${GETTYDIR="${SVCDIR}/$(head -n1 "${CONFDIR}/gettydir")"}
+#: ${INSTALL_PROG="$(head -n1 "${CONFDIR}/install_prog")"}
+#: ${INSTALL_DIRECTORY="$(head -n1 "${CONFDIR}/install_directory")"}
+#: ${C_ON="$(head -n1 "${CONFDIR}/c_on")"}
+#: ${C_PARAMS="$(head -n1 "${CONFDIR}/c_params")"}
+#: ${C_RESPAWN="$(head -n1 "${CONFDIR}/c_respawn")"}
+
+# overwrite or set: add destdir and put things together
+# R_* = real = should be used in scripts
+: ${R_CINIT_DIR:="${DESTDIR}/${CINIT_DIR}"}
+: ${R_CINITCONF_DIR:="${R_CINIT_DIR}/${CINITCONFDIR}"}
+: ${R_SVC_DIR:="${R_CINIT_DIR}/${SVCDIR}"}

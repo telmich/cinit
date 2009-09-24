@@ -1,0 +1,18 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install service: loopback device
+# Date: 2005-08-07
+# 
+
+. $(dirname $0)/cinit.read-conf
+
+set -e
+
+# - mount /proc
+"$INSTALL_PROG"      "$INSTALL_DIRECTORY" "${DESTDIR}/${CINIT_DIR}/network/lo"
+ln -sf /sbin/ifconfig "${DESTDIR}/${CINIT_DIR}/network/lo/$C_ON"
+echo lo           >   "${DESTDIR}/${CINIT_DIR}/network/lo/${C_ON}${C_PARAMS}"
+echo 127.0.0.1/8 >>   "${DESTDIR}/${CINIT_DIR}/network/lo/${C_ON}${C_PARAMS}"
+echo up          >>   "${DESTDIR}/${CINIT_DIR}/network/lo/${C_ON}${C_PARAMS}"
+
+exit 0

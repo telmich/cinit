@@ -1,0 +1,17 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: install service: mount root r/w
+# Date: 2005-08-07
+# 
+
+set -e
+
+. $(dirname $0)/cinit-conf.read-conf
+
+# mount root read/write
+"$INSTALL_PROG"      "$INSTALL_DIRECTORY" "${R_SVC_DIR}/mount/root"
+ln -sf /bin/mount    "${R_SVC_DIR}/mount/root/$C_ON"
+echo -n          >   "${R_SVC_DIR}/mount/root/${C_ON}${C_PARAMS}"
+echo -o         >>   "${R_SVC_DIR}/mount/root/${C_ON}${C_PARAMS}"
+echo remount,rw >>   "${R_SVC_DIR}/mount/root/${C_ON}${C_PARAMS}"
+echo /          >>   "${R_SVC_DIR}/mount/root/${C_ON}${C_PARAMS}"

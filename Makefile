@@ -125,4 +125,3 @@ cinitconfconfdir=../cinit-conf/conf
 sync-conf:
 	 rsync --delete -av ./conf/ $(cinitconfconfdir)
 	 cd $(cinitconfconfdir); git add .; git commit -m "sync with cinit/conf"
-

@@ -1,0 +1,41 @@
+#!/bin/sh
+# Nico Schottelius
+# cinit: create templates
+# 2005-05-24
+
+set -e
+
+# init variables
+. $(dirname $0)/cinit.read-conf
+
+if [ $# -lt 1 ]; then
+   echo "`basename $0`: service-name(s)"
+   echo "   I do create templates for your services"
+   exit 1
+fi
+
+BASEDIR=$DESTDIR/$CINIT_DIR
+
+for svc in $@; do
+   INSTDIR=${BASEDIR}/${svc}
+   if [ -e "$INSTDIR" ]; then
+      echo "$svc already exists, skipping."
+      continue
+   fi
+   echo -n "Creating $svc ..."
+   # install creates needed parent directories
+   "$INSTALL_PROG" "$INSTALL_DIRECTORY" "${INSTDIR}/${C_NEEDS}"
+   echo "The services this services really needs (it will not start if one failed to start)." > "${INSTDIR}/${C_NEEDS}/README"
+   "$INSTALL_PROG" "$INSTALL_DIRECTORY" "${INSTDIR}/${C_WANTS}"
+   echo "The services this services wants (it will start if one or more fail)." > "${INSTDIR}/${C_WANTS}/README"
+
+   echo '#!/bin/sh' > "${INSTDIR}/${C_ON}"
+   echo "echo This should be a link to an executable or a script" >> "${INSTDIR}/${C_ON}"
+   chmod 0700 "${INSTDIR}/${C_ON}"
+   echo "One paramater on each line." > "${INSTDIR}/${C_ON}${C_PARAMS}"
+   echo "Delete me, if there are no paramaters." > "${INSTDIR}/${C_ON}${C_PARAMS}"
+   echo "Environtment: varx=valuex, one variable on each line." > "${INSTDIR}/${C_ON}${C_ENV}"
+   echo "Delete me, if you do not want to set any variables." > "${INSTDIR}/${C_ON}${C_ENV}"
+   echo "finished."
+done
+
