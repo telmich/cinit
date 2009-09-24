@@ -1,0 +1,25 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Create minimal sample configurations for different OS
+desc: |-
+  Similar to what I thought todo in cinit.install.test:
+  
+        [ -e /etc/gentoo-release ] && TAR=${TARDIR}/gentoo.tar
+        [ -e /etc/debian_version ] && TAR=${TARDIR}/debian.tar
+        [ -e /etc/SuSE-release ] && TAR=${TARDIR}/suse.tar
+        [ -e /etc/mandrake-release ] && TAR=${TARDIR}/mandrake.tar
+        [ -e /etc/fedora-release ] && TAR=${TARDIR}/fedora.tar
+type: :task
+component: portability
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-24 20:14:42.832701 Z
+references: []
+
+id: 0c63a541a2261c7322d6c59a6adb091301020c8d
+log_events: 
+- - 2009-09-24 20:14:44.120614 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""
