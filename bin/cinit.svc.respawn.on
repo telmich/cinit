@@ -14,7 +14,7 @@ if [ $# -lt 1 ]; then
    exit 1
 fi
 
-BASEDIR=$DESTDIR/$CINIT_DIR
+BASEDIR="$DESTDIR/$CINIT_DIR"
 
 for svc in $@; do
    echo -n "Marking $svc respawning ..."
