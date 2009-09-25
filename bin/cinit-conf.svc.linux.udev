@@ -5,7 +5,7 @@
 # Comment: DO NOT RSYNC TO THE WRONG SIDE!
 # 
 
-. $(dirname $0)/cinit.read-conf
+. $(dirname $0)/cinit-conf.read-conf
 
 set -e
 
@@ -50,8 +50,8 @@ echo "/dev"            >> "${DESTDIR}${CINIT_DIR}/mount/udev/$C_ON$C_PARAMS"
 ln -sf "$BIN_UDEVSTART"   "${DESTDIR}${CINIT_DIR}/${SERVICE}/udevstart/$C_ON"
 
 # dependencies
-$(dirname $0)/cinit.add.dependency ${SERVICE}/udevstart needs mount/sys
-$(dirname $0)/cinit.add.dependency ${SERVICE}/udevstart needs mount/udev
+$(dirname $0)/cinit-conf.add.dependency ${SERVICE}/udevstart needs mount/sys
+$(dirname $0)/cinit-conf.add.dependency ${SERVICE}/udevstart needs mount/udev
 
 # 3. udev to hotplug
 "$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
@@ -59,6 +59,6 @@ $(dirname $0)/cinit.add.dependency ${SERVICE}/udevstart needs mount/udev
 ln -sf "$BIN_SYSCTL"      "${DESTDIR}/${CINIT_DIR}/${SERVICE}/hotplug/$C_ON"
 echo "$BIN_UDEVSEND"    > "${DESTDIR}${CINIT_DIR}/${SERVICE}/hotplug/$C_ON$C_PARAMS"
 
-$(dirname $0)/cinit.add.dependency ${SERVICE}/hotplug needs mount/proc
+$(dirname $0)/cinit-conf.add.dependency ${SERVICE}/hotplug needs mount/proc
 
 exit 0
