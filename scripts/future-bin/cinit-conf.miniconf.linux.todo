@@ -1,0 +1,4 @@
+Make it work with a system.
+
+Same aim as cinit.install.test, but different approach:
+This script tries to build the config dynamically.
