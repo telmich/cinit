@@ -14,6 +14,7 @@ fi
 binary=$1
 
 # this is NOT really clean, paths can also contain spaces
+# FIXME: use awk or similar
 for pfad in $(echo $PATH | sed 's/:/ /g'); do
    fullname=$pfad/$binary
    if [ -f "$fullname" ]; then 
