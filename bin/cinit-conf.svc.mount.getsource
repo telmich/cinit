@@ -18,4 +18,5 @@
 # along with cinit-conf. If not, see <http://www.gnu.org/licenses/>.
 #
 
+# FIXME: Skip ^#!, make for generic mounts!
 awk '$2 ~ /^\/$/ { print $0 }' < /etc/fstab
