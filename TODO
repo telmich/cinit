@@ -2,29 +2,6 @@ svc_stop vs. svc_disable: coded tired?
 
 
 --------------------------------------------------------------------------------
-- define service status in one document, so repeatition stops!
---------------------------------------------------------------------------------
-- add error handling to cinit.install.binary
---------------------------------------------------------------------------------
-- add code do implement stopping / restarting with dependency tree
---------------------------------------------------------------------------------
-# cinit.create.empty.service: can only be started from the bin directory
-
-- Fix Switching services off !!
-- Error codes when shutting down a service?
-- Delay dokumentieren
-- no_kill dokumentieren
-
-- on.out, on.err, on.in?
-   -> reading/writing from/to files
-
-- implement "no_kill" until cinit-0.2 or 0.3?
-
-
---------------------------------------------------------------------------------
-- Source Logic issues
-   - remove FIXME entries (and what should be fixed, too)
---------------------------------------------------------------------------------
 Helper scripts, rausgenommen aus Der Doku, muessen fuer
 cinit-0.3 ueberprueft werden:
 

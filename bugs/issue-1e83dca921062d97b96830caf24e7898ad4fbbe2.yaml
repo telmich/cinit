@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: add error handling to cinit.install.binary
+desc: Double check the whole installation process
+type: :task
+component: build
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 05:32:13.897529 Z
+references: []
+
+id: 1e83dca921062d97b96830caf24e7898ad4fbbe2
+log_events: 
+- - 2009-09-28 05:32:14.581391 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

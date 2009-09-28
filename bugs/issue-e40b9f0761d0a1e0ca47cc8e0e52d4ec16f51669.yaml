@@ -1,0 +1,20 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: define service status in one document, so repeatition stops
+desc: |-
+  maybe use doxygen?
+  Chose focus: user | developer
+type: :task
+component: documentation
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 05:31:11.886061 Z
+references: []
+
+id: e40b9f0761d0a1e0ca47cc8e0e52d4ec16f51669
+log_events: 
+- - 2009-09-28 05:31:12.802016 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

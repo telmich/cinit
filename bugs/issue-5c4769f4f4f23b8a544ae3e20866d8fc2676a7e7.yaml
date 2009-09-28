@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: add code do implement stopping / restarting service with/without dependency tree
+desc: ""
+type: :task
+component: cinit
+release: 0.3.1
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 05:33:24.966097 Z
+references: []
+
+id: 5c4769f4f4f23b8a544ae3e20866d8fc2676a7e7
+log_events: 
+- - 2009-09-28 05:33:25.929966 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

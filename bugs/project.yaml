@@ -12,6 +12,8 @@ components:
   name: portability
 - !ditz.rubyforge.org,2008-03-06/component 
   name: documentation
+- !ditz.rubyforge.org,2008-03-06/component 
+  name: build
 releases: 
 - !ditz.rubyforge.org,2008-03-06/release 
   name: "0.3"
@@ -31,3 +33,12 @@ releases:
     - Nico Schottelius <nico@ikn.schottelius.org>
     - created
     - All things to be fixed in the future.
+- !ditz.rubyforge.org,2008-03-06/release 
+  name: 0.3.1
+  status: :unreleased
+  release_time: 
+  log_events: 
+  - - 2009-09-28 05:32:55.870041 Z
+    - Nico Schottelius <nico@ikn.schottelius.org>
+    - created
+    - Bugfix of 0.3
