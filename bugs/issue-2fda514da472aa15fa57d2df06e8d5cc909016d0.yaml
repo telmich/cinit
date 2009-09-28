@@ -1,0 +1,22 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Write a small manual
+desc: |-
+  How to
+        - install
+        - configure
+        - boot (different OS)
+type: :task
+component: documentation
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 18:37:34.300443 Z
+references: []
+
+id: 2fda514da472aa15fa57d2df06e8d5cc909016d0
+log_events: 
+- - 2009-09-28 18:37:35.280232 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

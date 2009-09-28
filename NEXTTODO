@@ -1,3 +1,5 @@
+svc_stop vs. svc_disable: coded tired?
+
 --------------------------------------------------------------------------------
 - Add service start/stop to cinit
    cinit_svc_disable.c

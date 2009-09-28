@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Maybe create libcinit?
+desc: At least for use in cmd()
+type: :task
+component: cinit
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 05:43:27.689712 Z
+references: []
+
+id: 4e460e6061fb5d39549b85d42fc33f57de7a1396
+log_events: 
+- - 2009-09-28 05:43:28.069533 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

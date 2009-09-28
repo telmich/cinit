@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Documentate how to migrate from another init system
+desc: ""
+type: :task
+component: documentation
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 20:00:00.854675 Z
+references: []
+
+id: 5bd7befd45553864b1d2ebc12509e06440a402d0
+log_events: 
+- - 2009-09-28 20:00:01.450291 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

@@ -1,0 +1,28 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Add reason, why service was not started
+desc: |-
+  --------------------------------------------------------------------------------
+  csvc:
+  11:09 < folken23> telmich: oder service allready started. 
+  --------------------------------------------------------------------------------
+  cinit:
+  11:09 < folken23> telmich: zsb. eine grund angabe warum ein dienst nicht gestartet 
+                    werden konnte. 
+  11:09 < folken23> telmich: e.g. file nicht gefunden, service hat nicht 0 
+                    zurueckgeworfen. 
+                    ---> errno in execute_sth!
+type: :task
+component: cinit
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 05:36:51.093468 Z
+references: []
+
+id: 278e5a7b4c338f18f92d5bb1a2789d76d0e11ad9
+log_events: 
+- - 2009-09-28 05:36:51.957356 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

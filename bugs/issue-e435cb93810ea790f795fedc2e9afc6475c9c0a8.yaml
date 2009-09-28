@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: "FAQ: what happens when a service does not terminate...."
+desc: write faq!
+type: :task
+component: documentation
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 20:11:41.130314 Z
+references: []
+
+id: e435cb93810ea790f795fedc2e9afc6475c9c0a8
+log_events: 
+- - 2009-09-28 20:11:41.862145 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

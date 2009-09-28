@@ -1,0 +1,20 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: write cinit-conf.check
+desc: |-
+  * report broken links in needs/wants
+        * report circular dependencies
+type: :task
+component: user interface
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 18:36:27.892997 Z
+references: []
+
+id: d3732fffad054c5a1f781f28a60015346ad28dd6
+log_events: 
+- - 2009-09-28 18:36:28.504859 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

@@ -1,0 +1,30 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Add install targets
+desc: |-
+  install:
+        make install => does not overwrite critical targets
+           * cinit
+           * *.kill (see client/*)
+           * cmd
+        make force-install => overwrites /sbin/{halt,poweroff,reboot}?
+           => with script that wraps cmd
+        make install-template:
+           * creates categories
+        make install-miniconf:
+           * creates categories
+           * creates one service starting a shell (depending on the OS!)
+type: :task
+component: build
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 05:42:21.470333 Z
+references: []
+
+id: 120cbf62dbdd9a7a026bcbb7d2863599c7183f70
+log_events: 
+- - 2009-09-28 05:42:22.146097 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""
