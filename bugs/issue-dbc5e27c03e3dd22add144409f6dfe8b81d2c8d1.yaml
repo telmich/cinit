@@ -1,0 +1,22 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Documentate sleeping behaviour (when respawing processes)
+desc: |-
+  - cinit will sleep after respawing if ... 
+  
+     a) the service did not terminate normally (!WIFEXITED(status))
+     b) the service did return a non-zero exit status
+type: :task
+component: documentation
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 05:27:32.721481 Z
+references: []
+
+id: dbc5e27c03e3dd22add144409f6dfe8b81d2c8d1
+log_events: 
+- - 2009-09-28 05:27:33.821345 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

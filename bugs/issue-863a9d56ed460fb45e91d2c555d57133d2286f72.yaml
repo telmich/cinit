@@ -1,0 +1,24 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Add speedup part in documentation
+desc: |-
+  - cinit will start a little bit faster if you omit non needed
+    'wants' and 'needs' dirs as they need to be scanned if they
+     do not exist
+  - Dependencies beginning with a '.' (dot) are ignored.
+    So you can temporarily disable a dependency moving it to
+    want/.name
+type: :task
+component: documentation
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 05:30:01.562097 Z
+references: []
+
+id: 863a9d56ed460fb45e91d2c555d57133d2286f72
+log_events: 
+- - 2009-09-28 05:30:02.433805 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

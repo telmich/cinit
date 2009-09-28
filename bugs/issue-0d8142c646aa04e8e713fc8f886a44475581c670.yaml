@@ -1,0 +1,22 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: How to handle OS specific signal handlers
+desc: |-
+  -- cinit ignores the Keyboard request
+  - Currently there is no support to react on 'ctr+alt+del':
+  
+  Maybe allow signal handlers to be passed to something like services?
+type: :task
+component: core
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-28 05:29:28.589652 Z
+references: []
+
+id: 0d8142c646aa04e8e713fc8f886a44475581c670
+log_events: 
+- - 2009-09-28 05:29:31.033914 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""
