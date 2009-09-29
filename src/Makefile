@@ -156,6 +156,15 @@ uml: cinit cmd
 umlstart: uml
 	../../vm/uml/uml-start.sh
 
+SDIR=../size
+SNOW=$(shell date +%Y-%m-%d-%H%M%S)
+sizecheck: cinit
+	ls -l cinit > $(SDIR)/$(SNOW)
+	cat $(SDIR)/$(SNOW)
+	git add $(SDIR)/$(SNOW)
+	git commit -m "Size: $$(awk '{ print $$5 }' $(SDIR)/$(SNOW))"
+
+
 ################################################################################
 #
 # Clenaup targets
