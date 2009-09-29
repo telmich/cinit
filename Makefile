@@ -34,7 +34,7 @@ warn:
 	@cat doc/.buildwarn
 
 all: sources documentation
-dev-all: all sizecheck
+dev-all: all
 
 install clean dist distclean:
 	@for subdir in ${CDIRS}; do \
@@ -50,17 +50,6 @@ sources:
 documentation:
 	${MAKE} -C doc documentation
 
-sizecheck: sources
-	FILE="size/`date +%Y-%m-%d-%H%M%S`"; ls -l src/cinit > $$FILE; cat $$FILE; \
-	cg-add $$FILE
-	cg-commit $$FILE -m "Size added"
-	#cg-commit $$FILE -m "Size: $$(awk '{ print $5 }' $$FILE)"
-
-source-size: clean
-	@echo -n "Source size (in KiB): "
-	@du -s src/ | awk '{ sum+=$$1 } END { print sum }'
-
-
 install-miniconf:
 	./bin/cinit.install.miniconf
 
@@ -72,7 +61,6 @@ config:
 	@./bin/cinit.configure.tools
 	@./bin/cinit.configure.ipc
 	@touch src/.configured
-
 
 ################################################################################
 # Tests
@@ -135,6 +123,11 @@ release: ./scripts/internal/cinit.release
 
 scripts/internal/cinit.release: ./scripts/internal/test-cmd.sh
 	./scripts/internal/test-cmd.sh
+
+WEBFILE=~/privat/computer/net/netzseiten/www.nico.schottelius.org/src/software/cinit.mdwn
+.PHONY: web
+web: README
+	cp $< $(WEBFILE)
 
 cinitconfconfdir=../cinit-conf/conf
 sync-conf:
