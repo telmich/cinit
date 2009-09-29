@@ -2,3 +2,4 @@ Released:
 Changes:
    * Re-integrated cinit-conf
    * Cleaned up bin/: Executables can now be installed
+   * Cleaned up top level directory
