@@ -1,0 +1,51 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Test new build sytem
+desc: |-
+  Migrate conf/ to general conf/-buildsystem (write documentation for it).
+  
+  gpm2 may be an example for this!
+  
+  conf/targets:
+     targets to make available in Makefile and their dependencies
+  
+     abstract the build-process somehow, so one can create build-targets?
+  
+     c-programs/ (includes cc / ld) 
+        cinit (link to conf/object_listings cinit?)
+  conf/object_listings
+     lists of dependencies:
+        conf/object_listings/cinit contains all objects needed for cinit
+  
+  conf/programs/
+     like cc, ld, install, ... 
+  
+  conf/built-options/
+     like --... in ./configure
+  
+  conf/install/
+     <name>
+     options/
+        destdir (prefixed before everything)
+        prefix  (standard prefix)
+           bin     (relative to prefix, if not beginning with a /)
+           sbin    (relative to prefix, if not beginning with a /)
+           lib     (relative to prefix, if not beginning with a /)
+     targets/
+        cinit/
+           built-target (link to conf/targets/cinit)
+           destination (relative to
+type: :task
+component: build
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-29 05:21:55.313650 Z
+references: []
+
+id: f10682d63b1059f876c6cdde2323a596dba89d3c
+log_events: 
+- - 2009-09-29 05:21:55.845402 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""
