@@ -1,0 +1,22 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Add service start/stop
+desc: Hack cinit_svc_disable.c
+type: :task
+component: cinit
+release: "0.3"
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-29 05:31:38.533662 Z
+references: []
+
+id: 40bb0e1478cb8e1fd7ef577b0acf8f7b2f516d6d
+log_events: 
+- - 2009-09-29 05:31:39.209477 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""
+- - 2009-09-29 05:32:40.681588 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - commented
+  - "svc_stop vs. svc_disable: coded tired?"
