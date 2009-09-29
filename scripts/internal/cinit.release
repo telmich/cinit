@@ -19,10 +19,12 @@ D_SOURCE=${D_BASE}/browse_source/
 VERSION_CONF="$(head -n1 $(dirname $0)/../../conf/version | sed 's/^"\(.*\)"$/\1/')"
 VERSION_ARGV="$1"
 VERSION_GIT="$(git describe)"
+VERSION_README=$(grep -q "$VERSION_ARGV" README && echo $VERSION_ARGV)
 
 echo "=> Version commandline:  $VERSION_ARGV"
 echo "=> Version conf/version: $VERSION_CONF"
 echo "=> Version git:          $VERSION_GIT"
+echo "=> Version README:       $VERSION_README"
 
 if [ "$VERSION_ARGV" = "$VERSION_CONF" -a "$VERSION_ARGV" = "$VERSION_GIT" ]; then
    echo "=> Version confirmed."
