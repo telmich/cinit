@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Cleanup contrib+tools
+desc: Tools may be old or not even compiling. Cleanup!
+type: :task
+component: cinit
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-29 05:22:54.298139 Z
+references: []
+
+id: d7a7970bd20e1dc0b04f314fee5f39ba90d3d904
+log_events: 
+- - 2009-09-29 05:22:55.166003 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

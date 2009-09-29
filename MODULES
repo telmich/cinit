@@ -1,9 +1,0 @@
-- cinit_service_modify(name|path)
-- cinit_service_create() - interactive
-- cinit_service_delete(name|path) - interactive
-   * has to take care about needs / wants!
-- cinit_magic_configuration_generation()
-   * tries to build a completly fresh configuration, by analysing your system
-
-Non interactive tools
-- cinit_svc_del
