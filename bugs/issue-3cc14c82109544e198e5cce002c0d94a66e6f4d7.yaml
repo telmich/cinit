@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Export service information
+desc: Like pid, path, ...
+type: :task
+component: cinit
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-29 05:18:47.901610 Z
+references: []
+
+id: 3cc14c82109544e198e5cce002c0d94a66e6f4d7
+log_events: 
+- - 2009-09-29 05:18:48.369488 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

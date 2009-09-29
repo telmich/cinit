@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Mase sure cinit runs on POSIX
+desc: Double check that there are no linux deps in it anymore (from cinit-0.2)
+type: :task
+component: portability
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-29 05:16:19.961614 Z
+references: []
+
+id: 8391cdbcb30d007bfb692504d9469a93f7c15b97
+log_events: 
+- - 2009-09-29 05:16:20.858087 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

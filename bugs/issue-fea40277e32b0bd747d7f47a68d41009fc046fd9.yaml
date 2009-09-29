@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: add logging support for services
+desc: Similar to DJB tools? multilog?
+type: :task
+component: cinit
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-29 05:18:00.717667 Z
+references: []
+
+id: fea40277e32b0bd747d7f47a68d41009fc046fd9
+log_events: 
+- - 2009-09-29 05:18:01.146029 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

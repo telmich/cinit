@@ -1,0 +1,25 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: write examples for profiles
+desc: |-
+  o switch ssh known_hosts based on profile
+        o different proxy settings in browsers
+           - environment
+           - mozilla settings
+        o start samba (for lan)
+        o start samba (for company lan)
+        o use nis and nfs (company profile)
+type: :task
+component: documentation
+release: future
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :unstarted
+disposition: 
+creation_time: 2009-09-29 05:19:26.941625 Z
+references: []
+
+id: 85687a7f79046db51429db38e7b1da5234a3675e
+log_events: 
+- - 2009-09-29 05:19:27.345506 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""

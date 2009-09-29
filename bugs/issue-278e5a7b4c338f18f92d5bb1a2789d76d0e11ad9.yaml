@@ -26,3 +26,18 @@ log_events:
   - Nico Schottelius <nico@ikn.schottelius.org>
   - created
   - ""
+- - 2009-09-29 05:15:14.622132 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - commented
+  - |-
+    And add better status messages:
+          -> starting
+          [ started once ]
+          [ respawning ] 
+          [ failed ]         (+ REASON!)
+          [ needs failed ]   (which ones)
+          
+          -> stopping
+          [ stopping ] (for dependencies)
+          [ stopped ] ?
+          [ not running ] ?
