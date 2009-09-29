@@ -1,9 +1,14 @@
---------------------------------------------------------------------------------
-cinit, Nico Schottelius, 2005-04-28 [last change: 2005-05-07]
---------------------------------------------------------------------------------
+cinit - README
+==============
+Nico Schottelius <nico-cinit__@__schottelius.org>
+0.3pre, Initial version from 2005-04-28
+
+cinit is a fast, small and simple init with support for profiles
+
 
 Introduction
-============
+------------
+
 cinit is a fast init system with dependency features and
 profile support. It was orientated on the design off Richard Gooch's
 need [0] and Felix von Leitner's minit[1]. Minit does not support real
@@ -21,20 +26,20 @@ cinit main features:
 
 
 Getting cinit
-=============
+-------------
 This README is part of the source, so you should have it.
 If not, you can go to the homepage [2] and download the tar archive
 or get the lastest snapshot via git.
 
 
 Pre-Configuring
-===============
+---------------
 If you want to fine tune cinit parameters, add different path names,
 change the DESTDIR, ... have a look at conf/*.
 
 
 Installing
-==========
+----------
 You can install cinit parallel to any other init-system, it won't
 kill other init's config nor /sbin/init, if it exists.
 
@@ -68,7 +73,7 @@ of your current init system. How to do that depends on your system:
 
 
 Configuring 
-===========
+-----------
 You'll have to configure /etc/cinit and add your existing services.
 
 Please read doc/configuring.cinit for details.
@@ -89,10 +94,10 @@ replacement of $your_unix_init.
 
 
 Author, Contact, Bug reports, etc.
-==================================
+----------------------------------
 The cinit mailing list can be found at [3].
-Bug reports, questions, patches, etc. should be send to the mailing
-list.
+Bug reports, questions, patches, etc. should be send
+to the mailing list.
 
 Nico Schottelius (nico-cinit<<at>>schottelius [[dot]] org) is the author.
 
