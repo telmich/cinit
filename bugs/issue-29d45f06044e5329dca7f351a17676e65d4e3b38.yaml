@@ -1,0 +1,22 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: "Bugfix: SIGCHLD not handled carefully"
+desc: ""
+type: :task
+component: core
+release: "0.3"
+reporter: Nico Schottelius <nico@ikn.schottelius.org>
+status: :in_progress
+disposition: 
+creation_time: 2009-09-29 05:34:17.833638 Z
+references: []
+
+id: 29d45f06044e5329dca7f351a17676e65d4e3b38
+log_events: 
+- - 2009-09-29 05:34:18.397430 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - created
+  - ""
+- - 2009-09-29 05:35:28.338069 Z
+  - Nico Schottelius <nico@ikn.schottelius.org>
+  - changed status from unstarted to in_progress
+  - ""
