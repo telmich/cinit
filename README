@@ -1,113 +1,229 @@
-cinit - README
-==============
-Nico Schottelius <nico-cinit__@__schottelius.org>
-0.3pre, Initial version from 2005-04-28
-
 cinit is a fast, small and simple init with support for profiles
 
+## Introduction
 
-Introduction
-------------
-
-cinit is a fast init system with dependency features and
-profile support. It was orientated on the design off Richard Gooch's
-need [0] and Felix von Leitner's minit[1]. Minit does not support real
-dependencies (you don't know whether the service you depend on really
-started) and the need concept is somehow slow (as seen in gentoo).
+cinit is a fast init system with dependency features and 
+profile support. It was orientated on the design of
+Richard Goochs
+[need concept](http://www.atnf.csiro.au/people/rgooch/linux/boot-scripts/)
+and Felix von Leitners
+[minit](http://www.fefe.de/minit/).
+Minit does not support real dependencies (you don't know whether the
+service you depend on really started) and the need concept is somehow
+slow (as seen in gentoo).
 In addition, minit needs libowfat and dietlibc, which may not be found
 on every Unix system.
 
-cinit main features:
-- portability: it should run on every Unix
-- true dependencies (soft and hard!)
-- parallel execution
-- highly customisable (see conf/*)
-- profile support (specify what services to start depending on the profile)
+### Cinit main features
+
+* portability: it should run on every Unix
+* true dependencies (soft and hard!)
+* parallel execution
+* highly customisable (see conf/*)
+* profile support (specify what services to start depending on the profile)
 
 
-Getting cinit
--------------
-This README is part of the source, so you should have it.
-If not, you can go to the homepage [2] and download the tar archive
-or get the lastest snapshot via git.
+### Why should I use cinit?
+
+ * To significant speedup the startup process
+ * To use highest level of parallelisation at startup
+ * To benefit from real dependencies (so called ***needs*** and ***wants***)
+ * To easily create profiles that can be chosen at startup (even **before** init is started!)
+
+### How does cinit work?
+
+Cinit creates a dependency tree at startup and executes the services.
+A service can have two type of dependencies:
+
+ * ***wants*** describe soft dependencies (i.e. it's not fatal if the wanted service fails to start)
+ * ***needs*** describe hard dependencies (if the needed service fails, the depending won't be started)
+
+Let's have a look at an example:
+
+    
+                    A
+                 (wants)
+                /       \
+     |------> B \        C
+     |       /   \      /  \
+     ^  (needs)   (needs)   (wants)
+     |    D          E        F
+     |                        |
+     |------<------(needs)----|
+    
+
+Or in words:
+
+ * B and C do not have dependencies
+  * They will be started at the beginning
+ * A wants B and C
+   * A waits until B and C are executed and started afterwards,
+     independently of the success of B and C
+   * A will also be started, if B and C fail to start.
+ * D needs B
+  * D will only be started, if B is successfully started
+ * E needs B and C
+  * E will only be started, if both B and C are successfully started
+ * F wants C and needs B
+  * F will only be started, if B is successfully started
+  * F waits until C is started and is started afterwards
+
+## Getting cinit
+
+### Development versions
+You can get the latest (development) version via git:
+
+    git clone git://git.schottelius.org/cLinux/cinit.git
+
+Additionally, the following other git ressources are available:
+
+ * [Gitweb](http://git.schottelius.org/?p=cLinux/cinit.git;a=summary).
+ * [Mirror at github](http://github.com/telmich/cinit)
+ * [Mirror at gitorious](http://gitorious.org/cinit)
 
 
-Pre-Configuring
----------------
+### Archives
+
+ * [[cinit-0.3pre15.tar.bz2|archives/cinit-0.3pre15.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre15/))
+   [[changes|browse_source/cinit-0.3pre15/doc/changes/0.3pre15]]
+ * [[cinit-0.3pre14.tar.bz2|archives/cinit-0.3pre14.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre14/))
+   [[changes|browse_source/cinit-0.3pre14/CHANGES]]
+ * [[cinit-0.3pre13.tar.bz2|archives/cinit-0.3pre13.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre13/))
+   [[changes|browse_source/cinit-0.3pre13/CHANGES]]
+ * [[cinit-0.3pre12.tar.bz2|archives/cinit-0.3pre12.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre12/))
+   [[changes|browse_source/cinit-0.3pre12/CHANGES]]
+ * [[cinit-0.3pre11.tar.bz2|archives/cinit-0.3pre11.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre11/))
+   [[changes|browse_source/cinit-0.3pre11/CHANGES]]
+ * [[cinit-0.3pre10.tar.bz2|archives/cinit-0.3pre10.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre10/))
+   [[changes|browse_source/cinit-0.3pre10/CHANGES]]
+ * [[cinit-0.3pre9.tar.bz2|archives/cinit-0.3pre9.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre9/))
+   [[changes|browse_source/cinit-0.3pre9/CHANGES]]
+ * [[cinit-0.3pre8.tar.bz2|archives/cinit-0.3pre8.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre8/))
+   [[changes|browse_source/cinit-0.3pre8/CHANGES]]
+ * [[cinit-0.3pre7.tar.bz2|archives/cinit-0.3pre7.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre7/))
+   [[changes|browse_source/cinit-0.3pre7/CHANGES]]
+ * [[cinit-0.3pre6.tar.bz2|archives/cinit-0.3pre6.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre6/))
+   [[changes|browse_source/cinit-0.3pre6/CHANGES]]
+ * [[cinit-0.3pre5.tar.bz2|archives/cinit-0.3pre5.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre5/))
+   [[changes|browse_source/cinit-0.3pre5/CHANGES]]
+ * [[cinit-0.3pre4.tar.bz2|archives/cinit-0.3pre4.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre4/))
+   [[changes|browse_source/cinit-0.3pre4/CHANGES]]
+ * [[cinit-0.3pre3.tar.bz2|archives/cinit-0.3pre3.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre3/))
+   [[changes|browse_source/cinit-0.3pre3/CHANGES]]
+ * [[cinit-0.3pre2.tar.bz2|archives/cinit-0.3pre2.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre2/))
+   [[changes|browse_source/cinit-0.3pre2/CHANGES]]
+ * [[cinit-0.3pre1.tar.bz2|archives/cinit-0.3pre1.tar.bz2]]
+   ([browse source](browse_source/cinit-0.3pre1/))
+   [[changes|browse_source/cinit-0.3pre1/CHANGES]]
+ * [[cinit-0.2.1.tar.bz2|archives/cinit-0.2.1.tar.bz2]]
+   ([browse source](browse_source/cinit-0.2.1/))
+   [[changes|browse_source/cinit-0.2.1/CHANGES]]
+ * [[cinit-0.2.tar.bz2|archives/cinit-0.2.tar.bz2]]
+   ([browse source](browse_source/cinit-0.2/))
+   [[changes|browse_source/cinit-0.2/CHANGES]]
+ * [[cinit-0.1.tar.bz2|archives/cinit-0.1.tar.bz2]]
+   ([browse source](browse_source/cinit-0.1/))
+   [[changes|browse_source/cinit-0.1/CHANGES]]
+ * [[cinit-0.0.8.tar.bz2|archives/cinit-0.0.8.tar.bz2]]
+   ([browse source](browse_source/cinit-0.0.8/))
+   [[changes|browse_source/cinit-0.0.8/CHANGES]]
+ * [[cinit-0.0.7.tar.bz2|archives/cinit-0.0.7.tar.bz2]]
+   ([browse source](browse_source/cinit-0.0.7/))
+   [[changes|browse_source/cinit-0.0.7/CHANGES]]
+ * [[cinit-0.0.6.tar.bz2|archives/cinit-0.0.6.tar.bz2]]
+   ([browse source](browse_source/cinit-0.0.6/))
+   [[changes|browse_source/cinit-0.0.6/CHANGES]]
+ * [[cinit-0.0.5.tar.bz2|archives/cinit-0.0.5.tar.bz2]]
+   ([browse source](browse_source/cinit-0.0.5/))
+   [[changes|browse_source/cinit-0.0.5/CHANGES]]
+ * [[cinit-0.0.4.tar.bz2|archives/cinit-0.0.4.tar.bz2]]
+   ([browse source](browse_source/cinit-0.0.4/))
+   [[changes|browse_source/cinit-0.0.4/CHANGES]]
+
+## Documentation 
+The documentation is currently spread all over the ***doc/*** directory
+within the tarball and is being cleaned up. Additionally there
+are two presentations available:
+
+  * [[2005-10-22: (German) speech at Technophil|software/cinit/speeches/2005-10-22]]
+  * [[2005-08-06: (German) online speech|software/cinit/speeches/2005-08-06]]
+
+### Pre-Configuring
 If you want to fine tune cinit parameters, add different path names,
 change the DESTDIR, ... have a look at conf/*.
 
 
-Installing
-----------
+### Installing cinit
 You can install cinit parallel to any other init-system, it won't
-kill other init's config nor /sbin/init, if it exists.
+kill other init's config nor /sbin/init, if it exists:
 
-You only have to tell your kernel to execute /sbin/cinit instead
-of /sbin/init.
-
-Everybody do:
-# make all install
+    # make all install
 
 This will create /sbin/cinit.
 If /sbin/init does not exist, it will be linked to /sbin/cinit.
 
-If it's the first time you operate with cinit, you can also do:
-# make install-test
-
-This will populate /etc/cinit with a testing configuration,
-which is somehow minimalistic
-(mounting root r/w, starting gettys, setting hostname).
-
-Although this should work on most Linux systems, it's really
-minimalistic. Please configure your cinit installation yourself,
-see below how to do that.
-
-After configuring you need to tell your kernel to boot cinit instead
-of your current init system. How to do that depends on your system:
-
-   Linux/LILO and Linux/yaboot (ppc):
-      append="init=/sbin/cinit"
-   Linux/grub1 and Linux/grub2:
-      kernel <normal kernel specification> init=/sbin/cinit
-
-
-Configuring 
------------
-You'll have to configure /etc/cinit and add your existing services.
+### Configuring cinit
+You'll have to configure cinit in /etc/cinit and add services,
+before you can use it.
 
 Please read doc/configuring.cinit for details.
 Please read doc/FAO if there are still questions open.
-Please join #cLinux on irc.freenode.org if there are still questions open.
 
-There can be found some (currently only one) testing examples
-below samples/ (some I do use for testing, beware if you use it:
-It loads the dvorak keymapping at startup!).
+There are some testing examples below doc/examples/, to be used
+as a starting point.
 
 There are currently no tools to merge your existing init-system
-to cinit (like sysvinit-merge, bsd-merge or minit-merge) available.
-If someone cares and tries to do that, I would be happy to include
-the script(s).
+to cinit (like sysvinit-merge, bsd-merge or minit-merge) available,
+but they are in the making (see various bugs in ditz).
 
-Additionally I would be thankful for tar-balls containing a complete
-replacement of $your_unix_init.
+### Configuring the OS / Kernel
+
+After configuring cinit you need to tell your kernel to boot cinit instead
+of your current init system. How to do that depends on your system:
+
+ * Linux/LILO and Linux/yaboot (ppc):
+  * append="init=/sbin/cinit"
+ * grub1 and grub2:
+  * kernel <normal kernel specification> init=/sbin/cinit
+
+## Support
+
+### IRC
+You can join the development ***IRC channel***
+[#cLinux on irc.freenode.org](irc://irc.freenode.org/#cLinux).
+
+### Mailing list
+Bug reports, questions, patches, etc. should be send to the
+[cinit mailing list](http://l.schottelius.org/mailman/listinfo/cinit).
+
+## Related websites
+
+ * [cinit](http://www.nico.schottelius.org/software/cinit/)
+  * [cinit mailing list](http://l.schottelius.org/mailman/listinfo/cinit)
+ * BSD init systems (same codebase):
+  * [FreeBSDs init](http://www.freebsd.org/cgi/cvsweb.cgi/src/sbin/init/)
+  * [NetBSDs init](http://cvsweb.netbsd.org/bsdweb.cgi/src/sbin/init/)
+  * [OpenBSDs init](http://www.openbsd.org/cgi-bin/cvsweb/src/sbin/init/)
+ * [initng](http://www.initng.org/)
+ * [minit](http://www.fefe.de/minit/)
+ * [runit](http://smarden.org/runit/)
+ * [need/simpleinit](http://www.atnf.csiro.au/~rgooch/linux/boot-scripts/)
+ * [sys-v-init](ftp://ftp.cistron.nl/pub/people/miquels/sysvinit/)
+ * [upstart](http://www.netsplit.com/blog/work/canonical/upstart.html)
 
 
-Author, Contact, Bug reports, etc.
-----------------------------------
-The cinit mailing list can be found at [3].
-Bug reports, questions, patches, etc. should be send
-to the mailing list.
-
-Nico Schottelius (nico-cinit<<at>>schottelius [[dot]] org) is the author.
-
-The homepage of cinit is [2].
-
-
-References:
-===========
-
-[0]: need:     http://www.atnf.csiro.au/people/rgooch/linux/boot-scripts/
-[1]: minit:    http://www.fefe.de/minit/
-[2]: cinit:    http://www.nico.schottelius.org/software/cinit/
-[3]: cinit-ml: http://l.schottelius.org/mailman/listinfo/cinit
+[[!tag unix]]
