@@ -1,6 +1,6 @@
 #!/bin/sh
 # 
-# 2008      Nico Schottelius (nico-cinit at schottelius.org)
+# 2009      Nico Schottelius (nico-cinit at schottelius.org)
 # 
 # This file is part of cinit.
 #
