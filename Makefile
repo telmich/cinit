@@ -70,27 +70,36 @@ tests:
 	#./scripts/internal/compile_run_as_compiler.sh
 	./scripts/internal/test_on_hosts.sh ./scripts/internal/compile_test.sh
 
-DEBIAN=lenny
-UMLDIR=test/uml
+### User Mode Linux / DIRECTORY
+UML_DIR_OS_UML_DIR_OS_DEBIAN=lenny
+UML_ROOT_DIR=~/cinit/vm/uml/$(UML_DIR_OS_UML_DIR_OS_DEBIAN)
 CONFDIR=etc/cinit/
 
 uml-install-debian:
-	mkdir -p $(UMLDIR)
-	sudo /usr/sbin/debootstrap $(DEBIAN) $(UMLDIR)
-	me=$$(whoami); sudo chown -R $$me $(UMLDIR)
+	mkdir -p $(UML_ROOT_DIR)
+	sudo /usr/sbin/debootstrap $(UML_DIR_OS_DEBIAN) $(UML_ROOT_DIR)
+	me=$$(whoami); sudo chown -R $$me $(UML_ROOT_DIR)
 
 # only install binaries, no need to test documentation
 uml-install-config:
-	rsync -av --delete ./$(CONFDIR) $(UMLDIR)/$(CONFDIR)
+	rsync -av --delete ./$(CONFDIR) $(UML_ROOT_DIR)/$(CONFDIR)
 
 uml-install-cinit:
-	dir=$$(cd $(UMLDIR); pwd -P); make -C src DESTDIR=$$dir install 
+	dir=$$(cd $(UML_ROOT_DIR); pwd -P); make -C src DESTDIR=$$dir install 
 
-uml-run: uml-install-config
-	dir=$$(cd $(UMLDIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs init=/sbin/cinit
+uml-dir-start-cinit: uml-install-config
+	dir=$$(cd $(UML_ROOT_DIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs init=/sbin/cinit
 
-uml-run-sysv:
-	dir=$$(cd $(UMLDIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs
+uml-dir-start-plain:
+	dir=$$(cd $(UML_ROOT_DIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs
+
+### User Mode Linux / IMAGE
+UML_IMG_FILE=~/cinit/vm/uml/Debian-3.0r0.ext2
+uml-img-start-cinit:
+	./scripts/vm/uml-img-start-cinit.sh $(UML_IMG_FILE)
+
+uml-img-start-plain:
+	./scripts/vm/uml-img-start-plain.sh $(UML_IMG_FILE)
 
 # debian-etch
 de-install:
