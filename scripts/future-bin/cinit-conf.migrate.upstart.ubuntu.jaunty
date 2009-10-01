@@ -1,0 +1,65 @@
+#!/bin/sh
+# 
+# 2009      Nico Schottelius (nico-cinit at schottelius.org)
+# 
+# This file is part of cinit.
+#
+# cinit is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# cinit is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with cinit. If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# Try to migrate upstarts config from ubuntu jaunty to cinit config
+#
+
+# /etc/event.d/rc-default guesses 2, so we also assume it's 2.
+default_runlevel=2
+
+# Sys-v-init on Linux and variants (=upstart) execute rcS before rc2.
+#
+# Upstart on jaunty is starts /etc/event.d/rc-default, which
+# starts /etc/event.d/rcS which starts /etc/init.d/rcS which
+# starts /etc/init.d/rc S which starts the shell scripts in
+# /etc/rcS.d/ (does not sound very efficient to me).
+
+cinit@cinit-desktop:/etc/event.d$ ls -1 /etc/rcS.d/ | sed 's/^/# /'
+# README
+# S01mountkernfs.sh
+# S01readahead
+# S02hostname.sh
+# S06keyboard-setup
+# S07linux-restricted-modules-common
+# S10udev
+# S11mountdevsubfs.sh
+# S13pcmciautils
+# S15module-init-tools
+# S17procps
+# S20checkroot.sh
+# S22mtab.sh
+# S25brltty
+# S30checkfs.sh
+# S35mountall.sh
+# S36mountall-bootclean.sh
+# S37apparmor
+# S37mountoverflowtmp
+# S37udev-finish
+# S39readahead-desktop
+# S39ufw
+# S40networking
+# S45mountnfs.sh
+# S46mountnfs-bootclean.sh
+# S49console-setup
+# S55bootmisc.sh
+# S55urandom
+# S70screen-cleanup
+# S70x11-common
+
