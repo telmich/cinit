@@ -111,7 +111,7 @@ de-install:
 de-run:
 	ssh root@de reboot
 
-UBUNTUHOST=cinit@192.168.122.2
+UBUNTUHOST=cinit@192.168.122.107
 UBUNTUCONF=./etc/cinit-ubuntu
 UBUNTUINSTALL="cd cinit && make clean && sudo make install"
 UBUNTUTEST="sudo reboot"

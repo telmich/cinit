@@ -27,11 +27,12 @@ default_runlevel=2
 # Sys-v-init on Linux and variants (=upstart) execute rcS before rc2.
 #
 # Upstart on jaunty is starts /etc/event.d/rc-default, which
+
 # starts /etc/event.d/rcS which starts /etc/init.d/rcS which
 # starts /etc/init.d/rc S which starts the shell scripts in
 # /etc/rcS.d/ (does not sound very efficient to me).
 
-cinit@cinit-desktop:/etc/event.d$ ls -1 /etc/rcS.d/ | sed 's/^/# /'
+# cinit@cinit-desktop:/etc/event.d$ ls -1 /etc/rcS.d/ | sed 's/^/# /'
 # README
 # S01mountkernfs.sh
 # S01readahead
