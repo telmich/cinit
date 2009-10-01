@@ -71,8 +71,9 @@ tests:
 	./scripts/internal/test_on_hosts.sh ./scripts/internal/compile_test.sh
 
 ### User Mode Linux / DIRECTORY
-UML_DIR_OS_UML_DIR_OS_DEBIAN=lenny
-UML_ROOT_DIR=~/cinit/vm/uml/$(UML_DIR_OS_UML_DIR_OS_DEBIAN)
+UML_DIR_OS_DEBIAN=lenny
+UML_ROOT_DIR=~/cinit/vm/uml/$(UML_DIR_OS_DEBIAN)
+UML_ROOT_DIR_ABS=$(shell cd $(UML_ROOT_DIR) && pwd -P)
 CONFDIR=etc/cinit/
 
 uml-install-debian:
@@ -91,7 +92,7 @@ uml-dir-start-cinit: uml-install-config
 	dir=$$(cd $(UML_ROOT_DIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs init=/sbin/cinit
 
 uml-dir-start-plain:
-	dir=$$(cd $(UML_ROOT_DIR); pwd -P); linux root=/dev/root rootflags=$$dir rootfstype=hostfs
+	./scripts/vm/uml-dir-start-plain.sh $(UML_ROOT_DIR_ABS)
 
 ### User Mode Linux / IMAGE
 UML_IMG_FILE=~/cinit/vm/uml/Debian-3.0r0.ext2
