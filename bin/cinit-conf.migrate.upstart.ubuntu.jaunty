@@ -44,7 +44,9 @@ cinit-conf.svc.init.dependencies
 # README: not migrated:
 # S01mountkernfs.sh: sysfs, proc; ignored spufs, /var/run, /lib/init
 # S01readahead: ignored
-# S02hostname.sh
+# S02hostname.sh: migrated
+cinit-conf.svc.hostname.linux $(hostname)
+
 # S06keyboard-setup
 # S07linux-restricted-modules-common
 # S10udev
