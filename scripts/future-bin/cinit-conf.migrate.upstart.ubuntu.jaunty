@@ -41,8 +41,8 @@ cinit-conf.svc.init.dependencies
 # /etc/rcS.d/ (does not sound very efficient to me).
 
 # cinit@cinit-desktop:/etc/event.d$ ls -1 /etc/rcS.d/ | sed 's/^/# /'
-# README
-# S01mountkernfs.sh
+# README: not migrated:
+# S01mountkernfs.sh: sysfs, proc; ignored spufs, /var/run, /lib/init
 # S01readahead
 # S02hostname.sh
 # S06keyboard-setup
