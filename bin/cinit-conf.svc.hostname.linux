@@ -33,7 +33,11 @@ fi
 HOSTNAME="$1"
 : ${HOSTNAME_BIN:=/bin/hostname}
 
+SVC="network/hostname"
+
 "$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
-                          "${R_SVC_DIR}/network/hostname"
-ln -sf "$HOSTNAME_BIN"    "${R_SVC_DIR}/network/hostname/$C_ON"
-echo "$HOSTNAME"        > "${R_SVC_DIR}/network/hostname/$C_ON$C_PARAMS"
+                          "${R_SVC_DIR}/${SVC}"
+ln -sf "$HOSTNAME_BIN"    "${R_SVC_DIR}/${SVC}/${C_ON}"
+echo "$HOSTNAME"        > "${R_SVC_DIR}/${SVC}/${C_ON}${C_PARAMS}"
+
+cinit-conf.svc.dependency.add "${SVC}" needs "mount/proc"
