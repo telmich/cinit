@@ -40,7 +40,7 @@ for svc in $@; do
       continue
    fi
 
-   echo -n "Creating $svc ..."
+   echo -n "Creating template $svc ..."
    "$INSTALL_PROG" "$INSTALL_DIRECTORY" "${INSTDIR}"
 
    # needs
