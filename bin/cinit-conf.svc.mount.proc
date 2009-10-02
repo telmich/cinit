@@ -28,7 +28,7 @@ set -e
 # - mount /proc
 SVC="mount/proc"
 
-"$INSTALL_PROG"      "$INSTALL_DIRECTORY" "${DESTDIR}/${CINIT_DIR}/${SVC}"
+"$INSTALL_PROG"      "$INSTALL_DIRECTORY" "${R_SVC_DIR}/${SVC}"
 ln -sf /bin/mount    "${R_SVC_DIR}/${SVC}/${C_ON}"
 echo proc        >   "${R_SVC_DIR}/${SVC}/${C_ON}${C_PARAMS}"
 echo -t         >>   "${R_SVC_DIR}/${SVC}/${C_ON}${C_PARAMS}"
