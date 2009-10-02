@@ -10,6 +10,16 @@ You should already have cinit installed, otherwise read
 "cinit - Installing" first.
 
 
+Less is more
+------------
+In contrast to a lot of other init system configurations, the
+cinit configuration is not a "catch all", but more a "minimalistic"
+configuration: I don't think it's wise to include support for
+exotic configurations and a lot of if/else combinations in an init
+system configuration. These if/else should be solved at the configuration
+time, *not* everytime at boot!
+
+
 General configuration layout
 ----------------------------
 Cinit uses the <<<cconfig>>> configuration syntax, which means that
