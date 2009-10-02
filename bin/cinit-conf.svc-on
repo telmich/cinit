@@ -1,0 +1,66 @@
+#!/bin/sh
+# 
+# 2009      Nico Schottelius (nico-cinit at schottelius.org)
+# 
+# This file is part of cinit.
+#
+# cinit is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# cinit is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with cinit. If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# Create an almost empty service
+#
+
+set -e
+
+# init variables
+. "$(dirname $0)/cinit-conf.read-conf"
+
+if [ $# -lt 1 ]; then
+   echo "`basename $0`: service-name(s)"
+   echo "   I create templates for your services"
+   exit 1
+fi
+
+for svc in $@; do
+   INSTDIR="${R_SVC_DIR}/${svc}"
+
+   if [ -e "$INSTDIR" ]; then
+      echo "$svc already exists, skipping."
+      continue
+   fi
+
+   echo -n "Creating template $svc ..."
+   "$INSTALL_PROG" "$INSTALL_DIRECTORY" "${INSTDIR}"
+
+   # needs
+   "$INSTALL_PROG" "$INSTALL_DIRECTORY" "${INSTDIR}/${C_NEEDS}"
+
+   # wants
+   "$INSTALL_PROG" "$INSTALL_DIRECTORY" "${INSTDIR}/${C_WANTS}"
+
+   # README
+   cat << eof > "${INSTDIR}/README"
+This service was created by $0.
+
+Please update this README to match the real content.
+
+Add entries to ${C_NEEDS} for the services this services really needs
+(it will not start if one failed to start).
+
+Add services to ${C_WANTS} for the services this services wants
+(it will start if one or more fail)."
+eof
+
+   echo "done."
+done
