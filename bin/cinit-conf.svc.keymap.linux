@@ -30,31 +30,9 @@ if [ $# -ne 0 ]; then
   exit 1
 fi
 
-if [ -z "$C_KEYMAP" ]; then
-   echo "Set C_KEPMAP to the wanted keymap."
-   exit 1
-fi
+SVC="local-tuning/keymap"
+BINARY_PATH="$(which setupcon)"
 
-if [ -d  "${DESTDIR}/${CINIT_DIR}/local-tuning/keymap" ]; then
-   echo "Service keymap already exists."
-   exit 1
-fi
-
-BINARY_PATH=$($(dirname $0)/cinit.path-find loadkeys)
-
-if [ $? -ne 0 ]; then
-   echo "Did not find binary loadkeys."
-   exit 1
-fi
-
-echo -n "Installing keymap to ${DESTDIR}/${CINIT_DIR}/local-tuning/keymap ..."
-
-"$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
-                          "${DESTDIR}/${CINIT_DIR}/local-tuning/keymap"
-ln -sf "$BINARY_PATH"     "${DESTDIR}/${CINIT_DIR}/local-tuning/keymap/$C_ON"
-
-echo "$C_KEYMAP"       >> "${DESTDIR}/${CINIT_DIR}/local-tuning/keymap/$C_ON$C_PARAMS"
-
-echo "finished."
-
-exit 0
+cinit-conf.svc-create.template "${SVC}"
+cinit-conf.svc-on "${SVC}" "${BINARY_PATH}"
+cinit-conf.svc-param.add "${SVC}" "${C_ON}" "-k"
