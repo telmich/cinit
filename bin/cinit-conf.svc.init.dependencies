@@ -23,7 +23,7 @@
 
 set -e
 
-. $(dirname $0)/cinit-conf.read-conf
+. "$(dirname $0)/cinit-conf.read-conf"
 
 $(dirname $0)/cinit-conf.svc.dependency.add init wants getty
 $(dirname $0)/cinit-conf.svc.dependency.add init wants local-services

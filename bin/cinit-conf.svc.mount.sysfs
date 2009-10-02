@@ -22,7 +22,7 @@
 #
 
 
-. $(dirname $0)/cinit-conf.read-conf
+. "$(dirname $0)/cinit-conf.read-conf"
 
 set -e
 

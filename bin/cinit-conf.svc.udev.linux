@@ -5,7 +5,7 @@
 # Comment: DO NOT RSYNC TO THE WRONG SIDE!
 # 
 
-. $(dirname $0)/cinit-conf.read-conf
+. "$(dirname $0)/cinit-conf.read-conf"
 
 set -e
 

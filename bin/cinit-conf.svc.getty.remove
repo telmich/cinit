@@ -3,7 +3,7 @@
 # cinit: create gettys
 
 # init variables
-. $(dirname $0)/cinit-conf.read-conf
+. "$(dirname $0)/cinit-conf.read-conf"
 
 BASEDIR="$DESTDIR/$CINIT_DIR/$GETTY_DIR"
 NUMBER=$(cd $BASEDIR && ls | awk '/^((0[xX])[0-9a-fA-F]+)|([0-9]+)$/ { print }' | tail -n 1)

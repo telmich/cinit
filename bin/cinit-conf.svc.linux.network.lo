@@ -4,7 +4,7 @@
 # Date: 2005-08-07
 # 
 
-. $(dirname $0)/cinit-conf.read-conf
+. "$(dirname $0)/cinit-conf.read-conf"
 
 set -e
 

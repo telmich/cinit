@@ -6,7 +6,7 @@
 
 set -e
 
-. $(dirname $0)/cinit-conf.read-conf
+. "$(dirname $0)/cinit-conf.read-conf"
 
 if [ $# -ne 3 ]; then
   echo "$(basename $0): name device filesystem-type"
