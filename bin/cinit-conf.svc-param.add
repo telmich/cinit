@@ -26,12 +26,15 @@ set -e
 # init variables
 . "$(dirname $0)/cinit-conf.read-conf"
 
-if [ $# -ne 2 ]; then
-   echo "$(basename $0): service path-to-executable"
+if [ $# -lt 3 ]; then
+   echo "$(basename $0): service (${C_ON}|${C_OFF}) params..."
    exit 1
 fi
 
 svc="$1"; shift
-executable="$1"; shift
+type="$1"; shift
 
-ln -sf "${executable}" "${R_SVC_DIR}/${svc}/${C_ON}"
+while [ $# -gt 0 ]; do
+   param="$1"; shift
+   echo "${param}" >> "${R_SVC_DIR}/${svc}/${type}${C_PARAMS}"
+done
