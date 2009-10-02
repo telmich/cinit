@@ -36,3 +36,6 @@ BINARY_PATH="$(which setupcon)"
 cinit-conf.svc-create.template "${SVC}"
 cinit-conf.svc-on "${SVC}" "${BINARY_PATH}"
 cinit-conf.svc-param.add "${SVC}" "${C_ON}" "-k"
+
+# FIXME: what are the correct dependencies?
+cinit-conf.svc.dependency.add "${SVC}" "mount/proc"
