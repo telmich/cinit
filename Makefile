@@ -115,9 +115,9 @@ UBUNTUHOST=cinit@192.168.122.110
 UBUNTUCONF=./etc/cinit-ubuntu
 UBUNTUINSTALL="cd cinit && make clean && sudo make install"
 UBUNTUTEST="sudo reboot"
-ubuntu-install:
+ubuntu-sync:
 	rsync -av --delete ./ $(UBUNTUHOST):cinit
-#	rsync -av --delete ./$(UBUNTUCONF) $(UBUNTUHOST):/etc/cinit
+ubuntu-install: ubuntu-sync
 	ssh "$(UBUNTUHOST)" $(UBUNTUINSTALL)
 
 ubuntu-test: ubuntu-install
