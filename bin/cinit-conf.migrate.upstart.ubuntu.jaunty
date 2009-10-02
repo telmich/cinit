@@ -50,7 +50,9 @@ cinit-conf.svc.mount.sys
 # S02hostname.sh: migrated
 cinit-conf.svc.hostname.linux $(hostname)
 
-# S06keyboard-setup
+# S06keyboard-setup: migrated
+cinit-conf.svc.keymap.linux
+
 # S07linux-restricted-modules-common
 # S10udev
 # S11mountdevsubfs.sh
