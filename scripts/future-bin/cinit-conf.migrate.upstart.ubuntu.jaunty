@@ -24,10 +24,18 @@
 # /etc/event.d/rc-default guesses 2, so we also assume it's 2.
 default_runlevel=2
 
+################################################################################
+#
+# Base layout, same for every OS
+#
+cinit-conf.svc.init
+cinit-conf.svc.categories
+cinit-conf.svc.init.dependencies
+
+################################################################################
 # Sys-v-init on Linux and variants (=upstart) execute rcS before rc2.
 #
 # Upstart on jaunty is starts /etc/event.d/rc-default, which
-
 # starts /etc/event.d/rcS which starts /etc/init.d/rcS which
 # starts /etc/init.d/rc S which starts the shell scripts in
 # /etc/rcS.d/ (does not sound very efficient to me).
