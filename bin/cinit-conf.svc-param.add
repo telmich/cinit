@@ -36,5 +36,7 @@ type="$1"; shift
 
 while [ $# -gt 0 ]; do
    param="$1"; shift
-   echo "${param}" >> "${R_SVC_DIR}/${svc}/${type}${C_PARAMS}"
+   file="${svc}/${type}${C_PARAMS}"
+   echo "${file}+=${param}"
+   echo "${param}" >> "${R_SVC_DIR}/${file}"
 done
