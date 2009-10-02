@@ -35,8 +35,7 @@ HOSTNAME="$1"
 
 SVC="network/hostname"
 
-"$INSTALL_PROG"           "$INSTALL_DIRECTORY" \
-                          "${R_SVC_DIR}/${SVC}"
+cinit-conf.svc-create.template "${SVC}"
 ln -sf "$HOSTNAME_BIN"    "${R_SVC_DIR}/${SVC}/${C_ON}"
 echo "$HOSTNAME"        > "${R_SVC_DIR}/${SVC}/${C_ON}${C_PARAMS}"
 
