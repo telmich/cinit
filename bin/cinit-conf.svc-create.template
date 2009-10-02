@@ -62,4 +62,5 @@ Add services to ${C_WANTS} for the services this services wants
 (it will start if one or more fail)."
 eof
 
+   echo "done."
 done
