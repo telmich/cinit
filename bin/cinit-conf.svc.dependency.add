@@ -32,9 +32,9 @@ if [ $# -ne 3 ]; then
    exit 23
 fi
 
-SVC_A="$1"
-DEP="$2"
-SVC_B="$3"
+SVC_A="$1"; shift
+DEP="$1"; shift
+SVC_B="$1"; shift
 
 # adding 'wishes' for x-mas and requires for 'the mass' and 'tv'
 case "${DEP}" in
