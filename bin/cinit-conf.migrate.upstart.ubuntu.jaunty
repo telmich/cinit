@@ -43,7 +43,7 @@ cinit-conf.svc.init.dependencies
 # cinit@cinit-desktop:/etc/event.d$ ls -1 /etc/rcS.d/ | sed 's/^/# /'
 # README: not migrated:
 # S01mountkernfs.sh: sysfs, proc; ignored spufs, /var/run, /lib/init
-# S01readahead
+# S01readahead: ignored
 # S02hostname.sh
 # S06keyboard-setup
 # S07linux-restricted-modules-common
