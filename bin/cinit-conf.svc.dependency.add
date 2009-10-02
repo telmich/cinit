@@ -1,6 +1,6 @@
 #!/bin/sh
 # 
-# 2008      Nico Schottelius (nico-cinit-conf at schottelius.org)
+# 2008-2009 Nico Schottelius (nico-cinit-conf at schottelius.org)
 # 
 # This file is part of cinit-conf.
 #
@@ -19,8 +19,6 @@
 #
 # cinit: create dependency: service a needs or wants service b
 #
-
-set -x
 
 # initialise cinit-conf framework
 hier="${0%/*}"; set -e; . "${hier}/cinit-conf.read-conf"
