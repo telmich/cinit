@@ -8,8 +8,8 @@ set -e
 
 . $(dirname $0)/cinit-conf.read-conf
 
-$(dirname $0)/cinit-conf.add.dependency init wants getty
-$(dirname $0)/cinit-conf.add.dependency init wants local-services
-$(dirname $0)/cinit-conf.add.dependency init wants local-tuning
-$(dirname $0)/cinit-conf.add.dependency init wants mount
-$(dirname $0)/cinit-conf.add.dependency init wants network
+$(dirname $0)/cinit-conf.svc.dependency.add init wants getty
+$(dirname $0)/cinit-conf.svc.dependency.add init wants local-services
+$(dirname $0)/cinit-conf.svc.dependency.add init wants local-tuning
+$(dirname $0)/cinit-conf.svc.dependency.add init wants mount
+$(dirname $0)/cinit-conf.svc.dependency.add init wants network
