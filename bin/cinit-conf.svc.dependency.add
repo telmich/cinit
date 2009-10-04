@@ -20,8 +20,8 @@
 # cinit: create dependency: service a needs or wants service b
 #
 
-# initialise cinit-conf framework
-hier="${0%/*}"; set -e; . "${hier}/cinit-conf.read-conf"
+set -e
+. "$(dirname $0)/cinit-conf.read-conf"
 
 if [ $# -ne 3 ]; then
    echo "`basename $0`: service_A [wants|needs] service_B"
@@ -46,7 +46,13 @@ esac
 # remove slashes in the name for destination
 SVC_B_LNAME="$(echo $SVC_B | sed 's#/#-#g')"
 SVC_B_SOURCE="${T_SVC_DIR}/${SVC_B}"
-SVC_A_LDEST="${R_SVC_DIR}/${SVC_A}/${DEP}/${SVC_B_LNAME}"
+SVC_A_LDIR="${R_SVC_DIR}/${SVC_A}/${DEP}"
+SVC_A_LDEST="${SVC_A_LDIR}/${SVC_B_LNAME}"
+
+if [ ! -d "${SVC_A_LDIR}" ]; then
+   echo "${SVC_A}:+${DEP}"
+   mkdir "${SVC_A_LDIR}"
+fi
 
 echo "${SVC_A} ${DEP} ${SVC_B} (${SVC_B_LNAME})"
 ln -sf "${SVC_B_SOURCE}" "${SVC_A_LDEST}"
