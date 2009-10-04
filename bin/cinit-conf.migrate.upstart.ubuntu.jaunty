@@ -21,6 +21,8 @@
 # Try to migrate upstarts config from ubuntu jaunty to cinit config
 #
 
+set -e
+
 # /etc/event.d/rc-default guesses 2, so we also assume it's 2.
 default_runlevel=2
 
@@ -56,7 +58,7 @@ cinit-conf.svc.keymap.linux
 # S07linux-restricted-modules-common: ignored
 # S10udev: migrated
 cinit-conf.svc.mount.udev
-cinit-conf.svc.udev.linux
+cinit-conf.svc.local-tuning.udev.ubuntu
 
 # S11mountdevsubfs.sh:
 # S13pcmciautils:
