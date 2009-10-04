@@ -34,4 +34,6 @@ fi
 svc="$1"; shift
 executable="$1"; shift
 
+echo "${svc}:${C_ON}->${executable}"
+
 ln -sf "${executable}" "${R_SVC_DIR}/${svc}/${C_ON}"
