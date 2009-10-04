@@ -51,3 +51,8 @@ done
 : ${R_CINIT_DIR:="${DESTDIR}/${CINIT_DIR}"}
 : ${R_CINITCONF_DIR:="${R_CINIT_DIR}/${CINITCONFDIR}"}
 : ${R_SVC_DIR:="${R_CINIT_DIR}/${SVCDIR}"}
+
+# T_*: theorethic (not real, usable for linking)
+: ${T_CINIT_DIR:="${CINIT_DIR}"}
+: ${T_CINITCONF_DIR:="${T_CINIT_DIR}/${CINITCONFDIR}"}
+: ${T_SVC_DIR:="${T_CINIT_DIR}/${SVCDIR}"}

@@ -43,6 +43,8 @@ case "${DEP}" in
    *) echo "Use \"want\" or \"need\" as type of dependency."
 esac
 
+
+
 # First of all create absolute paths
 # if SVC_X beginning matches R_CINIT_DIR it is absolute
 # else it is relative to R_CINIT_DIR
