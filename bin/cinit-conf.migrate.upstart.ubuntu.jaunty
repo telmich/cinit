@@ -54,7 +54,7 @@ cinit-conf.svc.hostname.linux $(hostname)
 cinit-conf.svc.keymap.linux
 
 # S07linux-restricted-modules-common: ignored
-# S10udev: migrating...
+# S10udev: migrated
 cinit-conf.svc.mount.udev
 cinit-conf.svc.udev.linux
 
