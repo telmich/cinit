@@ -39,7 +39,7 @@ cinit-conf.svc-on                "${SVC}" "${BINARY_PATH}"
 cinit-conf.svc-param.add         "${SVC}" "${C_ON}" "settle"
 
 # dependencies
-cinit-conf.add.dependency "${SVC}" needs mount/sys
-cinit-conf.add.dependency "${SVC}" needs mount/udev
+cinit-conf.add.dependency "${SVC}" needs "mount/sys"
+cinit-conf.add.dependency "${SVC}" needs "mount/udev"
 
 exit 0
