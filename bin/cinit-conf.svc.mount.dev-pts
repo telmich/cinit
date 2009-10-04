@@ -1,0 +1,45 @@
+#!/bin/sh
+# 
+# 2009      Nico Schottelius (nico-cinit at schottelius.org)
+# 
+# This file is part of cinit.
+#
+# cinit is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# cinit is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with cinit. If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# Mount /dev/shm, as specified in Ubuntu:
+#
+#        domount tmpfs shmfs /dev/shm tmpfs -onosuid,nodev$SHM_OPT
+#
+#
+
+
+. "$(dirname $0)/cinit-conf.read-conf"
+
+set -e
+
+if [ $# -ne 0 ]; then
+  echo "$(basename $0) (no args)"
+  exit 1
+fi
+
+SVC="mount/dev-shm"
+BINARY_PATH="$(which mount)"
+
+cinit-conf.svc-create.template "${SVC}"
+cinit-conf.svc-on "${SVC}" "${BINARY_PATH}"
+cinit-conf.svc-param.add "${SVC}" "${C_ON}" "-n" "-t" "tmpfs" "-onosuid,nodev" "shmfs" "/dev/shm"
+cinit-conf.svc.dependency.add "${SVC}" "needs" "mount/udev"
+
+exit 0
