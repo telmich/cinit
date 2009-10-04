@@ -60,7 +60,10 @@ cinit-conf.svc.keymap.linux
 cinit-conf.svc.mount.udev
 cinit-conf.svc.local-tuning.udev.ubuntu
 
-# S11mountdevsubfs.sh:
+# S11mountdevsubfs.sh: migrated!
+cinit-conf.svc.mount.dev-shm
+cinit-conf.svc.mount.dev-pts
+
 # S13pcmciautils:
 # S15module-init-tools
 # S17procps
