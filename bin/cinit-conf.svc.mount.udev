@@ -30,7 +30,7 @@ if [ $# -ne 0 ]; then
   exit 1
 fi
 
-SVC="mount/dev"
+SVC="mount/udev"
 BINARY_PATH="$(which mount)"
 
 cinit-conf.svc-create.template "${SVC}"
