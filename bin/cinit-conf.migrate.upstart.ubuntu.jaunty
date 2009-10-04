@@ -53,10 +53,13 @@ cinit-conf.svc.hostname.linux $(hostname)
 # S06keyboard-setup: migrated
 cinit-conf.svc.keymap.linux
 
-# S07linux-restricted-modules-common
-# S10udev
-# S11mountdevsubfs.sh
-# S13pcmciautils
+# S07linux-restricted-modules-common: ignored
+# S10udev: migrating...
+cinit-conf.svc.mount.udev
+cinit-conf.svc.udev.linux
+
+# S11mountdevsubfs.sh:
+# S13pcmciautils:
 # S15module-init-tools
 # S17procps
 # S20checkroot.sh
