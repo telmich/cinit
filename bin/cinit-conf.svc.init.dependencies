@@ -25,8 +25,8 @@ set -e
 
 . "$(dirname $0)/cinit-conf.read-conf"
 
-$(dirname $0)/cinit-conf.svc.dependency.add init wants getty
-$(dirname $0)/cinit-conf.svc.dependency.add init wants local-services
-$(dirname $0)/cinit-conf.svc.dependency.add init wants local-tuning
-$(dirname $0)/cinit-conf.svc.dependency.add init wants mount
-$(dirname $0)/cinit-conf.svc.dependency.add init wants network
+cinit-conf.svc.dependency.add init wants getty
+cinit-conf.svc.dependency.add init wants local-services
+cinit-conf.svc.dependency.add init wants local-tuning
+cinit-conf.svc.dependency.add init wants mount
+cinit-conf.svc.dependency.add init wants network
