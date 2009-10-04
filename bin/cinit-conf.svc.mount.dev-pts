@@ -34,12 +34,21 @@ if [ $# -ne 0 ]; then
   exit 1
 fi
 
-SVC="mount/dev-shm"
+SVC="mount/dev-pts"
 BINARY_PATH="$(which mount)"
 
-cinit-conf.svc-create.template "${SVC}"
-cinit-conf.svc-on "${SVC}" "${BINARY_PATH}"
-cinit-conf.svc-param.add "${SVC}" "${C_ON}" "-n" "-t" "tmpfs" "-onosuid,nodev" "shmfs" "/dev/shm"
+cinit-conf.svc-create.template   "${SVC}"
+cinit-conf.svc-on                "${SVC}" "${BINARY_PATH}"
+
+# Ubuntu: domount devpts "" /dev/pts devpts -onoexec,nosuid,gid=$TTYGRP,mode=$TTYMODE
+# root@cinit-desktop:/home/cinit/cinit# grep -e TTYGRP -e TTYMODE /etc/default/*
+# /etc/default/devpts:TTYGRP=5
+# /etc/default/devpts:TTYMODE=620
+# root@cinit-desktop:/home/cinit/cinit# awk -F: '$3 ~ /^5$/ { print $1 }' /etc/group
+# tty
+
+
+cinit-conf.svc-param.add "${SVC}" "${C_ON}" "-n" "-t" "devpts" "devpts" "/dev/pts" "-onoexec,nosuid,gid=5,mode=620"
 cinit-conf.svc.dependency.add "${SVC}" "needs" "mount/udev"
 
 exit 0
