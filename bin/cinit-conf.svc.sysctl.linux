@@ -26,6 +26,12 @@
 
 . "$(dirname $0)/cinit-conf.read-conf"
 
+################################################################################
+# standard vars stolen from cconf
+__pwd="$(pwd -P)"
+__mydir="${0%/*}"; __abs_mydir="$(cd "$__mydir" && pwd -P)"
+__myname=${0##*/}; __abs_myname="$__abs_mydir/$__myname"
+
 set -e
 
 if [ $# -ne 0 ]; then
@@ -33,14 +39,25 @@ if [ $# -ne 0 ]; then
   exit 1
 fi
 
+SVC="local-tuning/sysctl"
+BINARY_PATH="$(which sysctl)"
 
-
-SVC="mount/dev-shm"
-BINARY_PATH="$(which mount)"
-
+# main service
+cinit-conf.svc-delete "${SVC}"
 cinit-conf.svc-create.template "${SVC}"
 cinit-conf.svc-on "${SVC}" "${BINARY_PATH}"
-cinit-conf.svc-param.add "${SVC}" "${C_ON}" "-n" "-t" "tmpfs" "-onosuid,nodev" "shmfs" "/dev/shm"
-cinit-conf.svc.dependency.add "${SVC}" "needs" "mount/udev"
+cinit-conf.svc-param.add "${SVC}" "${C_ON}" "-p" "/etc/sysctl.conf"
+
+# create "sub"-services
+for file in /etc/sysctl.d/*.conf; do
+   bsvc="${file##*/}"
+   bsvc="${bsvc%*.conf}"
+   svc="${SVC}/${bsvc}"
+
+   cinit-conf.svc-create.template "${svc}"
+   cinit-conf.svc-on "${SVC}" "${BINARY_PATH}"
+   cinit-conf.svc-param.add "${svc}" "${C_ON}" "-p" "${file}"
+   cinit-conf.svc.dependency.add "${SVC}" "needs" "${svc}"
+done
 
 exit 0

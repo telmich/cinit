@@ -66,7 +66,9 @@ cinit-conf.svc.mount.dev-pts
 
 # S13pcmciautils: ignored
 # S15module-init-tools: not migrated: I think modules should be put into services
-# S17procps: 
+# S17procps: migrated
+cinit-conf.svc.sysctl.linux
+
 # S20checkroot.sh
 # S22mtab.sh
 # S25brltty
