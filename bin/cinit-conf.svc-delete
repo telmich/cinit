@@ -28,11 +28,11 @@ set -e
 
 if [ $# -lt 1 ]; then
    echo "`basename $0`: service-name(s)"
-   echo "   I create templates for your services"
+   echo "   I delete your services"
    exit 1
 fi
 
-for svc in $@; do
+for svc in "$@"; do
    SERVICE="${R_SVC_DIR}/${svc}"
 
    if [ ! -e "$SERVICE" ]; then
