@@ -64,9 +64,9 @@ cinit-conf.svc.local-tuning.udev.ubuntu
 cinit-conf.svc.mount.dev-shm
 cinit-conf.svc.mount.dev-pts
 
-# S13pcmciautils:
-# S15module-init-tools
-# S17procps
+# S13pcmciautils: ignored
+# S15module-init-tools: not migrated: I think modules should be put into services
+# S17procps: 
 # S20checkroot.sh
 # S22mtab.sh
 # S25brltty
