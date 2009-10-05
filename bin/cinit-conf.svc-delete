@@ -36,7 +36,7 @@ for svc in "$@"; do
    SERVICE="${R_SVC_DIR}/${svc}"
 
    if [ ! -e "$SERVICE" ]; then
-      echo "$svc does not exists, skipping."
+      echo "${svc}: does not exists, cannot remove.."
       continue
    fi
 
